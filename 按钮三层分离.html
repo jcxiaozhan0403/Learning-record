@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" language="javascript">
+   window.onload = init;
+   function init(){
+    var btnOK = document.getElementById("btnOK");
+    var Cancel = document.getElementById("Cancel");
+    var Submit = document.getElementById("Submit");
+    //事件监听器
+    btnOK.onclick = btnclick;
+    Cancel.onmouseover = btnmouseover;
+    Submit.ondblclick = btndblclick;
+   }
+    function btnclick(){
+        window.alert("你点击了OK");
+    }
+    function btnmouseover(){
+    var flag;
+    flag = confirm("确认关闭当前窗口？")
+    if(flag==true){
+        window.close();
+    }else{
+        return false;
+    }
+}
+function btndblclick(){
+        window.alert("你双击了Submit");
+    }
+</script>
+<style>
+    #btnOK{
+      color:red;  
+    }
+    button{
+        font-size: 20px;
+    }
+</style>
+<body>
+    <button id="btnOK">OK</button>
+    <button id="Cancel">Cancel</button>
+    <input type="button" value="Submit" id="Submit" />
+
+</body>
+</html>
