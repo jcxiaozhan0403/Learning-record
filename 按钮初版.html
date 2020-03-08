@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>试试看</title>
+
+</head>
+<script src="../js/test.js"></script>
+<script>
+function lsone(){
+	window.alert("这是一个警告框");
+}
+function lstwo(){
+	alert("这是一个警告框");
+}
+function lsthress(){
+    if(confirm("确认关闭当前窗口？")==true){
+        window.close();
+    }else{
+        return false;
+    }
+}
+</script>
+<body>
+
+
+<button onclick="lsone()">单击</button>
+<button ondblclick="lstwo()">双击</button>
+<input onmouseover="lsthress()" type="button" value="悬停" />
+
+</body>
+</html>
