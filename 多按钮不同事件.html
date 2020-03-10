@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <meta name    = "viewport" content = "width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type          = "text/javascript" language = "javascript">
+        window.onload = init;
+    function init(){
+        var btnOK       = document.getElementById("btnOK");
+        var btnCancel   = document.getElementById("btnCancel");
+        var inputSubmit = document.getElementById("inputSubmit");
+        var spanInfo    = document.getElementById("spanInfo");
+       //事件监听
+       
+        btnOK.onclick           = btnEvent;
+        btnOK.ondblclick        = btnEvent;
+        btnCancel.ondblclick    = btnEvent;
+        inputSubmit.onmouseover = btnEvent;
+        //发生的事件
+    }
+    function btnEvent(){
+        var oEvent = window.event || arguments[0];//获取方法
+        var obj = event.srcElement ? event.srcElement : event.target;
+        //获取事件源
+        if(obj == btnOK){
+            if(oEvent.type == "click" ){
+                spanInfo.innerHTML = "你单击了OK";
+            }else if(oEvent.type == "dblclick"){
+                spanInfo.innerHTML = "你双击了OK";
+            }
+        }else if(obj == btnCancel){
+            spanInfo.innerHTML = "你双击了Cancel";
+        }else{
+            spanInfo.innerHTML = "鼠标指向了Submit";
+        }
+    }
+
+
+</script>
+<style>
+    #btnOK{
+      color: red;
+    }
+    button{
+        font-size: 20px;
+    }
+</style>
+<body>
+    <button id   = "btnOK">OK</button>
+    <button id   = "btnCancel">Cancel</button>
+    <input  type = "button" value = "Submit" id = "inputSubmit"  />
+    <br />
+    <span id = "spanInfo">提示信息</span>
+</body>
+<html>
