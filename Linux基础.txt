@@ -1,0 +1,86 @@
+第一次课
+Linux之父   Linus Torvalds   Linux内核
+自由软件之父/GNU   Richard Stallman  GNU软件
+GNU Not Unix
+Unix：付费操作系统，源代码不开放
+Linux：不一定免费，源代码开放
+自由软件：不是免费软件，它可以不受限制地自由使用、复制、研究、修改、发布。
+
+常见的Linux操作系统：Centos、ubantu、debian、redhat(市场占有率最高)...
+Centos和redhat的区别：
+redhat：在更新、升级等情况下需要付费
+Centos：在redhat源代码的基础下开发、100%兼容红帽
+
+中国最快的超级计算机
+神威太湖之光（世界排行第3）
+天河二号（世界排行第4）
+
+
+shell
+含义
+1、shell命令
+2、shell解释器（解释用户输入的命令，然后交给系统运行）
+3、shell脚本
+
+大多数Linux版本都是用Bash作为默认的Shell程序
+
+命令符[nbcc@localhost~]$
+nbcc 当前用户名
+localhost 当前主机名
+~当前工作目录 
+$普通用户类型
+#管理员用户类型
+
+Linux命令三类：二进制可执行文件、Shell脚本文件、Shell内建函数
+
+wohami 输出当前用户用户名
+
+echo "你好"   输出字符串
+        -n  “”不换行显示
+        -e  “”字符串可接转义字符
+
+nano 文本编辑器（ctrl+o 填入文件名 保存    ctrl+g 查看帮助文档    ctrl+x 退出）
+
+切换用户   su 用户名
+退出管理员   exit
+清屏   clear
+切换到当前用户主目录   cd
+查看当前系统的Shell解释器   cat /etc/shells
+帮助命令（man、help、pinfo）
+创建/修改文件   vi 文件名    i进入编辑    Esc退出编辑模式  冒号进入命令模式，输入wq
+
+
+关机/重启
+命令格式：shutdown [选项...] [时间] [警告...]
+shutdown -r    重启系统
+	-h    关闭系统
+	-k    仅仅发送警告，不关机或者重启
+	-c    取消shutdown命令
+
+关机
+shutdown 10
+shutdown +10
+shutdown -h 10
+shutdown -h +10
+shutdown -h（默认一分钟后）
+
+
+重启
+shutdown -r now
+shutdown -r 0
+shutdown -r +0
+shutdown -r（默认一分钟后）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
