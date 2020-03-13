@@ -8,17 +8,18 @@
 <script type          = "text/javascript" language = "javascript">
         window.onload = init;
     function init(){
-        var btnOK       = document.getElementById("btnOK");
-        var btnCancel   = document.getElementById("btnCancel");
-        var inputSubmit = document.getElementById("inputSubmit");
-        var spanInfo    = document.getElementById("spanInfo");
+        //var btnOK       = document.getElementById("btnOK");
+        //var btnCancel   = document.getElementById("btnCancel");
+        //var inputSubmit = document.getElementById("inputSubmit");
+        //var spanInfo    = document.getElementById("spanInfo");
+        var btns = document.getElementsByClassName("btn");
        //事件监听
        
-        btnOK.onclick           = btnEvent;
+        btnOK.onclick           = btnEvent;//btnOK.addEventListener("click",btnEVent)
         btnOK.ondblclick        = btnEvent;
         btnCancel.ondblclick    = btnEvent;
         inputSubmit.onmouseover = btnEvent;
-        //发生的事件
+        
     }
     function btnEvent(){
         var oEvent = window.event || arguments[0];//获取方法
