@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" language="javascript">
+window.onload = init;
+var btns = document.getElementsByClassName("btn");
+
+function init(){
+   
+
+btns[0].onclick = btnClick;
+btns[1].onclick = myFunction;
+btns[2].onclick = myFunction;
+btns[3].onclick = btnClick;
+btns[4].onclick = btnClick;
+btns[5].onclick = btnClick;
+btns[6].onclick = btnClick;
+btns[7].onclick = btnClick;
+btns[8].onclick = btnClick;
+btns[9].onclick = btnClick;
+btns[10].onclick = btnClick;
+btns[11].onclick = btnClick;
+btns[12].onclick = myFunction;
+btns[13].onclick = btnClick;
+btns[14].onclick = btnClick;
+btns[15].onclick = btnClick;
+btns[16].onclick = btnClick;
+btns[17].onclick = btnClick;
+            
+}
+
+function btnClick(){
+    var hege = [-31,32];
+	var stale = [33, 34, 35];
+    var spanInfo=document.getElementById("demo");
+    var obj = event.srcElement ? event.srcElement : event.target;
+        if(obj == btns[0]){
+	    var children = hege.concat(stale);
+	    spanInfo.innerHTML=children;
+
+        }else if(obj == btns[3]){
+            var number = stale.indexOf(34);
+            spanInfo.innerHTML=number;
+        }else if(obj ==btns[4]){
+            spanInfo.innerHTML=stale.join();
+        }else if(obj ==btns[5]){
+            var number = stale.lastIndexOf(34);
+            spanInfo.innerHTML=number;
+        }else if(obj ==btns[6]){
+            spanInfo.innerHTML= hege.map(Math.abs);
+        }else if(obj ==btns[7]){
+            stale.pop();
+            spanInfo.innerHTML=stale;
+        }else if(obj ==btns[8]){
+            hege.push(36);
+            spanInfo.innerHTML=hege;
+        }else if(obj ==btns[9]){
+            stale.reverse();
+            spanInfo.innerHTML=stale;
+        }else if(obj ==btns[10]){
+            stale.shift();
+            spanInfo.innerHTML=stale;
+        }else if(obj ==btns[11]){
+            var newnumber = stale.slice(0,2);
+            spanInfo.innerHTML=newnumber;
+        }else if(obj ==btns[13]){
+            hege.sort();
+            spanInfo.innerHTML=hege;
+        }else if(obj ==btns[14]){
+            hege.splice(1,0,37,38);
+            spanInfo.innerHTML=hege;
+        }else if(obj ==btns[15]){
+            var str = hege.toString();
+            spanInfo.innerHTML=str;
+        }else if(obj ==btns[16]){
+            hege.unshift(100);
+            spanInfo.innerHTML=hege;
+        }else{
+            spanInfo.innerHTML=stale.valueOf();
+        }    
+}
+var stale = [33, 34, 35];
+function checkAdult(stale) {
+    return stale >= 18;
+}
+function myFunction() {
+    var obj = event.srcElement ? event.srcElement : event.target;
+    if(obj == btns[1]){
+        document.getElementById("demo").innerHTML = stale.every(checkAdult);
+    }else if(obj == btns[2]){
+        document.getElementById("demo").innerHTML = stale.filter(checkAdult);
+    }else if(obj == btns[12]){
+        document.getElementById("demo").innerHTML = stale.some(checkAdult);
+    }
+}
+
+</script>
+<body>
+    <p>hege = [-31, 32]</p>
+    <p>stale = [33, 34, 35]</p>
+    <p id="demo"></p>
+    <br />
+    <button class="btn">点我合并数组</button>&nbsp;
+    <button class="btn">点我检测stale中的数是否都大于18</button>&nbsp;
+    <button class="btn">点我获取stale中大于18的数</button>&nbsp;
+    <button class="btn">点我查看34在stale中的位置</button>&nbsp;
+    <button class="btn">点我输出stale字符串</button><br /><br />
+    <button class="btn">点我查看34是stale中最后一次出现的位置</button>&nbsp;
+    <button class="btn">点我返回hege的绝对值</button>&nbsp;
+    <button class="btn">点我删除stale最后一个数</button>&nbsp;
+    <button class="btn">点我向hege加入数字36</button>&nbsp;<br /><br />
+    <button class="btn">点我反转stale</button>&nbsp;
+    <button class="btn">点我删除stale第一个数</button>&nbsp;
+    <button class="btn">点我输出stale前两个数</button>&nbsp;
+    <button class="btn">点我检测stale中是否有大于18的数</button>&nbsp;
+    <button class="btn">点我升序排列hege</button>&nbsp;<br /><br />
+    <button class="btn">点我在hege中加入37,38</button>&nbsp;
+    <button class="btn">点我输出hege字符串</button>&nbsp;
+    <button class="btn">点我向hege加入数字100</button>&nbsp;
+    <button class="btn">点我返回stale原始值</button>&nbsp;
+
+
+</body>
+</html>
