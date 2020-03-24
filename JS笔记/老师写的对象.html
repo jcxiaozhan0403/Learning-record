@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    window.onload = init;
+   
+    function func(){
+        window.alert("Gloable")
+    }
+
+    //Student类的构造方法
+    function Student(name,age,place){
+        this.name = name;
+        this.age = age;
+        this.place = place;
+        this.sleep = function func(){
+                        window.alert("12345")
+                    }
+    }    
+
+    function init(){
+        //元组  go 
+        var stu3 = new Student("李爽",48,"攀枝花");
+        window.alert(stu3.name);
+        stu3.sleep();
+
+        this.func();
+
+        function test(){
+            window.alert(this.name + ":" + "我在床上睡觉");    
+        }
+        
+        var stu1 = {
+                    name:"李文韬",
+                    age:28,
+                    place:"广元",
+                    eat:function(){
+                        window.alert(this.name + ":" + "我用饭桶吃饭");
+                    },
+                    sleep:test
+                };
+        var stu2 = {
+                    name:"王乐意",
+                    age:38,
+                    place:"资阳",
+                    eat:function(){
+                        window.alert(this.name + ":" + '我用脚盆吃饭');
+                    } ,
+                    sleep:test
+                };
+        var arr = [stu1,stu2];
+        var arr2 = [1,2,"3",4,"5"];   
+        var arr2 = new Array();  
+        
+        // for(var i = 0;i < 10;i++)
+        // {
+        //     arr2[i] = i + 1;
+        // }
+       
+        for(var i = 0;i < arr.length;i++)
+        {
+            arr[i].eat();
+            arr[i].sleep();
+        }    
+
+        // for(var i in arr2)
+        // {
+        //     console.log(arr2[i]);
+        // }
+        // for(var i = 0;i < arr2.length;i++)
+        // {
+        //     console.log(arr2[i]);    
+        // }
+    }
+</script>
+<body>
+    <span></span>
+</body>
+</html>
