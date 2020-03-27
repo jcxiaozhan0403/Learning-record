@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function</title>
+</head>
+<script>
+    
+    window.onload = init;
+// 函数：是一段用来实现功能的代码
+// 两个角色：调用者和被调用者
+// 参数：调用者给被调用者的数据
+// 返回值：被调用者完成功能后给回调用者的数据
+// 透明：被调用者实现过程对调用者透明
+
+// 面向对象的程序语言函数调用两种方式：
+// 1.函数间的调用
+// 2.对象调用函数
+    function init(){
+        var inv = zhouZN(200,"18011165809");
+        console.log("领导报销电话费"+inv.amount+"元");
+    }
+    // 发票的构造函数,amount金额，phNum电话号
+    function Invoice(amount,phNum){
+        this.amount = amount;
+        this.phNum = phNum;
+}
+    // mone话费，tip小费，phNumber电话号
+    function zhouZN(money,phNum,tip){
+        console.log("我去充花费了");
+        var inv = new Invoice(money,phNum);
+        return inv;
+    }
+
+</script>
+<body>
+    
+</body>
+</html>
