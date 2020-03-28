@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<script>
+window.onload = init;
+function init(){
+    var query = document.getElementById("query");
+    query.onclick = myfunction;
+    // 事件监听
+}
+function myfunction(){
+    var tes = test("小明","54613481");
+    var all = tes.score+tes.addScore;
+    window.alert("姓名:"+tes.stuName+"\n"+"考号:"+tes.testNum+"\n"+"总分:"+all);
+} 
+
+
+// 构造成绩,stuName姓名，testNum考号，score分数，addScore加分
+function Chenji(stuName,testNum,score,addScore){
+    this.stuName = stuName;
+    this.testNum = testNum;
+    this.score = score;
+    this.addScore = addScore;
+}
+
+// stuName姓名,testNum考号
+function test(stuName,testNum){
+    var cheJ = new Chenji(stuName,testNum,690,30);
+    return cheJ;
+}
+
+</script>
+<body>
+    <p>小明参加了高考</p>
+    <button id = "query">点击查询</button>
+</body>
+</html>
