@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+window.onload = init;
+
+function init(){
+    inputs =document.getElementsByTagName("input");
+
+    inputs[3].onclick = calculator;
+}
+    
+    function calculator(){
+        var num1,num2;
+        num1 = inputs[0].value;
+        num2 = inputs[2].value;
+        var one = parseInt(num1,10);
+        var two = parseInt(num2,10);
+
+        inputs[4].value = one+two;
+        
+    }
+
+
+
+</script>
+<body>
+    <form>
+        <input type="text" >
+        <input type="button" value="+">
+        <input type="text">
+        <input type="button" value="=">
+        <input type="text">
+    </form>
+    <span>提示信息</span>
+</body>
+</html>
