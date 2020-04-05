@@ -24,7 +24,7 @@ function init(){
         num2 = Number(inputs[1].value);
         // num1 = parseFloat(inputs[0].value);
         // num2 = parseFloat(inputs[2].value);
-        if(isNaN(num1) == true || isNaN(num2) == true)
+        if(isNaN(num1) || isNaN(num2) || num2 == "" || num1 == "")
         {
             inputs[0].value = "";
             inputs[1].value = "";
@@ -33,8 +33,8 @@ function init(){
             spanInfo.innerHTML="请输入正确的数字";
         }else{
             spanInfo.style.color = "green";
-            spanInfo.innerHTML="输入正确";
-            inputs[3].value = calculate(num1,num2);
+            spanInfo.innerHTML   = "输入正确";
+            inputs[3].value      = calculate(num1,num2);
         } 
 
             function calculate(num1,num2){
