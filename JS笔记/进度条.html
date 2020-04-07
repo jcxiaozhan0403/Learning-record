@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+window.onload = init;
+var button;
+function init(){
+    button         = document.getElementById("button");
+    button.onclick = Myfunction;
+}
+
+function Myfunction(){
+  var myProgress = document.getElementById("myProgress");
+  var infoSpan   = document.getElementById("infoSpan");
+  var provalue   = myProgress.value;
+  
+    if(provalue<50){
+      provalue++;
+      myProgress.value = provalue;
+      infoSpan.innerHTML = provalue*2 + "%";
+    }
+      window.setTimeout(Myfunction,1000);
+    
+  }
+</script>
+
+<body>
+    <progress id="myProgress" value="" max="50"></progress>
+
+    <span id="infoSpan"></span>
+    <br />
+    <br />
+    <button id="button">点击开始下载</button>
+</body>
+</html>

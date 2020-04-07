@@ -8,10 +8,18 @@
 <script>
     window.onload = init;
     var dateSpan;
+    var cease;
+    var timeID;
     function init(){
         dateSpan = document.getElementById("dateSpan");
+        cease    = document.getElementById("cease");
+        cease.onclick = stopTime;
         showTime();
 }
+// 删除重复
+    function stopTime(){
+        clearTimeout(timeID);
+    }
 // 获取时间
     function showTime(){
         var myDate = new Date();
@@ -23,6 +31,7 @@
         var mins   = myDate.getMinutes();
         var secs   = myDate.getSeconds();
         var str;
+        
 // 显示美化
     switch(day)
         {
@@ -34,7 +43,6 @@
             case 5: day = "五";break;
             case 6: day = "六";break;
         }
-
     if(hours>12){
         hours -= 12;
         str ="PM";
@@ -43,18 +51,21 @@
     }
 
     hours = hours < 10 ? "0" + hours : hours;
-    mins = mins < 10 ? "0" + mins : mins;
-    secs = secs < 10 ? "0" + secs : secs;
+    mins  = mins < 10 ? "0" + mins : mins;
+    secs  = secs < 10 ? "0" + secs : secs;
     month = month < 10 ? "0" + month : month;
-    date = date < 10 ? "0" + date : date;
+    date  = date < 10 ? "0" + date : date;
 
-// 显示时间
+// 显示时间并添加重复
     dateSpan.innerHTML = year + "年" + month + "月" + date + "日" + "星期" + day + " " + str + " " +hours + ":" + mins + ":" + secs;
-    window.setTimeout(showTime,1000);
-    
+    timeID = window.setTimeout(showTime,1000);
 }
 </script>
 <body>
     <span id="dateSpan"></span>
+    <br /><br />
+    <span>点击此按钮页面时间停止</span>
+    &nbsp;
+    <button id="cease">停止</button>
 </body>
 </html>
