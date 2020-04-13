@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+#ul li{
+    display:inline;
+    
+}
+div{
+    text-align: center;
+}
+</style>
+<script>
+    window.onload = init;
+    var img;
+    var btn;
+    var cnt = 0;
+    function init(){
+        img = document.getElementById("img");
+        btn = document.getElementById("btn");
+        smallImgs = document.getElementsByClassName("btn");
+        imageChange();
+
+        for(var i = 0; i<4; i++){
+            smallImgs[i].onclick = imgBtn;
+        }
+    }
+// 自动切换
+    function imageChange(){
+        
+        switch(cnt % 4){
+            case 0 :    img.src = "images/1.jpg"; 
+                        smallImgs[0].src = "images/on.png";
+                        smallImgs[1].src = "images/off.png";
+                        smallImgs[2].src = "images/off.png";
+                        smallImgs[3].src = "images/off.png"; 
+                        break;
+
+            case 1 :    img.src = "images/2.jpg";  
+                        smallImgs[1].src = "images/on.png"; 
+                        smallImgs[0].src = "images/off.png";
+                        smallImgs[2].src = "images/off.png";
+                        smallImgs[3].src = "images/off.png";
+                        break;
+
+            case 2 :    img.src = "images/3.jpg"; 
+                        smallImgs[2].src = "images/on.png";
+                        smallImgs[0].src = "images/off.png";
+                        smallImgs[1].src = "images/off.png";
+                        smallImgs[3].src = "images/off.png"; 
+                        break;
+
+            case 3 :    img.src = "images/4.jpg"; 
+                        smallImgs[3].src = "images/on.png";
+                        smallImgs[0].src = "images/off.png";
+                        smallImgs[1].src = "images/off.png";
+                        smallImgs[2].src = "images/off.png"; 
+                        break;
+        }
+            cnt++;
+            window.setTimeout(imageChange,3000);
+        
+    }
+
+
+// 点击切换
+function imgBtn(){
+    var obj = event.srcElement ? event.srcElement : event.target;
+    if(obj == smallImgs[0]){
+       
+        img.src = "images/1.jpg"; 
+        smallImgs[0].src = "images/on.png";
+        smallImgs[1].src = "images/off.png";
+        smallImgs[2].src = "images/off.png";
+        smallImgs[3].src = "images/off.png";
+        cnt = 0; 
+
+    }else if(obj == smallImgs[1]){
+       
+        img.src = "images/2.jpg";  
+        smallImgs[1].src = "images/on.png"; 
+        smallImgs[0].src = "images/off.png";
+        smallImgs[2].src = "images/off.png";
+        smallImgs[3].src = "images/off.png";
+        cnt = 1;
+
+    }else if(obj == smallImgs[2]){
+        
+        img.src = "images/3.jpg"; 
+        smallImgs[2].src = "images/on.png";
+        smallImgs[0].src = "images/off.png";
+        smallImgs[1].src = "images/off.png";
+        smallImgs[3].src = "images/off.png"; 
+        cnt = 2;
+        
+    }else{
+
+        img.src = "images/4.jpg"; 
+        smallImgs[3].src = "images/on.png";
+        smallImgs[0].src = "images/off.png";
+        smallImgs[1].src = "images/off.png";
+        smallImgs[2].src = "images/off.png"; 
+        cnt = 3;
+
+    }
+}
+
+</script>
+<body>
+    <div>
+    <div>
+        <img id="img" src="images/1.jpg" width="300px" height="200px">
+    </div>
+    <br />
+<div>
+    <ul id="ul">
+        <li><img class="btn" src="images/off.png"></li>
+        <li><img class="btn" src="images/off.png"></li>
+        <li><img class="btn" src="images/off.png"></li>
+        <li><img class="btn" src="images/off.png"></li>
+    </ul>
+</div>
+</div>
+</body>
+</html>

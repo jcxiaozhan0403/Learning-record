@@ -16,7 +16,7 @@
         cease.onclick = stopTime;
         showTime();
 }
-// 删除重复
+// 删除延时重复
     function stopTime(){
         clearTimeout(timeID);
     }
@@ -56,7 +56,7 @@
     month = month < 10 ? "0" + month : month;
     date  = date < 10 ? "0" + date : date;
 
-// 显示时间并添加重复
+// 显示时间并添加延时重复
     dateSpan.innerHTML = year + "年" + month + "月" + date + "日" + "星期" + day + " " + str + " " +hours + ":" + mins + ":" + secs;
     timeID = window.setTimeout(showTime,1000);
 }
