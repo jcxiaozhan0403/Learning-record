@@ -6,8 +6,8 @@
     <title>Document</title>
 </head>
 <script>
-window.onload = init;
-var button;
+    window.onload = init;
+    var button;
 function init(){
     button         = document.getElementById("button");
     button.onclick = Myfunction;
@@ -18,18 +18,22 @@ function Myfunction(){
   var infoSpan   = document.getElementById("infoSpan");
   var provalue   = myProgress.value;
   
-    if(provalue<50){
+    if(provalue<100){
+      var timeID;
       provalue++;
       myProgress.value = provalue;
-      infoSpan.innerHTML = provalue*2 + "%";
+      infoSpan.innerHTML = provalue + "%";
+    }else{
+      infoSpan.innerHTML = "下载完成";
+      window.clearTimeout(timeID);
     }
-      window.setTimeout(Myfunction,1000);
+    timeID = window.setTimeout(Myfunction,100);
     
   }
 </script>
 
 <body>
-    <progress id="myProgress" value="" max="50"></progress>
+    <progress id="myProgress" value="" max="100"></progress>
 
     <span id="infoSpan"></span>
     <br />
