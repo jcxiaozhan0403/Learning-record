@@ -6,43 +6,56 @@
     <title>Register</title>
 </head>
 <style>
+/* 标题和按钮 */
 div p{
     font-size: 26px;
     text-align:center;
     color:#33b915;
-}
-#form div{
-    display: inline;
-    margin-left: 120px;
-}
-#form input,#btn{
-        outline:none;
-        border-radius: 25px;
-        width:255px;
-        height: 25px;
-        margin-bottom: 7px;
-        border: 1px solid #cccccc;
-        font-size: 15px;
-    }
-span{
-        display:inline-block;
-        width:200px;
-        text-align: right;
-    }
-.suffix{
-    width: 0px;
-}
-#infoUserName,#infoPsd,#infoSecPsd,#infoPhNum,#infoVerCode{
-    width: 180px;
-    text-align: left;
-}
-#form{
-    text-align: center;
-    margin-left: 50px;
+    padding-right: 50px;
 }
 #submit{
     text-align: center;
-    margin-right: 55px
+    padding-right: 95px;
+    padding-top: 15px;
+}
+#btn{
+        width: 200px;
+        height: 40px;
+        color: #fff;
+        font-size: 18px;
+        outline:none;
+        text-align: center;
+        border-radius: 25px;
+        border: 1px solid #cccccc;
+        background-color:#33b915;
+}
+
+/* 表单部分 */
+#form span{
+    display:inline-block;
+    width:200px;
+    text-align: right;
+}
+#form input{
+    outline:none;
+    border-radius: 25px;
+    width:255px;
+    height: 25px;
+    margin-bottom: 7px;
+    border: 1px solid #cccccc;
+    font-size: 15px;
+}
+#form .suffix,#form .prompt{
+    text-align: left;
+    width:185px;
+    padding-left: 10px;
+}
+#form div{
+    display: inline;
+}
+#form{
+    text-align: center;
+    margin-left: 100px;
 }
 </style>
 <script>
@@ -96,6 +109,28 @@ span{
     var dictOrdinary = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
     var dictAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     var dictNum = "1234567890";
+    // 更改提示图片
+    function infoImg(spanId,imgId){
+    if(spanId.style.color == "red")
+        {
+            imgId.src = "images/onError.gif";
+        }else if(spanId.style.color == "blue")
+        {
+            imgId.src = "images/onFocus.gif";
+        }else if(spanId.style.color == "green")
+        {
+            imgId.src = "images/right.jpg";
+        }
+    }
+    // 更改提示颜色
+    function infoColor(spanId){
+    if(spanId.type == "focus")
+        {
+            spanId.style.color = "blue";    
+        }else{
+            spanId.style.color = "red";
+        }
+    }
     //判断一个字符串是否包含特殊字符
     //str:需要判断的字符串  返回值：若包含，返回true,否则返回false
     function hasIllegalChar(str,dict){
@@ -113,16 +148,9 @@ span{
     //6.用户名已注册（+5分） 7.敏感词汇(+5分)
     function checkUserName(){
         var str = userName.value; 
-        
-        // 提示颜色
-        if(event.type == "focus")
-        {
-            infoUserName.style.color = "blue";    
-        }else{
-            infoUserName.style.color = "red";
-        }
 
-        // 判定处理
+        infoColor(infoUserName);
+
         if(str.length == 0)
         {
             infoUserName.innerHTML ="用户名不能为空";
@@ -141,18 +169,8 @@ span{
                                             infoUserName.innerHTML ="恭喜您，可以注册";
                                             infoUserName.style.color = "green";
                                         }
-    
-        //提示图片
-        if(infoUserName.style.color == "red")
-        {
-            imgUserName.src = "images/onError.gif";
-        }else if(infoUserName.style.color == "blue")
-        {
-            imgUserName.src = "images/onFocus.gif";
-        }else if(infoUserName.style.color == "green")
-        {
-            imgUserName.src = "images/right.jpg";
-        }
+        
+        infoImg(infoUserName,imgUserName);
     }
     //判断str是否只有字母+数字来构成，不能包含其他字符，也不能只有一种
     //若是则返回true,否则返回false 
@@ -180,28 +198,9 @@ span{
     function checkPsd(){
         var str = psd.value;
 
-    // 提示颜色
-        if(event.type == "focus")
-        {
-            infoPsd.style.color = "blue";
-        }else{
-            infoPsd.style.color = "red";
-        }
+        infoColor(infoPsd);
 
-    //提示图片
-        if(infoPsd.style.color == "red")
-        {
-            imgPsd.src = "images/onError.gif";
-        }else if(infoPsd.style.color == "blue")
-        {
-            imgPsd.src = "images/onFocus.gif";
-        }else if(infoPsd.style.color == "green")
-        {
-            imgPsd.src = "images/right.jpg";
-        }
-
-    // 判定处理
-    if(str.length == 0)
+        if(str.length == 0)
         {
             infoPsd.innerHTML ="密码不能为空";
         }else   if(str.length < 6 || str.length > 18)
@@ -213,32 +212,17 @@ span{
                             infoPsd.innerHTML ="输入正确";
                             infoPsd.style.color = "green";
                         }
-    }
+        
+        infoImg(infoPsd,imgPsd);
+}
     //用于验证二次密码输入是否正确，若正确，则提示信息为绿色，若错误，则获取焦点提示蓝色，失去焦点提示红色
     //1.空  2。6-18  3.只有数字，只有字母，包含了非字母和数字 4.两次密码不相等
     function checkSecPsd(){
         var str = secPsd.value;
         var str2 = psd.value;
 
-    // 提示颜色
-        if(event.type == "focus")
-        {
-            infoSecPsd.style.color = "blue";
-        }else{
-            infoSecPsd.style.color = "red";
-        }
-    //提示图片
-        if(infoSecPsd.style.color == "red")
-        {
-            imgSecPsd.src = "images/onError.gif";
-        }else if(infoSecPsd.style.color == "blue")
-        {
-            imgSecPsd.src = "images/onFocus.gif";
-        }else if(infoSecPsd.style.color == "green")
-        {
-            imgSecPsd.src = "images/right.jpg";
-        }
-    // 判定处理
+        infoColor(infoSecPsd);
+
         if(str.length == 0)
         {
             infoSecPsd.innerHTML ="密码不能为空";
@@ -253,11 +237,13 @@ span{
                                     infoSecPsd.innerHTML ="输入正确";
                                     infoSecPsd.style.color = "green";
                                 }
-    }
+
+        infoImg(infoSecPsd,imgSecPsd);
+}
     //判断指定字符串是否在某个特定范围之内，若在返回true,否则返回false
     //str:待判定的字符串,scope：给定的某个范围
+    var scopePhNum = ["13","14","15","16","18","19"];
     function isStrInScope(str,scope){
-        var scopePhNum = ["13","14","15","16","18","19"];
 
         for(var i = 0;i < scope.length;i++)
         {
@@ -272,27 +258,10 @@ span{
     function checkPhNum(){
         var str = phNum.value;
         
-        // 提示颜色
-        if(event.type == "focus"){
-            infoPhNum.style.color = "blue";
-        }else{
-            infoPhNum.style.color = "red";
-            // alert(str.slice(0,3));
-            // alert(str.substr(0,4));
-            // alert(str.substring(0,5));
-        }
-        //提示图片
-        if(infoPhNum.style.color == "red")
-        {
-            imgPhNum.src = "images/onError.gif";
-        }else if(infoPhNum.style.color == "blue")
-        {
-            imgPhNum.src = "images/onFocus.gif";
-        }else if(infoPhNum.style.color == "green")
-        {
-            imgPhNum.src = "images/right.jpg";
-        }
-        // 判定处理
+        infoColor(infoPhNum);
+        // alert(str.slice(0,3));从下标0开始取，取到下标2
+        // alert(str.substr(0,4));从下标0开始，取4个字符
+        // alert(str.substring(0,5));从下标0开始，取5个字符
         if(str.length != 11 || hasIllegalChar(str,dictNum) == true || isStrInScope(str.substr(0,2),scopePhNum) == false)
         {
             infoPhNum.innerHTML ="手机号码输入有误";
@@ -300,11 +269,13 @@ span{
             infoPhNum.innerHTML ="输入正确";
             infoPhNum.style.color = "green";
         }
+
+        infoImg(infoPhNum,imgPhNum);
     }
     //产生新的验证码，随机的字母+数字的格式
     //图片类验证码，5分，微信二维码或短信验证码10分
-    //在dictPsd中的62个字符里随机取4个字符构成验证码 0~61 
-    //dictPsd = "QAZXSWEDCVFRTGBNHYUJMKILOPqazxswedcvfrtgbnhyujmkiolp1234567890";
+    //在dictOrdinary中的62个字符里随机取4个字符构成验证码 0~61 
+    //dictOrdinary = "QAZXSWEDCVFRTGBNHYUJMKILOPqazxswedcvfrtgbnhyujmkiolp1234567890";
     //C:rand  srand JS:
     function showVerCode(){
         var str = "";
@@ -314,7 +285,7 @@ span{
         for(var i = 0;i < length;i++)
         {
             randNum = Math.floor(Math.random() * 62) // 0~61  15  18  3  51
-            str += dictPsd.charAt(randNum);
+            str += dictOrdinary.charAt(randNum);
         }
 
        sysVerCode.innerText = str;
@@ -324,7 +295,6 @@ span{
         var str = userVerCode.value;
         var str2 = sysVerCode.innerText;
 
-        // 判定处理
         if(str.toLowerCase() == str2.toLowerCase())
         {
             infoVerCode.style.color = "green";
@@ -334,17 +304,7 @@ span{
             infoVerCode.innerHTML = "验证码输入错误";
         }
 
-        // 提示图片
-        if(infoVerCode.style.color == "red")
-        {
-            imgVerCode.src = "images/onError.gif";
-        }else if(infoVerCode.style.color == "blue")
-        {
-            imgVerCode.src = "images/onFocus.gif";
-        }else if(infoVerCode.style.color == "green")
-        {
-            imgVerCode.src = "images/right.jpg";
-        }
+        infoImg(infoVerCode,imgVerCode);
     }
     //用于提交注册信息时，验证所有信息是否均正确，若正确，转入welcome.html，否则清空文本框内容
     function checkAll(){
@@ -352,7 +312,7 @@ span{
     }
 </script>
 <body>
-    <div>
+    <div id="formAll">
         <div id="title">
             <p>
                 欢&nbsp;&nbsp;迎&nbsp;&nbsp;注&nbsp;&nbsp;册&nbsp;&nbsp;！
@@ -360,11 +320,11 @@ span{
         </div>
         <form>
             <div id="form">
-                <span>用 户 名：</span><input type="text" id="userName"><span class="suffix">@tom.com</span><div><img id="imgUserName" src="" alt=""><span id="infoUserName"></span></div><br />
-                <span>密&nbsp;&nbsp;&nbsp;码：</span><input type="password" id="psd"><div><img id="imgPsd" src="" alt=""><span id="infoPsd"></span></div><br>
-                <span>确认密码：</span><input  type="password" id="secPsd"><div><img id="imgSecPsd" src="" alt=""><span id="infoSecPsd"></span></div><br>
-                <span>手机号码：</span><input  type="text" id="phNum"><div><img id="imgPhNum" src="" alt=""><span id="infoPhNum"></span></div><br>
-                <span>验 证 码：</span><input  type="text" id="userVerCode"><span id="sysVerCode" class="suffix">1A5X</span><div><img id="imgVerCode" src="" alt=""><span id="infoVerCode"></span></div><br>
+                <span>用 户 名：</span><input type="text" id="userName"><span class="suffix">@tom.com</span><div><img id="imgUserName" src="" alt=""><span id="infoUserName" class="prompt"></span></div><br />
+                <span>密&nbsp;&nbsp;&nbsp;码：</span><input type="password" id="psd"><span class="suffix"></span><div><img id="imgPsd" src="" alt=""><span id="infoPsd" class="prompt"></span></div><br>
+                <span>确认密码：</span><input  type="password" id="secPsd"><span class="suffix"></span><div><img id="imgSecPsd" src="" alt=""><span id="infoSecPsd" class="prompt"></span></div><br>
+                <span>手机号码：</span><input  type="text" id="phNum"><span class="suffix"></span><div><img id="imgPhNum" src="" alt=""><span id="infoPhNum" class="prompt"></span></div><br>
+                <span>验 证 码：</span><input  type="text" id="userVerCode"><span id="sysVerCode" class="suffix">1A5X</span><div><img id="imgVerCode" src="" alt=""><span id="infoVerCode" class="prompt"></span></div><br>
             </div> 
             <div id="submit">
                 <input type="checkbox" id="check"><span>我已阅读并接受服务条款</span><br>
