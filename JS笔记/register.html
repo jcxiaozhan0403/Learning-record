@@ -64,8 +64,10 @@ div p{
 </style>
 <script>
     window.onload = init;
+    // 正确值标志标量，如果正确，定义变re量为true，并返回
+    var flag = 0;
     //用户名，密码，二次密码，手机号码，用户输入验证码，提交按钮，系统给定验证码
-    var userName,psd,secPsd,phNum,userVerCode,submit,sysVerCode;
+    var userName,psd,secPsd,phNum,userVerCode,submit,sysVerCode,check;
     //信息提示：用户名，密码，二次密码，验证码，电话号码
     var infoUserName,infoPsd,infoSecPsd,infoVerCode,infoPhNum;
     function init(){
@@ -76,6 +78,7 @@ div p{
         userVerCode = document.getElementById("userVerCode");
         submit = document.getElementById("submit");
         sysVerCode = document.getElementById("sysVerCode");
+        check = document.getElementById("check");
 
         imgUserName = document.getElementById("imgUserName");
         imgPsd      = document.getElementById("imgPsd");
@@ -128,7 +131,7 @@ div p{
     }
     // 更改提示颜色
     function infoColor(spanId){
-    if(spanId.type == "focus")
+    if(event.type == "focus")
         {
             spanId.style.color = "blue";    
         }else{
@@ -172,9 +175,10 @@ div p{
                                         }else{
                                             infoUserName.innerHTML ="恭喜您，可以注册";
                                             infoUserName.style.color = "green";
+                                            flag = true;
                                         }
-        
         infoImg(infoUserName,imgUserName);
+        return flag;
     }
     //判断str是否只有字母+数字来构成，不能包含其他字符，也不能只有一种
     //若是则返回true,否则返回false 
@@ -215,9 +219,10 @@ div p{
                         }else{
                             infoPsd.innerHTML ="输入正确";
                             infoPsd.style.color = "green";
+                            flag = true;
                         }
-        
         infoImg(infoPsd,imgPsd);
+        return flag;
 }
     //用于验证二次密码输入是否正确，若正确，则提示信息为绿色，若错误，则获取焦点提示蓝色，失去焦点提示红色
     //1.空  2。6-18  3.只有数字，只有字母，包含了非字母和数字 4.两次密码不相等
@@ -240,9 +245,10 @@ div p{
                                 }else{
                                     infoSecPsd.innerHTML ="输入正确";
                                     infoSecPsd.style.color = "green";
+                                    flag = true;
                                 }
-
         infoImg(infoSecPsd,imgSecPsd);
+        return flag;
 }
     //判断指定字符串是否在某个特定范围之内，若在返回true,否则返回false
     //str:待判定的字符串,scope：给定的某个范围
@@ -272,9 +278,10 @@ div p{
         }else{
             infoPhNum.innerHTML ="输入正确";
             infoPhNum.style.color = "green";
+            flag = true;
         }
-
         infoImg(infoPhNum,imgPhNum);
+        return flag;
     }
     //产生新的验证码，随机的字母+数字的格式
     //图片类验证码，5分，微信二维码或短信验证码10分
@@ -303,16 +310,21 @@ div p{
         {
             infoVerCode.style.color = "green";
             infoVerCode.innerHTML = "输入正确";
+            flag = true;
         }else{
             infoVerCode.style.color = "red";
             infoVerCode.innerHTML = "验证码输入错误";
         }
-
         infoImg(infoVerCode,imgVerCode);
+        return flag;
     }
     //用于提交注册信息时，验证所有信息是否均正确，若正确，转入welcome.html，否则清空文本框内容
     function checkAll(){
-        
+        if(check.checked == true && checkUserName() == true && checkPsd() == true && checkSecPsd() == true && checkPhNum() == true && checkVerCode() == true){
+            window.location.replace("welcome.html");            //替换文档
+            // window.location.assign("https://www.baidu.com"); //加载文档
+        }
+        return false;
     }
 </script>
 <body>
@@ -331,7 +343,7 @@ div p{
                 <span>验 证 码：</span><input  type="text" id="userVerCode"><span id="sysVerCode" class="suffix">1A5X</span><div><img id="imgVerCode" src="" alt=""><span id="infoVerCode" class="prompt"></span></div><br>
             </div> 
             <div id="submit">
-                <input type="checkbox" id="check"><span>我已阅读并接受服务条款</span><br>
+                <input type="checkbox" id="check" checked><span>我已阅读并接受服务条款</span><br>
                 <input type="submit" value="注册" id="btn">
             </div>
         </form>
