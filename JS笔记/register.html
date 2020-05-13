@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
 </head>
+<script src="jquery-3.4.1.min.js"></script>
+<script src="jquery.json2xml.js"></script>
+<script src="jquery.xml2json.js"></script>
 <style>
 /* 标题和按钮 */
 div p{
@@ -64,7 +67,7 @@ div p{
 </style>
 <script>
     window.onload = init;
-    // 正确值标志标量，如果正确，定义变re量为true，并返回
+    // 定义正确值标志标量，如果正确，定义变量为1，并返回
     var flag = 0;
     //用户名，密码，二次密码，手机号码，用户输入验证码，提交按钮，系统给定验证码
     var userName,psd,secPsd,phNum,userVerCode,submit,sysVerCode,check;
@@ -116,7 +119,7 @@ div p{
     var dictOrdinary = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
     var dictAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     var dictNum = "1234567890";
-    // 更改提示图片
+    // 更改提示图标
     function infoImg(spanId,imgId){
     if(spanId.style.color == "red")
         {
@@ -138,6 +141,18 @@ div p{
             spanId.style.color = "red";
         }
     }
+
+    //正则判断字符串是否包含特殊字符，不包含返回true，包含返回false
+    // 正则判断密码是否由数字+字母构成，是返回true，不是返回false
+    // 正则判断电话号码前两位，以及是否为11位组成，满足返回true，不满足返回false
+    var regUserName = /^\w*[_\.*]*$/;
+    var regPsd = /^(?![^0-9]+$)(?![^a-zA-Z]+$)\w+$/;
+    var regNum =/^1[3|4|5|6|8|9][0-9]{9,}$/;
+    
+    function strJudge(str,reg){
+        return reg.test(str);
+    }
+
     //判断一个字符串是否包含特殊字符
     //str:需要判断的字符串  返回值：若包含，返回true,否则返回false
     function hasIllegalChar(str,dict){
@@ -152,7 +167,6 @@ div p{
     }
     //用于验证用户名输入是否正确，若正确，则提示信息为绿色，若错误，则获取焦点提示蓝色，失去焦点提示红色
     //1.长度为0 2.长度不在6-18之间 3.包含了特殊字符(字母、数字._-以外的字符) 4.数字打头  5.特殊字符打头（.-_）
-    //6.用户名已注册（+5分） 7.敏感词汇(+5分)
     function checkUserName(){
         var str = userName.value; 
 
@@ -173,9 +187,9 @@ div p{
                                         {
                                             infoUserName.innerHTML ="不能包含特殊字符";        
                                         }else{
-                                            infoUserName.innerHTML ="恭喜您，可以注册";
+                                            infoUserName.innerHTML ="恭喜您，可以注册！";
                                             infoUserName.style.color = "green";
-                                            flag = true;
+                                            flag = 1;
                                         }
         infoImg(infoUserName,imgUserName);
         return flag;
@@ -203,6 +217,7 @@ div p{
     }
 
     //用于验证密码输入是否正确，若正确，则提示信息为绿色，若错误，则获取焦点提示蓝色，失去焦点提示红色
+    //1.空  2。6-18  3.只有数字，只有字母，包含了非字母和数字
     function checkPsd(){
         var str = psd.value;
 
@@ -217,9 +232,9 @@ div p{
                 }else   if(isAlphaAndNum(str) == false){
                             infoPsd.innerHTML ="请尝试字母+数字的组合";
                         }else{
-                            infoPsd.innerHTML ="输入正确";
+                            infoPsd.innerHTML ="";
                             infoPsd.style.color = "green";
-                            flag = true;
+                            flag = 1;
                         }
         infoImg(infoPsd,imgPsd);
         return flag;
@@ -243,9 +258,9 @@ div p{
                         }else   if(str != str2){
                                     infoSecPsd.innerHTML ="两次密码不相同";
                                 }else{
-                                    infoSecPsd.innerHTML ="输入正确";
+                                    infoSecPsd.innerHTML ="";
                                     infoSecPsd.style.color = "green";
-                                    flag = true;
+                                    flag = 1;
                                 }
         infoImg(infoSecPsd,imgSecPsd);
         return flag;
@@ -264,40 +279,78 @@ div p{
         }
         return false;
     }
+
+// 号码归属地，用淘宝API接口实现，法一
+$(function(){
+    $("#phNum").blur(function(){
+        // 失去焦点，调用函数
+     $.ajax(
+      {
+       type:'get', // 请求方式
+       url : 'http://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel='+$("#phNum").val(), //发送请求地址
+       dataType : 'script', //返回纯文本js代码
+       cache: false, //不缓存返回结果
+       success  : function(data) {
+        $("#infoPhNum").text(__GetZoneResult_.province);
+        return true;
+       } //回调函数，传入返回后的数据
+      }
+     );
+    });
+   });
+
+//  号码归属地，法二，只有思路，暂未实现
+// 思路：将字符串的4到7位取出，转化为JSON格式，传到后台进行查询，返回查询结果
+function numRegion(str){
+    var obj = {
+        num : str.substr(3,4)
+    };
+    var jsonstr = JSON.stringify(obj);
+
+}
+
     //用于验证手机号码输入是否正确，若正确，则提示信息为绿色，若错误，则获取焦点提示蓝色，失去焦点提示红色
+    //1.长度不对 2.包含特殊字符(非数字) 3.前两位不是13,14,15,16,17,18,19  4.已被注册
+    //截取字符串
+    // alert(str.slice(0,3));从下标0开始取，取3个字符
+    // alert(str.substr(0,4));从下标0开始，取4个字符
+    // alert(str.substring(0,5));从下标0开始，取到下标5
     function checkPhNum(){
         var str = phNum.value;
         
         infoColor(infoPhNum);
-        // alert(str.slice(0,3));从下标0开始取，取到下标2
-        // alert(str.substr(0,4));从下标0开始，取4个字符
-        // alert(str.substring(0,5));从下标0开始，取5个字符
+        
         if(str.length != 11 || hasIllegalChar(str,dictNum) == true || isStrInScope(str.substr(0,2),scopePhNum) == false)
         {
             infoPhNum.innerHTML ="手机号码输入有误";
         }else{
-            infoPhNum.innerHTML ="输入正确";
+            infoPhNum.innerHTML ="";
             infoPhNum.style.color = "green";
-            flag = true;
+            flag = 1;
         }
         infoImg(infoPhNum,imgPhNum);
         return flag;
     }
     //产生新的验证码，随机的字母+数字的格式
-    //图片类验证码，5分，微信二维码或短信验证码10分
     //在dictOrdinary中的62个字符里随机取4个字符构成验证码 0~61 
     //dictOrdinary = "QAZXSWEDCVFRTGBNHYUJMKILOPqazxswedcvfrtgbnhyujmkiolp1234567890";
-    //C:rand  srand JS:
-    function showVerCode(){
+    //随机数C:rand  srand JS:
+    
+    // 随机码函数
+    function createVerCode(length,dict){
         var str = "";
-        var ranNum;
-        var length = 4;
-        
-        for(var i = 0;i < length;i++)
-        {
-            randNum = Math.floor(Math.random() * 62) // 0~61  15  18  3  51
-            str += dictOrdinary.charAt(randNum);
+        var randNum;
+
+        for(var i = 0;i < length;i++){
+            randNum = Math.floor(Math.random() * dict.length)
+            str += dict.charAt(randNum); 
         }
+
+        return str;
+    }
+    // 调用函数产生验证码
+    function showVerCode(){
+       var str = createVerCode(4,dictOrdinary);
 
        sysVerCode.innerText = str;
     }
@@ -310,7 +363,7 @@ div p{
         {
             infoVerCode.style.color = "green";
             infoVerCode.innerHTML = "输入正确";
-            flag = true;
+            flag = 1;
         }else{
             infoVerCode.style.color = "red";
             infoVerCode.innerHTML = "验证码输入错误";
@@ -319,10 +372,14 @@ div p{
         return flag;
     }
     //用于提交注册信息时，验证所有信息是否均正确，若正确，转入welcome.html，否则清空文本框内容
+    //return false阻止了sumit按钮被点击的默认事件，也就是让提交表单行为不再被执行，而执行的是我们自己写函数
     function checkAll(){
-        if(check.checked == true && checkUserName() == true && checkPsd() == true && checkSecPsd() == true && checkPhNum() == true && checkVerCode() == true){
+        if(check.checked == true && checkUserName() == 1 && checkPsd() == 1 && checkSecPsd() == 1 && checkPhNum() == 1 && checkVerCode() == 1)
+        {
             window.location.replace("welcome.html");            //替换文档
             // window.location.assign("https://www.baidu.com"); //加载文档
+        }else{
+            alert("请正确填写信息");
         }
         return false;
     }
