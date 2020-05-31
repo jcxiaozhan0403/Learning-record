@@ -45,7 +45,7 @@ eval()     将字符串解析为代码执行
 
 JSON.parse(name,value)
 - 第一个参数为变量名，是必选参数。
-- 第二个参数为需要执行的函数名，如果使用两个参数的话，对象中的每一组名称/值对都会执行一次函数
+- 第二个参数为需要执行的函数名，如果使用两个参数的话，对象中的每一组名称/值对都会执行一次函数，用于解析过程中的赋值
 
 ```JavaScript
 var str = '{"name":"John","age":19}';
@@ -132,7 +132,7 @@ var obj = $.xml2json(str);
 
 console.log(obj);
 
-var jsonstr = $.json2xml(obj);
+var jsonstr = JSON.stringify(obj);
 
 console.log(jsonstr);
 ```
@@ -212,4 +212,4 @@ TopoJSON是GeoJSON按拓扑学编码后的扩展形式
 TopoJSON消除了冗余，相比TopoJSON文件较小
 
 下面这个网站可以进行TopoJSON和GeoJSON格式的转换
-https://mapshaper.org/
+https://mapshaper.org/****

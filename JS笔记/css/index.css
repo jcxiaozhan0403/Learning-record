@@ -1,0 +1,137 @@
+body{
+    min-width: 2000px;
+}
+body div.main{
+    width: 40%;
+    margin: 0 auto;
+    /* background-color: lightblue; */
+}
+
+body div.body{
+    border: 1px solid #ccc;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+body .main .header {
+    width: 100%;
+    margin: 10px auto 15px auto;
+}
+
+body .main .header img{
+    float: left;
+    width: 165px;
+    height: 49px;
+    margin-left: -60px;
+}
+
+body .main .header span{
+    float: right;
+    padding-top: 30px;
+    padding-right: 10px;
+    font-size: 12px;
+}
+
+body .main div.middel{
+    background: url("../images/top_bg.gif");
+    height: 8px;
+}
+
+body .main div.title{
+    font-size: 26px;
+    text-align: center;
+    color: #33b915;
+    padding: 30px 0;
+}
+
+body .main div.span{
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+body .main div.span div,body .main div.span span{
+    float: left;
+}
+
+body .main div.span div.color-block{
+    width: 3px;
+    height: 18px;
+    background-color: #33b915;
+}
+
+body .main div.span span{
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 21px;
+}
+
+body .main div.span .line{
+    width: 452px;
+    height: 1px;
+    background-color: #f5f5f5;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+body .main #form{
+    width: 100%;
+    margin: 0 auto;
+}
+
+body .main #form span.span-before{
+    width: 120px;
+    height: 30px;
+    text-align: right;
+    float: left;
+    line-height: 30px;
+    margin-left: 80px;
+    margin-right: 10px;
+}
+
+body .main #form div.prompt{
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    float: right;
+    font-size: 12px;
+}
+
+body .main #form input{
+    outline:none;
+    border-radius: 25px;
+    width:255px;
+    height: 25px;
+    margin-bottom: 7px;
+    border: 1px solid #cccccc;
+    font-size: 15px;
+}
+
+body .main #form span.rules{
+    display: block;
+    margin-bottom: 10px;
+    padding-left: 205px;
+    color: #888;
+    font-size: 12px;
+}
+
+body .main #submit{
+    margin-left: 235px;
+    margin-top: 60px;
+    margin-bottom: 50px;
+}
+body .main #btn{
+        width: 200px;
+        height: 40px;
+        color: #fff;
+        font-size: 18px;
+        outline:none;
+        text-align: center;
+        border-radius: 25px;
+        border: 1px solid #cccccc;
+        background-color:#33b915;
+}

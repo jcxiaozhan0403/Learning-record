@@ -8,63 +8,8 @@
 <script src="jquery-3.4.1.min.js"></script>
 <script src="jquery.json2xml.js"></script>
 <script src="jquery.xml2json.js"></script>
-<style>
-/* 标题和按钮 */
-div p{
-    font-size: 26px;
-    text-align:center;
-    color:#33b915;
-    padding-right: 85px;
-}
-#submit{
-    text-align: center;
-    padding-right: 110px;
-    padding-top: 15px;
-}
-#btn{
-        width: 200px;
-        height: 40px;
-        color: #fff;
-        font-size: 18px;
-        outline:none;
-        text-align: center;
-        border-radius: 25px;
-        border: 1px solid #cccccc;
-        background-color:#33b915;
-}
-
-/* 表单部分 */
-#form span{
-    display:inline-block;
-    width:200px;
-    text-align: right;
-}
-#form input{
-    outline:none;
-    border-radius: 25px;
-    width:255px;
-    height: 25px;
-    margin-bottom: 7px;
-    border: 1px solid #cccccc;
-    font-size: 15px;
-}
-#form .suffix,#form .prompt{
-    text-align: left;
-    width:185px;
-    padding-left: 10px;
-}
-#form div{
-    display: inline;
-}
-#form{
-    margin-left: 100px;
-}
-#formAll form{
-    width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
-</style>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/index.css">
 <script>
     window.onload = init;
     // 定义正确值标志标量，如果正确，定义变量为1，并返回
@@ -384,25 +329,37 @@ function numRegion(str){
     }
 </script>
 <body>
-    <div id="formAll">
-        <div id="title">
-            <p>
-                欢&nbsp;&nbsp;迎&nbsp;&nbsp;注&nbsp;&nbsp;册&nbsp;&nbsp;！
-            </p>
+    <div class="main">
+        <div class="header clearfix">
+            <a href="http://mail.tom.com/"><img src="images/main.png" alt=""></a>
+            <span><a target="_blank" href="http://www.tom.com/">TOM首页</a> | <a target="_blank" href="http://mail.tom.com/webmail-static/help/tomcom/index.html">帮助中心</a></span>
         </div>
-        <form>
+        <div class="middel"></div>
+        <div class="body clearfix">
+            <div class="title">
+                <p>欢迎注册TOM邮箱！</p>
+            </div>
+            <div class="span clearfix">
+                <div class="color-block"></div>
+                <span>填写注册信息</span>
+                <div class="line"></div>
+            </div>
             <div id="form">
-                <span>用 户 名：</span><input type="text" id="userName"><span class="suffix">@tom.com</span><div><img id="imgUserName" src="" alt=""><span id="infoUserName" class="prompt"></span></div><br />
-                <span>密&nbsp;&nbsp;&nbsp;码：</span><input type="password" id="psd"><span class="suffix"></span><div><img id="imgPsd" src="" alt=""><span id="infoPsd" class="prompt"></span></div><br>
-                <span>确认密码：</span><input  type="password" id="secPsd"><span class="suffix"></span><div><img id="imgSecPsd" src="" alt=""><span id="infoSecPsd" class="prompt"></span></div><br>
-                <span>手机号码：</span><input  type="text" id="phNum"><span class="suffix"></span><div><img id="imgPhNum" src="" alt=""><span id="infoPhNum" class="prompt"></span></div><br>
-                <span>验 证 码：</span><input  type="text" id="userVerCode"><span id="sysVerCode" class="suffix">1A5X</span><div><img id="imgVerCode" src="" alt=""><span id="infoVerCode" class="prompt"></span></div><br>
-            </div> 
+                <span class="span-before">邮箱名：</span><input type="text" id="userName"><span class="suffix">@tom.com</span><div  class="prompt"><img id="imgUserName" src="" alt=""><span id="infoUserName"></span></div><br />
+                <span class="rules">6-18个字符，可用字母、数字、减号、点、下划线、需以字母开头</span>
+                <span class="span-before">密&nbsp;&nbsp;&nbsp;码：</span><input type="password" id="psd"><span class="suffix"></span><div class="prompt"><img id="imgPsd" src="" alt=""><span id="infoPsd" class="prompt"></span></div><br>
+                <span class="rules">6-18个字符, “字母+数字”的组合，区分大小写</span>
+                <span class="span-before">确认密码：</span><input  type="password" id="secPsd"><span class="suffix"></span><div class="prompt"><img id="imgSecPsd" src="" alt=""><span id="infoSecPsd" class="prompt"></span></div><br>
+                <span class="rules">请再次填写密码</span>
+                <span class="span-before">手机号码：</span><input  type="text" id="phNum"><span class="suffix"></span><div class="prompt"><img id="imgPhNum" src="" alt=""><span id="infoPhNum" class="prompt"></span></div><br>
+                <span class="rules">找回密码或认证时使用，请填写真实有效的手机号</span>
+                <span class="span-before">验 证 码：</span><input  type="text" id="userVerCode"><span id="sysVerCode" class="suffix">1A5X</span><div class="prompt"><img id="imgVerCode" src="" alt=""><span id="infoVerCode" class="prompt"></span></div><br>
+            </div>
             <div id="submit">
                 <input type="checkbox" id="check" checked><span>我已阅读并接受服务条款</span><br>
                 <input type="submit" value="注册" id="btn">
             </div>
-        </form>
-    </div>  
+        </div>
+    </div>
 </body>
 </html>
