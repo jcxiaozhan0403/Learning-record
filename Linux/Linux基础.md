@@ -679,7 +679,7 @@ umount 分区设备文件名或挂载点
 ```
 /etc/fstab
 第一列  第二列  第三列   第四列   第五列   第六列
-设备名  挂载点 文件系统 挂在选项 dump功能  文件系统检查次序(0不检)
+设备名  挂载点 文件系统 挂载选项 dump功能  文件系统检查次序(0不检)
 ```
 
 **磁盘配额**
@@ -904,4 +904,34 @@ find <路径><选项>[表达式]
 -size  根据文件大小寻找文件
 -type 根据文件类型寻找文件
 f(普通文件)、c(字符设备文件)、b(块设备文件)、l(链接文件)、d(目录文件)
+```
+
+```
+搜索当前目录下，文件类型为文本文件，权限为644，拥有者为Admin，属组为group1，文件大小大于10块，2天内创建的，以file开头的文件
+find -type f -perm 644 -user Admin -group group1 -size +10 -ctime -2 -name "file*"
+```
+
+# 第二十五次课
+对查找到的文件进一步操作
+```
+find -type f -perm 644 -user Admin -group group1 -size +10 -ctime -2 -name "file*" -exec ls -l {} \;
+```
+
+常见的文件操作指令
+```
+head/tail more/less 文件的查看
+wc 统计文件的行、词、字数，ctrl+d结束输入
+grep 显示文件中匹配关键字的行
+sort 按序重排文本并显示
+uniq 去除文件中相邻的重复的行
+tr 转换字符
+cut 显示文件中的某一列
+paste 将文本按列拼接
+```
+
+```
+wc
+-c 字符
+-l 行
+-w 词
 ```
