@@ -1,0 +1,60 @@
+2020-6-4 1-2节  软件19-1
+1。复习：
+create view 视图名（列名1,。。。）
+as
+select语句
+alter view 视图名（列名1,。。。）
+as
+select语句
+drop view 视图名
+2。存储过程：数据库中的一个对象，它是为了完成一个具体任务而由sql命令构成集合。
+（1）系统存储过程，存在master数据中。
+sp_helpdb---查看数据库信息
+sp_help ---查看数据表的信息
+sp_renamedb---对数据库更名
+（2）用户自定义存储过程：
+--创建存储过程
+create procdure 存储过程名称
+as
+sql语句
+--创建存储过程p_a,查询1980年出生的老师姓名。
+create procedure p_a
+as
+select tname from teacher where year(tsbirth)=1980
+--执行存储过程
+exec[ute]  存储过程
+execute p_a
+--创建存储过程p_b，查询姓张的学生姓名。
+create proc p_b
+as
+select sname from student
+where sname like '张%'
+execute p_b
+go
+--创建存储过程p_b，查询姓王的学生姓名。
+alter proc p_b
+as
+select sname from student
+where sname like '王%'
+execute p_b
+go
+--带参数的存储过程
+--创建存储过程p_c,输入学生的姓氏，显示该姓氏的学生姓名
+create procedure p_c @xs char(2)
+as
+select sname from student
+where left(sname,1)=@xs
+
+--创建存储过程p_rename,输入学生原来的名字和新的名字，完成学生姓名更名。
+exec p_rename 王丽丽，李丽丽
+
+create procedure p_rename @old char(10),@new char(10)
+as
+update student set sname=@new
+where sname=@old
+--删除存储过程
+drop procedure 存储过程名
+课堂作业：
+1。创建存储过程p_insertxb,给系部表添加数据。
+2。创建存储过程p_updatexb，更改系部的名称
+3。创建存储过程p_delxb,根据输入的系部名称，将其删除
