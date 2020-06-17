@@ -1179,5 +1179,52 @@ test
 -e 判断文件是否存在，存在为true
 ```
 5. 文件测试
+```
+text -d
+text -f
+```
 6. exit命令
+```
+加在脚本中，表示退出shell脚本
+```
 7. case...esac
+```
+case $变量名 in
+模式1）
+命令序列1
+;;
+模式2）
+命令序列2
+;; 
+*）
+默认执行的命令序列 
+;;
+esac
+```
+
+# 第三十四次课
+循环
+```
+while <条件>
+do
+<命令>
+done
+```
+```
+for 变量名 in <值表>
+do
+...
+done
+
+sum=0
+for num in {1..10}
+do
+((sum=sum+num))
+done
+echo "sum=$sum"
+```
+```
+until循环一直执行到求值条件为真才退出
+break是跳出循环
+countinue是终止当前循环
+```
