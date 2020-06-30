@@ -1,0 +1,69 @@
+window.onload = init;
+var user,headimg,userStyle,leftBtn,imgs,title,dotBtn,path;
+var cnt = 0;
+function init(){
+    path = document.getElementById("path");
+    user = document.getElementById("user");
+    headimg = document.getElementById("headimg");
+    userStyle = document.defaultView.getComputedStyle(headimg,null);
+    leftBtn = document.getElementById("left");
+    imgs = document.getElementById("imgs");
+    title = document.getElementById("title");
+    dotBtns = document.getElementsByClassName("dotBtn");
+
+    for(var i = 0; i<3; i++){
+        dotBtns[i].onclick = imgchg;
+    }
+
+    imgChange();
+    user.onclick = login;
+}
+
+function login(){
+    if(userStyle.display == "block"){
+        return false;
+    }else{
+        window.location.assign("html/login.html");
+    }
+}
+
+// 幻灯片自动切换
+function imgChange(){
+    switch(cnt % 3){
+        case 0 : imgs.src = "images/1.jpg";
+        path.href = "html/article1.html"
+        title.innerHTML = "刀剑神皇";
+        break;
+        case 1 : imgs.src = "images/2.jpg";
+        path.href = "html/article2.html"
+        title.innerHTML = "全职高手";
+        break;
+        case 2 : imgs.src = "images/3.jpg";
+        path.href = "html/article3.html"
+        title.innerHTML = "斗破苍穹";
+        break;
+    }
+    cnt++;
+    window.setTimeout(imgChange,3000);
+}
+
+// 小圆点切换
+function imgchg(){
+    var obj = event.srcElement ? event.srcElement : event.target;
+    if(obj == dotBtns[0]){
+        imgs.src = "images/1.jpg";
+        path.href = "html/article1.html"
+        title.innerHTML = "刀剑神皇";
+        cnt = 0;
+    }else if(obj == dotBtns[1]){
+        imgs.src = "images/2.jpg";
+        path.href = "html/article2.html"
+        title.innerHTML = "全职高手";
+        cnt = 1;
+    }else{
+        imgs.src = "images/3.jpg";
+        path.href = "html/article3.html"
+        title.innerHTML = "斗破苍穹";
+        cnt = 2;
+    }
+}

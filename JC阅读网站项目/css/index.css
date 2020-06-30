@@ -1,0 +1,284 @@
+body{
+    min-width: 1900px;
+    font-size: 20px;
+    font-family: stxingkai;
+    background: url(../images/background.png);
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+body .header{
+    width: 100%;
+    height: 80px;
+}
+
+body .header .logo{
+    float: left;
+    width: 195px;
+    height: 70px;
+    padding-top: 5px;
+    margin-left: 30px;
+}
+
+body .header .blog{
+    width: 195px;
+    height: 70px;
+    font-size: 35px;
+    line-height: 70px;
+    text-align: center;
+    padding-top: 10px;
+    float: right;
+}
+
+body .header .blog span:hover{
+    cursor: pointer; 
+    color: #1E90FF;
+}
+
+body .header img{
+    width: 195px;
+    height: 70px;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+body .menu{
+    width: 100%;
+    height: 60px;
+    background-color: #33b915;
+    border-radius: 50px;
+}
+
+body .menu .user{
+    float: right;
+    width: 50px;
+    height: 50px;
+    margin-top: 3px;
+    margin-right: 30px;
+    border-radius:50%;
+    position: relative;
+    cursor:pointer;
+}
+
+body .menu .user span{
+    font-size: 17px;
+    position: absolute;
+    left: 9px;
+    top: 18px;
+}
+
+body .menu .user img{
+    width: 50px;
+    height: 50px;
+    border-radius:50%;
+    display: none;
+}
+
+body .menu .user span:hover{
+    font-weight: bold;
+}
+
+body .menu .user:hover{
+    background-color: #ffffff;
+    border: #33b915 solid 2px;
+    font-weight: bold;
+}
+
+body .menu .topnav>li {
+    float: left;
+    margin: 0 20px;
+    width: 150px;
+    text-align: center;
+    height: 40px;
+    box-sizing: border-box;
+    position: relative;
+    margin-top: 10px;
+    padding-top: 13px;
+    left: 200px;
+}
+
+body .menu .topnav>li:hover{
+    background-color: #ffffff;
+    border-radius:15px;
+}
+
+body .menu .submenu{
+    position: absolute;
+    line-height: 2.5em;
+    background-color: #ffffff;
+    top: 50px;
+    width: 150px;
+    display: none;
+}
+
+body .menu .submenu ul>li:hover{
+    border-radius:15px;
+    background-color: #33b915;
+}
+
+body .menu .topnav>li#main-menu:hover .submenu{
+    display: block;
+}
+
+body .menu .topnav>li#main-menu:hover{
+    border-radius: 0;
+}
+
+body .menu .topnav>li#main-menu:hover::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    bottom: -10px;
+    left: 0px;
+    background: #fff;
+}
+
+.banner {
+    width: 730px;
+    height: 460px;
+    margin: 1em auto;
+    overflow: hidden;
+    position: relative;
+    border-radius:30px;
+    margin-top: 50px;
+}
+
+.banner #imgs{
+    width: 730px;
+    height: 460px;
+}
+
+.banner .modal{
+    width: 100%;
+    height: 40px;
+    background: rgba(0,0,0,.3);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: #fff;
+    line-height: 40px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.banner .modal .title{
+    float: left;
+    font-weight: bold;
+}
+
+.banner .modal .dots{
+    float: right;
+}
+
+.banner .modal .dots li{
+    width: 13px;
+    height: 13px;
+    background: #ccc;
+    display: inline-block;
+    margin: 0 2px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.banner .modal .dots li:hover{
+    background: #369;
+}
+
+.books{
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+.book-item{
+    float: left;
+    width: 160px;
+    height: 260px;
+    margin: 10px 57px 10px 0;
+    background-color: #fff;
+
+}
+
+.book-item img{
+    width: 160px;
+    height: 220px;
+}
+
+.book-item .span{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.books .book-span{
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 50px;
+    width: 105px;
+    height: 50px;
+    text-align: left;
+    margin-top: 50px;
+}
+
+.book-item a:hover{
+    color: 	#1E90FF;
+}
+
+body div#footer{
+    font-size: 35px;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    color: rgba(0, 0, 0, .5);
+}
+
+#contact{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 150px;
+    height: 150px;
+}
+
+#contact img{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    transition: all 1.2s ease-out 0s;
+}
+
+#contact img:hover{
+    -webkit-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+    -ms-transform:rotate(360deg);
+    transform:rotate(360deg);
+}
+
+#footer a{
+    font-size:25px;
+    font-family: xingkai;
+    color: #b9b9b9;
+    text-decoration: underline dotted rgba(0, 0, 0, .1);
+}
+
+#footer a:hover{
+    color: rgb(0,0,0);
+}
+
+#footer img{
+    width: 20px;
+    height: 20px;
+}

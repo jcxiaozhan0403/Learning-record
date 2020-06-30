@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JC阅读用户注册</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../images/logo.ico">
+</head>
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../css/register.css">
+<script src="../js/register.js"></script>
+<body>
+    <div class="main">
+        <div class="header clearfix">
+            <a href="../html/login.html"><img src="../images/main.png" alt=""></a>
+            <span><a target="_blank" href="../index.html">首页</a></span>
+        </div>
+        <div class="middel"></div>
+        <div class="body clearfix">
+            <div class="title">
+                <p>欢迎注册JC阅读！</p>
+            </div>
+            <div class="span clearfix">
+                <div class="color-block"></div>
+                <span>填写注册信息</span>
+                <div class="line"></div>
+            </div>
+            <div id="form">
+                <span class="span-before">邮箱名：</span><input type="text" id="userName"><span class="suffix">@jc.com</span><div  class="prompt"><img id="imgUserName" src="" alt=""><span id="infoUserName"></span></div><br />
+                <span class="rules">6-18个字符，可用字母、数字、减号、点、下划线、需以字母开头</span>
+                <span class="span-before">密&nbsp;&nbsp;&nbsp;码：</span><input type="password" id="psd"><span class="suffix"></span><div class="prompt"><img id="imgPsd" src="" alt=""><span id="infoPsd" class="prompt"></span></div><br>
+                <span class="rules">6-18个字符, “字母+数字”的组合，区分大小写</span>
+                <span class="span-before">确认密码：</span><input  type="password" id="secPsd"><span class="suffix"></span><div class="prompt"><img id="imgSecPsd" src="" alt=""><span id="infoSecPsd" class="prompt"></span></div><br>
+                <span class="rules">请再次填写密码</span>
+                <span class="span-before">手机号码：</span><input  type="text" id="phNum"><span class="suffix"></span><div class="prompt"><img id="imgPhNum" src="" alt=""><span id="infoPhNum" class="prompt"></span></div><br>
+                <span class="rules">找回密码或认证时使用，请填写真实有效的手机号</span>
+                <span class="span-before">验 证 码：</span><input  type="text" id="userVerCode"><span id="sysVerCode" class="suffix">1A5X</span><div class="prompt"><img id="imgVerCode" src="" alt=""><span id="infoVerCode" class="prompt"></span></div><br>
+            </div>
+            <div id="submit">
+                <input type="checkbox" id="check" checked><span>我已阅读并接受服务条款</span><br>
+                <input type="submit" value="注册" id="btn">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
