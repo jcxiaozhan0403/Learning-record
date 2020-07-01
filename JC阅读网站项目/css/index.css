@@ -69,10 +69,15 @@ body .menu .user{
 }
 
 body .menu .user span{
+    display: block;
     font-size: 17px;
     position: absolute;
     left: 9px;
     top: 18px;
+}
+
+body .menu .user span.span{
+    display: none;
 }
 
 body .menu .user img{
@@ -80,6 +85,10 @@ body .menu .user img{
     height: 50px;
     border-radius:50%;
     display: none;
+}
+
+body .menu .user img.img{
+    display: block;
 }
 
 body .menu .user span:hover{

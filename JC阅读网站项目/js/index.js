@@ -1,15 +1,17 @@
 window.onload = init;
-var user,headimg,userStyle,leftBtn,imgs,title,dotBtn,path;
+var user,headimg,userStyle,leftBtn,imgs,title,dotBtn,path,flag,span;
 var cnt = 0;
 function init(){
+    span = document.getElementById("span");
     path = document.getElementById("path");
     user = document.getElementById("user");
     headimg = document.getElementById("headimg");
-    userStyle = document.defaultView.getComputedStyle(headimg,null);
     leftBtn = document.getElementById("left");
     imgs = document.getElementById("imgs");
     title = document.getElementById("title");
     dotBtns = document.getElementsByClassName("dotBtn");
+
+    getParameter();
 
     for(var i = 0; i<3; i++){
         dotBtns[i].onclick = imgchg;
@@ -20,12 +22,35 @@ function init(){
 }
 
 function login(){
-    if(userStyle.display == "block"){
+    if(headimg.style.display == "none"){
         return false;
     }else{
         window.location.assign("html/login.html");
     }
 }
+
+// 获取登录参数
+function getParameter(){
+    flag = getUrlQueryString('flag');
+    if(flag == 1){
+        headimg.classList.add("img");
+        span.classList.add("span");
+    }else{
+        headimg.classList.remove("img");
+    }
+}
+
+function getUrlQueryString(names, urls) {
+	urls = urls || window.location.href;
+	urls && urls.indexOf("?") > -1 ? urls = urls
+			.substring(urls.indexOf("?") + 1) : "";
+	var reg = new RegExp("(^|&)" + names + "=([^&]*)(&|$)", "i");
+	var r = urls ? urls.match(reg) : window.location.search.substr(1)
+			.match(reg);
+	if (r != null && r[2] != "")
+		return unescape(r[2]);
+	return null;
+};
 
 // 幻灯片自动切换
 function imgChange(){

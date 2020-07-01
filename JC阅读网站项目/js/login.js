@@ -14,7 +14,7 @@ function init(){
 // 验证用户名
 function logIn(){
     if(userName.value == "Admin" && psd.value == "123456"){
-        window.location.replace("../index.html");
+        window.location.replace("../index.html?flag=1");
     }else{
         uspanInfo.innerHTML = "邮箱名或密码错误";
     }
