@@ -57,15 +57,15 @@ function imgChange(){
     switch(cnt % 3){
         case 0 : imgs.src = "images/1.jpg";
         path.href = "html/article1.html"
-        title.innerHTML = "刀剑神皇";
+        title.innerHTML = "计网笔记";
         break;
         case 1 : imgs.src = "images/2.jpg";
         path.href = "html/article2.html"
-        title.innerHTML = "全职高手";
+        title.innerHTML = "数据库笔记";
         break;
         case 2 : imgs.src = "images/3.jpg";
         path.href = "html/article3.html"
-        title.innerHTML = "斗破苍穹";
+        title.innerHTML = "JavaScript笔记";
         break;
     }
     cnt++;
@@ -78,17 +78,17 @@ function imgchg(){
     if(obj == dotBtns[0]){
         imgs.src = "images/1.jpg";
         path.href = "html/article1.html"
-        title.innerHTML = "刀剑神皇";
+        title.innerHTML = "计网笔记";
         cnt = 0;
     }else if(obj == dotBtns[1]){
         imgs.src = "images/2.jpg";
         path.href = "html/article2.html"
-        title.innerHTML = "全职高手";
+        title.innerHTML = "数据库笔记";
         cnt = 1;
     }else{
         imgs.src = "images/3.jpg";
         path.href = "html/article3.html"
-        title.innerHTML = "斗破苍穹";
+        title.innerHTML = "JavaScript笔记";
         cnt = 2;
     }
 }
