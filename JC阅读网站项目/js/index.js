@@ -43,8 +43,8 @@ function getParameter(){
 function getUrlQueryString(names, urls) {
 	urls = urls || window.location.href;
 	urls && urls.indexOf("?") > -1 ? urls = urls
-			.substring(urls.indexOf("?") + 1) : "";
-	var reg = new RegExp("(^|&)" + names + "=([^&]*)(&|$)", "i");
+			.substring(urls.indexOf("?") + 1) : ""; //获取字符串
+	var reg = new RegExp("(^|&)" + names + "=([^&]*)(&|$)", "i"); //不区分大小写
 	var r = urls ? urls.match(reg) : window.location.search.substr(1)
 			.match(reg);
 	if (r != null && r[2] != "")
