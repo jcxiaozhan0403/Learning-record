@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百度一下，你就知道</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    $(function(){
+    $('#search').on('focus',function(){
+        $('#img').attr("src", "language.png");
+    })
+    $('#search').on('blur',function(){
+        $('#img').attr("src", "photo.png");
+    })
+    $('#changeBtn').on('click',function(){
+        if($('#imgChange').attr("src") == "1.jpg"){
+            $('#imgChange').attr("src", "2.jpg");
+        }else{
+            $('#imgChange').attr("src", "1.jpg");
+        }
+    })
+})
+</script>
+<body>
+    <div class="header clearfix">
+        <div class="left clearfix">
+            <ul>
+                <li><a href="http://news.baidu.com" target="_blank">新闻</a></li>
+                <li><a href="https://www.hao123.com" target="_blank">hao123</a></li>
+                <li><a href="http://map.baidu.com" target="_blank">地图</a></li>
+                <li><a href="https://haokan.baidu.com/?sfrom=baidu-top" target="_blank">视频</a></li>
+                <li><a href="http://tieba.baidu.com" target="_blank">贴吧</a></li>
+                <li><a href="http://xueshu.baidu.com" target="_blank">学术</a></li>
+                <li class="more"><a href="http://www.baidu.com/more/" target="_blank">更多</a>
+                    <div class="menu">
+                        <a href="https://pan.baidu.com" target="_blank">
+                            <img src="https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/baiduyun@2x-e0be79e69e.png">
+                            <div class="link">网盘</div>
+                        </a>
+                        <a href="https://pan.baidu.com" target="_blank">
+                            <img src="https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/zhidao@2x-e9b427ecc4.png">
+                            <div class="link">知道</div>
+                        </a>
+                        <a href="https://pan.baidu.com" target="_blank">
+                            <img src="https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/baike@2x-1fe3db7fa6.png">
+                            <div class="link">百科</div>
+                        </a>
+                        <a href="https://pan.baidu.com" target="_blank">
+                            <img src="https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/tupian@2x-482fc011fc.png">
+                            <div class="link">图片</div>
+                        </a>
+                        <a href="https://pan.baidu.com" target="_blank">
+                            <img src="https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/baobaozhidao@2x-af409f9dbe.png">
+                            <div class="link">宝宝知道</div>
+                        </a>
+                        <a href="https://pan.baidu.com" target="_blank">
+                            <img src="https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/wenku@2x-f3aba893c1.png">
+                            <div class="link">文库</div>
+                        </a>
+                        <a href="https://pan.baidu.com" target="_blank">
+                            <img src="https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/jingyan@2x-e53eac48cb.png">
+                            <div class="link">经验</div>
+                        </a>
+                        <a href="https://pan.baidu.com" target="_blank">
+                            <img src="https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/yinyue@2x-c18adacacb.png">
+                            <div class="link">音乐</div>
+                        </a>
+                        <a href="http://www.baidu.com/more/" target="_blank" id="more">查看全部百度产品 &gt;</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="right clearfix">
+            <ul class="main">
+                <li><a href="https://www.baidu.com/s?wd=%E9%AB%98%E8%80%83&sa=searchpromo_gk_pc_ysj" target="_blank">高考加油</a></li>
+                <li><a href="" target="_blank" class="set">设置</a>
+                    <div class="menu2">
+                        <ul>
+                            <li><a href="">搜索设置</a></li>
+                            <li><a href="https://www.baidu.com/gaoji/advanced.html">高级搜索</a></li>
+                            <li><a href="">关闭预测</a></li>
+                            <li><a href="https://passport.baidu.com/v2/?login&tpl=pc&extrajson=%7B%22l%22%3A%22%22%2C%22s%22%3A%22%22%2C%22src%22%3A%22se_070003%22%7D&u=https%3A%2F%2Fwww.baidu.com%2Fduty%2Fprivacysettings.html">隐私设置</a></li>
+                            <li><a href="">关闭热榜</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="https://passport.baidu.com/v2/?login&tpl=mn&u=http%3A%2F%2Fwww.baidu.com%2F&sms=5" target="_blank">登录</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="logo">
+        <img src="logo.jpg" alt="">
+    </div>
+    <div class="search">
+        <input type="text" id="search">
+        <img src="photo.png" id="img" alt="">
+        <button>百度一下</button>
+    </div>
+    <div class="change">
+        <a href="http://top.baidu.com/?fr=mhd_card"><span>百度热榜</span></a>
+        <img src="" alt="">
+        <span id="changeBtn">换一换</span>
+        <img src="1.jpg" id="imgChange" alt="">
+    </div>
+</body>
+</html>

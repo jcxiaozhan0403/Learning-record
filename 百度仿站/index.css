@@ -1,0 +1,188 @@
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+body div.header{
+    width: 100%;
+    height: 50px;
+}
+
+body div.left{
+    width: 450px;
+    height: 50px;
+    float: left;
+}
+
+body div.right{
+    width: 250px;
+    height: 50px;
+    float: right;
+}
+
+body div.left ul>li{
+    font-size: 13px;
+    float: left;
+    margin-left: 31px;
+    margin-top: 19px;
+}
+
+body div.right ul>li{
+    float: left;
+    font-size: 13px;
+    margin-top: 19px;
+    margin-left: 31px;
+}
+
+body div.right ul.main>li:nth-child(1){
+    color: red;
+}
+
+body div.right ul.main>li:nth-child(3){
+    position: relative;
+    right: 5px;
+    top: -7px;
+    color: #fff;
+    padding: 7px;
+    border-radius: 5px;
+    background-color: #4e71f2;;
+}
+
+a:hover{
+    cursor: pointer;
+    color: #315efb;
+}
+
+body div.left ul>li.more{
+    padding-bottom: 20px;
+}
+
+body div.left ul>li.more:hover .menu{
+    display: block;
+}
+
+body div.menu{
+    border: 1px solid;
+    position: absolute;
+    border-radius: 15px;
+    left: 140px;
+    top: 45px;
+    width: 300px;
+    height: 225px;
+    display: none;
+}
+
+body div.menu a{
+    float: left;
+    margin-left: 25px;
+    margin-top: 20px;
+
+}
+
+#more{
+    color: #9195a3;
+    margin-top: 35px;
+}
+
+a#more:hover{
+    color: #315efb;;
+}
+
+body div.menu img{
+    width: 42px;
+    height: 42px;
+}
+
+body div.menu .link{
+    text-align: center;
+    width: 42px;
+}
+
+body div.menu2{
+    border: 1px solid;
+    width: 80px;
+    height: 160px;
+    position: absolute;
+    top: 45px;
+    right: 80px;
+    display: none;
+    border-radius: 5px;
+}
+
+body div.right ul.main>li:nth-child(2){
+    padding-bottom: 20px;
+}
+
+body div.right ul.main>li:nth-child(2):hover .menu2{
+    display: block;
+}
+
+body div.right ul.main>li:nth-child(3):hover a{
+    color: #fff;
+}
+
+.logo{
+    width: 400px;
+    height: 190px;
+    margin: 0 auto;
+}
+
+.logo img{
+    width: 400px;
+    height: 190px;
+}
+
+.header .right .menu2 li{
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.search{
+    width: 660px;
+    height: 45px;
+    margin: 0 auto;
+}
+
+.search input{
+    width: 540px;
+    height: 38px;
+}
+
+.search button{
+    color: #fff;
+    position: relative;
+    bottom: 44px;
+    left: 547px;
+    width: 100px;
+    height: 43px;
+    background-color: #4e6ef2;
+}
+
+.search img{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    right: 45px;
+    top: 10px;
+}
+
+.change{
+    width: 660px;
+    height: 160px;
+    margin: 0 auto;
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+.change #changeBtn{
+    float: right;
+}
+
+.change #changeBtn:hover{
+    cursor: pointer;
+    color: #315efb;
+}
+.change #imgChange{
+    margin-top: 20px;
+}
