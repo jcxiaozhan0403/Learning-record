@@ -1,0 +1,192 @@
+body{
+    min-width: 2000px;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+header{
+    background-color: rgb(76, 76, 76);
+    color: #fff;
+    font-size: 16px;
+    width: 1910px;
+    height: 45px;
+}
+
+header #title{
+    width: 130px;
+    text-align: center;
+    line-height: 45px;
+}
+
+header #search,header #title,div#menu{
+    float: left;
+}
+
+header #name{
+    width: 130px;
+    height: 45px;
+    text-align: center;
+    float: right;
+    margin-right: 30px;
+}
+
+header #search{
+    width: 240px;
+    line-height: 45px;
+}
+
+header img{
+    border-radius: 50%;
+    vertical-align: middle;
+    width: 25px;
+    height: 25px;
+
+}
+
+header #name span{
+    line-height: 45px;
+}
+
+div#main{
+    width: 1150px;
+    /* height: 5000px; */
+    margin: 0px auto;
+    /* background-color: lightblue; */
+}
+
+div#menu{
+    width: 220px;
+    height: 570px;
+    background-color: rgb(249, 249, 249);
+    text-align: center;
+}
+
+div#menu img{
+    border-radius: 50%;
+    margin: 10px 0;
+}
+
+div#menu span{
+    display: block;
+    color: #4c4c4c;
+}
+
+div#menu p{
+    margin-top: 15px;
+    line-height: 26px;
+    font-size: 14px;
+    border-radius: 12px;
+    display: inline-block;
+    width: 74px;
+    height: 26px;
+    background-color: #faa046;
+    color: #fff;
+}
+
+div#menu div#body li{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 14px;
+    margin: px auto;
+    color: #4c4c4c;
+}
+
+div#menu div#body li.now{
+    padding-top: 17px;
+    color: #0099ff;
+}
+
+div#menu #head{
+    background: url(../images/personalBg.jpg) no-repeat #faf7f5 bottom center;
+    padding-bottom: 15px;
+}
+
+div#menu div#body li:hover{
+    cursor:pointer;
+    color: #0099ff;
+}
+
+div#list div.head{
+    width: 930px;
+    height: 90px;
+    /* background-color: red; */
+    float: right;
+    font-size: 20px;
+    border-bottom: 2px #ccc solid;
+}
+
+div#list div.head span.right{
+    float: right;
+    padding-top: 60px;
+    font-size: 14px;
+    color: #0099ff;
+}
+
+div#list div.head span.left{
+    padding-top: 60px;
+    color: #333;
+    float: left;
+    padding-left: 40px;
+}
+
+div#list div.blue-line{
+    height: 2px;
+    width: 80px;
+    margin-top: 90px;
+    margin-left: 40px;
+    background-color: rgb(0, 153, 255);
+    position: relative;
+}
+
+div#list div.white-line{
+    margin-top: 90px;
+    height: 2px;
+    width: 40px;
+    background-color: white;
+    position: absolute;
+    top: 45px;
+}
+
+div#list .body .course{
+    width: 270px;
+    height: 280px;
+    float: right;
+    margin-top: 20px;
+    margin-right: 38px;
+    margin-bottom: 20px;
+    border: 1px solid #dbdbdb;
+}
+
+div#list .body .course img{
+    width: 270px;
+    height: 160px;
+}
+
+div#list .body .courseInfo p{
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #000;
+    text-align: center;
+}
+
+div#list .body .courseInfo{
+    height: 118px;
+    background-color: #f3f3f3;
+}
+
+div#list .body .courseInfo span{
+    font-size: 12px;
+    color: rgb(102, 102, 102);
+    text-align: left;
+    padding-left: 5px;
+}
+
+div#list .body .course:nth-child(3n-2){
+    margin-right: 0px;
+}
