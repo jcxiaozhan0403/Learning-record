@@ -5,13 +5,13 @@
 }
 
 .header{
-    width: 1903px;
+    width: 1920px;
     height: 130px;
     background-color: lightblue;
 }
 
 .menu{
-    width: 1903px;
+    width: 1920px;
     height: 45px;
     background-color: #0082E0;
     color: #fff;
@@ -38,27 +38,34 @@
 }
 
 .banner{
-    width: 1903px;
+    width: 1920px;
     height: 525px;
     background-color: lightblue;
 }
 
 .banner img{
-    width: 1903px;
+    width: 1920px;
     height: 525px;
 }
 
 .list{
     width: 1100px;
-    height: 190px;
+    height: 170px;
     margin: 0 auto;
-    background-color:#A9A9A9;
+    position: relative;
+    left: 125px;
+}
+
+.list span{
+    font-size: 18px;
+    color: #666;
+    margin-left: 20px;
+    letter-spacing:2px
 }
 
 .list div{
     margin-top: 10px;
     width: 500px;
-    background-color: lightgreen;
 }
 
 .list div.left{
@@ -70,16 +77,32 @@
 }
 
 .list div li{
+    font-size: 13px;
+    color: #555;
     margin-top: 15px;
 }
 
+.list div li:hover{
+    color: #f00;
+}
+
 .list div ul{
-    margin-top:40px;
+    margin-top:25px;
 }
 
 .footer{
-    width: 1903px;
-    height: 70px;
-    background-color: yellow;
+    width: 1920px;
+    height: 25px;
+    background-color: #969696;
+    text-align: center;
+    font-size: 12px;
+    color: #252525;
+    margin-top: 30px;
+}
+
+.footer div{
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 5px;
 }
 
