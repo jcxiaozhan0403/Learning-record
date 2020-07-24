@@ -177,4 +177,22 @@ switch(变量、常量、表达式)
 注：条件类型必须为整型和字符串
 ```
 
-
+## 补充
+大写字母 + 32 = 小写字母
+四种基本数据类型：int、float、double、char
+不同数据的输出
+```
+printf
+int %d
+float %f
+double %f
+char %c
+```
+不同数据的输入
+```
+scanf
+int %d
+float %f
+double %lf
+char %c
+```
