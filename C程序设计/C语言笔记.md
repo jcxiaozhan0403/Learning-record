@@ -187,6 +187,13 @@ int %d
 float %f
 double %f
 char %c
+
+注：%5.2f 结果占5个空格，小数点后占两个空格，所以在最开始补一位空格
+    %-5.2f 结果占5个空格，小数点后占两个空格，所以在末尾补一位空格
+
+%e 以科学计数法输出
+默认e+xxx 占5格
+%10.2e 小数点后有两位，总共占10格
 ```
 不同数据的输入
 ```
@@ -195,4 +202,15 @@ int %d
 float %f
 double %lf
 char %c
+```
+putchar和getchar的用法
+```
+char a,b,c;
+a = getchar();
+b = getchar();
+c = getchar();
+putchar(a);
+putchar(b);
+putchar(c);
+putchar('\n');
 ```
