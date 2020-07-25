@@ -173,7 +173,9 @@ switch(变量、常量、表达式)
     case 常量1：语句1;break;
     case 常量2：语句2;break;
     case 常量3：语句3;break;
+    default：语句4;break;
 }
+
 注：条件类型必须为整型和字符串
 ```
 
@@ -213,4 +215,25 @@ putchar(a);
 putchar(b);
 putchar(c);
 putchar('\n');
+```
+## 循环
+while
+```
+while(条件){
+
+}
+```
+do...while
+```
+do{
+
+}while(条件)
+
+注：do..while循环会先执行一次代码块再进行判定
+```
+for
+```
+for(初始值;条件;固定操作){
+
+}
 ```
