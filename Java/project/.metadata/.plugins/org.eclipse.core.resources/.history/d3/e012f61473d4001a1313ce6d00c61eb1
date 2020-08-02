@@ -1,0 +1,7 @@
+package com.imooc;
+
+public class HelloWorld {
+	public static void mian(String[] args) {
+		System.out.println("ÄãºÃÊÀ½ç");
+	}
+}
