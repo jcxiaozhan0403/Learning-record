@@ -44,3 +44,29 @@ public class Hero {
 ```
 方法是类的动作,是动态行为,用驼峰命名法
 
+## 基本数据类型
+给基本类型的变量赋值的方式叫做**字面值**
+整数字面值
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        long val = 26L; //以L结尾的字面值表示long型
+        int decVal = 26; //默认就是int型
+        int hexVal = 0x1a; //16进制
+        int oxVal = 032; //8进制
+        int binVal = 0b11010; //2进制
+        System.out.println(oxVal);
+    }
+}
+```
+浮点数字面值
+```java
+public class HelloWorld {
+
+	public static void main(String[] args) {
+		float f1 = 123.4F;// 以F结尾的字面值表示float类型
+		double d1 = 123.4;// 默认就是double类型
+		double d2 = 1.234e2;// 科学计数法表示double
+	}
+}
+```
