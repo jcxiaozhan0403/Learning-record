@@ -1,10 +1,10 @@
-public class HelloJava{
-        public void method1(final int j) {
-        j = 5; //这个能否执行？
-    }
-    
-    public static void main(String[] args){
-        System.out.println("Hello Java");
-        method1(6);
+import java.util.Arrays;
+  
+public class HelloJava {
+    public static void main(String[] args) {
+        int a[] = new int[] { 18, 62, 68, 82, 65, 9 };
+        String content = Arrays.toString(a);
+        System.out.println(content);
+  
     }
 }

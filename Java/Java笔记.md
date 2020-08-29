@@ -14,7 +14,7 @@ HelloWorld //类名
 public static void main(String[] args) //主方法、代码入口
 ```
 
-## 类与对象
+## 类与对象(简单)
 简单概念：一个有多种属性的东西，叫对象，有相同属性的对象称为一个类
 ```java
 // 类的第一个字母大写
@@ -152,3 +152,85 @@ public class HelloWorld {
     }
 }
 ```
+
+## 循环
+与其他语言相似，break结束循环，continue跳过此次循环
+```java
+//标签跳出循环
+public class HelloWorld {
+    public static void main(String[] args) {
+          
+        //打印单数    
+        outloop: //outloop这个标示是可以自定义的比如outloop1,ol2,out5
+        for (int i = 0; i < 10; i++) {
+             
+            for (int j = 0; j < 10; j++) {
+                System.out.println(i+":"+j);
+                if(0==j%2) 
+                    break outloop; //如果是双数，结束外部循环
+            }
+        }
+         
+    }
+}
+```
+
+## 数组
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        int a[]; //声明数组
+        a = new int[5]; //创建数组
+        int b[] = new int[6]{0,1,2,3,4,5}; //创建数组,并赋值
+         
+        a[0]= 1;  //数组赋值
+
+        System.out.println(a.length); //输出数组长度
+    }
+}
+```
+
+## Arrays类操作数组
+```java
+import java.util.Arrays;//导入Arrays类
+ 
+public class HelloWorld {
+    public static void main(String[] args) {
+        int a[] = new int[] { 18, 62, 68, 82, 65, 9 };
+ 
+        // copyOfRange(int[] original, int from, int to)
+        // 第一个参数表示源数组
+        // 第二个参数表示开始位置(取得到)
+        // 第三个参数表示结束位置(取不到)
+        int[] b = Arrays.copyOfRange(a, 0, 3);
+ 
+        for (int i = 0; i < b.length; i++) {
+            System.out.print(b[i] + " ");
+        }
+
+        String content = Arrays.toString(a); //toString方法将数组作为字符串打印
+        Arrays.sort(a); //sort方法将数组进行由小到大排序
+        Arrays.binarySearch(a, 62); //binarySearch方法搜索元素出现的位置，必须在sort排序前提下
+        System.out.println(content);
+    }
+}
+```
+
+## 类与对象(进阶)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+问题：增强for循环
