@@ -17,6 +17,7 @@ public static void main(String[] args) //主方法、代码入口
 ## 类与对象
 简单概念：一个有多种属性的东西，叫对象，有相同属性的对象称为一个类
 ```java
+// 类的第一个字母大写
 public class Hero {
 	
 	String name; //姓名
@@ -59,14 +60,95 @@ public class HelloWorld {
     }
 }
 ```
+字符型字面值
+```java
+public class HelloWorld {
+	public static void main(String[] args) {
+		char f1 = '好';//char 只能存放一个字符，超过一个字符就会产生编译错误，char的长度和short一样，是16位
+	}
+}
+```
+字符串字面量
+```java
+public class HelloWorld {
+	public static void main(String[] args) {
+		String str = "Hello World!";;//String并不是基本类型,String类型是Immutable的
+	}
+}
+```
+布尔值字面量
+```java
+public class HelloWorld {
+	public static void main(String[] args) {
+        boolean b1 = true;//布尔值真正存放的数据是0和1，但赋值时用true和false
+        boolean b2 = false;
+	}
+}
+```
 浮点数字面值
 ```java
 public class HelloWorld {
-
 	public static void main(String[] args) {
 		float f1 = 123.4F;// 以F结尾的字面值表示float类型
 		double d1 = 123.4;// 默认就是double类型
 		double d2 = 1.234e2;// 科学计数法表示double
 	}
+}
+```
+
+## 变量类型转换
+根据位数转换：小到大自动转换，大到小强制转换，short和char相互强制转换
+
+## final
+当一个变量被final修饰的时候，该变量只有一次赋值的机会，再次赋值会发生编译错误
+
+## 逻辑运算符
+长路与和短路与
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        //长路与  无论第一个表达式的值是true或者false,第二个的值，都会被运算
+        int i = 2;
+        System.out.println( i== 1 & i++ ==2  ); //无论如何i++都会被执行，所以i的值变成了3
+        System.out.println(i);
+         
+        //短路与 只要第一个表达式的值是false的，第二个表达式的值，就不需要进行运算了
+        int j = 2;
+        System.out.println( j== 1 && j++ ==2  );  //因为j==1返回false,所以右边的j++就没有执行了，所以j的值，还是2
+        System.out.println(j);
+    }
+}
+```
+长路或和短路或
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        //长路或  无论第一个表达式的值是true或者false,第二个的值，都会被运算
+        int i = 2;
+        System.out.println( i== 1 | i++ ==2  ); //无论如何i++都会被执行，所以i的值变成了3
+        System.out.println(i);
+         
+        //短路或 只要第一个表达式的值是true的，第二个表达式的值，就不需要进行运算了
+        int j = 2;
+        System.out.println( j== 2 || j++ ==2  );  //因为j==2返回true,所以右边的j++就没有执行了，所以j的值，还是2
+        System.out.println(j); 
+    }
+}
+```
+异或^
+转换为二进制进行比较，相同为0，不同为1
+
+## 控制台输入(Scanner)
+```java
+import java.util.Scanner;//表示导入Scanner这个类
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);//创建Scanner对象
+        int a = s.nextInt();//获取整数
+        System.out.println("第一个整数："+a);
+        int b = s.nextInt();
+        System.out.println("第二个整数："+b);
+    }
 }
 ```
