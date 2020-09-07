@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    tr,td{
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+
+    table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    }
+
+    td{
+        width: 150px;
+        height: 25px;
+    }
+
+    table{
+        text-align: left;
+    }
+
+    tr#first{
+        border-bottom:3px solid rgb(159, 159, 139);
+    }
+</style>
+<script src="./jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        $("tr:even").css("backgroundColor","#CDEEFF");
+        $("tr:odd").css("backgroundColor","#FFFDCA");
+        $("tr:eq(0)").css("backgroundColor","#FFF");
+        $("tr:eq(0)").css("fontWeight","bold");
+    })
+</script>
+<body>
+    <table>
+        <tr id="first">
+            <th>产品名称</th>
+            <th>产地</th>
+            <th>厂商</th>
+        </tr>
+        <tr>
+            <td>爱美电视机</td>
+            <td>福州</td>
+            <td>爱美电子</td>
+        </tr>
+        <tr>
+            <td>美好微波炉</td>
+            <td>北京</td>
+            <td>美好集团</td>
+        </tr>
+        <tr>
+            <td>理想电脑</td>
+            <td>沈阳</td>
+            <td>理想科技</td>
+        </tr>
+        <tr>
+            <td>编程词典</td>
+            <td>长春</td>
+            <td>明日科技</td>
+        </tr>
+    </table>
+</body>
+</html>
