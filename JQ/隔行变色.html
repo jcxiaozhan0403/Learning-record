@@ -38,8 +38,10 @@
     $(function(){
         $("tr:even").css("backgroundColor","#CDEEFF");
         $("tr:odd").css("backgroundColor","#FFFDCA");
-        $("tr:eq(0)").css("backgroundColor","#FFF");
-        $("tr:eq(0)").css("fontWeight","bold");
+        $("tr:eq(0)").css({
+        "backgroundColor" : "#fff",
+        "fontWidth" : "bold"
+        })
     })
 </script>
 <body>
