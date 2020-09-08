@@ -16,7 +16,10 @@
         $("#idOne,classTow").css("backgroundColor","red");
 
         // 层次选择器
-        $("div p").css("backgroundColor","red");
+        $("div p").css("backgroundColor","red"); //后代p
+        $("div > p").css("backgroundColor","red"); //子p
+        $("div + p").css("backgroundColor","red"); //div的下一个同级p
+        $("div ~ p").css("backgroundColor","red"); //div的后续所有同级p
 
 
         // 过滤选择器

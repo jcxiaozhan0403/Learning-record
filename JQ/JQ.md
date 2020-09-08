@@ -32,17 +32,16 @@ ID选择器
 后代选择器
 子选择器
 next选择器
-nextAll选择器(同辈选择)
+nextAll选择器
 ```
-
 ## 过滤选择器
 ```
-:first
-:header
-:last
-:eq
-:gt
-:lt
+:first //第一个元素
+:header //标题标签
+:last //最后一元素
+:eq //下标等于
+:gt //下表大于
+:lt //下标小于
 ```
 
 ## 表单选择器
