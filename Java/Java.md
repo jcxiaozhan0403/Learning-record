@@ -8,3 +8,19 @@
 - 分布性
 - 多线程
 - 图形功能强
+
+## 规范
+类名首字母大写
+
+## 数据类型
+```
+类型       包装类     字节
+int        Intger     4
+float      Float      4
+double     Double     8
+boolean    Boolean    1
+char       Character  2
+           String
+byte       Byte       1
+long       Long       8
+```

@@ -1,6 +1,41 @@
 源文件.java
 编译后的文件.class
 
+## 环境配置
+```
+JAVA_HOME  jdk目录
+CLASSPATH  .;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar
+path  %JAVA_HOME%\bin;%JAVA_HOME%\jre\bin
+```
+
+JDK(java开发工具包)
+JRE(java运行环境)
+包含关系
+JDK>JRE>JVM
+
+## 注释
+```
+文档注释
+/**
+*
+*
+*
+*/
+
+单行注释
+//
+
+多行注释
+/*
+
+*/
+```
+## 代码规范
+- 包名：所有字母小写
+- 类名、接口名：每个单词首字母大写
+- 变量名、方法名：驼峰命名
+- 常量名：所有字母大写、多单词用下划线连接
+
 ```java
 public class HelloWorld{
   public static void main(String[] args){
