@@ -5,17 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<style>
-</style>
 <script src="./jquery-3.5.1.min.js"></script>
 <script>
     $(function(){
-        $("li:eq(0)").css("backgroundColor","red")
-        document.getElementById("xx")
+        $("input:button").click(function(){
+            $("ul li:nth-child(1)").hide(); //所有ul的子元素
+            $("ul li:first").hide(); //第一个ul的子元素
+        })
+    })
 </script>
 <body>
     <ul>
-
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
     </ul>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <br>
+    <input type="button" value="点我">
 </body>
 </html>

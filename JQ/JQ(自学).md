@@ -96,6 +96,7 @@ $("li:even") //li元素中索引为偶数的元素
 ```
 mouseover与mouseout  //事件在鼠标移动选取的元素及其子元素上触发
 mouseenter与mouseleave  //事件只在鼠标移动到选取的元素上触发
+hover(function(){},function(){}) //同时写移入移出
 ```
 
 ## class操作

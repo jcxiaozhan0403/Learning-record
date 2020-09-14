@@ -42,6 +42,14 @@
         "backgroundColor" : "#fff",
         "fontWidth" : "bold"
         })
+        // 鼠标移入移出
+        var color;
+        $("tr:not(:first)").hover(function(){
+            color = $(this).css("backgroundColor");
+            $(this).css("backgroundColor","red");
+        },function(){
+            $(this).css("backgroundColor",color);
+        })
     })
 </script>
 <body>

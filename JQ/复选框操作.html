@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        $(":button:eq(0)").click(function(){
+            $(":checkbox").prop("checked",true);
+        });
+        $(":button:eq(1)").click(function(){
+            $(":checked").prop("checked",false);
+        });
+        $(":button:eq(2)").click(function(){
+            // 所有的复选框都执行相同函数，用each
+            $(":checkbox").each(function(){
+                if($(this).prop("checked") == true){
+                    $(this).prop("checked",false);
+                }else{
+                    $(this).prop("checked",true);
+                }
+            })
+        });
+        var str = "";
+        $(":button:eq(3)").click(function(){
+            $(":checked").each(function(){
+                str = str + $(this).val() + "\n";
+            })
+            alert(str);
+            str = "";
+        });
+
+        $(":button:eq(4)").click(function(){
+            var strs = "";
+            $(":checkbox").each(function(){
+                if($(this).prop("checked") == true){
+                    strs = strs + $(this).val() + "\n";
+                }
+                alert(strs);
+            })
+        });
+    })
+</script>
+<body>
+
+    
+    <input type="checkbox" value="足球">足球
+    <input type="checkbox" value="篮球">篮球
+    <input type="checkbox" value="排球">排球
+    <input type="checkbox" value="乒乓球">乒乓球
+    <input type="checkbox" value="羽毛球">羽毛球
+    <br>
+    <input type="button" value="全选">
+    <input type="button" value="全不选">
+    <input type="button" value="反选">
+    <input type="button" value="提交">
+    <input type="button" value="提交2">
+</body>
+</html>
