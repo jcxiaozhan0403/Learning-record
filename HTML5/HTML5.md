@@ -32,7 +32,7 @@ gbk：在gb2312的基础上扩展
 <bdo dir="ltr"></bdo>
 
 <!-- 缩写 -->
-<abbr></abbr>
+<abbr title="中华人民共和国">中国</abbr>
 
 <!-- 地址 -->
 <address></address>

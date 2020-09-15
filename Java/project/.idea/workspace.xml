@@ -55,8 +55,22 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
-  <component name="RunManager" selected="Application.finalDemo">
+  <component name="RunManager" selected="Application.Example11">
+    <configuration name="Example11" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="abc.Example11" />
+      <module name="learning" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="abc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="abc.Test" />
       <module name="learning" />
@@ -98,6 +112,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Example11" />
         <item itemvalue="Application.finalDemo" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.Test1" />
@@ -117,6 +132,8 @@
       <workItem from="1599555170246" duration="2256000" />
       <workItem from="1599650314130" duration="2403000" />
       <workItem from="1599971853655" duration="41000" />
+      <workItem from="1600071505467" duration="2262000" />
+      <workItem from="1600131975686" duration="720000" />
     </task>
     <servers />
   </component>
@@ -136,30 +153,34 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="842" y="387" key="#Notifications" timestamp="1599555786900">
+    <state x="842" y="387" key="#Notifications" timestamp="1600075662486">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="842" y="387" key="#Notifications/0.0.1920.1050@0.0.1920.1050" timestamp="1599555786900" />
+    <state x="842" y="387" key="#Notifications/0.0.1920.1050@0.0.1920.1050" timestamp="1600075662486" />
     <state x="375" y="121" key="#Project_Structure" timestamp="1599555178241">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="375" y="121" key="#Project_Structure/0.0.1920.1050@0.0.1920.1050" timestamp="1599555178241" />
-    <state width="914" height="155" key="GridCell.Tab.0.bottom" timestamp="1599654617237">
+    <state width="1877" height="155" key="GridCell.Tab.0.bottom" timestamp="1600132690952">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="914" height="155" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1599654617237" />
-    <state width="914" height="155" key="GridCell.Tab.0.center" timestamp="1599654617237">
+    <state width="1877" height="155" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1600132690952" />
+    <state width="1877" height="155" key="GridCell.Tab.0.center" timestamp="1600132690952">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="914" height="155" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1599654617237" />
-    <state width="914" height="155" key="GridCell.Tab.0.left" timestamp="1599654617236">
+    <state width="1877" height="155" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1600132690952" />
+    <state width="1877" height="155" key="GridCell.Tab.0.left" timestamp="1600132690952">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="914" height="155" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1599654617236" />
-    <state width="914" height="155" key="GridCell.Tab.0.right" timestamp="1599654617237">
+    <state width="1877" height="155" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1600132690952" />
+    <state width="1877" height="155" key="GridCell.Tab.0.right" timestamp="1600132690952">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="914" height="155" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1599654617237" />
+    <state width="1877" height="155" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1600132690952" />
+    <state x="-26" y="138" key="SettingsEditor" timestamp="1600074458370">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="-26" y="138" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1600074458370" />
     <state x="334" y="135" key="new project wizard" timestamp="1599971890080">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
