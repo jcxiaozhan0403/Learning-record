@@ -219,6 +219,16 @@ public class HelloWorld {
          
     }
 }
+
+// for循环遍历数组
+public class HelloWorld {
+    public static void main(String[] args) {
+        int b[] = {1,2,3,4,5,6};
+        for(int i : b){
+            System.out.println(b);
+        }
+    }
+}
 ```
 
 ## 数组

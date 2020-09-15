@@ -55,7 +55,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager" selected="Application.Example11">
     <configuration name="Example11" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -134,6 +134,7 @@
       <workItem from="1599971853655" duration="41000" />
       <workItem from="1600071505467" duration="2262000" />
       <workItem from="1600131975686" duration="1479000" />
+      <workItem from="1600157078227" duration="2390000" />
     </task>
     <servers />
   </component>
@@ -177,17 +178,17 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1877" height="155" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1600134128599" />
-    <state x="-26" y="138" key="SettingsEditor" timestamp="1600074458370">
+    <state x="461" y="169" key="SettingsEditor" timestamp="1600161365350">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="-26" y="138" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1600074458370" />
+    <state x="461" y="169" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1600161365350" />
     <state x="334" y="135" key="new project wizard" timestamp="1599971890080">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="334" y="135" key="new project wizard/0.0.1920.1050@0.0.1920.1050" timestamp="1599971890080" />
-    <state x="616" y="243" key="run.anything.popup" timestamp="1599556237021">
+    <state x="616" y="243" key="run.anything.popup" timestamp="1600157390767">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1599556237021" />
+    <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1600157390767" />
   </component>
 </project>

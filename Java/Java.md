@@ -24,3 +24,10 @@ char       Character  2
 byte       Byte       1
 long       Long       8
 ```
+
+## 流程控制语句
+```java
+// 从键盘接收数据
+Scanner scan = new Scanner(System.in);
+int score = sc.nextInt;
+```
