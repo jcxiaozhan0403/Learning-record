@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        $("[value*='路径']").click(function(){
+            alert($("img").attr("src"));
+        })
+        var str = "";
+        $("[value*='爱好']").click(function(){
+            $(":checked").each(function(){
+                str = str + $(this).val() + "\n";
+            })
+            if(str == ""){
+                alert("请选择你的爱好");
+            }else{
+                alert(str);
+            }
+            str = "";
+            })
+        $("[value*='改变']").click(function(){
+            $("img").attr("src","./选择器.jpg");
+        })
+        $("[value*='增加']").click(function(){
+            $("#one").before($("<img class = 'y' src='./属性选择器.jpg'>"));
+        })
+        $("[value*='删除']").click(function(){
+            $(".y:eq(0)").remove();
+        })
+
+    })
+</script>
+<body>
+    <h1>选择你的爱好</h1>
+    <input type="checkbox" value="唱歌">唱歌
+    <input type="checkbox" value="跳舞">跳舞
+    <input type="checkbox" value="听歌">听歌
+    <input type="checkbox" value="看电影">看电影
+    <br>
+    <input type="button" value="显示图片路径"><br>
+    <input type="button" value="显示爱好"><br>
+    <input type="button" value="改变图片"><br>
+    <input type="button" value="增加图片"><br>
+    <input type="button" value="删除图片"><br>
+    <img id="one" src="./js阻止事件冒泡.jpg" alt="">
+</body>
+</html>

@@ -87,3 +87,25 @@ $("ul li:first").hide(); //第一个ul的子元素
 :visible //所有可见元素
 :hidden //所有隐藏标签
 ```
+
+## 节点操作
+创建节点
+```javascript
+$("html");
+```
+插入节点
+```javascript
+.append("html") //新节点作为最后一个子节点追加
+.prepend("html") //新节点作为第一个子节点追加
+.after() //在每个元素后面加上
+.befor() //在每个元素前面加上
+```
+删除节点
+```javascript
+.remove() //
+.detach() //删除但保留事件
+```
+替换节点
+```javascript
+replacewith() //
+```
