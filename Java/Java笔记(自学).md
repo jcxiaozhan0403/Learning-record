@@ -233,7 +233,7 @@ public class HelloWorld {
     public static void main(String[] args) {
           
         //打印单数    
-        outloop: //outloop这个标示是可以自定义的比如outloop1,ol2,out5
+        outloop: //outloop这个标签是可以自定义的比如outloop1,ol2,out5
         for (int i = 0; i < 10; i++) {
              
             for (int j = 0; j < 10; j++) {
