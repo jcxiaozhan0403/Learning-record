@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        background-color: lightblue;
+        width: 500px;
+        height: 350px;
+        text-align: center;
+        line-height: 350px;
+        margin: 250px auto;
+        border-radius: 15px;
+    }
+</style>
+<script src="./jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        $("span").text("0%");
+        $("progress").val("0");
+        var timer;
+        $("#start").click(function(){
+          timer = setInterval(function(){
+                var theValue = $("progress").val();
+                theValue++;
+                $("span").text(theValue + "%");
+                $("progress").val(theValue);
+
+                if(theValue == 100 && timer != null){
+                    clearInterval(timer);
+                }
+
+            },100);
+        });
+        $("#end").click(function(){
+            clearInterval(timer);
+        });
+    })
+</script>
+<body>
+    <button id="start">开始</button>
+    <button id="end">结束</button>
+    <div>
+        当前进度<span>10%</span>
+        <progress value="10" max="100" min="0"></progress>
+    </div>
+</body>
+</html>

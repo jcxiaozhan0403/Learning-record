@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./jquery-3.5.1.min.js"></script>
+<script>
+    window.onload = init;
+    function init(){
+        document.getElementById("btn1").onclick = function(){
+            alert(1);
+        }
+    
+        $("#btn2").click(function(){
+            alert(2);
+        })
+
+        $("#btn2").bind("click",function(){
+            alert(3);
+        })
+    
+    }
+</script>
+<body>
+    <input type="button" value="btn1" id="btn1">
+    <button id="btn2">btn2</button>
+</body>
+</html>

@@ -1,13 +1,13 @@
 package abc;
 
+import java.util.Scanner;//表示导入Scanner这个类
+
 public class Demo {
     public static void main(String[] args) {
-        int i = 0;
-        int k = 1;
-        int x = 1;
-
-//        System.out.println(i != 0 & ++k ==2);
-//        System.out.println(i != 0 && ++k ==2);
-        System.out.println(x++ == 2);
+        Scanner s = new Scanner(System.in);//创建Scanner对象
+        int a = s.nextInt();//获取整数
+        System.out.println("第一个整数："+a);
+        int b = s.nextInt();
+        System.out.println("第二个整数："+b);
     }
 }

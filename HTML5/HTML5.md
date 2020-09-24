@@ -57,3 +57,14 @@ gbk：在gb2312的基础上扩展
 <!-- 视频 -->
 <video></video>
 ```
+
+## 表单相关元素和属性
+```
+form表单默认提交格式为get
+
+name=22&grsdeCode=33&class=44
+
+pattern //input属性，放正则表达式
+
+novalidate //form属性，有true or false两种值，控制表单数据验证
+```
