@@ -9,9 +9,13 @@
 <script>
     $(function(){
         $("li").click(function(){
-            this.siblings().removeClass("active");
-            this.addClass("active");
-            $("content").text();
+            $(this).siblings().removeClass("active");
+            $(this).addClass("active");
+            switch($(this).index()){
+                case 0: $("#content").text("第一个窗口"); break;
+                case 1: $("#content").text("第二个窗口"); break;
+                case 2: $("#content").text("第三个窗口"); break;
+            }
         })
     })
 </script>
@@ -59,7 +63,7 @@
         <li>热门</li>
         <li>新闻</li>
     </ul>
-    <div id="content">11111111</div>
+    <div id="content">第一个窗口</div>
 </div>
 </body>
 </html>
