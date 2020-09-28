@@ -97,15 +97,29 @@ $("html");
 ```javascript
 .append("html") //新节点作为最后一个子节点追加
 .prepend("html") //新节点作为第一个子节点追加
-.after() //在每个元素后面加上
-.befor() //在每个元素前面加上
+.after() //在元素后面加上
+.befor() //在元素前面加上
 ```
 删除节点
 ```javascript
-.remove() //
+.remove() //删除整个节点，不保留事件和附加数据
 .detach() //删除但保留事件
+.empty() //清空子节点，但保留节点本身
+```
+复制节点
+```javascript
+.clone() //复制但不复制事件
+.clone(true) //复制元素及其事件
 ```
 替换节点
 ```javascript
-replacewith() //
+replacewith() //被替换的节点.replacewith(替换内容)
+replaceAll() //替换内容.replaceAll(被替换的节点)
 ```
+包裹节点
+```javascript
+.wrap() //分开包裹
+.wrapAll() //整体包裹
+.wrapInner() //包裹内容
+```
+遍历节点

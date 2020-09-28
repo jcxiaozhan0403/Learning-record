@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        $(".btn:eq(0)").click(function(){
+            $("#finish").attr("src","images/seed.png");
+        })
+        $(".btn:eq(1)").click(function(){
+            $("#finish").attr("src","images/grow.png");
+        })
+        $(".btn:eq(2)").click(function(){
+            $("#finish").attr("src","images/bloom.png");
+        })
+        $(".btn:eq(3)").click(function(){
+            $("#finish").attr("src","images/fruit.png");
+        })
+        $(".btn:eq(4)").click(function(){
+            $("#finish").attr("src","");
+        })
+    })
+</script>
+<style>
+    #bg{
+        background: url(images/plowland.jpg);
+        width: 466px;
+        height: 276px;
+        position: relative;
+    }
+
+    #btns{
+        position: absolute;
+        top: 220px;
+    }
+
+    .btn{
+        margin-left: 25px;
+        cursor: pointer;
+    }
+
+    #finish{
+        position: absolute;
+        top: 65px;
+        left: 180px;
+    }
+
+</style>
+<body>
+    <div id="bg">
+        <img id="finish" src="">
+        <div id="btns">
+        <img class="btn" src="images/btn_seed.png">
+        <img class="btn" src="images/btn_grow.png">
+        <img class="btn" src="images/btn_bloom.png">
+        <img class="btn" src="images/btn_fruit.png">
+        <img class="btn" src="images/btn_harvest.png">
+        </div>
+    </div>
+</body>
+</html>

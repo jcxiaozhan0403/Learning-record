@@ -7,41 +7,59 @@
 </head>
 <script src="./jquery-3.5.1.min.js"></script>
 <script>
-    // $(function(){
-    //     $("button:eq(0)").click(function(){
-    //         alert($("p").text());
-    //     })
-    //     $("button:eq(1)").click(function(){
-    //         alert($("p").html());
-    //     })
-    // })
-
-    // $(function(){
-    //     $("input:eq(0)").click(function(){
-    //         $("input:eq(1)").val("hello world");
-    //         alert($("input:eq(1)").val());
-    //     })
-    // })
-
     $(function(){
-        $("button").click(function(){
-            $("ul").append("<li>插入的</li>");
+        $("li").click(function(){
+            this.siblings().removeClass("active");
+            this.addClass("active");
+            $("content").text();
         })
     })
 </script>
+<style>
+    *{
+        padding: 0 0;
+        margin: 0 0;
+    }
+
+    .clearfix::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    ul{
+        list-style: none;
+    }
+    
+    li{
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        float: left;
+        background-color: lightblue;
+        border: 1px solid blue;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    #bg{
+        height: 250px;
+        width: 306px;
+        border: 1px solid rgb(60,60,60);
+    }
+
+    .active{
+        background-color: blue;
+    }
+</style>
 <body>
-    <!-- <p><b>粗体</b>文本</p>
-    <button>text</button>
-    <button>html</button> -->
-
-    <!-- <input type="button" value="val操作">
-    <input type="text"> -->
-
+<div id="bg">
     <ul>
-        <li>第一</li>
-        <li>第二</li>
-        <li>第三</li>
+        <li class="active">最新</li>
+        <li>热门</li>
+        <li>新闻</li>
     </ul>
-    <button>添加</button>
+    <div id="content">11111111</div>
+</div>
 </body>
 </html>
