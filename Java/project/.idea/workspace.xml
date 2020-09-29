@@ -28,6 +28,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -57,7 +58,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="应用程序.HelloWorld">
+  <component name="RunManager" selected="Application.Demo">
     <configuration name="Demo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="abc.Demo" />
       <module name="learning" />
@@ -123,12 +124,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="应用程序.HelloWorld" />
-        <item itemvalue="应用程序.Demo" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -150,6 +145,8 @@
       <workItem from="1600219314010" duration="1155000" />
       <workItem from="1600936024127" duration="1964000" />
       <workItem from="1601280933969" duration="2448000" />
+      <workItem from="1601367055089" duration="136000" />
+      <workItem from="1601367203503" duration="765000" />
     </task>
     <servers />
   </component>
@@ -193,10 +190,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1877" height="155" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1600937195486" />
-    <state x="461" y="169" key="SettingsEditor" timestamp="1600219302538">
+    <state x="461" y="169" key="SettingsEditor" timestamp="1601367189542">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="461" y="169" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1600219302538" />
+    <state x="461" y="169" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1601367189542" />
     <state x="334" y="135" key="new project wizard" timestamp="1600219331396">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

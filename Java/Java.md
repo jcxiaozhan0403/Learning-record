@@ -31,3 +31,17 @@ long       Long       8
 Scanner scan = new Scanner(System.in);
 int score = sc.nextInt;
 ```
+
+## 接口
+接口中的方法，一定是抽象方法
+```java
+public class Apple implements Ifruit{
+    // 在类中继承抽象方法，如果是普通类，需要重写方法，抽象类则不用
+}
+```
+常用系统接口
+```java
+list<E> //泛型
+list 不排序，不去重复值
+set 要去除重复值
+```
