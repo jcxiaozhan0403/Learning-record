@@ -28,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -146,7 +146,7 @@
       <workItem from="1600936024127" duration="1964000" />
       <workItem from="1601280933969" duration="2448000" />
       <workItem from="1601367055089" duration="136000" />
-      <workItem from="1601367203503" duration="765000" />
+      <workItem from="1601367203503" duration="1554000" />
     </task>
     <servers />
   </component>
@@ -174,6 +174,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="375" y="121" key="#Project_Structure/0.0.1920.1050@0.0.1920.1050" timestamp="1599555178241" />
+    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser" timestamp="1601368539953">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1601368539953" />
     <state width="1877" height="155" key="GridCell.Tab.0.bottom" timestamp="1600937195486">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
