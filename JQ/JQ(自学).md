@@ -205,3 +205,11 @@ append($("xxxxx"))
 .filter() //括号中填写一个标准，符合的元素返回
 .not() //括号中填写一个标准，不符合的元素返回
 ```
+
+## Ajax
+```javascript
+.load(URL,data,callback);
+// 必需的 URL 参数规定您希望加载的 URL
+//可选的 data 参数规定与请求一同发送的查询字符串键/值对集合
+//可选的 callback 参数是 load() 方法完成后所执行的函数名称
+```
