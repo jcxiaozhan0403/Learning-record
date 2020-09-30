@@ -41,7 +41,7 @@ public class Apple implements Ifruit{
 ```
 常用系统接口
 ```java
-list<E> //泛型
-list 不排序，不去重复值
-set 要去除重复值
+list<E> //尖括号中表示泛型
+list //不排序，不去重复值,Vector与之类似
+set //要去除重复值
 ```
