@@ -123,3 +123,41 @@ replaceAll() //替换内容.replaceAll(被替换的节点)
 .wrapInner() //包裹内容
 ```
 遍历节点
+```javascript
+.each(function(index,element){
+
+});
+```
+
+## 事件监听
+```javascript
+$(selector).on(even,[data],function(){
+
+});
+
+
+// 在上述方法中进行修改后，表示事件只有第一次会触发，触发后就失效，下次不执行
+$(selector).one(even,[data],function(){
+
+});
+
+// 解除事件绑定
+$(selector).off(even);
+
+// 事件传递
+$("#btn1").click(function(){
+    $("#btn2").trigger("click");
+});
+```
+
+## 事件冒泡
+```javascript
+// 阻止事件冒泡，不阻止默认行为
+event.stopPropagation();
+
+// 不阻止事件冒泡，阻止默认行为
+event.preventDefault();
+
+// 同时阻止默认行为和冒泡
+return false;
+```

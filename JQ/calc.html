@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        $("input:eq(1)").click(function(){
+            if($("input:eq(0)").val() == 0 || isNaN($("input:eq(0)").val())){
+                alert("请正确输入圆半径");
+            }else{
+                var r = $("input:eq(0)").val();
+                alert(r*r+"π");
+            }
+        });
+    });
+</script>
+<body>
+    <input type="text">
+    <input type="button" value="计算">
+</body>
+</html>
