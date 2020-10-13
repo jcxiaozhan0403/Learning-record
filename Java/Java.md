@@ -45,3 +45,19 @@ list<E> //尖括号中表示泛型
 list //不排序，不去重复值,Vector与之类似
 set //要去除重复值
 ```
+
+## 异常处理
+```java
+public static void main(String[] args) {
+    try{
+        // 可能异常的代码
+        n = 10/0;
+    }catch(异常类型1){
+        // 异常处理代码1
+    }catch(异常类型2){
+        // 异常处理代码2
+    }finally{
+        // 必须执行的代码
+    }
+}
+```
