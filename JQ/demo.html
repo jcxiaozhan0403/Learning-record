@@ -5,70 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<script src="./jquery-3.5.1.min.js"></script>
-<script></script>
-<style>
-    *{
-        padding: 0 0;
-        margin: 0 0;
+<script>
+    window.onload = init();
+    function init(){
+        alert(Math.PI.toFixed(2));
     }
-
-    .clearfix::after {
-        content: "";
-        display: block;
-        clear: both;
-    }
-
-    ul{
-        list-style: none;
-    }
-
-    li{
-        float: left;
-    }
-
-    .main{
-        height: 250px;
-        width: 306px;
-        border: 1px solid rgb(60,60,60);
-    }
-
-    li{
-        width: 100px;
-        height: 40px;
-        line-height: 40px;
-        float: left;
-        background-color: lightblue;
-        border: 1px solid blue;
-        text-align: center;
-        cursor: pointer;
-    }
-
-    .active{
-        background-color: blue;
-    }
-
-    .content{
-        display: none;
-    }
-
-    .on{
-        display: block;
-    }
-</style>
+</script>
 <body>
-    <div class="main">
-        <div class="menu">
-        <ul>
-            <li class="active">最新</li>
-            <li>热门</li>
-            <li>新闻</li>
-        </ul>
-        </div>
-
-        <div class="content on">第一个窗口</div>
-        <div class="content">第二个窗口</div>
-        <div class="content">第三个窗口</div>
-    </div>
+    
 </body>
 </html>

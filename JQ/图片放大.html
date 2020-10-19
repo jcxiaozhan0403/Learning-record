@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    img{
+        width: 250px;
+        height: 120px;
+    }
+
+    #newImg{
+        width: 1200px;
+        height: 727px;
+        position: absolute;
+    }
+</style>
+<script src="./jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        $("img").on({
+            mouseenter:function(event){
+                var index = $(this).index()+1;
+                $("body").append("<img src='./images/"+index+".jpg' id='newImg'>");
+                $("#newImg").css({
+                    "top" : event.pageY + 10 + "px",
+                    "left" : event.pageX + 10 + "px"
+                })
+            },
+            mouseleave:function(){
+                $("#newImg").remove();
+            },
+            mousemove:function(){
+                $("#newImg").css({
+                    "top" : event.pageY + 10 + "px",
+                    "left" : event.pageX + 10 + "px"
+                })
+            }
+        })
+    });
+</script>
+<body>
+    <img src="./images/1.jpg" alt="">
+    <img src="./images/2.jpg" alt="">
+    <img src="./images/3.jpg" alt="">
+    <img src="./images/4.jpg" alt="">
+    <img src="./images/5.jpg" alt="">
+    <img src="./images/6.jpg" alt="">
+    <img src="./images/7.jpg" alt="">
+</body>
+</html>
