@@ -28,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -58,9 +58,9 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Application.Demo">
-    <configuration name="Demo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="abc.Demo" />
+  <component name="RunManager" selected="Application.Copy">
+    <configuration name="Copy" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="abc.Copy" />
       <module name="learning" />
       <extension name="coverage">
         <pattern>
@@ -124,6 +124,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Copy" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -148,6 +153,8 @@
       <workItem from="1601367055089" duration="136000" />
       <workItem from="1601367203503" duration="1554000" />
       <workItem from="1602491499930" duration="1672000" />
+      <workItem from="1602576454473" duration="1810000" />
+      <workItem from="1602673159234" duration="4090000" />
     </task>
     <servers />
   </component>
@@ -179,22 +186,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1601368539953" />
-    <state width="1877" height="155" key="GridCell.Tab.0.bottom" timestamp="1600937195486">
+    <state width="1877" height="155" key="GridCell.Tab.0.bottom" timestamp="1602678430677">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="155" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1600937195486" />
-    <state width="1877" height="155" key="GridCell.Tab.0.center" timestamp="1600937195486">
+    <state width="1877" height="155" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1602678430677" />
+    <state width="1877" height="155" key="GridCell.Tab.0.center" timestamp="1602678430677">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="155" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1600937195486" />
-    <state width="1877" height="155" key="GridCell.Tab.0.left" timestamp="1600937195485">
+    <state width="1877" height="155" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1602678430677" />
+    <state width="1877" height="155" key="GridCell.Tab.0.left" timestamp="1602678430677">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="155" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1600937195485" />
-    <state width="1877" height="155" key="GridCell.Tab.0.right" timestamp="1600937195486">
+    <state width="1877" height="155" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1602678430677" />
+    <state width="1877" height="155" key="GridCell.Tab.0.right" timestamp="1602678430677">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="155" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1600937195486" />
+    <state width="1877" height="155" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1602678430677" />
     <state x="461" y="169" key="SettingsEditor" timestamp="1601367189542">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -203,9 +210,9 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="334" y="135" key="new project wizard/0.0.1920.1050@0.0.1920.1050" timestamp="1600219331396" />
-    <state x="616" y="243" key="run.anything.popup" timestamp="1600157390767">
+    <state x="616" y="243" key="run.anything.popup" timestamp="1602676251986">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1600157390767" />
+    <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1602676251986" />
   </component>
 </project>
