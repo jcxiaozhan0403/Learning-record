@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title>
+<style type="text/css">
+    #div1{
+        width:350px;
+        height:70px;
+        padding:10px;
+        border:1px solid #aaaaaa;
+        }
+</style>
+<script>
+function dragover(ev)
+{
+	ev.preventDefault();
+}
+
+function dragstart(ev)
+{
+	ev.dataTransfer.setData("Text",ev.target.id);
+}
+
+function drop(ev)
+{
+	var data = ev.dataTransfer.getData("Text");
+	ev.target.appendChild(document.getElementById(data));
+}
+</script>
+</head>
+<body>
+
+<p>拖动 RUNOOB.COM 图片到矩形框中:</p>
+
+<div id="div1" ondrop="drop(event)" ondragover="dragover(event)"></div>
+<br>
+<img id="drag1" src="./logo.png" draggable="true" ondragstart="dragstart(event)" width="336" height="69">
+
+</body>
+</html>

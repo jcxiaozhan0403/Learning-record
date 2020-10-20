@@ -74,3 +74,7 @@ novalidate //form属性，有true or false两种值，控制表单数据验证
 /* 主轴方向 */
 flex-direction 
 ```
+
+## 拖放
+```
+```
