@@ -29,6 +29,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Kotlin Class" />
         <option value="Class" />
       </list>
     </option>
@@ -58,7 +59,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Application.Test (1)">
+  <component name="RunManager" selected="Application.MyWin">
     <configuration name="Copy" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="abc.Copy" />
       <module name="learning" />
@@ -72,12 +73,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HelloWorld" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="abc.HelloWorld" />
+    <configuration name="MyWin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.sss.MyWin" />
       <module name="learning" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="abc.*" />
+          <option name="PATTERN" value="com.sss.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -126,6 +127,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MyWin" />
         <item itemvalue="Application.Test (1)" />
         <item itemvalue="Application.Copy" />
       </list>
@@ -157,6 +159,8 @@
       <workItem from="1602576454473" duration="1810000" />
       <workItem from="1602673159234" duration="4090000" />
       <workItem from="1603095055389" duration="3781000" />
+      <workItem from="1603180935800" duration="269000" />
+      <workItem from="1603181218310" duration="4878000" />
     </task>
     <servers />
   </component>
@@ -184,26 +188,26 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="375" y="121" key="#Project_Structure/0.0.1920.1050@0.0.1920.1050" timestamp="1599555178241" />
-    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser" timestamp="1601368539953">
+    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser" timestamp="1603185605629">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1601368539953" />
-    <state width="1877" height="158" key="GridCell.Tab.0.bottom" timestamp="1603099561333">
+    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1603185605629" />
+    <state width="1877" height="146" key="GridCell.Tab.0.bottom" timestamp="1603186129765">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="158" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1603099561333" />
-    <state width="1877" height="158" key="GridCell.Tab.0.center" timestamp="1603099561333">
+    <state width="1877" height="146" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1603186129765" />
+    <state width="1877" height="146" key="GridCell.Tab.0.center" timestamp="1603186129765">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="158" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1603099561333" />
-    <state width="1877" height="158" key="GridCell.Tab.0.left" timestamp="1603099561333">
+    <state width="1877" height="146" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1603186129765" />
+    <state width="1877" height="146" key="GridCell.Tab.0.left" timestamp="1603186129765">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="158" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1603099561333" />
-    <state width="1877" height="158" key="GridCell.Tab.0.right" timestamp="1603099561333">
+    <state width="1877" height="146" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1603186129765" />
+    <state width="1877" height="146" key="GridCell.Tab.0.right" timestamp="1603186129765">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="158" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1603099561333" />
+    <state width="1877" height="146" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1603186129765" />
     <state x="461" y="169" key="SettingsEditor" timestamp="1601367189542">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
