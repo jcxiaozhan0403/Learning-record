@@ -27,6 +27,7 @@ jQuery是一个封装了很多方法的js库
 未压缩版(uncompressed)：文件较大，主要用于开发、学习
 
 ## 原生JS与jQuery
+
 原生js实在页面所有资源加载完成后才执行
 jQuery实在DOM树加载完成时开始执行
 
