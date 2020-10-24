@@ -33,8 +33,8 @@ public class MyWin extends JFrame implements ActionListener {
         btnExit = new JButton("退出");
 
         //
-        btnLogin.addActionListener(ture);
-        btnExit.addActionListener(ture);
+        btnLogin.addActionListener(this);
+        btnExit.addActionListener(this);
 
         lblLogin.setBounds(180,20,200,50);
         lblUserName.setBounds(110,80,90,30);
