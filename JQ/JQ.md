@@ -135,7 +135,6 @@ $(selector).on(even,[data],function(){
 
 });
 
-
 // 在上述方法中进行修改后，表示事件只有第一次会触发，触发后就失效，下次不执行
 $(selector).one(even,[data],function(){
 

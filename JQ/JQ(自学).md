@@ -213,6 +213,7 @@ stop()
 ## 获取html节点
 ```javascript
 html() //获取子元素内容
+
 html("xxxxx");//覆盖子元素和内容，也可用于创建标签
 
 $("xxxx") //$()创建的元素指存放在内存中，不显示到页面端，要显示要用append方法追加
@@ -222,16 +223,84 @@ append($("xxxxx"))
 
 ## 添加元素
 ```javascript
-父元素.append()  //添加元素作为最后一个子元素
-父元素.prepend()  //添加元素作为第一个子元素
+//添加元素作为最后一个子元素
+
+父元素.append()
+子元素.appendTo()
+
+//添加元素作为第一个子元素
+
+父元素.prepend()
+
 .after() //在被选元素之后插入内容
 .before() //在被选元素之前插入内容
 ```
 
 ## 删除元素
 ```javascript
-.remove() //删除被选元素（及其子元素）
-.empty() //从被选元素中删除子元素
+.remove() //移除节点
+.empty() //清空节点
+```
+
+## 克隆元素
+```javascript
+.clone() //复制但不复制事件
+.clone(true) //复制元素及其事件
+
+//注：克隆的元素指存放在内存中，不显示到页面端，要显示要用方法添加
+```
+
+## 操作元素属性
+```javascript
+//设置单个属性
+attr("属性名","属性值")
+
+//设置多个属性
+attr({
+    //JSON键值对格式
+    "src" : "aaa",
+    "title" : "xxx"
+})
+
+//获取属性
+attr("属性名")
+
+//移除单个属性
+removeAttr("属性名")
+
+//移除多个属性
+removeAttr("xxx xx xxx")
+
+//布尔类型属性
+prop()
+```
+
+## 宽高
+```javascript
+width() //获取宽，只含数字
+height() //获取高，只含数字
+
+width(100) //设置宽
+height(100) //设置高
+
+innerWidth() //获取宽+内边距
+innerHeight() //获取高+内边距
+
+outerWidth() //获取宽+内边距+边框
+outerHeight() //获取高+内边距+边框
+
+outerWidth(true) //获取宽+内边距+边框+外边距
+outerHeight(true) //获取高+内边距+边框+外边距
+
+$(window).width() //获取页面可视区宽
+$(window).height() //获取页面可视区高
+```
+
+## 获取定位
+```javascript
+offset() //获取到一个对象，对象包含top和left，是元素距离document的位置
+
+position() //获取到一个对象，对象包含top和left，是元素距离上一个定位元素的位置
 ```
 
 ## 遍历
