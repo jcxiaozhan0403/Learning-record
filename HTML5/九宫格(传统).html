@@ -30,8 +30,36 @@
     clear: both;
   }
 </style>
+<script>
+  let dragDiv = null;
+
+  function drop(){
+    let dropId = event.target.innerText;
+    event.target.innerText = dragDiv.innerText;
+    dragDiv.innerText = dropId;
+  }
+
+  function dragover(){
+    event.preventDefault();
+  }
+
+  function dragstart(){
+    dragDiv = event.target;
+  }
+
+  window.addEventListener("load",function(){
+    let divs = document.getElementById("box").getElementsByTagName("div");
+
+    for(let div of divs){
+         div.draggable = true;
+        div.ondragstart = dragstart;
+        div.ondragover = dragover;
+        div.ondrop = drop;
+    }
+  });
+</script>
 <body>
-  <div class="main clearfix">
+  <div class="main clearfix" id="box">
     <div>1</div>
     <div>2</div>
     <div>3</div>

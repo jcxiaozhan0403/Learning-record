@@ -1,41 +1,45 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8"> 
-<title>菜鸟教程(runoob.com)</title>
-<style type="text/css">
-    #div1{
-        width:350px;
-        height:70px;
-        padding:10px;
-        border:1px solid #aaaaaa;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div.chid{
+        width: 300px;
+        height: 150px;
+        border: 1px solid black;
+        text-align: center;
+        line-height: 80px;
+        float: left;
+        margin-right: 20px;
+    }
+
+    div#main{
+        width: 1800px;
+        height: 900px;
+    }
 </style>
 <script>
-function dragover(ev)
-{
-	ev.preventDefault();
+function dragstart(ev){
+    ev.dataTransfer.setData("star",ev.target.id);
 }
 
-function dragstart(ev)
-{
-	ev.dataTransfer.setData("Text",ev.target.id);
+function dragover(ev){
+    ev.preventDefault();
 }
 
-function drop(ev)
-{
-	var data = ev.dataTransfer.getData("Text");
-	ev.target.appendChild(document.getElementById(data));
+function drop(ev){
+    var data = ev.dataTransfer.getData("star");  
+    ev.target.appendChild(document.getElementById(data));
 }
 </script>
-</head>
 <body>
-
-<p>拖动 RUNOOB.COM 图片到矩形框中:</p>
-
-<div id="div1" ondrop="drop(event)" ondragover="dragover(event)"></div>
-<br>
-<img id="drag1" src="./logo.png" draggable="true" ondragstart="dragstart(event)" width="336" height="69">
-
+    <div id="main" ondragover="dragover(event)" ondrop="drop(event)">
+        <div class="chid" ondragover="dragover(event)" ondrop="drop(event)"></div>
+        <div class="chid" ondragover="dragover(event)" ondrop="drop(event)"></div>
+        <h1 id="one" draggable="true" ondragstart="dragstart(event)">把我拖到框里</h1>
+    </div>
 </body>
 </html>
