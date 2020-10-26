@@ -140,7 +140,7 @@ $(selector).one(even,[data],function(){
 
 });
 
-// 解除事件绑定
+// 解除事件绑定，不给参，解绑所有事件，给参数，解绑指定事件
 $(selector).off(even);
 
 // 事件传递
