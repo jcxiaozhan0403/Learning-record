@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding: 0px;
+        margin: 0px;
+    }
+
+    #main{
+        width: 600px;
+        height: 300px;
+        border: 2px solid black;
+        margin: 0 auto;
+        margin-top: 75px;
+        position: relative;
+        border-radius: 15px;
+        min-width:600px;
+        min-height: 300px;
+        max-height: 800px;
+    }
+
+    button{
+        width: 65px;
+        height: 35px;
+        font-weight: 700;
+        font-size: 20px;
+        margin-right: 15px;
+    }
+
+    div.btn{
+        position: absolute;
+        right: 50px;
+        top: 15px;
+    }
+
+    #content{
+        width: 450px;
+        height: 200px;
+        background-color: rgb(200, 200, 150);
+        border: 1px solid #808080;
+        position: absolute;
+        top: 70px;
+        left: 20px;
+        overflow: hidden;
+        text-align: center;
+        font-family: STXingkai;
+        font-size: 35px;
+        border-radius: 15px;
+        min-height: 200px;
+        max-height: 700px;
+    }
+</style>
+<script src="./jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        $("#big").click(function(){
+            if($("#main").is(":animated")){
+                $("#main").stop(true,false);
+                $("#content").stop(true,false);
+            }
+
+            $("#main").animate({
+            "height":"+=100px"
+            },500);
+
+            $("#content").animate({
+            "height":"+=100px"
+            },500);
+        });
+
+        $("#small").click(function(){
+            if($("#main").is(":animated")){
+                $("#main").stop(true,false);
+                $("#content").stop(true,false);
+            }
+            
+            $("#main").animate({
+            "height":"-=100px"
+            },500);
+
+            $("#content").animate({
+            "height":"-=100px"
+            },500);
+        });
+    });
+</script>
+<body>
+    <div id="main">
+        <div class="btn">
+            <button id="big">放大</button>
+            <button id="small">缩小</button>
+        </div>
+        <div id="content">
+            独自 朱自清 <br>
+        白云漫了bai太阳；<br>
+        青山环du拥着正睡的时候，<br>
+        牛乳般雾露遮zhi遮掩掩，<br>
+        像轻纱似的，<br>
+        幂了新嫁娘的面。dao<br>
+        默然在窗儿口，<br>
+        上不见只鸟儿，<br>
+        下不见个影儿，<br>
+        只剩飘飘的清风，<br>
+        只剩悠悠的远钟。<br>
+        眼底是靡人间了，<br>
+        耳根是靡人间了；<br>
+        故乡的她，独灵迹似的，<br>
+        猛猛然涌上我的心头。<br>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding: 0px;
+        margin: 0px;
+    }
+
+    #panel{
+        border: 2px solid black;
+        width: 600px;
+        margin: 0 auto;
+        margin-top: 300px;
+        position: relative;
+    }
+
+    #panel .head{
+        background-color: lightblue;
+        height: 30px;
+        border-bottom: 2px solid black;
+        cursor: pointer;
+    }
+
+    #panel .content{
+        height: 50px;
+    }
+</style>
+<script src="./jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        $(".head").click(function(){
+            $(".content").toggle(1000);
+        });
+    });
+</script>
+<body>
+    <div id="panel">
+        <h4 class="head">折叠菜单</h4>
+        <div class="content">菜单内容</div>
+    </div>
+</body>
+</html>
