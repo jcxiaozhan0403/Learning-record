@@ -8,15 +8,15 @@ import java.awt.event.ActionListener;
 public class Cal extends JFrame implements ActionListener{
     private JPanel mainPanel,topPanel,buttomPanel;
     private JTextField txtResult;
-    private JButton btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btnJia,btnJian,btnCheng,btnChu,btnDian,btnDeng;
+    private JButton btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btnJia,btnJian,btnCheng,btnChu,btnDian,btnDeng,btnC;
     public Cal(){
 
-        mainPanel=new JPanel(new FlowLayout());
+        mainPanel=new JPanel(new BorderLayout());
         topPanel=new JPanel(new FlowLayout());
         buttomPanel=new JPanel(new GridLayout(4,4,2,2));
         this.setContentPane(mainPanel);
-        mainPanel.add(topPanel);
-        mainPanel.add(buttomPanel);
+        mainPanel.add(topPanel,"North");
+        mainPanel.add(buttomPanel,"Center");
         txtResult=new JTextField(10);
         txtResult.setFont(new Font("微软雅黑",Font.BOLD,20));
         topPanel.add(txtResult);
@@ -31,6 +31,7 @@ public class Cal extends JFrame implements ActionListener{
         btn7=new MyButton("7");
         btn8=new MyButton("8");
         btn9=new MyButton("9");
+        btnC=new MyButton("C");
         btnJia=new MyButton("+");
         btnJian=new MyButton("-");
         btnCheng=new MyButton("*");
@@ -54,6 +55,7 @@ public class Cal extends JFrame implements ActionListener{
         buttomPanel.add(btnDian);
         buttomPanel.add(btnDeng);
         buttomPanel.add(btnChu);
+        topPanel.add(btnC);
         //
 
         btn0.addActionListener(this);
@@ -72,10 +74,12 @@ public class Cal extends JFrame implements ActionListener{
         btnChu.addActionListener(this);
         btnDian.addActionListener(this);
         btnDeng.addActionListener(this);
+        btnC.addActionListener(this);
 
-        this.setBounds(200,200,250,255);
-        this.setVisible(true);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setBounds(200,200,290,255); //设置窗口大小和位置
+        this.setVisible(true); //设置窗口可见
+        this.setResizable(false); //设置窗口，不允许改变大小
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE); //设置窗口关闭时退出程序
     }
     public static void main(String[] args) {
         new Cal();
@@ -86,38 +90,26 @@ public class Cal extends JFrame implements ActionListener{
         String s = txtResult.getText();
         String num1,num2,num3;
 
-        if(e.getSource().equals(btn0)){
-            txtResult.setText(s + "0");
-        }else if(e.getSource().equals(btn1)){
-            txtResult.setText(s + "1");
-        }else if(e.getSource().equals(btn2)){
-            txtResult.setText(s + "2");
-        }else if(e.getSource().equals(btn3)){
-            txtResult.setText(s + "3");
-        }else if(e.getSource().equals(btn4)){
-            txtResult.setText(s + "4");
-        }else if(e.getSource().equals(btn5)){
-            txtResult.setText(s + "5");
-        }else if(e.getSource().equals(btn6)){
-            txtResult.setText(s + "6");
-        }else if(e.getSource().equals(btn7)){
-            txtResult.setText(s + "7");
-        }else if(e.getSource().equals(btn8)){
-            txtResult.setText(s + "8");
-        }else if(e.getSource().equals(btn9)){
-            txtResult.setText(s + "9");
-        }else if(e.getSource().equals(btnJia)){
-            txtResult.setText(s + "+");
-        }else if(e.getSource().equals(btnJian)){
-            txtResult.setText(s + "-");
-        }else if(e.getSource().equals(btnCheng)){
-            txtResult.setText(s + "*");
-        }else if(e.getSource().equals(btnChu)){
-            txtResult.setText(s + "/");
-        }else if(e.getSource().equals(btnDian)){
-            txtResult.setText(s + ".");
-        }else if(e.getSource().equals(btnDeng)){
+        for(int i = 1;i<9;i++){
+            if(e.getActionCommand().equals(String.valueOf(i))){
+                txtResult.setText(s+i);
+            }
+        }
 
+        if(e.getSource().equals(btnC)){
+            txtResult.setText("");
+        }
+
+        if(e.getSource().equals(btn0)){
+            double n=0;
+            try {
+                n=Double.valueOf( txtResult.getText());
+            } catch (Exception e2) {
+                txtResult.setText("0");
+            }
+            if(n!=0){
+                txtResult.setText(txtResult.getText()+"0");
+            }
         }
     }
 }

@@ -64,5 +64,14 @@ public static void main(String[] args) {
 
 ## 布局
 ```
+常规布局
 
+边界布局
+BorderLayout()
+
+空布局
+null
+
+表格布局
+FlowLayout()
 ```
