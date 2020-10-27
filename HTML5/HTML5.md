@@ -77,4 +77,15 @@ flex-direction
 
 ## 拖放
 ```
+drapstart
+
+dragover
+
+drop
+```
+
+## 画布
+```html
+<!-- 新建画布 -->
+<canvas id="myCanvas" width="200" height="100"></canvas>
 ```

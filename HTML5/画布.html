@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        var c = $("#myCanvas")[0];
+        var cxk = c.getContext("2d");
+        cxk.fillStyle="#FF0000";
+        cxk.fillRect(10,10,10,10);
+
+        cxk.beginPath();
+        cxk.arc()
+    });
+</script>
+<body>
+    <canvas id="myCanvas" width="600" height="300" style="border:1px solid #c3c3c3;"></canvas>
+    <br>
+    <button>填充画布</button>
+</body>
+</html>
