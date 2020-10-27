@@ -354,6 +354,42 @@ event.stopPropagation(); // 阻止事件冒泡，不阻止默认行为  事件�
 event.preventDefault(); // 不阻止事件冒泡，阻止默认行为
 
 return false; // 同时阻止默认行为和冒泡
+
+event.keyCode; // 获取键值
+
+end(); // 回到上一个状态，操作返回值
+```
+
+## 显示迭代
+```javascript
+each(function(){
+
+});
+```
+
+## 查看JQ版本
+```javascript
+console.log(jQuery.fn.jquery);
+
+console.log(jQuery.prototype.jquery);
+
+console.log($.fn.jquery);
+
+console.log($.fn.jquery);
+```
+
+## 多库共存
+```javascript
+// 一次引入多个JQ文件,$属于最后一个引入的文件
+<script src="./jquery-3.0.0.min.js"></script>
+<script src="./jquery-3.5.1.min.js"></script>
+//此时$属于3.5.1文件
+
+// 要想使用其他文件的$，必须释放当前$的控制权
+$.noConflict();
+
+// 创建一个新变量来保存当前$，一般以_$打头，以便随时调用，实现多库共存
+var _$001 = $.noConflict();
 ```
 
 ## 遍历
