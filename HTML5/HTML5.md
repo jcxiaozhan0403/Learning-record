@@ -71,8 +71,44 @@ novalidate //form属性，有true or false两种值，控制表单数据验证
 
 ## 弹性布局
 ```css
-/* 主轴方向 */
-flex-direction 
+/* 设置对外层包裹容器display:flex */
+/* 子元素自动成为容器成员 */
+
+/* 横向对齐方式 */
+/* 居中对齐 */
+justify-content:center;
+/* 靠右对齐 */
+justify-content:flex-end;
+/* 左右两端对齐，每个子项间距相等 */
+justify-content:space-between;
+/* 项目之间的间距为左右两端项目到容器间距的两倍 */
+justify-content:space-around;
+/* 所有间距相等 */
+justify-content:space-evenly;
+
+/* 垂直方向对齐方式 */
+/* 默认位置(靠上对齐) */
+align-items:flex-start;
+/* 居中对齐 */
+align-items:center;
+/* 靠下对齐 */
+align-items:flex-end;
+
+/* 项目排列方向 */
+/* 自左向右(默认) */
+flex-direction:row;
+/* 自右向左 */
+flex-direction:row-reverse;
+/* 自上向下 */
+flex-direction:column;
+/* 自下向上 */
+flex-direction:column-reverse;
+
+/* 换行方式 */
+/* 不换行，按照容器大小自动压缩子元素(默认) */
+flex-wrap:nowrap;
+/* 换行 */
+flex-wrap:wrap;
 ```
 
 ## 拖放
