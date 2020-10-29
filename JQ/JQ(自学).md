@@ -392,6 +392,33 @@ $.noConflict();
 var _$001 = $.noConflict();
 ```
 
+## PHP基础语法
+```php
+<?php
+// 定义变量
+$abc = "xxx";
+
+// 定义数组
+$abc = array(1,2,3);
+
+// 定义对象
+$abc = array("name"=>"john","age"=>18);
+
+// 打印一般内容
+echo xxx;
+echo $abc["name"];
+// 打印对象或数组
+print_r(xxx);
+
+// php接收请求,接收的数据会保存在一个对象中
+$_GET
+$_POST
+
+?>
+```
+
+## Ajax
+
 ## 遍历
 > jQuery 遍历，意为"移动"，用于根据其相对于其他元素的关系来"查找"（或选取）HTML 元素。以某项选择开始，并沿着这个选择移动，直到抵达您期望的元素为止。
 
