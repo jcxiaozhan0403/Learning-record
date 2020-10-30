@@ -20,9 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c153dd69-5ef6-4153-8e37-8eeb31f5833a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Java.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java笔记(自学).md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java笔记(视频).md" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../H2J/src/Hero/Hero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../H2J/Java笔记(自学).md" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/Java笔记(自学).md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,12 +49,13 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="13" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../H2J" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -66,20 +67,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="应用程序.Cal">
-    <configuration name="Cal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.jisuanqibuju.Cal" />
-      <module name="learning" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.jisuanqibuju.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="应用程序.NoteEdit">
     <configuration name="Copy" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="abc.Copy" />
       <module name="learning" />
@@ -99,6 +87,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.sss.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NoteEdit" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="txt.NoteEdit" />
+      <module name="learning" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="txt.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -132,6 +133,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="应用程序.NoteEdit" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -170,6 +176,7 @@
       <workItem from="1604025237899" duration="137000" />
       <workItem from="1604026132228" duration="17000" />
       <workItem from="1604026165702" duration="12000" />
+      <workItem from="1604036037281" duration="4898000" />
     </task>
     <servers />
   </component>
@@ -201,26 +208,26 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1603429083656" />
-    <state x="739" y="280" key="FileChooserDialogImpl" timestamp="1604025356406">
+    <state x="739" y="280" key="FileChooserDialogImpl" timestamp="1604036558470">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="739" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1604025356406" />
-    <state width="1877" height="86" key="GridCell.Tab.0.bottom" timestamp="1604021442175">
+    <state x="739" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1604036558470" />
+    <state width="1877" height="86" key="GridCell.Tab.0.bottom" timestamp="1604041068226">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="86" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1604021442175" />
-    <state width="1877" height="86" key="GridCell.Tab.0.center" timestamp="1604021442175">
+    <state width="1877" height="86" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1604041068226" />
+    <state width="1877" height="86" key="GridCell.Tab.0.center" timestamp="1604041068226">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="86" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1604021442175" />
-    <state width="1877" height="86" key="GridCell.Tab.0.left" timestamp="1604021442175">
+    <state width="1877" height="86" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1604041068226" />
+    <state width="1877" height="86" key="GridCell.Tab.0.left" timestamp="1604041068226">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="86" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1604021442175" />
-    <state width="1877" height="86" key="GridCell.Tab.0.right" timestamp="1604021442175">
+    <state width="1877" height="86" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1604041068226" />
+    <state width="1877" height="86" key="GridCell.Tab.0.right" timestamp="1604041068226">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="86" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1604021442175" />
+    <state width="1877" height="86" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1604041068226" />
     <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1603432329584">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
