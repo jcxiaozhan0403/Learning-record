@@ -66,57 +66,9 @@ java中有8种基本数据类型，除此之外都是引用数据类型
 
 方法是类的动作,是动态行为,用驼峰命名法
 
-## 基本数据类型
+## 字面值
 
-给基本类型的变量赋值的方式叫做**字面值**
-整数字面值
-```java
-public class HelloWorld {
-    public static void main(String[] args) {
-        long val = 26L; //以L结尾的字面值表示long型
-        int decVal = 26; //默认就是int型
-        int hexVal = 0x1a; //16进制
-        int oxVal = 032; //8进制
-        int binVal = 0b11010; //2进制
-        System.out.println(oxVal);
-    }
-}
-```
-字符型字面值
-```java
-public class HelloWorld {
-	public static void main(String[] args) {
-		char f1 = '好';//char 只能存放一个字符，超过一个字符就会产生编译错误，char的长度和short一样，是16位
-	}
-}
-```
-字符串字面量
-```java
-public class HelloWorld {
-	public static void main(String[] args) {
-		String str = "Hello World!";;//String并不是基本类型,String类型是Immutable的
-	}
-}
-```
-布尔值字面量
-```java
-public class HelloWorld {
-	public static void main(String[] args) {
-        boolean b1 = true;//布尔值真正存放的数据是0和1，但赋值时用true和false
-        boolean b2 = false;
-	}
-}
-```
-浮点数字面值
-```java
-public class HelloWorld {
-	public static void main(String[] args) {
-		float f1 = 123.4F;// 以F结尾的字面值表示float类型
-		double d1 = 123.4;// 默认就是double类型
-		double d2 = 1.234e2;// 科学计数法表示double
-	}
-}
-```
+给基本类型的变量赋值的方式叫做字面值
 
 ## 数据类型的相关计算
 char可以与数字进行运算，过程是将字母转换为ASCII值再运算

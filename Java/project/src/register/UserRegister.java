@@ -1,17 +1,10 @@
 package register;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class UserRegister extends JFrame{
+public class UserRegister extends JFrame implements ActionListener {
     private JPanel mainPanel;//面板
     private JLabel lblNo,lblName,lblSex,lblAge,lblCls,lblHobby,lblNote;//标签
     private JTextField txtNo,txtName,txtAge;//单行文本框
@@ -21,6 +14,7 @@ public class UserRegister extends JFrame{
     private JCheckBox cboNetwork,cboGame,cboBall,cboBuy;//复选框
     private JTextArea txtNote;//多行文本框
     private JScrollPane scoNote;//滚动面板
+    private JButton btnSubmit,btnExit;
     //构造方法
     public UserRegister(){
         //实例化控件
@@ -46,6 +40,13 @@ public class UserRegister extends JFrame{
         cboNetwork=new JCheckBox("上网");
         txtNote=new JTextArea();
         scoNote=new JScrollPane(txtNote);
+        btnSubmit = new JButton("提交");
+        btnExit = new JButton("退出");
+
+        //监控按钮
+        btnSubmit.addActionListener(this);
+        btnExit.addActionListener(this);
+
         //设置控件的位置和大小
         lblNo.setBounds(30,30,60,25);
         txtNo.setBounds(90,30,250,25);
@@ -67,7 +68,9 @@ public class UserRegister extends JFrame{
         cboNetwork.setBounds(270,205,60,25);
         lblNote.setBounds(30,240,60,25);
         scoNote.setBounds(90,240,250,100);
-        this.setBounds(100,100,370,400);
+        this.setBounds(700,350,370,430);
+        btnSubmit.setBounds(100,350,60,30);
+        btnExit.setBounds(250,350,60,30);
         //将控件放入容器
         setContentPane(mainPanel);
         mainPanel.add(lblAge);
@@ -88,6 +91,8 @@ public class UserRegister extends JFrame{
         mainPanel.add(cboBuy);
         mainPanel.add(cboGame);
         mainPanel.add(cboNetwork);
+        mainPanel.add(btnSubmit);
+        mainPanel.add(btnExit);
         //设置窗口的属性
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -95,5 +100,60 @@ public class UserRegister extends JFrame{
     }
     public static void main(String[] args) {
         new UserRegister();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource().equals(btnSubmit)){
+            String s,no,name,age,sex,cls,likes,Introduction;
+            Introduction = "";
+            s = "";
+            likes = "";
+            //获取文本框内容
+            no = txtNo.getText();
+            name = txtName.getText();
+            age = txtAge.getText();
+
+            //获取性别
+            if(rdoSexMan.isSelected()){
+                sex="男";
+            }
+            else{
+                sex="女";
+            }
+            //获取班级
+            cls = cboCls.getSelectedItem().toString();
+
+            //获取爱好
+            if(cboBall.isSelected()){
+                likes += cboBall.getText() + "\t";
+            }
+            if(cboBuy.isSelected()){
+                likes += cboBuy.getText() + "\t";
+            }
+            if(cboGame.isSelected()){
+                likes += cboGame.getText() + "\t";
+            }
+            if(cboNetwork.isSelected()){
+                likes += cboNetwork.getText() + "\t";
+            }
+            if(likes == ""){
+                likes = "无";
+            }
+
+            //获取简介
+            Introduction = txtNote.getText();
+
+            if(Introduction == ""){
+                likes = "无";
+            }
+
+            s = "学号：" + no + "\n" + "姓名：" + name + "\n" + "年龄：" + age + "\n" + "性别：" + sex + "\n" + "班级：" + cls + "\n" + "爱好：" + likes + "\n" + "个人简介：" + Introduction;
+
+            JOptionPane.showMessageDialog(null, s, "个人信息", JOptionPane.PLAIN_MESSAGE);
+        }
+        if(e.getActionCommand().equals("退出")){
+            System.exit(0);
+        }
     }
 }
