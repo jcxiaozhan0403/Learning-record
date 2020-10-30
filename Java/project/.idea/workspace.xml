@@ -19,7 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c153dd69-5ef6-4153-8e37-8eeb31f5833a" name="Default Changelist" comment="" />
+    <list default="true" id="c153dd69-5ef6-4153-8e37-8eeb31f5833a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Java.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java笔记(自学).md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java笔记(视频).md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +53,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="13" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -59,7 +66,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Application.UserRegister">
+  <component name="RunManager" selected="应用程序.Cal">
     <configuration name="Cal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.jisuanqibuju.Cal" />
       <module name="learning" />
@@ -125,15 +132,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.UserRegister" />
-        <item itemvalue="Application.Cal" />
-        <item itemvalue="Application.MyWin" />
-        <item itemvalue="Application.Test (1)" />
-        <item itemvalue="Application.Copy" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -167,6 +165,11 @@
       <workItem from="1603426671112" duration="5629000" />
       <workItem from="1603696363108" duration="5064000" />
       <workItem from="1604015825499" duration="4665000" />
+      <workItem from="1604024507493" duration="429000" />
+      <workItem from="1604024946633" duration="244000" />
+      <workItem from="1604025237899" duration="137000" />
+      <workItem from="1604026132228" duration="17000" />
+      <workItem from="1604026165702" duration="12000" />
     </task>
     <servers />
   </component>
@@ -186,10 +189,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="842" y="387" key="#Notifications" timestamp="1600219342762">
+    <state x="842" y="387" key="#Notifications" timestamp="1604025166409">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="842" y="387" key="#Notifications/0.0.1920.1050@0.0.1920.1050" timestamp="1600219342762" />
+    <state x="842" y="387" key="#Notifications/0.0.1920.1050@0.0.1920.1050" timestamp="1604025166409" />
     <state x="375" y="121" key="#Project_Structure" timestamp="1599555178241">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -198,6 +201,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1603429083656" />
+    <state x="739" y="280" key="FileChooserDialogImpl" timestamp="1604025356406">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="739" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1604025356406" />
     <state width="1877" height="86" key="GridCell.Tab.0.bottom" timestamp="1604021442175">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -230,14 +237,14 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1877" height="352" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1603432329584" />
-    <state x="461" y="169" key="SettingsEditor" timestamp="1601367189542">
+    <state x="461" y="169" key="SettingsEditor" timestamp="1604024935848">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="461" y="169" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1601367189542" />
-    <state x="334" y="135" key="new project wizard" timestamp="1604017512995">
+    <state x="461" y="169" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1604024935848" />
+    <state x="334" y="135" key="new project wizard" timestamp="1604025366770">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="334" y="135" key="new project wizard/0.0.1920.1050@0.0.1920.1050" timestamp="1604017512995" />
+    <state x="334" y="135" key="new project wizard/0.0.1920.1050@0.0.1920.1050" timestamp="1604025366770" />
     <state x="616" y="243" key="run.anything.popup" timestamp="1602676251986">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

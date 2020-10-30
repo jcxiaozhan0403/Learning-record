@@ -36,17 +36,22 @@ JDK>JRE>JVM
 - 变量名、方法名：驼峰命名
 - 常量名：所有字母大写、多单词用下划线连接
 
-```java
-public class HelloWorld{
-  public static void main(String[] args){
-    System.out.println("hello world");
-  }
-}
+```
+public class HelloWorld
+-------------------------------
+public      表示这是一个可以公开访问的类
+class       表示这是一个类
+HelloWorld  表示类的名字，每个单词的首字母大写
+```
 
-public //表示这是一个可以公开访问的类
-class //表示这是一个类
-HelloWorld //类名
-public static void main(String[] args) //主方法、代码入口
+主方法
+```
+public static void main(String[] args)
+```
+
+打印
+```
+System.out.println("hello world");
 ```
 
 ## 数据类型
