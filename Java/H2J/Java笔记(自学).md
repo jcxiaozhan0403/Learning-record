@@ -81,6 +81,8 @@ char可以与数字进行运算，过程是将字母转换为ASCII值再运算
 ## final
 当一个变量被final修饰的时候，该变量只有一次赋值的机会，再次赋值会发生编译错误
 
+final 除了修饰变量，还可以修饰类，修饰方法
+
 ## 算术运算符
 取余的符号由被模数决定
 
@@ -96,22 +98,7 @@ char可以与数字进行运算，过程是将字母转换为ASCII值再运算
 || 短路或
 ^  异或
 ```
-长路与和短路与
-```java
-public class HelloWorld {
-    public static void main(String[] args) {
-        //长路与  无论第一个表达式的值是true或者false,第二个的值，都会被运算
-        int i = 2;
-        System.out.println( i== 1 & i++ ==2  ); //无论如何i++都会被执行，所以i的值变成了3
-        System.out.println(i);
-         
-        //短路与 只要第一个表达式的值是false的，第二个表达式的值，就不需要进行运算了
-        int j = 2;
-        System.out.println( j== 1 && j++ ==2  );  //因为j==1返回false,所以右边的j++就没有执行了，所以j的值，还是2
-        System.out.println(j);
-    }
-}
-```
+
 长路或和短路或
 ```java
 public class HelloWorld {

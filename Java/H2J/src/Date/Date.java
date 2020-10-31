@@ -1,4 +1,4 @@
-package Date;
+package date;
 
 public class Date {
     public static void main(String[] args) {
