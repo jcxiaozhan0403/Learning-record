@@ -99,28 +99,6 @@ final 除了修饰变量，还可以修饰类，修饰方法
 ^  异或
 ```
 
-长路或和短路或
-```java
-public class HelloWorld {
-    public static void main(String[] args) {
-        //长路或  无论第一个表达式的值是true或者false,第二个的值，都会被运算
-        int i = 2;
-        System.out.println( i== 1 | i++ ==2  ); //无论如何i++都会被执行，所以i的值变成了3
-        System.out.println(i);
-         
-        //短路或 只要第一个表达式的值是true的，第二个表达式的值，就不需要进行运算了
-        int j = 2;
-        System.out.println( j== 2 || j++ ==2  );  //因为j==2返回true,所以右边的j++就没有执行了，所以j的值，还是2
-        System.out.println(j); 
-    }
-}
-```
-异或^
-异或两头的逻辑关系相同时返回ture，否则返回false
-```java
-a^b  // a和b都为true或者都为false时才返回true
-```
-
 ## 位运算符
 正数二进制-->反码-->加1-->负数二进制
 ```java

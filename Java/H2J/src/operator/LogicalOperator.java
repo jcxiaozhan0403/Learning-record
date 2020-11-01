@@ -24,4 +24,20 @@ public class LogicalOperator {
         System.out.println( j== 2 || j++ ==2  );  //因为j==2返回true,所以右边的j++就没有执行了，所以j的值，还是2
         System.out.println(j);
     }
+
+    //异或
+    public void oxclusiveOr(){
+        boolean a = true;
+        boolean b = false;
+
+        System.out.println(a^b); //不同返回真
+        System.out.println(a^!b); //相同返回假
+    }
+
+    public static void main(String[] args) {
+        int i = 1;
+        boolean b = !(i++ == 3) ^ (i++ ==2) && (i++==3);
+        System.out.println(b);
+        System.out.println(i);
+    }
 }

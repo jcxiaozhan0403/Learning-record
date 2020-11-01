@@ -22,13 +22,7 @@
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Java笔记(自学).md" beforeDir="false" afterPath="$PROJECT_DIR$/Java笔记(自学).md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/H2J/HelloWorld/HelloWorld.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/H2J/HelloWorld/HelloWorld.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/H2J/Hero/Hero.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/H2J/Hero/Hero.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/H2J/Item/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/H2J/Item/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Date/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Date/Date.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HelloWorld/HelloWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HelloWorld/HelloWorld.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hero/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hero/Hero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Item/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Item/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/operator/LogicalOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/operator/LogicalOperator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +63,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
-  <component name="RunManager" selected="应用程序.AboutTheFinal">
+  <component name="RunManager" selected="应用程序.xxx">
     <configuration name="AboutTheFinal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="final_.AboutTheFinal" />
       <module name="H2J" />
@@ -90,19 +84,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HelloWorld" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="HelloWorld.HelloWorld" />
-      <module name="H2J" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="HelloWorld.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Hero" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Hero.Hero" />
       <module name="H2J" />
@@ -116,12 +97,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Item" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Item.Item" />
+    <configuration name="LogicalOperator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="operator.LogicalOperator" />
       <module name="H2J" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Item.*" />
+          <option name="PATTERN" value="operator.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -129,13 +110,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="xxx" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="xxx" />
+      <module name="H2J" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.xxx" />
+        <item itemvalue="应用程序.LogicalOperator" />
         <item itemvalue="应用程序.AboutTheFinal" />
         <item itemvalue="应用程序.HXXX" />
         <item itemvalue="应用程序.Hero" />
-        <item itemvalue="应用程序.Item" />
-        <item itemvalue="应用程序.HelloWorld" />
       </list>
     </recent_temporary>
   </component>
@@ -155,6 +143,7 @@
       <workItem from="1604042328630" duration="1920000" />
       <workItem from="1604109154128" duration="1916000" />
       <workItem from="1604111093761" duration="6387000" />
+      <workItem from="1604227720717" duration="4042000" />
     </task>
     <servers />
   </component>
@@ -178,22 +167,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1604043655936" />
-    <state width="1877" height="123" key="GridCell.Tab.0.bottom" timestamp="1604111080312">
+    <state width="1877" height="123" key="GridCell.Tab.0.bottom" timestamp="1604231780402">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="123" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1604111080312" />
-    <state width="1877" height="123" key="GridCell.Tab.0.center" timestamp="1604111080312">
+    <state width="1877" height="123" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1604231780402" />
+    <state width="1877" height="123" key="GridCell.Tab.0.center" timestamp="1604231780402">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="123" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1604111080312" />
-    <state width="1877" height="123" key="GridCell.Tab.0.left" timestamp="1604111080312">
+    <state width="1877" height="123" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1604231780402" />
+    <state width="1877" height="123" key="GridCell.Tab.0.left" timestamp="1604231780402">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="123" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1604111080312" />
-    <state width="1877" height="123" key="GridCell.Tab.0.right" timestamp="1604111080312">
+    <state width="1877" height="123" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1604231780402" />
+    <state width="1877" height="123" key="GridCell.Tab.0.right" timestamp="1604231780402">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="123" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1604111080312" />
+    <state width="1877" height="123" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1604231780402" />
     <state x="461" y="169" key="SettingsEditor" timestamp="1604025667640">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
