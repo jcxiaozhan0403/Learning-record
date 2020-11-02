@@ -20,8 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c153dd69-5ef6-4153-8e37-8eeb31f5833a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../HTML5/画布.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../HTML5/画布.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/txt/NoteEdit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/txt/NoteEdit.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +65,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="应用程序.UserRegister">
+  <component name="RunManager" selected="应用程序.NoteEdit">
     <configuration name="Cal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.jisuanqibuju.Cal" />
       <module name="learning" />
@@ -133,8 +133,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.UserRegister" />
         <item itemvalue="应用程序.NoteEdit" />
+        <item itemvalue="应用程序.MyWin" />
+        <item itemvalue="应用程序.UserRegister" />
         <item itemvalue="应用程序.Cal" />
       </list>
     </recent_temporary>
@@ -180,6 +181,7 @@
       <workItem from="1604042084755" duration="241000" />
       <workItem from="1604043658698" duration="5511000" />
       <workItem from="1604296814233" duration="85000" />
+      <workItem from="1604301346750" duration="4379000" />
     </task>
     <servers />
   </component>
@@ -207,30 +209,30 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="375" y="121" key="#Project_Structure/0.0.1920.1050@0.0.1920.1050" timestamp="1599555178241" />
-    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser" timestamp="1604045319101">
+    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser" timestamp="1604301718930">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1604045319101" />
+    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1604301718930" />
     <state x="739" y="280" key="FileChooserDialogImpl" timestamp="1604042325013">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="739" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1604042325013" />
-    <state width="1860" height="122" key="GridCell.Tab.0.bottom" timestamp="1604296898474">
+    <state width="1866" height="122" key="GridCell.Tab.0.bottom" timestamp="1604305508673">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1860" height="122" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1604296898474" />
-    <state width="1860" height="122" key="GridCell.Tab.0.center" timestamp="1604296898474">
+    <state width="1866" height="122" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1604305508673" />
+    <state width="1866" height="122" key="GridCell.Tab.0.center" timestamp="1604305508672">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1860" height="122" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1604296898474" />
-    <state width="1860" height="122" key="GridCell.Tab.0.left" timestamp="1604296898474">
+    <state width="1866" height="122" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1604305508672" />
+    <state width="1866" height="122" key="GridCell.Tab.0.left" timestamp="1604305508672">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1860" height="122" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1604296898474" />
-    <state width="1860" height="122" key="GridCell.Tab.0.right" timestamp="1604296898474">
+    <state width="1866" height="122" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1604305508672" />
+    <state width="1866" height="122" key="GridCell.Tab.0.right" timestamp="1604305508673">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1860" height="122" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1604296898474" />
+    <state width="1866" height="122" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1604305508673" />
     <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1603432329584">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -259,5 +261,9 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1602676251986" />
+    <state x="626" y="231" width="672" height="678" key="search.everywhere.popup" timestamp="1604301506207">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="626" y="231" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1604301506207" />
   </component>
 </project>
