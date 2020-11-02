@@ -165,3 +165,5 @@ return false;
 ```javascript
 if($("选择器").is(":animated"));
 ```
+
+## Ajax

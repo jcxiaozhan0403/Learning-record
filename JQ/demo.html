@@ -7,7 +7,7 @@
 </head>
 <style>
     #main{
-        width: 500px;
+        width: 1500px;
         height: 500px;
     }
 </style>
@@ -21,52 +21,43 @@
             // 指定图表的配置项和数据
             var option = {
                 //标题
-                title: {
-                    text: 'ECharts 入门示例'
-                },
+                // title: {
+                //     text: 'ECharts 入门示例'
+                // },
                 
                 //工具集
                 tooltip: {},
                 
                 //图例
                 legend: {
-                    data:['直接访问','邮件营销','联盟广告','视频广告']
+                    data:['话费','流量']
                 },
                 
                 //X轴
-                // xAxis: {
-                //     data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-                // },
+                xAxis: {
+                    data: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+                },
                 
-                // //Y轴
-                // yAxis: {},
+                //Y轴
+                yAxis: {},
                 
                 
                 series: [{
-                    name: '访问来源',
-                    type: 'pie',
-                    radius: '50%',
-                    center: ["50%","60%"],
-                    label: {
-                        normal:{
-                            show: true,
-                            position: 'outside',
-                            formatter: '{b}:{c}({d}%)',
-                        }
-                    },
-
+                    name: '话费',
+                    type: 'bar',
                     // type: 'bar'：柱状/条形图
                     // type: 'line'：折线/面积图
                     // type: 'pie'：饼图
-
-                    data: [
-                        {value: 330,name: '直接访问'},
-                        {value: 300,name: '邮件营销'},
-                        {value: 340,name: '联盟广告'},
-                        {value: 310,name: '视频广告'},
-                        {value: 350,name: '搜索引擎'},
-                        ]
-                }]
+                    stack: '月份',
+                    data: [100.5,123,86.5,58.9,90,92.4,88.7,69.2,98,75,97.8,109]
+                },
+                {
+                    name: '流量',
+                    type: 'bar',                    
+                    stack: '月份',
+                    data: [50,48,55,99,100,98.9,87.3,55,83,59,68,88]
+                },
+                ]
             };
     
             // 使用刚指定的配置项和数据显示图表。
