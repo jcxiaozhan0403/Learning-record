@@ -20,9 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java笔记(自学).md" beforeDir="false" afterPath="$PROJECT_DIR$/Java笔记(自学).md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operator/LogicalOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/operator/LogicalOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../HTML5/画布.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../HTML5/画布.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,6 +142,7 @@
       <workItem from="1604109154128" duration="1916000" />
       <workItem from="1604111093761" duration="6387000" />
       <workItem from="1604227720717" duration="4042000" />
+      <workItem from="1604296791521" duration="21000" />
     </task>
     <servers />
   </component>
@@ -163,10 +162,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1604043655936">
+    <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1604296810298">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1604043655936" />
+    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1604296810298" />
     <state width="1877" height="123" key="GridCell.Tab.0.bottom" timestamp="1604231780402">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

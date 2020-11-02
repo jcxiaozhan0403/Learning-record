@@ -8,18 +8,62 @@
 <script src="./jquery-3.5.1.min.js"></script>
 <script>
     $(function(){
-        var c = $("#myCanvas")[0];
-        var cxk = c.getContext("2d");
-        cxk.fillStyle="#FF0000";
-        cxk.fillRect(10,10,10,10);
+        var myCanvas = $("#myCanvas")[0];
+        var ctx = myCanvas.getContext("2d");
+        
+        //画线
+        $("button:eq(0)").click(function(){
+            ctx.moveTo(0,10);
+            ctx.lineTo(600,300);
+            ctx.stroke();
+        });
 
-        cxk.beginPath();
-        cxk.arc()
+        //画圆
+        $("button:eq(1)").click(function(){
+            ctx.beginPath();
+            ctx.arc(410,80,40,0,2*Math.PI);
+            ctx.stroke();
+        });
+        
+        //填充
+        $("button:eq(2)").click(function(){
+            ctx.fillStyle="#FF0000";
+            ctx.fillRect(100,200,75,75);
+        });
+
+        //清空
+        $("button:eq(3)").click(function(){
+            ctx.clearRect(0,0,600,300);
+        });
+
+        //图片格式
+        function saveAsPNG(canvas) {
+        return canvas.toDataURL("image/png");
+        }
+
+        //下载函数
+        function downLoad(url){
+        var oA = document.createElement("a");
+        oA.download = '';// 设置下载的文件名，默认是'下载'
+        oA.href = url;
+        document.body.appendChild(oA);
+        oA.click();
+        oA.remove(); // 下载之后把创建的元素删除
+        }
+
+        //下载
+        $("button:eq(4)").click(function(){
+            downLoad(saveAsPNG(myCanvas));
+        });
     });
 </script>
 <body>
     <canvas id="myCanvas" width="600" height="300" style="border:1px solid #c3c3c3;"></canvas>
     <br>
-    <button>填充画布</button>
+    <button>画直线</button>
+    <button>画圆</button>
+    <button>填充矩形</button>
+    <button>清空画布</button>
+    <button>图片保存</button>
 </body>
 </html>
