@@ -135,6 +135,15 @@ public class NoteEdit extends JFrame implements ActionListener {
                 ioException.printStackTrace();
             }
         }
+        if (e.getSource().equals(cutItem) || e.getSource().equals(btnCut)){
+            txtArea.cut();
+        }
+        if (e.getSource().equals(copyItem) || e.getSource().equals(btnCopy)){
+            txtArea.copy();
+        }
+        if (e.getSource().equals(pasteItem) || e.getSource().equals(btnPaste)){
+            txtArea.paste();
+        }
     }
 
     private void open() throws IOException {
@@ -168,4 +177,6 @@ public class NoteEdit extends JFrame implements ActionListener {
             fw.close();
         }
     }
+
+
 }
