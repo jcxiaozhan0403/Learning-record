@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding: 0px;
+        margin: 0px;
+    }
+
+    #bg{
+        width: 200px;
+        background-color: darkgray;
+        border-top: darkgray 10px solid;
+        border-left: darkgray 3px solid;
+        border-right: darkgray 3px solid;
+        border-bottom: darkgray 10px solid;
+        margin: 150px auto;
+    }
+
+    li{
+        list-style: none;
+    }
+
+    .title{
+        font-size: 15px;
+        height: 40px;
+        width: 200px;
+        line-height: 40px;
+        text-align: center;
+        background-color: blue;
+        color: white;
+        cursor: pointer;
+    }
+
+    .child>li{
+        text-align: center;
+        height: 30px;
+        line-height: 30px;
+        background-color: white;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .child{
+        width: 180px;
+        margin: 0 auto;
+        display: none;
+    }
+
+    #content>li{
+        border-bottom: 1px solid #ccc;
+    }
+
+    #content>li:last-of-type{
+        border-bottom: none;
+    }
+
+    .active{
+        display: block;
+    }
+
+</style>
+<script src="./jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        $(".title").click(function(){
+            $(this).siblings().slideDown(1000).parent().siblings().children("ul").hide();
+        });
+    });
+</script>
+<body>
+    <div id="bg">
+        <ul id="content">
+            <li>
+                <h3 class="title">项目1</h3>
+                <ul class="child active">
+                    <li>子项目1</li>
+                    <li>子项目2</li>
+                    <li>子项目3</li>
+                    <li>子项目4</li>
+                </ul>
+            </li>
+            <li>
+                <h3 class="title">项目2</h3>
+                <ul class="child">
+                    <li>子项目1</li>
+                    <li>子项目2</li>
+                    <li>子项目3</li>
+                    <li>子项目4</li>
+                </ul>
+            </li>
+            <li>
+                <h3 class="title">项目3</h3>
+                <ul class="child">
+                    <li>子项目1</li>
+                    <li>子项目2</li>
+                    <li>子项目3</li>
+                    <li>子项目4</li>
+                </ul>
+            </li>
+            <li>
+                <h3 class="title">项目4</h3>
+                <ul class="child">
+                    <li>子项目1</li>
+                    <li>子项目2</li>
+                    <li>子项目3</li>
+                    <li>子项目4</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

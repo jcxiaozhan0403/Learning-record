@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #main{
+        width: 500px;
+        height: 500px;
+    }
+</style>
+<script src="./echarts.min.js"></script>
+<body>
+    <div id="main">
+        <script>
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+    
+            // 指定图表的配置项和数据
+            var option = {
+                //标题
+                title: {
+                    text: 'ECharts 入门示例'
+                },
+                
+                //工具集
+                tooltip: {},
+                
+                //图例
+                legend: {
+                    data:['直接访问','邮件营销','联盟广告','视频广告']
+                },
+                
+                //X轴
+                // xAxis: {
+                //     data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                // },
+                
+                // //Y轴
+                // yAxis: {},
+                
+                
+                series: [{
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '50%',
+                    center: ["50%","60%"],
+                    label: {
+                        normal:{
+                            show: true,
+                            position: 'outside',
+                            formatter: '{b}:{c}({d}%)',
+                        }
+                    },
+
+                    // type: 'bar'：柱状/条形图
+                    // type: 'line'：折线/面积图
+                    // type: 'pie'：饼图
+
+                    data: [
+                        {value: 330,name: '直接访问'},
+                        {value: 300,name: '邮件营销'},
+                        {value: 340,name: '联盟广告'},
+                        {value: 310,name: '视频广告'},
+                        {value: 350,name: '搜索引擎'},
+                        ]
+                }]
+            };
+    
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+    </script>
+    </div>
+</body>
+</html>

@@ -160,3 +160,8 @@ event.preventDefault();
 // 同时阻止默认行为和冒泡
 return false;
 ```
+
+## 判断动画是否正在执行
+```javascript
+if($("选择器").is(":animated"));
+```
