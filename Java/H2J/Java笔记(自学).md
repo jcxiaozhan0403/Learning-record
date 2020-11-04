@@ -142,21 +142,6 @@ public class HelloWorld {
 }
 ```
 
-## 数组
-```java
-public class HelloWorld {
-    public static void main(String[] args) {
-        int a[]; //声明数组
-        a = new int[5]; //创建数组
-        int b[] = new int[6]{0,1,2,3,4,5}; //创建数组,并赋值
-         
-        a[0]= 1;  //数组赋值
-
-        System.out.println(a.length); //输出数组长度
-    }
-}
-```
-
 ## Arrays类操作数组
 ```java
 import java.util.Arrays;//导入Arrays类
