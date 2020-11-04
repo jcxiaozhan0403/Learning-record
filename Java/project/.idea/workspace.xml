@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c153dd69-5ef6-4153-8e37-8eeb31f5833a" name="Default Changelist" comment="" />
+    <list default="true" id="c153dd69-5ef6-4153-8e37-8eeb31f5833a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/txt/NoteEdit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/txt/NoteEdit.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,7 +54,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="13" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../H2J" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -180,6 +184,7 @@
       <workItem from="1604296814233" duration="85000" />
       <workItem from="1604301346750" duration="4799000" />
       <workItem from="1604312328141" duration="16000" />
+      <workItem from="1604387706791" duration="2940000" />
     </task>
     <servers />
   </component>
@@ -215,22 +220,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="739" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1604312341843" />
-    <state width="1866" height="122" key="GridCell.Tab.0.bottom" timestamp="1604306149864">
+    <state width="1877" height="123" key="GridCell.Tab.0.bottom" timestamp="1604392720356">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1866" height="122" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1604306149864" />
-    <state width="1866" height="122" key="GridCell.Tab.0.center" timestamp="1604306149864">
+    <state width="1877" height="123" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1604392720356" />
+    <state width="1877" height="123" key="GridCell.Tab.0.center" timestamp="1604392720356">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1866" height="122" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1604306149864" />
-    <state width="1866" height="122" key="GridCell.Tab.0.left" timestamp="1604306149864">
+    <state width="1877" height="123" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1604392720356" />
+    <state width="1877" height="123" key="GridCell.Tab.0.left" timestamp="1604392720356">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1866" height="122" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1604306149864" />
-    <state width="1866" height="122" key="GridCell.Tab.0.right" timestamp="1604306149864">
+    <state width="1877" height="123" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1604392720356" />
+    <state width="1877" height="123" key="GridCell.Tab.0.right" timestamp="1604392720356">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1866" height="122" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1604306149864" />
+    <state width="1877" height="123" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1604392720356" />
     <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1603432329584">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

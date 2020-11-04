@@ -1,6 +1,6 @@
 package txt;
 
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -144,6 +144,15 @@ public class NoteEdit extends JFrame implements ActionListener {
         if (e.getSource().equals(pasteItem) || e.getSource().equals(btnPaste)){
             txtArea.paste();
         }
+        if (e.getSource().equals(colorItem) || e.getSource().equals(btnColor)){
+            txtArea.setForeground(getColor());
+        }
+    }
+
+    private Color getColor() {
+        JColorChooser cc = new JColorChooser();
+        Color c =cc.showDialog(this,"颜色设置",Color.black);
+        return c;
     }
 
     private void open() throws IOException {
@@ -177,6 +186,4 @@ public class NoteEdit extends JFrame implements ActionListener {
             fw.close();
         }
     }
-
-
 }

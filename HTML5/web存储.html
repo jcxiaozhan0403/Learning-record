@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #main{
+        margin: 100px auto;
+        width: 500px;
+        height: 700px;
+        border-radius: 15px;
+    }
+
+    #top{
+        margin: 30px auto;
+        width: 300px;
+        padding-top: 15px;
+        padding-left: 25px;
+    }
+
+    button{
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-size: 15px;
+        margin-left: 65px;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    span{
+        font-size: 20px;
+    }
+
+    table{
+        border: 1px solid black;
+        background-color: lightblue;
+        text-align: center;
+        width: 300px;
+        margin: 0 auto;
+        border-radius: 5px;
+    }
+    td{
+        width: 100px;
+        bottom: 1px solid black;
+    }
+</style>
+<script src="./jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        var studentId = document.getElementById("studentId");
+        var name = document.getElementById("name");
+        var className = document.getElementById("className");
+        var n = 0;
+        var studentIds = new Array();
+        var names = new Array();
+        var classNames = new Array();
+
+        $("button:eq(0)").click(function(){
+            studentIds[n] = studentId.value;
+            names[n] = name.value;
+            classNames[n] = className.value;
+
+            n++;
+
+            sessionStorage.setItem("studentIds",JSON.stringify(studentIds));
+            sessionStorage.setItem("names",JSON.stringify(names));
+            sessionStorage.setItem("classNames",JSON.stringify(classNames));
+        });
+
+        $("button:eq(1)").click(function(){
+            var a = JSON.parse(sessionStorage.getItem("studentIds"));
+            var b = JSON.parse(sessionStorage.getItem("names"));
+            var c = JSON.parse(sessionStorage.getItem("classNames"));
+            
+            for(var x = 0;x<n;x++){
+                $("<tr><td>"+a[x]+"</td><td>"+b[x]+"</td><td>"+c[x]+"</td></tr>").appendTo("tbody");
+            }
+        });
+    });
+</script>
+<body>
+    <div id="main">
+        <div id="top">
+    <span>学号：</span><input type="text" id="studentId"><br>
+    <span>姓名：</span><input type="text" id="name"><br>
+    <span>班级：</span><input type="text" id="className"><br>
+    <button>录入</button>
+    <button>获取</button>
+</div>
+    <table  border="1" cellspacing="0">
+        <thead>
+            <tr>
+                <td>学号</td>
+                <td>姓名</td>
+                <td>班级</td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
