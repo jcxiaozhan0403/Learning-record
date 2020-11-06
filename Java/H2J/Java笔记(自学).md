@@ -2,6 +2,7 @@
 编译后的文件.class
 
 ## 环境配置
+
 ```
 JAVA_HOME  jdk目录
 CLASSPATH  .;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar
@@ -14,6 +15,7 @@ JRE(java运行环境)
 JDK>JRE>JVM
 
 ## 注释
+
 ```
 文档注释
 /**
@@ -30,27 +32,29 @@ JDK>JRE>JVM
 
 */
 ```
+
 ## 代码规范
+
 - 包名：所有字母小写
 - 类名、接口名：每个单词首字母大写
 - 变量名、方法名：驼峰命名
 - 常量名：所有字母大写、多单词用下划线连接
 
-```
+```java
 public class HelloWorld
--------------------------------
-public      表示这是一个可以公开访问的类
-class       表示这是一个类
-HelloWorld  表示类的名字，每个单词的首字母大写
+
+//public      表示这是一个可以公开访问的类
+//class       表示这是一个类
+//HelloWorld  表示类的名字，每个单词的首字母大写
 ```
 
 主方法
-```
+```java
 public static void main(String[] args)
 ```
 
 打印
-```
+```java
 System.out.println("hello world");
 ```
 
@@ -71,25 +75,31 @@ java中有8种基本数据类型，除此之外都是引用数据类型
 给基本类型的变量赋值的方式叫做字面值
 
 ## 数据类型的相关计算
+
 char可以与数字进行运算，过程是将字母转换为ASCII值再运算
 
 数字与字符串的拼接:String后面的所有数字都会被转换成String类型，然后进行字符串拼接，如果数字是出现在String前面，则会正常运算后拼接
 
 ## 变量类型转换
+
 根据位数转换：小到大自动转换，大到小强制转换，short和char相互强制转换
 
 ## final
+
 当一个变量被final修饰的时候，该变量只有一次赋值的机会，再次赋值会发生编译错误
 
 final 除了修饰变量，还可以修饰类，修饰方法
 
 ## 算术运算符
+
 取余的符号由被模数决定
 
 ## 赋值运算符
+
 等号可以连续赋值
 
 ## 逻辑运算符
+
 ```java
 & 逻辑与
 | 逻辑或
@@ -100,6 +110,7 @@ final 除了修饰变量，还可以修饰类，修饰方法
 ```
 
 ## 位运算符
+
 正数二进制-->反码-->加1-->负数二进制
 ```java
 n << m //左移，值等于n*2的m次方
@@ -111,6 +122,7 @@ n >>> m //无符号右移，右移后的最前两位补0
 ```
 
 ## 循环
+
 与其他语言相似，break结束循环，continue跳过此次循环
 ```java
 //标签跳出循环
@@ -130,16 +142,18 @@ public class HelloWorld {
          
     }
 }
+```
 
-// for循环遍历数组
-public class HelloWorld {
-    public static void main(String[] args) {
-        int b[] = {1,2,3,4,5,6};
-        for(int i : b){
-            System.out.println(b);
-        }
-    }
-}
+## 复制数组
+
+```java
+System.arraycopy(src, srcPos, dest, destPos, length)
+
+//src: 源数组
+//srcPos: 从源数组复制数据的起始位置
+//dest: 目标数组
+//destPos: 复制到目标数组的起始位置
+//length: 复制的长度
 ```
 
 ## Arrays类操作数组
@@ -160,10 +174,22 @@ public class HelloWorld {
             System.out.print(b[i] + " ");
         }
 
-        String content = Arrays.toString(a); //toString方法将数组作为字符串打印
-        Arrays.sort(a); //sort方法将数组进行由小到大排序
-        Arrays.binarySearch(a, 62); //binarySearch方法搜索元素出现的位置，必须在sort排序前提下
-        System.out.println(content);
+         //toString方法将数组作为字符串打印
+        String content = Arrays.toString(a);
+
+        //sort方法将数组进行由小到大排序
+        Arrays.sort(a); 
+
+        //binarySearch方法搜索元素出现的位置，必须在sort排序前提下
+        //数字62出现的位置
+        Arrays.binarySearch(a, 62); 
+
+        //比较两个数组内容是否完全相同
+        Arrays.equals(a, b)
+
+        //填充数组
+        //Array.fill(arrayname ,starting index ,ending index ,value)
+        //Array.fill(数组名，开始位置，结束位置，填充值)
     }
 }
 ```

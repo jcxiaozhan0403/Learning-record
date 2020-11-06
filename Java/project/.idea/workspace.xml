@@ -19,12 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c153dd69-5ef6-4153-8e37-8eeb31f5833a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../H2J/src/array_/Sorting.java" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/src/array_/Sorting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/txt/myFont.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/txt/myFont.java" afterDir="false" />
-    </list>
+    <list default="true" id="c153dd69-5ef6-4153-8e37-8eeb31f5833a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -189,6 +184,7 @@
       <workItem from="1604387706791" duration="2940000" />
       <workItem from="1604452439830" duration="9000" />
       <workItem from="1604487814401" duration="4651000" />
+      <workItem from="1604670726042" duration="5000" />
     </task>
     <servers />
   </component>

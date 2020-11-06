@@ -34,5 +34,9 @@ public class AboutTheArray {
         }
         System.out.println(Arrays.toString(c));
         System.out.println(min);
+
+        //定义二维数组,二维数组其实就是在一个数组内放了多个一维数组
+        //int[][] d = new int[一维数组数量][一维数组长度];
+        int[][] d = new int[2][3];
     }
 }

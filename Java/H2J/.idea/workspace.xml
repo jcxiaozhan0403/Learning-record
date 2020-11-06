@@ -21,9 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java笔记(自学).md" beforeDir="false" afterPath="$PROJECT_DIR$/Java笔记(自学).md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/array_/AboutTheArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/array_/AboutTheArray.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/array_/Sorting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/array_/Sorting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controlProcess/Cycle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlProcess/Cycle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/src/txt/myFont.java" beforeDir="false" afterPath="$PROJECT_DIR$/../project/src/txt/myFont.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +66,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
-  <component name="RunManager" selected="应用程序.Sorting">
+  <component name="RunManager" selected="应用程序.Demo">
     <configuration name="AboutTheArray" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="array_.AboutTheArray" />
       <module name="H2J" />
@@ -91,12 +93,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Judge" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="controlProcess.Judge" />
+    <configuration name="Demo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Demo" />
+      <module name="H2J" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RandomNumber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="randomNumber.RandomNumber" />
       <module name="H2J" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="controlProcess.*" />
+          <option name="PATTERN" value="randomNumber.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -117,20 +126,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="xxx" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="xxx" />
-      <module name="H2J" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.Demo" />
+        <item itemvalue="应用程序.RandomNumber" />
         <item itemvalue="应用程序.Sorting" />
         <item itemvalue="应用程序.AboutTheArray" />
         <item itemvalue="应用程序.Cycle" />
-        <item itemvalue="应用程序.Judge" />
-        <item itemvalue="应用程序.xxx" />
       </list>
     </recent_temporary>
   </component>
@@ -158,6 +160,7 @@
       <workItem from="1604483184387" duration="2093000" />
       <workItem from="1604487790371" duration="23000" />
       <workItem from="1604490033344" duration="2772000" />
+      <workItem from="1604670718076" duration="5339000" />
     </task>
     <servers />
   </component>
@@ -181,29 +184,29 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1604487811426" />
-    <state width="1877" height="123" key="GridCell.Tab.0.bottom" timestamp="1604491952917">
+    <state width="1877" height="211" key="GridCell.Tab.0.bottom" timestamp="1604676338061">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="123" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1604491952917" />
-    <state width="1877" height="123" key="GridCell.Tab.0.center" timestamp="1604491952917">
+    <state width="1877" height="211" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1604676338061" />
+    <state width="1877" height="211" key="GridCell.Tab.0.center" timestamp="1604676338061">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="123" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1604491952917" />
-    <state width="1877" height="123" key="GridCell.Tab.0.left" timestamp="1604491952917">
+    <state width="1877" height="211" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1604676338061" />
+    <state width="1877" height="211" key="GridCell.Tab.0.left" timestamp="1604676338061">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="123" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1604491952917" />
-    <state width="1877" height="123" key="GridCell.Tab.0.right" timestamp="1604491952917">
+    <state width="1877" height="211" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1604676338061" />
+    <state width="1877" height="211" key="GridCell.Tab.0.right" timestamp="1604676338061">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="123" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1604491952917" />
+    <state width="1877" height="211" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1604676338061" />
     <state x="461" y="169" key="SettingsEditor" timestamp="1604025667640">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="461" y="169" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1604025667640" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1604040944621">
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1604671253021">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1604040944621" />
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1604671253021" />
   </component>
 </project>

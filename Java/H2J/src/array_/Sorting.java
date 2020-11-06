@@ -18,8 +18,22 @@ public class Sorting {
                 }
             }
         }
+
         System.out.println(Arrays.toString(a));
 
+        //冒泡法排序
+        //第一步：从第一位开始，把相邻两位进行比较
+        //如果发现前面的比后面的大，就把大的数据交换在后面
+        int b [] = new int[]{18,62,68,82,65,9};
 
+        for (int i = 0; i < a.length-2; i++) {
+            if(a[i]>a[i+1]){
+                int temp = a[i];
+                a[i] = a[i+1];
+                a[i+1] = temp;
+            }
+        }
+
+        System.out.println(Arrays.toString(b));
     }
 }

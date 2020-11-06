@@ -20,5 +20,12 @@ public class Cycle {
         for(int x = 0;x<5;x++){
             System.out.println(x);
         }
+
+        //加强型for循环,用于遍历数组，但有缺点，缺点就是无法对数组元素进行操作
+        int a[] = new int[]{24,58,74,51,74};
+
+        for(int each : a){
+            System.out.println(each);
+        }
     }
 }
