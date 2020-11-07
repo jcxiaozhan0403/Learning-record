@@ -157,6 +157,7 @@ System.arraycopy(src, srcPos, dest, destPos, length)
 ```
 
 ## Arrays类操作数组
+
 ```java
 import java.util.Arrays;//导入Arrays类
  
@@ -195,6 +196,7 @@ public class HelloWorld {
 ```
 
 ## 类与对象(进阶)
+
 用来代表类的对象的变量叫做引用
 ```java
 public class Hero {
@@ -215,7 +217,9 @@ public class Hero {
     }  
 }
 ```
+
 继承的用法:一个类可以被多个类继承，一个类只能继承一个类，一个类可以继承多个接口，用逗号分隔多个接口
+
 ```java
 public class Item {
     String name;
@@ -239,7 +243,21 @@ public class Weapon extends Item{
      
 }
 ```
+
+方法重载:同名方法不同数量或类型的参数传入，得到不同的返回值，通过方法的重载实现，如果有多个同名方法，系统会在调用时自动选择对应数量参数的一个
+不定参数的方法是用来避免代码冗余的
+```java
+public void heal(Hero ... heroes){
+        for (Hero hero : heroes){
+            System.out.println(name + "给" + hero.name + "加血");
+        }
+}
+```
+
+构造方法:对象实例化是通过调用构造方法实现的，构造方法方法名和类名一致，无返回值，如果未申明，系统会默认生成一个构造方法，如果申明了一个带参的构造方法，那么无参的构造方法将失效
+
 包：package，一般将比较接近的类，规划在同一个包下
+
 ```java
 //使用同一个包下的其他类，直接使用即可
 //但是要使用其他包下的类，必须import

@@ -55,4 +55,14 @@ public class Hero {
         hp = hp + blood;
         return blood;
     }
+
+    public void heal(Hero ... heroes){
+        for (Hero hero : heroes){
+            System.out.println(name + "给" + hero.name + "加血");
+        }
+    }
+
+    public void heal(Hero h,int hp){
+        System.out.println(name + "给" + h.name + "加了" + hp + "点血");
+    }
 }
