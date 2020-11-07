@@ -283,14 +283,18 @@ public class Hero {
     }  
 }
 ```
+
 访问修饰符
+
+```java
+//private 私有的
+//package/friendly/default 不写
+//protected 受保护的
+//public 公共的
 ```
-private 私有的
-package/friendly/default 不写
-protected 受保护的
-public 公共的
-```
+
 类与类的几种关系
+
 ```
 自身：指的是Hero自己
 同包子类：ADHero这个类是Hero的子类，并且和Hero处于同一个包下
@@ -298,23 +302,73 @@ public 公共的
 同包类： GiantDragon 这个类和Hero是同一个包，但是彼此没有继承关系
 其他类：Item这个类，在不同包，也没有继承关系的类
 ```
-类方法和对象方法
+
+类方法、类属性和对象方法、对象属性
+
 ```java
-//如果一个方法，没有调用任何对象属性，那么就可以考虑设计为类方法，比如
+//如果一个属性，这个类通用，不会改变，那么设计为类属性，用static修饰
+    public class Hero(){
+        private static maxHP = 9000;
+    }
+
+//如果一个方法，没有调用任何对象属性，那么就可以考虑设计为类方法，用static修饰
     public static void printGameDuration(){
     	System.out.println("已经玩了10分50秒");
     }
 ```
+
+## 单例模式
+
 单例模式特点
-```
+
 1. 只允许有一个实例
 2. 单例类必须创建自己的实例
 3. 单例类必须给其他类提供获取实例的方法
-```
+
 什么是单例模式
-```
+
 1. 构造方法私有化
 2. 静态属性指向实例
 3. public static的 getInstance方法，返回第二步的静态属性
+
+**饿汉式**，是立即加载的方式，无论是否会用到这个对象，都会加载。
+如果在构造方法里写了性能消耗较大，占时较久的代码，比如建立与数据库的连接，那么就会在启动的时候感觉稍微有些卡顿。
+
+**懒汉式**，是延迟加载的方式，只有使用的时候才会加载。 并且有线程安全的考量
+
+使用懒汉式，在启动的时候，会感觉到比饿汉式略快，因为并没有做对象的实例化。 但是在第一次调用的时候，会进行实例化操作，感觉上就略慢。
+
+看业务需求，如果业务上允许有比较充分的启动和初始化时间，就使用饿汉式，否则就使用懒汉式
+
+## 枚举
+枚举是一种特殊的类，通常配合switch使用
+```java
+public enum Season {
+	SPRING,SUMMER,AUTUMN,WINTER
+}
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        Season season = Season.SPRING;
+        switch (season) {
+        case SPRING:
+            System.out.println("春天");
+            break;
+        case SUMMER:
+            System.out.println("夏天");
+            break;
+        case AUTUMN:
+            System.out.println("秋天");
+            break;
+        case WINTER:
+            System.out.println("冬天");
+            break;
+        }
+    }
+}
+
+//使用增强for循环查看枚举中的常量
+for (Season s : Season.values()) {
+            System.out.println(s);
+}
 ```
-问题：增强for循环，可变数量参数，修饰符的使用常识,单例模式
