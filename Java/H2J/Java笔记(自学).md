@@ -372,3 +372,8 @@ for (Season s : Season.values()) {
             System.out.println(s);
 }
 ```
+
+## 接口
+```java
+
+```
