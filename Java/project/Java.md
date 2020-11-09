@@ -75,3 +75,78 @@ null
 表格布局
 FlowLayout()
 ```
+
+## JDBC数据库连接
+1. 定义连接(静态)
+```java
+private static Connection conn;
+```
+2. 加载驱动程序
+```java
+Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //Sqlserver
+Class.forName("com.mysql.jdbc.Driver"); //Mysql
+```
+3. 创建连接函数
+```java
+//Sqlserver
+String url = "jdbc:sqlserver://localhost:1433;databaseName=soft1901";
+conn = DriverManager.getConnection(url,"sa","lishuang001219");
+
+//Mysql
+conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/","sa", "lishuang001219");
+```
+4. 创建关闭函数
+```java
+public static void closeConn(Statement s) throws SQLException {
+    if (s != null){
+        s.close();
+    }
+
+    if (conn != null){
+        try {
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+}
+```
+5. 在主方法中调用连接函数，书写sql语句，再调用关闭函数
+```java
+try {
+    Connection c = getConn();
+} catch (ClassNotFoundException e) {
+    e.printStackTrace();
+} catch (SQLException throwables) {
+    throwables.printStackTrace();
+}
+
+Statement s = conn.createStatement();
+String sql = "insert into student values('007',"+"'阿九'"+","+"'女'"+","+20+")";
+s.execute(sql);
+
+closeConn(s);
+```
+
+## JDBC增删改
+```java
+//增加数据
+String sql = "insert into student values('007',"+"'阿九'"+","+"'女'"+","+20+")";
+
+//删除和修改更为简单，注意单双引号的使用即可
+```
+
+## JDBC查询
+```java
+String sql = "select * from hero";
+
+// 执行查询语句，并把结果集返回给ResultSet,基1(下标从一开始)
+ResultSet rs = s.executeQuery(sql);
+while (rs.next()) {
+    int id = rs.getInt("id");// 可以使用字段名
+    String name = rs.getString(2);// 也可以使用字段的顺序
+    float hp = rs.getFloat("hp");
+    int damage = rs.getInt(4);
+    System.out.printf("%d\t%s\t%f\t%d%n", id, name, hp, damage);
+}
+```
