@@ -19,7 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="" />
+    <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="">
+      <change beforePath="$PROJECT_DIR$/../../JQ/demo.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../JQ/demo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,7 +53,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../project" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -157,7 +160,8 @@
       <workItem from="1604711738187" duration="6272000" />
       <workItem from="1604737021049" duration="1994000" />
       <workItem from="1604762904921" duration="1017000" />
-      <workItem from="1604804592517" duration="303000" />
+      <workItem from="1604804592517" duration="827000" />
+      <workItem from="1604886653554" duration="9000" />
     </task>
     <servers />
   </component>
@@ -177,10 +181,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1604487811426">
+    <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1604886659664">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1604487811426" />
+    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1604886659664" />
     <state width="1877" height="200" key="GridCell.Tab.0.bottom" timestamp="1604721714634">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

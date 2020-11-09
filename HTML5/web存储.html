@@ -63,6 +63,7 @@
 <script>
     $(function(){
         var studentId = document.getElementById("studentId");
+        // var studentId = document.querySelector("#studentId");
         var name = document.getElementById("name");
         var className = document.getElementById("className");
 
@@ -78,15 +79,17 @@
                 studentId: studentId.value,
                 name: name.value,
                 className: className.value
-                }
-
+                };
                 n++;
             }
-
+            sessionStorage.setItem("theNumber",n);
             sessionStorage.setItem("studentInfo",JSON.stringify(studentInfo));
         });
 
         $("button:eq(1)").click(function(){
+            var n = sessionStorage.getItem("theNumber");
+
+            $("#body").html(""); //清空tbody，防止重复添加数据
             var a = JSON.parse(sessionStorage.getItem("studentInfo"));
 
             for(var x = 0;x<n;x++){
@@ -113,7 +116,7 @@
                 <td>班级</td>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="body">
         </tbody>
     </table>
 </div>

@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c153dd69-5ef6-4153-8e37-8eeb31f5833a" name="Default Changelist" comment="" />
+    <list default="true" id="c153dd69-5ef6-4153-8e37-8eeb31f5833a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../JQ/demo.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../JQ/demo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,7 +54,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="13" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../H2J" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -62,7 +66,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="应用程序.AppletDemo">
+  <component name="RunManager" selected="应用程序.UserRegister">
     <configuration name="AppletDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="applet.AppletDemo" />
       <module name="learning" />
@@ -130,11 +134,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.UserRegister" />
         <item itemvalue="应用程序.AppletDemo" />
         <item itemvalue="应用程序.newWin" />
         <item itemvalue="应用程序.NoteEdit" />
         <item itemvalue="应用程序.MyWin" />
-        <item itemvalue="应用程序.UserRegister" />
       </list>
     </recent_temporary>
   </component>
@@ -185,6 +189,7 @@
       <workItem from="1604452439830" duration="9000" />
       <workItem from="1604487814401" duration="4651000" />
       <workItem from="1604670726042" duration="5000" />
+      <workItem from="1604886662764" duration="216000" />
     </task>
     <servers />
   </component>
@@ -220,22 +225,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="739" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1604490030222" />
-    <state width="1877" height="123" key="GridCell.Tab.0.bottom" timestamp="1604492747664">
+    <state width="1877" height="123" key="GridCell.Tab.0.bottom" timestamp="1604886878390">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="123" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1604492747664" />
-    <state width="1877" height="123" key="GridCell.Tab.0.center" timestamp="1604492747664">
+    <state width="1877" height="123" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1604886878390" />
+    <state width="1877" height="123" key="GridCell.Tab.0.center" timestamp="1604886878389">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="123" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1604492747664" />
-    <state width="1877" height="123" key="GridCell.Tab.0.left" timestamp="1604492747664">
+    <state width="1877" height="123" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1604886878389" />
+    <state width="1877" height="123" key="GridCell.Tab.0.left" timestamp="1604886878389">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="123" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1604492747664" />
-    <state width="1877" height="123" key="GridCell.Tab.0.right" timestamp="1604492747664">
+    <state width="1877" height="123" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1604886878389" />
+    <state width="1877" height="123" key="GridCell.Tab.0.right" timestamp="1604886878389">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="123" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1604492747664" />
+    <state width="1877" height="123" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1604886878389" />
     <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1603432329584">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
