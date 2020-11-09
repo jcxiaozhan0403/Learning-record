@@ -20,5 +20,38 @@
 ```
 
 ## 栅格系统
-随着视口尺寸的增加，系统会自动分为最多12份
+Bootstrap的栅格系统会默认把一行，分成12列，运用栅格系统，可以做出table那样几列几行的效果
+运用Bootstrap的栅格系统，首选需要准备一个class=container的div,表示整个表格
+紧接着需要一个class=row的div，表示行,再挨着的div，就是列了
+```html
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 ">一共12列</div>
+    </div>
+</div>
+ 
+<div class="container">
+    <div class="row">
+        <div class="col-xs-1 ">1列</div>
+        <div class="col-xs-1 ">1列</div>
+        <div class="col-xs-1 ">1列</div>
+        <div class="col-xs-1 ">1列</div>
+        <div class="col-xs-1 ">1列</div>
+        <div class="col-xs-1 ">1列</div>
+        <div class="col-xs-1 ">1列</div>
+        <div class="col-xs-1 ">1列</div>
+        <div class="col-xs-1 ">1列</div>
+        <div class="col-xs-1 ">1列</div>
+        <div class="col-xs-1 ">1列</div>
+        <div class="col-xs-1 ">1列</div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4 ">占4列</div>
+        <div class="col-xs-4 ">占4列</div>
+        <div class="col-xs-4 ">占4列</div>
+    </div>
+</div>
+```
 
