@@ -1,6 +1,9 @@
 package hero;
 
-public class Hero {
+import interface_.AD;
+
+public class Hero implements AD {
+    //用implements继承接口
 
     String name; //姓名
 
@@ -64,5 +67,10 @@ public class Hero {
 
     public void heal(Hero h,int hp){
         System.out.println(name + "给" + h.name + "加了" + hp + "点血");
+    }
+
+    @Override
+    public void physicAttack() {
+        //继承接口后必须调用接口内的方法
     }
 }
