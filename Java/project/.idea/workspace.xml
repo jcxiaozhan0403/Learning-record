@@ -21,9 +21,14 @@
   <component name="ChangeListManager">
     <list default="true" id="c153dd69-5ef6-4153-8e37-8eeb31f5833a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../H2J/H2J.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/H2J.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../H2J/Java笔记(自学).md" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/Java笔记(自学).md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../H2J/src/Hero/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/src/Hero/Hero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../H2J/out/production/H2J/Demo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../H2J/out/production/H2J/Hero/Hero.class" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/out/production/H2J/Hero/Hero.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../H2J/out/production/H2J/META-INF/H2J.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/theDatabase/TheDatabase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theDatabase/TheDatabase.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +48,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectId" id="1hDokal66GjxD94DFiRKXmQZqYL" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="新增" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -68,7 +75,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="应用程序.TheDatabase">
+  <component name="RunManager" selected="应用程序.Test">
     <configuration name="AppletDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="applet.AppletDemo" />
       <module name="learning" />
@@ -82,12 +89,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NoteEdit" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="txt.NoteEdit" />
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="theDatabase.Test" />
       <module name="learning" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="txt.*" />
+          <option name="PATTERN" value="theDatabase.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -136,11 +143,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.Test" />
         <item itemvalue="应用程序.TheDatabase" />
         <item itemvalue="应用程序.UserRegister" />
         <item itemvalue="应用程序.AppletDemo" />
         <item itemvalue="应用程序.newWin" />
-        <item itemvalue="应用程序.NoteEdit" />
       </list>
     </recent_temporary>
   </component>
@@ -196,6 +203,8 @@
       <workItem from="1604914938873" duration="8687000" />
       <workItem from="1604976088948" duration="27000" />
       <workItem from="1604978828571" duration="1216000" />
+      <workItem from="1604992467255" duration="4966000" />
+      <workItem from="1605015616681" duration="4024000" />
     </task>
     <servers />
   </component>
@@ -231,22 +240,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="739" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1604976112959" />
-    <state width="1877" height="123" key="GridCell.Tab.0.bottom" timestamp="1604925168707">
+    <state width="1877" height="136" key="GridCell.Tab.0.bottom" timestamp="1605019644297">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="123" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1604925168707" />
-    <state width="1877" height="123" key="GridCell.Tab.0.center" timestamp="1604925168707">
+    <state width="1877" height="136" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605019644297" />
+    <state width="1877" height="136" key="GridCell.Tab.0.center" timestamp="1605019644297">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="123" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1604925168707" />
-    <state width="1877" height="123" key="GridCell.Tab.0.left" timestamp="1604925168707">
+    <state width="1877" height="136" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605019644297" />
+    <state width="1877" height="136" key="GridCell.Tab.0.left" timestamp="1605019644297">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="123" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1604925168707" />
-    <state width="1877" height="123" key="GridCell.Tab.0.right" timestamp="1604925168707">
+    <state width="1877" height="136" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605019644297" />
+    <state width="1877" height="136" key="GridCell.Tab.0.right" timestamp="1605019644297">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="123" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1604925168707" />
+    <state width="1877" height="136" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605019644297" />
     <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1603432329584">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -271,6 +280,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="334" y="135" key="new project wizard/0.0.1920.1050@0.0.1920.1050" timestamp="1604025366770" />
+    <state x="790" y="270" key="refactoring.ChangeSignatureDialog" timestamp="1605016739316">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="790" y="270" key="refactoring.ChangeSignatureDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1605016739316" />
     <state x="616" y="243" key="run.anything.popup" timestamp="1602676251986">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

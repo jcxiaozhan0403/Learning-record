@@ -1,8 +1,8 @@
-package theDatabase;
+package databaseDemo;
 
 import java.sql.*;
 
-public class TheDatabase {
+public class DatabaseDemo {
     private static Connection conn; //创建到数据库的一个连接
     public static Connection getConn() throws ClassNotFoundException, SQLException {
         //1.加载驱动程序
@@ -35,10 +35,8 @@ public class TheDatabase {
     public static void main(String[] args) throws SQLException {
         try {
             Connection c = getConn();
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
 
         Statement s = conn.createStatement();
@@ -46,6 +44,7 @@ public class TheDatabase {
         String sql = "select * from student";
         ResultSet rs = s.executeQuery(sql);
 
+        System.out.println("编号\t姓名\t性别\t年龄");
         while (rs.next()) {
             String id = rs.getString(1);// 可以使用字段名
             String name = rs.getString(2);// 也可以使用字段的顺序
@@ -53,7 +52,6 @@ public class TheDatabase {
             int age = rs.getInt(4);
             System.out.printf("%s\t%s\t%s\t%d%n", id, name, sex, age);
         }
-
         closeConn(s);
     }
 }

@@ -379,5 +379,45 @@ for (Season s : Season.values()) {
 ## 对象类型转换
 用来代表类的对象的变量叫做引用
 ```java
+ADHero ad = new ADHero();
+// 第一个 ADHero 是引用类型
+// 第二个 ADHero 是对象类型
+//通常情况下，引用类型和对象类型是一致的
+```
+当引用类型和对象类型不同时，就要用到转换
+```java
+//子类转父类(自动转换)
+ADHero ad = new ADHero();
+Hero h = new Hero();
+    h = ad
 
+//父类转子类(强制转换)
+    ad = (ADHero)h;
+```
+没有继承关系的两个类，互相转换，一定会失败
+
+类与接口的转换
+```java
+ADHero ad = new ADHero();
+    AD adi = ad;
+// AD英雄类转为AD接口，是把ADHero类当做AD来使用，然而ADHero中必有AD接口中的方法，所以语义逻辑可行，自动转换
+    AD adi = ad;
+```
+
+## instanceof判断类型
+```java
+ADHero ad = new ADHero();
+APHero ap = new APHero();
+    
+Hero h1= ad;
+Hero h2= ap;
+    
+//判断引用h1指向的对象，是否是ADHero类型
+System.out.println(h1 instanceof ADHero);
+    
+//判断引用h2指向的对象，是否是APHero类型
+System.out.println(h2 instanceof APHero);
+    
+//判断引用h1指向的对象，是否是Hero的子类型
+System.out.println(h1 instanceof Hero);
 ```
