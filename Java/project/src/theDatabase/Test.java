@@ -1,13 +1,10 @@
 package theDatabase;
 
-import java.nio.file.Files;
 import java.sql.SQLException;
 
-import static theDatabase.StudentDAO.delete;
-
 public class Test {
-    public static void main(String[] args) {
-//        Student s = new Student();
+    public static void main(String[] args) throws SQLException {
+        Student s = new Student();
 //        s.setStuId("008");
 //        s.setStuName("陈七");
 //        s.setStuSex("男");
@@ -20,11 +17,13 @@ public class Test {
 //            e.printStackTrace();
 //        }
 
-        try {
-            delete("008");
-        } catch (SQLException throwable) {
-            throwable.printStackTrace();
-        }
+        StudentDAO dao = new StudentDAO();
+//        dao.delete("008");
+
+        s=dao.findById("003");
+        s.setStuName("黄蓉");
+        s.setStuSex("女");
+        dao.edit(s);
 
         SqlHelper.closeConn();
     }

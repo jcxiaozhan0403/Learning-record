@@ -1,13 +1,20 @@
 package theDatabase;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
+
 public class SqlHelper {
     private static Connection conn;
-    public static Connection getConn() throws ClassNotFoundException, SQLException{
+    public static Connection getConn() throws ClassNotFoundException, SQLException, IOException {
+        Properties prop = new Properties();
+        prop.load(SqlHelper.class.getResourceAsStream("prop.properties"));
+        String drive
+
         //1.加载驱动程序
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         //Class.forName("com.mysql.cj.jdbc.Driver");  mysql
