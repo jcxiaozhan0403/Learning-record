@@ -2,7 +2,7 @@ package hero;
 
 import interface_.AD;
 
-public class Hero implements AD {
+public class Hero implements AD,Mortal {
     //用implements继承接口
 
     String name; //姓名
@@ -21,7 +21,7 @@ public class Hero implements AD {
         garen.armor = 27.536f;
         garen.moveSpeed = 350;
 
-        Hero teemo =  new Hero();
+        Hero teemo =  new APHero();
         teemo.name = "提莫";
         teemo.hp = 383f;
         teemo.armor = 14f;
@@ -29,6 +29,8 @@ public class Hero implements AD {
 
         float nowHp =  teemo.getHp();
         System.out.println(nowHp);
+
+        garen.kill(teemo);
     }
     //创建无返回值的方法
     void keng(){
@@ -72,5 +74,14 @@ public class Hero implements AD {
     @Override
     public void physicAttack() {
         //继承接口后必须调用接口内的方法
+    }
+
+    @Override
+    public void die() {
+        System.out.println("英雄死亡");
+    }
+
+    public void kill(Mortal m){
+        m.die();
     }
 }
