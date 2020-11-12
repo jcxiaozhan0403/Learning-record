@@ -13,6 +13,5 @@ public class Support extends Hero{
         timo.name = "提莫";
 
         qinnv.heal(timo,10);
-
     }
 }
