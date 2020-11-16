@@ -2,43 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no">
-    <link rel="stylesheet" href="./bootstrap-4.5.0-dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<script src="../JQ/jquery-3.5.1.min.js"></script>
-<script src="./bootstrap-4.5.0-dist/js/bootstrap.bundle.js"></script>
 <style>
-    div{
-        margin-top: 5px;
-        margin-bottom: 5px;
+    div.row{
+       margin-bottom: 5px; 
+    }
+
+    img{
+        width: 170px;
     }
 </style>
-<body>
-    <div class="container">
-        <div class="jumbotron">
-            <h1>偏移列</h1>
-            <p>offset-md-4 是把col-md-4往右移了四列格</p>
-        </div>
-        <div class="row">
-            <div class="col-md-4 bg-success">
-                <p>col-md-4</p>
+<script src="./jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="./bootstrap-4.5.0-dist/css/bootstrap.min.css">
+<script src="./bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+<body style="background-color: rgb(238, 238, 238);">
+        <h1 class="text-center">首页</h1>
+        <div class="container" style="background-color: #fff;">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2>我的图片</h2>
+                </div>
             </div>
-            <div class="col-md-4 offset-md-4 bg-warning">
-                <p>col-md-4</p>
+            <div class="row">
+                <div class="col-md-4 text-center"><img src="./常用表格颜色.jpg" class="rounded-circle"></div>
+                <div class="col-md-4 text-center"><img src="./常用表格颜色.jpg" class="rounded-circle"></div>
+                <div class="col-md-4 text-center"><img src="./常用表格颜色.jpg" class="rounded-circle"></div>
             </div>
-            <br>
-            <div class="col-md-3 offset-md-3 bg-success">
-                <p>col-md-3</p>
-            </div>
-            <div class="col-md-3 offset-md-3 bg-warning">
-                <p>col-md-3</p>
-            </div>
-            <br>
-            <div class="col-md-6 offset-md-3 bg-success">
-                <p>col-md-3</p>
+            <div class="row">
+
             </div>
         </div>
-    </div>
 </body>
 </html>
