@@ -1,9 +1,7 @@
 package theDatabase;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +12,9 @@ public class StudentDAO {
             conn= SqlHelper.getConn();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -27,12 +27,31 @@ public class StudentDAO {
         state.executeUpdate(sql);
     }
 
+    //使用预处理的Statement
+    public void add1(Student stu) throws SQLException {
+        String sql="insert into student(stuId,stuName,stuSex,stuAge) values(?,?,?,?)";
+        PreparedStatement pState = conn.prepareStatement(sql);
+        pState.setString(1,stu.getStuId());
+        pState.setString(2,stu.getStuName());
+        pState.setString(3,stu.getStuSex());
+        pState.setInt(4,stu.getStuAge());
+        pState.executeUpdate();
+    }
+
     //删除记录
     public void delete(String id) throws SQLException {
         String sql = "delete from student where stuId = " + id;
 
         Statement state=conn.createStatement();
         state.execute(sql);
+    }
+
+    //使用预处理的Statement
+    public void delete(Student stu) throws SQLException {
+        String sql="delete from student where stuId = ?";
+        PreparedStatement pState = conn.prepareStatement(sql);
+        pState.setString(1,stu.getStuId());
+        pState.executeUpdate();
     }
 
     //修改纪录

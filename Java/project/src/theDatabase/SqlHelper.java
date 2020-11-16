@@ -13,15 +13,18 @@ public class SqlHelper {
     public static Connection getConn() throws ClassNotFoundException, SQLException, IOException {
         Properties prop = new Properties();
         prop.load(SqlHelper.class.getResourceAsStream("prop.properties"));
-        String drive
+        String driver = prop.getProperty("driver");
+        String url = prop.getProperty("url");
+        String user = prop.getProperty("user");
+        String password = prop.getProperty("password");
 
         //1.加载驱动程序
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        Class.forName(driver);
         //Class.forName("com.mysql.cj.jdbc.Driver");  mysql
         //2.创建一个连接
-        String url="jdbc:sqlserver://localhost:1433;databaseName=soft1901";
-        conn=DriverManager.getConnection(url,"sa","lishuang001219");
-        //conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test_demo","root","password");
+//        String url="jdbc:sqlserver://localhost:1433;databaseName=soft1901";
+        conn=DriverManager.getConnection(url,user,password);
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test_demo","root","password");
         return conn;
     }
     public static void closeConn(){
