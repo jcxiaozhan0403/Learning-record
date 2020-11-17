@@ -1,6 +1,6 @@
 package theDatabase;
 
-public class Student {
+public class Student {//pojo
     private String stuId;
     private String stuName;
     private String stuSex;

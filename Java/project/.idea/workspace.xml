@@ -20,11 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c153dd69-5ef6-4153-8e37-8eeb31f5833a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Bootstrap/demo.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bootstrap/demo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prop.properties" beforeDir="false" afterPath="$PROJECT_DIR$/prop.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/theDatabase/SqlHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/learning/theDatabase/SqlHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/theDatabase/StudentDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/learning/theDatabase/StudentDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/theDatabase/StudentList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/theDatabase/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/learning/theDatabase/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prop.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/theDatabase/SqlHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theDatabase/SqlHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theDatabase/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theDatabase/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/theDatabase/StudentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theDatabase/StudentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theDatabase/StudentList.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/theDatabase/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/theDatabase/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,13 +78,26 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="应用程序.Test">
+  <component name="RunManager" selected="应用程序.StudentView">
     <configuration name="AppletDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="applet.AppletDemo" />
       <module name="learning" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="applet.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StudentView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="theDatabase.StudentView" />
+      <module name="learning" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="theDatabase.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -125,26 +144,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="newWin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="newwindow.newWin" />
-      <module name="learning" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="newwindow.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.StudentView" />
         <item itemvalue="应用程序.Test" />
         <item itemvalue="应用程序.TheDatabase" />
         <item itemvalue="应用程序.UserRegister" />
         <item itemvalue="应用程序.AppletDemo" />
-        <item itemvalue="应用程序.newWin" />
       </list>
     </recent_temporary>
   </component>
@@ -206,6 +212,7 @@
       <workItem from="1605088444881" duration="7302000" />
       <workItem from="1605146240564" duration="16000" />
       <workItem from="1605511024737" duration="4358000" />
+      <workItem from="1605594401070" duration="6633000" />
     </task>
     <servers />
   </component>
@@ -245,22 +252,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="739" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1605146253901" />
-    <state width="1877" height="136" key="GridCell.Tab.0.bottom" timestamp="1605515434955">
+    <state width="614" height="922" key="GridCell.Tab.0.bottom" timestamp="1605601155649">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="136" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605515434955" />
-    <state width="1877" height="136" key="GridCell.Tab.0.center" timestamp="1605515434954">
+    <state width="614" height="922" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605601155649" />
+    <state width="614" height="922" key="GridCell.Tab.0.center" timestamp="1605601155649">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="136" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605515434954" />
-    <state width="1877" height="136" key="GridCell.Tab.0.left" timestamp="1605515434954">
+    <state width="614" height="922" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605601155649" />
+    <state width="614" height="922" key="GridCell.Tab.0.left" timestamp="1605601155649">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="136" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605515434954" />
-    <state width="1877" height="136" key="GridCell.Tab.0.right" timestamp="1605515434954">
+    <state width="614" height="922" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605601155649" />
+    <state width="614" height="922" key="GridCell.Tab.0.right" timestamp="1605601155649">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="136" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605515434954" />
+    <state width="614" height="922" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605601155649" />
     <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1603432329584">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
