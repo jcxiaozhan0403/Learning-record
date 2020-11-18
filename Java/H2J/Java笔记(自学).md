@@ -483,4 +483,44 @@ public String toString(){
 ## 默认方法
 默认方法就是一个方法要在多个类中重复使用，写在接口中，避免重复
 
+## 数字与字符
+封装类：所有的基本类型，都有对应的类类型，比如int对应的类是Integer，这种类就叫做封装类
+
+```java
+int i = 5;
+//基本类型转换成封装类型
+Integer it = new Integer(i);
+
+//封装类型转换成基本类型
+int i2 = it.intValue();
+```
+装箱：基本类型自动转换为类类型
+拆箱：类类型自动转换为基本类型
+
+```java
+int i = 5;
+//装箱
+Integer it = i;
+
+//拆箱
+int it2 = it;
+```
+
+数字与字符串的转换
+```java
+int i = 5;
+String x = "999"
+//数字转字符串
+
+//方法1:使用String类的静态方法valueOf
+String str = String.valueOf(i);
+    
+//方法2:先把基本类型装箱为对象，然后调用对象的toString
+String str2 = it.toString();
+
+//字符串转整数
+int i= Integer.parseInt(x);
+```
+
+
 ## 问题 ：匿名类
