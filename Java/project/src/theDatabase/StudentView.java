@@ -3,6 +3,8 @@ package theDatabase;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 import java.util.List;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -13,7 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class StudentView extends JFrame implements ActionListener{
+public class StudentView extends JFrame implements ActionListener, WindowFocusListener {
     private JPanel mainPanel,leftPanel;
     private JTable table;
     private JScrollPane js;
@@ -37,6 +39,7 @@ public class StudentView extends JFrame implements ActionListener{
         btnAdd.addActionListener(this);
         btnDel.addActionListener(this);
         btnEdit.addActionListener(this);
+        this.addWindowFocusListener(this);
         //
         try {
             fillData();
@@ -80,7 +83,7 @@ public class StudentView extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(btnAdd)){
-
+                add();
         }
         if(e.getSource().equals(btnDel)){
             try {
@@ -104,10 +107,24 @@ public class StudentView extends JFrame implements ActionListener{
     }
 
     private void add(){
-
+        new StudentAdd(this);
     }
 
     public static void main(String[] args) {
         new StudentView();
+    }
+
+    @Override
+    public void windowGainedFocus(WindowEvent e) {
+        try {
+            fillData();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    @Override
+    public void windowLostFocus(WindowEvent e) {
+
     }
 }
