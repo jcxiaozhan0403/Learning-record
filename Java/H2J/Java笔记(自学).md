@@ -522,6 +522,9 @@ String str2 = it.toString();
 int i= Integer.parseInt(x);
 ```
 
-
+## 格式化输出
+%s 表示字符串
+%d 表示数字
+%n 表示换行
 
 ## 问题 ：匿名类
