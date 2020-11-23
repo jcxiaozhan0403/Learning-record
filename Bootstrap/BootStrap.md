@@ -143,5 +143,14 @@ Bootstrap的栅格系统会默认把一行，分成12列，运用栅格系统，
 ## 图片
 ```html
 <!-- 响应式图片 -->
+<img class="img-fluid">
 
+<!-- 圆角 -->
+<img class="rounded">
+
+<!-- 椭圆图片 -->
+<img class="rounded-circle">
+
+<!-- 带边框的图片 -->
+<img class="img-thumbnail">
 ```
