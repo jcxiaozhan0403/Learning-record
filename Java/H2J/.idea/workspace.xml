@@ -22,6 +22,7 @@
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Java笔记(自学).md" beforeDir="false" afterPath="$PROJECT_DIR$/Java笔记(自学).md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/H2J/Demo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/H2J/Demo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../project/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -56,13 +57,16 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../project" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
@@ -104,19 +108,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Hero" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="hero.Hero" />
-      <module name="H2J" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="hero.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Support" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="hero.Support" />
       <module name="H2J" />
@@ -130,13 +121,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TheGui$TestGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.TheGui$TestGUI" />
+      <module name="H2J" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="应用程序.Demo" />
+        <item itemvalue="应用程序.TheGui$TestGUI" />
         <item itemvalue="应用程序.AboutTheMath" />
         <item itemvalue="应用程序.Hero (1)" />
         <item itemvalue="应用程序.Support" />
-        <item itemvalue="应用程序.Hero" />
       </list>
     </recent_temporary>
   </component>
@@ -184,6 +188,9 @@
       <workItem from="1605961372560" duration="2824000" />
       <workItem from="1606115884052" duration="9000" />
       <workItem from="1606302576023" duration="3182000" />
+      <workItem from="1606530561315" duration="3510000" />
+      <workItem from="1606534657037" duration="358000" />
+      <workItem from="1606535030307" duration="9676000" />
     </task>
     <servers />
   </component>
@@ -207,30 +214,54 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1605063079459" />
-    <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1606115890987">
+    <state x="440" y="99" key="#项目结构" timestamp="1606543467530">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1606115890987" />
-    <state width="1877" height="136" key="GridCell.Tab.0.bottom" timestamp="1606306921874">
+    <state x="440" y="99" key="#项目结构/0.0.1920.1050@0.0.1920.1050" timestamp="1606543467530" />
+    <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1606557909198">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="136" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1606306921874" />
-    <state width="1877" height="136" key="GridCell.Tab.0.center" timestamp="1606306921874">
+    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1606557909198" />
+    <state width="1877" height="136" key="GridCell.Tab.0.bottom" timestamp="1606571509543">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="136" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1606306921874" />
-    <state width="1877" height="136" key="GridCell.Tab.0.left" timestamp="1606306921874">
+    <state width="1877" height="136" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1606571509543" />
+    <state width="1877" height="136" key="GridCell.Tab.0.center" timestamp="1606571509543">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="136" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1606306921874" />
-    <state width="1877" height="136" key="GridCell.Tab.0.right" timestamp="1606306921874">
+    <state width="1877" height="136" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1606571509543" />
+    <state width="1877" height="136" key="GridCell.Tab.0.left" timestamp="1606571509543">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="136" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1606306921874" />
+    <state width="1877" height="136" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1606571509543" />
+    <state width="1877" height="136" key="GridCell.Tab.0.right" timestamp="1606571509543">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="136" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1606571509543" />
+    <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1606571509535">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1606571509535" />
+    <state width="1877" height="352" key="GridCell.Tab.1.center" timestamp="1606571509534">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1606571509534" />
+    <state width="1877" height="352" key="GridCell.Tab.1.left" timestamp="1606571509534">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1606571509534" />
+    <state width="1877" height="352" key="GridCell.Tab.1.right" timestamp="1606571509534">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1606571509534" />
     <state x="461" y="169" key="SettingsEditor" timestamp="1604025667640">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="461" y="169" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1604025667640" />
+    <state x="616" y="243" key="run.anything.popup" timestamp="1606543803365">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1606543803365" />
     <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1604671253021">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

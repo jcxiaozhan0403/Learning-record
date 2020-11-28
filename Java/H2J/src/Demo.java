@@ -1,32 +1,65 @@
-import java.util.Locale;
-import java.util.Scanner;
+import javax.swing.*;
+import java.awt.event.*;
+import java.lang.reflect.Array;
+import java.util.Random;
 
 public class Demo{
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
 
-        System.out.println("请输入地名");
-        String countries = s.nextLine();
+        JFrame f = new JFrame("LoL");
+        f.setSize(400, 300);
+        f.setLocation(580, 200);
+        f.setLayout(null);
 
-        System.out.println("请输入公司类型");
-        String companyType = s.toString();
+        final JLabel l = new JLabel();
 
-        System.out.println("请输入老板名称");
-        String bossName = s.nextLine();
+        ImageIcon i = new ImageIcon("C:\\Users\\爽\\Desktop\\icon.png");
+        l.setIcon(i);
+        l.setBounds(50, 50, i.getIconWidth(), i.getIconHeight());
 
-        System.out.println("请输入公司名称");
-        String companyName = s.nextLine();
+        l.addMouseListener(new MouseListener() {
 
-        System.out.println("请输入产品");
-        String product = s.nextLine();
+            // 释放鼠标
+            public void mouseReleased(MouseEvent e) {
+                // TODO Auto-generated method stub
 
-        System.out.println("请输入计量单位");
-        String unit = s.nextLine();
+            }
 
-        System.out.println("请输入金额");
-        String amount = s.nextLine();
+            // 按下鼠标
+            public void mousePressed(MouseEvent e) {
+                // TODO Auto-generated method stub
 
-        System.out.println("%s最大%s%s倒闭了，王八蛋老板%s吃喝嫖赌，欠下了%s个亿，带着他的小姨子跑了!我们没有办法，" +
-                "拿着%s抵工资!原价都是一%s多、两%s多、三%s多的%s，现在全部只卖二十块，统统只要二十块!%s王八蛋，你不是人!我们辛辛苦苦给你干了大半年，你不发工资，你还我血汗钱，还我血汗钱!",countries,companyType,);
+            }
+
+            // 鼠标退出
+            public void mouseExited(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            // 鼠标进入
+            public void mouseEntered(MouseEvent e) {
+
+                Random r = new Random();
+
+                int x = r.nextInt(f.getWidth() - l.getWidth());
+                int y = r.nextInt(f.getHeight() - l.getHeight());
+
+                l.setLocation(x, y);
+
+            }
+
+            // 按下释放组合动作为点击鼠标
+            public void mouseClicked(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+        f.add(l);
+
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        f.setVisible(true);
     }
 }

@@ -560,4 +560,17 @@ public class TestNumber {
 }
 ```
 
+## 字符串
+char对应的封装类是Character
+
+immutable 是指不可改变的，里面的内容**永远**不能改变，String 的表现就像是一个常量
+
+使用equals进行字符串内容的比较，必须大小写一致
+equalsIgnoreCase，忽略大小写判断内容是否一致
+
+StringBuffer是可变长的字符串
+
+## 图形化界面
+
+
 ## 问题 ：匿名类
