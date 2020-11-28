@@ -19,7 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="" />
+    <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java笔记(自学).md" beforeDir="false" afterPath="$PROJECT_DIR$/Java笔记(自学).md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../project/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,7 +56,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -178,6 +183,7 @@
       <workItem from="1605750058703" duration="3210000" />
       <workItem from="1605961372560" duration="2824000" />
       <workItem from="1606115884052" duration="9000" />
+      <workItem from="1606302576023" duration="3182000" />
     </task>
     <servers />
   </component>
@@ -205,22 +211,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1606115890987" />
-    <state width="1877" height="136" key="GridCell.Tab.0.bottom" timestamp="1605967395542">
+    <state width="1877" height="136" key="GridCell.Tab.0.bottom" timestamp="1606306921874">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="136" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605967395542" />
-    <state width="1877" height="136" key="GridCell.Tab.0.center" timestamp="1605967395542">
+    <state width="1877" height="136" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1606306921874" />
+    <state width="1877" height="136" key="GridCell.Tab.0.center" timestamp="1606306921874">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="136" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605967395542" />
-    <state width="1877" height="136" key="GridCell.Tab.0.left" timestamp="1605967395542">
+    <state width="1877" height="136" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1606306921874" />
+    <state width="1877" height="136" key="GridCell.Tab.0.left" timestamp="1606306921874">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="136" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605967395542" />
-    <state width="1877" height="136" key="GridCell.Tab.0.right" timestamp="1605967395542">
+    <state width="1877" height="136" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1606306921874" />
+    <state width="1877" height="136" key="GridCell.Tab.0.right" timestamp="1606306921874">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="136" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605967395542" />
+    <state width="1877" height="136" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1606306921874" />
     <state x="461" y="169" key="SettingsEditor" timestamp="1604025667640">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
