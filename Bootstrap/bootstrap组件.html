@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="./bootstrap-4.5.0-dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
+<script src="./bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
+<body>
+    <div class="container">
+        <div class="progress">
+            <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 30%;">30%</div>
+            <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" style="width: 50%;">50%</div>
+            <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width: 80%;">80%</div>
+        </div>
+
+        <div class="alert alert-warning"><b>警告</b>请检查你的代码！<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+        <!-- 进度条 progress-bar-animated动画进度条-->
+        <h1>新消息<span class="badge badge-primary">6</span></h1>
+        <h1>新消息<span class="badge badge-pill badge-secondary">6</span></h1>
+        <!-- badge-pill圆形 -->
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">首页</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">尾页</a></li>
+        </ul>
+        <!-- 分页 -->
+        <nav class="navbar bg-dark navbar-dark navbar-expand-sm">
+            <!-- navbar-dark主题 navbar-expand-lg水平显示 默认垂直  fixed-bottom固定在底部-->
+            <a href="#" class="navbar-brand">Logo</a>
+            <!-- 图片文字都可以 Logo -->
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#myCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- 定义折叠按钮 -->
+        <div id="myCollapse" class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">关于川信</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">专业设置</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">招生就业</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">人才引进</a>
+                </li>
+            </ul>
+
+            <form class="form-inline">
+                <input type="text" class="form-control">
+                <button class="btn btn-success">取消</button>
+            </form>
+            <span class="navbar-text">这是普通的文本</span>
+
+        </div>
+        </nav>
+
+        <ul class="nav nav-pills nav-justified">
+            <!-- flex-column垂直  justify-content-center居中 end右对齐  nav-tabs选项卡导航 nav-pills按钮样式  nav-justified导航给容器一样宽-->
+            <li class="nav-item">
+                <a class="nav-link active" href="#">关于川信</a>
+                <!-- nav代表导航  avtive启用-->
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">专业设置</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">招生就业</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">人才引进</a>
+            </li>
+        </ul>
+
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">dropdown</button>
+            <div class="dropdown-menu dropdown-menu-left">
+                <h5 class="dropdown-header">标题1</h5>
+                <!-- 标题 -->
+                <a class="dropdown-item" href="#">Link 1</a>
+                <div class="dropdown-divider"></div>
+                <!-- 分割线 -->
+                <a class="dropdown-item" href="#">Link 2</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" disabled>Link 3</a>
+            </div>
+        </div>
+
+        <div class="btn-grop btn-grop-lg mt-4">
+            <button class="btn btn-primary">登录</button>
+            <input class="btn btn-primary" type="button" value="取消">
+            <div class="btn-grop dropright">
+                <!-- dropright右边下拉 -->
+                <button class="btn btn-primary">dropdown</button>
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <h2 class="dropdown-header">标题1</h2>
+                    <!-- 标题 -->
+                    <a class="dropdown-item" href="#">Link 1</a>
+                    <div class="dropdown-divider"></div>
+                    <!-- 分割线 -->
+                    <a class="dropdown-item" href="#">Link 2</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" disabled>Link 3</a>
+                </div>
+        </div>
+    </div>
+</body>
+</html>

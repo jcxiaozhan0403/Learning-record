@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        height: 100%;
+        width: 100%;
+        padding: 0 0;
+        margin: 0 0;
+        overflow: hidden;
+    }
+
+    div{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        text-align: center;
+        transition: all 1s linear;
+    }
+
+    #div1{
+        background-color: lightblue;
+        left: 0;
+    }
+
+    #div2{
+        background-color: lightgreen;
+        left: 100%;
+    }
+
+    a{
+        color: white;
+        font-size: 50px;
+        text-decoration: none;
+        position: absolute;
+        bottom: 50px;
+    }
+
+    #div1.move{
+        left: -100%;
+    }
+
+    #div2.move{
+        left: 0;
+    }
+</style>
+<script>
+    window.onload = init;
+    function init(){
+        var list = document.querySelectorAll("a");
+
+        for(element of list){
+            element.onclick = function(){
+                event.preventDefault();
+                var div1 = document.querySelector("#div1");
+                var div2 = document.querySelector("#div2");
+                toggClass(div1,"move");
+                toggClass(div2,"move");
+            }
+        }
+
+        function toggClass(dom,cls){
+            if(dom.classList.contains(cls)){
+                dom.classList.remove(cls);
+            }else{
+                dom.classList.add(cls);
+            }
+        }
+    }
+</script>
+<body>
+    <div id="div1">
+        <a href="">NEXT</a>
+    </div>
+
+    <div id="div2">
+        <a href="">NEXT</a>
+    </div>
+</body>
+</html>
