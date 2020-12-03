@@ -634,4 +634,10 @@ try {
     e.printStackTrace();
 }
 ```
+
+## I/O
+文件和文件夹都是用File代表
+```java
+
+```
 ## 问题 ：匿名类
