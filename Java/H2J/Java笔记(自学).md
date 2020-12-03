@@ -570,7 +570,68 @@ equalsIgnoreCase，忽略大小写判断内容是否一致
 
 StringBuffer是可变长的字符串
 
-## 图形化界面
+## 异常处理
+单异常处理
+```java
+//法一：try catch
+//如果文件存在，就会顺序往下执行，并且不执行catch块中的代码
+//如果文件不存在，try 里的代码会立即终止，程序流程会运行到对应的catch块中
+try{
+    System.out.println("试图打开 d:/LOL.exe");
+    new FileInputStream(f);
+    System.out.println("成功打开");
+}
+catch(FileNotFoundException e){
+    System.out.println("d:/LOL.exe不存在");
+    e.printStackTrace();
+}
 
+//法二：throw 抛出
+private static void method2() throws FileNotFoundException {
 
+    File f = new File("d:/LOL.exe");
+
+    System.out.println("试图打开 d:/LOL.exe");
+    new FileInputStream(f);
+    System.out.println("成功打开");
+}
+```
+
+多异常处理
+```java
+//法一：用多个catch进行处理
+try {
+    System.out.println("试图打开 d:/LOL.exe");
+    new FileInputStream(f);
+    System.out.println("成功打开");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    Date d = sdf.parse("2016-06-03");
+} catch (FileNotFoundException e) {
+    System.out.println("d:/LOL.exe不存在");
+    e.printStackTrace();
+} catch (ParseException e) {
+    System.out.println("日期格式解析错误");
+    e.printStackTrace();
+}
+finally{
+    System.out.println("无论文件是否存在， 都会执行的代码");
+}
+//finally中放无论出不出现异常都必会执行的代码
+
+//法二：用一个catch抛出多个异常，用if来判断异常
+try {
+    System.out.println("试图打开 d:/LOL.exe");
+    new FileInputStream(f);
+    System.out.println("成功打开");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    Date d = sdf.parse("2016-06-03");
+} catch (FileNotFoundException | ParseException e) {
+    if (e instanceof FileNotFoundException)
+        System.out.println("d:/LOL.exe不存在");
+    if (e instanceof ParseException)
+        System.out.println("日期格式解析错误");
+
+    e.printStackTrace();
+}
+```
 ## 问题 ：匿名类
