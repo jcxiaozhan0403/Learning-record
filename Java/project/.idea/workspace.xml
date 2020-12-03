@@ -20,10 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c153dd69-5ef6-4153-8e37-8eeb31f5833a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../HTML5/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../HTML5/debug.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../H2J/Java笔记(自学).md" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/Java笔记(自学).md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../H2J/out/production/H2J/Demo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/out/production/H2J/Demo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../H2J/src/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/src/Demo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,13 +69,26 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
-  <component name="RunManager" selected="应用程序.StudentView">
-    <configuration name="AppletDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="applet.AppletDemo" />
+  <component name="RunManager" selected="应用程序.ClientDemo">
+    <configuration name="ClientDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="url.ClientDemo" />
       <module name="learning" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="applet.*" />
+          <option name="PATTERN" value="url.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="url.MyServer" />
+      <module name="learning" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="url.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -111,25 +122,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TheDatabase" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="theDatabase.TheDatabase" />
+    <configuration name="UrlTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="url.UrlTest" />
       <module name="learning" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="theDatabase.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserRegister" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="register.UserRegister" />
-      <module name="learning" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="register.*" />
+          <option name="PATTERN" value="url.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -139,11 +137,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.ClientDemo" />
+        <item itemvalue="应用程序.MyServer" />
+        <item itemvalue="应用程序.UrlTest" />
         <item itemvalue="应用程序.StudentView" />
         <item itemvalue="应用程序.Test" />
-        <item itemvalue="应用程序.TheDatabase" />
-        <item itemvalue="应用程序.UserRegister" />
-        <item itemvalue="应用程序.AppletDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -214,6 +212,8 @@
       <workItem from="1606302069736" duration="2430000" />
       <workItem from="1606530544483" duration="15000" />
       <workItem from="1606557912244" duration="927000" />
+      <workItem from="1606808249309" duration="1204000" />
+      <workItem from="1606907263464" duration="4476000" />
     </task>
     <servers />
   </component>
@@ -249,10 +249,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="776" y="325" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1605097484613" />
-    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser" timestamp="1606116029559">
+    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser" timestamp="1606911819421">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1606116029559" />
+    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1606911819421" />
     <state x="569" y="72" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1606303214977">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -261,22 +261,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="739" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1606530557429" />
-    <state width="466" height="922" key="GridCell.Tab.0.bottom" timestamp="1606120270329">
+    <state width="882" height="922" key="GridCell.Tab.0.bottom" timestamp="1606911779374">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="466" height="922" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1606120270329" />
-    <state width="466" height="922" key="GridCell.Tab.0.center" timestamp="1606120270329">
+    <state width="882" height="922" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1606911779374" />
+    <state width="882" height="922" key="GridCell.Tab.0.center" timestamp="1606911779374">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="466" height="922" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1606120270329" />
-    <state width="466" height="922" key="GridCell.Tab.0.left" timestamp="1606120270329">
+    <state width="882" height="922" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1606911779374" />
+    <state width="882" height="922" key="GridCell.Tab.0.left" timestamp="1606911779374">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="466" height="922" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1606120270329" />
-    <state width="466" height="922" key="GridCell.Tab.0.right" timestamp="1606120270329">
+    <state width="882" height="922" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1606911779374" />
+    <state width="882" height="922" key="GridCell.Tab.0.right" timestamp="1606911779374">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="466" height="922" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1606120270329" />
+    <state width="882" height="922" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1606911779374" />
     <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1603432329584">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
