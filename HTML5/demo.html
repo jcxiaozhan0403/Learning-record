@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        height: 100%;
+        width: 100%;
+        padding: 0 0;
+        margin: 0 0;
+        overflow: hidden;
+    }
+
+    div{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        text-align: center;
+        /* transition: all 1s linear; */
+    }
+
+    #div1{
+        background-color: lightblue;
+        left: 0;
+        animation: mymoveone 3s infinite;
+        animation-direction: alternate;
+    }
+
+    #div2{
+        background-color: lightgreen;
+        left: 100%;
+        animation: mymovetwo 3s infinite;
+        animation-direction: alternate;
+    }
+
+    a{
+        color: white;
+        font-size: 50px;
+        text-decoration: none;
+        position: absolute;
+        bottom: 50px;
+    }
+
+    #div1.move{
+        left: -100%;
+    }
+
+    #div2.move{
+        left: 0;
+    }
+
+    @keyframes mymoveone{
+        from{
+            left: 0;
+        }
+        to{
+            left: -100%;
+        }
+    }
+
+    @keyframes mymovetwo{
+        from{
+            left: 100%;
+        }
+        to{
+            left: 0%;
+        }
+    }
+
+</style>
+<body>
+    <div id="div1">
+        <a href="">NEXT</a>
+    </div>
+
+    <div id="div2">
+        <a href="">NEXT</a>
+    </div>
+</body>
+</html>
