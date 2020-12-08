@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="JavaMD5">
+  <library name="sqljdbc4">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/JavaMD5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sqljdbc4.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -644,4 +644,20 @@ try {
 文件输入流：FileInputStream
 文件输出流：FileOutputStream
 
+将流定义在try括号里,他会自动关闭
+```java
+try (FileInputStream fis = new FileInputStream(f)) {}
+
+//在finally里面关闭流,需要将fis定义在try外面
+finally {
+    if (null != fis)
+        try {
+            fis.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+}
+```
+
 ## 问题 ：匿名类
