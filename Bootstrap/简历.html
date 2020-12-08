@@ -10,16 +10,41 @@
 <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
 <script src="./bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
 <style>
-    #skills{
+    #skills,#contact{
         margin-top: 20px;
     }
 
-    #skills .card-header{
+    #skills .card-header,#contact .card-header{
         margin-bottom: 10px;
     }
 
-    #skills .progress{
+    #skills .progress,#contact .progress{
         margin-bottom: 8px;
+    }
+
+    #contact .row div{
+        margin-bottom: 5px;
+    }
+
+    .jumbotron p{
+        font-size: 19px;
+        font-weight: 500;
+    }
+
+    #experience .card-body,#bacground .card-body{
+        padding: 0;
+    }
+
+    .table{
+        margin: 0;
+    }
+
+    #experience,#project,.jumbotron{
+        margin-bottom: 8px;
+    }
+
+    #bacground{
+        margin-bottom: 80px;
     }
 </style>
 <body>
@@ -74,9 +99,31 @@
                         </div>
                     </div>
                 </div>
+                <div class="card border-primary" id="contact">
+                    <div class="card-header bg-primary">联系我</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-5">电子邮箱</div>
+                            <div class="col-md-7"><input type="text" class="form-control"></div>
+                            <div class="col-md-5">姓名</div>
+                            <div class="col-md-7"><input type="text" class="form-control"></div>
+                            <div class="col-md-12">
+                                <button class="btn btn-primary pull-right">提交</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-9">
-                <div class="card border-info">
+                <div class="jumbotron text-right">
+                    <p>
+                        参与10多个网站的前端设计工作。<br>
+                        熟练掌握HTML5、Bootstrap、JQuery等技术。<br>
+                        爱好程序设计、喜欢开发自己的小型产品。<br>
+                        有良好编程习惯，以及程序错误控制和解决能力。
+                    </p>
+                </div>
+                <div class="card border-info" id="project">
                     <div class="card-header bg-info">项目展示</div>
                     <div class="card-body text-center">
                         <div class="row">
@@ -105,6 +152,55 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="card border-info" id="experience">
+                    <div class="card-header bg-info">工作经验</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <tr>
+                                <td>2006-2010</td>
+                                <td>XXX公司</td>
+                                <td>前端工程师</td>
+                            </tr>
+                            <tr>
+                                <td>2011-2013</td>
+                                <td>XXX公司</td>
+                                <td>前端工程师</td>
+                            </tr>
+                            <tr>
+                                <td>2014-2017</td>
+                                <td>XXX公司</td>
+                                <td>前端工程师</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="card border-info" id="bacground">
+                    <div class="card-header bg-info">教育背景</div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>时间</th>
+                                <th>学校</th>
+                                <th>专业</th>
+                            </tr>
+                            <tr>
+                                <td>1999-2003</td>
+                                <td>湖北大学</td>
+                                <td>计算机专业本科</td>
+                            </tr>
+                            <tr>
+                                <td>2003-2006</td>
+                                <td>华中科技大学</td>
+                                <td>计算机专业硕士</td>
+                            </tr>
+                            <tr>
+                                <td>2008-2009</td>
+                                <td>XXX公司</td>
+                                <td>技术培训</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
