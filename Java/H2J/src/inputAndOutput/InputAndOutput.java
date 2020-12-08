@@ -7,7 +7,7 @@ import java.util.Date;
 public class InputAndOutput {
     public static void main(String[] args) throws IOException {
         //绝对路径
-        File f1 = new File("d:/newfile.txt");
+        File f1 = new File("d:");
 
         //相对路径
         File f2 = new File("LOL.exe");
