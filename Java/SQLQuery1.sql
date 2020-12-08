@@ -1,59 +1,54 @@
-create table cls
-(clsId Nvarchar(2) constraint pk_clsId primary key,
-clsName Nvarchar(10) not null,
-clsAdmin Nvarchar(10),
-clsTime DateTime)
-go
-
-create table student
-(clsId Nvarchar(2) constraint fk_clsId references cls(clsId),
-stuId Nvarchar(10) constraint pk_stuId primary key,
-stuName Nvarchar(10),
-stuSex Nvarchar(1),
-stuBirthday datetime,
-stuAddress Nvarchar(30),
-stuPhone Nvarchar(20))
-go
-
-create table course
-(couId Nvarchar(2) constraint pk_couId primary key,
-couName Nvarchar(20),
-couKs Int,
-couType Nvarchar(10))
-go
-
--- 选课，主键不自增
-create table xuanke
-(xkId Int constraint pk_xkId primary key,
-couId Nvarchar(2) constraint fk_couId references course(couId),
-stuId Nvarchar(10) constraint fk_stuId references student(stuId),
-couScore Int)
-go
-
---教师
-create table teacher
-(teaId Nvarchar(10) constraint pk_teaId primary key,
-teaName Nvarchar(10),
-teaSex Nvarchar(1),
-teaZc Nvarchar(10))
-go
-
---排课
-create table paike
-(pkId Int constraint pk_pkId primary key,
-teaId Nvarchar(10) constraint fk_teaId references teacher(teaId),
-couId Nvarchar(2) constraint fk_couId references course(couId))
-go
-
-drop table cls
-go
-drop table student
-go
-drop table course
-go
-drop table xuanke
-go
-drop table teacher
-go
-drop table paike
-go
+CREATE TABLE cls
+	(
+		clsId char(2) PRIMARY KEY,
+		clsName varchar(10) not null,
+		clsAdmin varchar(10),
+		clsTime date
+	);
+	
+	CREATE TABLE student
+		(
+			clsId CHAR(2),
+			stuId VARCHAR(10) PRIMARY KEY,
+			stuName VARCHAR(10),
+			stuSex CHAR(1),
+			stuBirthday datetime,
+			stuAddress VARCHAR(30),
+			stuPhone VARCHAR(20),
+			FOREIGN KEY(clsId) REFERENCES cls(clsId)
+		);
+		
+	CREATE TABLE course
+		(
+			couId CHAR(2) PRIMARY KEY,
+			couName VARCHAR(20),
+			couKs INT,
+			couType VARCHAR(10)
+		);
+		
+	CREATE TABLE xuanke
+		(
+			xkId INT,
+			couId CHAR(2),
+			stuId VARCHAR(10),
+			couScore INT,
+			FOREIGN KEY(couId) REFERENCES course(couId),
+			FOREIGN KEY(stuId) REFERENCES student(stuId)
+		);
+		
+	CREATE TABLE teacher
+		(
+			teaId VARCHAR(10) PRIMARY KEY,
+			teaName VARCHAR(10),
+			teaSex CHAR(1),
+			teaZc VARCHAR(10)
+		);
+		
+	CREATE TABLE paike
+		(
+			pkId INT,
+			teaId VARCHAR(10),
+			couId CHAR(2),
+			FOREIGN KEY(teaId) REFERENCES teacher(teaId),
+			FOREIGN KEY(couId) REFERENCES course(couId)
+		)
