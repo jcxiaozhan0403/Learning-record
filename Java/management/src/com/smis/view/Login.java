@@ -3,15 +3,23 @@ package com.smis.view;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class Login extends JFrame implements ActionListener {
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+
+import com.smis.dao.AdminDao;
+import com.smis.model.Admin;
+
+public class Login extends JFrame implements ActionListener{
     private JLabel lblTitle,lblUserId,lblUserPwd;
     private JTextField txtUserId;
     private JPasswordField txtUserPwd;
@@ -45,12 +53,11 @@ public class Login extends JFrame implements ActionListener {
         mainPanel.add(btnLogin);
         //
         lblTitle.setFont(new Font("微软雅黑", Font.BOLD, 20));
-
         //
         btnExit.addActionListener(this);
         btnLogin.addActionListener(this);
-
         //设置窗口
+
         setBounds(200,200,370,250);
         setResizable(false);
         setVisible(true);
@@ -59,19 +66,43 @@ public class Login extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         new Login();
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(btnExit)){
+        if(e.getSource().equals(btnExit)){
             System.exit(0);
         }
-        if (e.getSource().equals(btnLogin)){
+        if(e.getSource().equals(btnLogin)){
             userLogin();
         }
     }
 
     private void userLogin() {
-        
+        try {
+            AdminDao dao=new AdminDao();
+            Admin admin=dao.findById(txtUserId.getText());
+            if(admin==null){
+                JOptionPane.showMessageDialog(this, "没有该用户！");
+                return;
+            }
+            char[] ps=txtUserPwd.getPassword();
+            Md5PasswordEncoder md5=new Md5PasswordEncoder();
+            String pwd=md5.encodePassword(new String(ps), 1);
+            if(pwd.equals(admin.getAdminPwd())){
+                new MainFrame(txtUserId.getText());
+                setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(this, "密码错误！");
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 }

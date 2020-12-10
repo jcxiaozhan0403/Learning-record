@@ -20,15 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/../management/.idea/libraries/spring_security_core_4_2_2_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../management/.idea/libraries/sqljdbc4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java笔记(自学).md" beforeDir="false" afterPath="$PROJECT_DIR$/Java笔记(自学).md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../management/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../management/.idea/libraries/JavaMD5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../management/lib/JavaMD5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../management/management.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../management/management.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../management/src/com/smis/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/../management/src/com/smis/model/Admin.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +53,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../management" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -201,7 +193,8 @@
       <workItem from="1607222329788" duration="2859000" />
       <workItem from="1607326715240" duration="28000" />
       <workItem from="1607412201043" duration="890000" />
-      <workItem from="1607413694672" duration="1299000" />
+      <workItem from="1607413694672" duration="1798000" />
+      <workItem from="1607512299833" duration="114000" />
     </task>
     <servers />
   </component>
@@ -229,10 +222,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="440" y="99" key="#项目结构/0.0.1920.1050@0.0.1920.1050" timestamp="1606543467530" />
-    <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1607413045410">
+    <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1607512412479">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1607413045410" />
+    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1607512412479" />
     <state width="1877" height="136" key="GridCell.Tab.0.bottom" timestamp="1607228759322">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

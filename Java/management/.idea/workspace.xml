@@ -20,15 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20ad1cee-9352-4e5f-b2a6-b9a9fd7a7d2f" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/spring_security_core_4_2_2_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sqljdbc4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../H2J/Java笔记(自学).md" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/Java笔记(自学).md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/JavaMD5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/JavaMD5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/management.iml" beforeDir="false" afterPath="$PROJECT_DIR$/management.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/smis/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/model/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/smis/view/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/view/Login.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +55,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RunManager">
     <configuration name="Login" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -95,6 +95,7 @@
       <workItem from="1607413225100" duration="383000" />
       <workItem from="1607413671219" duration="21000" />
       <workItem from="1607416286496" duration="307000" />
+      <workItem from="1607512415736" duration="3901000" />
     </task>
     <servers />
   </component>
@@ -122,21 +123,21 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1607413690537" />
-    <state width="1877" height="75" key="GridCell.Tab.0.bottom" timestamp="1607416593401">
+    <state width="1877" height="75" key="GridCell.Tab.0.bottom" timestamp="1607516940830">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="75" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1607416593401" />
-    <state width="1877" height="75" key="GridCell.Tab.0.center" timestamp="1607416593401">
+    <state width="1877" height="75" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1607516940830" />
+    <state width="1877" height="75" key="GridCell.Tab.0.center" timestamp="1607516940829">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="75" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1607416593401" />
-    <state width="1877" height="75" key="GridCell.Tab.0.left" timestamp="1607416593400">
+    <state width="1877" height="75" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1607516940829" />
+    <state width="1877" height="75" key="GridCell.Tab.0.left" timestamp="1607516940829">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="75" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1607416593400" />
-    <state width="1877" height="75" key="GridCell.Tab.0.right" timestamp="1607416593401">
+    <state width="1877" height="75" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1607516940829" />
+    <state width="1877" height="75" key="GridCell.Tab.0.right" timestamp="1607516940830">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="75" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1607416593401" />
+    <state width="1877" height="75" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1607516940830" />
   </component>
 </project>
