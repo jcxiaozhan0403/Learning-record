@@ -247,4 +247,55 @@ Bootstrap 提供了3种类型的表单布局：垂直表单（默认）、内联
 </form>
 ```
 
-117
+## 组件
+
+下拉菜单
+```html
+<!-- dropdown-menu-right和dropdown-menu-left控制菜单对齐方式，添加在ul上 -->
+<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">选择网站</button>
+<div class="dropdown-menu dropdown-menu-right">
+    <a href="" class="dropdown-item">淘宝</a>
+    <a href="" class="dropdown-item">京东</a>
+    <a href="" class="dropdown-item">百度</a>
+    <a href="" class="dropdown-item">阿里</a>
+</div>
+
+<!-- .dropdown-header加在li上可以给菜单添加小标题，.divider加在div上用作菜单分割线 -->
+<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">打开菜单</button>
+<div class="dropdown-menu">
+    <p class="dropdown-header">菜单1</p>
+    <a href="" class="dropdown-item">选项1</a>
+    <a href="" class="dropdown-item">选项2</a>
+    <div class="dropdown-divider"></div>
+    <p class="dropdown-header">菜单2</p>
+    <a href="" class="dropdown-item">选项1</a>
+    <a href="" class="dropdown-item">选项2</a>
+</div>
+
+<!-- 给菜单div添加.dropup和.dropright和.dropleft可以控制菜单弹出的位置 -->
+<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">选择网站</button>
+<div class="dropdown-menu dropdown-menu-right .dropup">
+    <a href="" class="dropdown-item">淘宝</a>
+    <a href="" class="dropdown-item">京东</a>
+    <a href="" class="dropdown-item">百度</a>
+    <a href="" class="dropdown-item">阿里</a>
+</div>
+```
+
+按钮组
+```html
+<div class="btn-group btn-group-vertical">
+    <button class="btn btn-primary">第1个按钮</button>
+    <button class="btn btn-primary">第2个按钮</button>
+    <button class="btn btn-primary">第3个按钮</button>
+</div>
+
+<!-- 用btn-group-vertical来定义一个垂直排列的按钮组 -->
+<div class="btn-group-vertical">
+    <button class="btn btn-primary">第1个按钮</button>
+    <button class="btn btn-primary">第2个按钮</button>
+    <button class="btn btn-primary">第3个按钮</button>
+</div>
+```
+
+导航
