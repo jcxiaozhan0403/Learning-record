@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="./bootstrap-4.5.0-dist/css/bootstrap.min.css">
+<script src="./bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" style="background-color: red;"></div>
+            <div class="col-md-4">
+                <div id="accordion">
+                    <div class="card">
+                      <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                          选项一
+                        </a>
+                      </div>
+                      <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                        <div class="card-body">
+                          #1 内容：菜鸟教程 -- 学的不仅是技术，更是梦想！！！
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                        选项二
+                      </a>
+                      </div>
+                      <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                          #2 内容：菜鸟教程 -- 学的不仅是技术，更是梦想！！！
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                          选项三
+                        </a>
+                      </div>
+                      <div id="collapseThree" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                          #3 内容：菜鸟教程 -- 学的不仅是技术，更是梦想！！！
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-md-4" style="background-color: blue;"></div>
+        </div>
+    </div>
+</body>
+</html>

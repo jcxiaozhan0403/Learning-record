@@ -7,20 +7,19 @@
 </head>
 <script src="./jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="./bootstrap-4.5.0-dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
 <script src="./bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
 <body>
     <div class="container">
-        <div class="btn-group">
-            <span class="bg-primary">菜单</span>
-            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-            <div class="dropdown-menu dropdown-menu-right">
-                <a href="" class="dropdown-item">淘宝</a>
-                <a href="" class="dropdown-item">京东</a>
-                <a href="" class="dropdown-item">百度</a>
-                <a href="" class="dropdown-item">阿里</a>
-            </div>
-        </div>
+        <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  Dropdown link
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Link 1</a>
+                  <a class="dropdown-item" href="#">Link 2</a>
+                  <a class="dropdown-item" href="#">Link 3</a>
+                </div>
+              </li>
     </div>
 </body>
 </html>

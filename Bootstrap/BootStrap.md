@@ -298,4 +298,87 @@ Bootstrap 提供了3种类型的表单布局：垂直表单（默认）、内联
 </div>
 ```
 
-导航
+导航(默认横向排列)
+```html
+<!-- 简单导航 -->
+<ul class="nav">
+    <li class="nav-item">第1个标签</li>
+    <li class="nav-item">第2个标签</li>
+    <li class="nav-item">第3个标签</li>
+</ul>
+
+<!-- 导航对齐方式 -->
+<!-- .justify-content-center 类设置导航居中显示 -->
+<ul class="nav justify-content-center">
+    <li class="nav-item">第1个标签</li>
+    <li class="nav-item">第2个标签</li>
+    <li class="nav-item">第3个标签</li>
+</ul>
+<!-- .justify-content-end 类设置导航右对齐 -->
+<ul class="nav justify-content-end">
+    <li class="nav-item">第1个标签</li>
+    <li class="nav-item">第2个标签</li>
+    <li class="nav-item">第3个标签</li>
+</ul>
+<!-- .flex-column 类用于创建垂直导航 -->
+<ul class="nav flex-column">
+    <li class="nav-item">第1个标签</li>
+    <li class="nav-item">第2个标签</li>
+    <li class="nav-item">第3个标签</li>
+</ul>
+<!-- .nav-justified 创建宽屏导航，宽度撑满父元素，等宽显示每一项 -->
+<ul class="nav nav-justified">
+    <li class="nav-item">第1个标签</li>
+    <li class="nav-item">第2个标签</li>
+    <li class="nav-item">第3个标签</li>
+</ul>
+
+<!-- 导航样式 -->
+<!-- .nav-tabs 创建选项卡导航 -->
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+            <a href="#" class="nav-link active">链接1</a>
+    </li>
+    <li class="nav-item">
+            <a href="#" class="nav-link">链接2</a>
+    </li>
+    <li class="nav-item">
+            <a href="#" class="nav-link">链接3</a>
+    </li>
+</ul>
+<!-- .nav-pills 创建胶囊导航 -->
+<ul class="nav nav-pills">
+    <li class="nav-item">
+            <a href="#" class="nav-link active">链接1</a>
+    </li>
+    <li class="nav-item">
+            <a href="#" class="nav-link">链接2</a>
+    </li>
+    <li class="nav-item">
+            <a href="#" class="nav-link">链接3</a>
+    </li>
+</ul>
+```
+
+导航栏(默认垂直排列)
+```html
+<!-- 响应式导航栏，宽屏横向排列，小屏纵向排列 -->
+<nav class="navbar-nav navbar-expand-md">
+    <li class="nav-item">
+            <a href="#" class="nav-link active">链接1</a>
+    </li>
+    <li class="nav-item">
+            <a href="#" class="nav-link">链接2</a>
+    </li>
+    <li class="nav-item">
+            <a href="#" class="nav-link">链接3</a>
+    </li>
+</nav>
+
+<!-- .navbar-brand 类用于高亮显示品牌/Logo -->
+<img class="navbar-brand" src="./demo.png" style="width: 50px; height: 50px;">
+
+<a class="navbar-brand" href="#">Logo</a>
+```
+
+

@@ -166,4 +166,5 @@ return false;
 if($("选择器").is(":animated"));
 ```
 
-## Ajax
+## JQuery Mobile
+
