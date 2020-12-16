@@ -20,9 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20ad1cee-9352-4e5f-b2a6-b9a9fd7a7d2f" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/smis/view/RePwdFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/view/RePwdFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +52,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../H2J" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -98,6 +96,7 @@
       <workItem from="1607512415736" duration="3901000" />
       <workItem from="1607931248662" duration="18000" />
       <workItem from="1608020067278" duration="1139000" />
+      <workItem from="1608116639950" duration="1246000" />
     </task>
     <servers />
   </component>
@@ -121,10 +120,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1607416398101" />
-    <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1607931264943">
+    <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1608121486165">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1607931264943" />
+    <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1608121486165" />
     <state width="1877" height="75" key="GridCell.Tab.0.bottom" timestamp="1607516940830">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
