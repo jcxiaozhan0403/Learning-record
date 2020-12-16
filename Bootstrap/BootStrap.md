@@ -337,27 +337,34 @@ Bootstrap 提供了3种类型的表单布局：垂直表单（默认）、内联
 <!-- .nav-tabs 创建选项卡导航 -->
 <ul class="nav nav-tabs">
     <li class="nav-item">
-            <a href="#" class="nav-link active">链接1</a>
+        <a href="#" class="nav-link active">链接1</a>
     </li>
     <li class="nav-item">
-            <a href="#" class="nav-link">链接2</a>
+        <a href="#" class="nav-link">链接2</a>
     </li>
     <li class="nav-item">
-            <a href="#" class="nav-link">链接3</a>
+        <a href="#" class="nav-link">链接3</a>
     </li>
 </ul>
+
 <!-- .nav-pills 创建胶囊导航 -->
 <ul class="nav nav-pills">
     <li class="nav-item">
-            <a href="#" class="nav-link active">链接1</a>
+        <a href="#" class="nav-link active">链接1</a>
     </li>
     <li class="nav-item">
-            <a href="#" class="nav-link">链接2</a>
+        <a href="#" class="nav-link">链接2</a>
     </li>
     <li class="nav-item">
-            <a href="#" class="nav-link">链接3</a>
+        <a href="#" class="nav-link">链接3</a>
     </li>
 </ul>
+
+<!-- .breadcrumb 创建面包屑导航 -->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"></li>
+    <li class="breadcrumb-item"></li>
+</ol>
 ```
 
 导航栏(默认垂直排列)
@@ -365,13 +372,13 @@ Bootstrap 提供了3种类型的表单布局：垂直表单（默认）、内联
 <!-- 响应式导航栏，宽屏横向排列，小屏纵向排列 -->
 <nav class="navbar-nav navbar-expand-md">
     <li class="nav-item">
-            <a href="#" class="nav-link active">链接1</a>
+        <a href="#" class="nav-link active">链接1</a>
     </li>
     <li class="nav-item">
-            <a href="#" class="nav-link">链接2</a>
+        <a href="#" class="nav-link">链接2</a>
     </li>
     <li class="nav-item">
-            <a href="#" class="nav-link">链接3</a>
+        <a href="#" class="nav-link">链接3</a>
     </li>
 </nav>
 
@@ -379,6 +386,69 @@ Bootstrap 提供了3种类型的表单布局：垂直表单（默认）、内联
 <img class="navbar-brand" src="./demo.png" style="width: 50px; height: 50px;">
 
 <a class="navbar-brand" href="#">Logo</a>
+
+<!-- 折叠导航栏 -->
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+   <!-- Brand  -->
+  <a class="navbar-brand" href="#">Navbar</a>
+ 
+   <!-- Toggler/collapsibe Button  -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+   <!-- Navbar links  -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li> 
+    </ul>
+  </div> 
+</nav>
+
+<!-- 导航栏使用下拉菜单 -->
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Dropdown link
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Link 1</a>
+                <a class="dropdown-item" href="#">Link 2</a>
+                <a class="dropdown-item" href="#">Link 3</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<!-- 导航栏的表单 <form> 元素使用 class=“form-inline” 类来排版输入框与按钮。-->
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <form class="form-inline">
+    <input class="form-control" type="text" placeholder="Search">
+    <button class="btn btn-success" type="button">Search</button>
+  </form>
+</nav>
+
+<!-- 用navbar-text来设置导航栏上的非链接文本，文本水平对齐，颜色与内边距一致 -->
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <span class="navbar-text">文本</span>
+        </li>
+    </ul>
+</nav>
+
+<!-- 导航栏可以固定在头部或者底部 -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top"></nav>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom"></nav>
 ```
 
 

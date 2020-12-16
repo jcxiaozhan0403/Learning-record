@@ -19,14 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Bootstrap/BootStrap.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bootstrap/BootStrap.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Bootstrap/demo.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Bootstrap/demo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JQ/JQ.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../JQ/JQ.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../management/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../management/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,7 +51,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../management" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -201,6 +194,7 @@
       <workItem from="1607413694672" duration="1798000" />
       <workItem from="1607512299833" duration="114000" />
       <workItem from="1607931267794" duration="1373000" />
+      <workItem from="1608019623860" duration="439000" />
     </task>
     <servers />
   </component>
@@ -228,10 +222,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="440" y="99" key="#项目结构/0.0.1920.1050@0.0.1920.1050" timestamp="1606543467530" />
-    <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1607512412479">
+    <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1608020064670">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1607512412479" />
+    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1608020064670" />
     <state width="1877" height="136" key="GridCell.Tab.0.bottom" timestamp="1607228759322">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
