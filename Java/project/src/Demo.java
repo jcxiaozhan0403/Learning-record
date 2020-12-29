@@ -1,11 +1,13 @@
-import com.ndktools.javamd5.Mademd5;
+import java.util.Scanner;
 
-public class Demo {
-    public static void main(String[] args) {
-        Mademd5 md5 = new Mademd5();
+public class Demo{
 
-        String pwd= "admin";
+    public static void main(String argv[]){
 
-        System.out.println(md5.toMd5(pwd));
+        int[] count = new int[4];
+
+        System.out.println(count[3]);
+
     }
+
 }

@@ -638,11 +638,20 @@ try {
 ## I/O
 文件和文件夹都是用File代表
 
+```
+字节流
+
 输入流： InputStream
 输出流：OutputStream
 
 文件输入流：FileInputStream
 文件输出流：FileOutputStream
+
+字符流
+
+Reader
+Writer
+```
 
 将流定义在try括号里,他会自动关闭
 ```java

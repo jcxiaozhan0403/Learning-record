@@ -20,7 +20,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20ad1cee-9352-4e5f-b2a6-b9a9fd7a7d2f" name="默认的" comment="">
+      <change beforePath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../H2J/Java笔记(自学).md" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/Java笔记(自学).md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../H2J/src/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/src/Demo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/management/com/smis/model/cls.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/management/com/smis/model/cls.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/management/com/smis/view/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/management/com/smis/view/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/management/com/smis/view/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/management/com/smis/view/MainFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/management/com/smis/view/RePwdFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/management/com/smis/view/RePwdFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/smis/common/SqlHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/common/SqlHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/smis/dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/dao/AdminDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/smis/model/cls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/model/cls.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/smis/view/ClsAdminFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/view/ClsAdminFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/smis/view/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/view/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/smis/view/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/view/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/smis/view/RePwdFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/view/RePwdFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project/out/production/learning/Demo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../project/out/production/learning/Demo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project/src/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../project/src/Demo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +69,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../H2J" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -97,6 +114,11 @@
       <workItem from="1607931248662" duration="18000" />
       <workItem from="1608020067278" duration="1139000" />
       <workItem from="1608116639950" duration="1246000" />
+      <workItem from="1609117636491" duration="672000" />
+      <workItem from="1609118609026" duration="236000" />
+      <workItem from="1609136095122" duration="52000" />
+      <workItem from="1609205570480" duration="2462000" />
+      <workItem from="1609209152013" duration="915000" />
     </task>
     <servers />
   </component>
@@ -120,25 +142,29 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1607416398101" />
-    <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1608121486165">
+    <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1609136130762">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1608121486165" />
-    <state width="1877" height="75" key="GridCell.Tab.0.bottom" timestamp="1607516940830">
+    <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1609136130762" />
+    <state width="1877" height="216" key="GridCell.Tab.0.bottom" timestamp="1609208285609">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="75" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1607516940830" />
-    <state width="1877" height="75" key="GridCell.Tab.0.center" timestamp="1607516940829">
+    <state width="1877" height="216" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1609208285609" />
+    <state width="1877" height="216" key="GridCell.Tab.0.center" timestamp="1609208285609">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="75" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1607516940829" />
-    <state width="1877" height="75" key="GridCell.Tab.0.left" timestamp="1607516940829">
+    <state width="1877" height="216" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1609208285609" />
+    <state width="1877" height="216" key="GridCell.Tab.0.left" timestamp="1609208285609">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="75" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1607516940829" />
-    <state width="1877" height="75" key="GridCell.Tab.0.right" timestamp="1607516940830">
+    <state width="1877" height="216" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1609208285609" />
+    <state width="1877" height="216" key="GridCell.Tab.0.right" timestamp="1609208285609">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="75" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1607516940830" />
+    <state width="1877" height="216" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1609208285609" />
+    <state x="490" y="135" key="new project wizard" timestamp="1609136146676">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="490" y="135" key="new project wizard/0.0.1920.1050@0.0.1920.1050" timestamp="1609136146676" />
   </component>
 </project>

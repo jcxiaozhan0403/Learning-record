@@ -2,7 +2,7 @@ package com.smis.model;
 
 import java.util.Date;
 
-public class cls {
+public class Cls {
     private String clsId;
     private String clsName;
     private String clsAdmin;

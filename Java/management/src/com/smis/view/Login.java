@@ -59,6 +59,7 @@ public class Login extends JFrame implements ActionListener{
         //设置窗口
 
         setBounds(200,200,370,250);
+        this.setLocationRelativeTo(this);
         setResizable(false);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -88,8 +89,9 @@ public class Login extends JFrame implements ActionListener{
                 return;
             }
             char[] ps=txtUserPwd.getPassword();
-            Md5PasswordEncoder md5=new Md5PasswordEncoder();
-            String pwd=md5.encodePassword(new String(ps), 1);
+            String pwd = new String(ps);
+//            Md5PasswordEncoder md5=new Md5PasswordEncoder();
+//            String pwd=md5.encodePassword(new String(ps), 1);
             if(pwd.equals(admin.getAdminPwd())){
                 new MainFrame(txtUserId.getText());
                 setVisible(false);

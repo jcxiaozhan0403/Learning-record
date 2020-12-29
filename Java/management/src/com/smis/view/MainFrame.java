@@ -1,12 +1,15 @@
 package com.smis.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class MainFrame extends JFrame{
+public class MainFrame extends JFrame implements ActionListener{
     private JDesktopPane desk;
     private JMenuBar menuBar;
     private JMenu sysMenu,clsMenu,stuMenu,couMenu,teaMenu,xkMenu,pkMenu;
@@ -40,6 +43,11 @@ public class MainFrame extends JFrame{
         menuBar.add(xkMenu);
         menuBar.add(pkMenu);
         //
+        rePwdItem.addActionListener(this);
+        exitItem.addActionListener(this);
+        clsAddItem.addActionListener(this);
+        clsAdminItem.addActionListener(this);
+        //
         setContentPane(desk);
         setJMenuBar(menuBar);
         setTitle(adminId+",欢迎您！");
@@ -47,6 +55,24 @@ public class MainFrame extends JFrame{
         setLocationRelativeTo(this);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource().equals(exitItem)){
+            System.exit(0);
+        }
+        if(e.getSource().equals(rePwdItem)){
+            RePwdFrame rePwd=new RePwdFrame(adminId);
+            desk.add(rePwd);
+        }
+        if(e.getSource().equals(clsAddItem)){
+            ClsAddFrame clsAdd=new ClsAddFrame();
+            desk.add(clsAdd);
+        }
+        if(e.getSource().equals(clsAdminItem)){
+            ClsAdminFrame clsAdmin=new ClsAdminFrame(desk);
+            desk.add(clsAdmin);
+        }
     }
 
 }
