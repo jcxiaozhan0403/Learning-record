@@ -39,11 +39,11 @@ public class Test {
 //        statement.close();
 //        conn.close();
 //    }
-    public static Connection getConn() throws ClassNotFoundException, SQLException {
+    public static Connection getConn() throws Exception {
         //2.注册驱动
         Class.forName("com.mysql.cj.jdbc.Driver");//mysql5之后的驱动jar包可以省略注册驱动的步骤
         // 3. 获取数据库连接对象 Connection
-        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db1?serverTimezone=UTC", "root", "lishuang001219");
+        conn = JDBCUtils.getConnection();
         // 4. 定义sql
         String sql = "insert into stu(id,name,sex,age) values(1,'张三','男',18)";
         //5. 获取执行sql语句的对象 Statement
@@ -66,7 +66,7 @@ public class Test {
         }
     }
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args) throws Exception {
         conn = getConn();
         System.out.println(conn);
     }

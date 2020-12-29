@@ -20,24 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20ad1cee-9352-4e5f-b2a6-b9a9fd7a7d2f" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../H2J/Java笔记(自学).md" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/Java笔记(自学).md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../H2J/src/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/src/Demo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/management/com/smis/model/cls.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/management/com/smis/model/cls.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/management/com/smis/view/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/management/com/smis/view/Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/management/com/smis/view/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/management/com/smis/view/MainFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/management/com/smis/view/RePwdFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/management/com/smis/view/RePwdFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/smis/common/SqlHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/common/SqlHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/smis/dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/dao/AdminDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/smis/model/cls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/model/cls.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/smis/view/ClsAdminFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/view/ClsAdminFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/smis/view/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/view/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/smis/view/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/view/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/smis/view/RePwdFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/smis/view/RePwdFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/out/production/learning/Demo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../project/out/production/learning/Demo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/src/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../project/src/Demo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/com/day02/Test03.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/com/day02/Test03.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/src/com/day02/Test03.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../大二上生产实习/src/com/day02/Test03.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,6 +104,8 @@
       <workItem from="1609136095122" duration="52000" />
       <workItem from="1609205570480" duration="2462000" />
       <workItem from="1609209152013" duration="915000" />
+      <workItem from="1609223835478" duration="785000" />
+      <workItem from="1609226398112" duration="627000" />
     </task>
     <servers />
   </component>
