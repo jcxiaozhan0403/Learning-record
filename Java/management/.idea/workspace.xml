@@ -21,8 +21,40 @@
   <component name="ChangeListManager">
     <list default="true" id="20ad1cee-9352-4e5f-b2a6-b9a9fd7a7d2f" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/com/day02/Test03.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/com/day02/Test03.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/src/com/day02/Test03.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../大二上生产实习/src/com/day02/Test03.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/.idea/libraries/mysql_connector_java_8_0_18.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/lib/mysql-connector-java-8.0.18.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/META-INF/project.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/com/day01/Demo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/com/day01/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/com/day01/Test02.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/com/day01/Test03.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/com/day01/Test04.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/com/day02/JDBCUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/com/day02/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/com/day02/Test02.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/com/day02/Test03.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/com/day02/Test04.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/com/day02/swing/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/out/production/project/jdbc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/src/com/day01/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/src/com/day01/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/src/com/day01/Test02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/src/com/day01/Test03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/src/com/day01/Test04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/src/com/day02/JDBCUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/src/com/day02/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/src/com/day02/Test02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/src/com/day02/Test03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/src/com/day02/Test04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/src/com/day02/Test05.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/src/com/day02/swing/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/src/jdbc.properties" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,6 +138,7 @@
       <workItem from="1609209152013" duration="915000" />
       <workItem from="1609223835478" duration="785000" />
       <workItem from="1609226398112" duration="627000" />
+      <workItem from="1609291437021" duration="7049000" />
     </task>
     <servers />
   </component>
@@ -133,22 +166,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1609136130762" />
-    <state width="1877" height="216" key="GridCell.Tab.0.bottom" timestamp="1609208285609">
+    <state width="1874" height="216" key="GridCell.Tab.0.bottom" timestamp="1609308644205">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="216" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1609208285609" />
-    <state width="1877" height="216" key="GridCell.Tab.0.center" timestamp="1609208285609">
+    <state width="1874" height="216" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1609308644205" />
+    <state width="1874" height="216" key="GridCell.Tab.0.center" timestamp="1609308644205">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="216" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1609208285609" />
-    <state width="1877" height="216" key="GridCell.Tab.0.left" timestamp="1609208285609">
+    <state width="1874" height="216" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1609308644205" />
+    <state width="1874" height="216" key="GridCell.Tab.0.left" timestamp="1609308644204">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="216" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1609208285609" />
-    <state width="1877" height="216" key="GridCell.Tab.0.right" timestamp="1609208285609">
+    <state width="1874" height="216" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1609308644204" />
+    <state width="1874" height="216" key="GridCell.Tab.0.right" timestamp="1609308644205">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="216" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1609208285609" />
+    <state width="1874" height="216" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1609308644205" />
     <state x="490" y="135" key="new project wizard" timestamp="1609136146676">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
