@@ -25,7 +25,7 @@ public class Test03 {
         Class.forName("com.mysql.cj.jdbc.Driver");//mysql5之后的驱动jar包可以省略注册驱动的步骤
         // 3. 获取数据库连接对象 Connection
         conn = JDBCUtils.getConnection();
-//        // 4. 定义sql
+        // 4. 定义sql
         String sql = "select * from users where userId ='349636607' and pwd = 'lishuang001219'";
 
 //            String sql = "select * from users where  username = '"+name+"'  and pwd = '"+pwd+"'";

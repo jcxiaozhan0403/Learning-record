@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="19acb2ad-ed52-4e7e-b936-ceaa0ad249fe" name="默认的" comment="">
+      <change afterPath="$PROJECT_DIR$/src/view/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java/management/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java/management/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java/project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java/project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java/project/Java.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java/project/Java.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project/out/production/project/com/day02/Test04.class" beforeDir="false" afterPath="$PROJECT_DIR$/../project/out/production/project/com/day02/Test04.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project/src/com/day02/Test03.java" beforeDir="false" afterPath="$PROJECT_DIR$/../project/src/com/day02/Test03.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project/src/com/day02/Test04.java" beforeDir="false" afterPath="$PROJECT_DIR$/../project/src/com/day02/Test04.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/sqlConnection/Connection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/sqlConnection/JDBCUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/sqlConnection/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project02/view/Login.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sqlConnection/Connection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sqlConnection/JDBCUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sqlConnection/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Login.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1maYEvMlobmNhzYWiHoMcnmPNIz" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="新增" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Java/project" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="view" />
+      <recent name="handler" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\学习\Learning-record\大二上生产实习\project02\src\demo" />
+      <recent name="D:\学习\Learning-record\大二上生产实习\project02\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="应用程序.LoginView">
+    <configuration name="Demo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="demo.Demo" />
+      <module name="project02" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="demo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JtableDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="demo.JtableDemo" />
+      <module name="project02" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="demo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="view.LoginView" />
+      <module name="project02" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="view.MainView" />
+      <module name="project02" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="addFream" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="view.addFream" />
+      <module name="project02" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="应用程序.LoginView" />
+        <item itemvalue="应用程序.Demo" />
+        <item itemvalue="应用程序.addFream" />
+        <item itemvalue="应用程序.MainView" />
+        <item itemvalue="应用程序.JtableDemo" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="19acb2ad-ed52-4e7e-b936-ceaa0ad249fe" name="默认的" comment="" />
+      <created>1609733060403</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1609733060403</updated>
+      <workItem from="1609733063597" duration="22450000" />
+      <workItem from="1609804992077" duration="43866000" />
+      <workItem from="1609891325238" duration="21116000" />
+      <workItem from="1609920130018" duration="84000" />
+      <workItem from="1609920635169" duration="1333000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1245" y="234" key="#com.intellij.ide.util.MemberChooser" timestamp="1609838153012">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="1245" y="234" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1609838153012" />
+    <state x="880" y="103" key="#项目结构" timestamp="1609734804397">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="880" y="103" key="#项目结构/0.0.1920.1050@0.0.1920.1050" timestamp="1609734804397" />
+    <state x="1220" y="283" key="FileChooserDialogImpl" timestamp="1609895020243">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="1220" y="283" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1609895020243" />
+    <state width="1877" height="134" key="GridCell.Tab.0.bottom" timestamp="1609922462752">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="134" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1609922462752" />
+    <state width="1877" height="134" key="GridCell.Tab.0.center" timestamp="1609922462752">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="134" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1609922462752" />
+    <state width="1877" height="134" key="GridCell.Tab.0.left" timestamp="1609922462752">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="134" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1609922462752" />
+    <state width="1877" height="134" key="GridCell.Tab.0.right" timestamp="1609922462752">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="134" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1609922462752" />
+    <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1609919985818">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1609919985818" />
+    <state width="1877" height="352" key="GridCell.Tab.1.center" timestamp="1609919985817">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1609919985817" />
+    <state width="1877" height="352" key="GridCell.Tab.1.left" timestamp="1609919985817">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1609919985817" />
+    <state width="1877" height="352" key="GridCell.Tab.1.right" timestamp="1609919985818">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1609919985818" />
+    <state x="545" y="254" width="829" height="641" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1609914650859">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="545" y="254" width="829" height="641" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1050@0.0.1920.1050" timestamp="1609914650859" />
+    <state x="1170" y="273" key="extract.method.dialog" timestamp="1609918157943">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="1170" y="273" key="extract.method.dialog/0.0.1920.1050@0.0.1920.1050" timestamp="1609918157943" />
+    <state x="616" y="243" key="run.anything.popup" timestamp="1609895244769">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1609895244769" />
+  </component>
+</project>

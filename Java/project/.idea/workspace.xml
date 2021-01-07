@@ -20,12 +20,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c153dd69-5ef6-4153-8e37-8eeb31f5833a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../H2J/Java笔记(自学).md" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/Java笔记(自学).md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../H2J/src/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/src/Demo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../大二上生产实习/project02/src/view/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../management/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/learning/Demo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/learning/Demo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java.md" beforeDir="false" afterPath="$PROJECT_DIR$/Java.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day02/Test04.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day02/Test04.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day02/Test03.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day02/Test03.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day02/Test04.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day02/Test04.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/sqlConnection/Connection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/sqlConnection/JDBCUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/sqlConnection/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/view/Login.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../大二上生产实习/project02/src/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/sqlConnection/Connection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/sqlConnection/JDBCUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/sqlConnection/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/view/Login.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +85,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
-  <component name="RunManager" selected="应用程序.Demo">
+  <component name="RunManager" selected="应用程序.UserRegister">
     <configuration name="ClientDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="url.ClientDemo" />
       <module name="learning" />
@@ -134,8 +147,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.Demo" />
         <item itemvalue="应用程序.UserRegister" />
+        <item itemvalue="应用程序.Demo" />
         <item itemvalue="应用程序.NoteEdit" />
         <item itemvalue="应用程序.StudentView" />
         <item itemvalue="应用程序.ClientDemo" />
@@ -217,6 +230,8 @@
       <workItem from="1608723478311" duration="477000" />
       <workItem from="1608725010405" duration="562000" />
       <workItem from="1609116139808" duration="734000" />
+      <workItem from="1609846064594" duration="735000" />
+      <workItem from="1609895022709" duration="2062000" />
     </task>
     <servers />
   </component>
@@ -256,26 +271,26 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="569" y="72" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1606303214977" />
-    <state x="739" y="280" key="FileChooserDialogImpl" timestamp="1609117632982">
+    <state x="739" y="280" key="FileChooserDialogImpl" timestamp="1609912805258">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="739" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1609117632982" />
-    <state width="882" height="922" key="GridCell.Tab.0.bottom" timestamp="1608725575331">
+    <state x="739" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1609912805258" />
+    <state width="882" height="922" key="GridCell.Tab.0.bottom" timestamp="1609912806716">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="882" height="922" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1608725575331" />
-    <state width="882" height="922" key="GridCell.Tab.0.center" timestamp="1608725575331">
+    <state width="882" height="922" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1609912806716" />
+    <state width="882" height="922" key="GridCell.Tab.0.center" timestamp="1609912806716">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="882" height="922" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1608725575331" />
-    <state width="882" height="922" key="GridCell.Tab.0.left" timestamp="1608725575331">
+    <state width="882" height="922" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1609912806716" />
+    <state width="882" height="922" key="GridCell.Tab.0.left" timestamp="1609912806716">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="882" height="922" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1608725575331" />
-    <state width="882" height="922" key="GridCell.Tab.0.right" timestamp="1608725575331">
+    <state width="882" height="922" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1609912806716" />
+    <state width="882" height="922" key="GridCell.Tab.0.right" timestamp="1609912806716">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="882" height="922" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1608725575331" />
+    <state width="882" height="922" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1609912806716" />
     <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1603432329584">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

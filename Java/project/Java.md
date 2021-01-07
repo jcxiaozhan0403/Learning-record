@@ -150,3 +150,12 @@ while (rs.next()) {
     System.out.printf("%d\t%s\t%f\t%d%n", id, name, hp, damage);
 }
 ```
+
+## 图形化界面Swing
+容器组件：JFream、JPanel、JScrollpane
+非容器组件：JButton、JLabel、JTextfied...
+
+弹簧布局
+SpringLayout:布局管理器
+SpringLayout.Constraints:使用弹簧布局的组件的布局约束，每个组件对应一个
+Spring:可以理解为一个能够进行四则运算的整数
