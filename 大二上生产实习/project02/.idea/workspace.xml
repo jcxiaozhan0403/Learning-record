@@ -20,25 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19acb2ad-ed52-4e7e-b936-ceaa0ad249fe" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/src/view/LoginView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Java/management/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java/management/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Java/project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java/project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Java/project/Java.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java/project/Java.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/out/production/project/com/day02/Test04.class" beforeDir="false" afterPath="$PROJECT_DIR$/../project/out/production/project/com/day02/Test04.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/src/com/day02/Test03.java" beforeDir="false" afterPath="$PROJECT_DIR$/../project/src/com/day02/Test03.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/src/com/day02/Test04.java" beforeDir="false" afterPath="$PROJECT_DIR$/../project/src/com/day02/Test04.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project02/jdbc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/sqlConnection/Connection.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/sqlConnection/JDBCUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/sqlConnection/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project02/view/Login.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/jdbc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sqlConnection/Connection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sqlConnection/JDBCUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sqlConnection/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Login.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,6 +163,10 @@
       <workItem from="1609891325238" duration="21116000" />
       <workItem from="1609920130018" duration="84000" />
       <workItem from="1609920635169" duration="1333000" />
+      <workItem from="1609987455072" duration="91000" />
+      <workItem from="1609987930199" duration="214000" />
+      <workItem from="1609988749106" duration="29000" />
+      <workItem from="1609997746285" duration="989000" />
     </task>
     <servers />
   </component>
@@ -212,22 +198,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="1220" y="283" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1609895020243" />
-    <state width="1877" height="134" key="GridCell.Tab.0.bottom" timestamp="1609922462752">
+    <state width="1877" height="134" key="GridCell.Tab.0.bottom" timestamp="1610000288076">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="134" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1609922462752" />
-    <state width="1877" height="134" key="GridCell.Tab.0.center" timestamp="1609922462752">
+    <state width="1877" height="134" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1610000288076" />
+    <state width="1877" height="134" key="GridCell.Tab.0.center" timestamp="1610000288076">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="134" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1609922462752" />
-    <state width="1877" height="134" key="GridCell.Tab.0.left" timestamp="1609922462752">
+    <state width="1877" height="134" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1610000288076" />
+    <state width="1877" height="134" key="GridCell.Tab.0.left" timestamp="1610000288076">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="134" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1609922462752" />
-    <state width="1877" height="134" key="GridCell.Tab.0.right" timestamp="1609922462752">
+    <state width="1877" height="134" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1610000288076" />
+    <state width="1877" height="134" key="GridCell.Tab.0.right" timestamp="1610000288076">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="134" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1609922462752" />
+    <state width="1877" height="134" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1610000288076" />
     <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1609919985818">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
