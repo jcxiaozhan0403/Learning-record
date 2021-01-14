@@ -163,3 +163,47 @@ alter table 表名 add foreign key(字段) references 指向表名(字段)
 多对多:需要创建第三张表(中间表),在中间表中至少有两个字段分别作为外键，指向多对多双方的主键
 
 一对一:假设一对一是一个一对多关系，需要在多的一方创建外键指向一的一方的主键，将外键设置为唯一(unique)
+
+## 多表查询
+连接查询
+1. 交叉查询 cross join
+```
+查询到两个表的笛卡尔积
+
+select * from 表1 cross join 表2
+
+selext * from 表1,表2
+```
+
+2. 内连接 inner join(inner可省略)
+```
+显式内连接
+select * from 表1 inner join 表2 on 关联条件
+
+隐式内连接
+select * from 表1，,表2 where 关联条件
+```
+
+3. 外连接 outer join(outer可省略)
+```
+左外连接
+select * from 表1 left outer join 表2 on 关联条件
+
+右外连接
+select * from 表1 right outer join 表2 on 关联条件
+```
+
+子查询
+```
+带in的子查询
+select * from 表1 where 字段 in (子查询语句)
+
+带exists的子查询
+select * from 表1 where exists (子查询语句)  //子查询语句成立，显示查询结果
+
+带any的子查询
+select * from 表1 where 字段 > any (子查询语句)
+
+带all的子查询
+select * from 表1 where 字段 > all (子查询语句)
+```
