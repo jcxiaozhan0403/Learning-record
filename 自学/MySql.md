@@ -207,3 +207,18 @@ select * from 表1 where 字段 > any (子查询语句)
 带all的子查询
 select * from 表1 where 字段 > all (子查询语句)
 ```
+
+## 事务
+事务指的是逻辑上的一组操作，组成这组操作的各个逻辑单元，要么全部成功，要么全部失败
+
+事务流程
+```
+开启事务
+start transaction
+
+提交事务
+commit
+
+回滚事务
+rollbak
+```
