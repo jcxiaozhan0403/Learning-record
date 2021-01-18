@@ -222,3 +222,15 @@ commit
 回滚事务
 rollbak
 ```
+
+JDBC中的事务管理
+```
+//开启事务(写于获取连接后)
+conn.setAutoCommit(false);
+
+//提交事务(写于SQL语句执行完毕后)
+conn.commit();
+
+//回滚事务(写于异常)
+conn.rollback();
+```

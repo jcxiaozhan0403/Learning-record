@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="19acb2ad-ed52-4e7e-b936-ceaa0ad249fe" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../自学/project/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../自学/project/src/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,6 +170,8 @@
       <workItem from="1609997746285" duration="989000" />
       <workItem from="1610942034015" duration="73000" />
       <workItem from="1610942600107" duration="1450000" />
+      <workItem from="1610979327324" duration="12000" />
+      <workItem from="1610979403810" duration="628000" />
     </task>
     <servers />
   </component>
@@ -196,10 +199,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="880" y="103" key="#项目结构/0.0.1920.1050@0.0.1920.1050" timestamp="1609734804397" />
-    <state x="1220" y="283" key="FileChooserDialogImpl" timestamp="1610942104037">
+    <state x="1220" y="283" key="FileChooserDialogImpl" timestamp="1610979339010">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="1220" y="283" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1610942104037" />
+    <state x="1220" y="283" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1610979339010" />
     <state width="1877" height="134" key="GridCell.Tab.0.bottom" timestamp="1610000288076">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

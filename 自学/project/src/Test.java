@@ -1,3 +1,4 @@
+import com.mysql.cj.x.protobuf.MysqlxPrepare;
 import utiles.JDBCUtiles;
 
 import java.sql.Connection;
