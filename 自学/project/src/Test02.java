@@ -1,33 +1,35 @@
+import com.alibaba.druid.pool.DruidDataSource;
 import utiles.JDBCUtiles;
+
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 
 /**
  *
- * JDBC Statement
+ * JDBC PreparedStatement
  *
  */
-public class Test {
+public class Test02 {
     public static void main(String[] args) {
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement pstmt = null;
         ResultSet rs = null;
 
         try{
             conn = JDBCUtiles.getConnection();
-            stmt = conn.createStatement();
 
             String sql = "select * from admin";
+            pstmt = conn.prepareStatement(sql);
 
-            rs = stmt.executeQuery(sql);
+            rs = pstmt.executeQuery();
             while(rs.next()){
                 System.out.print(rs.getString(1) + "\t" + rs.getString(2) + "\n");
             }
         }catch (Exception e){
 
         }finally {
-            JDBCUtiles.release(rs,stmt,conn);
+            JDBCUtiles.release(rs,pstmt,conn);
         }
     }
 }
