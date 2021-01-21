@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="513030ab-c071-49a2-8100-ceca9c2d8b04" name="默认的" comment="">
+      <change beforePath="$PROJECT_DIR$/../JDBC流程.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/css/bootstrap-grid.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/css/bootstrap-grid.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/css/bootstrap-grid.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/css/bootstrap-grid.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/css/bootstrap-reboot.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/css/bootstrap-reboot.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/css/bootstrap-reboot.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/css/bootstrap-reboot.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/css/bootstrap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/css/bootstrap.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/css/bootstrap.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/js/bootstrap.bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/js/bootstrap.bundle.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/js/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/js/bootstrap.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bootstrap-4.5.0-dist/js/bootstrap.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jquery-3.5.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/c3p0_0_9_5_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/druid_1_0_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mchange_commons_java_0_2_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_18.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/c3p0-0.9.5.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/druid-1.0.9.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/mchange-commons-java-0.2.12.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/mysql-connector-java-8.0.18.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/Test02.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/Test03.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/Test04.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/Test05.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/Test06.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/c3p0-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/druid.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/jdbc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/utiles/JDBCUtiles.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project/utiles/JDBCUtiles02.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test03.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test04.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test05.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test06.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/c3p0-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/druid.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jdbc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utiles/JDBCUtiles.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utiles/JDBCUtiles02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../事务的特性.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../事务隔离级别.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../笔记.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../连接查询.jpg" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1nE578RtLj6KxuoYefUATEOztmm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="新增" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../大二上生产实习/project02" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+      <recent name="utiles" />
+    </key>
+  </component>
+  <component name="RunManager" selected="应用程序.Test06">
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <module name="project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test02" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test02" />
+      <module name="project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test04" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test04" />
+      <module name="project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test05" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test05" />
+      <module name="project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test06" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test06" />
+      <module name="project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="应用程序.Test06" />
+        <item itemvalue="应用程序.Test05" />
+        <item itemvalue="应用程序.Test04" />
+        <item itemvalue="应用程序.Test02" />
+        <item itemvalue="应用程序.Test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="513030ab-c071-49a2-8100-ceca9c2d8b04" name="默认的" comment="" />
+      <created>1610942239512</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1610942239512</updated>
+      <workItem from="1610942242041" duration="3009000" />
+      <workItem from="1610979341694" duration="661000" />
+      <workItem from="1611031144283" duration="6053000" />
+      <workItem from="1611200020077" duration="519000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="440" y="99" key="#项目结构" timestamp="1610942292218">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="440" y="99" key="#项目结构/0.0.1920.1050@0.0.1920.1050" timestamp="1610942292218" />
+    <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1610979400883">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1610979400883" />
+    <state width="1877" height="352" key="GridCell.Tab.0.bottom" timestamp="1611200542656">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1611200542656" />
+    <state width="1877" height="352" key="GridCell.Tab.0.center" timestamp="1611200542656">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1611200542656" />
+    <state width="1877" height="352" key="GridCell.Tab.0.left" timestamp="1611200542656">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1611200542656" />
+    <state width="1877" height="352" key="GridCell.Tab.0.right" timestamp="1611200542656">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1611200542656" />
+    <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1611200542656">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1611200542656" />
+    <state width="1877" height="352" key="GridCell.Tab.1.center" timestamp="1611200542656">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1611200542656" />
+    <state width="1877" height="352" key="GridCell.Tab.1.left" timestamp="1611200542656">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1611200542656" />
+    <state width="1877" height="352" key="GridCell.Tab.1.right" timestamp="1611200542656">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="352" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1611200542656" />
+    <state x="616" y="243" key="run.anything.popup" timestamp="1610945748975">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1610945748975" />
+  </component>
+</project>

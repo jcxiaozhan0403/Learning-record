@@ -1,32 +1,32 @@
 import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.pool.DruidDataSourceFactory;
 import utiles.JDBCUtiles;
 
 import javax.sql.DataSource;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Properties;
 
 /**
  *
- * Druid连接池的使用(不使用配置文件)
+ * Druid连接池的使用(使用配置文件)
  *
  */
-public class Test03 {
+public class Test04 {
     public static void main(String[] args) {
         //创建连接池
-        DruidDataSource dataSource = null;
+        DataSource dataSource = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
         try{
-            //创建连接池
-            dataSource = new DruidDataSource();
-            //设置参数
-            dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-            dataSource.setUrl("jdbc:mysql://localhost:3306/student?serverTimezone=UTC");
-            dataSource.setUsername("root");
-            dataSource.setPassword("lishuang001219");
+            //读取配置信息
+            Properties properties = new Properties();
+            properties.load(new FileInputStream("src/druid.properties"));
+            dataSource = DruidDataSourceFactory.createDataSource(properties);
             //获取连接
             conn = dataSource.getConnection();
 
@@ -38,7 +38,7 @@ public class Test03 {
                 System.out.print(rs.getString(1) + "\t" + rs.getString(2) + "\n");
             }
         }catch (Exception e){
-
+            e.printStackTrace();
         }finally {
             JDBCUtiles.release(rs,pstmt,conn);
         }

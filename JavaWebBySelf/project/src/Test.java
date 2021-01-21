@@ -25,7 +25,7 @@ public class Test {
                 System.out.print(rs.getString(1) + "\t" + rs.getString(2) + "\n");
             }
         }catch (Exception e){
-
+            e.printStackTrace();
         }finally {
             JDBCUtiles.release(rs,stmt,conn);
         }
