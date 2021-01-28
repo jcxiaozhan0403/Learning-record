@@ -36,6 +36,10 @@ cnpm install
 ```
 npm start
 ```
+6. 项目打包
+```
+npm run build
+```
 
 ## 第一个vue程序
 ```html
@@ -124,6 +128,14 @@ v-model
 <input type="text" v-model="message">
 ```
 
+## 事件修饰符
+```
+.stop 阻止冒泡
+.prevent 阻止默认行为
+.self 只监听自己触发的事件，不关心事件冒泡带来的事件
+.once 只执行一次特定事件
+```
+
 ## VueCli开发项目的方式
 ```
 一切皆组件，组件是以.vue结尾的文件，其中的内容由js代码，html代码，css代码组成
@@ -145,4 +157,13 @@ import axios from 'axios'
 3. main.js中添加语句
 ```
 Vue.prototype.$http=axios
+```
+
+## Axios并发请求
+```
+axios.add([axios.get(""),axios.post("",{})]).then(){
+  axios.spread(function(res1,res2){
+
+  })
+}
 ```
