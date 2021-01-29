@@ -151,19 +151,77 @@ v-model
 cnpm install axios --save-dev
 ```
 2. 在main.js中引入axios
-```
+```javascript
 import axios from 'axios'
 ```
 3. main.js中添加语句
-```
+```javascript
 Vue.prototype.$http=axios
 ```
 
 ## Axios并发请求
-```
+```javascript
 axios.add([axios.get(""),axios.post("",{})]).then(){
   axios.spread(function(res1,res2){
 
   })
 }
+```
+
+## 路由
+1. 在index.js中引入Vue组件
+```javascript
+import HelloWorld from '../components/HelloWorld'
+```
+2. 在index.js配置项中添加
+```javascript
+{path: '/',name: 'HelloWorld',component: HelloWorld} //name可选，不重要
+```
+3. 在Vue组件中添加标签来使用路由
+```html
+<!-- 专用标签 -->
+<router-link to="/foo">foo</router-link>
+<!-- a标签 -->
+<a href="#/page2">page2</a>
+```
+
+## 子路由
+1. 在index.js中引入Vue组件
+```javascript
+import Page2 from "../components/Page2"
+import Page2Child from "../components/Page2Child"
+```
+2. 在index.js配置项中添加
+```javascript
+{
+  path: '/page2',
+  component: Page2,
+  // 子页面
+  children:[
+    {path: 'child',component: Page2Child}
+  ]
+}
+```
+3. 在Vue组件中添加标签来使用路由
+```html
+<!-- 专用标签 -->
+<router-link to="/page2/child">子页面</router-link>
+
+<!-- a标签 -->
+<a href="#/page2/child">子页面</a>
+``` 
+
+## Vue Cli中引入ElementUI
+1. 下载
+```
+cnpm i element-ui -S
+```
+2. 在main.js中引入
+```javascript
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+```
+3. 在main.js中添加语句
+```javascript
+Vue.use(ElementUI)
 ```
