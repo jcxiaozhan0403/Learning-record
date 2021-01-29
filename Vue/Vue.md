@@ -36,10 +36,6 @@ cnpm install
 ```
 npm start
 ```
-6. 项目打包
-```
-npm run build
-```
 
 ## 第一个vue程序
 ```html
@@ -159,6 +155,13 @@ import axios from 'axios'
 Vue.prototype.$http=axios
 ```
 
+## Axios请求
+```javascript
+this.$http.get("https://api.vvhan.com/api/ian").then((res)=>{
+
+});
+```
+
 ## Axios并发请求
 ```javascript
 axios.add([axios.get(""),axios.post("",{})]).then(){
@@ -225,3 +228,10 @@ import 'element-ui/lib/theme-chalk/index.css';
 ```javascript
 Vue.use(ElementUI)
 ```
+
+## Vue与Springboor项目的整合
+1. Vue项目打包
+```
+npm run build
+```
+2. 打包会的到一个dist文件夹，将dist文件内的东西(一个文件夹+一个index.html文件)赋值到Springboot项目下的resources/static中，完成整合
