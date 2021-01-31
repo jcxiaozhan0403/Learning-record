@@ -32,7 +32,7 @@ export default {
             var str = JSON.stringify(res.data);
             if(str == "true"){
                 window.sessionStorage.setItem("token","001219");
-                this.$router.push({ path:'/hello'});
+                this.$router.replace({ path:'/hello'}); //replace可以防止退回到登录页
             }else{
                 alert("账号或密码错误!");
             }

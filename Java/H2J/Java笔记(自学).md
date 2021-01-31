@@ -5,8 +5,8 @@
 
 ```
 JAVA_HOME  jdk目录
-CLASSPATH  .;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar
-path  %JAVA_HOME%\bin;%JAVA_HOME%\jre\bin
+CLASSPATH  .
+path  bin目录
 ```
 
 JDK(java开发工具包)

@@ -20,8 +20,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19acb2ad-ed52-4e7e-b936-ceaa0ad249fe" name="默认的" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Java SpringBoot/demo01/src/main/java/com/vue_spring/controller/Controllers.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java SpringBoot/demo01/src/main/java/com/vue_spring/controller/Controllers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java SpringBoot/demo01/src/main/java/com/vue_spring/dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java SpringBoot/demo01/src/main/java/com/vue_spring/dao/AdminDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java SpringBoot/demo01/src/main/java/com/vue_spring/dao/AdminDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java SpringBoot/demo01/src/main/java/com/vue_spring/dao/AdminDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java SpringBoot/demo01/src/main/java/com/vue_spring/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java SpringBoot/demo01/src/main/java/com/vue_spring/service/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java SpringBoot/demo01/src/main/java/com/vue_spring/service/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java SpringBoot/demo01/src/main/java/com/vue_spring/service/AdminServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java SpringBoot/demo01/src/main/resources/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java SpringBoot/demo01/src/main/resources/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java SpringBoot/demo01/target/classes/com/vue_spring/controller/Controllers.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java SpringBoot/demo01/target/classes/com/vue_spring/controller/Controllers.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java SpringBoot/demo01/target/classes/com/vue_spring/dao/AdminDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java SpringBoot/demo01/target/classes/com/vue_spring/dao/AdminDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java SpringBoot/demo01/target/classes/com/vue_spring/dao/AdminDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java SpringBoot/demo01/target/classes/com/vue_spring/dao/AdminDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java SpringBoot/demo01/target/classes/com/vue_spring/service/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java SpringBoot/demo01/target/classes/com/vue_spring/service/AdminService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java SpringBoot/demo01/target/classes/com/vue_spring/service/AdminServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java SpringBoot/demo01/target/classes/com/vue_spring/service/AdminServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java SpringBoot/demo01/target/classes/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java SpringBoot/demo01/target/classes/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java/H2J/Java笔记(自学).md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java/H2J/Java笔记(自学).md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java/bilibili/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java/bilibili/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java/bilibili/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java/bilibili/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java/bilibili/Java笔记(视频).md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java/bilibili/bilibili.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vue/demo01/src/components/Admin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../Vue/demo01/src/components/Admin.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../自学/project/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../自学/project/src/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,6 +191,8 @@
       <workItem from="1610942600107" duration="1450000" />
       <workItem from="1610979327324" duration="12000" />
       <workItem from="1610979403810" duration="628000" />
+      <workItem from="1612091400019" duration="300000" />
+      <workItem from="1612092782372" duration="1596000" />
     </task>
     <servers />
   </component>
