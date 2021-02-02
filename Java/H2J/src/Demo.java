@@ -1,41 +1,19 @@
-import javax.swing.*;
-import java.awt.*;
+public class Demo{
+    public static void main(String[] args) {
+        int a[] = {8,4,2,5};
 
-public class Demo {
-    public static class TestGUI extends JFrame {
-        public static void main(String[] args) {
-            // 主窗体
-            JFrame f = new JFrame("加速器");
+        for(int i =0;i<a.length-1 ; i++){
+            for (int j = i+1; j<a.length;j++){
+                if(a[i] > a[j]){
+                    int temp = a[i];
+                    a[i] = a[j];
+                    a[j] = temp;
+                }
+            }
+        }
 
-            // 主窗体设置大小
-            f.setSize(100, 100);
-
-            // 主窗体设置位置
-            f.setLocation(200, 200);
-
-            // 主窗体中的组件设置为绝对定位
-            f.setLayout(new FlowLayout());
-
-            // 按钮组件
-            JButton b = new JButton("求和");
-
-
-            // 同时设置组件的大小和位置
-            b.setBounds(50, 50, 280, 30);
-            b.setBounds(50, 50, 280, 30);
-            b.setBounds(50, 50, 280, 30);
-            b.setBounds(50, 50, 280, 30);
-            b.setBounds(50, 50, 280, 30);
-            b.setBounds(50, 50, 280, 30);
-
-            // 把按钮加入到主窗体中
-            f.add(b);
-
-            // 关闭窗体的时候，退出程序
-            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            // 让窗体变得可见
-            f.setVisible(true);
-
+        for (int x = 0;x<a.length;x++){
+            System.out.println(a[x]);
         }
     }
 }
