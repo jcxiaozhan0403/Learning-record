@@ -54,7 +54,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/ERPdemo/ERP" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -202,6 +202,7 @@
       <workItem from="1608623117928" duration="2180000" />
       <workItem from="1608723554452" duration="208000" />
       <workItem from="1612273624675" duration="1192000" />
+      <workItem from="1612323439602" duration="16000" />
     </task>
     <servers />
   </component>
@@ -229,10 +230,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="440" y="99" key="#项目结构/0.0.1920.1050@0.0.1920.1050" timestamp="1606543467530" />
-    <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1608624573688">
+    <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1612323454188">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1608624573688" />
+    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1612323454188" />
     <state width="1877" height="136" key="GridCell.Tab.0.bottom" timestamp="1612274816853">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
