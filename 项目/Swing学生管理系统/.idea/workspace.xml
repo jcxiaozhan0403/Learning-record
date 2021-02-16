@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="20ad1cee-9352-4e5f-b2a6-b9a9fd7a7d2f" name="默认的" comment="">
+    <list default="true" id="2649cff7-9c48-4a4f-beeb-cc840e8b38a7" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/../../C程序设计/C程序设计编程练习.docx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../C程序设计/C语言笔记.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../C程序设计/C语言练习题00.txt" beforeDir="false" />
@@ -306,9 +288,9 @@
       <change beforePath="$PROJECT_DIR$/../../JS笔记/自定义函数test.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../JS笔记/计算器.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../JS笔记/进度条.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../H2J/Java笔记(自学).md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project/Java.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java/H2J/Java笔记(自学).md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java/management/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java/management/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java/project/Java.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../大二上生产实习/1 RUP与CMMI3.pptx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../大二上生产实习/MySql&amp;JDBC.rar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../大二上生产实习/guis.rar" beforeDir="false" />
@@ -443,145 +425,37 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectId" id="1lMiB9gNmVP19EIw2oFEYVQW10A" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="1" id="新增" />
-  </component>
+  <component name="ProjectId" id="1oXvZI9bbzsQwpBlEUK4ogH3Pmd" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-  </component>
-  <component name="RunManager">
-    <configuration name="Login" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.smis.view.Login" />
-      <module name="management" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.smis.view.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="应用程序.Login" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="20ad1cee-9352-4e5f-b2a6-b9a9fd7a7d2f" name="默认的" comment="" />
-      <created>1607413222820</created>
+      <changelist id="2649cff7-9c48-4a4f-beeb-cc840e8b38a7" name="默认的" comment="" />
+      <created>1613445803173</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1607413222820</updated>
-      <workItem from="1607413225100" duration="383000" />
-      <workItem from="1607413671219" duration="21000" />
-      <workItem from="1607416286496" duration="307000" />
-      <workItem from="1607512415736" duration="3901000" />
-      <workItem from="1607931248662" duration="18000" />
-      <workItem from="1608020067278" duration="1139000" />
-      <workItem from="1608116639950" duration="1246000" />
-      <workItem from="1609117636491" duration="672000" />
-      <workItem from="1609118609026" duration="236000" />
-      <workItem from="1609136095122" duration="52000" />
-      <workItem from="1609205570480" duration="2462000" />
-      <workItem from="1609209152013" duration="915000" />
-      <workItem from="1609223835478" duration="785000" />
-      <workItem from="1609226398112" duration="627000" />
-      <workItem from="1609291437021" duration="7049000" />
-      <workItem from="1609557307552" duration="448000" />
-      <workItem from="1609557942304" duration="2612000" />
-      <workItem from="1609732932123" duration="49000" />
-      <workItem from="1609732992734" duration="70000" />
-      <workItem from="1609806622371" duration="796000" />
-      <workItem from="1609811124419" duration="2451000" />
-      <workItem from="1609829791762" duration="608000" />
-      <workItem from="1609831637844" duration="4201000" />
-      <workItem from="1609846801713" duration="1683000" />
-      <workItem from="1609857362783" duration="1291000" />
-      <workItem from="1609891313418" duration="10000" />
-      <workItem from="1609891460867" duration="1185000" />
-      <workItem from="1609912808642" duration="126000" />
-      <workItem from="1613445235963" duration="96000" />
-      <workItem from="1613445791271" duration="3000" />
+      <updated>1613445803173</updated>
+      <workItem from="1613445804424" duration="12000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser" timestamp="1607416398101">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1607416398101" />
-    <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1609891321904">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1609891321904" />
-    <state width="1877" height="191" key="GridCell.Tab.0.bottom" timestamp="1613445331454">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="191" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1613445331454" />
-    <state width="1877" height="191" key="GridCell.Tab.0.center" timestamp="1613445331454">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="191" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1613445331454" />
-    <state width="1877" height="191" key="GridCell.Tab.0.left" timestamp="1613445331454">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="191" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1613445331454" />
-    <state width="1877" height="191" key="GridCell.Tab.0.right" timestamp="1613445331454">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="191" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1613445331454" />
-    <state x="538" y="121" key="new project wizard" timestamp="1609733060283">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="538" y="121" key="new project wizard/0.0.1920.1050@0.0.1920.1050" timestamp="1609733060283" />
   </component>
 </project>
