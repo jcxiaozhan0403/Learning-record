@@ -1,3 +1,9 @@
+## IDEA快捷键
+```
+Alt+Ins 生成方法
+Ctrl+Alt+t 创建异常代码块
+```
+
 ## 常用DOS命令
 进入磁盘
 ```
@@ -35,6 +41,10 @@ rd 目录名 (删除目录)
 cd> 文件名 (文件名)
 del 文件名
 ```
+生成java文档
+```
+javadoc -encoding UTF-8 -charset UTF-8 java文件名
+```
 
 源文件.java
 编译后的文件.class
@@ -58,6 +68,17 @@ JDK>JRE>JVM
 *
 *
 *
+*/
+
+常见文档注释
+/**
+*
+*@author 作者名
+*@version 版本号
+*@since 指明jdk版本
+*@param 参数名
+*@return 返回值情况
+*@throws 异常抛出情况
 */
 
 单行注释
@@ -164,6 +185,31 @@ n >>> m //无符号右移，右移后的最前两位补0
 
 ```
 
+## Scanner
+```java
+Scanner s = new Scanner(System.in);
+
+//判断输入的数是不是一个整数类型
+s.hasNextInt();
+
+//判断输入的数是不是一个小数类型
+s.hasNextFloat();
+
+//使用Scanner读取整数
+int a = s.nextInt();
+System.out.println("第一个整数："+a);
+
+//使用Scanner读取浮点数
+float b = s.nextFloat();
+System.out.println("第二个整数："+b);
+
+//使用Scanner读取字符串
+String c = s.nextLine();
+System.out.println("读取的字符串是："+c);
+
+s.close(); //关闭，避免内存浪费
+```
+
 ## 循环
 与其他语言相似，break结束循环，continue跳过此次循环
 ```java
@@ -184,6 +230,13 @@ public class HelloWorld {
          
     }
 }
+```
+
+## 数组的定义
+```java
+int[] numbers = {0,2,4,8,6,7};
+或
+int[] numbers = new int[6];
 ```
 
 ## 复制数组
@@ -237,6 +290,55 @@ public class HelloWorld {
 }
 ```
 
+## 稀疏数组
+当一个二维数组中大部分元素为0,或者为同一值时，可以使用稀疏数组来保存该数组
+
+```java
+//创建二维数组
+int[][] array1 = new int[11][11];
+array1[1][2] = 1;
+array1[2][3] = 2;
+
+// 获取数组有效值的个数
+int sum = 0;
+for(int i = 0;i < array1.length; i++){
+    for(int k = 0;j < array1[i].length; j++){
+        if(array1[i][j] != 0){
+            sum++;
+        }
+    }
+}
+
+//创建一个稀疏数组,稀疏数组的第一行存放的是二维数组的构建信息，所以吸收数组的行数=有效值+1，列数3固定，都为行、列、值
+int[][] array2 = new int[sum+1][3];
+
+//编辑稀疏数组第一行，存放二维数组构建信息，11行，11列，sum个有效值
+array2[0][0] = 11;
+array2[0][1] = 11;
+array2[0][2] = sum;
+
+//遍历二维数组，将有效值存入稀疏数组中
+int count = 0;
+for(int i = 0;i < array1.length; i++){
+    for(int k = 0;j < array1[i].length; j++){
+        if(array1[i][j] != 0){
+            count++;
+            array2[count][0] = i;
+            array2[count][1] = j;
+            array2[count][2] = array1[i][j];
+        }
+    }
+}
+
+//恢复二维数组：用稀疏数组中的信息创建二维数组
+int[][] array3 = new int[array2[0][1]][array2[0][2]];
+
+//填充二维数组
+for(int i=1;i<array2.length;i++){
+    array3[array2[i][0]][array2[i][1]]=array2[i][2];
+}
+```
+
 ## 类与对象(进阶)
 
 用来代表类的对象的变量叫做引用
@@ -287,7 +389,8 @@ public class Weapon extends Item{
 ```
 
 方法重载:同名方法不同数量或类型的参数传入，得到不同的返回值，通过方法的重载实现，如果有多个同名方法，系统会在调用时自动选择对应数量参数的一个
-不定参数的方法是用来避免代码冗余的
+
+可变参数方法(不定参数的方法是用来避免代码冗余的)
 ```java
 public void heal(Hero ... heroes){
         for (Hero hero : heroes){
@@ -297,6 +400,7 @@ public void heal(Hero ... heroes){
 ```
 
 构造方法:对象实例化是通过调用构造方法实现的，构造方法方法名和类名一致，无返回值，如果未申明，系统会默认生成一个构造方法，如果申明了一个带参的构造方法，那么无参的构造方法将失效
+一旦定义了有参构造方法，就必须显示定义无参构造方法，否则会报错
 
 包：package，一般将比较接近的类，规划在同一个包下
 
