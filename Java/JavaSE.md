@@ -302,14 +302,14 @@ array1[2][3] = 2;
 // 获取数组有效值的个数
 int sum = 0;
 for(int i = 0;i < array1.length; i++){
-    for(int k = 0;j < array1[i].length; j++){
+    for(int j = 0;j < array1[i].length; j++){
         if(array1[i][j] != 0){
             sum++;
         }
     }
 }
 
-//创建一个稀疏数组,稀疏数组的第一行存放的是二维数组的构建信息，所以吸收数组的行数=有效值+1，列数3固定，都为行、列、值
+//创建一个稀疏数组,稀疏数组的第一行存放的是二维数组的构建信息，所以稀疏数组的行数=有效值+1，列数3固定，都为行、列、值
 int[][] array2 = new int[sum+1][3];
 
 //编辑稀疏数组第一行，存放二维数组构建信息，11行，11列，sum个有效值
@@ -320,7 +320,7 @@ array2[0][2] = sum;
 //遍历二维数组，将有效值存入稀疏数组中
 int count = 0;
 for(int i = 0;i < array1.length; i++){
-    for(int k = 0;j < array1[i].length; j++){
+    for(int j = 0;j < array1[i].length; j++){
         if(array1[i][j] != 0){
             count++;
             array2[count][0] = i;
@@ -810,6 +810,36 @@ finally {
 }
 ```
 
+## 多线程
+
+继承类实现
+```java
+// 1.创建一个线程类，继承Thread，重写run方法，run方法里面写需要使用到多线程的操作
+public class TestThread1 extends Thread {
+    @Override
+    public void run() {
+        //run方法线程体
+    }
+} 
+// 2.实例化一个线程对象，调用start方法开启线程
+TestThread1 testThread1 = new TestThread1();
+testThread1.start();
+```
+继承接口实现
+```java
+// 1.创建类，继承Runnable接口，重写run方法，run方法里面写需要使用到多线程的操作
+public class TestThread1 implements Runnable {
+    @Override
+    public void run() {
+        //run方法线程体
+    }
+} 
+// 2.创建Runnable接口类的实例对象
+TestThread1 testThread1 = new TestThread1();
+// 3.创建线程对象，通过线程对象来开启线程
+new Thread(testThread1).start();
+```
+
 ## JDBC数据库连接
 1. 定义连接(静态)
 ```java
@@ -817,16 +847,18 @@ private static Connection conn;
 ```
 2. 加载驱动程序
 ```java
-Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //Sqlserver
-Class.forName("com.mysql.jdbc.Driver"); //Mysql
+Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //SqlServer
+Class.forName("com.mysql.jdbc.Driver"); //Mysql 5.0
+Class.forName("com.mysql.cj.jdbc.Driver"); //Mysql 8.0
 ```
 3. 创建连接函数
 ```java
 //Sqlserver
-String url = "jdbc:sqlserver://localhost:1433;databaseName=soft1901";
+String url = "jdbc:sqlserver://localhost:1433;databaseName=soft1901"; //SqlServer
+String url = "jdbc:mysql://localhost:3306/student?useSSL=false&serverTimezone=UTC;"; //Mysql 8.0
 conn = DriverManager.getConnection(url,"sa","lishuang001219");
 
-//Mysql
+//Mysql 5.0
 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/","sa", "lishuang001219");
 ```
 4. 创建关闭函数
