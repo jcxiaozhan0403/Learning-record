@@ -48,3 +48,135 @@ require("fs")
 ```
 require("./demo")
 ```
+
+## 包
+包结构
+- package.json 描述文件(必须) 注：描述文件内不能写注释
+- bin 可执行二进制文件
+- lib 外部依赖的一些js代码
+- doc 文档
+- test 单元测试
+
+自动创建package.json
+```
+npm init
+npm init -y 跳过询问创建
+```
+
+## NPM
+node包管理工具,node自带
+
+npm命令
+```
+npm -v 查看npm版本
+npm version 查看所有模块版本
+npm search 包名 搜索包
+npm install / i 包名 安装包(会自动添加到依赖表)
+npm remove / r 包名 删除包
+npm install 下载当前项目所依赖的包
+npm install 包名 -g 全局安装包(全局安装的包一般都是一些工具)
+```
+
+安装cnpm
+```
+npm install cnpm -g --registry=https://registry.npm.taobao.org
+```
+
+## Buffer
+Buffer（缓冲区）
+- Buffer的结构和数组很像，操作的方法也和数组类似
+- 数组中不能存二进制的文件，而Buffer就是专门用来存储二进制数据的
+- 使用Buffer.不需要引入模块，直接使用即可
+- 在Buffer中存储的都是二进制数据，但是在显示时部是以16进制的形式显示
+- Buffer中的每一个元素的范围是0-255
+
+```javascript
+// 直接放入数据，自动创建Buffer
+var str = "Hello";
+Buffer.from(str);
+
+// 创建指定长度的Buffer
+var buf = Buffer.alloc(20);
+
+// 填充数据
+buf[0] = 44;
+```
+
+## fs(文件模块)
+```javascript
+// 引入fs模块
+var fs = require("fs");
+```
+
+同步文件写入
+```javascript
+// 打开文件
+fs.openSync(path,flags,[mode])
+/*
+- path 打开文件的路径
+- flags 打开文件的操作类型 r或者w
+- mode 设置文件的操作权限，一般不传
+
+该方法会返回一个文件的描述符，便于我们操作文件
+*/
+
+// 编写文件
+fs.writeSync(fd,string,[position],[encoding])
+/*
+- fd 文件的描述符
+- string 要写入的内容
+- position 写入的起始位置，一般不传
+- encoding 编码，一般不传
+*/
+
+// 关闭文件
+fs.closeSync(fd);
+// fd 文件的描述符
+```
+
+异步文件写入
+```javascript
+// 打开文件
+fs.open(path[, flags[, mode]], callback)
+/*
+- 异步调用的方法，结果都是通过回调函数的参数返回的
+- 参数一：err 错误对象，如果没有错误则为null
+- 参数二：fd 文件描述符
+*/
+
+//Demo
+fs.open("hello.txt","w",function(err,fd){
+    if(!err) {
+        fs.write(fd,"今天天气真好",function(err){
+            if(!err) {
+                console.log("写入成功");
+            }
+
+            fs.close(fd,function(err){
+                if(!err) {
+                    console.log("文件已关闭");
+                }
+            });
+        });
+    }else {
+        console.log(err);
+    }
+})
+```
+
+简单文件写入
+```javascript
+// 引入模块
+var fs = require("fs");
+fs.writeFile("hello.txt","今天天气真好",function(err) {
+    if(!err) {
+        console.log("写入成功");
+    }
+});
+```
+
+大文件的操作
+```javascript
+//创建输入流
+fs.createWriteStream(path,[options]);
+```

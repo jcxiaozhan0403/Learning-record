@@ -73,12 +73,12 @@ JDK>JRE>JVM
 常见文档注释
 /**
 *
-*@author 作者名
-*@version 版本号
-*@since 指明jdk版本
-*@param 参数名
-*@return 返回值情况
-*@throws 异常抛出情况
+* @author 作者名
+* @version 版本号
+* @since 指明jdk版本
+* @param 参数名
+* @return 返回值情况
+* @throws 异常抛出情况
 */
 
 单行注释
