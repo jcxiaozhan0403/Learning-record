@@ -164,19 +164,42 @@ fs.open("hello.txt","w",function(err,fd){
 })
 ```
 
-简单文件写入
+简单文件操作
 ```javascript
 // 引入模块
 var fs = require("fs");
+// 简单文件写入
 fs.writeFile("hello.txt","今天天气真好",function(err) {
     if(!err) {
         console.log("写入成功");
     }
 });
+// 简单文件读取，data默认是一个buffer对象，用toString()方法可以转换成字符串
+fs.readFile("hello.txt","今天天气真好",function(err,data) {
+    if(!err) {
+        console.log(data);
+    }
+});
 ```
 
-大文件的操作
+文件流操作(操作大文件)
 ```javascript
-//创建输入流
-fs.createWriteStream(path,[options]);
+// 引入模块
+var fs = require("fs");
+
+// 创建输入流
+var ws = fs.createWriteStream("hello.txt");
+ws.write("今天天气真好");
+// 关闭输入流
+ws.close();
+
+// 创建输出流
+var rs = fs.createReadStream("hello.txt");
+// 绑定data事件，自动读取，读取完后自动关闭
+rs.on("data",function() {
+    console.log(data);
+});
+
+// pipe()可以将输出流中的内容，直接输出到输入流中，并完成关闭
+rs.pipe(ws);
 ```
