@@ -99,5 +99,99 @@ const arr = [1,2,3];
 let [a,b,c] = arr;
 ```
 
+## 对象中的属性和方法
+```javascript
+let obj = {
+// 简写属性,等价于name:name
+    name,
+// 简写方法,等价于demo:function(){}
+    demo(){}
+}
 
+// 取值
+obj[name];
 
+// 设置值
+obj[name] = "小明";
+```
+
+## 两个对象方法
+```javascript
+// 比较两个值是否严格相等，等价于 ===
+Object.is(123,123);
+
+// 将多个对象结合形成一个新对象，返回值为这个新对象
+let obj1 = {
+    a: 1,
+    b: 2
+}
+
+let obj2 = {
+    c: 3,
+    d: 4
+}
+
+let newObj = Object.assign({},obj1,obj2);
+```
+
+## Symbol(不常用)
+Symbol是原始数据类型，它表示独一无二的值
+最大的用途：用来定义对象的私有变量
+```javascript
+const name = Symbol("name");
+let obj = {};
+obj[name] = "小明";
+
+// 用Symbol定义的对象中的变量，取值时要用[],不能用.
+console.log(obj[name]);
+```
+
+## set集合
+表示无重复值的有序列表
+```javascript
+let set = new Set();
+
+// 添加元素
+set.add(2);
+set.add("Hello World")
+
+// 删除元素
+set.delete(2);
+
+// 验证集合中是否存在某值
+set.has("Hello World");
+
+// 清空集合
+set.clear();
+
+// 集合长度
+set.size;
+
+// 将集合转换成数组,利用扩展运算符
+let arr = [...set];
+```
+
+## Map集合
+键值对有序列表，键和值是任意类型
+```javascript
+let map = new Map();
+
+// 添加元素
+map.set("name","张三");
+map.set("age",18);
+
+// 删除元素
+map.delete("name");
+
+// 获取元素
+map.get("age");
+
+// 验证集合中是否存在某值
+map.has("name");
+
+//清空集合
+map.clear();
+
+// 集合长度
+map.size;
+```
