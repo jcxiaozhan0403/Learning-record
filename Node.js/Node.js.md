@@ -1,3 +1,28 @@
+## Node的三大特点
+- 非阻塞I/O
+- 事件驱动
+- 单线程
+
+## Node多版本管理工具
+NVM地址
+```
+https://github.com/coreybutler/nvm-windows/releases
+```
+
+常用命令
+列出当前电脑所有node版本
+```
+nvm list
+```
+显示node是运行在32位还是64位
+```
+nvm arch
+```
+显示nvm版本。version可简化为v
+```
+nvm version
+```
+
 ## 进程和线程
 - 进程
     - 进程负责为程序的运行提供必备的环境
