@@ -196,4 +196,42 @@ map.clear();
 map.size;
 ```
 
-## 
+## 数组的新方法
+```javascript
+// from将维数组转化为数组
+let lis = document.querySelectorAll("li");
+let arr = Array.from(lis);
+
+// of将一组值转换成数组
+let arr = Array.of(1,2,"3",{num: 5});
+
+// copyWithin()复制数组元素
+let arr = [1,2,3,4,5,6];
+let newArr = arr.copyWithin(0,3); //用从索引3开始后面所有的值，从索引0开始填充，覆盖数组
+
+// find()找出第一个符合条件的数组成员
+let arr = [1,2,3,10,-10,4,5,6];
+let num = arr.find(n => n< 0);
+
+// findIndex()找出第一个符合条件的数组成员的索引
+let arr = [1,2,3,10,-10,4,5,6];
+let numIndex = arr.findIndex(n => n< 0);
+
+// 遍历器
+// keys() 对键名遍历
+// values() 对值遍历
+// entries() 对键值对遍历
+let arr = ["a","b"];
+for(let index of arr.keys()) {
+    console.log(index);
+}
+for(let ele of arr.values()) {
+    console.log(ele);
+}
+for(let [index,ele] of arr.entries()) {
+    console.log(index,ele);
+}
+
+// includes() 返回一个布尔值，表示某个数组是否包含给定值
+let console.log([1,2,3].includes(2));
+```
