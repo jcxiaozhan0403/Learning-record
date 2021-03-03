@@ -11,7 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-    <a href="http://localhost:8080/study/user">user</a>
-    <a href="http://localhost:8080/study/manager">manager</a>
+    <a href="http://localhost:8080/study/">index</a>
 </body>
 </html>
