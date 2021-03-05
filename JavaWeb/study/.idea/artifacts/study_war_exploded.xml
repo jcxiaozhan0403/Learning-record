@@ -13,6 +13,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="study" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/study-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
