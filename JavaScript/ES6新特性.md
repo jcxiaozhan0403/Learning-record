@@ -235,3 +235,26 @@ for(let [index,ele] of arr.entries()) {
 // includes() 返回一个布尔值，表示某个数组是否包含给定值
 let console.log([1,2,3].includes(2));
 ```
+
+## 迭代器
+迭代器是一种新的遍历机制
+```javascript
+const items = ['one','two','three'];
+// 创建迭代器
+const item = items[Symbol.iterator]();
+
+// 调用next方法
+console.log(ite.next());
+```
+
+## 生成器
+```javascript
+// generator函数 可以通过yield关键字，将函数挂起，为改变执行流提供了可能，同时为异步编程提供了方案
+// 它与普通函数的区别
+// 1. function 后面函数名前带*
+// 2. 只能在函数内部使用yield表达式，让函数挂起
+
+function* myfunction() {
+    
+}
+```
