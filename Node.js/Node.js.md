@@ -74,6 +74,24 @@ require("fs")
 require("./demo")
 ```
 
+## 创建服务器
+```javascript
+// 引入HTTP模块
+const http = require("http");
+
+// 创建HTTP服务器
+const httpServer = http.createServer((req,res) => {
+    // 设置响应头
+    res.writeHead(200,{"Content-Type" : "text/plain;charset=utf-8"});
+    res.end("Hello World 你好世界");
+})
+
+// 启动HTTP服务器
+httpServer.listen(8080,() => {
+    console.log("服务器在8080端口上监听!");
+})
+```
+
 ## 包
 包结构
 - package.json 描述文件(必须) 注：描述文件内不能写注释
