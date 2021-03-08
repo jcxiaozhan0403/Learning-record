@@ -21,8 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/H2J/Demo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/H2J/Demo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSE.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,8 +32,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -44,6 +42,7 @@
   </component>
   <component name="ProjectId" id="1jZxVaowTKOoa1WerwH2u6B2QYi" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
     <ConfirmationsSetting value="1" id="新增" />
   </component>
   <component name="ProjectViewState">
@@ -73,7 +72,7 @@
       <recent name="hero" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Demo">
+  <component name="RunManager" selected="Application.AboutTheArray">
     <configuration name="AboutTheArray" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="array_.AboutTheArray" />
       <module name="H2J" />
@@ -127,16 +126,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="应用程序.Demo" />
-        <item itemvalue="应用程序.AboutTheArray" />
-        <item itemvalue="应用程序.Demo$TestGUI" />
-        <item itemvalue="应用程序.TheGui$TestGUI" />
-        <item itemvalue="应用程序.InputAndOutput" />
-      </list>
-    </recent_temporary>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -211,11 +213,12 @@
       <workItem from="1614566670914" duration="135000" />
       <workItem from="1614566886480" duration="27000" />
       <workItem from="1614567035409" duration="58000" />
+      <workItem from="1615203907427" duration="2394000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -228,63 +231,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="440" y="99" key="#项目结构" timestamp="1606543467530">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="440" y="99" key="#项目结构/0.0.1920.1050@0.0.1920.1050" timestamp="1606543467530" />
-    <state x="740" y="279" key="FileChooserDialogImpl" timestamp="1614567074977">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="740" y="279" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1614567074977" />
-    <state width="1877" height="322" key="GridCell.Tab.0.bottom" timestamp="1613722492965">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="322" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1613722492965" />
-    <state width="1877" height="322" key="GridCell.Tab.0.center" timestamp="1613722492965">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="322" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1613722492965" />
-    <state width="1877" height="322" key="GridCell.Tab.0.left" timestamp="1613722492965">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="322" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1613722492965" />
-    <state width="1877" height="322" key="GridCell.Tab.0.right" timestamp="1613722492965">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="322" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1613722492965" />
-    <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1613651163790">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1613651163790" />
-    <state width="1877" height="352" key="GridCell.Tab.1.center" timestamp="1613651163790">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1613651163790" />
-    <state width="1877" height="352" key="GridCell.Tab.1.left" timestamp="1613651163790">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1613651163790" />
-    <state width="1877" height="352" key="GridCell.Tab.1.right" timestamp="1613651163790">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1613651163790" />
-    <state x="76" y="131" key="SettingsEditor" timestamp="1613616950343">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="76" y="131" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1613616950343" />
-    <state x="490" y="135" key="new project wizard" timestamp="1614567091944">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="490" y="135" key="new project wizard/0.0.1920.1050@0.0.1920.1050" timestamp="1614567091944" />
-    <state x="616" y="243" key="run.anything.popup" timestamp="1613720582775">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1613720582775" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1608624490913">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1608624490913" />
   </component>
 </project>

@@ -829,6 +829,7 @@ public class TestThread1 extends Thread {
     }
 } 
 // 2.实例化一个线程对象，调用start方法开启线程
+// 注：线程开启不一定立即执行，由CPU调度执行
 TestThread1 testThread1 = new TestThread1();
 testThread1.start();
 ```
