@@ -13,9 +13,9 @@
 </head>
 <body>
     <%-- <c:out> --%>
-    <p><c:out value="&lt这句换不使用转义字符&gt" escapeXml="true" default="默认值"></c:out></p>
-    <p><c:out value="&lt这句换使用转义字符&gt" escapeXml="false" default="默认值"></c:out></p>
-    <p><c:out value="${null}" escapeXml="false" default="默认值"></c:out></p>
+    <p><c:out value="&lt这句换不使用转义字符&gt" escapeXml="true" default="默认值" /></p>
+    <p><c:out value="&lt这句换使用转义字符&gt" escapeXml="false" default="默认值" /></p>
+    <p><c:out value="${null}" escapeXml="false" default="默认值" /></p>
 
     <%--  <c:set>  --%>
     <p><c:set var="salary" scope="session" value="${2000*2}"/></p>
@@ -70,6 +70,12 @@
     <a href="/<c:out value="${myURL}"/>">
         使用 &lt;c:param&gt; 为指定URL发送两个参数。</a>
 
+    <%--  <c:redirect>  --%>
+    <c:redirect url="http://www.runoob.com"/>
 
+    <%--  <c:url>  --%>
+    <a href="<c:url value="http://www.runoob.com"/>">
+        这个链接通过 &lt;c:url&gt; 标签生成。
+    </a>
 </body>
 </html>

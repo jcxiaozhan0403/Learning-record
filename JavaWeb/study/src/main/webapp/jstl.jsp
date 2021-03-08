@@ -13,9 +13,9 @@
 </head>
 <body>
     <%-- <c:out> --%>
-    <p><c:out value="&lt这句换不使用转义字符&gt" escapeXml="true" default="默认值"></c:out></p>
-    <p><c:out value="&lt这句换使用转义字符&gt" escapeXml="false" default="默认值"></c:out></p>
-    <p><c:out value="${null}" escapeXml="false" default="默认值"></c:out></p>
+    <p><c:out value="&lt这句换不使用转义字符&gt" escapeXml="true" default="默认值" /></p>
+    <p><c:out value="&lt这句换使用转义字符&gt" escapeXml="false" default="默认值" /></p>
+    <p><c:out value="${null}" escapeXml="false" default="默认值" /></p>
 
     <%--  <c:set>  --%>
     <p><c:set var="salary" scope="session" value="${2000*2}"/></p>
