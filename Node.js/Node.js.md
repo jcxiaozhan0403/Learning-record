@@ -246,3 +246,22 @@ rs.on("data",function() {
 // pipe()可以将输出流中的内容，直接输出到输入流中，并完成关闭
 rs.pipe(ws);
 ```
+
+## events模块
+```javascript
+// 引入 events 模块
+var events = require('events');
+
+// 创建 eventEmitter 对象
+var eventEmitter = new events.EventEmitter();
+
+// 绑定demo事件的处理函数
+eventEmitter.on("demo",demo);
+
+function demo() {
+    console.log("事件触发");    
+}
+
+// 触发demo事件
+eventEmitter.emit('demo');
+```
