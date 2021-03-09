@@ -833,7 +833,7 @@ public class TestThread1 extends Thread {
 TestThread1 testThread1 = new TestThread1();
 testThread1.start();
 ```
-继承接口实现
+继承Runnable接口实现(常用)
 ```java
 // 1.创建类，继承Runnable接口，重写run方法，run方法里面写需要使用到多线程的操作
 public class TestThread1 implements Runnable {
@@ -846,6 +846,10 @@ public class TestThread1 implements Runnable {
 TestThread1 testThread1 = new TestThread1();
 // 3.创建线程对象，通过线程对象来开启线程
 new Thread(testThread1).start();
+```
+继承Callable接口实现
+```java
+
 ```
 
 ## JDBC数据库连接
