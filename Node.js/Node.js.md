@@ -265,3 +265,9 @@ function demo() {
 // 触发demo事件
 eventEmitter.emit('demo');
 ```
+
+## 全局变量
+```javascript
+__fileName
+__dirName
+```
