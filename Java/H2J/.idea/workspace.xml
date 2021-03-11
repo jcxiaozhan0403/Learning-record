@@ -21,8 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/multithreading/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/multithreading/Demo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/multithreading/Multithreading.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/multithreading/Multithreading.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSE.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +75,7 @@
       <recent name="multithreading" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Demo">
+  <component name="RunManager" selected="Application.Lambda">
     <configuration name="AboutTheArray" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="array_.AboutTheArray" />
       <module name="H2J" />
@@ -104,12 +102,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InputAndOutput" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="inputAndOutput.InputAndOutput" />
+    <configuration name="Lambda" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="multithreading.Lambda" />
       <module name="H2J" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="inputAndOutput.*" />
+          <option name="PATTERN" value="multithreading.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -143,8 +141,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Lambda" />
         <item itemvalue="Application.Demo" />
         <item itemvalue="Application.Multithreading" />
         <item itemvalue="Application.AboutTheArray" />
@@ -229,6 +239,7 @@
       <workItem from="1615203907427" duration="2394000" />
       <workItem from="1615293894885" duration="2988000" />
       <workItem from="1615359913975" duration="6000" />
+      <workItem from="1615472184325" duration="1304000" />
     </task>
     <servers />
   </component>

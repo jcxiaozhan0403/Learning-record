@@ -852,6 +852,43 @@ new Thread(testThread1).start();
 
 ```
 
+## Lamda表达式
+Lambda简化了匿名内部类，方法引用简化了lambda
+任何接口，如果只包含唯一一个抽象方法，name它就是一个函数式接口
+```java
+// 匿名内部类常规写法
+public class Lambda {
+    public static void main(String[] args) {
+        Demo02 demo02 = new Demo02() {
+            @Override
+            public void test() {
+                System.out.println("Hello World");
+            }
+        };
+        demo02.test();
+    }
+}
+
+interface Demo02 {
+    void test();
+}
+
+
+// Lambda用法
+public class Lambda {
+    public static void main(String[] args) {
+        Demo02 demo02 = () -> {
+            System.out.println("Hello World");
+        };
+        demo02.test();
+    }
+}
+
+interface Demo02 {
+    void test();
+}
+```
+
 ## JDBC数据库连接
 1. 定义连接(静态)
 ```java
