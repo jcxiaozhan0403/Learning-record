@@ -586,3 +586,16 @@ after
 
 ## JSTL
 JSTL是JSP标签库
+
+## JSP与Servlet传参
+设置
+```java
+String name = "李爽";
+req.setAttribute("name",name);
+```
+获取
+```jsp
+<c:out value="${name}"></c:out>
+<% out.print(request.getAttribute("name")); %>
+<%=request.getAttribute("name")%>
+```

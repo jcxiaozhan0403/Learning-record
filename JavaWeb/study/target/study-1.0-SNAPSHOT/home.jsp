@@ -6,8 +6,12 @@
     <title>Hello World</title>
 </head>
     <body>
-    <c:forEach begin="100" end="1000">
+    <c:forEach begin="0" end="10">
         <h1>我是一个中国人</h1>
     </c:forEach>
+
+    <c:out value="${name}"></c:out>
+    <% out.print(request.getAttribute("name")); %>
+    <%=request.getAttribute("name")%>
     </body>
 </html>

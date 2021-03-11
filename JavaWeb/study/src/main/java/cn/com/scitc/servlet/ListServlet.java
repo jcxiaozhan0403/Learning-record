@@ -7,12 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = { "/home"})
-public class HomeServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/list"})
+public class ListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = "李爽";
-        req.setAttribute("name",name);
-        req.getRequestDispatcher("/home.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/list.jsp").forward(req,resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 }
