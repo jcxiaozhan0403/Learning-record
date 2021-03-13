@@ -851,6 +851,41 @@ new Thread(testThread1).start();
 ```java
 
 ```
+获取线程名字
+```java
+Thread.currentThread().getName()
+```
+线程休眠
+```java
+// 每个对象都有一个锁，sleep不会释放锁
+Thread.Sleep(1000);
+```
+线程礼让
+```java
+// 线程礼让是让当前进程暂停，转为就绪状态，让CUP重新调度，所以礼让不一定成功，主要看CPU怎么调度
+Thread.yield();
+```
+线程强制执行
+```java
+// 调用join方法会让主线程处于阻塞状态，先将线程内的内容执行完毕，再次开始执行主线程
+Demo demo = new Demo();
+Thread thread = new Thread(demo);
+thread.join();
+```
+线程优先级
+- 优先级低只是意味着获得调度的概率低，并不是优先级低就不会被调用了，还是看CPU调度
+```java
+// 线程的优先级用数字表示，范围1~10
+Thread.MIN_PRIORITY = 1;
+Thread.MAX_PRIORITY = 10;
+Thread.NORM_PRIORITY = 5;
+// 获取线程优先级
+Demo demo = new Demo();
+Thread thread = new Thread(demo);
+thread.getPriority();
+// 设置线程优先级
+thread.setPriority(xxx);
+```
 
 ## Lamda表达式
 Lambda简化了匿名内部类，方法引用简化了lambda
@@ -888,6 +923,15 @@ interface Demo02 {
     void test();
 }
 ```
+
+## 静态代理
+- 真实对象和代理对象都要实现同一个接口
+- 代理对象要代理真实对象
+- 静态代理的实现类似于多线程的底部
+
+好处
+1. 代理对象可以做很多真实对象做不了的事情
+2. 真实对象专注做自己的事情
 
 ## JDBC数据库连接
 1. 定义连接(静态)
