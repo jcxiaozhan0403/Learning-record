@@ -266,11 +266,111 @@ function demo() {
 eventEmitter.emit('demo');
 ```
 
-## 全局变量
+## 全局对象
 ```javascript
-__fileName
-__dirName
+// 当前文件路径
+__filename
+
+// 当前文件所在目录的路径
+__dirname
+
+// process常用于捕获异常，避免服务器宕机
+process.on('uncaughtException', function (err) {
+　　console.log('Caught exception: ' + err);
+});
 ```
 
+## 定时器
+单次定时器
+```javascript
+// 用于函数的延时调用，只执行一次
+setTimeout(() => {
+    console.log("Hello World");
+},1000);
+```
+周期定时器
+```javascript
+// 每隔一段时间就执行一次函数
+setInterval(() => {
+    console.log("Hello World");
+},1000);
+```
+即时定时器
+```javascript
+setImmediate()
+```
+取消定时器
+```javascript
+clearTimeout()
+clearInterval()
+clearImmediate()
+```
+
+
 ## 流
+可读流
+```javascript
+// 引入文件模块
+const fs = require('fs');
+
+// 创建可读流
+const readStream = fs.createReadStream('demo.txt');
+
+// 设置编码格式
+readerStream.setEncoding('UTF8');
+
+// 文件内还存在数据触发data事件
+let str = "";
+readStream.on('data',(chunk) => {
+    str+=chunk;
+});
+
+// 文件内没有数据了触发end事件
+readStream.on('end',(chunk) => {
+    console.log(str);
+});
+
+// 读取时出错时，触发error事件
+readerStream.on('error', function(err){
+   console.log(err.stack);
+});
+```
+写入流
+```javascript
+// 引入文件模块
+const fs = require('fs');
+
+// 创建写入流
+const writerStream = fs.createWriteStream('output.txt');
+
+// 设置编码格式
+writerStream.write(data,'UTF8');
+
+// 标记文件末尾
+writerStream.end();
+
+// 数据写入完毕后触发finish事件
+writerStream.on('finish', function() {
+    console.log("写入完成。");
+});
+
+// 写入时出错触发error事件
+writerStream.on('error', function(err){
+   console.log(err.stack);
+});
+```
+管道流
+```javascript
+// 管道流用于大文件的操作
+
+// 创建一个可读流
+var readerStream = fs.createReadStream('input.txt');
+
+// 创建一个可写流
+var writerStream = fs.createWriteStream('output.txt');
+
+// 管道读写操作
+// 读取 input.txt 文件内容，并将内容写入到 output.txt 文件中
+readerStream.pipe(writerStream);
+```
 
