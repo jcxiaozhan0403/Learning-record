@@ -924,6 +924,37 @@ interface Demo02 {
 }
 ```
 
+## 线程锁
+```java
+// 保证线程同步依靠队列和锁
+// 多个线程时，为保证一个方法被一个线程执行时不被影响，需要锁住此方法
+private synchronized void buy(){
+
+}
+
+// 多个对象使用同一共享资源时，为了不被影响，需要锁住此资源
+synchronized(Obj){}
+
+```
+
+## 生成者与消费者关系模式
+- 管程法
+- 信号灯法
+
+## 线程池
+```java
+// 1.创建服务，创建线程池，参数为线程池大小
+ExecutorService service = Executors.newFixedThreadPool(10);
+
+// 2.执行
+service.execute(new MyThread());
+service.execute(new MyThread());
+service.execute(new MyThread());
+
+// 3.关闭连接
+service.shutdown();
+```
+
 ## 静态代理
 - 真实对象和代理对象都要实现同一个接口
 - 代理对象要代理真实对象
