@@ -1040,3 +1040,15 @@ while (rs.next()) {
     System.out.printf("%d\t%s\t%f\t%d%n", id, name, hp, damage);
 }
 ```
+
+## 注解
+三个内置注解
+```java
+// 重写的注解
+@Override
+
+// 不推荐程序员使用，但是可以使用，或者推荐更好的方式
+@Deprecated
+
+// 
+```
