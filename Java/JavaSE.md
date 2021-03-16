@@ -1050,5 +1050,42 @@ while (rs.next()) {
 // 不推荐程序员使用，但是可以使用，或者推荐更好的方式
 @Deprecated
 
-// 
+// 镇压警告
+@SuppressWarnings("all")
+```
+元注解：用来注释注解的注解
+```java
+// 指明注解可以写实哪些元素，传入值如下
+@Target(value={ElementType.CONSTRUCTOR,ElementType.FIELD})
+/*
+    ElementType.CONSTRUCTOR ：构造器
+
+    ElementType.FIELD：属性
+
+    ElementType.LOCAL_VARIABLE：局部变量
+
+    ElementType.METHOD：方法
+
+    ElementType.PACKAGE：包
+
+    ElementType.PARAMETER：参数
+
+    ElementType.TYPE：类、接口（包括注解类型和 enum 声明）
+*/
+
+// 指明注解的生命周期，传入值如下
+@Retention(value={RetentionPolicy.SOURCE})
+/*
+RetentionPolicy.SOURCE
+
+RetentionPolicy.CLASS
+
+RetentionPolicy.RUNTIME
+*/
+
+// 使用此修饰的注解将会被 javadoc 工具提取成文档，使用此注解，其 @Retention 必须被设置为 RetentionPolicy.RUNTIME
+@Documented
+
+// 具有继承性
+@Inherited
 ```
