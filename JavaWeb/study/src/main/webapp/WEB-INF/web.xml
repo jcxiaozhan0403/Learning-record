@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <!--  设置jsp主页，默认为index.jsp  -->
-    <welcome-file-list>
-        <welcome-file>demo02.jsp</welcome-file>
-    </welcome-file-list>
+<!--    <welcome-file-list>-->
+<!--        <welcome-file>demo02.jsp</welcome-file>-->
+<!--    </welcome-file-list>-->
 </web-app>
