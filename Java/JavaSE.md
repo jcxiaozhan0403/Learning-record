@@ -1089,3 +1089,29 @@ RetentionPolicy.RUNTIME
 // 具有继承性
 @Inherited
 ```
+自定义注解
+```java
+// 基本格式
+// public @interface 注解名{定义内容}
+
+@Target({ElementType.TYPE,ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@interface MyAnnotation2{
+    // 注解的参数：参数类型 + 参数名();
+    String name() default ""; //用default来设置默认值
+    int age();
+    int id() default -1; //如果默认值为-1，代表不存在
+    String[] schools() default {"清华大学","北京大学"};
+}
+
+@Target({ElementType.TYPE,ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@interface MyAnnotation{
+    String value(); //如果只有一个参数，默认设置其名字为value，在使用时就可简写
+}
+```
+
+## 反射
+优点：可以实现动态创建对象和编译，体现出很大的灵活性
+缺点：对性能有影响。使用反射基本上是一种解释操作，我们告诉JVM要做什么，这类操作总是慢于直接执行相同的操作
+一个类只有一个Class对象

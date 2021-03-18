@@ -20,56 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/.idea/artifacts/WebProject_war.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/.idea/artifacts/WebProject_war_exploded.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/.idea/libraries/servlet_api.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/WebProject.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/out/artifacts/WebProject_war_exploded/WEB-INF/classes/com/test/servlet/Servlet01.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/out/artifacts/WebProject_war_exploded/WEB-INF/classes/com/test/servlet/session/ServletSession.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/out/artifacts/WebProject_war_exploded/WEB-INF/lib/servlet-api.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/out/artifacts/WebProject_war_exploded/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/out/artifacts/WebProject_war_exploded/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/out/production/WebProject/com/test/servlet/Servlet01.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/out/production/WebProject/com/test/servlet/session/ServletSession.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/src/com/test/servlet/Servlet01.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/src/com/test/servlet/session/ServletSession.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/web/WEB-INF/lib/servlet-api.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/web/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/WebProject/web/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/study/.idea/artifacts/study_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaWeb/study/.idea/artifacts/study_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/study/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaWeb/study/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/study/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaWeb/study/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/study/study.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaWeb/study/study.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/study/target/study-1.0-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaWeb/study/target/study-1.0-SNAPSHOT/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/.idea/artifacts/webApp_war.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/.idea/artifacts/webApp_war_exploded.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_7_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_7_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/src/main/java/cn/com/scitc/webApp/HelloServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/src/main/webapp/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/target/classes/cn/com/scitc/webApp/HelloServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/target/webApp-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/target/webApp-1.0-SNAPSHOT/WEB-INF/classes/cn/com/scitc/webApp/HelloServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/target/webApp-1.0-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/target/webApp-1.0-SNAPSHOT/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaWeb/webApp/webApp.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSE.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,13 +83,13 @@
       <recent name="multithreading" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UnsafeDemo">
-    <configuration name="Lambda" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="multithreading.Lambda" />
+  <component name="RunManager" selected="Application.Demo01">
+    <configuration name="Demo01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="reflection.Demo01" />
       <module name="H2J" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="multithreading.*" />
+          <option name="PATTERN" value="reflection.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -197,13 +149,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Demo01" />
         <item itemvalue="Application.UnsafeDemo" />
         <item itemvalue="Application.TestJoin" />
         <item itemvalue="Application.staticProxy" />
         <item itemvalue="Application.TestStop" />
-        <item itemvalue="Application.Lambda" />
       </list>
     </recent_temporary>
   </component>
@@ -293,6 +256,7 @@
       <workItem from="1615729281205" duration="407000" />
       <workItem from="1615772693346" duration="9000" />
       <workItem from="1615973100076" duration="1000" />
+      <workItem from="1616063292696" duration="2607000" />
     </task>
     <servers />
   </component>
