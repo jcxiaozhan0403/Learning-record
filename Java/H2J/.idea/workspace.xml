@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSE.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,6 +256,8 @@
       <workItem from="1615772693346" duration="9000" />
       <workItem from="1615973100076" duration="1000" />
       <workItem from="1616063292696" duration="2607000" />
+      <workItem from="1616112627191" duration="4000" />
+      <workItem from="1616137308408" duration="3472000" />
     </task>
     <servers />
   </component>

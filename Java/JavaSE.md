@@ -1115,3 +1115,45 @@ RetentionPolicy.RUNTIME
 优点：可以实现动态创建对象和编译，体现出很大的灵活性
 缺点：对性能有影响。使用反射基本上是一种解释操作，我们告诉JVM要做什么，这类操作总是慢于直接执行相同的操作
 一个类只有一个Class对象
+```java
+// 通过反射，动态创建对象
+
+// 获得Class对象
+Class c1 = Class.forName("com.Student");
+
+// 构建一个对象
+Student student = (Student)c1.newInstance();
+
+// 通过构造器构建对象
+Constructor constructor = c1.getDeclaredConstructor(String.class,int.class);
+Student student = (Student)constructor.newInstance("小明",18);
+
+// 通过反射调用普通方法
+// 通过反射获取一个方法
+User user3 = (User)c1.newInstance();
+Method setName = c1.getDeclaredMethod("setName",String.class);
+
+// 用invoke激活方法
+// invoke(对象，"值")
+setName.invoke(user3,"李爽");
+
+// 通过反射操作属性
+User user4 = (User)c1.newInstance();
+Field name = c1.getDeclaredField("属性名");
+// 对于私有属性，不能直接操作，需要关闭程序的安全检测,true为关闭
+name.setAccessible(true);
+name.set(user4,"李爽");
+
+// 通过反射获得注解
+c1.getAnnotations();
+
+// 获取注解的值
+Student student = (Student)c1.getAnnotation(Student.class);
+student.value();
+
+// 获得类指定的注解
+Field f = c1.getDeclaredField("name");
+Student annotation = f.getAnnotation(Student.class);
+annotation.name();
+annotation.age();
+```
