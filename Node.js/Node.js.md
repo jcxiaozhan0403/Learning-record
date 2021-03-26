@@ -74,6 +74,35 @@ require("fs")
 require("./demo")
 ```
 
+将模块封装成类
+```javascript
+class Student {
+    constructor(name,sex,score){
+        this.name = name;
+        this.sex = sex;
+        this.score = score;
+    }
+    
+    logInfo(){
+        console.log(this.name+"" +this.sex+""+this.score);
+    }
+    
+    changeName(newName){
+        this.name = newName;
+    }
+    
+    testScore(){
+        if(this.score>=60){
+            return '及格';
+        } else {
+            return '不及格';
+        }
+    }
+}
+
+module.exports = Student;
+```
+
 ## 创建服务器
 ```javascript
 // 引入HTTP模块
@@ -373,4 +402,3 @@ var writerStream = fs.createWriteStream('output.txt');
 // 读取 input.txt 文件内容，并将内容写入到 output.txt 文件中
 readerStream.pipe(writerStream);
 ```
-
