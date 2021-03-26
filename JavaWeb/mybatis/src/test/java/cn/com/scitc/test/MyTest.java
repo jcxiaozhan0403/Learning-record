@@ -24,7 +24,7 @@ public class MyTest {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         try (SqlSession session = sqlSessionFactory.openSession()) {
             User user = (User) session.selectOne("cn.com.scitc.mapper.UserMapper.selectUser",1);
-            System.out.println("name" + user.getName());
+            System.out.println("姓名：" + user.getName());
         }
     }
 }
