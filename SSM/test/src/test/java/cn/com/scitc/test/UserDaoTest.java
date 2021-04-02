@@ -12,6 +12,6 @@ class UserDaoTest {
         UserDao userDao = new UserDao();
         User user = userDao.findById(1);
         System.out.println(user.getName());
-        Assertions.assertArrayEquals("李爽",user.getName());
+        Assertions.assertEquals("李爽",user.getName());
     }
 }
