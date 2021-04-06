@@ -170,5 +170,28 @@ public class MyTest {
     <version>5.2.9.RELEASE</version>
 </dependency>
 ```
-
+2. 创建配置文件`applicationContext.xml`
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        <!-- 每一个bean代表new一个对象 -->
+    <bean id="hello" class="cn.com.scitc.spring.pojo.Hello">
+        <property name="str" value="李爽" />
+    </bean>
+    <bean id="hello" class="cn.com.scitc.spring.pojo.Hello"></bean>
+</beans>
+```
+3. 获取配置文件中的对象
+```java
+public class MyTest {
+    public static void main(String[] args) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        Hello hello = (Hello) context.getBean("hello");
+        System.out.println(hello);
+    }
+}
+```
 
