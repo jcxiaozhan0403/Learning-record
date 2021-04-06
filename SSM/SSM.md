@@ -148,4 +148,27 @@ public class MyTest {
 ## 持久层
 完成持久化工作的代码块
 
+## Spring简介
+- Spring是一个开源的免费的框架(容器)
+- Spring是一个轻量级的、非入侵的框架
+- 控制反转(IOC)、面向切面编程(AOP)
+- 支持事务处理，对框架整合的支持
+
+## Spring的简单使用
+1. pom文件引入
+```xml
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+    <version>5.2.9.RELEASE</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-jdbc</artifactId>
+    <version>5.2.9.RELEASE</version>
+</dependency>
+```
+
 
