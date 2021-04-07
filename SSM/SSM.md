@@ -195,3 +195,28 @@ public class MyTest {
 }
 ```
 
+## IOC创建对象的方式
+1. 使用无参构造，默认
+2. 假设我们要使用有参构造创建对象
+    - 下标赋值
+    ```xml
+    <bean id="exampleBean" class="examples.ExampleBean">
+        <constructor-arg index="0" value="7500000"/>
+        <constructor-arg index="1" value="42"/>
+    </bean>
+    ```
+    - 参数类型赋值
+    ```xml
+    <bean id="exampleBean" class="examples.ExampleBean">
+        <constructor-arg type="int" value="7500000"/>
+        <constructor-arg type="java.lang.String" value="42"/>
+    </bean>
+    ```
+    - 参数名赋值
+    ```xml
+    <bean id="exampleBean" class="examples.ExampleBean">
+        <constructor-arg name="name" value="李爽"/>
+    </bean>
+    ```
+
+    # P7
