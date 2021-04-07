@@ -6,5 +6,4 @@
     <bean id="hello" class="cn.com.scitc.spring.pojo.Hello">
         <property name="str" value="李爽" />
     </bean>
-    <bean id="hello" class="cn.com.scitc.spring.pojo.Hello"></bean>
 </beans>
