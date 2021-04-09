@@ -219,4 +219,92 @@ public class MyTest {
     </bean>
     ```
 
-    # P7
+## Spring配置
+1. Bean配置
+```xml
+<!-- 
+    id：唯一标识符
+    class：全限定名 包名+类名
+    name：别名，可以有多个，分隔符也比较人性化
+ -->
+<bean id="hello" class="cn.com.scitc.spring.pojo.Hello" name="xxx sss ddd">
+    <property name="str" value="李爽" />
+</bean>
+```
+2. 合并多个配置文件
+```xml
+<import resource="beans01.xml" />
+<import resource="beans02.xml" />
+<import resource="beans03.xml" />
+```
+3. 别名
+```xml
+<!-- 用别名也可以获取到对象，多去一个名字而已，并没有什么用 -->
+<alias name="user" alias="userNew">
+```
+
+## 依赖注入(DI)
+```xml
+<bean id="hello" class="cn.com.scitc.spring.pojo.Hello" />
+<bean id="student" class="cn.com.scitc.spring.pojo.Student">
+    <!-- 普通类型注入 -->
+    <property name="name" value="李爽" />
+    <!-- 引用类型注入 -->
+    <property name="hello" ref="hello" />
+    <!-- 数组注入 -->
+    <property name="books">
+        <array>
+            <value>水浒传</value>
+            <value>红楼梦</value>
+            <value>西游记</value>
+        </array>
+    </property>
+    <!-- List -->
+    <property name="hobbys">
+        <list>
+            <value>唱</value>
+            <value>跳</value>
+            <value>Rap</value>
+        </list>
+    </property>
+    <!-- Map -->
+    <property name="card">
+        <map>
+            <entry key="身份证" value="46515619841515"></entry>
+            <entry key="银行卡" value="46545619841515"></entry>
+        </map>
+    </property>
+    <!-- Set -->
+    <property name="games">
+        <set>
+            <value>LOL</value>
+            <value>CS</value>
+            <value>CF</value>
+        </set>
+    </property>
+    <!-- Properties -->
+    <property name="info">
+        <props>
+            <prop key="driver">com.mysql.jdbc.Driver</prop>
+            <prop key="url">jdbc:mysql://localhost:3306/webapp1901</prop>
+            <prop key="username">root</prop>
+            <prop key="password">lishuang001219</prop>
+        </props>
+    </property>
+</bean>
+```
+
+## c命名空间和p命名空间
+他们的使用实质上就是简化赋值操作，p对应变量赋值，c对应构造器参数赋值
+```xml
+<!-- 首先在头部引入约束文件 -->
+xmlns:p="http://www.springframework.org/schema/p"
+xmlns:c="http://www.springframework.org/schema/c"
+```
+使用
+```xml
+<bean id="hello" class="cn.com.scitc.spring.pojo.Hello" p:str="你好世界"/>
+<bean id="hello" class="cn.com.scitc.spring.pojo.Hello" c:name="李爽" c:age="18"/>
+```
+
+# P11

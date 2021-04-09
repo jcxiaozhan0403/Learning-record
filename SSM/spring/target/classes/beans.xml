@@ -3,7 +3,37 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="hello" class="cn.com.scitc.spring.pojo.Hello">
-        <property name="str" value="李爽" />
+    <bean id="hello" class="cn.com.scitc.spring.pojo.Hello" />
+    <bean id="student" class="cn.com.scitc.spring.pojo.Student">
+        <property name="name" value="李爽" />
+        <property name="hello" ref="hello" />
+        <property name="books">
+            <array>
+                <value>水浒传</value>
+                <value>红楼梦</value>
+                <value>西游记</value>
+            </array>
+        </property>
+        <property name="hobbys">
+            <list>
+                <value>唱</value>
+                <value>跳</value>
+                <value>Rap</value>
+            </list>
+        </property>
+        <property name="card">
+            <map>
+                <entry key="身份证" value="46515619841515"></entry>
+                <entry key="银行卡" value="46545619841515"></entry>
+            </map>
+        </property>
+        <property name="info">
+            <props>
+                <prop key="driver">com.mysql.jdbc.Driver</prop>
+                <prop key="url">jdbc:mysql://localhost:3306/webapp1901</prop>
+                <prop key="username">root</prop>
+                <prop key="password">lishuang001219</prop>
+            </props>
+        </property>
     </bean>
 </beans>
