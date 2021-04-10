@@ -307,4 +307,74 @@ xmlns:c="http://www.springframework.org/schema/c"
 <bean id="hello" class="cn.com.scitc.spring.pojo.Hello" c:name="李爽" c:age="18"/>
 ```
 
-# P11
+## Bean作用域
+1. 单例模式(默认)
+```xml
+<bean id="hello" class="cn.com.scitc.spring.pojo.Hello" scope="singleton"/>
+```
+2. 原型模式(每次拿到的Bean都是一个新的)
+```xml
+<bean id="hello" class="cn.com.scitc.spring.pojo.Hello" scope="prototype"/>
+```
+
+## Bean的自动装配
+1. byName
+```xml
+<!-- byName会自动在容器上下文中查找，和自己对象set方法后面的值对应的beanid -->
+<bean id="cat" class="cn.com.scitc.spring.pojo.Cat" />
+<bean id="dog" class="cn.com.scitc.spring.pojo.Dog" />
+<bean id="hello" class="cn.com.scitc.spring.pojo.Hello" autowire="byName"/>
+```
+2. byType
+```xml
+<!-- byType会自动在容器上下文中查找，和自己对象属性类型相同的bean -->
+<bean class="cn.com.scitc.spring.pojo.Cat" />
+<bean class="cn.com.scitc.spring.pojo.Dog" />
+<bean id="hello" class="cn.com.scitc.spring.pojo.Hello" autowire="byType"/>
+```
+小结
+- byName的时候，需要保证所有bean的id唯一，并且这个bean需要和自动注入的属性的set方法的值一致！
+-  byType的时候，需要保证所有bean的id唯一，并且这个bean需要和自动注入的属性的类型一致！
+
+## 注解实现自动装配
+1. 导入约束
+```xml
+xmlns:context="http://www.springframework.org/schema/context"
+
+xsi:schemaLocation="http://www.springframework.org/schema/context
+https://www.springframework.org/schema/context/spring-context.xsd">
+```
+2. 添加注解支持
+```xml
+<context:annotation-config/>
+```
+3. 使用：直接在属性上添加注解即可，使用注解方式可以不用写set方法
+```java
+public class Hello {
+    private String str;
+    @Autowired
+    private Dog dog;
+    @Autowired
+    private Cat cat;
+
+    public String getStr() {
+        return str;
+    }
+
+    @Override
+    public String toString() {
+        return "Hello{" +
+                "str='" + str + '\'' +
+                '}';
+    }
+}
+```
+4. 多个bean对象时，@Autowired配合@Qualifier使用
+```java
+@Autowired
+@Qualifier(value="dog01")
+private Dog dog;
+```
+注：@Autowired自动装配是默认byType装配，查找不到的时候再使用byName
+
+# P14

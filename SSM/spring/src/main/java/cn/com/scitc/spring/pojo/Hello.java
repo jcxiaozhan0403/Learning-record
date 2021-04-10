@@ -1,5 +1,7 @@
 package cn.com.scitc.spring.pojo;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Hello {
     private String str;
 
