@@ -377,4 +377,66 @@ private Dog dog;
 ```
 注：@Autowired自动装配是默认byType装配，查找不到的时候再使用byName
 
-# P14
+## Spring注解开发
+1. 导入约束
+```xml
+xmlns:context="http://www.springframework.org/schema/context"
+
+xsi:schemaLocation="http://www.springframework.org/schema/context
+https://www.springframework.org/schema/context/spring-context.xsd">
+```
+3. 指定扫描包，包下所有类的注解才会生效
+```xml
+<context:component-scan base-package="cn.com.scitc.spring" />
+```
+4. 添加注解支持
+```xml
+<context:annotation-config/>
+```
+5. 常见注解
+```java
+// 等价于<bean id="" class="" />
+@Component
+
+// 赋值
+// 1.属性赋值
+@Value("李爽")
+private String name;
+// 2. 参数赋值
+@Value("王麻子")
+public void setName(String name) {
+    this.name = name;
+}
+
+// @Component衍生的注解
+四个注解功能是一样的，对应MVC三层架构分层
+dao【@Repository】
+service【@Service】
+controller【@Controller】
+
+// 作用域
+// 单例模式
+@Scope("singleton")
+// 原型模式
+@Scope("prototype")
+```
+
+小结
+xml与注解：
+ - xml更加万能，适用于任何场合！维护简单方便
+  - 注解只应用于自己的类，维护复杂
+最佳使用原则：xml用来管理bean，注解只负责完成属性的注入
+
+## 使用Java类方式配置Spring
+创建一个配置类来代替xml配置文件
+```java
+// 注解指定它为配置类
+@Configuration
+// 指定扫描包
+@ComponentScan("cn.com.scitc.spring")
+public class SpringConfig {
+
+}
+```
+
+# P16

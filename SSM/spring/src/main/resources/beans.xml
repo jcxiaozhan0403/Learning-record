@@ -8,6 +8,7 @@
         https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         https://www.springframework.org/schema/context/spring-context.xsd">
+    <context:component-scan base-package="cn.com.scitc.spring" />
     <context:annotation-config/>
     <bean id="hello" class="cn.com.scitc.spring.pojo.Hello" p:str="你好世界"/>
     <bean id="student" class="cn.com.scitc.spring.pojo.Student">
