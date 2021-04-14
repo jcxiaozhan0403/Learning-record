@@ -13,6 +13,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="webapp1901" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.5.5" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.38" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/webapp1901-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
