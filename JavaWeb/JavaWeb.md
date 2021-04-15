@@ -594,8 +594,8 @@ String name = "李爽";
 req.setAttribute("name",name);
 ```
 获取
-```jsp
+```MVCjsp
 <c:out value="${name}"></c:out>
 <% out.print(request.getAttribute("name")); %>
-<%=request.getAttribute("name")%>
+<%=request.getAttribute("name")%>MVC
 ```

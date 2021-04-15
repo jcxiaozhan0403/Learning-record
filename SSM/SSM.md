@@ -136,9 +136,81 @@ public class MyTest {
     }
 }
 ```
+
 5. 目录结构
 <img src="D:/Study/Learning-record/SSM/mybatis简单使用目录结构.jpg" style="height:300px;width:300px;text-align:center;">
 
+## mybatis-generator的简单使用
+1. pom文件编写
+```xml
+<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.5.5</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>5.1.38</version>
+</dependency>
+
+
+<plugin>
+    <groupId>org.mybatis.generator</groupId>
+    <artifactId>mybatis-generator-maven-plugin</artifactId>
+    <version>1.4.0</version>
+    <executions>
+        <execution>
+            <id>Generate MyBatis Artifacts</id>
+            <goals>
+                <goal>generate</goal>
+            </goals>
+        </execution>
+    </executions>
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.47</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.5</version>
+        </dependency>
+    </dependencies>
+    <configuration>
+        <!-- 生成的文件覆盖源文件 -->
+        <overwrite>true</overwrite>
+    </configuration>
+</plugin>
+```
+
+2. generatorConfig.xml配置文件
+```xml
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="simple" targetRuntime="MyBatis3Simple">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/webapp1901" userId="root" password="lishuang001219"/>
+
+        <javaModelGenerator targetPackage="cn.com.scitc.webapp1901.model" targetProject="src/main/java"/>
+
+        <sqlMapGenerator targetPackage="cn.com.scitc.webapp1901.mapper" targetProject="src/main/resources"/>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.com.scitc.webapp1901.mapper" targetProject="src/main/java"/>
+
+        <table tableName="student" />
+    </context>
+</generatorConfiguration>
+```
+
+3. 一键生成代码
+<img src="D:/Study/Learning-record/SSM/mybatis-generator.jpg" style="height:300px;width:500px;text-align:center;">
 ## 持久化
 数据持久化
 - 持久化就是将程序的数据在持久状态和瞬时状态转化的过程
