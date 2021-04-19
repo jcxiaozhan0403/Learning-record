@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type= "text/javascript">
+    var ws= new Websocket("ws://127.0.0.1:8080");
+    ws.onopen=function(){
+        console.log('websocket open');
+        document.getelementbyld("stat").innerhtml="已连接上";
+    }
+    ws.onclose=function(){
+        console.log('websocket close');
+        document.getelementbyld("stat").innerhtml="连接断开";
+    }
+    ws.onmessage= function(event){
+        console. log(event.data);
+        document.getElementById("recvTxt").value = event.data; 
+    }
+    document.getelementByld("sendBtn").onclick=function(){
+        var txt = document.getElementById("sendTxt").value;
+        ws.send(txt)
+    }
+</script>
+<body>
+    <input type="text" id="sendTxt">
+    <input type="button" id="sendBtn" value="获取">
+</body>
+</html>
