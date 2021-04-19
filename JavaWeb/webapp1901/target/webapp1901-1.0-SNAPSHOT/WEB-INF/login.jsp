@@ -9,7 +9,6 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.2/examples/sign-in/">
     <link rel="stylesheet" href="<c:url value="/webjars/bootstrap/4.6.0/css/bootstrap.min.css" />">
     <link rel="stylesheet" href="<c:url value="/static/css/login.css" />">
-<%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/login.css">--%>
 </head>
 <style>
     .bd-placeholder-img {
@@ -23,16 +22,36 @@
         }
     }
 </style>
-<%--<c:url value="webjars/jquery/3.5.1/"></c:url>--%>
-<%--<script src=""></script>--%>
+<script type="text/javascript" src="<c:url value="/webjars/jquery/3.5.1/dist/jquery.min.js" />" />
+<script type="text/javascript" src="<c:url value="/webjars/bootstrap/4.6.0/js/bootstrap.min.js" />" />
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            const validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
 <body class="text-center">
-<form class="form-signin">
-    <img class="mb-4" src="https://img.jcxiaozhan.top/%E7%BD%91%E7%AB%99%E5%B0%8F%E5%9B%BE%E6%A0%87.png" alt="" width="72" height="72">
+<form class="form-signin needs-validation" novalidate>
+    <img class="mb-4" src="<c:url value="/static/images/logo.jpg" />" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">请登录</h1>
     <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="邮箱" required="" autofocus="">
+    <input type="email" id="inputEmail" class="form-control" placeholder="邮箱" name="email" required>
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="密码" required="">
+    <input type="password" id="inputPassword" class="form-control" placeholder="密码" name="pwd" required>
     <div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="remember-me"> 记住我
