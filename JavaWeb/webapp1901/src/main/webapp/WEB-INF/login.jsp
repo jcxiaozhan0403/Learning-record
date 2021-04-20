@@ -22,8 +22,8 @@
         }
     }
 </style>
-<script type="text/javascript" src="<c:url value="/webjars/jquery/3.5.1/dist/jquery.min.js" />" />
-<script type="text/javascript" src="<c:url value="/webjars/bootstrap/4.6.0/js/bootstrap.min.js" />" />
+<script type="text/javascript" src="<c:url value="/webjars/jquery/3.5.1/dist/jquery.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/webjars/bootstrap/4.6.0/js/bootstrap.min.js" />"></script>
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function() {
@@ -45,7 +45,7 @@
     })();
 </script>
 <body class="text-center">
-<form class="form-signin needs-validation" novalidate>
+<form class="form-signin needs-validation" method="post" action="http://localhost:8080/webapp1901/login" novalidate>
     <img class="mb-4" src="<c:url value="/static/images/logo.jpg" />" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">请登录</h1>
     <label for="inputEmail" class="sr-only">Email address</label>
