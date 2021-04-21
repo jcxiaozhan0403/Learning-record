@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>实时通信测试</h1>
+    <input id="sendTxt" type="text">
+    <button id="sendBtn">发送</button>
+    收到：<input id="recvTxt" type="text" />
+    <div id="stat"></div>
+    <script type= "text/javascript">
+        var ws= new WebSocket("ws://127.0.0.1:8080");
+        ws.onopen=function(){
+            console.log('websocket open');
+            document.getElementById("stat").innerHTML = "已连接上";
+        }
+        ws.onclose=function(){
+            console.log('websocket close');
+            document.getElementById("stat").innerHTML = "连接断开";
+        }
+        ws.onmessage= function(event){
+            console. log(event.data);
+            document.getElementById("recvTxt").value = event.data; 
+        }
+        document.getElementById("sendBtn").onclick=function(){
+            var txt = document.getElementById("sendTxt").value;
+            ws.send(txt)
+        }
+    </script>
+</body>
+</html>

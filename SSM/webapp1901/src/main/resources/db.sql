@@ -35,6 +35,18 @@ create table signIn (
 #约束一天只能签一次
 create unique index signIn_index on signIn(studentId, signDate);
 
+#管理员账号表
+create table manager (
+    id int not null auto_increment primary key,     #编号
+    loginId varchar(20) not null,                   #登录名
+    realName varchar(10),                           #真实姓名
+    pwd varchar(200),                               #密码
+    loginCount int,                                 #登陆次数
+    lastLoginDt datetime                            #最后登录时间
+);
+
+create  unique index manager_index1 on manager(loginId);
+
 #填充学生表
 insert into student(name,mobile,studentId,gender,birthday) values('王坤','15390466220','19404025','1','2001-01-01');
 insert into student(name,mobile,studentId,gender,birthday) values('李家志','17745096571','19301147','1','2001-01-01');

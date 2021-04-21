@@ -8,10 +8,12 @@
 
         <javaModelGenerator targetPackage="cn.com.scitc.webapp1901.model" targetProject="src/main/java"/>
 
-        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+        <sqlMapGenerator targetPackage="cn.com.scitc.webapp1901.mapper" targetProject="src/main/resources"/>
 
         <javaClientGenerator type="XMLMAPPER" targetPackage="cn.com.scitc.webapp1901.mapper" targetProject="src/main/java"/>
 
         <table tableName="student" />
+        <table tableName="signIn" />
+        <table tableName="manager" />
     </context>
 </generatorConfiguration>

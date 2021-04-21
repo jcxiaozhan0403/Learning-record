@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登录页</title>
+    <title>今日校园-登录页</title>
+    <link rel="icon" href="<c:url value="/static/images/logo.jpg" />" type="image/x-icon">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.2/examples/sign-in/">
     <link rel="stylesheet" href="<c:url value="/webjars/bootstrap/4.6.0/css/bootstrap.min.css" />">
     <link rel="stylesheet" href="<c:url value="/static/css/login.css" />">
@@ -24,6 +25,15 @@
 </style>
 <script type="text/javascript" src="<c:url value="/webjars/jquery/3.5.1/dist/jquery.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/webjars/bootstrap/4.6.0/js/bootstrap.min.js" />"></script>
+<script>
+    window.onload = init;
+    function init() {
+        const flag ='<%=request.getParameter("error")%>';
+        if(flag == 'yes'){
+            alert("用户名或密码错误，请重新登录！");
+        }
+    }
+</script>
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function() {
@@ -44,21 +54,36 @@
         }, false);
     })();
 </script>
-<body class="text-center">
+<body>
 <form class="form-signin needs-validation" method="post" action="http://localhost:8080/webapp1901/login" novalidate>
-    <img class="mb-4" src="<c:url value="/static/images/logo.jpg" />" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">请登录</h1>
-    <label for="inputstudentId" class="sr-only">Email address</label>
-    <input type="text" id="inputstudentId" class="form-control" placeholder="学号" name="studentId" required>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="密码" name="pwd" required>
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me"> 记住我
-        </label>
+    <div class="text-center mb-4">
+        <img class="mb-4" src="<c:url value="/static/images/logo.jpg" />" style="border-radius: 15px" width="72" height="72">
+        <p>健康填报</p>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
-    <p class="mt-5 mb-3 text-muted">© 2019-2021</p>
+
+    <div class="form-label-group">
+        <input type="text" id="loginId" class="form-control" placeholder="用户名" pattern="(\w|\W|\d){6,10}" name="loginId" required autofocus>
+        <label for="loginId">用户名</label>
+        <div class="invalid-feedback">
+            用户名由6-10个字符组成，不能加汉字，符号
+        </div>
+        <div class="valid-feedback">
+            用户名验证通过
+        </div>
+    </div>
+
+    <div class="form-label-group">
+        <input type="password" id="password" class="form-control" placeholder="密码" pattern=".{6,20}" name="password" required>
+        <label for="password">密码</label>
+        <div class="invalid-feedback">
+            用户名或密码错误
+        </div>
+        <div class="valid-feedback">
+            密码验证通过
+        </div>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" style="background-color: #00dfdb; border-color: #00dfdb" type="submit">登录</button>
+    <p class="mt-5 mb-3 text-muted text-center">© 2021-2021</p>
 </form>
 </body>
 </html>

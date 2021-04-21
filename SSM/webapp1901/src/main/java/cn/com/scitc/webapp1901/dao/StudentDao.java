@@ -37,11 +37,4 @@ public class StudentDao implements StudentMapper {
         return 0;
     }
 
-    @Override
-    public Student findByStudentId(String id) {
-        try(SqlSession session = MybatisUtil.getSqlSession()){
-            StudentMapper mapper = session.getMapper(StudentMapper.class);
-            return mapper.findByStudentId(id);
-        }
-    }
 }
