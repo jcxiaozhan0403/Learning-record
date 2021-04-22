@@ -21,7 +21,41 @@
 </dependency>
 ```
 
-2. 创建实体类
+2. 创建工具类
+```java
+package cn.com.scitc.test.utils;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+public class MybatisUtil {
+    private static SqlSessionFactory sqlSessionFactory;
+
+    static {
+        InputStream inputStream = null;
+        try {
+            //用输入流来读取xml文件
+            inputStream = Resources.getResourceAsStream("mybatis-config.xml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //创建SqlSession工厂
+        sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+    }
+
+    public static SqlSession getSqlSession(){
+        //创建并返回SqlSession
+        return sqlSessionFactory.openSession();
+    }
+}
+```
+
+3. 创建实体类
 ```java
 package cn.com.scitc.model;
 
@@ -56,7 +90,7 @@ public class User {
 }
 ```
 
-3. 配置文件
+4. 创建配置文件
 - mybatis-config.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -79,6 +113,8 @@ public class User {
     <mappers>
         <!-- Mapper路径 -->
         <mapper resource="UserMapper.xml"/>
+        <!-- resource下的Mapper资源存在多层目录结构时的写法 -->
+        <mapper resource="cn/com/scitc/webapp1901/mapper/UserMapper.xml"/>
     </mappers>
 </configuration>
 ```
@@ -96,51 +132,65 @@ public class User {
 </mapper>
 ```
 
-4. 测试类
+5. 创建Mapper接口文件
 ```java
-package cn.com.scitc.test;
+package cn.com.scitc.test.mapper;
 
-import cn.com.scitc.model.User;
-import org.apache.ibatis.io.Resources;
+import cn.com.scitc.test.pojo.User;
+
+public interface UserMapper {
+    public User findById(Integer id);
+}
+```
+
+6. 创建Dao文件
+```java
+package cn.com.scitc.test.dao;
+
+import cn.com.scitc.test.mapper.UserMapper;
+import cn.com.scitc.test.pojo.User;
+import cn.com.scitc.test.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
+public class UserDao implements UserMapper{
 
-public class MyTest {
-
-    //注解添加测试方法
-    @Test
-    public void test() {
-        InputStream inputStream = null;
-        try {
-            //用输入流来读取xml文件
-            inputStream = Resources.getResourceAsStream("mybatis-config.xml");
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
-        //创建会话工厂
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-
-        //创建会话
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            //调用sql语句，结果保存在实体类中
-            User user = (User) session.selectOne("cn.com.scitc.mapper.UserMapper.selectUser",1);
-            //获取实体类中的信息
-            System.out.println("姓名：" + user.getName());
+    public User findById(Integer id) {
+        //获取SqlSession
+        try(SqlSession session = MybatisUtils.getSqlSession()){
+            //获取Mapper，执行其中方法
+            UserMapper mapper = session.getMapper(UserMapper.class);
+            return mapper.findById(id);
         }
     }
 }
 ```
 
-5. 目录结构
-<img src="D:/Study/Learning-record/SSM/mybatis简单使用目录结构.jpg" style="height:300px;width:300px;text-align:center;">
+7. 编写测试类
+```java
+package cn.com.scitc.test;
+
+import cn.com.scitc.test.dao.UserDao;
+import cn.com.scitc.test.pojo.User;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+class UserDaoTest {
+
+    @Test
+    void findById() {
+        UserDao userDao = new UserDao();
+        User user = userDao.findById(1);
+        System.out.println(user.getName());
+        Assertions.assertEquals("李爽",user.getName());
+    }
+}
+```
+
+8. 目录结构
+<img src="D:/Study/Learning-record/SSM/mybatis简单使用目录结构.jpg" style="height:400px;width:300px;text-align:center;">
 
 ## mybatis-generator的简单使用
+简介：用于自动生成XML,Mapper,Dao的Mybatis插件
 1. pom文件编写
 ```xml
 <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
@@ -197,13 +247,13 @@ public class MyTest {
     <context id="simple" targetRuntime="MyBatis3Simple">
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/webapp1901" userId="root" password="lishuang001219"/>
-
+        <!--实体存放位置-->
         <javaModelGenerator targetPackage="cn.com.scitc.webapp1901.model" targetProject="src/main/java"/>
-
+        <!--XML存放位置-->
         <sqlMapGenerator targetPackage="cn.com.scitc.webapp1901.mapper" targetProject="src/main/resources"/>
-
+        <!--Mapper存放位置-->
         <javaClientGenerator type="XMLMAPPER" targetPackage="cn.com.scitc.webapp1901.mapper" targetProject="src/main/java"/>
-
+        <!--需要生成的表-->
         <table tableName="student" />
     </context>
 </generatorConfiguration>
