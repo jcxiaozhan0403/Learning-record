@@ -34,10 +34,10 @@ public class ManagerDao implements ManagerMapper {
     }
 
     @Override
-    public Manager findById(String loginId) {
+    public Manager findByLoginId(String loginId) {
         try(SqlSession session = MybatisUtil.getSqlSession()){
             ManagerMapper mapper = session.getMapper(ManagerMapper.class);
-            return mapper.findById(loginId);
+            return mapper.findByLoginId(loginId);
         }
     }
 }

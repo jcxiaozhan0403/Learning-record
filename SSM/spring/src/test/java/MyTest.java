@@ -1,7 +1,4 @@
-import cn.com.scitc.spring.pojo.Hello;
-import cn.com.scitc.spring.pojo.Student;
 import cn.com.scitc.spring.pojo.User;
-import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

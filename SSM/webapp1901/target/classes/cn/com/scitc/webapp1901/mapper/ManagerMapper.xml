@@ -69,7 +69,7 @@
     select id, loginId, realName, pwd, loginCount, lastLoginDt
     from manager
   </select>
-  <select id="findById" resultType="cn.com.scitc.webapp1901.model.Manager" parameterType="java.lang.String">
+  <select id="findByLoginId" resultType="cn.com.scitc.webapp1901.model.Manager" parameterType="java.lang.String">
     select * from manager where loginId = #{loginId}
   </select>
 </mapper>

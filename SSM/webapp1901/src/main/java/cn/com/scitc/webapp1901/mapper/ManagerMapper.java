@@ -44,5 +44,5 @@ public interface ManagerMapper {
      */
     int updateByPrimaryKey(Manager record);
 
-    Manager findById(String loginId);
+    Manager findByLoginId(String loginId);
 }

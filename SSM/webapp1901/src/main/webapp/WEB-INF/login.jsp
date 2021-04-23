@@ -55,14 +55,14 @@
     })();
 </script>
 <body>
-<form class="form-signin needs-validation" method="post" action="http://localhost:8080/webapp1901/login" novalidate>
+<form class="form-signin needs-validation" method="post" action="<c:url value="/manager/checkLogin" />" novalidate>
     <div class="text-center mb-4">
         <img class="mb-4" src="<c:url value="/static/images/logo.jpg" />" style="border-radius: 15px" width="72" height="72">
         <p>健康填报</p>
     </div>
 
     <div class="form-label-group">
-        <input type="text" id="loginId" class="form-control" placeholder="用户名" pattern="(\w|\W|\d){6,10}" name="loginId" required autofocus>
+        <input type="text" id="loginId" name="loginId" class="form-control" placeholder="用户名" pattern="(\w|\W|\d){6,10}" required autofocus>
         <label for="loginId">用户名</label>
         <div class="invalid-feedback">
             用户名由6-10个字符组成，不能加汉字，符号
@@ -73,7 +73,7 @@
     </div>
 
     <div class="form-label-group">
-        <input type="password" id="password" class="form-control" placeholder="密码" pattern=".{6,20}" name="password" required>
+        <input type="password" id="password" name="password" class="form-control" placeholder="密码" pattern=".{6,20}" required>
         <label for="password">密码</label>
         <div class="invalid-feedback">
             用户名或密码错误
