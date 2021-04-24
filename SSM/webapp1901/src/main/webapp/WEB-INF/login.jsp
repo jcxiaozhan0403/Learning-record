@@ -75,7 +75,7 @@
     <div class="form-label-group">
         <input type="password" id="password" name="password" class="form-control" placeholder="密码" pattern=".{6,20}" required>
         <label for="password">密码</label>
-        <div class="invalid-feedback">
+        <div class="invalid-feedback" id="demo">
             用户名或密码错误
         </div>
         <div class="valid-feedback">

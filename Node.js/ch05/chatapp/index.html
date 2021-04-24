@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" const="text/html;charset=UTF-8" />  
+    <link rel="stylesheet" type="text/css" href="style.css" >
+    <script src="/socket.io/socket.io.js"></script>
+    <title>简易聊天室</title>
+  </head>
+  <body>
+    <header>
+      <h1>聊天室</h1>
+    </header>
+    <section>
+      <div id="change_username">
+				<input id="username" type="text" />
+				<button id="send_username" type="button">设置用户名</button>
+      </div>
+    </section>
+    <section id="chatroom">   
+    </section>
+	  <section id="input_zone"> 
+      <input id="message" class="vertical-align" type="text" />
+      <button id="send_message" class="vertical-align" type="button">发送</button>
+    </section>
+    <script src="./jquery-2.0.3.min.js"></script>
+    <script>
+    $(function(){
+   	//建立连接
+		var socket = io.connect('http://localhost:8000')
+		//按钮和输入区
+		var message = $("#message");
+		var username = $("#username");
+		var send_message = $("#send_message");
+		var send_username = $("#send_username");
+		var chatroom = $("#chatroom");
+		//发出new_message事件，发送消息
+		send_message.click(function(){
+ 			socket.emit('new_message', {message : message.val()})
+		});
+		//侦听new_message事件
+		socket.on("new_message", (data) => { 		
+ 			message.val('');
+ 			chatroom.append("<p class='message'>" + data.username + ": " + data.message + "</p>");	
+		});
+		//发出change_username事件，发送用户名信息
+		send_username.click(function(){
+ 			socket.emit('change_username', {username : username.val()})
+		});
+	});    
+  </script>
+  </body>
+</html>
