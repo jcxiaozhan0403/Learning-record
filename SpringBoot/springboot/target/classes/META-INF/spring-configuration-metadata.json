@@ -1,0 +1,27 @@
+{
+  "groups": [
+    {
+      "name": "student",
+      "type": "cn.com.scitc.springboot.pojo.Student",
+      "sourceType": "cn.com.scitc.springboot.pojo.Student"
+    }
+  ],
+  "properties": [
+    {
+      "name": "student.age",
+      "type": "java.lang.String",
+      "sourceType": "cn.com.scitc.springboot.pojo.Student"
+    },
+    {
+      "name": "student.like",
+      "type": "java.lang.String",
+      "sourceType": "cn.com.scitc.springboot.pojo.Student"
+    },
+    {
+      "name": "student.name",
+      "type": "java.lang.String",
+      "sourceType": "cn.com.scitc.springboot.pojo.Student"
+    }
+  ],
+  "hints": []
+}
