@@ -21,9 +21,9 @@ public class CheckLoginServlet extends HttpServlet {
         final boolean result = MyMd5.validateManager(loginId, password);
 
         if (result) {
-            req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req,resp);
+            resp.sendRedirect("home");
         }else {
-            req.getRequestDispatcher("/WEB-INF/login.jsp?error=yes").forward(req,resp);
+            resp.sendRedirect("login?error=yes");
         }
     }
 }

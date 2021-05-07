@@ -53,18 +53,6 @@
             });
         }, false);
     })();
-
-    window.onload = function() {
-        let demo = document.getElementById("demo");
-        let password = document.getElementById("password");
-        var patt = /.{6,20}/;
-
-        if (password.value == ""){
-            demo.innerHTML = "密码不能为空";
-        }else{
-            demo.innerHTML = "dfgdgf";
-        }
-    }
 </script>
 <body>
 <form class="form-signin needs-validation" method="post" action="<c:url value="/manager/checkLogin" />" novalidate>
