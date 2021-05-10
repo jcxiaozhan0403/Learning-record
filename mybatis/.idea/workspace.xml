@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b89ab61-2595-4753-9fdd-275335fa9414" name="Default Changelist" comment="" />
+    <list default="true" id="7b89ab61-2595-4753-9fdd-275335fa9414" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../项目/Swing学生管理系统/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../项目/Swing学生管理系统/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,6 +38,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
@@ -78,6 +82,7 @@
       <workItem from="1619058250923" duration="382000" />
       <workItem from="1619058659217" duration="32000" />
       <workItem from="1619059571973" duration="5000" />
+      <workItem from="1620547194161" duration="619000" />
     </task>
     <servers />
   </component>

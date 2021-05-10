@@ -29,8 +29,13 @@ public class ManagerDao implements ManagerMapper {
     }
 
     @Override
-    public int updateByPrimaryKey(Manager record) {
-        return 0;
+    public int updateByPrimaryKey(Manager manager) {
+        try(SqlSession session = MybatisUtil.getSqlSession()){
+            ManagerMapper mapper = session.getMapper(ManagerMapper.class);
+            int result = mapper.updateByPrimaryKey(manager);
+            session.commit();
+            return result;
+        }
     }
 
     @Override

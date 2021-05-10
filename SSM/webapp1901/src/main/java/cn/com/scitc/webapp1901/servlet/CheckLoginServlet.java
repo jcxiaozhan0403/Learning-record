@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Calendar;
 
 @WebServlet(urlPatterns = "/manager/checkLogin")
 public class CheckLoginServlet extends HttpServlet {
@@ -21,6 +23,25 @@ public class CheckLoginServlet extends HttpServlet {
         final boolean result = MyMd5.validateManager(loginId, password);
 
         if (result) {
+            HttpSession session = req.getSession();
+            ManagerDao dao = new ManagerDao();
+            Manager manager = dao.findByLoginId(loginId);
+
+            // 更新登陆次数
+            if (manager.getLogincount() == null){
+                manager.setLogincount(1);
+            }else {
+                manager.setLogincount(manager.getLogincount() + 1);
+            }
+
+            // 更新最后一次登陆时间
+            Calendar calendar = Calendar.getInstance();
+            manager.setLastlogindt(calendar.getTime());
+
+            // 保存session
+            session.setAttribute("currentUser",manager);
+
+            // 跳转到主页
             resp.sendRedirect("home");
         }else {
             resp.sendRedirect("login?error=yes");
