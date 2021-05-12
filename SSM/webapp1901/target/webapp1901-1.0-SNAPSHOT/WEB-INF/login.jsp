@@ -26,15 +26,6 @@
 <script type="text/javascript" src="<c:url value="/webjars/jquery/3.5.1/dist/jquery.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/webjars/bootstrap/4.6.0/js/bootstrap.min.js" />"></script>
 <script>
-    window.onload = init;
-    function init() {
-        const flag ='<%=request.getParameter("error")%>';
-        if(flag == 'yes'){
-            alert("用户名或密码错误，请重新登录！");
-        }
-    }
-</script>
-<script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function() {
         'use strict';
@@ -82,6 +73,18 @@
             密码验证通过
         </div>
     </div>
+    <c:if test="${sessionScope.loginMsg != null}">
+        <div class="alertMsg" style="position: fixed;top: 70px;width: 373px;">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>注意</strong>
+                <c:out value="${sessionScope.loginMsg}" />
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </c:if>
+    <c:remove var="loginMsg" scope="session" />
     <button class="btn btn-lg btn-primary btn-block" style="background-color: #00dfdb; border-color: #00dfdb" type="submit">登录</button>
     <p class="mt-5 mb-3 text-muted text-center">© 2021-2021</p>
 </form>

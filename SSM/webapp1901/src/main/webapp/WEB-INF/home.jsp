@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>今日校园-首页</title>
+    <title>今日校园</title>
     <link rel="icon" href="<c:url value="/static/images/logo.jpg" />" type="image/x-icon">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.2/examples/sign-in/">
     <link rel="stylesheet" href="<c:url value="/webjars/bootstrap/4.6.0/css/bootstrap.min.css" />">
@@ -20,7 +20,10 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">
+        <img src="<c:url value="/static/images/logo.jpg" />" style="width: 38px;height: 38px;border-radius: 10px">
+        <span style="font-size: 18px">今日校园</span>
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -44,23 +47,14 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
-            <li class="nav-item" id="userName">
+            <li class="nav-item active" id="userName">
                 <a class="nav-link">你好，<c:out value="${ sessionScope.currentUser.realname}" />！</a>
+            </li>
+            <li class="nav-item" id="logout">
+                <a class="nav-link" href="<c:url value="/manager/logout" />">注销</a>
             </li>
         </ul>
     </div>
 </nav>
-
-<main role="main" class="container">
-
-    <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-    </div>
-
-</main><!-- /.container -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
-
 </body>
 </html>

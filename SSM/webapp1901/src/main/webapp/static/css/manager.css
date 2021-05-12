@@ -11,13 +11,19 @@
 
 body {
     padding-top: 5rem;
+    background-image: url("https://admin.campushoy.com/static/img/bg.459cf8df.png");
 }
 .starter-template {
     padding: 3rem 1.5rem;
     text-align: center;
 }
 
-#userName {
-    position: fixed;
-    right: 25px;
+li#userName {
+    position: absolute;
+    right: 55px;
+}
+
+li#logout {
+    position: absolute;
+    right: 20px;
 }

@@ -46,7 +46,8 @@ public class CheckLoginServlet extends HttpServlet {
             // 跳转到主页
             resp.sendRedirect("home");
         }else {
-            resp.sendRedirect("login?error=yes");
+            req.getSession().setAttribute("loginMsg","用户名或者密码错误");
+            resp.sendRedirect("login");
         }
     }
 }
