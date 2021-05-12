@@ -116,7 +116,7 @@ const httpServer = http.createServer((req,res) => {
 })
 
 // 启动HTTP服务器
-httpServer.listen(8080,() => {
+httpServer.listen(8080,'127.0.0.1',() => {
     console.log("服务器在8080端口上监听!");
 })
 ```
@@ -402,4 +402,14 @@ var writerStream = fs.createWriteStream('output.txt');
 // 管道读写操作
 // 读取 input.txt 文件内容，并将内容写入到 output.txt 文件中
 readerStream.pipe(writerStream);
+```
+
+## js文件向外暴露方法、对象、属性
+```javascript
+const config = {
+    port: '8989'
+}
+
+//  暴露config对象
+exports.config = config;
 ```
