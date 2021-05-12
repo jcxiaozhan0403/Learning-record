@@ -16,3 +16,8 @@ body {
     padding: 3rem 1.5rem;
     text-align: center;
 }
+
+#userName {
+    position: fixed;
+    right: 25px;
+}

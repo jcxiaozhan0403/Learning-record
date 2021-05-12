@@ -38,6 +38,8 @@ public class CheckLoginServlet extends HttpServlet {
             Calendar calendar = Calendar.getInstance();
             manager.setLastlogindt(calendar.getTime());
 
+            dao.updateByPrimaryKey(manager);
+
             // 保存session
             session.setAttribute("currentUser",manager);
 
