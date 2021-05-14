@@ -17,6 +17,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.2/examples/sign-in/">
     <link rel="stylesheet" href="<c:url value="/webjars/bootstrap/4.6.0/css/bootstrap.min.css" />">
     <link rel="stylesheet" href="<c:url value="/static/css/manager.css" />">
+    <link rel="stylesheet" href="<c:url value="/webjars/font-awesome/4.7.0/css/font-awesome.min.css" />">
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
