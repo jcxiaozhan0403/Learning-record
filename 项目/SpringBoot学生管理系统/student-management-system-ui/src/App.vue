@@ -1,51 +1,18 @@
 <template>
-  <el-table
-    :data="tableData"
-    stripe
-    style="width: 100%">
-    <el-table-column
-      prop="date"
-      label="日期"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="name"
-      label="姓名"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="address"
-      label="地址">
-    </el-table-column>
-  </el-table>
+    <div id="app">
+        <router-view/>
+    </div>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
-      }
-    }
-  }
+export default {
+    name: 'App'
+}
 </script>
 
 <style>
-
+body{
+    background: url("https://img.jcxiaozhan.top/%E5%AF%BC%E8%88%AA%E9%A1%B5%E8%83%8C%E6%99%AF.jpg");
+    background-size:100%;
+}
 </style>
