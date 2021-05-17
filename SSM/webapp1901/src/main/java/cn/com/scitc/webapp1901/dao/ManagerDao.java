@@ -24,11 +24,6 @@ public class ManagerDao implements ManagerMapper {
     }
 
     @Override
-    public List<Manager> selectAll() {
-        return null;
-    }
-
-    @Override
     public int updateByPrimaryKey(Manager manager) {
         try(SqlSession session = MybatisUtil.getSqlSession()){
             ManagerMapper mapper = session.getMapper(ManagerMapper.class);
@@ -43,6 +38,14 @@ public class ManagerDao implements ManagerMapper {
         try(SqlSession session = MybatisUtil.getSqlSession()){
             ManagerMapper mapper = session.getMapper(ManagerMapper.class);
             return mapper.findByLoginId(loginId);
+        }
+    }
+
+    @Override
+    public List<Manager> selectAll() {
+        try(SqlSession session = MybatisUtil.getSqlSession()){
+            ManagerMapper mapper = session.getMapper(ManagerMapper.class);
+            return mapper.selectAll();
         }
     }
 }

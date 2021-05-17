@@ -27,3 +27,10 @@ li#logout {
     position: absolute;
     right: 20px;
 }
+
+table#userList {
+    width: 65%;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+}
