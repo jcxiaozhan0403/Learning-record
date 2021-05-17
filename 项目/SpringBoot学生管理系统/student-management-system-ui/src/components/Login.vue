@@ -33,13 +33,14 @@
 </template>
 
 <script>
+require("../../static/js/md5.js");
 export default {
     data(){
         return {
             logining: false,
             ruleForm2: {
                 username: 'JohnCena',
-                password: '123456',
+                password: 'd5477920f46f1b30f259cff2b1e25c04',
             },
             rules2: {
                 username: [{required: true, message: '用户名不能为空', trigger: 'blur'}],
@@ -55,12 +56,19 @@ export default {
                 if(valid){
                     this.logining = true;
                     let _this = this;
-                    this.$http.post("http://localhost:8989/" + this.ruleForm2.username).then((res,err)=>{
+                    let password = hex_md5(_this.ruleForm2.password);
+                    this.$http.post("http://localhost:8989/" + _this.ruleForm2.username).then((res,err)=>{
                         _this.logining = false;
-                        console.log(res.data);
+                        console.log(password);
+                        if (res.data.pwd == password) {
+                            alert("登陆成功");
+                        }else {
+                            alert("密码错误");
+                        }
                     }).catch(function(error){
                         _this.logining = false;
-                        console.log("无此用户");
+                        console.log(error);
+                        alert("账号不存在");
                     });
                 }else{
                     console.log('error submit!');
@@ -68,7 +76,7 @@ export default {
                 }
             })
         }
-    }
+    },
 };
 </script>
 
