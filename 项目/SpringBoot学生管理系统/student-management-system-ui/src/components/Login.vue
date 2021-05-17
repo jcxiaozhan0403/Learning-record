@@ -38,7 +38,7 @@ export default {
         return {
             logining: false,
             ruleForm2: {
-                username: 'admin',
+                username: 'JohnCena',
                 password: '123456',
             },
             rules2: {
@@ -50,20 +50,18 @@ export default {
     },
     methods: {
         handleSubmit(event){
+            event.preventDefault();
             this.$refs.ruleForm2.validate((valid) => {
                 if(valid){
                     this.logining = true;
-                    if(this.ruleForm2.username === 'admin' && 
-                       this.ruleForm2.password === '123456'){
-                           this.logining = false;
-                           sessionStorage.setItem('user', this.ruleForm2.username);
-                           this.$router.push({path: '/'});
-                    }else{
-                        this.logining = false;
-                        this.$alert('用户名或者密码错误', '提示', {
-                            confirmButtonText: '确定'
-                        })
-                    }
+                    let _this = this;
+                    this.$http.post("http://localhost:8989/" + this.ruleForm2.username).then((res,err)=>{
+                        _this.logining = false;
+                        console.log(res.data);
+                    }).catch(function(error){
+                        _this.logining = false;
+                        console.log("无此用户");
+                    });
                 }else{
                     console.log('error submit!');
                     return false;
