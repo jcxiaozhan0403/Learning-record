@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { md5 } from '../../static/js/md5.js';
 export default {
   name: 'Admin',
   data(){
@@ -27,16 +28,8 @@ export default {
   },
   methods:{
     judge(){
-        var url = "http://localhost:8989/api/validation?" + "name=" + this.username + "&pwd=" + this.password;
-        this.$http.post(url).then((res)=>{
-            var str = JSON.stringify(res.data);
-            if(str == "true"){
-                window.sessionStorage.setItem("token","001219");
-                this.$router.replace({ path:'/hello'}); //replace可以防止退回到登录页
-            }else{
-                alert("账号或密码错误!");
-            }
-        });
+        let pwd = md5(this.password);
+       console.log(pwd);
     },
 
     reset(){

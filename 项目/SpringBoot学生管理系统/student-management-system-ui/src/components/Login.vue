@@ -33,14 +33,15 @@
 </template>
 
 <script>
-require("../../static/js/md5.js");
+// 引入md5加密插件
+import md5 from 'js-md5';
 export default {
     data(){
         return {
             logining: false,
             ruleForm2: {
                 username: 'JohnCena',
-                password: 'd5477920f46f1b30f259cff2b1e25c04',
+                password: '123456',
             },
             rules2: {
                 username: [{required: true, message: '用户名不能为空', trigger: 'blur'}],
@@ -54,18 +55,27 @@ export default {
             event.preventDefault();
             this.$refs.ruleForm2.validate((valid) => {
                 if(valid){
+                    // 修改登录按钮状态
                     this.logining = true;
+
+                    // 保存当前this值
                     let _this = this;
-                    let password = hex_md5(_this.ruleForm2.password);
+
+                    // 将提交到后台的密码进行md5混淆加密处理
+                    let pwd = md5("!@#" + _this.ruleForm2.password + "$%^");
+
                     this.$http.post("http://localhost:8989/" + _this.ruleForm2.username).then((res,err)=>{
                         _this.logining = false;
-                        console.log(password);
-                        if (res.data.pwd == password) {
-                            alert("登陆成功");
+                        if (res.data.pwd == pwd) {
+                            console.log("登陆成功");
+                            _this.$router.push({
+                                path: `/home`,
+                            });
                         }else {
                             alert("密码错误");
                         }
                     }).catch(function(error){
+                        // 异常处理
                         _this.logining = false;
                         console.log(error);
                         alert("账号不存在");
