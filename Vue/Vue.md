@@ -212,7 +212,7 @@ import Page2Child from "../components/Page2Child"
 
 <!-- a标签 -->
 <a href="#/page2/child">子页面</a>
-``` 
+```
 
 ## Vue Cli中引入ElementUI
 1. 下载
@@ -235,3 +235,4 @@ Vue.use(ElementUI)
 npm run build
 ```
 2. 打包会的到一个dist文件夹，将dist文件内的东西(一个文件夹+一个index.html文件)赋值到Springboot项目下的resources/static中，完成整合
+
