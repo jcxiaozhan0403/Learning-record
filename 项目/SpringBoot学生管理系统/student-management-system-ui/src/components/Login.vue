@@ -21,10 +21,6 @@
                         placeholder="密码"
                     ></el-input>
                 </el-form-item>
-            <el-checkbox 
-                v-model="checked"
-                class="rememberme"
-            >记住密码</el-checkbox>
             <el-form-item style="width:100%;">
                 <el-button type="primary" style="width:100%;" @click="handleSubmit" :loading="logining">登录</el-button>
             </el-form-item>
@@ -47,7 +43,6 @@ export default {
                 username: [{required: true, message: '用户名不能为空', trigger: 'blur'}],
                 password: [{required: true, message: '密码不能为空', trigger: 'blur'}]
             },
-            checked: false
         }
     },
     methods: {
