@@ -11,6 +11,8 @@
 <head>
     <title>Title</title>
 </head>
+<script src="<c:url value="/webjars/jquery/3.5.1/dist/jquery.min.js" />"></script>
+<script src="<c:url value="/webjars/bootstrap/4.6.0/js/bootstrap.bundle.min.js" />"></script>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">
@@ -26,19 +28,15 @@
             <li class="nav-item active">
                 <a class="nav-link" href="<c:url value="/manager/home" />">首页 <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<c:url value="/manager/userlist" />">用户管理</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">用户管理</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="<c:url value="/manager/user/list" />">用户列表</a>
+                    <a class="dropdown-item" href="<c:url value="/manager/user/new" />">新增用户</a>
+                </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#">学生管理</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">报表</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
             </li>
             <li class="nav-item active" id="userName">
                 <a class="nav-link">你好，<c:out value="${ sessionScope.currentUser.realname}" />！</a>

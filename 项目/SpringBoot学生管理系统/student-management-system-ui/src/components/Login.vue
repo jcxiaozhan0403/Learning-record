@@ -91,8 +91,13 @@ h3.title {
 }
 
 .login-container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
     width: 100%;
     height: 100%;
+    background: url("https://img.jcxiaozhan.top/%E5%AF%BC%E8%88%AA%E9%A1%B5%E8%83%8C%E6%99%AF.jpg");
+    background-size: 100%;
 }
 .login-page {
     -webkit-border-radius: 5px;

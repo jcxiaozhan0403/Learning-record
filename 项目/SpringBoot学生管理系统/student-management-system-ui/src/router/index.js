@@ -9,8 +9,9 @@ Vue.prototype.$http=axios
 
 export default new Router({
   routes: [
-    {path: '/',component: Login},
+    {path: '/',redirect: '/login'},
     {path: '/login',component: Login},
     {path: '/home',component: Home}
-  ]
+  ],
+  mode: 'history'
 })

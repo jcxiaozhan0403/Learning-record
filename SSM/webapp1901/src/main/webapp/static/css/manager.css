@@ -34,3 +34,9 @@ table#userList {
     margin: 0 auto;
     text-align: center;
 }
+
+form#userNew {
+    width: 30%;
+    color: white;
+    margin: 0 auto;
+}

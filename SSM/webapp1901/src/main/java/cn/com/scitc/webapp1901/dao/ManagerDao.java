@@ -14,8 +14,13 @@ public class ManagerDao implements ManagerMapper {
     }
 
     @Override
-    public int insert(Manager record) {
-        return 0;
+    public int insert(Manager manager) {
+        try(SqlSession session = MybatisUtil.getSqlSession()){
+            ManagerMapper mapper = session.getMapper(ManagerMapper.class);
+            Integer result = mapper.insert(manager);
+            session.commit();
+            return result;
+        }
     }
 
     @Override
@@ -48,4 +53,6 @@ public class ManagerDao implements ManagerMapper {
             return mapper.selectAll();
         }
     }
+
+
 }
