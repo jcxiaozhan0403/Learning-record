@@ -783,6 +783,110 @@ try {
 1. 数组长度固定，集合长度不固定
 2. 数组可以存储基本类型和引用类型，集合只能存储引用类型
 
+Collection 是最基本的集合接口，一个 Collection 代表一组 Object，即 Collection 的元素, Java不提供直接继承自Collection的类，只提供继承于的子接口(如List和set)
+
+**Set和List的区别**
+1. Set 接口实例存储的是无序的，不重复的数据。List 接口实例存储的是有序的，可以重复的元素
+2. Set检索效率低下，删除和插入效率高，插入和删除不会引起元素位置改变 <实现类有HashSet,TreeSet>
+3. List和数组类似，可以动态增长，根据实际存储的数据的长度自动增长List的长度。查找元素效率高，插入删除效率低，因为会引起其他元素位置改变 <实现类有ArrayList,LinkedList,Vector>
+
+List集合的遍历
+```java
+import java.util.*;
+ 
+public class Test{
+ public static void main(String[] args) {
+     List<String> list=new ArrayList<String>();
+     list.add("Hello");
+     list.add("World");
+     list.add("HAHAHAHA");
+     //第一种遍历方法使用 For-Each 遍历 List
+     for (String str : list) {            //也可以改写 for(int i=0;i<list.size();i++) 这种形式
+        System.out.println(str);
+     }
+ 
+     //第二种遍历，把链表变为数组相关的内容进行遍历
+     String[] strArray=new String[list.size()];
+     list.toArray(strArray);
+     for(int i=0;i<strArray.length;i++) //这里也可以改写为  for(String str:strArray) 这种形式
+     {
+        System.out.println(strArray[i]);
+     }
+     
+    //第三种遍历 使用迭代器进行相关遍历
+     
+     Iterator<String> ite=list.iterator();
+     while(ite.hasNext())//判断下一个元素之后有值
+     {
+         System.out.println(ite.next());
+     }
+ }
+}
+```
+
+Map的遍历
+```java
+import java.util.*;
+ 
+public class Test{
+     public static void main(String[] args) {
+      Map<String, String> map = new HashMap<String, String>();
+      map.put("1", "value1");
+      map.put("2", "value2");
+      map.put("3", "value3");
+      
+      //第一种：普遍使用，二次取值
+      System.out.println("通过Map.keySet遍历key和value：");
+      for (String key : map.keySet()) {
+       System.out.println("key= "+ key + " and value= " + map.get(key));
+      }
+      
+      //第二种
+      System.out.println("通过Map.entrySet使用iterator遍历key和value：");
+      Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+      while (it.hasNext()) {
+       Map.Entry<String, String> entry = it.next();
+       System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
+      }
+      
+      //第三种：推荐，尤其是容量大时
+      System.out.println("通过Map.entrySet遍历key和value");
+      for (Map.Entry<String, String> entry : map.entrySet()) {
+       System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
+      }
+    
+      //第四种
+      System.out.println("通过Map.values()遍历所有的value，但不能遍历key");
+      for (String v : map.values()) {
+       System.out.println("value= " + v);
+      }
+     }
+}
+```
+
+集合常用方法
+```java
+转换
+集合 –> 数组 ： toArray()
+数组 –> 集合 ： Arrays.asList(T...t)
+
+删除
+al.remove(1); //删除当前集合对应的索引值上的元素。（bbb）
+al.remove(new Integer(1)); //删除当前集合中对应的元素(1)
+
+添加
+list.add("内容");
+```
+
+迭代器的使用
+```java
+//创建一个迭代器对象
+Iterat iterat = orcoll.iterator();
+
+iterat.hasNext() : 是否还有下一个元素
+
+iterat.next(): ①指针下移  ②获取元素
+```
 ## I/O
 文件和文件夹都是用File代表
 
