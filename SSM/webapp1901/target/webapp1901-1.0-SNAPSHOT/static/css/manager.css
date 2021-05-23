@@ -29,14 +29,13 @@ li#logout {
 }
 
 table#userList {
-    width: 65%;
     color: white;
     margin: 0 auto;
     text-align: center;
 }
 
 form#userNew {
-    width: 30%;
+    width: 60%;
     color: white;
     margin: 0 auto;
 }

@@ -13,6 +13,7 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 清除Session
         req.getSession().removeAttribute("currentUser");
+        req.getSession().removeAttribute("msg");
         // 跳转到登录页
         resp.sendRedirect("login");
     }

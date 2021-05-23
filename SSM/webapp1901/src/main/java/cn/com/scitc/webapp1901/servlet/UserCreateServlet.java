@@ -16,6 +16,7 @@ public class UserCreateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
+        Manager manager = new Manager();
         try {
             if (!validation(req)) {
                 resp.sendRedirect("new");
@@ -25,9 +26,7 @@ public class UserCreateServlet extends HttpServlet {
             String loginId = req.getParameter("loginId");
             String realName = req.getParameter("realName");
             String pwd1 = req.getParameter("pwd1");
-            String pwd2 = req.getParameter("pwd2");
 
-            Manager manager = new Manager();
             manager.setLoginid(loginId);
             manager.setRealname(realName);
             manager.setPwd(MyMd5.signPwd(pwd1));
@@ -36,8 +35,12 @@ public class UserCreateServlet extends HttpServlet {
             managerDao.insert(manager);
 
             System.out.println("新增成功");
+            req.getSession().setAttribute("msg","新增成功");
+            resp.sendRedirect("list");
         }catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("新增失败");
+            req.getSession().setAttribute("msg","新增失败");
+            resp.sendRedirect("new");
         }
     }
 

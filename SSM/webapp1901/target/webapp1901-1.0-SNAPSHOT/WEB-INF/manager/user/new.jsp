@@ -22,30 +22,37 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/manager/include/nav.jsp" />
-    <form id="userNew" method="post" action="<c:url value="/manager/user/create" />" class="needs-validation" novalidate>
-        <h1>新增用户</h1>
-        <div class="form-group">
-            <label for="loginId">登录名</label>
-            <input type="text" class="form-control" id="loginId" name="loginId" placeholder="登录名" required minlength="4" maxlength="10" pattern="\w{4,10}">
-            <small class="form-text text-muted">登录名是唯一的</small>
-        </div>
-        <div class="form-group">
-            <label for="realName">真实姓名</label>
-            <input type="text" class="form-control" id="realName" name="realName" placeholder="真实姓名" required pattern="[\u4e00-\u9fa5]{2,5}">
-            <small class="form-text text-muted">务必填写真实姓名</small>
-        </div>
-        <div class="form-group">
-            <label for="pwd1">密码</label>
-            <input type="password" class="form-control" id="pwd1" name="pwd1" placeholder="密码" required minlength="6" maxlength="20">
-            <small class="form-text text-muted">密码</small>
-        </div>
-        <div class="form-group">
-            <label for="pwd2">确认密码</label>
-            <input type="password" class="form-control" id="pwd2" name="pwd2" placeholder="确认密码" required minlength="6" maxlength="20">
-            <small class="form-text text-muted">请与第一次密码保持一致</small>
-        </div>
-        <button type="submit" class="btn btn-primary">提交</button>
-    </form>
+    <div class="container">
+        <form id="userNew" method="post" action="<c:url value="/manager/user/create" />" class="needs-validation" novalidate>
+            <h3 style="color: white;margin-bottom: 25px;">新增用户</h3>
+            <c:if test="${msg.equals('新增失败')}">
+                <div class="alert alert-primary" role="alert">
+                    <c:out value="${msg}" />
+                </div>
+            </c:if>
+            <div class="form-group">
+                <label for="loginId">登录名</label>
+                <input type="text" class="form-control" id="loginId" name="loginId" placeholder="登录名" required minlength="4" maxlength="10" pattern="\w{4,10}">
+                <small class="form-text text-muted">登录名是唯一的</small>
+            </div>
+            <div class="form-group">
+                <label for="realName">真实姓名</label>
+                <input type="text" class="form-control" id="realName" name="realName" placeholder="真实姓名" required pattern="[\u4e00-\u9fa5]{2,5}">
+                <small class="form-text text-muted">务必填写真实姓名</small>
+            </div>
+            <div class="form-group">
+                <label for="pwd1">密码</label>
+                <input type="password" class="form-control" id="pwd1" name="pwd1" placeholder="密码" required minlength="6" maxlength="20">
+                <small class="form-text text-muted">密码</small>
+            </div>
+            <div class="form-group">
+                <label for="pwd2">确认密码</label>
+                <input type="password" class="form-control" id="pwd2" name="pwd2" placeholder="确认密码" required minlength="6" maxlength="20">
+                <small class="form-text text-muted">请与第一次密码保持一致</small>
+            </div>
+            <button type="submit" class="btn btn-primary">提交</button>
+        </form>
+    </div>
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {

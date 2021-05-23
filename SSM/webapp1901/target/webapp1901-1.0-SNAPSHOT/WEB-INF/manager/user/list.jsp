@@ -22,25 +22,33 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/manager/include/nav.jsp" />
-    <table class="table" id="userList">
-        <tr>
-            <th>编号</th>
-            <th>登录名</th>
-            <th>真实姓名</th>
-            <th>密码</th>
-            <th>登陆次数</th>
-            <th>最后登录时间</th>
-        </tr>
-        <c:forEach items="${managers}" var="model">
+    <div class="container">
+        <h3 style="color: white;margin-bottom: 25px;">用户管理</h3>
+        <c:if test="${msg.equals('新增成功')}">
+            <div class="alert alert-primary" role="alert">
+                <c:out value="${msg}" />
+            </div>
+        </c:if>
+        <table class="table" id="userList">
             <tr>
-                <td>${model.id}</td>
-                <td>${model.loginid}</td>
-                <td>${model.realname}</td>
-                <td>******</td>
-                <td>${model.logincount}</td>
-                <td><fmt:formatDate type="both" dateStyle="long" timeStyle="long" value="${model.lastlogindt}"/></td>
+                <th>编号</th>
+                <th>登录名</th>
+                <th>真实姓名</th>
+                <th>密码</th>
+                <th>登陆次数</th>
+                <th>最后登录时间</th>
             </tr>
-        </c:forEach>
-    </table>
+            <c:forEach items="${managers}" var="model">
+                <tr>
+                    <td>${model.id}</td>
+                    <td>${model.loginid}</td>
+                    <td>${model.realname}</td>
+                    <td>******</td>
+                    <td>${model.logincount}</td>
+                    <td><fmt:formatDate type="both" dateStyle="long" timeStyle="long" value="${model.lastlogindt}"/></td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
 </body>
 </html>

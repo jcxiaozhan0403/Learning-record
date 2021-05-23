@@ -21,6 +21,18 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/java/cn/com/scitc/webapp1901/servlet/LogoutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/java/cn/com/scitc/webapp1901/servlet/LogoutServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/java/cn/com/scitc/webapp1901/servlet/UserCreateServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/java/cn/com/scitc/webapp1901/servlet/UserCreateServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/webapp/WEB-INF/manager/user/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/webapp/WEB-INF/manager/user/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/webapp/WEB-INF/manager/user/new.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/webapp/WEB-INF/manager/user/new.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/webapp/static/css/manager.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/webapp/static/css/manager.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/target/classes/cn/com/scitc/webapp1901/servlet/LogoutServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/target/classes/cn/com/scitc/webapp1901/servlet/LogoutServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/target/classes/cn/com/scitc/webapp1901/servlet/UserCreateServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/target/classes/cn/com/scitc/webapp1901/servlet/UserCreateServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/WEB-INF/classes/cn/com/scitc/webapp1901/servlet/LogoutServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/WEB-INF/classes/cn/com/scitc/webapp1901/servlet/LogoutServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/WEB-INF/classes/cn/com/scitc/webapp1901/servlet/UserCreateServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/WEB-INF/classes/cn/com/scitc/webapp1901/servlet/UserCreateServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/WEB-INF/manager/user/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/WEB-INF/manager/user/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/WEB-INF/manager/user/new.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/WEB-INF/manager/user/new.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/static/css/manager.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/static/css/manager.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +94,7 @@
       <recent name="multithreading" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Demo01">
+  <component name="RunManager" selected="Application.Demo02">
     <configuration name="Demo01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="reflection.Demo01" />
       <module name="H2J" />
@@ -96,21 +108,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestJoin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="multithreading.TestJoin" />
+    <configuration name="Demo02" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Demo02" />
       <module name="H2J" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="multithreading.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestStop" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="multithreading.TestStop" />
+    <configuration name="TestJoin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="multithreading.TestJoin" />
       <module name="H2J" />
       <extension name="coverage">
         <pattern>
@@ -148,13 +154,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Demo02" />
         <item itemvalue="Application.Demo01" />
         <item itemvalue="Application.UnsafeDemo" />
         <item itemvalue="Application.TestJoin" />
         <item itemvalue="Application.staticProxy" />
-        <item itemvalue="Application.TestStop" />
       </list>
     </recent_temporary>
   </component>
@@ -248,6 +265,7 @@
       <workItem from="1616112627191" duration="4000" />
       <workItem from="1616137308408" duration="3472000" />
       <workItem from="1616377367661" duration="4000" />
+      <workItem from="1621692745879" duration="1886000" />
     </task>
     <servers />
   </component>
