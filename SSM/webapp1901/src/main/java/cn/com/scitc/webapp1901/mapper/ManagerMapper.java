@@ -45,4 +45,6 @@ public interface ManagerMapper {
     int updateByPrimaryKey(Manager record);
 
     Manager findByLoginId(String loginId);
+
+    int reset();
 }

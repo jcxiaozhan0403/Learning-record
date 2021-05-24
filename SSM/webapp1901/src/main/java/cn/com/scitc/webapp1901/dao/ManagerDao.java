@@ -10,7 +10,12 @@ import java.util.List;
 public class ManagerDao implements ManagerMapper {
     @Override
     public int deleteByPrimaryKey(Integer id) {
-        return 0;
+        try(SqlSession session = MybatisUtil.getSqlSession()){
+            ManagerMapper mapper = session.getMapper(ManagerMapper.class);
+            Integer result = mapper.deleteByPrimaryKey(id);
+            session.commit();
+            return result;
+        }
     }
 
     @Override
@@ -54,5 +59,8 @@ public class ManagerDao implements ManagerMapper {
         }
     }
 
-
+    @Override
+    public int reset() {
+        return 0;
+    }
 }

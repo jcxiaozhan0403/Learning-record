@@ -32,6 +32,7 @@ public class UserCreateServlet extends HttpServlet {
             manager.setPwd(MyMd5.signPwd(pwd1));
 
             ManagerDao managerDao = new ManagerDao();
+            managerDao.reset();
             managerDao.insert(manager);
 
             System.out.println("新增成功");

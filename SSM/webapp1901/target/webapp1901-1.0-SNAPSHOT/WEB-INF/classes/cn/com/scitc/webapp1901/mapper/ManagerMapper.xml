@@ -72,4 +72,7 @@
   <select id="findByLoginId" resultType="cn.com.scitc.webapp1901.model.Manager" parameterType="java.lang.String">
     select * from manager where loginId = #{loginId}
   </select>
+  <update id="reset">
+    alter table manager  AUTO_INCREMENT=1;
+  </update>
 </mapper>

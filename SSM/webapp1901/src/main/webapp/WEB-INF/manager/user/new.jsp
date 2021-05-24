@@ -25,10 +25,11 @@
     <div class="container">
         <form id="userNew" method="post" action="<c:url value="/manager/user/create" />" class="needs-validation" novalidate>
             <h3 style="color: white;margin-bottom: 25px;">新增用户</h3>
-            <c:if test="${msg.equals('新增失败')}">
+            <c:if test="${msg != null}">
                 <div class="alert alert-primary" role="alert">
                     <c:out value="${msg}" />
                 </div>
+                <c:remove var="msg" scope="session" />
             </c:if>
             <div class="form-group">
                 <label for="loginId">登录名</label>
