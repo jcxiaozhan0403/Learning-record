@@ -30,7 +30,10 @@ public class ManagerDao implements ManagerMapper {
 
     @Override
     public Manager selectByPrimaryKey(Integer id) {
-        return null;
+        try(SqlSession session = MybatisUtil.getSqlSession()){
+            ManagerMapper mapper = session.getMapper(ManagerMapper.class);
+            return mapper.selectByPrimaryKey(id);
+        }
     }
 
     @Override

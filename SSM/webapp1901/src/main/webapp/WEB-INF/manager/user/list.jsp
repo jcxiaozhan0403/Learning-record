@@ -48,7 +48,10 @@
                     <td>******</td>
                     <td>${model.logincount}</td>
                     <td><fmt:formatDate type="both" dateStyle="long" timeStyle="long" value="${model.lastlogindt}"/></td>
-                    <td><a href="<c:url value="/manager/user/delete?id=${model.id}" />" onclick="return confirm('确认删除？');">删除</a></td>
+                    <td>
+                        <a href="<c:url value="/manager/user/edit?id=${model.id}" />">修改</a>
+                        <a href="<c:url value="/manager/user/delete?id=${model.id}" />" onclick="return confirm('确认删除？');">删除</a>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

@@ -7,30 +7,31 @@
       background-color="#343a40"
       text-color="#fff"
       active-text-color="#ffd04b">
-      <el-menu-item index="2">
+      <el-menu-item index="2" @click="pageToggle">
         <i class="el-icon-search"></i>
         <span slot="title">信息查询</span>
       </el-menu-item>
-      <el-menu-item index="1">
+      <el-menu-item index="1" @click="pageToggle">
         <i class="el-icon-user"></i>
         <span slot="title">个人中心</span>
       </el-menu-item>
     </el-menu>
   </el-aside>
   
-  <el-container>
+  <el-container id="main">
     <el-header style="text-align: right;">
       <span id="title">学生信息管理系统</span>
-      <span>你好，王小虎</span>
-      <el-link type="primary" :underline="false" class="logout">注销</el-link>
+      <span class="userName">你好，王小虎</span>
+      <el-link type="primary" :underline="false" id="logout">注销</el-link>
     </el-header>
-      <queryPage></queryPage>
+    <queryPage id="subpage"></queryPage>
   </el-container>
 </el-container>
 </template>
 
 <script>
 import queryPage from './QueryPage.vue';
+import personalCenter from './PersonalCenter.vue';
   export default {
     data() {
       return {
@@ -39,12 +40,20 @@ import queryPage from './QueryPage.vue';
     methods:{
       onload() {
         console.log(sessionStorage.getItem("demo"));
+      },
+      pageToggle() {
+        const pqueryPage = document.getElementById('subpage');
+        const parent = pqueryPage.parentNode;
+        const personalCenter = document.createElement('personalcenter');
+        personalCenter.id = pqueryPage.id;
+        parent.removeChild(pqueryPage);
+        parent.appendChild(personalCenter);
       }
     },
     created() {
       this.onload();
     },
-    components: {queryPage}
+    components: {queryPage,personalCenter}
   };
 </script>
 
@@ -91,14 +100,24 @@ import queryPage from './QueryPage.vue';
 #title {
   position: absolute;
   left: 40px;
+  color: #fff;
 }
 
 div.search {
   margin-bottom: 10px;
 }
 
-.logout {
+#logout {
   position: relative;
   left: 5px;
+  color: rgba(255,255,255,.5);
+}
+
+#logout:hover {
+  color: rgba(255,255,255,.7);
+}
+
+.userName {
+  color: #fff;
 }
 </style>

@@ -13,6 +13,7 @@ public class ManagerLoginFilter implements Filter {
     }
 
     public void destroy() {
+
     }
 
     @Override
