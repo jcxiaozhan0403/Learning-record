@@ -5,7 +5,7 @@
 - MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。
 
 ## 持久化
-- 因为内存有断电即失的特性，所以需要数据持久化
+- 因为内存有断电即失的特性，所以需要进行数据持久化
 - 持久化就是将程序的数据在持久状态和瞬时状态转化的过程
 
 ## 持久层
@@ -201,8 +201,8 @@ class UserDaoTest {
 <img src="D:/Study/Learning-record/SSM/mybatis简单使用目录结构.jpg" style="height:400px;width:300px;text-align:center;">
 
 ## mybatis-generator的简单使用
-简介：用于自动生成XML,Mapper,Dao的Mybatis插件
-1. pom文件编写
+注：此插件主要用于自动生成实体类、Mapper接口和Mapper配置文件，mybatis配置文件和Dao层文件需要根据实际应用场景对照生成的文件自行编写
+1. 编写pom文件
 ```xml
 <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 <dependency>
@@ -217,7 +217,7 @@ class UserDaoTest {
     <version>5.1.38</version>
 </dependency>
 
-
+<!-- 添加插件(注意将此行注释删除，中文会引起idea报错) -->
 <plugin>
     <groupId>org.mybatis.generator</groupId>
     <artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -249,7 +249,8 @@ class UserDaoTest {
 </plugin>
 ```
 
-2. generatorConfig.xml配置文件
+2. 编写mybatis-generator配置文件
+- generatorConfig.xml
 ```xml
 <!DOCTYPE generatorConfiguration PUBLIC
         "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
@@ -259,10 +260,10 @@ class UserDaoTest {
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/webapp1901" userId="root" password="lishuang001219"/>
         <!--实体存放位置-->
-        <javaModelGenerator targetPackage="cn.com.scitc.webapp1901.model" targetProject="src/main/java"/>
-        <!--XML存放位置-->
+        <javaModelGenerator targetPackage="cn.com.scitc.webapp1901.pojo" targetProject="src/main/java"/>
+        <!--Mapper.xml存放位置-->
         <sqlMapGenerator targetPackage="cn.com.scitc.webapp1901.mapper" targetProject="src/main/resources"/>
-        <!--Mapper存放位置-->
+        <!--Mapper接口存放位置-->
         <javaClientGenerator type="XMLMAPPER" targetPackage="cn.com.scitc.webapp1901.mapper" targetProject="src/main/java"/>
         <!--需要生成的表-->
         <table tableName="student" />
@@ -270,7 +271,7 @@ class UserDaoTest {
 </generatorConfiguration>
 ```
 
-3. 一键生成代码
+3. 双击一键生成代码
 <img src="D:/Study/Learning-record/SSM/mybatis-generator.jpg" style="height:300px;width:500px;text-align:center;">
 
 ## Spring简介
