@@ -4,6 +4,13 @@
 - MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作
 - MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。
 
+## 持久化
+- 因为内存有断电即失的特性，所以需要数据持久化
+- 持久化就是将程序的数据在持久状态和瞬时状态转化的过程
+
+## 持久层
+完成持久化工作的代码块
+
 ## mybatis的简单使用
 1. pom文件引入jar包
 ```xml
@@ -23,7 +30,7 @@
 
 2. 创建工具类
 ```java
-package cn.com.scitc.test.utils;
+package cn.com.scitc.mybatis.utils;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -90,7 +97,7 @@ public class User {
 }
 ```
 
-4. 创建配置文件
+4. 创建mybatis配置文件
 - mybatis-config.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -111,25 +118,12 @@ public class User {
         </environment>
     </environments>
     <mappers>
-        <!-- Mapper路径 -->
+        <!-- 绑定Mapper配置文件 -->
         <mapper resource="UserMapper.xml"/>
         <!-- resource下的Mapper资源存在多层目录结构时的写法 -->
         <mapper resource="cn/com/scitc/webapp1901/mapper/UserMapper.xml"/>
     </mappers>
 </configuration>
-```
-- UserMapper.xml
-```xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.com.scitc.mapper.UserMapper">
-    <!-- sql语句 -->
-    <select id="selectUser" resultType="cn.com.scitc.model.User">
-        select * from user where id = #{id}
-    </select>
-</mapper>
 ```
 
 5. 创建Mapper接口文件
@@ -143,7 +137,24 @@ public interface UserMapper {
 }
 ```
 
-6. 创建Dao文件
+6. 创建Mapper配置文件
+- UserMapper.xml
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间：对应一个Mapper接口 -->
+<mapper namespace="cn.com.scitc.mapper.UserMapper">
+    <!-- sql语句 -->
+    <!-- id对应接口中定义的方法 resultType表示结果集类型 -->
+    <select id="selectUser" resultType="cn.com.scitc.model.User">
+        select * from user where id = #{id}
+    </select>
+</mapper>
+```
+
+7. 创建Dao文件
 ```java
 package cn.com.scitc.test.dao;
 
@@ -261,14 +272,6 @@ class UserDaoTest {
 
 3. 一键生成代码
 <img src="D:/Study/Learning-record/SSM/mybatis-generator.jpg" style="height:300px;width:500px;text-align:center;">
-## 持久化
-数据持久化
-- 持久化就是将程序的数据在持久状态和瞬时状态转化的过程
-- 内存：断电即失
-- 数据库(JDBC)，io文件持久化
-
-## 持久层
-完成持久化工作的代码块
 
 ## Spring简介
 - Spring是一个开源的免费的框架(容器)

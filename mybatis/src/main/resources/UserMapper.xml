@@ -2,8 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间：对应一个Mapper接口 -->
 <mapper namespace="cn.com.scitc.mapper.UserMapper">
     <!-- sql语句 -->
+    <!-- id对应接口中定义的方法 resultType表示结果集类型 -->
     <select id="selectUser" resultType="cn.com.scitc.model.User">
         select * from user where id = #{id}
     </select>
