@@ -274,6 +274,110 @@ class UserDaoTest {
 3. 双击一键生成代码
 <img src="D:/Study/Learning-record/SSM/mybatis-generator.jpg" style="height:300px;width:500px;text-align:center;">
 
+## 提取数据库配置文件
+- db.properties
+```properties
+driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3306/webapp1901
+username=root
+password=lishuang001219
+```
+
+- mybatis-config.xml
+```xml
+<!-- 引入外部配置文件 -->
+<!-- 在引入外部文件后，还可以添加字段，如果存在相同字段，以配置文件中的为准 -->
+<properties resource="db.properties">
+    <property name="username" value="root" />
+    <property name="pwd" value="123456" />
+</properties>
+```
+
+## 类型别名
+
+- 类型别名是为Java类型设置一个短的名字
+- 存在的意义仅在于用来减少类完全限定名的冗余
+```xml
+<!-- 可以给实体类起别名 -->
+<typeAliases>
+    <typeAlias type="cn.com.scitc.webapp1901.pojo.User" alias="User">
+</typeAliases>
+```
+也可以指定一个包名，Mybatis会在包名下面搜索需要的Java Bean，比如：扫描实体类的包，它的默认别名就是这个类的类名，首字母小写
+```xml
+<typeAliases>
+    <package name="cn.com.scitc.webapp1901.pojo" />
+</typeAliases>
+```
+实体类较少时，使用第一种
+实体类较多时，使用第二种，第二种如果需要DIY别名，需要使用注解
+```java
+@Alias("UserPojo")
+public class User {
+
+}
+```
+
+## Map的使用
+
+当实体类或者数据库表、字段、参数过多时，应当考虑使用map
+- UserMapper.java
+```java
+int addUser(Map<String,Object> map);
+```
+
+- UserMapper.xml
+```xml
+<insert id="addUser" parameterType="map">
+    insert into user (id,pwd) value (#{userId},#{passWord})
+</insert>
+```
+
+- UserDao.java
+```java
+public int addUser(Map<String,Object> map) {
+    //获取SqlSession
+    try(SqlSession session = MybatisUtils.getSqlSession()){
+        //获取Mapper，执行其中方法
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        int result = mapper.addUser(map);
+        session.commit();
+        return result;
+    }
+}
+```
+
+测试代码
+```java
+@Test
+void addUser() {
+    UserDao userDao = new UserDao();
+    Map<String,Object> map = new Map<String,Object>();
+    map.put("userId",5);
+    map.put("password",123456);
+    User user = userDao.addUser(map);
+}
+```
+
+## 模糊查询的简单实现
+```xml
+<select id="getUserLike" resultType="cn.com.scitc.model.User">
+    select * from user where name like #{value}
+</select>
+```
+
+```java
+public void getUserLike() {
+    SqlSession session = MybatisUtils.getSqlSession();
+    UserMapper mapper = session.getMapper(UserMapper.class);
+    List<User> userList = mapper.getUserLike("%李%");
+
+    for(User user : userList) {
+        System.out.println(user);
+    }
+    sqlSession.close();
+}
+```
 ## Spring简介
 - Spring是一个开源的免费的框架(容器)
 - Spring是一个轻量级的、非入侵的框架
