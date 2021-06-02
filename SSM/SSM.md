@@ -336,6 +336,16 @@ public class User {
 </mappers>
 ```
 
+## 结果集映射(resultMap)
+当数据库中的列名和实体类中的属性名不完全相同时，需要用到结果集映射
+```xml
+<resultMap id="BaseResultMap" type="cn.com.scitc.webapp1901.model.Signin">
+    <!-- column数据库中的字段，property实体类中的属性 -->
+    <result column="studentId" property="studentid" />
+    <result column="signDatetime" property="signdatetime" />
+    <result column="signDate" property="signdate" />
+</resultMap>
+```
 
 ## Map的使用
 
