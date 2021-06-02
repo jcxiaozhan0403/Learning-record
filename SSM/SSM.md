@@ -318,6 +318,25 @@ public class User {
 }
 ```
 
+## 注册绑定Mapper文件的多种方式
+方式一：通过resource属性进行绑定(少量Mapper时推荐使用)
+```xml
+<mappers>
+    <mapper resource="cn/com/scitc/webapp1901/mapper/UserMapper.xml"/>
+</mappers>
+```
+
+方式二：通过扫描包进行绑定(少量Mapper时推荐使用)
+方式二注意：
+1. 接口和他的Mapper配置文件必须同名
+2. 接口和他的Mapper配置文件必须在同一个包下
+```xml
+<mappers>
+    <mapper name="cn.com.scitc.webapp1901.dao"/>
+</mappers>
+```
+
+
 ## Map的使用
 
 当实体类或者数据库表、字段、参数过多时，应当考虑使用map
