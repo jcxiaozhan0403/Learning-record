@@ -407,6 +407,14 @@ public void getUserLike() {
     sqlSession.close();
 }
 ```
+
+## 分页
+Limit实现
+```sql
+-- 从索引0开始，查询20条记录
+select * from `student` limit 0,20
+```
+
 ## Spring简介
 - Spring是一个开源的免费的框架(容器)
 - Spring是一个轻量级的、非入侵的框架
