@@ -414,7 +414,6 @@ Limit实现
 -- 从索引0开始，查询20条记录
 select * from `student` limit 0,20
 ```
-
 分页插件
 [MybatisPageHelper](https://pagehelper.github.io/)
 
@@ -481,18 +480,12 @@ logger.debug("xxxxxx");
 logger.error("xxxxxx");
 ```
 
-## Spring简介
-- Spring是一个开源的免费的框架(容器)
-- Spring是一个轻量级的、非入侵的框架
-- 控制反转(IOC)、面向切面编程(AOP)
-- 支持事务处理，对框架整合的支持
-
 ## 使用注解开发
-1. 编写Mapper接口文件
-- UserMapper.java
+1. 在工具类中设置事务自动提交
 ```java
-@Select("select * from user")
-List<User> getUsers();
+public static SqlSession getSqlSession(){
+    return sqlSessionFactory.openSession(true);
+}
 ```
 2. 在mybatis配置文件中绑定接口类
 - mybatis-config.xml
@@ -501,6 +494,45 @@ List<User> getUsers();
     <mapper class="cn.com.scitc.webapp1901.mapper.UserMapper" />
 </mappers>
 ```
+3. 编写Mapper接口文件
+- UserMapper.java
+```java
+@Select("select * from user")
+List<User> getUsers();
+
+
+//根据id查询用户
+@Select("select * from user where id = #{id}")
+User selectUserById(@Param("id") int id);
+
+
+//添加一个用户
+@Insert("insert into user (id,name,pwd) values (#{id},#{name},#{pwd})")
+int addUser(User user);
+
+
+//修改一个用户
+@Update("update user set name=#{name},pwd=#{pwd} where id = #{id}")
+int updateUser(User user);
+
+//根据id删除用
+@Delete("delete from user where id = #{id}")
+int deleteUser(@Param("id")int id);
+```
+
+关于@Param
+- 在方法只接受一个参数的情况下，可以不使用@Param。
+- 在方法接受多个参数的情况下，建议一定要使用@Param注解给参数命名。
+- 如果参数是 JavaBean ， 则不能使用@Param。
+- 不使用@Param注解时，参数只能有一个，并且是Javabean。
+
+
+## Spring简介
+- Spring是一个开源的免费的框架(容器)
+- Spring是一个轻量级的、非入侵的框架
+- 控制反转(IOC)、面向切面编程(AOP)
+- 支持事务处理，对框架整合的支持
+
 ## Spring的简单使用
 1. pom文件引入
 ```xml
