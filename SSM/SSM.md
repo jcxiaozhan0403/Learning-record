@@ -415,12 +415,92 @@ Limit实现
 select * from `student` limit 0,20
 ```
 
+分页插件
+[MybatisPageHelper](https://pagehelper.github.io/)
+
+## 日志
+标准日志工厂的实现
+在mybais设置文件中添加日志设置
+```xml
+<settings>
+    <setting name="logImpl" value="STDOUT_LOGGING"/>
+<settings>
+```
+
+log4j的使用
+1. 在pom中导入依赖
+```xml
+<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+<dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>1.2.17</version>
+</dependency>
+```
+2. 创建log4j配置文件
+- log4j.properties
+```
+#将等级为DEBUG的日志信息输出到console和file这两个目的地，console和file的定义在下面的代码
+log4j.rootLogger=DEBUG,console,file
+
+#控制台输出的相关设置
+log4j.appender.console = org.apache.log4j.ConsoleAppender
+log4j.appender.console.Target = System.out
+log4j.appender.console.Threshold=DEBUG
+log4j.appender.console.layout = org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern=[%c]-%m%n
+
+#文件输出的相关设置
+log4j.appender.file = org.apache.log4j.RollingFileAppender
+log4j.appender.file.File=./log/kuang.log
+log4j.appender.file.MaxFileSize=10mb
+log4j.appender.file.Threshold=DEBUG
+log4j.appender.file.layout=org.apache.log4j.PatternLayout
+log4j.appender.file.layout.ConversionPattern=[%p][%d{yy-MM-dd}][%c]%m%n
+
+#日志输出级别
+log4j.logger.org.mybatis=DEBUG
+log4j.logger.java.sql=DEBUG
+log4j.logger.java.sql.Statement=DEBUG
+log4j.logger.java.sql.ResultSet=DEBUG
+log4j.logger.java.sql.PreparedStatement=DEBUG
+```
+3. 修改mybais设置文件中的日志设置
+```xml
+<settings>
+    <setting name="logImpl" value="LOG4J"/>
+<settings>
+```
+
+在类中手动添加日志输出
+- UserDao.java
+```java
+static Logger logger = Logger.getLogger(UserDao.class);
+logger.info("xxxxxx");
+logger.debug("xxxxxx");
+logger.error("xxxxxx");
+```
+
 ## Spring简介
 - Spring是一个开源的免费的框架(容器)
 - Spring是一个轻量级的、非入侵的框架
 - 控制反转(IOC)、面向切面编程(AOP)
 - 支持事务处理，对框架整合的支持
 
+## 使用注解开发
+1. 编写Mapper接口文件
+- UserMapper.java
+```java
+@Select("select * from user")
+List<User> getUsers();
+```
+2. 在mybatis配置文件中绑定接口类
+- mybatis-config.xml
+```xml
+<mappers>
+    <mapper class="cn.com.scitc.webapp1901.mapper.UserMapper" />
+</mappers>
+```
 ## Spring的简单使用
 1. pom文件引入
 ```xml
