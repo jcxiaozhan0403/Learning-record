@@ -21,18 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/java/cn/com/scitc/webapp1901/servlet/LogoutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/java/cn/com/scitc/webapp1901/servlet/LogoutServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/java/cn/com/scitc/webapp1901/servlet/UserCreateServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/java/cn/com/scitc/webapp1901/servlet/UserCreateServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/webapp/WEB-INF/manager/user/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/webapp/WEB-INF/manager/user/list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/webapp/WEB-INF/manager/user/new.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/webapp/WEB-INF/manager/user/new.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/webapp/static/css/manager.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/src/main/webapp/static/css/manager.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/target/classes/cn/com/scitc/webapp1901/servlet/LogoutServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/target/classes/cn/com/scitc/webapp1901/servlet/LogoutServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/target/classes/cn/com/scitc/webapp1901/servlet/UserCreateServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/target/classes/cn/com/scitc/webapp1901/servlet/UserCreateServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/WEB-INF/classes/cn/com/scitc/webapp1901/servlet/LogoutServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/WEB-INF/classes/cn/com/scitc/webapp1901/servlet/LogoutServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/WEB-INF/classes/cn/com/scitc/webapp1901/servlet/UserCreateServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/WEB-INF/classes/cn/com/scitc/webapp1901/servlet/UserCreateServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/WEB-INF/manager/user/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/WEB-INF/manager/user/list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/WEB-INF/manager/user/new.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/WEB-INF/manager/user/new.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/static/css/manager.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/target/webapp1901-1.0-SNAPSHOT/static/css/manager.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/H2J/Demo02.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/H2J/Demo02.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Demo02.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demo02.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,6 +246,9 @@
       <workItem from="1616377367661" duration="4000" />
       <workItem from="1621692745879" duration="1886000" />
       <workItem from="1621739006706" duration="3000" />
+      <workItem from="1622900160763" duration="755000" />
+      <workItem from="1622903750289" duration="217000" />
+      <workItem from="1622986589862" duration="37000" />
     </task>
     <servers />
   </component>
