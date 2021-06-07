@@ -527,6 +527,8 @@ int deleteUser(@Param("id")int id);
 - 不使用@Param注解时，参数只能有一个，并且是Javabean。
 
 
+## Thymeleaf模板引擎
+
 ## Spring简介
 - Spring是一个开源的免费的框架(容器)
 - Spring是一个轻量级的、非入侵的框架
