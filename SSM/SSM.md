@@ -528,7 +528,16 @@ int deleteUser(@Param("id")int id);
 
 
 ## Thymeleaf模板引擎
-
+html文件根标签属性引入Thymeleaf
+```html
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+```
+语法
+```html
+<h1 th:text="'姓名：'+${name}"></h1>
+<h1 th:utext="'姓名：'+${name}"></h1>
+<h1 th:each="user:${users}" th:text="${user}"></h1>
+```
 ## Spring简介
 - Spring是一个开源的免费的框架(容器)
 - Spring是一个轻量级的、非入侵的框架
