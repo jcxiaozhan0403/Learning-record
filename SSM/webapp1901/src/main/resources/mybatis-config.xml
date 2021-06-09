@@ -18,6 +18,5 @@
         <mapper resource="cn/com/scitc/webapp1901/mapper/StudentMapper.xml"/>
         <mapper resource="cn/com/scitc/webapp1901/mapper/SigninMapper.xml"/>
         <mapper resource="cn/com/scitc/webapp1901/mapper/ManagerMapper.xml"/>
-        <mapper class="cn.com.scitc.webapp1901.mapper.UserMapper" />
     </mappers>
 </configuration>
