@@ -7,11 +7,13 @@
       background-color="#343a40"
       text-color="#fff"
       active-text-color="#ffd04b">
-      <el-menu-item index="2" @click="pageToggle">
+      <el-menu-item index="2" >
+        <a href="#/queryPage"></a>
         <i class="el-icon-search"></i>
         <span slot="title">信息查询</span>
       </el-menu-item>
-      <el-menu-item index="1" @click="pageToggle">
+      <el-menu-item index="1" >
+        
         <i class="el-icon-user"></i>
         <span slot="title">个人中心</span>
       </el-menu-item>
