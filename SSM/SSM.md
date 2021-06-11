@@ -332,7 +332,7 @@ public class User {
 2. 接口和他的Mapper配置文件必须在同一个包下
 ```xml
 <mappers>
-    <mapper name="cn.com.scitc.webapp1901.dao"/>
+    <mapper class="cn.com.scitc.webapp1901.dao"/>
 </mappers>
 ```
 
@@ -386,6 +386,50 @@ void addUser() {
     map.put("password",123456);
     User user = userDao.addUser(map);
 }
+```
+
+## Mybatis多表查询之多对一
+假设学生的tid关联老师的id
+则在创建实体类的时候，Student类如下
+- Student.java
+```java
+public class Student {
+    private int id;
+    private String name;
+    private int age;
+    private int tid;
+}
+```
+方法一
+```xml
+<select id="getStydent" resultMap="studentTeacher">
+    select  * from student
+</select>
+
+<resultMap id="studentTeacher" type="Student">
+    <result property="id" column="id" />
+    <result property="name" column="name" />
+<!-- 复杂属性，单独处理 对象：association 集合：collection -->
+<association property="teacher" column="tid" javaType="Teacher" select="getTeacher" />
+</resultMap>
+
+<select id="getTeacher" resultMap="Teacher">
+    select * from teacher where id = #{tid}
+</select>
+```
+方法二
+```xml
+<select id="getStudent" resultMap="StudentTeacher">
+    select s.id sid,s.name sname,t.name tname from student s,teacher t where s.tid = t.id;
+</select>
+
+<resultMap id="StudentTeacher" type="Student">
+    <result property="id" column="sid" />
+    <result property="name" column="sname" />
+    <association property="teacher" javaType="Teacher">
+        <result property="name" column="tname" />
+    </association>
+</resultMap>
 ```
 
 ## 模糊查询的简单实现
