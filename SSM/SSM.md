@@ -389,18 +389,27 @@ void addUser() {
 ```
 
 ## Mybatis多表查询之多对一
-假设学生的tid关联老师的id
-则在创建实体类的时候，Student类如下
+多对一环境准备
+实体类
+
 - Student.java
 ```java
 public class Student {
     private int id;
     private String name;
-    private int age;
-    private int tid;
+    // 多个学生关联一个老师
+    private Teacher teacher;
 }
 ```
-方法一
+- Teacher.java
+```java
+public class Teacher {
+    private int id;
+    private String name;
+}
+```
+
+方法一：按查询嵌套处理
 ```xml
 <select id="getStydent" resultMap="studentTeacher">
     select  * from student
@@ -409,7 +418,7 @@ public class Student {
 <resultMap id="studentTeacher" type="Student">
     <result property="id" column="id" />
     <result property="name" column="name" />
-<!-- 复杂属性，单独处理 对象：association 集合：collection -->
+<!-- 复杂属性，单独处理 对象：association 集合：collection 指定属性的类型：javaType -->
 <association property="teacher" column="tid" javaType="Teacher" select="getTeacher" />
 </resultMap>
 
@@ -417,7 +426,7 @@ public class Student {
     select * from teacher where id = #{tid}
 </select>
 ```
-方法二
+方法二：按结果嵌套查询
 ```xml
 <select id="getStudent" resultMap="StudentTeacher">
     select s.id sid,s.name sname,t.name tname from student s,teacher t where s.tid = t.id;
@@ -430,6 +439,60 @@ public class Student {
         <result property="name" column="tname" />
     </association>
 </resultMap>
+```
+
+## Mybatis多表查询之一对多
+多对一环境准备
+实体类
+
+- Student.java
+```java
+public class Student {
+    private int id;
+    private String name;
+    private int tid;
+}
+```
+- Teacher.java
+```java
+public class Teacher {
+    private int id;
+    private String name;
+    // 一个老师拥有多个学生
+    private List<Student> student;
+}
+```
+
+方法一：按查询嵌套处理
+```xml
+<select id="getTeacher" resultMap="TeacherStudent">
+    select * from teacher where id = #{tid}
+</select>
+
+<resultMap id="TeacherStudent" type="Teacher">
+    <collection property="student" javaType="ArrayList" ofType="Studentt" select="getStudentByTeacherId" column="id" />
+</resultMap>
+
+<select id="getStudentByTeacherId" resultType="Studnet">
+    select * from student where tid = #{tid}
+</select>
+```
+方法二：按结果嵌套查询
+```xml
+<select id="getTeacher" resultMap="TeacherStudent">
+    select s.id sid,s.name sname,t.name tname,t.id tid from student student s,teacher t where s.tid = t.id and t.id = #{tid}
+</select>
+
+<reslutMap id="TeacherStudent" type="Teacher">
+    <result property="id" column="tid" />
+    <result property="name" column="tname" />
+    <!-- javaType="" 指定属性的类型 ofType="" 集合中的泛型 -->
+    <collection property="student" ofType="Student">
+        <result property="id" column="sid" />
+        <result property="name" column="sname" />
+        <result property="tid" column="tid" />
+    </collection>
+</reslutMap>
 ```
 
 ## 模糊查询的简单实现
@@ -452,6 +515,37 @@ public void getUserLike() {
 }
 ```
 
+## 动态SQL
+if标签
+```xml
+<select id="queryBlogIf" parameterType="map" resultType="blog">
+    select * from blog there 1=1
+    <if test="title != null">
+        and title = #{title}
+    </if>
+    <if test="author != null">
+        and author = #{author}
+    </if>
+</select>
+```
+```java
+public void queryBlogIf() {
+    SqlSession sqlSession = MybatisUtils.getSqlSession();
+    BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+
+    HashMap map = new HashMap();
+    map.put("title","Java从入门到放弃");
+    map.put("author","John.Cena");
+
+    List<Blog> blogs = mapper.queryBlogIf(map);
+
+    for(Blog blog : blogs) {
+        System.out.println(blog);
+    }
+
+    sqlSession.close();
+}
+```
 ## 分页
 Limit实现
 ```sql
