@@ -516,6 +516,8 @@ public void getUserLike() {
 ```
 
 ## 动态SQL
+- 使用动态 SQL 最常见情景是根据条件包含 where 子句的一部分
+- 动态 SQL 的另一个常见使用场景是对集合进行遍历（尤其是在构建 IN 条件语句的时候）
 if标签
 ```xml
 <select id="queryBlogIf" parameterType="map" resultType="blog">
