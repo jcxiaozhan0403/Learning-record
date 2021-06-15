@@ -1,25 +1,19 @@
-import java.util.Scanner;
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
 public class Demo02 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        sc.close();
 
-        int count = 0;
-        for (int i = 1; i <= n; i++) {
-            char[] array = String.valueOf(i).toCharArray();
-            int flag = 1;
 
-            for (char j : array) {
-                if (j == '2') {
-                    flag = 0;
-                    break;
-                }
-            }
-            if (flag == 1) {
-                count++;
-            }
-        }
-        System.out.println(count);
+//        File f = new File("./lol2.txt");
+//        try {
+//            FileReader fr = new FileReader(f);
+//            fr.read();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
     }
 }
