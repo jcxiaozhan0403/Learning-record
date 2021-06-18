@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b89ab61-2595-4753-9fdd-275335fa9414" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../SSM/SSM.md" beforeDir="false" afterPath="$PROJECT_DIR$/../SSM/SSM.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UserMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,17 +54,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Tomcat 8.5.59" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.59" ALTERNATIVE_JRE_ENABLED="false">
       <deployment>
         <artifact name="mybatis:war exploded">
@@ -102,6 +89,8 @@
       <workItem from="1619059571973" duration="5000" />
       <workItem from="1620547194161" duration="619000" />
       <workItem from="1622347878958" duration="3169000" />
+      <workItem from="1623904122669" duration="107000" />
+      <workItem from="1623916981256" duration="228000" />
     </task>
     <servers />
   </component>
