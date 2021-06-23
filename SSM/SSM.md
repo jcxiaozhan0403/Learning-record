@@ -762,6 +762,43 @@ html文件根标签属性引入Thymeleaf
 <h1 th:utext="'姓名：'+${name}"></h1>
 <h1 th:each="user:${users}" th:text="${user}"></h1>
 ```
+fragment标签与insert、replace、include属性
+```html
+<!-- 用fragment标签定义 -->
+<footer th:fragment="copy">
+  &copy; 2011 The Good Thymes Virtual Grocery
+</footer>
+
+<!-- 用insert属性在元素下引用定义好的片段 -->
+<!-- 效果如下 
+<div>
+    <footer>
+        &copy; 2011 The Good Thymes Virtual Grocery
+    </footer>
+</div> 
+-->
+<div th:insert="footer :: copy"></div>
+
+<!-- 用replace属性在元素下引用定义好的片段 -->
+<!-- 效果如下 
+<footer>
+    &copy; 2011 The Good Thymes Virtual Grocery
+</footer>
+-->
+<div th:replace="footer :: copy"></div>
+
+<!-- 用include属性在元素下引用定义好的片段 -->
+<!-- 效果如下 
+<div>
+    &copy; 2011 The Good Thymes Virtual Grocery
+</div>
+-->
+<div th:include="footer :: copy"></div>
+
+<!-- 注：当定义标签与使用标签不存在与同一个目录中时，引用时要带上路径 -->
+<div th:insert="main/footer :: copy"></div>
+```
+
 ## Spring简介
 - Spring是一个开源的免费的框架(容器)
 - Spring是一个轻量级的、非入侵的框架
