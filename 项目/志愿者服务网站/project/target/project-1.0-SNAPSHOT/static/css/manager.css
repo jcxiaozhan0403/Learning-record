@@ -1,0 +1,41 @@
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+body {
+    padding-top: 5rem;
+    background-image: url("https://admin.campushoy.com/static/img/bg.459cf8df.png");
+}
+.starter-template {
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+li#userName {
+    position: absolute;
+    right: 55px;
+}
+
+li#logout {
+    position: absolute;
+    right: 20px;
+}
+
+table#userList {
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+}
+
+form#userNew {
+    width: 60%;
+    color: white;
+    margin: 0 auto;
+}

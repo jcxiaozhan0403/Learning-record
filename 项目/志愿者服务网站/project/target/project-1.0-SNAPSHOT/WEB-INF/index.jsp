@@ -6,11 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta name="viewport" content="width=1000">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>志愿云-领先全国的志愿服务信息系统版|中国志愿|志愿中国</title>
+    <link rel="icon" href="<c:url value="/static/images/logo.jpg" />" type="image/x-icon">
     <script type="text/javascript" src="https://cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
     <script type="text/javascript" src="https://css.zhiyuanyun.com/lib/common.js"></script>
     <script type="text/javascript" src="https://css.zhiyuanyun.com/lib/jquery.scroll.js"></script>
@@ -119,12 +121,12 @@
 </div>
 <div class="nav">
     <div class="wrap" style="color:#fff;">
-        <a href="/" style="width:73px;" class="sel">首页</a>
-        <a href="">文明川信人</a>
-        <a href="">川信志愿者</a>
-        <a href="">雷锋热线</a>
-        <a href="">公益广告</a>
-        <a href="">管理员登录</a>
+        <a href="<c:url value="/index" />" class="sel" style="width:73px;">首页</a>
+        <a href="<c:url value="/page1" />">文明川信</a>
+        <a href="<c:url value="/page2" />">川信志愿者</a>
+        <a href="<c:url value="/page3" />">雷锋热线</a>
+        <a href="<c:url value="/page4" />">公益广告</a>
+        <a href="<c:url value="/manager/login" />">管理员登录</a>
     </div>
 </div>
 <style>
@@ -151,9 +153,12 @@
 </div>-->
 <div class="wrap clearfix m10">
     <div class="l news_photo">
-        <div id="news_photo">
-            <ul><li><a href="https://www.zhiyuanyun.com/show/1061995.html" target="_blank"><img src="https://s.zhiyuanyun.com/www.chinavolunteer.cn/cms/202006/09/5edefd1a52334.jpg" border="0" alt="习近平为社区志愿者点赞"></a></li><li><a href="https://www.zhiyuanyun.com/show/1064521.html" target="_blank"><img src="https://s.zhiyuanyun.com/www.chinavolunteer.cn/cms/202009/18/5f64c9ff4e376.jpg" border="0" alt="服贸会上的志愿者"></a></li><li><a href="https://www.zhiyuanyun.com/show/1064341.html" target="_blank"><img src="https://s.zhiyuanyun.com/www.chinavolunteer.cn/cms/202009/18/5f64cb5e0f1fb.jpg" border="0" alt="志愿者亮相服贸会 擦亮首都最美“金名片”"></a></li><li><a href="https://www.zhiyuanyun.com/show/1061880.html" target="_blank"><img src="https://s.zhiyuanyun.com/www.chinavolunteer.cn/cms/202006/03/5ed748a194fab.jpg" border="0" alt="青年有担当 国家有力量——新时代中国青年的战“疫”风貌"></a></li><li><a href="https://www.zhiyuanyun.com/show/1057329.html" target="_blank"><img src="https://s.zhiyuanyun.com/www.chinavolunteer.cn/cms/202002/13/5e44c3240ecb7.jpg" border="0" alt="社区战疫志愿者在行动"></a></li><li><a href="https://www.zhiyuanyun.com/show/1056627.html" target="_blank"><img src="https://s.zhiyuanyun.com/www.chinavolunteer.cn/cms/202002/13/5e44fe3dadfdc.jpg" border="0" alt="共青团组织发动8.5万名志愿者参与疫情防控工作"></a></li></ul>
-        </div>
+        <video width="500" height="300" controls>
+            <video width="320" height="240" controls>
+                <source src="./vedio.mp4" type="video/mp4">
+                <source src="./vedio.ogg" type="video/ogg">
+            </video>
+        </video>
     </div>
     <div class="r clearfix">
         <div class="tbox8" style="width:488px;height:300px;overflow:hidden;">
@@ -216,14 +221,5 @@
     .kf_menu a.kf-btn-mz,a.kf-btn-cz:visited{background:url(http://css.zhiyuanyun.com/default/img/r_mz1.png) 0px 0px no-repeat;background-color:#c54033;text-decoration:none;display:block;}
 </style>
 <div id="kf_top"></div>
-<!--baidu tongji-->
-<script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?96c55a3847063dc0f3d6d32b55654297";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script></body>
+</body>
 </html>

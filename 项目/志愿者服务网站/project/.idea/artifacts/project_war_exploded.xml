@@ -13,6 +13,15 @@
         <element id="directory" name="classes">
           <element id="module-output" name="project" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.webjars:font-awesome:4.7.0" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.5.5" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.38" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: org.webjars:bootstrap:4.6.0" />
+          <element id="library" level="project" name="Maven: org.webjars:popper.js:2.5.4" />
+          <element id="library" level="project" name="Maven: org.webjars.bower:jquery:3.5.1" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/project-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
