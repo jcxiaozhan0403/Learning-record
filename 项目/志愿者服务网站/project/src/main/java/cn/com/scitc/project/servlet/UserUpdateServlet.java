@@ -1,7 +1,9 @@
 package cn.com.scitc.project.servlet;
 
 
+import cn.com.scitc.project.dao.LogDao;
 import cn.com.scitc.project.dao.ManagerDao;
+import cn.com.scitc.project.model.Log;
 import cn.com.scitc.project.model.Manager;
 
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 @WebServlet(urlPatterns = "/manager/user/update")
@@ -21,7 +24,8 @@ public class UserUpdateServlet  extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
-
+        Calendar calendar = Calendar.getInstance();
+        Log log = new Log();
         try {
             if (!validation(req)) {
                 resp.sendRedirect("edit?id=" + id);
@@ -44,7 +48,15 @@ public class UserUpdateServlet  extends HttpServlet {
             manager.setLastlogindt(lastLoginDt);
             managerDao.updateByPrimaryKey(manager);
 
-            System.out.println("修改成功");
+            LogDao logDao = new LogDao();
+            log.setTime(calendar.getTime());
+            System.out.println(req.getAttribute("currentUser"));
+            Manager currentUser = (Manager) req.getSession().getAttribute("currentUser");
+            log.setLoginid(currentUser.getLoginid());
+            log.setEvent("修改用户" + loginId);
+            logDao.reset();
+            logDao.insert(log);
+
             req.getSession().setAttribute("msg","修改成功");
             resp.sendRedirect("list");
         }catch (Exception e) {

@@ -132,6 +132,15 @@
 <style>
     #reg_province_vol ul,#reg_province_org ul,#reg_province_login ul,#map_org ul,#map_opp ul{width:100%;margin:10px;}
     #reg_province_vol ul li,#reg_province_org ul li,#reg_province_login ul li,#map_org ul li,#map_opp ul li{float:left;width:20%;text-align:center;line-height:200%;}
+    body {
+        position: relative;
+    }
+    .footer {
+        position: absolute;
+        bottom: -70px;
+        left: 0;
+        right: 0;
+    }
 </style>
 <div id="reg_province_vol" style="display:none;">
     <ul><li style="width:96%;border-bottom:1px solid #eee;text-align:left;"><a href="https://npo.zhiyuanyun.com/app/user/register.php">全国性社会组织</a></li><li><a href="https://www.bv2008.cn/app/user/register.php">北京市</a></li><li><a href="https://tj.zhiyuanyun.com/app/user/register.php">天津市</a></li><li><a href="https://he.zhiyuanyun.com/app/user/register.php">河北省</a></li><li><a href="https://sx.zhiyuanyun.com/app/user/register.php">山西省</a></li><li><a href="https://nm.zhiyuanyun.com/app/user/register.php">内蒙古自治区</a></li><li><a href="https://ln.zhiyuanyun.com/app/user/register.php">辽宁省</a></li><li><a href="https://jl.zhiyuanyun.com/app/user/register.php">吉林省</a></li><li><a href="https://hl.zhiyuanyun.com/app/user/register.php">黑龙江省</a></li><li><a href="https://sh.zhiyuanyun.com/app/user/register.php">上海市</a></li><li><a href="https://js.zhiyuanyun.com/app/user/register.php">江苏省</a></li><li><a href="https://zj.zhiyuanyun.com/app/user/register.php">浙江省</a></li><li><a href="https://ah.zhiyuanyun.com/app/user/register.php">安徽省</a></li><li><a href="https://fj.zhiyuanyun.com/app/user/register.php">福建省</a></li><li><a href="https://jx.zhiyuanyun.com/app/user/register.php">江西省</a></li><li><a href="https://sd.zhiyuanyun.com/app/user/register.php">山东省</a></li><li><a href="https://ha.zhiyuanyun.com/app/user/register.php">河南省</a></li><li><a href="https://hb.zhiyuanyun.com/app/user/register.php">湖北省</a></li><li><a href="https://hn.zhiyuanyun.com/app/user/register.php">湖南省</a></li><li><a href="https://gd.zhiyuanyun.com/app/user/register.php">广东省</a></li><li><a href="https://gx.zhiyuanyun.com/app/user/register.php">广西自治区</a></li><li><a href="https://hi.zhiyuanyun.com/app/user/register.php">海南省</a></li><li><a href="https://cq.zhiyuanyun.com/app/user/register.php">重庆市</a></li><li><a href="https://sc.zhiyuanyun.com/app/user/register.php">四川省</a></li><li><a href="https://www.zygz.org.cn/app/user/register.php">贵州省</a></li><li><a href="https://yn.zhiyuanyun.com/app/user/register.php">云南省</a></li><li><a href="https://xz.zhiyuanyun.com/app/user/register.php">西藏自治区</a></li><li><a href="https://sn.zhiyuanyun.com/app/user/register.php">陕西省</a></li><li><a href="https://gs.zhiyuanyun.com/app/user/register.php">甘肃省</a></li><li><a href="https://qh.zhiyuanyun.com/app/user/register.php">青海省</a></li><li><a href="https://nx.zhiyuanyun.com/app/user/register.php">宁夏自治区</a></li><li><a href="https://xj.zhiyuanyun.com/app/user/register.php">新疆自治区</a></li><li><a href="https://bt.zhiyuanyun.com/app/user/register.php">兵团</a></li></ul></div>
@@ -152,16 +161,11 @@
 <!--<div class="topword wrap">
 </div>-->
 <div class="wrap clearfix m10">
-    <div class="l news_photo">
-        <video width="500" height="300" controls>
-            <video width="320" height="240" controls>
-                <source src="./vedio.mp4" type="video/mp4">
-                <source src="./vedio.ogg" type="video/ogg">
-            </video>
-        </video>
+    <div class="l clearfix" style="margin: 0 auto;width:495px;height: 378px;">
+        <iframe src="http://player.bilibili.com/player.html?aid=670193328&amp;bvid=BV1ia4y1s7gy&amp;cid=254178196&amp;page=1" allowfullscreen="allowfullscreen" width="100%" height="100%" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
     </div>
     <div class="r clearfix">
-        <div class="tbox8" style="width:488px;height:300px;overflow:hidden;">
+        <div class="tbox8" style="width:495px;height:378px;overflow:hidden;">
             <div class="tit clearfix"><span class="l" id="lm1_1"><a href="https://www.zhiyuanyun.com/cate/zyzg_xxdt/" target="_blank">工作动态</a></span><!--<span id="lm1_2">地方动态</span>--></div>
             <div class="tcon" style="height:268px;" id="lm1_tab1">
                 <ul>
@@ -206,20 +210,11 @@
 <script type="text/javascript" src="https://css.zhiyuanyun.com/chinavol/js/china.js"></script>
 <!-- <script type="text/javascript" src="https://css.zhiyuanyun.com/chinavol/js/cnmap.js"></script> -->
 
-
-
 <div class="footer clearfix">
-    <div class="wrap m10">ICP备案编号：<a href="https://beian.miit.gov.cn" target="_blank">京ICP备13002525号-7</a> 版权所有：<a href="https://www.zhiyuanyun.net" target="_blank">志愿云运维团队</a> <a href="https://www.zhiyuanyun.com/show/1040107.html">联系我们</a><br>
-        为了达到最好效果，推荐使用 <a href="https://www.microsoft.com/zh-cn/edge" target="_blank">Microsoft Edge</a>或 <a href="https://www.firefox.com.cn/" target="_blank">Mozilla Firefox</a>浏览器
-        <!--技术支持：<a href="https://www.bv2008.cn" target="_blank">志愿北京</a> <a href="https://www.zhiyuanyun.com" target="_blank">志愿云</a>-->
+    <div class="wrap m10">ICP备案编号：<a href="//beian.miit.gov.cn" target="_blank">京ICP备xxxxxxxx号-x</a> 版权所有：<a href="//www.zhiyuanyun.net" target="_blank">软件19-1 2021生产实习5组</a> <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=349636607&amp;site=qq&amp;menu=yes">联系我们</a><br>
+        为了达到最好效果，推荐使用 <a href="//www.microsoft.com/zh-cn/edge" target="_blank">Microsoft Edge</a>或 <a href="//www.firefox.com.cn/" target="_blank">Mozilla Firefox</a>浏览器
+        <!--技术支持：<a href="//www.bv2008.cn" target="_blank">志愿北京</a> <a href="//www.zhiyuanyun.com" target="_blank">志愿云</a>-->
     </div>
 </div>
-<link href="https://css.zhiyuanyun.com/default/kf.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-    .kf_menu .kf-btn-mz{background:url(http://css.zhiyuanyun.com/default/img/r_mz1.png) 0px 0px no-repeat;background-color:#c54033;color:#fff;}
-    .kf_menu .kf-btn-mz:hover{background:url(http://css.zhiyuanyun.com/default/img/r_mz.png) 0px 0px no-repeat;background-color:#f1f1f1 !important;color:#c54033;}
-    .kf_menu a.kf-btn-mz,a.kf-btn-cz:visited{background:url(http://css.zhiyuanyun.com/default/img/r_mz1.png) 0px 0px no-repeat;background-color:#c54033;text-decoration:none;display:block;}
-</style>
-<div id="kf_top"></div>
 </body>
 </html>

@@ -19,5 +19,6 @@
         <mapper resource="cn/com/scitc/project/mapper/SigninMapper.xml"/>
         <mapper resource="cn/com/scitc/project/mapper/ManagerMapper.xml"/>
         <mapper resource="cn/com/scitc/project/mapper/ImageMapper.xml"/>
+        <mapper resource="cn/com/scitc/project/mapper/LogMapper.xml"/>
     </mappers>
 </configuration>

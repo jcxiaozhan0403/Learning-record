@@ -50,6 +50,17 @@
 <style>
     #reg_province_vol ul,#reg_province_org ul,#reg_province_login ul,#map_org ul,#map_opp ul{width:100%;margin:10px;}
     #reg_province_vol ul li,#reg_province_org ul li,#reg_province_login ul li,#map_org ul li,#map_opp ul li{float:left;width:20%;text-align:center;line-height:200%;}
+    body {
+        position: relative;
+    }
+
+    .footer {
+        position: absolute;
+        bottom: -100px;
+        left: 0;
+        right: 0;
+    }
+
     .main {
         background: url(${page1bk});
         background-size:cover;
@@ -90,12 +101,10 @@
     </ul>
 </div>
 <div class="footer clearfix">
-    <div class="wrap m10">ICP备案编号：<a href="//beian.miit.gov.cn" target="_blank">京ICP备13002525号-7</a> 版权所有：<a href="//www.zhiyuanyun.net" target="_blank">志愿云运维团队</a> <a href="//www.zhiyuanyun.com/show/1040107.html">联系我们</a><br>
+    <div class="wrap m10">ICP备案编号：<a href="//beian.miit.gov.cn" target="_blank">京ICP备xxxxxxxx号-x</a> 版权所有：<a href="//www.zhiyuanyun.net" target="_blank">软件19-1 2021生产实习5组</a> <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=349636607&amp;site=qq&amp;menu=yes">联系我们</a><br>
         为了达到最好效果，推荐使用 <a href="//www.microsoft.com/zh-cn/edge" target="_blank">Microsoft Edge</a>或 <a href="//www.firefox.com.cn/" target="_blank">Mozilla Firefox</a>浏览器
         <!--技术支持：<a href="//www.bv2008.cn" target="_blank">志愿北京</a> <a href="//www.zhiyuanyun.com" target="_blank">志愿云</a>-->
     </div>
 </div>
-<link href="https://css.zhiyuanyun.com/default/kf.css" rel="stylesheet" type="text/css">
-<div id="kf_top"></div>
 </body>
 </html>

@@ -10,10 +10,22 @@
     </resultMap>
 
     <select id="findImageById" resultType="cn.com.scitc.project.model.Image">
-        select * from images where id = #{id}
+        select * from image where id = #{id}
     </select>
 
     <select id="findAll" resultMap="BaseResultMap">
-        select id, name, url from images
+        select id, name, url from image
     </select>
+
+    <select id="findImageByName" resultType="cn.com.scitc.project.model.Image">
+        select * from image where name = #{name}
+    </select>
+
+    <update id="updateByPrimaryKey" parameterType="cn.com.scitc.project.model.Image">
+        update Image
+        set id = #{id,jdbcType=INTEGER},
+            name = #{name,jdbcType=VARCHAR},
+            url = #{url,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

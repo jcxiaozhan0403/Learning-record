@@ -56,6 +56,14 @@ public class ManagerDao implements ManagerMapper {
     }
 
     @Override
+    public Manager findById(Integer id) {
+        try(SqlSession session = MybatisUtil.getSqlSession()){
+            ManagerMapper mapper = session.getMapper(ManagerMapper.class);
+            return mapper.findById(id);
+        }
+    }
+
+    @Override
     public List<Manager> selectAll() {
         try(SqlSession session = MybatisUtil.getSqlSession()){
             ManagerMapper mapper = session.getMapper(ManagerMapper.class);

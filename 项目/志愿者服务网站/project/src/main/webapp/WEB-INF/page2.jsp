@@ -135,6 +135,18 @@
   body {
     background: url(${page2bk});
     background-size: cover;
+    position: relative;
+  }
+  .footer {
+    position: absolute;
+    bottom: -70px;
+    left: 0;
+    right: 0;
+  }
+  .img {
+    width: 400px;
+    height: 240px;
+    margin-left: 30px;
   }
 </style>
 <div id="reg_province_vol" style="display:none;">
@@ -156,67 +168,85 @@
 <!--<div class="topword wrap">
 </div>-->
 <div class="wrap clearfix m10">
-  <div class="l news_photo">
-    <video width="500" height="300" controls="">
-      <video width="320" height="240" controls="">
-        <source src="./vedio.mp4" type="video/mp4">
-      </video>
-    </video>
+  <div class="l clearfix" style="margin: 0 auto;width:495px;height: 378px;">
+    <iframe src="http://player.bilibili.com/player.html?aid=670193328&amp;bvid=BV1ia4y1s7gy&amp;cid=254178196&amp;page=1" allowfullscreen="allowfullscreen" width="100%" height="100%" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
   </div>
   <div class="r clearfix">
-    <div class="tbox8" style="width:488px;height:300px;overflow:hidden;">
+    <div class="tbox8" style="width:495px;overflow:hidden;">
       <div class="tit clearfix"><span class="l" id="lm1_1"><a href="https://www.zhiyuanyun.com/cate/zyzg_xxdt/" target="_blank">项目介绍</a></span><!--<span id="lm1_2">地方动态</span>--></div>
-      <div class="tcon" style="height:268px;" id="lm1_tab1">
-
+      <div class="tcon" style="overflow:auto;" id="lm1_tab1">
+        <p style="padding: 0px 14px; margin-top: 2rem;">
+          网站作为共青团信息化支持平台、志愿者活动信息发布和展示平台、注册志愿者 开展互动、自我展示的网络平台在中国志愿者工作及宣传上发挥了重要作用。经过网站专业运营团队的共同努力，目前已成长为中国最大的志愿者公益门户。
+          中国志愿者网曾在北京2008年奥运会中承担“志愿中国 人文奥运”主题活动与京外省（区、市）赛会志愿者招募工作宣传、信息发布的重要任务。网站全程报道了奥运志愿者的服务风采，获得了北京奥组委授予的北京奥运会、残奥会志愿者工作突出贡献奖。为网站迈向公益新闻门户的战略目标打定了坚实基础。
+          中国志愿者信息管理系统已经开发完毕并在全国各地逐步授权使用，注册系统功能包括志愿者在线注册、志愿服务信息发布平台、需求机构信息接收、志愿者机构人员管理，实现多角色一站式的现代管理体系。消息中心实现站内短消息、邮件群发、定向手机短信等手段的交流方式。
+          依托共青团中央志愿者工作部及中国青年志愿者协会的政府资源，网站在公益慈善事业上将逐步涉入公益活动策划，指导中国行业龙头企业开展有影响力、有品牌价值的公益慈善活动。联合全国官方的慈善基金会、志愿者协会、NGO组织以及行业媒体一道为中国志愿者事业发展做好排头兵。
+        </p>
+        <br>
       </div>
     </div>
   </div>
 </div>
 
-
 <div class="wrap clearfix m10">
   <div class="l clearfix">
-    <div class="tbox8" style="width:495px;height:305px;overflow:hidden;">
+    <div class="tbox8" style="width:495px;overflow:hidden;">
       <div class="tit clearfix"><span class="l" id="lm2_1"><a href="https://www.zhiyuanyun.com/cate/zyzg_mtbd/" target="_blank">新闻专栏</a></span></div>
       <div class="tcon" style="height:268px;" id="lm2_tab1">
         <ul>
           <li><a href="https://www.zhiyuanyun.com/show/1070319.html" title="三峡日报：居民们线上点单 志愿者抢单服务" target="_blank">三峡日报：居民们线上点单 志愿者抢单服务</a><span>2021-06-18</span></li><li><a href="https://www.zhiyuanyun.com/show/1070324.html" title="工人日报：志愿服务让城市更有温度" target="_blank">工人日报：志愿服务让城市更有温度</a><span>2021-06-17</span></li><li><a href="https://www.zhiyuanyun.com/show/1070323.html" title="贵阳日报：凝聚志愿服务力量 构建税收共治新格局" target="_blank">贵阳日报：凝聚志愿服务力量 构建税收共治新格局</a><span>2021-06-17</span></li><li><a href="https://www.zhiyuanyun.com/show/1070194.html" title="瑞安日报：践行志愿精神 传承人间大爱" target="_blank">瑞安日报：践行志愿精神 传承人间大爱</a><span>2021-06-15</span></li><li><a href="https://www.zhiyuanyun.com/show/1070195.html" title="齐鲁晚报：推进志愿服务专业化，引领文明实践新风尚" target="_blank">齐鲁晚报：推进志愿服务专业化，引领文明实践新风尚</a><span>2021-06-12</span></li><li><a href="https://www.zhiyuanyun.com/show/1070085.html" title="乌鲁木齐晚报：42个高考服务站千余志愿者助力高考" target="_blank">乌鲁木齐晚报：42个高考服务站千余志愿者助力高考</a><span>2021-06-08</span></li><li><a href="https://www.zhiyuanyun.com/show/1070089.html" title="中新网：南宁市青年志愿者踊跃投身公益活动 爱心助力高考" target="_blank">中新网：南宁市青年志愿者踊跃投身公益活动 爱心助力高考</a><span>2021-06-08</span></li><li><a href="https://www.zhiyuanyun.com/show/1070083.html" title="人民日报：北京冬奥会赛会志愿者报名人数超百万 为冬奥筹办贡献力量" target="_blank">人民日报：北京冬奥会赛会志愿者报名人数超百万 为冬奥筹办贡献力量</a><span>2021-06-08</span></li><li><a href="https://www.zhiyuanyun.com/show/1070046.html" title="广州日报：近六千名志愿者增援检测" target="_blank">广州日报：近六千名志愿者增援检测</a><span>2021-06-07</span></li>                </ul>
       </div>
-      <div class="tcon" style="height:268px;" id="lm2_tab2">
-        <ul>
-          <li><a href="https://www.zhiyuanyun.com/show/1070321.html" title="张强：释放志愿服务新活力 构建现代生态环境治理体系" target="_blank">张强：释放志愿服务新活力 构建现代生态环境治理体系</a><span>2021-06-16</span></li><li><a href="https://www.zhiyuanyun.com/show/1069332.html" title="谭建光：志愿服务项目书填写的十个要素" target="_blank">谭建光：志愿服务项目书填写的十个要素</a><span>2021-05-05</span></li><li><a href="https://www.zhiyuanyun.com/show/1066496.html" title="《志愿服务记录与证明出具办法（试行）》解读问答" target="_blank">《志愿服务记录与证明出具办法（试行）》解读问答</a><span>2020-12-25</span></li><li><a href="https://www.zhiyuanyun.com/show/1066495.html" title="志愿服务记录与证明出具办法（试行）" target="_blank">志愿服务记录与证明出具办法（试行）</a><span>2020-12-25</span></li><li><a href="https://www.zhiyuanyun.com/show/1038643.html" title="陆士桢：发展中国特色志愿服务，促进社会文明进步" target="_blank">陆士桢：发展中国特色志愿服务，促进社会文明进步</a><span>2017-09-08</span></li><li><a href="https://www.zhiyuanyun.com/show/1038642.html" title="肖金明：《志愿服务条例》的立法创新与多重效应" target="_blank">肖金明：《志愿服务条例》的立法创新与多重效应</a><span>2017-09-08</span></li><li><a href="https://www.zhiyuanyun.com/show/1038641.html" title="党秀云：为志愿服务保驾护航" target="_blank">党秀云：为志愿服务保驾护航</a><span>2017-09-08</span></li><li><a href="https://www.zhiyuanyun.com/show/1038640.html" title="李芳：准确把握《志愿服务条例》的立法重点" target="_blank">李芳：准确把握《志愿服务条例》的立法重点</a><span>2017-09-08</span></li><li><a href="https://www.zhiyuanyun.com/show/1038639.html" title="谭建光：强化志愿服务激励 促进诚信社会建设" target="_blank">谭建光：强化志愿服务激励 促进诚信社会建设</a><span>2017-09-08</span></li>                </ul>
-      </div>
     </div>
   </div>
   <div class="r clearfix">
-    <div class="tbox8" style="width:495px;height:305px;overflow:hidden;">
+    <div class="tbox8" style="width:495px;height:312px;overflow:hidden;">
       <div class="tit clearfix"><span class="l" id="lm3_1"><a href="https://www.zhiyuanyun.com/cate/zyzg_tzgg/" target="_blank">专题活动</a></span><!--<span id="lm3_2">调查征集</span>--></div>
-      <div class="tcon" style="height:268px;" id="lm3_tab1">
+      <div class="tcon" style="height:268px; overflow:auto;" id="lm3_tab1">
+        <h4 style="text-align: center;">
+          探访老人、
+          清洁社区、
+          表演节目、
+          募捐活动
+        </h4>
+        <img class="img-slide img" src="https://590233ee4fbb3.cdn.sohucs.com/auto/1-autoe98201d680284b57a247e6c374ec7184" alt="img1">
 
+        <img class="img-slide img" src="https://590233ee4fbb3.cdn.sohucs.com/auto/1-autof21e5bb6a57c4abeaf6fbdbffc7754c5" alt="img1">
+
+        <img class="img-slide img" src="https://590233ee4fbb3.cdn.sohucs.com/auto/1-auto1cc3ee33c66549e9bf907328a1d84186" alt="byjm.jpg" alt="img1">
+
+        <img class="img-slide img" src="https://590233ee4fbb3.cdn.sohucs.com/auto/1-auto3a1943dc55254d04abed2bacb9b0a834" alt="img1">
       </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  var index = 0, len;
+  var imgBox = document.getElementsByClassName("img-slide");
+  len = imgBox.length;
+  imgBox[index].style.display = 'block';
+
+  function slideShow() {
+    index ++;
+    if(index >= len) index = 0;
+    for(var i=0; i<len; i++) {
+      imgBox[i].style.display = 'none';
+    }
+    imgBox[index].style.display = 'block';
+  }
+
+  setInterval(slideShow, 3000);
+
+</script>
 
 <link href="https://css.zhiyuanyun.com/chinavol/cnmap.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts.js"></script>
 <script type="text/javascript" src="https://css.zhiyuanyun.com/chinavol/js/china.js"></script>
 <!-- <script type="text/javascript" src="https://css.zhiyuanyun.com/chinavol/js/cnmap.js"></script> -->
-
-
-
 <div class="footer clearfix">
-  <div class="wrap m10">ICP备案编号：<a href="https://beian.miit.gov.cn" target="_blank">京ICP备13002525号-7</a> 版权所有：<a href="https://www.zhiyuanyun.net" target="_blank">志愿云运维团队</a> <a href="https://www.zhiyuanyun.com/show/1040107.html">联系我们</a><br>
-    为了达到最好效果，推荐使用 <a href="https://www.microsoft.com/zh-cn/edge" target="_blank">Microsoft Edge</a>或 <a href="https://www.firefox.com.cn/" target="_blank">Mozilla Firefox</a>浏览器
-    <!--技术支持：<a href="https://www.bv2008.cn" target="_blank">志愿北京</a> <a href="https://www.zhiyuanyun.com" target="_blank">志愿云</a>-->
+  <div class="wrap m10">ICP备案编号：<a href="//beian.miit.gov.cn" target="_blank">京ICP备xxxxxxxx号-x</a> 版权所有：<a href="//www.zhiyuanyun.net" target="_blank">软件19-1 2021生产实习5组</a> <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=349636607&amp;site=qq&amp;menu=yes">联系我们</a><br>
+    为了达到最好效果，推荐使用 <a href="//www.microsoft.com/zh-cn/edge" target="_blank">Microsoft Edge</a>或 <a href="//www.firefox.com.cn/" target="_blank">Mozilla Firefox</a>浏览器
+    <!--技术支持：<a href="//www.bv2008.cn" target="_blank">志愿北京</a> <a href="//www.zhiyuanyun.com" target="_blank">志愿云</a>-->
   </div>
 </div>
-<link href="https://css.zhiyuanyun.com/default/kf.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-  .kf_menu .kf-btn-mz{background:url(http://css.zhiyuanyun.com/default/img/r_mz1.png) 0px 0px no-repeat;background-color:#c54033;color:#fff;}
-  .kf_menu .kf-btn-mz:hover{background:url(http://css.zhiyuanyun.com/default/img/r_mz.png) 0px 0px no-repeat;background-color:#f1f1f1 !important;color:#c54033;}
-  .kf_menu a.kf-btn-mz,a.kf-btn-cz:visited{background:url(http://css.zhiyuanyun.com/default/img/r_mz1.png) 0px 0px no-repeat;background-color:#c54033;text-decoration:none;display:block;}
-</style>
-<div id="kf_top"></div>
 </body>
 </html>

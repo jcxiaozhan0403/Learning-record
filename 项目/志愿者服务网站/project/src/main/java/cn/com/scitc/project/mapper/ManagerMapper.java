@@ -46,5 +46,7 @@ public interface ManagerMapper {
 
     Manager findByLoginId(String loginId);
 
+    Manager findById(Integer id);
+
     int reset();
 }

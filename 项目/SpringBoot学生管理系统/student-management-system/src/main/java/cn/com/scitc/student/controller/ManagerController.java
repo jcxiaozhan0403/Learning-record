@@ -16,9 +16,9 @@ public class ManagerController {
 
     @RequestMapping("{loginId}")
     @ResponseBody
-    public Manager findByLoginId(@PathVariable String loginId,HttpServletRequest request) {
+    public Manager findByLoginId(@PathVariable String loginId, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        session.setAttribute("manager",managerService.findByLoginId(loginId));
+        session.setAttribute("manager", managerService.findByLoginId(loginId));
         return managerService.findByLoginId(loginId);
     }
 }

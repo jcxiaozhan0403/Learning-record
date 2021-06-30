@@ -19,6 +19,10 @@
     <link rel="stylesheet" href="<c:url value="/static/css/manager.css" />">
 </head>
 <style>
+    body {
+        font-family: 楷体;
+    }
+
     img {
         width: 500px;
         height: 300px;
@@ -54,6 +58,12 @@
 <jsp:include page="/WEB-INF/manager/include/nav.jsp" />
 <div class="container">
     <h3 style="color: white;margin-bottom: 25px;">图片管理</h3>
+    <c:if test="${msg != null}">
+        <div class="alert alert-primary" role="alert">
+            <c:out value="${msg}" />
+        </div>
+        <c:remove var="msg" scope="session" />
+    </c:if>
     <div class="list clearfix">
         <div class="list-item">
             <img src="${images.page1}">

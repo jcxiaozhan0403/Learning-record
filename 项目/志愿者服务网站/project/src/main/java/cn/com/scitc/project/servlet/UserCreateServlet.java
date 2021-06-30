@@ -1,7 +1,9 @@
 package cn.com.scitc.project.servlet;
 
 
+import cn.com.scitc.project.dao.LogDao;
 import cn.com.scitc.project.dao.ManagerDao;
+import cn.com.scitc.project.model.Log;
 import cn.com.scitc.project.model.Manager;
 import cn.com.scitc.project.server.MyMd5;
 
@@ -11,12 +13,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Calendar;
 
 @WebServlet(urlPatterns = "/manager/user/create")
 public class UserCreateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
+        Calendar calendar = Calendar.getInstance();
+        Log log = new Log();
         Manager manager = new Manager();
         try {
             if (!validation(req)) {
@@ -36,11 +41,18 @@ public class UserCreateServlet extends HttpServlet {
             managerDao.reset();
             managerDao.insert(manager);
 
-            System.out.println("新增成功");
+            LogDao logDao = new LogDao();
+            log.setTime(calendar.getTime());
+            System.out.println(req.getAttribute("currentUser"));
+            Manager currentUser = (Manager) req.getSession().getAttribute("currentUser");
+            log.setLoginid(currentUser.getLoginid());
+            log.setEvent("添加新用户");
+            logDao.reset();
+            logDao.insert(log);
+
             req.getSession().setAttribute("msg","新增成功");
             resp.sendRedirect("list");
         }catch (Exception e) {
-            System.out.println("新增失败");
             req.getSession().setAttribute("msg","新增失败");
             resp.sendRedirect("new");
         }

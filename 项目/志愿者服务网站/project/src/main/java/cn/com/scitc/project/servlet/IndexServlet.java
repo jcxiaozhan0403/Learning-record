@@ -1,8 +1,5 @@
 package cn.com.scitc.project.servlet;
 
-import cn.com.scitc.project.dao.ImageDao;
-import cn.com.scitc.project.model.Image;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

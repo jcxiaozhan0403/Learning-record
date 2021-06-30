@@ -72,6 +72,9 @@
   <select id="findByLoginId" resultType="cn.com.scitc.project.model.Manager" parameterType="java.lang.String">
     select * from manager where loginId = #{loginId}
   </select>
+  <select id="findById" resultType="cn.com.scitc.project.model.Manager" parameterType="Integer">
+    select * from manager where id = #{id}
+  </select>
   <update id="reset">
     alter table manager  AUTO_INCREMENT=1;
   </update>

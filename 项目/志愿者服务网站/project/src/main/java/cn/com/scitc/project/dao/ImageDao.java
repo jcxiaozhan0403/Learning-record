@@ -24,4 +24,24 @@ public class ImageDao implements ImageMapper {
             return mapper.findAll();
         }
     }
+
+    @Override
+    public Image findImageByName(String name) {
+        try(SqlSession session = MybatisUtil.getSqlSession()){
+            ImageMapper mapper = session.getMapper(ImageMapper.class);
+            return mapper.findImageByName(name);
+        }
+    }
+
+    @Override
+    public int updateByPrimaryKey(Image image) {
+        try(SqlSession session = MybatisUtil.getSqlSession()){
+            ImageMapper mapper = session.getMapper(ImageMapper.class);
+            int result = mapper.updateByPrimaryKey(image);
+            session.commit();
+            return result;
+        }
+    }
+
+
 }

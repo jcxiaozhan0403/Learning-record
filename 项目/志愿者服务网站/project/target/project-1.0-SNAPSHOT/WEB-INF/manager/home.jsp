@@ -19,7 +19,15 @@
     <link rel="stylesheet" href="<c:url value="/static/css/manager.css" />">
     <link rel="stylesheet" href="<c:url value="/webjars/font-awesome/4.7.0/css/font-awesome.min.css" />">
 </head>
+<style>
+    body {
+        font-family: 楷体;
+    }
+</style>
 <body>
     <jsp:include page="/WEB-INF/manager/include/nav.jsp" />
+    <div style="width: 400px;height: 200px;margin: 310px auto;line-height: 200px;text-align: center;color: #fff;font-size: 40px;">
+        <p>志愿云管理中心</p>
+    </div>
 </body>
 </html>

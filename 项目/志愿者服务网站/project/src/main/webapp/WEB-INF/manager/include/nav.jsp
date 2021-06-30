@@ -25,7 +25,7 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="<c:url value="/manager/home" />">首页 <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
@@ -38,6 +38,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="<c:url value="/manager/image/list" />">图片管理</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<c:url value="/manager/log" />">操作日志</a>
+            </li>
+
             <li class="nav-item active" id="userName">
                 <a class="nav-link">你好，<c:out value="${ sessionScope.currentUser.realname}" />！</a>
             </li>
