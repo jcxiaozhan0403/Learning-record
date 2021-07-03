@@ -41,7 +41,7 @@ public class CheckLoginServlet extends HttpServlet {
             dao.updateByPrimaryKey(manager);
 
             // 保存session
-            session.setAttribute("currentUser",manager);
+              session.setAttribute("currentUser",manager);
 
             // 跳转到主页
             resp.sendRedirect("home");
