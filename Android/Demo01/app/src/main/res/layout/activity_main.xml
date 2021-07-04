@@ -23,9 +23,52 @@
         android:layout_height="40dp"
         android:background="@drawable/bg_btn1"
         android:text="按钮2"
+        android:onClick="showToast"
         android:layout_marginTop="10dp"
         android:textSize="20sp"
         android:textColor="#000000"
         />
 
+    <Button
+        android:id="@+id/btn3"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="#FF0000"
+        android:textSize="20sp"
+        android:text="Button"
+        android:textAllCaps="false"
+        android:textColor="#fff" />
+
+    <EditText
+        android:id="@+id/et_1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:hint="用户名"
+        android:inputType="textPassword"
+        android:gravity="center" />
+
+    <RadioGroup
+        android:id="@+id/rg_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="男"
+            android:checked="true"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="女"
+            android:textSize="18sp" />
+
+    </RadioGroup>
 </LinearLayout>
