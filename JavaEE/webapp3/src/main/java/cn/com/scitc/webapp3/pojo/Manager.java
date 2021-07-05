@@ -14,7 +14,6 @@ public class Manager {
     private Timestamp lastLoginDt;
 
     @Id
-    @GeneratedValue
     @Column(name = "id", nullable = false)
     public Integer getId() {
         return id;

@@ -1145,6 +1145,11 @@ while (rs.next()) {
 }
 ```
 
+## 断言
+```java
+Assertions.assertEquals("期望值","实际值")
+```
+
 ## 注解
 三个内置注解
 ```java

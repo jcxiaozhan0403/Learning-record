@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#94D7E7"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -16,6 +17,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/loginid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -24,15 +26,16 @@
             android:padding="5dp"/>
 
         <EditText
-            android:id="@+id/et_1"
+            android:id="@+id/edit_loginid"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
-            android:hint="用户名"
+            android:hint="请输入账号"
             android:inputType="textPassword"
             android:gravity="center" />
 
         <TextView
+            android:id="@+id/pwd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -41,14 +44,37 @@
             android:padding="5dp"/>
 
         <EditText
-            android:id="@+id/et_2"
+            android:id="@+id/edit_pwd"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
-            android:hint="用户名"
+            android:hint="请输入密码"
             android:inputType="textPassword"
             android:gravity="center" />
 
-    </LinearLayout>
+        <CheckBox
+            android:id="@+id/chkbox"
+            android:layout_width="wrap_content"
+            android:layout_weight="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:text="记住密码"/>
 
+        <Button
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="245dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/btn_bg1"
+            android:textSize="20sp"
+            android:text="登录" />
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="30dp"
+        android:text="没有账号？" />
 </LinearLayout>
