@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 public class Manager {
-    private Long id;
+    private Integer id;
     private String loginId;
     private String realName;
     private String pwd;
@@ -16,15 +16,11 @@ public class Manager {
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false)
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
