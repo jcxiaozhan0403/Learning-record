@@ -70,5 +70,12 @@
             android:text="女"
             android:textSize="18sp" />
 
+        <CheckBox
+            android:id="@+id/cb_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="编程学习"
+            android:textSize="18sp" />
+
     </RadioGroup>
 </LinearLayout>

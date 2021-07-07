@@ -6,6 +6,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private EditText editText;
     private RadioGroup radioGroup;
+    private CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,16 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton radioButton = group.findViewById(checkedId);
                 Toast.makeText(MainActivity.this,radioButton.getText(),Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        checkBox = findViewById(R.id.cb_1);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Toast.makeText(MainActivity.this,"选中",Toast.LENGTH_LONG);
+                }
             }
         });
     }
