@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements ViewSwitcher.View
         ImageView img = new ImageView(this);
         img.setBackgroundColor(Color.BLACK); //背景色
         img.setScaleType(ImageView.ScaleType.FIT_CENTER); //图片格式化
-        img.setLayoutParams(new ViewGroup.LayoutParams(
+        img.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT
         ));

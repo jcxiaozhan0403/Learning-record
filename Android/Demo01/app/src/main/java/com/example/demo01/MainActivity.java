@@ -9,14 +9,18 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editText;
     private RadioGroup radioGroup;
     private CheckBox checkBox;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        imageView = findViewById(R.id.imageView);
+        Glide.with(this).load("https://img.jcxiaozhan.top/Hexo%E6%90%AD%E7%AB%99%E4%B8%80.jpg").into(imageView);
     }
 
     public void showToast(View view) {
