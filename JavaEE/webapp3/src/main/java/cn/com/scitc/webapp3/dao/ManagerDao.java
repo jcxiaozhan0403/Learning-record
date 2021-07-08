@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ManagerDao extends CrudRepository<Manager,Integer> {
+    public Manager findByLoginId(String loginId);
 }
