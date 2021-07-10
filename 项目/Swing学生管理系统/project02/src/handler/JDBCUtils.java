@@ -28,13 +28,13 @@ public class JDBCUtils {
         }
 
     }
-    /* 获取连接*/
+
+    // 获取连接
     public static Connection getConnection() throws Exception{
         return DriverManager.getConnection(url,user,pwd);
     }
-    /*
-     * 封装关闭资源的方法
-     * */
+
+    //封装关闭资源的方法
     public static void close(Connection connection, Statement statement){
         if(statement != null){
             try {

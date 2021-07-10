@@ -109,7 +109,7 @@ public class HelloWorld
 public static void main(String[] args)
 ```
 
-打印
+打印语句
 ```java
 System.out.println("hello world");
 ```
@@ -131,13 +131,8 @@ byte       Byte       1
 long       Long       8
 ```
 
-## 类与对象(简单)
-简单概念：一个有多种属性的东西，叫对象，有相同属性的对象称为一个类
-
-方法是类的动作,是动态行为,用驼峰命名法
-
 ## 字面值
-给基本类型的变量赋值的方式叫做字面值
+给基本类型的变量赋的值叫做字面值
 
 ## 数据类型的相关计算
 char可以与数字进行运算，过程是将字母转换为ASCII值再运算
@@ -182,7 +177,6 @@ n >> m //右移，值等于n/2的m次方，如果为负数运算，则右移后�
 n >>> m //无符号右移，右移后的最前两位补0
 ^异或运算 //转为二进制，相同为0，不同为1
 ~反码 //1和0取反，正负号取反
-
 ```
 
 ## Scanner
@@ -211,7 +205,7 @@ s.close(); //关闭，避免内存浪费
 ```
 
 ## 循环
-与其他语言相似，break结束循环，continue跳过此次循环
+与其他编程语言相似，break结束循环，continue跳过此次循环
 ```java
 //标签跳出循环
 public class HelloWorld {
@@ -341,7 +335,12 @@ for(int i=1;i<array2.length;i++){
 
 ## 类与对象(进阶)
 
-用来代表类的对象的变量叫做引用
+简单概念：一个有多种属性的东西，叫对象，有相同属性的对象称为一个类
+
+方法是类的动作,是动态行为,用驼峰命名法
+
+引用：用来代表类的对象的变量
+
 ```java
 public class Hero {
     String name; //姓名
@@ -377,14 +376,13 @@ public class Weapon extends Item{
     int damage; //攻击力
      
     public static void main(String[] args) {
-        Weapon infinityEdge = new Weapon();
-        infinityEdge.damage = 65; //damage属性在类Weapon中新设计的
+        Weapon weapon = new Weapon();
+        weapon.damage = 65; //damage属性在类Weapon中新设计的
          
-        infinityEdge.name = "无尽之刃";//name属性，是从Item中继承来的，就不需要重复设计了
-        infinityEdge.price = 3600;
+        weapon.name = "无尽之刃";//name属性，是从Item中继承来的，就不需要重复设计了
+        weapon.price = 3600;
          
     }
-     
 }
 ```
 
@@ -392,14 +390,34 @@ public class Weapon extends Item{
 
 可变参数方法(不定参数的方法是用来避免代码冗余的)
 ```java
-public void heal(Hero ... heroes){
-        for (Hero hero : heroes){
-            System.out.println(name + "给" + hero.name + "加血");
+public class StudentTestMethod {
+    // methodName({paramList},paramType…paramName)
+    // methodName 表示方法名称
+    // paramList 表示方法的固定参数列表
+    // paramType 表示可变参数的类型
+    // … 是声明可变参数的标识
+    // paramName 表示可变参数名称。
+    
+    
+    // 定义输出考试学生的人数及姓名的方法
+    public void print(String...names) {
+        int count = names.length;    // 获取总个数
+        System.out.println("本次参加考试的有"+count+"人，名单如下：");
+        for(int i = 0;i < names.length;i++) {
+            System.out.println(names[i]);
         }
+    }
+    
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        StudentTestMethod student = new StudentTestMethod();
+        student.print("张强","李成","王勇");    // 传入3个值
+        student.print("马丽","陈玲");
+    }
 }
 ```
 
-构造方法:对象实例化是通过调用构造方法实现的，构造方法方法名和类名一致，无返回值，如果未申明，系统会默认生成一个构造方法，如果申明了一个带参的构造方法，那么无参的构造方法将失效
+构造方法:对象实例化是通过调用构造方法实现的，构造方法方法名和类名一致，无返回值，如果未申明，系统会默认生成一个无参构造方法，如果申明了一个带参的构造方法，那么无参的构造方法将失效
 一旦定义了有参构造方法，就必须显示定义无参构造方法，否则会报错
 
 包：package，一般将比较接近的类，规划在同一个包下
@@ -453,14 +471,14 @@ public class Hero {
 
 ```java
 //如果一个属性，这个类通用，不会改变，那么设计为类属性，用static修饰
-    public class Hero(){
-        private static maxHP = 9000;
-    }
+public class Hero(){
+    private static maxHP = 9000;
+}
 
 //如果一个方法，没有调用任何对象属性，那么就可以考虑设计为类方法，用static修饰
-    public static void printGameDuration(){
-    	System.out.println("已经玩了10分50秒");
-    }
+public static void printGameDuration(){
+    System.out.println("已经玩了10分50秒");
+}
 ```
 
 ## 单例模式
@@ -515,7 +533,7 @@ public class HelloWorld {
 
 //使用增强for循环查看枚举中的常量
 for (Season s : Season.values()) {
-            System.out.println(s);
+    System.out.println(s);
 }
 ```
 
@@ -531,23 +549,24 @@ ADHero ad = new ADHero();
 //通常情况下，引用类型和对象类型是一致的
 ```
 当引用类型和对象类型不同时，就要用到转换
+
+没有继承关系的两个类，互相转换，一定会失败
+
 ```java
 //子类转父类(自动转换)
 ADHero ad = new ADHero();
 Hero h = new Hero();
-    h = ad
+h = ad
 
 //父类转子类(强制转换)
-    ad = (ADHero)h;
+ad = (ADHero)h;
 ```
-没有继承关系的两个类，互相转换，一定会失败
-
 类与接口的转换
 ```java
 ADHero ad = new ADHero();
-    AD adi = ad;
+
 // AD英雄类转为AD接口，是把ADHero类当做AD来使用，然而ADHero中必有AD接口中的方法，所以语义逻辑可行，自动转换
-    AD adi = ad;
+AD adi = ad;
 ```
 
 ## instanceof判断类型
@@ -600,7 +619,8 @@ public String toString(){
 ```
 
 ```java
-//equals()用于判断两个对象相不相同，相同返回true，不同返回false
+//equals()用于判断两个对象的内容相不相同，相同返回true，不同返回false
+//==比较的则是两个对象在内存中的地址相不相同
 ```
 
 ## 抽象类
@@ -657,6 +677,7 @@ String x = "999"
 String str = String.valueOf(i);
     
 //方法2:先把基本类型装箱为对象，然后调用对象的toString
+Integer it = i;
 String str2 = it.toString();
 
 //字符串转整数
@@ -755,9 +776,9 @@ try {
     e.printStackTrace();
 }
 finally{
+    //finally中放无论出不出现异常都必会执行的代码
     System.out.println("无论文件是否存在， 都会执行的代码");
 }
-//finally中放无论出不出现异常都必会执行的代码
 
 //法二：用一个catch抛出多个异常，用if来判断异常
 try {
@@ -796,25 +817,25 @@ import java.util.*;
  
 public class Test{
  public static void main(String[] args) {
-     List<String> list=new ArrayList<String>();
+     List<String> list=new ArrayList<>();
      list.add("Hello");
      list.add("World");
      list.add("HAHAHAHA");
-     //第一种遍历方法使用 For-Each 遍历 List
-     for (String str : list) {            //也可以改写 for(int i=0;i<list.size();i++) 这种形式
+     
+     //第一种遍历方法使用增强型for循环遍历list
+     for (String str : list) {   
         System.out.println(str);
      }
  
      //第二种遍历，把链表变为数组相关的内容进行遍历
      String[] strArray=new String[list.size()];
      list.toArray(strArray);
-     for(int i=0;i<strArray.length;i++) //这里也可以改写为  for(String str:strArray) 这种形式
+     for(int i=0;i<strArray.length;i++)
      {
         System.out.println(strArray[i]);
      }
      
     //第三种遍历 使用迭代器进行相关遍历
-     
      Iterator<String> ite=list.iterator();
      while(ite.hasNext())//判断下一个元素之后有值
      {
@@ -836,13 +857,13 @@ public class Test{
       map.put("3", "value3");
       
       //第一种：普遍使用，二次取值
-      System.out.println("通过Map.keySet遍历key和value：");
+      //通过Map.keySet遍历key和value
       for (String key : map.keySet()) {
        System.out.println("key= "+ key + " and value= " + map.get(key));
       }
       
       //第二种
-      System.out.println("通过Map.entrySet使用iterator遍历key和value：");
+      //通过Map.entrySet使用iterator遍历key和value
       Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
       while (it.hasNext()) {
        Map.Entry<String, String> entry = it.next();
@@ -850,13 +871,13 @@ public class Test{
       }
       
       //第三种：推荐，尤其是容量大时
-      System.out.println("通过Map.entrySet遍历key和value");
+      //通过Map.entrySet遍历key和value
       for (Map.Entry<String, String> entry : map.entrySet()) {
        System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
       }
     
       //第四种
-      System.out.println("通过Map.values()遍历所有的value，但不能遍历key");
+      //通过Map.values()遍历所有的value，但不能遍历key
       for (String v : map.values()) {
        System.out.println("value= " + v);
       }
@@ -881,11 +902,16 @@ list.add("内容");
 迭代器的使用
 ```java
 //创建一个迭代器对象
-Iterat iterat = orcoll.iterator();
+Iterat iterat = list.iterator();
 
-iterat.hasNext() : 是否还有下一个元素
+//返回迭代器的下一个元素，并且更新迭代器的状态
+iterat.next()
 
-iterat.next(): ①指针下移  ②获取元素
+//用于检测集合中是否还有元素
+iterat.hasNext()
+    
+//将迭代器返回的元素删除
+iterat.remove()
 ```
 ## I/O
 文件和文件夹都是用File代表
@@ -991,10 +1017,16 @@ thread.getPriority();
 thread.setPriority(xxx);
 ```
 
-## Lamda表达式
+# Lambda表达式
+
 Lambda简化了匿名内部类，方法引用简化了lambda
 任何接口，如果只包含唯一一个抽象方法，name它就是一个函数式接口
+
 ```java
+interface Demo02 {
+    void test();
+}
+
 // 匿名内部类常规写法
 public class Lambda {
     public static void main(String[] args) {
@@ -1008,11 +1040,6 @@ public class Lambda {
     }
 }
 
-interface Demo02 {
-    void test();
-}
-
-
 // Lambda用法
 public class Lambda {
     public static void main(String[] args) {
@@ -1021,10 +1048,6 @@ public class Lambda {
         };
         demo02.test();
     }
-}
-
-interface Demo02 {
-    void test();
 }
 ```
 
@@ -1038,7 +1061,6 @@ private synchronized void buy(){
 
 // 多个对象使用同一共享资源时，为了不被影响，需要锁住此资源
 synchronized(Obj){}
-
 ```
 
 ## 生成者与消费者关系模式
@@ -1120,6 +1142,86 @@ String sql = "insert into student values('007',"+"'阿九'"+","+"'女'"+","+20+"
 s.execute(sql);
 
 closeConn(s);
+```
+
+## JDBCUtil
+
+JDBCUtil是对JDBC的一个简单封装的工具类，简化了开发过程的同时，不会影响程序性能
+
+```java
+package com.ut;
+
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
+
+/*
+ * 封装一个工具类，能够减少重复代码
+ *
+ *  可以通过一个配置文件的形式，
+ *
+ * */
+public class JDBCUtils {
+    private static  String url ;
+    private static String pwd;
+    private static  String user;
+    static {
+        // 静态变量代码块中赋值。
+        // 1. 读取，配置配置文件
+        try {
+            Properties properties = new Properties();
+            properties.load(handler.JDBCUtils.class.getClassLoader().getResourceAsStream("jdbc.properties"));
+            url = properties.getProperty("url");
+            pwd = properties.getProperty("pwd");
+            user = properties.getProperty("user");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    
+    // 获取连接
+    public static Connection getConnection() throws Exception{
+        return DriverManager.getConnection(url,user,pwd);
+    }
+    
+    //封装关闭资源的方法
+    public static void close(Connection connection, Statement statement){
+        if(statement != null){
+            try {
+                statement.close(); // 关闭资源
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(connection != null){
+            try {
+                connection.close(); /// 关闭conn 资源
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public static void close(Connection connection, Statement statement, ResultSet resultSet) throws SQLException {
+        if(statement != null){
+            try {
+                statement.close(); // 关闭资源
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(connection != null){
+            try {
+                connection.close(); /// 关闭conn 资源
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(resultSet != null){
+            resultSet.close();
+        }
+    }
+}
 ```
 
 ## JDBC增删改

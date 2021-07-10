@@ -1,5 +1,4 @@
 1. 查看是否安装Mysql
-看服务
 2. 干掉Mysql服务
 ```
 sc delete mysql

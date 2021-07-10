@@ -243,10 +243,6 @@ conn.rollback();
 
 Druid是阿里旗下的开源连接池，可以与Spring快速整合
 
-## DBUtils
-
-DBUtils是对JDBC的一个简单封装的工具类，简化了开发过程的同时，不会影响程序性能
-
 ## MVC开发模式
 ```
 C: controller
@@ -274,8 +270,16 @@ service层命名规则：
 ```
 
 ## Servlet
-1. 创建javaweb项目
-2. 在web/WEB-INF下创建lib目录，放入servlet-api.jar包
+1. 创建javaweb Maven项目
+2. pom.xml中导入servlrt依赖
+```xml
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>4.0.1</version>
+    <scope>provided</scope>
+</dependency>
+```
 3. 创建类，调用Servlet接口，导入包和方法
 4. 配置web.xml文件，添加如下配置
 ```xml
@@ -422,7 +426,7 @@ ServletContext servletContext = request.getServletContext();
 ServletContext servletContext = session.getServletContext();
 ```
 
-## 应用场景
+## Session应用场景
 1. 临时数据传递：HttpServletRequest
 2. 登录状态管理：HttpSession
 3. 访问次数统计：ServletContext
@@ -463,13 +467,14 @@ filterChain.doFilter(servletRequest,servletResponse);
 @WebFilter(value = "拦截的资源路径")
 ```
 在一个Web应用中，可以开发编写多个Filter，这些Filter组合起来称为一个Filter链
+
 Filter优先级
 - 如果都为注解配置，按照类名的字符串顺序排列
 - 如果都为xml配置，按照编写顺序，从上到下排列
 - 如果xml优先级高于注解
 - 如果既有注解，又有xml，会进行多次过滤
 
-拦截器完成权限验证
+过滤器完成权限验证
 ```java
 // 拆箱，完成类型转换
 HttpServletRequest request = (HttpServletRequest)servletRequest;
@@ -594,8 +599,8 @@ String name = "李爽";
 req.setAttribute("name",name);
 ```
 获取
-```MVCjsp
+```jsp
 <c:out value="${name}"></c:out>
 <% out.print(request.getAttribute("name")); %>
-<%=request.getAttribute("name")%>MVC
+<%=request.getAttribute("name")%>
 ```
