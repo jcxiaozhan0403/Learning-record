@@ -311,6 +311,7 @@ password=lishuang001219
 ```
 实体类较少时，使用第一种
 实体类较多时，使用第二种，第二种如果需要DIY别名，需要使用注解
+
 ```java
 @Alias("UserPojo")
 public class User {
@@ -327,7 +328,8 @@ public class User {
 ```
 
 方式二：通过扫描包进行绑定(少量Mapper时推荐使用)
-方式二注意：
+此方式注意：
+
 1. 接口和他的Mapper配置文件必须同名
 2. 接口和他的Mapper配置文件必须在同一个包下
 ```xml
