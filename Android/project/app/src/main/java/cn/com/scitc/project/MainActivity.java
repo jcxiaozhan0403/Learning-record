@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         mySQLiteDB.create(this);
         mLv1 = findViewById(R.id.lv_1);
         mLv1.setAdapter(new MyListAdapter(this));
-
         add = findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override

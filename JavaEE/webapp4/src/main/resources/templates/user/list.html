@@ -1,0 +1,25 @@
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="shortcut icon" href="#" />
+    <head th:include="/bootstrap/t :: bootstrapHead" th:remove="tag"></head>
+</head>
+<body>
+    <div th:replace="/bootstrap/t :: nav"></div>
+    <div id="container" class="container">
+        <table class="table table-hover">
+            <tr>
+                <th>id</th>
+                <th>姓名</th>
+                <th>登录名</th>
+                <th>密码</th>
+            </tr>
+            <tr th:each="manager : ${list}">
+                <td th:text="${manager.id}"></td>
+                <td th:text="${manager.realname}"></td>
+                <td th:text="${manager.loginid}"></td>
+                <td th:text="${manager.pwd}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
