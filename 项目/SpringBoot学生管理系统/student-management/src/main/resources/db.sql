@@ -8,6 +8,8 @@ create table manager (
      userName varchar(20) not null,                  #用户名
      realName varchar(10) not null,                  #真实姓名
      pwd varchar(200) not null,                      #密码
+     introduction varchar(200),                      #简介
+     avatar varchar(200) not null,                   #头像
      lastLoginDt datetime                            #最后登录时间
 );
 
