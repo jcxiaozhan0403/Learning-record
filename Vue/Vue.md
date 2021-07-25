@@ -50,9 +50,9 @@ npm start
 
 <script>
 new Vue({
-    // el挂载点用于锁定元素,相当于css选择器
+    // el用于指定当前Vue实例为哪个容器服务，值通常为css选择器字符串
   el: '#app',
-    //data对象用于存放键值对数据，可用直接用键名获取数据
+    //data中用于存储数据，数据供el所指定的容器去使用
   data: {
     message: 'Hello Vue.js!'
   }
@@ -60,6 +60,16 @@ new Vue({
 </script>
 </body>
 ```
+
+## Vue模板语法有两大类
+1. 插值语法
+  功能：用于解析标签体内容。
+  写法：{{xxx}}，xxx是js表达式，且可以直接读取到data中的所有属性。
+2. 指令语法
+  功能：用于解析标签（包括：标签属性、标签体内容、绑定事件.....）。
+  举例：v-bind:href="xxx" 或  简写为 :href="xxx"，xxx同样要写js表达式，
+        且可以直接读取到data中的所有属性。
+  备注：Vue中有很多的指令，且形式都是：v-????，此处我们只是拿v-bind举个例子。
 
 ## 指令
 v-text
@@ -112,16 +122,81 @@ v-if
 v-bind
 ```html
 <!-- v-bind用于设置元素属性值,属性值可存放在data中 -->
-<!-- 法一 -->
+<!-- 完整 -->
 <img v-bind:class="imgClass">
-<!-- 法二：简写 -->
+<!-- 简写 -->
 <img :class="imgClass">
 ```
 
 v-model
 ```html
 <!-- v-model用于表单元素的双向数据绑定(表单值改变会同步到data中，data中值改变会同步到表单中) -->
+<!-- 完整 -->
+<input type="text" v-model:value="message">
+<!-- 简写 -->
 <input type="text" v-model="message">
+```
+
+## el的两种写法
+```javascript
+const v = new Vue({
+  //第一种写法(实例化时自动挂载)
+  el:'#root', 
+  data:{
+    name:'尚硅谷'
+  }
+})
+		
+//第二种写法(手动控制挂载)
+v.$mount('#root')
+```
+
+## data的两种写法
+```javascript
+// 对象式
+new Vue({
+  data:{
+    name:'尚硅谷'
+  }
+})
+
+// 函数式
+new Vue({
+  data(){
+    return: {
+      name:'尚硅谷'
+    }
+  }
+})
+```
+
+## Object.defineproperty
+```javascript
+let number = 18
+let person = {
+  name:'张三',
+  sex:'男',
+}
+
+Object.defineProperty(person,'age',{
+  // value:18,
+  // enumerable:true, //控制属性是否可以枚举，默认值是false
+  // writable:true, //控制属性是否可以被修改，默认值是false
+  // configurable:true //控制属性是否可以被删除，默认值是false
+
+  //当有人读取person的age属性时，get函数(getter)就会被调用，且返回值就是age的值
+  get(){
+    console.log('有人读取age属性了')
+    return number
+  },
+
+  //当有人修改person的age属性时，set函数(setter)就会被调用，且会收到修改的具体值
+  set(value){
+    console.log('有人修改了age属性，且值是',value)
+    number = value
+  }
+
+})
 ```
 
 ## 事件修饰符
