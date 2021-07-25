@@ -42,9 +42,9 @@ npm start
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <body>
 <div id="app">
-    <!-- 法一 -->
+    <!-- 插值语法 -->
   <p>{{ message }}</p>
-    <!-- 法二 -->
+    <!-- 指令语法 -->
   <p v-text="message"></p>
 </div>
 
@@ -72,34 +72,33 @@ new Vue({
   备注：Vue中有很多的指令，且形式都是：v-????，此处我们只是拿v-bind举个例子。
 
 ## 指令
-v-text
+v-text：用于解析便标签内容
 ```html
-<!-- 法一 -->
+<!-- 插值语法 -->
 <p>{{ message }}</p>
-<!-- 法二 -->
+<!-- 指令语法 -->
 <p v-text="message"></p>
 <!-- 还可以是使用字符串的拼接 -->
 <p v-text="message + '!!!'"></p>
 ```
 
-v-html
+v-html：用于存放内容为html标签的情况下
 ```html
-<!-- v-html用于存放内容为html标签的情况下 -->
 <p v-html="message"></p>
 ```
 
-v-on
+v-on：用于事件触发
 ```html
-<!-- v-on用于事件触发 -->
-<!-- 法一 -->
-<input type="button" value="单击" @click="dolt">
-<!-- 法二 -->
+<!-- 完整 -->
 <input type="button" value="单击" v-on:dblclick="dolt">
+<!-- 简写 -->
+<input type="button" value="单击" @click="dolt">
+<!-- 调用带参函数，第一个值传一个事件对象进去，后续再传入自定义的值 -->
+<input type="button" value="单击" @click="dolt($event,a,b)">
 ```
 
-v-show
+v-show：布尔值判断，如果为true就显示为false就隐藏，本质是为元素加上一个display:none的css属性
 ```html
-<!-- 布尔值判断，如果为true就显示为false就隐藏，本质是为元素加上一个display:none的css属性 -->
 <!-- 法一：直接使用布尔值 -->
 <img src="路径" v-show="true">
 <!-- 法二：使用data中存放的布尔值 -->
@@ -108,9 +107,8 @@ v-show
 <img src="路径" v-show="age>=18">
 ```
 
-v-if
+v-if：布尔值判断，如果为true就显示为false就隐藏，本质是在DOM树上直接增加或者删除元素
 ```html
-<!-- 布尔值判断，如果为true就显示为false就隐藏，本质是在DOM树上直接增加或者删除元素 -->
 <!-- 法一：直接使用布尔值 -->
 <img src="路径" v-if="true">
 <!-- 法二：使用data中存放的布尔值 -->
@@ -119,18 +117,16 @@ v-if
 <img src="路径" v-if="age>=18">
 ```
 
-v-bind
+v-bind：v-bind用于数据绑定，将data中的值绑定到属性中
 ```html
-<!-- v-bind用于设置元素属性值,属性值可存放在data中 -->
 <!-- 完整 -->
 <img v-bind:class="imgClass">
 <!-- 简写 -->
 <img :class="imgClass">
 ```
 
-v-model
+v-model：用于表单元素的双向数据绑定(表单值改变会同步到data中，data中值改变会同步到表单中)
 ```html
-<!-- v-model用于表单元素的双向数据绑定(表单值改变会同步到data中，data中值改变会同步到表单中) -->
 <!-- 完整 -->
 <input type="text" v-model:value="message">
 <!-- 简写 -->
@@ -143,7 +139,7 @@ const v = new Vue({
   //第一种写法(实例化时自动挂载)
   el:'#root', 
   data:{
-    name:'尚硅谷'
+    name:'李爽'
   }
 })
 		
@@ -156,7 +152,7 @@ v.$mount('#root')
 // 对象式
 new Vue({
   data:{
-    name:'尚硅谷'
+    name:'李爽'
   }
 })
 
@@ -164,7 +160,7 @@ new Vue({
 new Vue({
   data(){
     return: {
-      name:'尚硅谷'
+      name:'李爽'
     }
   }
 })
@@ -200,13 +196,88 @@ Object.defineProperty(person,'age',{
 ```
 
 ## 事件修饰符
+- 常用
+stop：阻止冒泡
+prevent：阻止默认行为
+self：只监听自己触发的事件，不关心事件冒泡带来的事件
+once：只执行一次特定事件
+
+- 不常用
+capture：使用事件的捕获模式
+passive：事件的默认行为立即执行，无需等待事件回调执行完毕
+
+事件修饰符可以连续使用
+```html
+<!-- 例如同时阻止事件默认行为和冒泡行为 -->
+<a type="button" value="单击" @click.stop.prevent="dolt">点我弹窗</a>
 ```
-.stop 阻止冒泡
-.prevent 阻止默认行为
-.self 只监听自己触发的事件，不关心事件冒泡带来的事件
-.once 只执行一次特定事件
+## 键盘事件
+Vue中常用的按键别名
+```
+回车 => enter
+删除 => delete (捕获“删除”和“退格”键)
+退出 => esc
+空格 => space
+换行 => tab (特殊，必须配合keydown去使用)
+上 => up
+下 => down
+左 => left
+右 => right
+```1
+系统修饰键（用法特殊）：ctrl、alt、shift、meta
+```
+配合keyup使用：按下修饰键的同时，再按下其他键，随后释放其他键，事件才被触发
+配合keydown使用：正常触发事件
+```
+键盘事件可以拼接，代表组合按键
+```html
+<input type="text" @keyup.ctrl.y="demo">
 ```
 
+## 计算属性
+1.定义：要用的属性不存在，要通过已有属性计算得来。
+2.原理：底层借助了Objcet.defineproperty方法提供的getter和setter。
+3.get函数什么时候执行？
+  - 初次读取时会执行一次。
+  - 当依赖的数据发生改变时会被再次调用。
+
+4.优势：与methods实现相比，内部有缓存机制（复用），效率更高，调试方便。
+```javascript
+new Vue({
+  el: '#app',
+  data: {
+    firstName:'张',
+    lastName:'三',
+  },
+  computed:{
+    fullName:{
+      //get有什么作用？当有人读取fullName时，get就会被调用，且返回值就作为fullName的值
+      //get什么时候调用？1.初次读取fullName时。2.所依赖的数据发生变化时。
+      get(){
+        console.log('get被调用了');
+        // console.log(this) //此处的this是vm
+        return this.firstName + '-' + this.lastName
+      },
+      //set什么时候调用? 当fullName被修改时。
+      set(value){
+        console.log('set',value);
+        const arr = value.split('-');
+        this.firstName = arr[0];
+        this.lastName = arr[1];
+      }
+    }
+  }
+})
+```
+一般情况下，计算属性是只读取不修改的(无set方法)，此情况下可以简写
+```javascript
+computed:{
+  fullName(){
+      console.log('get被调用了');
+      return this.firstName + '-' + this.lastName
+  }
+}
+```
 ## VueCli开发项目的方式
 ```
 一切皆组件，组件是以.vue结尾的文件，其中的内容由js代码，html代码，css代码组成
