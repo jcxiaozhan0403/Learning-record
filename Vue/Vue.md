@@ -278,6 +278,125 @@ computed:{
   }
 }
 ```
+
+## 监视属性
+监视属性watch
+1. 当被监视的属性变化时, 回调函数自动调用, 进行相关操作
+2. 监视的属性必须存在，才能进行监视
+3. 监视的两种写法：
+- new Vue时传入watch配置
+```javascript
+new Vue({
+  el:'#root',
+  data:{
+    isHot:true,
+  },
+  computed:{
+    info(){
+      return this.isHot ? '炎热' : '凉爽'
+    }
+  },
+  methods: {
+    changeWeather(){
+      this.isHot = !this.isHot
+    }
+  },
+  watch:{
+    isHot:{
+      immediate:true, //初始化时让handler调用一下
+      //handler什么时候调用？当isHot发生改变时。
+      handler(newValue,oldValue){
+        console.log('isHot被修改了',newValue,oldValue);
+      }
+    }
+  }
+})
+```
+- 通过vm.$watch监视
+```javascript
+const vm = new Vue({
+  el:'#root',
+  data:{
+    isHot:true,
+  },
+  computed:{
+    info(){
+      return this.isHot ? '炎热' : '凉爽'
+    }
+  },
+  methods: {
+    changeWeather(){
+      this.isHot = !this.isHot
+    }
+  }
+})
+
+vm.$watch('isHot',{
+  immediate:true, //初始化时让handler调用一下
+  //handler什么时候调用？当isHot发生改变时。
+  handler(newValue,oldValue){
+    console.log('isHot被修改了',newValue,oldValue)
+  }
+})
+```
+深度监视
+1. Vue中的watch默认不监测对象内部值的改变（一层）
+2. 配置deep:true可以监测对象内部值改变（多层）
+3. Vue自身可以监测对象内部值的改变，但Vue提供的watch默认不可以
+4. 使用watch时根据数据的具体结构，决定是否采用深度监视
+```javascript
+watch:{
+  isHot:{
+    // immediate:true, //初始化时让handler调用一下
+    //handler什么时候调用？当isHot发生改变时。
+    handler(newValue,oldValue){
+      console.log('isHot被修改了',newValue,oldValue)
+    }
+  },
+  //监视多级结构中某个属性的变化
+  /* 'numbers.a':{
+    handler(){
+      console.log('a被改变了')
+    }
+  } */
+  //监视多级结构中所有属性的变化
+  numbers:{
+    deep:true,
+    handler(){
+      console.log('numbers改变了')
+    }
+  }
+}
+```
+在不需要immediate和deep属性的情况下，可以简写监听属性
+```javascript
+const vm = new Vue({
+  el:'#root',
+  data:{
+    isHot:true,
+  },
+  computed:{
+    info(){
+      return this.isHot ? '炎热' : '凉爽'
+    }
+  },
+  methods: {
+    changeWeather(){
+      this.isHot = !this.isHot
+    }
+  },
+  watch:{
+    isHot(newValue,oldValue){
+      console.log('isHot被修改了',newValue,oldValue,this)
+    }
+  }
+})
+
+vm.$watch('isHot',(newValue,oldValue)=>{
+  console.log('isHot被修改了',newValue,oldValue,this)
+})
+```
+
 ## VueCli开发项目的方式
 ```
 一切皆组件，组件是以.vue结尾的文件，其中的内容由js代码，html代码，css代码组成
