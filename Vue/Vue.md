@@ -107,7 +107,7 @@ v-show：布尔值判断，如果为true就显示为false就隐藏，本质是�
 <img src="路径" v-show="age>=18">
 ```
 
-v-if：布尔值判断，如果为true就显示为false就隐藏，本质是在DOM树上直接增加或者删除元素
+v-if：布尔值判断，如果为true就显示为false就隐藏，本质是在DOM树上直接增加或者删除元素，v-if可以和:v-else-if、v-else一起使用，但要求结构不能被“打断”
 ```html
 <!-- 法一：直接使用布尔值 -->
 <img src="路径" v-if="true">
@@ -115,6 +115,18 @@ v-if：布尔值判断，如果为true就显示为false就隐藏，本质是在D
 <img src="路径" v-if="isShow">
 <!-- 法三：通过判断得到布尔值 -->
 <img src="路径" v-if="age>=18">
+
+<div v-if="n === 1">Angular</div>
+<div v-else-if="n === 2">React</div>
+<div v-else-if="n === 3">Vue</div>
+<div v-else>哈哈</div>
+
+<!-- v-if与template的配合使用，好处是渲染之后的DOM结构中不会存在template标签 -->
+<template v-if="n === 1">
+  <h2>你好</h2>
+  <h2>尚硅谷</h2>
+  <h2>北京</h2>
+</template>
 ```
 
 v-bind：v-bind用于数据绑定，将data中的值绑定到属性中
@@ -395,6 +407,67 @@ const vm = new Vue({
 vm.$watch('isHot',(newValue,oldValue)=>{
   console.log('isHot被修改了',newValue,oldValue,this)
 })
+```
+
+## 绑定样式
+```html
+<!-- 准备好一个容器-->
+<div id="root">
+  <!-- 绑定class样式--字符串写法，适用于：样式的类名不确定，需要动态指定 -->
+  <div class="basic" :class="mood" @click="changeMood">{{name}}</div> <br/><br/>
+
+  <!-- 绑定class样式--数组写法，适用于：要绑定的样式个数不确定、名字也不确定 -->
+  <div class="basic" :class="classArr">{{name}}</div> <br/><br/>
+
+  <!-- 绑定class样式--对象写法，适用于：要绑定的样式个数确定、名字也确定，但要动态决定用不用 -->
+  <div class="basic" :class="classObj">{{name}}</div> <br/><br/>
+
+  <!-- 绑定style样式--对象写法 -->
+  <div class="basic" :style="styleObj">{{name}}</div> <br/><br/>
+  <!-- 绑定style样式--数组写法 -->
+  <div class="basic" :style="styleArr">{{name}}</div>
+</div>
+
+<script type="text/javascript">
+		new Vue({
+			el:'#root',
+			data:{
+				name:'尚硅谷',
+				mood:'normal',
+				classArr:['atguigu1','atguigu2','atguigu3'],
+				classObj:{
+					atguigu1:false,
+					atguigu2:false,
+				},
+				styleObj:{
+					fontSize: '40px',
+					color:'red',
+				},
+				styleObj2:{
+					backgroundColor:'orange'
+				},
+				styleArr:[
+					{
+						fontSize: '40px',
+						color:'blue',
+					},
+					{
+						backgroundColor:'gray'
+					}
+				]
+			}
+		})
+</script>
+```
+
+## computed和watch之间的区别
+1. computed能完成的功能，watch都可以完成
+2. watch能完成的功能，computed不一定能完成，例如：watch可以进行异步操作
+
+```markdown
+两个原则：
+- 所被Vue管理的函数，最好写成普通函数，这样this的指向才是vm 或 组件实例对象
+- 所有不被Vue所管理的函数（定时器的回调函数、ajax的回调函数等、Promise的回调函数），最好写成箭头函数，这样this的指向才是vm 或 组件实例对象
 ```
 
 ## VueCli开发项目的方式
