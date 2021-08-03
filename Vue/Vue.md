@@ -129,6 +129,63 @@ v-if：布尔值判断，如果为true就显示为false就隐藏，本质是在D
 </template>
 ```
 
+v-for：用于展示列表数据，可遍历：数组、对象、字符串（用的很少）、指定次数（用的很少）
+```html
+<!-- 准备好一个容器-->
+<div id="root">
+  <!-- 遍历数组 -->
+  <h2>人员列表（遍历数组）</h2>
+  <ul>
+    <li v-for="(p,index) of persons" :key="index">
+      {{p.name}}-{{p.age}}
+    </li>
+  </ul>
+
+  <!-- 遍历对象 -->
+  <h2>汽车信息（遍历对象）</h2>
+  <ul>
+    <li v-for="(value,k) of car" :key="k">
+      {{k}}-{{value}}
+    </li>
+  </ul>
+
+  <!-- 遍历字符串 -->
+  <h2>测试遍历字符串（用得少）</h2>
+  <ul>
+    <li v-for="(char,index) of str" :key="index">
+      {{char}}-{{index}}
+    </li>
+  </ul>
+  
+  <!-- 遍历指定次数 -->
+  <h2>测试遍历指定次数（用得少）</h2>
+  <ul>
+    <li v-for="(number,index) of 5" :key="index">
+      {{index}}-{{number}}
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+  new Vue({
+    el:'#root',
+    data:{
+      persons:[
+        {id:'001',name:'张三',age:18},
+        {id:'002',name:'李四',age:19},
+        {id:'003',name:'王五',age:20}
+      ],
+      car:{
+        name:'奥迪A8',
+        price:'70万',
+        color:'黑色'
+      },
+      str:'hello'
+    }
+  })
+</script>
+```
+
 v-bind：v-bind用于数据绑定，将data中的值绑定到属性中
 ```html
 <!-- 完整 -->
@@ -468,6 +525,55 @@ vm.$watch('isHot',(newValue,oldValue)=>{
 两个原则：
 - 所被Vue管理的函数，最好写成普通函数，这样this的指向才是vm 或 组件实例对象
 - 所有不被Vue所管理的函数（定时器的回调函数、ajax的回调函数等、Promise的回调函数），最好写成箭头函数，这样this的指向才是vm 或 组件实例对象
+```
+
+## 模糊搜索
+```javascript
+//用watch实现 
+/* new Vue({
+  el:'#root',
+  data:{
+    keyWord:'',
+    persons:[
+      {id:'001',name:'马冬梅',age:19,sex:'女'},
+      {id:'002',name:'周冬雨',age:20,sex:'女'},
+      {id:'003',name:'周杰伦',age:21,sex:'男'},
+      {id:'004',name:'温兆伦',age:22,sex:'男'}
+    ],
+    filPerons:[]
+  },
+  watch:{
+    keyWord:{
+      immediate:true,
+      handler(val){
+        this.filPerons = this.persons.filter((p)=>{
+          return p.name.indexOf(val) !== -1
+        })
+      }
+    }
+  }
+}) */
+
+//用computed实现
+new Vue({
+  el:'#root',
+  data:{
+    keyWord:'',
+    persons:[
+      {id:'001',name:'马冬梅',age:19,sex:'女'},
+      {id:'002',name:'周冬雨',age:20,sex:'女'},
+      {id:'003',name:'周杰伦',age:21,sex:'男'},
+      {id:'004',name:'温兆伦',age:22,sex:'男'}
+    ]
+  },
+  computed:{
+    filPerons(){
+      return this.persons.filter((p)=>{
+        return p.name.indexOf(this.keyWord) !== -1
+      })
+    }
+  }
+})
 ```
 
 ## VueCli开发项目的方式
