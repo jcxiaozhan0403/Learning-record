@@ -957,7 +957,9 @@ fragment标签与insert、replace、include属性
 ```java
 public class MyTest {
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        // 拿到一个spring容器
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        // 拿到spring容器中的bean对象
         Hello hello = (Hello) context.getBean("hello");
         System.out.println(hello);
     }
@@ -965,8 +967,8 @@ public class MyTest {
 ```
 
 ## IOC创建对象的方式
-1. 使用无参构造，默认
-2. 假设我们要使用有参构造创建对象
+1. 使用无参构造创建对象(默认)
+2. 使用有参构造创建对象
     - 下标赋值
     ```xml
     <bean id="exampleBean" class="examples.ExampleBean">
@@ -994,73 +996,103 @@ public class MyTest {
 <!-- 
     id：唯一标识符
     class：全限定名 包名+类名
-    name：别名，可以有多个，分隔符也比较人性化
+    name：别名，可以有多个，分隔符也比较人性化，可以使用逗号分隔，也可以使用空格或者分号分隔
  -->
 <bean id="hello" class="cn.com.scitc.spring.pojo.Hello" name="xxx sss ddd">
     <property name="str" value="李爽" />
 </bean>
 ```
 2. 合并多个配置文件
+- applicationContext.xml
 ```xml
 <import resource="beans01.xml" />
 <import resource="beans02.xml" />
 <import resource="beans03.xml" />
 ```
-3. 别名
+1. 别名
 ```xml
-<!-- 用别名也可以获取到对象，多去一个名字而已，并没有什么用 -->
+<!-- 用别名也可以获取到对象，多去一个名字而已，并没有什么用，并且name使用得较多 -->
 <alias name="user" alias="userNew">
 ```
 
 ## 依赖注入(DI)
+- Set注入：要求被注入的属性 , 必须有set方法 , set方法的方法名由set + 属性首字母大写 , 如果属性是boolean类型 , 没有set方法 , 是 is
+1. 常量注入
 ```xml
-<bean id="hello" class="cn.com.scitc.spring.pojo.Hello" />
-<bean id="student" class="cn.com.scitc.spring.pojo.Student">
-    <!-- 普通类型注入 -->
-    <property name="name" value="李爽" />
-    <!-- 引用类型注入 -->
-    <property name="hello" ref="hello" />
-    <!-- 数组注入 -->
-    <property name="books">
-        <array>
-            <value>水浒传</value>
-            <value>红楼梦</value>
-            <value>西游记</value>
-        </array>
-    </property>
-    <!-- List -->
-    <property name="hobbys">
-        <list>
-            <value>唱</value>
-            <value>跳</value>
-            <value>Rap</value>
-        </list>
-    </property>
-    <!-- Map -->
-    <property name="card">
-        <map>
-            <entry key="身份证" value="46515619841515"></entry>
-            <entry key="银行卡" value="46545619841515"></entry>
-        </map>
-    </property>
-    <!-- Set -->
-    <property name="games">
-        <set>
-            <value>LOL</value>
-            <value>CS</value>
-            <value>CF</value>
-        </set>
-    </property>
-    <!-- Properties -->
-    <property name="info">
-        <props>
-            <prop key="driver">com.mysql.jdbc.Driver</prop>
-            <prop key="url">jdbc:mysql://localhost:3306/webapp1901</prop>
-            <prop key="username">root</prop>
-            <prop key="password">lishuang001219</prop>
-        </props>
-    </property>
-</bean>
+ <bean id="student" class="cn.com.scitc.spring.pojo.Student">
+     <property name="name" value="小明"/>
+ </bean>
+```
+2. Bean注入：注入值为spring容器中存在的bean
+```xml
+ <bean id="addr" class="cn.com.scitc.spring.pojo.Address">
+     <property name="address" value="四川"/>
+ </bean>
+ 
+ <bean id="student" class="cn.com.scitc.spring.pojo.Student">
+     <property name="name" value="小明"/>
+     <property name="address" ref="addr"/>
+ </bean>
+```
+3. 数组注入
+```xml
+ <bean id="student" class="cn.com.scitc.spring.pojo.Student">
+     <property name="name" value="小明"/>
+     <property name="address" ref="addr"/>
+     <property name="books">
+         <array>
+             <value>西游记</value>
+             <value>红楼梦</value>
+             <value>水浒传</value>
+         </array>
+     </property>
+ </bean>
+```
+4. List注入
+```xml
+ <property name="hobbys">
+     <list>
+         <value>听歌</value>
+         <value>看电影</value>
+         <value>爬山</value>
+     </list>
+ </property>
+```
+5. Map注入
+```xml
+ <property name="card">
+     <map>
+         <entry key="中国邮政" value="456456456465456"/>
+         <entry key="建设" value="1456682255511"/>
+     </map>
+ </property>
+```
+6. Set注入
+```xml
+<property name="games">
+    <set>
+        <value>LOL</value>
+        <value>CS</value>
+        <value>CF</value>
+    </set>
+</property>
+```
+7. null注入：设置值为null
+```xml
+<property name="wife">
+    <null/>
+</property>
+```
+8. Properties注入
+```xml
+<property name="info">
+    <props>
+        <prop key="driver">com.mysql.jdbc.Driver</prop>
+        <prop key="url">jdbc:mysql://localhost:3306/webapp1901</prop>
+        <prop key="username">root</prop>
+        <prop key="password">lishuang001219</prop>
+    </props>
+</property>
 ```
 
 ## c命名空间和p命名空间
