@@ -1119,6 +1119,29 @@ xmlns:c="http://www.springframework.org/schema/c"
 ```
 
 ## Bean的自动装配
+```java
+public class Hello {
+    private Dog dog;
+    private Cat cat;
+
+    public Dog getDog() {
+        return dog;
+    }
+
+    public void setDog(Dog dog) {
+        this.dog = dog;
+    }
+
+    public Cat getCat() {
+        return cat;
+    }
+
+    public void setCat(Cat cat) {
+        this.cat = cat;
+    }  
+}
+```
+
 1. byName
 ```xml
 <!-- byName会自动在容器上下文中查找，和自己对象set方法后面的值对应的beanid -->
@@ -1135,7 +1158,7 @@ xmlns:c="http://www.springframework.org/schema/c"
 ```
 小结
 - byName的时候，需要保证所有bean的id唯一，并且这个bean需要和自动注入的属性的set方法的值一致！
--  byType的时候，需要保证所有bean的id唯一，并且这个bean需要和自动注入的属性的类型一致！
+- byType的时候，需要保证所有bean的id唯一，并且这个bean需要和自动注入的属性的类型一致！
 
 ## 注解实现自动装配
 1. 导入约束
@@ -1149,13 +1172,14 @@ https://www.springframework.org/schema/context/spring-context.xsd">
 ```xml
 <context:annotation-config/>
 ```
-3. 使用：直接在属性上添加注解即可，使用注解方式可以不用写set方法
+3. 使用：直接在属性上添加注解即可，使用注解方式可以不用写set方法，但建议写上
 ```java
 public class Hello {
     private String str;
     @Autowired
     private Dog dog;
-    @Autowired
+    //如果允许对象为null，设置required = false,默认为true
+    @Autowired(required = false)
     private Cat cat;
 
     public String getStr() {
@@ -1176,7 +1200,20 @@ public class Hello {
 @Qualifier(value="dog01")
 private Dog dog;
 ```
-注：@Autowired自动装配是默认byType装配，查找不到的时候再使用byName
+@Resource
+-  @Resource如有指定的name属性，先按该属性进行byName方式查找装配
+-  其次再进行默认的byName方式进行装配
+-  如果以上都不成功，则按byType的方式自动装配
+-  都不成功，则报异常。
+```java
+@Resource(name = "cat2")
+private Cat cat;
+```
+小结：
+@Resource和@Autowired的区别
+- 都是用来自动装配的，都可以放在属性字段上
+- @Autowired 通过byType的方式实现，而且必须要求这个对象存在！
+- @Resource(常用) 默认通过byName方式实现，如果找不到名字，则通过byType实现！如果两个都找不到，就报错
 
 ## Spring注解开发
 1. 导入约束
@@ -1224,21 +1261,42 @@ controller【@Controller】
 
 小结
 xml与注解：
- - xml更加万能，适用于任何场合！维护简单方便
-  - 注解只应用于自己的类，维护复杂
+   - xml更加万能，适用于任何场合！维护简单方便
+   - 注解只应用于自己的类，维护复杂
 最佳使用原则：xml用来管理bean，注解只负责完成属性的注入
 
 ## 使用Java类方式配置Spring
+JavaConfig 原来是 Spring 的一个子项目，它通过 Java 类的方式提供 Bean 的定义信息，在 Spring4 的版本， JavaConfig 已正式成为 Spring4 的核心功能 
+
 创建一个配置类来代替xml配置文件
 ```java
-// 注解指定它为配置类
+//代表这是一个配置类，但是配置类也会被spring容器托管，它会注册到容器中，因为它本来就是一个@Component组件
 @Configuration
-// 指定扫描包
-@ComponentScan("cn.com.scitc.spring")
-public class SpringConfig {
+@ComponentScan("cn.com.scitc") //扫描包
+@Import(MyConfig2.class) //导入整合另外的配置类
+public class MyConfig {
+
+    //注册一个bean，就相当于我们之前写的一个bean标签
+    //这个方法的名字，就相当于bean标签中的id属性
+    //这个方法的返回值，就相当于bean标签中的class属性
+    @Bean
+    public Dog dog(){
+        return new Dog(); //返回值就是要注入到bean的对象
+    }
 
 }
 ```
-
-# P16
+获取配置类
+```java
+public class MyTest {
+    public static void main(String[] args) {
+        // 拿到一个spring容器
+        ApplicationContext context =
+            new AnnotationConfigApplicationContext(MyConfig.class);
+        // 拿到spring容器中的bean对象
+        Dog dog = context.getBean("dog",Dog.class);
+        System.out.println(dog);
+    }
+}
+```
 
