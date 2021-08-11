@@ -1086,9 +1086,189 @@ service.shutdown();
 - 代理对象要代理真实对象
 - 静态代理的实现类似于多线程的底部
 
-好处
-1. 代理对象可以做很多真实对象做不了的事情
-2. 真实对象专注做自己的事情
+静态代理的优点：
+- 可以使得我们的真实角色更加纯粹，不再去关注一些公共的事情
+- 公共的业务由代理来完成，实现了业务的分工
+- 公共业务发生扩展时变得更加集中和方便
+
+静态代理的缺点：
+- 类多了，多了代理类，工作量变大了，开发效率降低
+
+静态代理的使用
+1. 创建接口
+```java
+//增删改查业务
+public interface UserService {
+    void add();
+    void delete();
+    void update();
+    void query();
+}
+```
+2. 创建真实对象
+```java
+//真实对象：完成增删改查操作的人
+public class UserServiceImpl implements UserService {
+ 
+    public void add() {
+        System.out.println("增加了一个用户");
+    }
+ 
+    public void delete() {
+        System.out.println("删除了一个用户");
+    }
+ 
+    public void update() {
+        System.out.println("更新了一个用户");
+    }
+ 
+    public void query() {
+        System.out.println("查询了一个用户");
+    }
+}
+```
+3. 创建代理对象
+```java
+//代理角色：代替真实对象执行操作，顺带添加附加功能
+public class UserServiceProxy implements UserService {
+    private UserServiceImpl userService;
+ 
+    public void setUserService(UserServiceImpl userService) {
+        this.userService = userService;
+    }
+ 
+    public void add() {
+        log("add");
+        userService.add();
+    }
+ 
+    public void delete() {
+        log("delete");
+        userService.delete();
+    }
+ 
+    public void update() {
+        log("update");
+        userService.update();
+    }
+ 
+    public void query() {
+        log("query");
+        userService.query();
+    }
+    //在这里面增加日志的实现
+    public void log(String msg){
+        System.out.println("执行了"+msg+"方法");
+    }
+}
+```
+4. 编写测试类
+```java
+public class Client {
+    public static void main(String[] args) {
+        //真实业务
+        UserServiceImpl userService = new UserServiceImpl();
+        //代理类
+        UserServiceProxy proxy = new UserServiceProxy();
+        //使用代理类执行添加方法！
+        proxy.setUserService(userService);
+        proxy.add();
+    }
+}
+```
+
+## 动态代理
+- 动态代理和静态代理角色一样
+- 动态代理的代理类是动态生成的，不是直接写好的
+- 动态代理分为两大类：
+  - 基于接口的动态代理——JDK动态代理
+  - 基于类的动态代理——cglib
+
+动态代理的优点：
+- 可以使得我们的真实角色更加纯粹，不再去关注一些公共的事情
+- 公共的业务由代理来完成 . 实现了业务的分工
+- 公共业务发生扩展时变得更加集中和方便
+- 一个动态代理，一般代理某一类业务
+- 一个动态代理可以代理多个类，代理的是接口
+
+动态代理的使用：
+1. 创建接口
+```java
+//增删改查业务
+public interface UserService {
+    void add();
+    void delete();
+    void update();
+    void query();
+}
+```
+2. 创建真实对象
+```java
+//真实对象：完成增删改查操作的人
+public class UserServiceImpl implements UserService {
+ 
+    public void add() {
+        System.out.println("增加了一个用户");
+    }
+ 
+    public void delete() {
+        System.out.println("删除了一个用户");
+    }
+ 
+    public void update() {
+        System.out.println("更新了一个用户");
+    }
+ 
+    public void query() {
+        System.out.println("查询了一个用户");
+    }
+}
+```
+3. 创建用于生成代理角色的工具类
+```java
+public class ProxyInvocationHandler implements InvocationHandler {
+    private Object target;
+ 
+    public void setTarget(Object target) {
+        this.target = target;
+    }
+ 
+    //生成代理类，重点是第二个参数，获取要代理的抽象角色！之前都是一个角色，现在可以代理一类角色
+    public Object getProxy(){
+        return Proxy.newProxyInstance(this.getClass().getClassLoader(),
+                target.getClass().getInterfaces(),this);
+    }
+ 
+    // proxy : 代理类 method : 代理类的调用处理程序的方法对象.
+    // 处理代理实例上的方法调用并返回结果
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        log(method.getName());
+        //核心：本质利用反射实现！
+        Object result = method.invoke(target, args);
+        return result;
+    }
+ 
+    //用代理添加日志功能
+    public void log(String methodName) {
+        System.out.println("调用了" + methodName + "方法");
+    }
+}
+```
+4. 编写测试类
+```java
+public class Test {
+    public static void main(String[] args) {
+        //真实对象
+        UserServiceImpl userService = new UserServiceImpl();
+        //代理对象的调用处理程序
+        ProxyInvocationHandler pih = new ProxyInvocationHandler();
+        pih.setTarget(userService); //设置要代理的对象
+        UserService proxy = (UserService)pih.getProxy(); //动态生成代理类！
+        proxy.add();
+    }
+}
+```
 
 ## JDBC数据库连接
 1. 定义连接(静态)
@@ -1368,4 +1548,3 @@ Student annotation = f.getAnnotation(Student.class);
 annotation.name();
 annotation.age();
 ```
-
