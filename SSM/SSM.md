@@ -705,8 +705,8 @@ logger.error("xxxxxx");
 
 MyBatis系统中默认定义了两种级别缓存
 - 一级缓存(由Mybatis默认开启，无法关闭)
-一级缓存也叫本地缓存，与数据库同一次会话期间(一次Session创建到关闭之间的代码块)查询到的数据会放在本地缓存中，以后如果需要获取相同的数据，直接从缓存中拿，没必须再去查询数据库，当两次相同查询之间，存在增删改查操作，则缓存会被清除
-可以通过代码，手动清除一级缓存
+  一级缓存也叫本地缓存，与数据库同一次会话期间(一次Session创建到关闭之间的代码块)查询到的数据会放在本地缓存中，以后如果需要获取相同的数据，直接从缓存中拿，没必须再去查询数据库，当两次相同查询之间，存在增删改查操作，则缓存会被清除
+  可以通过代码，手动清除一级缓存
     ```java
     session.clearCache();
     ```
@@ -1011,7 +1011,7 @@ public class MyTest {
 ```
 1. 别名
 ```xml
-<!-- 用别名也可以获取到对象，多去一个名字而已，并没有什么用，并且name使用得较多 -->
+<!-- 用别名也可以获取到对象，多取一个名字而已，并没有什么用，并且name使用得较多 -->
 <alias name="user" alias="userNew">
 ```
 
@@ -1119,6 +1119,9 @@ xmlns:c="http://www.springframework.org/schema/c"
 ```
 
 ## Bean的自动装配
+
+自动装配是指spring自动给bean中的引用类型赋值
+
 ```java
 public class Hello {
     private Dog dog;
@@ -1519,7 +1522,8 @@ aop:aspectj-autoproxy：说明
     </resources>
 </build>
 ```
-4. 创建mybatis配置文件
+3. 创建mybatis配置文件
+
 - mybatis-config.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -1547,7 +1551,8 @@ aop:aspectj-autoproxy：说明
     </mappers>
 </configuration>
 ```
-5. 创建一个新的spring配置文件，用于配置mybatis
+4. 创建一个新的spring配置文件，用于配置mybatis
+
 - spring-dao.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1569,7 +1574,7 @@ aop:aspectj-autoproxy：说明
        <property name="dataSource" ref="dataSource"/>
        <!--关联Mybatis配置文件-->
        <property name="configLocation" value="classpath:mybatis-config.xml"/>
-       <property name="mapperLocations" value="classpath:com/kuang/dao/*.xml"/>
+       <property name="mapperLocations" value="classpath:cn/com/scitc/webapp1901/mapper/*.xml"/>
     </bean>
 
     
@@ -1797,3 +1802,5 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
     <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
 </aop:config>
 ```
+
+## SpringMVC
