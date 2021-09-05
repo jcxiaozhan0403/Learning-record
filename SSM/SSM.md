@@ -1804,3 +1804,195 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 ```
 
 ## SpringMVC
+vo：也是实体类，它是视图层对象，是根据前端提供的属性封装对象
+MVC三层模型职责
+- Controller：控制器
+  1. 取得表单数据
+  2. 调用业务逻辑
+  3. 转向指定页面
+- Model：模型
+  1. 业务逻辑
+  2. 保存数据的状态
+- View：视图
+  1. 显示页面
+
+## SpringMVC执行原理
+<img src="./SpringMVC执行流程.png">
+
+图为SpringMVC的一个较完整的流程图，实线表示SpringMVC框架提供的技术，不需要开发者实现，虚线表示需要开发者实现。
+
+1. DispatcherServlet表示前置控制器，是整个SpringMVC的控制中心。用户发出请求，DispatcherServlet接收请求并拦截请求。
+我们假设请求的url为 : http://localhost:8080/SpringMVC/hello
+如上url拆分成三部分：
+http://localhost:8080服务器域名
+SpringMVC部署在服务器上的web站点
+hello表示控制器
+通过分析，如上url表示为：请求位于服务器localhost:8080上的SpringMVC站点的hello控制器。
+2. HandlerMapping为处理器映射。DispatcherServlet调用HandlerMapping,HandlerMapping根据请求url查找Handler。
+3. HandlerExecution表示具体的Handler,其主要作用是根据url查找控制器，如上url被查找控制器为：hello。
+4. HandlerExecution将解析后的信息传递给DispatcherServlet,如解析控制器映射等。
+5. HandlerAdapter表示处理器适配器，其按照特定的规则去执行Handler。
+6. Handler让具体的Controller执行。
+7. Controller将具体的执行信息返回给HandlerAdapter,如ModelAndView。
+8. HandlerAdapter将视图逻辑名或模型传递给DispatcherServlet。
+9. DispatcherServlet调用视图解析器(ViewResolver)来解析HandlerAdapter传递的逻辑视图名。
+10. 视图解析器将解析的逻辑视图名传给DispatcherServlet。
+11. DispatcherServlet根据视图解析器解析的视图结果，调用具体的视图。
+12. 最终视图呈现给用户。
+
+## 注解开发SpringMVC
+1. 创建Web项目，导入相关依赖
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.com.scitc</groupId>
+    <artifactId>SpringMVC</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>springmvc-01-servlet</module>
+        <module>springmvc-02-hellomvc</module>
+        <module>springmvc-03-annotation</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.3.7</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+    </dependencies>
+</project>
+```
+2. 配置`web.xml`，注册DispatcherServlet
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:springmvc-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+</web-app>
+```
+3. 添加springmvc配置文件`springmvc-servlet.xml`
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 自动扫描包 -->
+    <context:component-scan base-package="controller" />
+    <!--通过默认方式过滤静态资源-->
+    <mvc:default-servlet-handler />
+    <!--开启注解支持-->
+    <mvc:annotation-driven />
+
+    <!-- 视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="InternalResourceViewResolver">
+        <!--前缀-->
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <!--后缀-->
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+</beans>
+```
+4. 创建Controller类
+```java
+package controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class HelloController {
+
+    @RequestMapping("/hello")
+    public String hello(Model model) {
+        model.addAttribute("msg","你好世界");
+
+        return "hello";
+    }
+}
+```
+5. 创建视图层
+```html
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+${msg}
+</body>
+</html>
+```
+
+## RestFul代码风格
+RestFul风格是将请求地址中携带的参数以斜线分割的一种代码风格
+```java
+// https://localost:8080/hello?a=1&b=2
+// https://localost:8080/hello/1/2
+@RestController
+public class HelloController {
+
+    @RequestMapping("/hello/{a}/{b}")
+    public String hello(@PathVariable int a, @PathVariable int b) {
+        int res = a + b;
+        return String.valueOf(res);
+    }
+}
+```
