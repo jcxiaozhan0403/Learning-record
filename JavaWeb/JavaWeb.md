@@ -58,6 +58,8 @@ create table 表名(字段名 字段类型(长度) 约束,字段名 字段类型
 show tables
 
 查看某个表的结构信息
+describe 表名
+简写
 desc 表名
 ```
 
@@ -206,6 +208,53 @@ select * from 表1 where 字段 > any (子查询语句)
 
 带all的子查询
 select * from 表1 where 字段 > all (子查询语句)
+```
+
+合并查询结果
+```
+union 合并后去重
+select column_name(s) from table_name1
+union
+select column_name(s) from table_name2
+
+union all 只合并，不去重
+select column_name(s) from table_name1
+union all
+select column_name(s) from table_name2
+```
+
+## 标量函数
+作用于单一值的函数，有一个返回值
+```
+abs：该函数返回一个数值表达式的绝对值。如abs(-123);
+addtime：把两个时间表达式加起来。如addtime('100:00:00','200:02:04');
+concat：该函数合并两个字符串的值。
+convert：该函数转换参数1的数据类型为参数2指定的类型。如：convert('12.56',unsigned integer);
+```
+
+## Date函数
+```
+now()
+返回当前的日期和时间
+curdate()
+返回当前的日期
+curtime()
+返回当前的时间
+date(exp)
+提取日期或日期/时间表达式的日期部分
+select date('2018-09-07');
+date_add()
+给日期添加指定的时间间隔,如：
+select date_add('2018-05-12',interval 2 minute)
+date_sub()
+从日期减去指定的时间间隔，如：
+select date_sub('2018-05-12',interval 2 day)
+datediff()
+返回两个日期之间的天数，如：
+select datediff('2018-05-12','2018-05-10')
+date_format()
+用不同的格式显示日期/时间，如：
+select date_format(now(),'%b %d %y %h:%i %p')
 ```
 
 ## 事务

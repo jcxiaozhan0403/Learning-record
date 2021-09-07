@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xlhj.baojia.mapper.SysRoleMapper">
+
+    <select id="selectRoleCodeByUserId" resultType="com.xlhj.baojia.entity.SysRole">
+        select
+            distinct sr.id,
+            sr.role_code,
+            sr.role_name,
+            sr.status,
+            sr.del_flag,
+            sr.create_time,
+            sr.remark
+        from
+            sys_role sr
+        left join sys_user_role sur on
+            sr.id = sur.role_id
+        left join sys_user su on
+            sur.user_id = su.id
+        where
+            sr.del_flag = 0
+            and su.id = #{userId}
+    </select>
+</mapper>
