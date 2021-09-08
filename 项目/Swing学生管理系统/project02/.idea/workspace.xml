@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -19,108 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19acb2ad-ed52-4e7e-b936-ceaa0ad249fe" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/../../HTML5/debug.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/1 RUP与CMMI3.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/MySql&amp;JDBC.rar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/guis.rar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/jdbc.rar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/.idea/libraries/mysql_connector_java_8_0_18.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/lib/mysql-connector-java-8.0.18.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day01/Demo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day01/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day01/Test02.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day01/Test03.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day01/Test04.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day02/JDBCUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day02/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day02/Test02.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day02/Test03.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day02/Test04.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day02/Test05.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day02/swing/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day02/swing/TestBorderLayout.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day03/swing/FlowLayoutTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day03/swing/SpringLayoutTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/jdbc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day01/Demo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day01/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day01/Test02.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day01/Test03.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day01/Test04.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day02/JDBCUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day02/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day02/Test02.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day02/Test03.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day02/Test04.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day02/Test05.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day02/swing/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day02/swing/TestBorderLayout.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day03/swing/FlowLayoutTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day03/swing/SpringLayoutTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/jdbc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/.idea/libraries/mysql_connector_java_8_0_18.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/lib/mysql-connector-java-8.0.18.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/META-INF/project02.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/dao/AdminDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/dao/StudentDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/demo/BorderLayoutTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/demo/FlowLayoutTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/demo/JtableDemo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/demo/SpringLayoutTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/demo/StudentCellRender.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/demo/StudentTableModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/demo/Test1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/handler/JDBCUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/handler/LoginHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/jdbc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/view/AddFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/view/LoginView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/view/MainView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/view/ModifyFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/view/StudentCellRender.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/view/StudentTableModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/project02.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/dao/AdminDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/dao/StudentDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/demo/BorderLayoutTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/demo/FlowLayoutTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/demo/JtableDemo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/demo/SpringLayoutTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/demo/Test1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/handler/JDBCUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/handler/LoginHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/jdbc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/view/AddFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/view/LoginView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/view/MainView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/view/ModifyFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/开发文档/1-需求规格说明书.doc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/开发文档/2-项目开发计划.doc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/开发文档/3-系统构架设计.doc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/开发文档/4-原型设计说明书.doc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/开发文档/5-数据库设计说明书.doc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/开发文档/6-集成测试计划.doc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/开发文档/7-测试报告.doc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/开发文档/8-项目开发总结报告.doc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/开发文档/PPT.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../数据库/新建文本文档.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../精准扶贫/css/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../精准扶贫/css/reset.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../精准扶贫/images/a.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../精准扶贫/images/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../精准扶贫/images/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../精准扶贫/index.html" beforeDir="false" />
+    <list default="true" id="19acb2ad-ed52-4e7e-b936-ceaa0ad249fe" name="默认的" comment="默认的">
+      <change beforePath="$PROJECT_DIR$/../../../华迪培训/笔记.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../华迪培训/笔记.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +38,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="ProjectId" id="1maYEvMlobmNhzYWiHoMcnmPNIz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -151,7 +54,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="public" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../华迪培训/jdbc" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -172,7 +75,7 @@
       <recent name="D:\学习\Learning-record\大二上生产实习\project02\src" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.LoginView">
+  <component name="RunManager" selected="Application.addFream">
     <configuration name="Demo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="demo.Demo" />
       <module name="project02" />
@@ -238,16 +141,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="应用程序.LoginView" />
-        <item itemvalue="应用程序.Demo" />
-        <item itemvalue="应用程序.addFream" />
-        <item itemvalue="应用程序.MainView" />
-        <item itemvalue="应用程序.JtableDemo" />
-      </list>
-    </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -275,11 +170,13 @@
       <workItem from="1612092782372" duration="1596000" />
       <workItem from="1613444751820" duration="102000" />
       <workItem from="1613444856550" duration="1000" />
+      <workItem from="1631072186958" duration="790000" />
+      <workItem from="1631080840214" duration="79000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -292,67 +189,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="1245" y="234" key="#com.intellij.ide.util.MemberChooser" timestamp="1609838153012">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="1245" y="234" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1609838153012" />
-    <state x="880" y="103" key="#项目结构" timestamp="1609734804397">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="880" y="103" key="#项目结构/0.0.1920.1050@0.0.1920.1050" timestamp="1609734804397" />
-    <state x="1220" y="283" key="FileChooserDialogImpl" timestamp="1610979339010">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="1220" y="283" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1610979339010" />
-    <state width="1877" height="134" key="GridCell.Tab.0.bottom" timestamp="1613444853270">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="134" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1613444853270" />
-    <state width="1877" height="134" key="GridCell.Tab.0.center" timestamp="1613444853269">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="134" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1613444853269" />
-    <state width="1877" height="134" key="GridCell.Tab.0.left" timestamp="1613444853269">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="134" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1613444853269" />
-    <state width="1877" height="134" key="GridCell.Tab.0.right" timestamp="1613444853270">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="134" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1613444853270" />
-    <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1609919985818">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1609919985818" />
-    <state width="1877" height="352" key="GridCell.Tab.1.center" timestamp="1609919985817">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1609919985817" />
-    <state width="1877" height="352" key="GridCell.Tab.1.left" timestamp="1609919985817">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1609919985817" />
-    <state width="1877" height="352" key="GridCell.Tab.1.right" timestamp="1609919985818">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1609919985818" />
-    <state x="545" y="254" width="829" height="641" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1609914650859">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="545" y="254" width="829" height="641" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1050@0.0.1920.1050" timestamp="1609914650859" />
-    <state x="1170" y="273" key="extract.method.dialog" timestamp="1609918157943">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="1170" y="273" key="extract.method.dialog/0.0.1920.1050@0.0.1920.1050" timestamp="1609918157943" />
-    <state x="490" y="135" key="new project wizard" timestamp="1610942105978">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="490" y="135" key="new project wizard/0.0.1920.1050@0.0.1920.1050" timestamp="1610942105978" />
-    <state x="616" y="243" key="run.anything.popup" timestamp="1609895244769">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1609895244769" />
   </component>
 </project>

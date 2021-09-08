@@ -1,16 +1,22 @@
 package com.xlhj.baojia.util;
 
+import cn.hutool.core.lang.UUID;
+import cn.hutool.core.util.StrUtil;
+import com.sun.javafx.scene.traversal.Algorithm;
+import com.sun.org.apache.xml.internal.security.algorithms.JCEMapper;
 import com.xlhj.baojia.entity.SysUser;
+import com.xlhj.baojia.vo.LoginBody;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @ClassName TokenUtils

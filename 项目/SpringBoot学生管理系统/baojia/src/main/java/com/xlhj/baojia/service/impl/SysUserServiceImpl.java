@@ -49,9 +49,4 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         return user;
     }
 
-    @Override
-    public SysUser selectUserByUserName(String username) {
-        return null;
-    }
-
 }
