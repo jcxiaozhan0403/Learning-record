@@ -8,6 +8,8 @@ import java.util.Set;
 
 public class DBTest {
     private static Connection conn;
+    private static Statement s;
+    private static PreparedStatement ps;
 
     //查询全部
     public void find() throws Exception {
@@ -33,7 +35,7 @@ public class DBTest {
     }
 
     // 新增
-    public void createTable() throws Exception {
+    public void insert() throws Exception {
         Class.forName(JDBCUtils.getDriver());
         conn = JDBCUtils.getConnection();
 
@@ -52,53 +54,59 @@ public class DBTest {
     }
 
     //练习
-    public void test() throws Exception {
-        Class.forName(JDBCUtils.getDriver());
-        conn = JDBCUtils.getConnection();
-        conn.setAutoCommit(false);
 
         //sql1：建表
-        String sql1 = "create table account ( " +
-                "id int(4) primary key not null auto_increment," +
-                "name varchar(10)," +
-                "money double(10,2))";
+        public void createTable() throws Exception {
+            conn = JDBCUtils.getConnection();
 
-        PreparedStatement ps = conn.prepareStatement(sql1);
-        ps.execute();
+            String sql1 = "create table account ( " +
+                    "id int(4) primary key not null auto_increment," +
+                    "name varchar(10)," +
+                    "money double(10,2))";
+
+            PreparedStatement ps = conn.prepareStatement(sql1);
+            ps.execute();
+
+            JDBCUtils.close(conn,ps);
+        }
+
 
         //sql2：插入记录
-        String sql2 = "insert into account (name,money) values (?,?);";
-        PreparedStatement ps2 = conn.prepareStatement(sql2);
-        ps2.setString(1,"张三");
-        ps2.setDouble(2,10000);
-        ps2.execute();
+        public void insert2() throws Exception {
+            conn = JDBCUtils.getConnection();
 
-        ps2.setString(1,"李四");
-        ps2.setDouble(2,10000);
-        ps2.execute();
+            String sql = "insert into account (name,money) values (?,?);";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,"张三");
+            ps.setDouble(2,10000);
+            ps.execute();
+
+            ps.setString(1,"李四");
+            ps.setDouble(2,10000);
+            ps.execute();
+
+            JDBCUtils.close(conn,ps);
+        }
         //sql3：转账
+        public void moveMoney() throws SQLException {
+            try {
+                conn = JDBCUtils.getConnection();
+                String sql = "update account set money = money-5000 where name = '张三'";
+                String sql2 = "update account set money = money+5000 where name = '李四'";
+                ps = conn.prepareStatement(sql);
+                ps.execute();
+                ps = conn.prepareStatement(sql2);
+                ps.execute();
+            }catch (Exception e) {
+                conn.rollback();
+            }finally {
+                JDBCUtils.close(conn,ps);
+            }
+        }
 
-//        PreparedStatement ps3 = null;
-//        PreparedStatement ps4 = null;
-//        try {
-//            String sql4 = "update account set money = money-5000 where name = '张三'";
-//            String sql5 = "update account set money = money+5000 where name = '李四'";
-//            ps3 = conn.prepareStatement(sql4);
-//            ps4 = conn.prepareStatement(sql5);
-//
-//            ps3.execute();
-//            ps4.execute();
-//        }catch (Exception e) {
-//            conn.rollback();
-//        }finally {
-//            JDBCUtils.close(conn,ps);
-//            JDBCUtils.close(conn,ps2);
-//            JDBCUtils.close(conn,ps3);
-//            JDBCUtils.close(conn,ps4);
-//        }
 
-    }
     public static void main(String[] args) throws Exception {
-
+        DBTest dbTest = new DBTest();
+        dbTest.moveMoney();
     }
 }
