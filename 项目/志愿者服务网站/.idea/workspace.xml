@@ -2,7 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a67b145-3512-47c1-8db9-e75d14174d43" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../SSM/SSM.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/SSM.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/.idea/artifacts/webapp1901_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/.idea/artifacts/webapp1901_war.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/.idea/artifacts/webapp1901_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/.idea/artifacts/webapp1901_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SSM/webapp1901/.idea/dataSources/1d553dbd-9097-4af5-a287-dd73ed67a714.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/webapp1901/.idea/dataSources/1d553dbd-9097-4af5-a287-dd73ed67a714.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../mybatis/.idea/artifacts/mybatis_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../mybatis/.idea/artifacts/mybatis_war.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../mybatis/.idea/artifacts/mybatis_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../mybatis/.idea/artifacts/mybatis_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../mybatis/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../mybatis/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/baojia/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/baojia/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager-ui/src/components/Breadcrumb/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager-ui/src/components/Breadcrumb/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager-ui/src/layout/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager-ui/src/layout/components/Navbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager-ui/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager-ui/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager-ui/src/utils/validate.js" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager-ui/src/utils/validate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager-ui/src/views/dashboard/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager-ui/src/views/dashboard/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager-ui/src/views/login/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager-ui/src/views/login/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/pojo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager/src/main/resources/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager/src/main/resources/db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager/src/test/java/cn/com/scitc/studentmanager/StudentManagerApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/student-manager/src/test/java/cn/com/scitc/studentmanager/StudentManagerApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +52,7 @@
       <option name="presentableId" value="Default" />
       <updated>1630738160302</updated>
       <workItem from="1630738161569" duration="46000" />
+      <workItem from="1631182698173" duration="90000" />
     </task>
     <servers />
   </component>

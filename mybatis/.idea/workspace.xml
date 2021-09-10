@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b89ab61-2595-4753-9fdd-275335fa9414" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../项目/SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../项目/SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../项目/SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../项目/SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../项目/SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../项目/SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/pojo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../项目/SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../项目/SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../项目/SpringBoot学生管理系统/student-manager/src/main/resources/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../项目/SpringBoot学生管理系统/student-manager/src/main/resources/db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../项目/SpringBoot学生管理系统/student-manager/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../项目/SpringBoot学生管理系统/student-manager/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../项目/SpringBoot学生管理系统/student-manager/src/test/java/cn/com/scitc/studentmanager/StudentManagerApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../项目/SpringBoot学生管理系统/student-manager/src/test/java/cn/com/scitc/studentmanager/StudentManagerApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +43,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SSM/webapp1901" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -91,6 +97,7 @@
       <workItem from="1622347878958" duration="3169000" />
       <workItem from="1623904122669" duration="107000" />
       <workItem from="1623916981256" duration="228000" />
+      <workItem from="1631171124776" duration="11000" />
     </task>
     <servers />
   </component>

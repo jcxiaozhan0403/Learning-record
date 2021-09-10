@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">name: {{ name }}</div>
+    <div class="text">学生信息管理系统</div>
   </div>
 </template>
 
@@ -11,7 +11,6 @@ export default {
   name: 'Dashboard',
   computed: {
     ...mapGetters([
-      'name'
     ])
   }
 }
@@ -26,5 +25,14 @@ export default {
     font-size: 30px;
     line-height: 46px;
   }
+}
+
+.text {
+  width: 100%;
+    height: 865px;
+    text-align: center;
+    padding-top: 400px;
+    font-size: 30px;
+    color: #808080;
 }
 </style>

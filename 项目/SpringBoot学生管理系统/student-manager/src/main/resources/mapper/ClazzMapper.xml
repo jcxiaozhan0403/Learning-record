@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.scitc.studentmanager.mapper.ClazzMapper">
+
+    <resultMap id="BaseResultMap" type="cn.com.scitc.studentmanager.pojo.Clazz">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="grade" jdbcType="VARCHAR" property="grade" />
+        <result column="clazz" jdbcType="VARCHAR" property="clazz" />
+        <result column="headTeacher" jdbcType="VARCHAR" property="headTeacher" />
+        <result column="totalStudent" jdbcType="INTEGER" property="totalStudent" />
+        <result column="currentTotalStudent" jdbcType="INTEGER" property="currentTotalStudent" />
+    </resultMap>
+
+    <select id="listClazz" resultMap="BaseResultMap">
+        select * from clazz
+    </select>
+
+    <select id="getAllGrade" resultType="java.lang.String">
+        select distinct (grade) from clazz
+    </select>
+
+    <select id="getAllCalzz" resultType="java.lang.String">
+        SELECT DISTINCT(clazz) FROM clazz where grade = #{grade}
+    </select>
+</mapper>

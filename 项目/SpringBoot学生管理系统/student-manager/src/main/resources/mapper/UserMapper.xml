@@ -10,8 +10,24 @@
         <result column="avatar" jdbcType="VARCHAR" property="avatar" />
     </resultMap>
 
-    <select id="Sel" resultType="cn.com.scitc.studentmanager.pojo.User">
-        select * from user where id = #{id}
+    <select id="selectUserByToken" resultType="cn.com.scitc.studentmanager.pojo.User">
+        select * from user where id = (select user_id from token where token = #{token})
     </select>
+
+    <select id="findPassWordByUsername" resultType="java.lang.String">
+        select password from user where username = #{username}
+    </select>
+
+    <insert id="createToken">
+        insert into token values (#{token},#{user_id})
+    </insert>
+
+    <select id="findIdByUsername" resultType="int">
+        select id from user where username = #{username}
+    </select>
+
+    <delete id="cleanToken">
+        delete from token
+    </delete>
 
 </mapper>

@@ -1,16 +1,22 @@
 package cn.com.scitc.studentmanager.service;
 
-
-import cn.com.scitc.studentmanager.mapper.UserMapper;
 import cn.com.scitc.studentmanager.pojo.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.apache.ibatis.annotations.Mapper;
 
-@Service
-public class UserService {
-    @Autowired
-    UserMapper userMapper;
-    public User Sel(int id){
-        return userMapper.Sel(id);
-    }
+@Mapper
+public interface UserService {
+    // 根据token查询用户信息，用于登录
+    User selectUserByToken(String token);
+
+    // 根据用户名查询密码
+//    String findPassWordByUsername(String username,String password);
+
+    // 验证通过更新token
+    void createToken(String token,int user_id);
+
+    // 根据用户名查询id
+    int findIdByUsername(String username);
+
+    // 清空token表
+    void cleanToken();
 }

@@ -49,115 +49,108 @@ export const constantRoutes = [
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
-      name: 'Dashboard',
+      name: 'dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: '首页', icon: 'home' }
     }]
   },
 
   {
-    path: '/example',
+    path: '/student',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    redirect: '/student/table',
+    name: 'student',
+    meta: { title: '学生信息管理', icon: 'student' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'list',
+        name: 'studentList',
+        component: () => import('@/views/student/list'),
+        meta: { title: '查看学生信息', icon: 'table' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
-  },
-
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
+        path: 'add',
+        name: 'studentAdd',
+        component: () => import('@/views/student/add'),
+        meta: { title: '添加学生信息', icon: 'add' }
       },
       {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
+        path: 'search',
+        name: 'studentSearch',
+        component: () => import('@/views/student/search'),
+        meta: { title: '查询学生信息', icon: 'search' }
       }
     ]
   },
 
   {
-    path: 'external-link',
+    path: '/teacher',
     component: Layout,
+    redirect: '/teacher/manage',
+    name: 'teacher',
+    meta: { title: '教师信息管理', icon: 'teacher' },
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
+        path: 'list',
+        name: 'teacherList',
+        component: () => import('@/views/teacher/list'),
+        meta: { title: '查看教师信息', icon: 'table' }
+      },
+      {
+        path: 'add',
+        name: 'teacherAdd',
+        component: () => import('@/views/teacher/add'),
+        meta: { title: '添加教师信息', icon: 'add' }
+      },
+      {
+        path: 'search',
+        name: 'teacherSearch',
+        component: () => import('@/views/teacher/search'),
+        meta: { title: '查询教师信息', icon: 'search' }
       }
     ]
+  },
+  {
+    path: '/clazz',
+    component: Layout,
+    redirect: '/class/table2',
+    name: 'clazz',
+    meta: { title: '班级信息管理', icon: 'clazz' },
+    children: [
+      {
+        path: 'list',
+        name: 'clazzList',
+        component: () => import('@/views/clazz/list'),
+        meta: { title: '查看班级信息', icon: 'table' }
+      },
+      {
+        path: 'add',
+        name: 'clazzAdd',
+        component: () => import('@/views/clazz/add'),
+        meta: { title: '添加班级信息', icon: 'add' }
+      }
+    ]
+  },
+  {
+      path: '/form',
+      component: Layout,
+      redirect: '/user/',
+      name: 'user',
+      meta: { title: '个人中心', icon: 'user' },
+      children: [
+        {
+          path: 'index',
+          name: 'userInfo',
+          component: () => import('@/views/user/update'),
+          meta: { title: '修改个人信息', icon: 'setting' }
+        },
+        {
+          path: 'add',
+          name: 'UpdatePassword',
+          component: () => import('@/views/user/updatePassword'),
+          meta: { title: '修改密码', icon: 'setting' }
+        }
+      ]
   },
 
   // 404 page must be placed at the end !!!
@@ -165,7 +158,7 @@ export const constantRoutes = [
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })

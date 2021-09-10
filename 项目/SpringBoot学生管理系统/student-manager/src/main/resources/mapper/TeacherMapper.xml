@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.scitc.studentmanager.mapper.TeacherMapper">
+
+    <resultMap id="BaseResultMap" type="cn.com.scitc.studentmanager.pojo.Teacher">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="age" jdbcType="INTEGER" property="age" />
+        <result column="sex" jdbcType="INTEGER" property="sex" />
+        <result column="num" jdbcType="VARCHAR" property="num" />
+        <result column="course" jdbcType="VARCHAR" property="course" />
+    </resultMap>
+
+    <select id="listTeacher" resultMap="BaseResultMap">
+        select * from teacher
+    </select>
+
+    <insert id="addTeacher">
+        insert into teacher (name,age,sex,num,course) values(#{name},#{age},#{sex},#{num},#{course})
+    </insert>
+
+    <delete id="deleteTeacher">
+        delete from teacher where id = #{id}
+    </delete>
+
+    <update id="updateTeacher">
+        update teacher set name=#{name}, age=#{age}, sex=#{sex}, num=#{num}, course=#{course} where id=#{id}
+    </update>
+
+    <select id="findByNumContaining" resultMap="BaseResultMap">
+        select * from teacher where num = #{num}
+    </select>
+
+    <select id="findByNameContaining" resultMap="BaseResultMap">
+        select * from teacher where name = #{name}
+    </select>
+</mapper>
