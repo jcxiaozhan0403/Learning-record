@@ -28,7 +28,7 @@ public class UserController {
             userServiceImpl.createToken(token,id);
             return ResultData.ok().data("token", token);
         }else {
-            return  ResultData.error();
+            return  ResultData.error().message("登录失败");
         }
     }
 

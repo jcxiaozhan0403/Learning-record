@@ -142,7 +142,7 @@ export const constantRoutes = [
           path: 'index',
           name: 'userInfo',
           component: () => import('@/views/user/update'),
-          meta: { title: '修改个人信息', icon: 'setting' }
+          meta: { title: '个人信息', icon: 'setting' }
         },
         {
           path: 'add',
