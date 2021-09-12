@@ -22,7 +22,8 @@ import {updateUserPassword, logout} from '@/api/user'
       return {
           oldP: '',
           newP: '',
-          newP1: ''
+          newP1: '',
+          form: null
       }
     },
     methods: {

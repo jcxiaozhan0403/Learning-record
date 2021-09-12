@@ -18,9 +18,6 @@
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
       </el-form-item>
-      <el-form-item label="简介">
-        <el-input v-model="form.introduction" type="textarea" />
-      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">提交</el-button>
         <el-button @click="onCancel">取消</el-button>
@@ -38,19 +35,18 @@ export default {
       form: {
         username: '',
         name: '',
-        avatar: '',
-        introduction: ''
+        avatar: ''
       }
     }},
     methods: {
     onSubmit() {
-      if(null === this.form.introduction || "" === this.form.introduction){
+      if(null === this.form.username || "" === this.form.username){
         this.$message.error("请填写完整的信息")
         return
       }
       var data = {
         id: this.$store.getters.id,
-        introduction : this.form.introduction
+        username : this.form.username
       }
 
       updateUserInfo(data).then(
@@ -84,7 +80,7 @@ export default {
   mounted: function() {
     this.form.username = this.$store.getters.username;
     this.form.name = this.$store.getters.name;
-    this.form.introduction = this.$store.getters.introduction; 
+    this.form.avatar = this.$store.getters.avatar;
   },
 }
 </script>

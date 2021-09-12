@@ -72,8 +72,7 @@
               @click="handleDelete(scope.$index, scope.row)">删除</el-button>
           </template>
         </el-table-column>
-      </el-table>
-
+    </el-table>
     <el-dialog title="编辑班级信息" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-input v-model="form.id" autocomplete="off" v-show="false"></el-input>
@@ -125,7 +124,7 @@ export default {
       loadData(){
         var response = listClazz().then(
           response => {
-            this.tableData = response.data
+            this.tableData = response.data.data
           }
         )
 
@@ -208,8 +207,7 @@ export default {
             }
           );
         }
-
-      }
+      },
     },
     mounted: function() {
       this.loadData()

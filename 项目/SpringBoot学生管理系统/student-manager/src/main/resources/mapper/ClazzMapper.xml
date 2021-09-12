@@ -20,6 +20,18 @@
     </select>
 
     <select id="getAllCalzz" resultType="java.lang.String">
-        SELECT DISTINCT(clazz) FROM clazz where grade = #{grade}
+        select distinct (clazz) from clazz where grade = #{grade}
     </select>
+
+    <insert id="addClazz">
+        insert into clazz (grade,clazz,headTeacher,totalStudent) values(#{grade},#{clazz},#{headTeacher},#{totalStudent})
+    </insert>
+
+    <delete id="deleteClazz">
+        delete from clazz where id = #{id}
+    </delete>
+
+    <update id="updateClazz">
+        update clazz set grade=#{grade}, clazz=#{clazz}, headTeacher=#{headTeacher}, totalStudent=#{totalStudent} where id=#{id}
+    </update>
 </mapper>

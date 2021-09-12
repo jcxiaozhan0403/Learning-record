@@ -1,5 +1,6 @@
 package cn.com.scitc.studentmanager.controller;
 
+import cn.com.scitc.studentmanager.common.ResultCode;
 import cn.com.scitc.studentmanager.common.ResultData;
 import cn.com.scitc.studentmanager.pojo.Clazz;
 import cn.com.scitc.studentmanager.service.impl.ClazzServiceImpl;
@@ -24,21 +25,23 @@ public class ClazzController {
         return ResultData.ok().data("data",list);
     }
 
-//    @RequestMapping(value = "add", method = RequestMethod.POST)
-//    ServerResponse addClazz(@RequestBody Clazz clazz){
-//        return clazzService.addClazz(clazz);
-//    }
-//
-//
-//    @RequestMapping(value = "update", method = RequestMethod.POST)
-//    ServerResponse updateClazz(@RequestBody Clazz clazz){
-//        return clazzService.updateClazz(clazz);
-//    }
-//
-//    @RequestMapping(value = "delete/{id}", method = RequestMethod.POST)
-//    ServerResponse deleteClazz(@PathVariable("id")Long id){
-//        return clazzService.deleteClazz(id);
-//    }
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public ResultData addClazz(@RequestBody Clazz clazz){
+        clazzServiceImpl.addClazz(clazz);
+        return ResultData.ok(ResultCode.SUCCESS,"添加成功");
+    }
+
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    public ResultData updateClazz(@RequestBody Clazz clazz){
+        clazzServiceImpl.updateClazz(clazz);
+        return ResultData.ok(ResultCode.SUCCESS,"更新成功");
+    }
+
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.POST)
+    public ResultData deleteClazz(@PathVariable Integer id){
+        clazzServiceImpl.deleteClazz(id);
+        return ResultData.ok(ResultCode.SUCCESS,"删除成功");
+    }
 
     @RequestMapping(value = "grades", method = RequestMethod.GET)
     public ResultData getAllGrade(){
@@ -51,8 +54,5 @@ public class ClazzController {
         List<String> list = clazzServiceImpl.getAllCalzz(grade);
         return ResultData.ok().data("data",list);
     }
-
-//    @RequestMapping(value = "clazzs", method = RequestMethod.GET)
-//    ServerResponse getAllCalzz(@RequestParam("grade") String grade){return clazzService.getAllClazz(grade);}
 
 }

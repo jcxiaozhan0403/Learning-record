@@ -22,3 +22,17 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function updateUserInfo() {
+  return request({
+    url: '/user/update',
+    method: 'post'
+  })
+}
+
+export function updateUserPassword() {
+  return request({
+    url: '/user/passwordUp',
+    method: 'post'
+  })
+}
