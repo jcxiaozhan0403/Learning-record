@@ -3,8 +3,6 @@ package com.day2;
 import com.day2.util.JDBCUtils;
 
 import java.sql.*;
-import java.util.HashSet;
-import java.util.Set;
 
 public class DBTest {
     private static Connection conn;
