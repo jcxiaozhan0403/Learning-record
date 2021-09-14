@@ -1996,3 +1996,381 @@ public class HelloController {
     }
 }
 ```
+
+## 转发与重定向
+不配置视图解析器的情况下
+```java
+@Controller
+public class ResultSpringMVC {
+    @RequestMapping("/rsm/t1")
+    public String test1(){
+        //转发
+        return "/index.jsp";
+    }
+ 
+    @RequestMapping("/rsm/t2")
+    public String test2(){
+        //转发二
+        return "forward:/index.jsp";
+    }
+ 
+    @RequestMapping("/rsm/t3")
+    public String test3(){
+        //重定向
+        return "redirect:/index.jsp";
+    }
+}
+```
+配置视图解析器的情况下
+```java
+@Controller
+public class ResultSpringMVC2 {
+    @RequestMapping("/rsm2/t1")
+    public String test1(){
+        //转发
+        return "test";
+    }
+ 
+    @RequestMapping("/rsm2/t2")
+    public String test2(){
+        //重定向
+        return "redirect:/index.jsp";
+        //return "redirect:hello.do"; //hello.do为另一个请求/
+    }
+}
+```
+
+## 请求参数的获取
+RestFull风格用@PathVariable接收参数
+```java
+// https://localhost:8080/hello/{a}/{b}
+@RequestMapping("/hello/{a}/{b}")
+public String hello(@PathVariable int a, @PathVariable int b) {
+    int res = a + b;
+    return String.valueOf(res);
+}
+```
+提交的参数名与接收方法内的参数名一致时，可自动接收
+```java
+// https://localhost:8080/test?name=xxxx
+@GetMapping("/test")
+public String test(String name) {
+    System.out.println("收到参数" + name);
+    return "test";
+}
+```
+提交的参数名与接收方法内的参数名不一致时
+```java
+// https://localhost:8080/test?realName=xxxx
+@GetMapping("/test")
+public String test(@RequestParam("realName") String name) {
+    System.out.println("收到参数" + name);
+    return "test";
+}
+```
+提交的参数与对象内的属性对应时，可用对象接收
+```java
+// pojo
+public class User {
+    private String name;
+    private int age;
+    private int sex;
+}
+```
+```java
+//  http://localhost:8080/test?name=lishuang&id=1&age=20
+@GetMapping("/test")
+public String test(User user) {
+    System.out.println(user);
+    return "test";
+}
+```
+
+## 数据传输到前端的三种方式
+Model(常用)
+```java
+@RequestMapping("/userList1")
+public String hello(Model model) throws Exception {
+    UserDao dao = new UserDao();
+    List<User> users = dao.findAll();
+
+    model.addAttribute("data",users);
+
+    return "user";
+}
+```
+
+ModelMap
+```java
+@RequestMapping("/userList2")
+public String hello(ModelMap modelMap) throws Exception {
+    UserDao dao = new UserDao();
+    List<User> users = dao.findAll();
+
+    modelMap.addAttribute("data",users);
+
+    return "user";
+}
+```
+
+ModelAndView
+```java
+@RequestMapping("/userList3")
+public ModelAndView hello(ModelAndView modelAndView) throws Exception {
+    UserDao dao = new UserDao();
+    List<User> users = dao.findAll();
+
+    modelAndView.addObject("data",users);
+    modelAndView.setViewName("user");
+
+    return modelAndView;
+}
+```
+
+## SpringMVC解决乱码问题
+`web.xml`加入如下配置
+```xml
+<filter>
+    <filter-name>encoding</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+        <param-name>encoding</param-name>
+        <param-value>utf-8</param-value>
+    </init-param>
+</filter>
+<filter-mapping>
+    <filter-name>encoding</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+```
+自定义过滤器：当上面Spring自带的配置无法解决乱码问题时，可使用下面这个过滤器,并且在`web.xml`中配置过滤器
+```java
+public class GenericEncodingFilter implements Filter {
+ 
+    @Override
+    public void destroy() {
+    }
+ 
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        //处理response的字符编码
+        HttpServletResponse myResponse=(HttpServletResponse) response;
+        myResponse.setContentType("text/html;charset=UTF-8");
+ 
+        // 转型为与协议相关对象
+        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+        // 对request包装增强
+        HttpServletRequest myrequest = new MyRequest(httpServletRequest);
+        chain.doFilter(myrequest, response);
+    }
+ 
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
+ 
+}
+ 
+//自定义request对象，HttpServletRequest的包装类
+class MyRequest extends HttpServletRequestWrapper {
+ 
+    private HttpServletRequest request;
+    //是否编码的标记
+    private boolean hasEncode;
+    //定义一个可以传入HttpServletRequest对象的构造函数，以便对其进行装饰
+    public MyRequest(HttpServletRequest request) {
+        super(request);// super必须写
+        this.request = request;
+    }
+ 
+    // 对需要增强方法 进行覆盖
+    @Override
+    public Map getParameterMap() {
+        // 先获得请求方式
+        String method = request.getMethod();
+        if (method.equalsIgnoreCase("post")) {
+            // post请求
+            try {
+                // 处理post乱码
+                request.setCharacterEncoding("utf-8");
+                return request.getParameterMap();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        } else if (method.equalsIgnoreCase("get")) {
+            // get请求
+            Map<String, String[]> parameterMap = request.getParameterMap();
+            if (!hasEncode) { // 确保get手动编码逻辑只运行一次
+                for (String parameterName : parameterMap.keySet()) {
+                    String[] values = parameterMap.get(parameterName);
+                    if (values != null) {
+                        for (int i = 0; i < values.length; i++) {
+                            try {
+                                // 处理get乱码
+                                values[i] = new String(values[i]
+                                        .getBytes("ISO-8859-1"), "utf-8");
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+                hasEncode = true;
+            }
+            return parameterMap;
+        }
+        return super.getParameterMap();
+    }
+ 
+    //取一个值
+    @Override
+    public String getParameter(String name) {
+        Map<String, String[]> parameterMap = getParameterMap();
+        String[] values = parameterMap.get(name);
+        if (values == null) {
+            return null;
+        }
+        return values[0]; // 取回参数的第一个值
+    }
+ 
+    //取所有值
+    @Override
+    public String[] getParameterValues(String name) {
+        Map<String, String[]> parameterMap = getParameterMap();
+        String[] values = parameterMap.get(name);
+        return values;
+    }
+}
+```
+```xml
+<filter>
+    <filter-name>encoding</filter-name>
+    <filter-class>filter.EncodingFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>encoding</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+```
+
+## 利用Jackson将对象转换为JSON格式
+1. 导入依赖
+```xml
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.12.4</version>
+</dependency>
+```
+2. 配置`springmvc-servlet.xml`统一解决json乱码问题
+```xml
+<mvc:annotation-driven>
+    <mvc:message-converters register-defaults="true">
+        <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+            <constructor-arg value="UTF-8"/>
+        </bean>
+        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+            <property name="objectMapper">
+                <bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
+                    <property name="failOnEmptyBeans" value="false"/>
+                </bean>
+            </property>
+        </bean>
+    </mvc:message-converters>
+</mvc:annotation-driven>
+```
+3. 创建Json工具类
+```java
+public class JsonUtils {
+    public static String getJson(Object object) {
+        return getJson(object,"yyyy-MM-dd HH:mm:ss");
+    }
+
+    public static String getJson(Object object, String dateFormat) {
+        ObjectMapper mapper = new ObjectMapper();
+        // json返回时间类型不使用时间戳
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,false);
+        //自定义时间格式
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+        mapper.setDateFormat(sdf);
+
+        try{
+            return mapper.writeValueAsString(object);
+        }catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
+```
+4. 测试，使用工具类返回json数据
+```java
+// 返回一个对象
+@RequestMapping("/t1")
+@ResponseBody
+public String getUse() throws JsonProcessingException {
+    User user = new User("李爽",20,"男");
+    System.out.println(user);
+    return JsonUtils.getJson(user);
+}
+
+//返回有多个对象的一个集合
+@RequestMapping("/t2")
+@ResponseBody
+public String getUse2() throws JsonProcessingException {
+    List<User> users = new ArrayList<User>();
+    User user1 = new User("张三",20,"男");
+    User user2 = new User("李四",20,"男");
+    User user3 = new User("王麻子",20,"男");
+    
+    users.add(user1);
+    users.add(user2);
+    users.add(user3);
+
+    return JsonUtils.getJson(users);
+}
+```
+
+## 利用FastJson将对象转换为JSON格式
+1. 导入依赖
+```xml
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>fastjson</artifactId>
+    <version>1.2.75</version>
+</dependency>
+```
+2. 使用：fastjson有多个静态方法供我们使用
+```java
+public class FastJsonDemo {
+    public static void main(String[] args) {
+        //创建一个对象
+        User user1 = new User("秦疆1号", 3, "男");
+        User user2 = new User("秦疆2号", 3, "男");
+        User user3 = new User("秦疆3号", 3, "男");
+        User user4 = new User("秦疆4号", 3, "男");
+        List<User> list = new ArrayList<User>();
+        list.add(user1);
+        list.add(user2);
+        list.add(user3);
+        list.add(user4);
+ 
+        System.out.println("*******Java对象 转 JSON字符串*******");
+        String str1 = JSON.toJSONString(list);
+        System.out.println("JSON.toJSONString(list)==>"+str1);
+        String str2 = JSON.toJSONString(user1);
+        System.out.println("JSON.toJSONString(user1)==>"+str2);
+ 
+        System.out.println("\n****** JSON字符串 转 Java对象*******");
+        User jp_user1=JSON.parseObject(str2,User.class);
+        System.out.println("JSON.parseObject(str2,User.class)==>"+jp_user1);
+ 
+        System.out.println("\n****** Java对象 转 JSON对象 ******");
+        JSONObject jsonObject1 = (JSONObject) JSON.toJSON(user2);
+        System.out.println("(JSONObject) JSON.toJSON(user2)==>"+jsonObject1.getString("name"));
+ 
+        System.out.println("\n****** JSON对象 转 Java对象 ******");
+        User to_java_user = JSON.toJavaObject(jsonObject1, User.class);
+        System.out.println("JSON.toJavaObject(jsonObject1, User.class)==>"+to_java_user);
+    }
+}
+```
