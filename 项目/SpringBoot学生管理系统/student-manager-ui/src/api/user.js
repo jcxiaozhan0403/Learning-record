@@ -23,16 +23,18 @@ export function logout() {
   })
 }
 
-export function updateUserInfo() {
+export function updateUserInfo(data) {
   return request({
-    url: '/user/update',
-    method: 'post'
+    url: '/user/info/update',
+    method: 'post',
+    data
   })
 }
 
-export function updateUserPassword() {
+export function updateUserPassword(data) {
   return request({
-    url: '/user/passwordUp',
-    method: 'post'
+    url: '/user/info/updatePassword',
+    method: 'post',
+    data
   })
 }

@@ -1,6 +1,7 @@
 package cn.com.scitc.studentmanager.mapper;
 
 import cn.com.scitc.studentmanager.pojo.User;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -19,4 +20,12 @@ public interface UserMapper {
 
     // 清空token表
     void cleanToken();
+
+    // 更新用户信息
+    void updateUserInfo(User user);
+
+    // 通过id查询一个用户
+    User findById(int id);
+
+    void updateUserPassword(User user);
 }

@@ -4,6 +4,7 @@ import cn.com.scitc.studentmanager.common.ResultData;
 import cn.com.scitc.studentmanager.pojo.User;
 import cn.com.scitc.studentmanager.service.impl.UserServiceImpl;
 import cn.com.scitc.studentmanager.vo.LoginBody;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +37,7 @@ public class UserController {
     @GetMapping("info")
     public ResultData getInfo(@RequestParam String token) {
         user = userServiceImpl.selectUserByToken(token);
-        return ResultData.ok().data("name",user.getName()).data("avatar", user.getAvatar()).data("username", user.getUsername());
+        return ResultData.ok().data("id",user.getId()).data("name",user.getName()).data("avatar", user.getAvatar()).data("username", user.getUsername());
     }
 
 
@@ -45,5 +46,16 @@ public class UserController {
     public ResultData logout() {
         userServiceImpl.cleanToken();
         return ResultData.ok();
+    }
+
+    @PostMapping("/info/update")
+    public ResultData updateUserInfo(@RequestBody User user) {
+        userServiceImpl.updateUserInfo(user);
+        return ResultData.ok();
+    }
+
+    @PostMapping("/info/updatePassword")
+    public ResultData updatePassword(@RequestBody JSONObject jsonObject) {
+        return userServiceImpl.updatePassword(jsonObject);
     }
 }

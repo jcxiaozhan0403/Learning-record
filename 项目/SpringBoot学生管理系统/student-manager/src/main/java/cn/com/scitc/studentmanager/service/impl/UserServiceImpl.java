@@ -1,9 +1,11 @@
 package cn.com.scitc.studentmanager.service.impl;
 
 
+import cn.com.scitc.studentmanager.common.ResultData;
 import cn.com.scitc.studentmanager.mapper.UserMapper;
 import cn.com.scitc.studentmanager.pojo.User;
 import cn.com.scitc.studentmanager.service.UserService;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,10 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    User user;
+
 
     // 根据token查询用户信息，用于登录
     @Override
@@ -54,5 +60,26 @@ public class UserServiceImpl implements UserService {
     @Override
     public void cleanToken() {
         userMapper.cleanToken();
+    }
+
+    // 更新用户信息
+    @Override
+    public void updateUserInfo(User user) {
+        userMapper.updateUserInfo(user);
+    }
+
+    // 修改密码
+    @Override
+    public ResultData updatePassword(JSONObject jsonObject) {
+        int id = jsonObject.getIntValue("id");
+        user = userMapper.findById(id);
+        if (user.getPassword().equals(jsonObject.getString("oldP"))) {
+            // 修改密码操作
+            user.setPassword(jsonObject.getString("newP"));
+            userMapper.updateUserPassword(user);
+            return ResultData.ok().message("修改成功");
+        }else {
+            return ResultData.error().message("修改失败");
+        }
     }
 }

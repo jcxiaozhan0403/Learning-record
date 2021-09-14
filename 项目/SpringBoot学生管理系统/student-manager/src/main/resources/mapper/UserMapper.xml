@@ -30,4 +30,16 @@
         delete from token
     </delete>
 
+    <update id="updateUserInfo">
+        update user set username=#{username}, name=#{name} where id=#{id}
+    </update>
+
+    <select id="findById" resultType="cn.com.scitc.studentmanager.pojo.User">
+        select * from user where id=#{id}
+    </select>
+
+    <update id="updateUserPassword">
+        update user set password=#{password} where id=#{id}
+    </update>
+
 </mapper>
