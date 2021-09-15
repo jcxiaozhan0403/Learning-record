@@ -50,27 +50,25 @@ javadoc -encoding UTF-8 -charset UTF-8 java文件名
 编译后的文件.class
 
 ## 环境配置
-```
-JAVA_HOME  jdk目录
-CLASSPATH  .
-path  bin目录
-```
+JAVA_HOME  jdk根目录
+path  %JAVA_HOME%\jre\bin  %JAVA_HOME%\bin
 
 JDK(java开发工具包)
-JRE(java运行环境)
+JRE(java运行环境，包含一些函数、库之类的)
+JVM(java虚拟机，负责编译)
 包含关系
 JDK>JRE>JVM
 
 ## 注释
-```
-文档注释
+```JAVA
+//文档注释
 /**
 *
 *
 *
 */
 
-常见文档注释
+//常见文档注释
 /**
 *
 * @author 作者名
@@ -81,10 +79,10 @@ JDK>JRE>JVM
 * @throws 异常抛出情况
 */
 
-单行注释
+//单行注释
 //
 
-多行注释
+//多行注释
 /*
 
 */
@@ -114,7 +112,24 @@ public static void main(String[] args)
 System.out.println("hello world");
 ```
 
+## 什么是字节
+位(bit)：是计算机内部数据储存的最小单位，11001100是一个八位二进制数
+字节(byte)：是计算机中数据处理的基本单位，习惯上用B来表示
+1B = 8bit
+1024B = 1KB
+1024KB = 1M
+1024M = 1G
+字符：是指计算机中使用的字母、数字、字和符号
+
+## 进制
+二进制：0b
+十进制
+八进制：0
+十六进制：0x
+
 ## 数据类型
+Java是一种强类型语言，强类型语言：先定义后使用，数据类型严格
+
 java中有8种基本数据类型，除此之外都是引用数据类型
 
 凡是引用数据类型，都可以使用null作为值
@@ -128,6 +143,7 @@ boolean    Boolean    1
 char       Character  2
            String
 byte       Byte       1
+short      Short      2
 long       Long       8
 ```
 

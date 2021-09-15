@@ -1497,6 +1497,12 @@ aop:aspectj-autoproxy：说明
 <aop:aspectj-autoproxy />有一个proxy-target-class属性，默认为false，表示使用jdk动态代理织入增强，当配为<aop:aspectj-autoproxy  poxy-target-class="true"/>时，表示使用CGLib动态代理技术织入增强。不过即使proxy-target-class设置为false，如果目标类没有声明接口，则spring将自动使用CGLib动态代理。
 ```
 
+## Spring中的测试类
+```java
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:application.xml") //构建虚拟spring容器
+```
+
 ## Spring整合Mybatis
 完整版：
 1. 导入依赖
@@ -1507,19 +1513,27 @@ aop:aspectj-autoproxy：说明
     <version>2.0.2</version>
 </dependency>
 ```
-2. 配置Maven静态资源过滤问题
+2. 配置Maven静态资源导出过滤问题
 ```xml
 <build>
-    <resources>
-        <resource>
-            <directory>src/main/java</directory>
-            <includes>
-                <include>**/*.properties</include>
-                <include>**/*.xml</include>
-            </includes>
-            <filtering>true</filtering>
-        </resource>
-    </resources>
+    <resources>
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.properties</include>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+        <resource>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*.properties</include>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+    </resources>
 </build>
 ```
 3. 创建mybatis配置文件
@@ -1641,19 +1655,27 @@ public void test2(){
     <version>2.0.2</version>
 </dependency>
 ```
-2. 配置Maven静态资源过滤问题
+2. 配置Maven静态资源导出过滤问题
 ```xml
 <build>
-    <resources>
-        <resource>
-            <directory>src/main/java</directory>
-            <includes>
-                <include>**/*.properties</include>
-                <include>**/*.xml</include>
-            </includes>
-            <filtering>true</filtering>
-        </resource>
-    </resources>
+    <resources>
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.properties</include>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+        <resource>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*.properties</include>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+    </resources>
 </build>
 ```
 4. 创建mybatis配置文件
@@ -1693,7 +1715,7 @@ public void test2(){
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!--配置数据源：数据源有非常多，可以使用第三方的，也可使使用Spring的-->
+    <!--配置数据源：数据源有非常多，可以使用第三方的，也可使使用Spring的，这里是Spring默认提供的-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
        <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8"/>
@@ -2373,4 +2395,497 @@ public class FastJsonDemo {
         System.out.println("JSON.toJavaObject(jsonObject1, User.class)==>"+to_java_user);
     }
 }
+```
+
+## SSM整合
+1. 创建Maven项目，添加web支持，导入pom依赖
+```xml
+<!--依赖-->
+<dependencies>
+    <!--Junit-->
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13</version>
+    </dependency>
+    <!--数据库驱动-->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>5.1.49</version>
+    </dependency>
+    <!-- 数据库连接池 -->
+    <dependency>
+        <groupId>com.mchange</groupId>
+        <artifactId>c3p0</artifactId>
+        <version>0.9.5.5</version>
+    </dependency>
+
+    <!--Servlet - JSP -->
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <version>2.5</version>
+    </dependency>
+    <dependency>
+        <groupId>javax.servlet.jsp</groupId>
+        <artifactId>jsp-api</artifactId>
+        <version>2.2</version>
+    </dependency>
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
+    </dependency>
+
+    <!--Mybatis-->
+    <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+        <version>3.5.7</version>
+    </dependency>
+    <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis-spring</artifactId>
+        <version>2.0.6</version>
+    </dependency>
+
+    <!--Spring-->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>5.3.9</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>5.3.9</version>
+    </dependency>
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.20</version>
+    </dependency>
+</dependencies>
+```
+2. 配置Maven静态资源导出过滤问题
+```xml
+<build>
+    <resources>
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.properties</include>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+        <resource>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*.properties</include>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+    </resources>
+</build>
+```
+3. 添加spring配置文件
+- applicationContext.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+</beans>
+```
+4. 添加Mybatis配置文件
+- mybatis-config.xml
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+</configuration>
+```
+配置Mybatis层
+1. 添加数据库配置文件
+- jdbc.properties
+```properties
+jdbc.driverClassName = com.mysql.jdbc.Driver
+jdbc.url = jdbc:mysql://localhost:3306/ssmbuild?useSSL=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8
+jdbc.username = root
+jdbc.password = lishuang001219
+```
+2. 编写Mybatis配置文件
+- mybatis-config.xml
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <package name="pojo"/>
+    </typeAliases>
+    <mappers>
+        <mapper resource="mapper/BookMapper.xml"/>
+    </mappers>
+</configuration>
+```
+3. 编写实体类
+- Book
+```java
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Book {
+    private int bookID;
+    private String bookName;
+    private int bookCounts;
+    private String detail;
+}
+```
+4. 编写dao层的mapper接口
+- BookMapper
+```java
+public interface BookMapper {
+    //增加一个Book
+    int addBook(Book book);
+
+    //根据id删除一个Book
+    int deleteBookById(int id);
+
+    //更新Book
+    int updateBook(Book book);
+
+    //根据id查询,返回一个Book
+    Book findBookById(int id);
+
+    //查询全部Book,返回list集合
+    List<Book> findBookList();
+}
+```
+5. 编写Mapper文件
+- BookMapper.xml
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.BookMapper">
+
+    <!--增加一个Book-->
+    <insert id="addBook" parameterType="Book">
+        insert into ssmbuild.book(bookName,bookCounts,detail)
+        values (#{bookName}, #{bookCounts}, #{detail})
+    </insert>
+
+    <!--根据id删除一个Book-->
+    <delete id="deleteBookById" parameterType="int">
+        delete from ssmbuild.book where bookID=#{bookID}
+    </delete>
+
+    <!--更新Book-->
+    <update id="updateBook" parameterType="Book">
+        update ssmbuild.book
+        set bookName = #{bookName},bookCounts = #{bookCounts},detail = #{detail}
+        where bookID = #{bookID}
+    </update>
+
+    <!--根据id查询,返回一个Book-->
+    <select id="findBookById" resultType="Book">
+        select * from ssmbuild.book
+        where bookID = #{bookID}
+    </select>
+
+    <!--查询全部Book-->
+    <select id="findBookList" resultType="Book">
+        SELECT * from ssmbuild.book
+    </select>
+
+</mapper>
+```
+6. 编写Service层的接口和实现类
+- BookService.java
+```java
+public interface BookService {
+    //增加一个Book
+    int addBook(Book book);
+
+    //根据id删除一个Book
+    int deleteBookById(int id);
+
+    //更新Book
+    int updateBook(Book book);
+
+    //根据id查询,返回一个Book
+    Book findBookById(int id);
+
+    //查询全部Book,返回list集合
+    List<Book> findBookList();
+}
+```
+- BookServiceImpl.java
+```java
+public class BookServiceImpl implements BookService {
+
+    //调用dao层的操作，设置一个set接口，方便Spring管理
+    private BookMapper bookMapper;
+
+    public void setBookMapper(BookMapper bookMapper) {
+        this.bookMapper = bookMapper;
+    }
+
+    public int addBook(Book book) {
+        return bookMapper.addBook(book);
+    }
+
+    public int deleteBookById(int id) {
+        return bookMapper.deleteBookById(id);
+    }
+
+    public int updateBook(Book book) {
+        return bookMapper.updateBook(book);
+    }
+
+    public Book findBookById(int id) {
+        return bookMapper.findBookById(id);
+    }
+
+    public List<Book> findBookList() {
+        return bookMapper.findBookList();
+    }
+}
+```
+
+配置Spring层
+1. 编写Spring-Mybatis整合文件
+- spring-dao.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+        <!--关联数据库配置文件-->
+        <context:property-placeholder location="classpath:jdbc.properties" />
+
+        <!--配置数据源：数据源有非常多，可以使用第三方的，也可使使用Spring的-->
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+                <property name="driverClassName" value="${jdbc.driverClassName}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+        </bean>
+
+        <!-- 3.配置SqlSessionFactory对象 -->
+        <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+                <!-- 注入数据库连接池 -->
+                <property name="dataSource" ref="dataSource"/>
+                <!-- 配置MyBaties全局配置文件:mybatis-config.xml -->
+                <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        </bean>
+
+        <!-- 4.配置扫描Dao接口包，动态实现Dao接口注入到spring容器中 -->
+        <!--解释 ：https://www.cnblogs.com/jpfss/p/7799806.html-->
+        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+                <!-- 注入sqlSessionFactory -->
+                <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+                <!-- 给出需要扫描Dao接口包 -->
+                <property name="basePackage" value="dao"/>
+        </bean>
+
+</beans>
+```
+- spring-service.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 扫描service相关的bean -->
+    <context:component-scan base-package="service" />
+
+    <!--BookServiceImpl注入到IOC容器中-->
+    <bean id="BookServiceImpl" class="service.impl.BookServiceImpl">
+        <property name="bookMapper" ref="bookMapper"/>
+    </bean>
+
+    <!-- 配置声明式事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 注入数据库连接池 -->
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+</beans>
+```
+配置SpringMVC层
+- web.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:applicationContext.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>encoding</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--Session-->
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
+</web-app>
+```
+- spring-mvc.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc
+    https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 配置SpringMVC -->
+    <!-- 1.开启SpringMVC注解驱动 -->
+    <mvc:annotation-driven />
+    <!-- 2.静态资源默认servlet配置-->
+    <mvc:default-servlet-handler/>
+
+    <!-- 3.配置jsp 显示ViewResolver视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    <!-- 4.扫描web相关的bean -->
+    <context:component-scan base-package="controller" />
+</beans>
+```
+用Spring配置文件整合所有配置
+- applicationContext.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="spring-dao.xml"/>
+    <import resource="spring-service.xml"/>
+    <import resource="spring-mvc.xml"/>
+
+</beans>
+```
+测试
+1. 编写controller
+- BookController
+```java
+@Controller
+@RequestMapping("/book")
+public class BookController {
+
+    @Autowired
+    @Qualifier("BookServiceImpl")
+    private BookService bookService;
+
+    @RequestMapping("/list")
+    public String list(Model model) {
+        System.out.println("你好");
+        List<Book> list = bookService.findBookList();
+        model.addAttribute("list", list);
+        return "book";
+    }
+}
+```
+2. 编写首页
+- index.jsp
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>首页</title>
+  <style type="text/css">
+    a {
+      text-decoration: none;
+      color: black;
+      font-size: 18px;
+    }
+    h3 {
+      width: 180px;
+      height: 38px;
+      margin: 100px auto;
+      text-align: center;
+      line-height: 38px;
+      background: deepskyblue;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<h3>
+  <a href="${pageContext.request.contextPath}/book/list">点击进入列表页</a>
+</h3>
+</body>
+</html>
+```
+3. 编写书籍列表页面
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<h1>书籍展示</h1>
+</body>
+</html>
 ```
