@@ -90,7 +90,7 @@ JDK>JRE>JVM
 
 ## 代码规范
 - 包名：所有字母小写
-- 类名、接口名：每个单词首字母大写
+- 类名、接口名：首字母大写
 - 变量名、方法名：驼峰命名
 - 常量名：所有字母大写、多单词用下划线连接
 
@@ -147,6 +147,36 @@ short      Short      2
 long       Long       8
 ```
 
+## equals与==的区别
+- 源码分析
+==比较的是两个字符串的引用地址值相不相同
+由下面这段equals源码可以分析出equals是先将两个字符串的引用地址拿来进行比较，如果相同则返回true，如果不相同再判断传入字符串是否为String类的实例，如果不是，则返回false，如果是，则将传入字符串转换为String类型，先比较两个字符串的长度，长度一致再将字符串拆分为两个char数组进行遍历比较，如果相同再返回true
+
+- 总结：可以简单理解为== 对比的是两个字符串的引用地址，equals对比的是两个字符串的字面值
+```java
+public boolean equals(Object anObject) {
+    if (this == anObject) {
+        return true;
+    }
+    if (anObject instanceof String) {
+        String anotherString = (String)anObject;
+        int n = value.length;
+        if (n == anotherString.value.length) {
+            char v1[] = value;
+            char v2[] = anotherString.value;
+            int i = 0;
+            while (n-- != 0) {
+                if (v1[i] != v2[i])
+                    return false;
+                i++;
+            }
+            return true;
+        }
+    }
+    return false;
+}
+```
+
 ## 字面值
 给基本类型的变量赋的值叫做字面值
 
@@ -177,23 +207,28 @@ final 除了修饰变量，还可以修饰类，修饰方法
 
 ## 逻辑运算符
 ```java
-& 逻辑与
-| 逻辑或
-! 逻辑非
-&& 短路与
-|| 短路或
-^  异或
+&&  //逻辑与
+||  //逻辑或
+!   //逻辑非
+&   //短路与
+|   //短路或
+^   //异或
 ```
 
 ## 位运算符
 正数二进制-->反码-->加1-->负数二进制
 ```java
-n << m //左移，值等于n*2的m次方
-n >> m //右移，值等于n/2的m次方，如果为负数运算，则右移后在前两位补1
-n >>> m //无符号右移，右移后的最前两位补0
-^异或运算 //转为二进制，相同为0，不同为1
-~反码 //1和0取反，正负号取反
+n << m      //左移，值等于n*2的m次方
+n >> m      //右移，值等于n/2的m次方，如果为负数运算，则右移后在前两位补1
+n >>> m     //无符号右移，右移后的最前两位补0
+&           //逻辑与
+|           //逻辑或
+^           //异或运算，转为二进制，相同为0，不同为1
+~           //反码，1和0取反，正负号取反
 ```
+
+## JavaDoc
+Java API 文档，可以通过命令行用命令生成或者使用idea生成
 
 ## Scanner
 ```java
@@ -219,6 +254,36 @@ System.out.println("读取的字符串是："+c);
 
 s.close(); //关闭，避免内存浪费
 ```
+nextLine()与next()的区别：
+- next()读取到空白符就结束，常见空白字符：空格、Tab、回车
+- nextLine()读取到回车结束也就是"\r"
+
+- nextLine()在读取字符时不做特殊处理
+- next()在读取字符时，会将第一个字符之前的空白字符过滤掉
+
+## switch判断
+switch语句中的变量类型可以是byte、short、int、char、String
+```java
+int score = 100
+
+switch (score) {
+case 100:
+    System.out.println("优秀");
+    break;
+case 90:
+    System.out.println("良好");
+    break;
+case 80:
+    System.out.println("及格");
+    break;
+case 50:
+    System.out.println("不及格");
+    break;
+default:
+    System.out.println("查不到");
+    break;
+}
+```
 
 ## 循环
 与其他编程语言相似，break结束循环，continue跳过此次循环
@@ -238,6 +303,57 @@ public class HelloWorld {
             }
         }
          
+    }
+}
+```
+
+## 方法重载
+同名方法不同数量或类型的参数传入，得到不同的返回值，通过方法的重载实现，如果有多个同名方法，系统会在调用时自动选择对应数量参数的一个
+重载规则：
+- 方法名称必须相同
+- 参数列表必须不同(个数不同、或类型不同、参数排列顺序不同等等)
+- 方法的返回值类型可以相同也可以不同
+- 仅仅返回类型不同不足以成为方法重载
+
+## 可变参数方法
+不定参数的方法是用来避免代码冗余的
+- 可变参数只能作为函数的最后一个参数，但其前面可以有也可以没有任何其他参数
+- 由于可变参数必须是最后一个参数，所以一个函数最多只能有一个可变参数
+- Java的可变参数，会被编译器转型为一个数组
+- 变长参数在编译为字节码后，在方法签名中就是以数组形态出现的。这两个方法的签名是一致的，不能作为方法的重载。如果同时出现，是不能编译通过的。可变参数可以兼容数组，反之则不成立
+```java
+public void foo(String...varargs){}
+
+foo("arg1", "arg2", "arg3");
+
+//上述过程和下面的调用是等价的
+foo(new String[]{"arg1", "arg2", "arg3"});
+```
+
+```java
+public class StudentTestMethod {
+    // methodName({paramList},paramType…paramName)
+    // methodName 表示方法名称
+    // paramList 表示方法的固定参数列表
+    // paramType 表示可变参数的类型
+    // … 是声明可变参数的标识
+    // paramName 表示可变参数名称。
+    
+    
+    // 定义输出考试学生的人数及姓名的方法
+    public void print(String...names) {
+        int count = names.length;    // 获取总个数
+        System.out.println("本次参加考试的有"+count+"人，名单如下：");
+        for(int i = 0;i < names.length;i++) {
+            System.out.println(names[i]);
+        }
+    }
+    
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        StudentTestMethod student = new StudentTestMethod();
+        student.print("张强","李成","王勇");    // 传入3个值
+        student.print("马丽","陈玲");
     }
 }
 ```
@@ -398,37 +514,6 @@ public class Weapon extends Item{
         weapon.name = "无尽之刃";//name属性，是从Item中继承来的，就不需要重复设计了
         weapon.price = 3600;
          
-    }
-}
-```
-
-方法重载:同名方法不同数量或类型的参数传入，得到不同的返回值，通过方法的重载实现，如果有多个同名方法，系统会在调用时自动选择对应数量参数的一个
-
-可变参数方法(不定参数的方法是用来避免代码冗余的)
-```java
-public class StudentTestMethod {
-    // methodName({paramList},paramType…paramName)
-    // methodName 表示方法名称
-    // paramList 表示方法的固定参数列表
-    // paramType 表示可变参数的类型
-    // … 是声明可变参数的标识
-    // paramName 表示可变参数名称。
-    
-    
-    // 定义输出考试学生的人数及姓名的方法
-    public void print(String...names) {
-        int count = names.length;    // 获取总个数
-        System.out.println("本次参加考试的有"+count+"人，名单如下：");
-        for(int i = 0;i < names.length;i++) {
-            System.out.println(names[i]);
-        }
-    }
-    
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        StudentTestMethod student = new StudentTestMethod();
-        student.print("张强","李成","王勇");    // 传入3个值
-        student.print("马丽","陈玲");
     }
 }
 ```
@@ -822,7 +907,7 @@ try {
 
 Collection 是最基本的集合接口，一个 Collection 代表一组 Object，即 Collection 的元素, Java不提供直接继承自Collection的类，只提供继承于的子接口(如List和set)
 
-**Set和List的区别**
+## Set和List的区别
 1. Set 接口实例存储的是无序的，不重复的数据。List 接口实例存储的是有序的，可以重复的元素
 2. Set检索效率低下，删除和插入效率高，插入和删除不会引起元素位置改变 <实现类有HashSet,TreeSet>
 3. List和数组类似，可以动态增长，根据实际存储的数据的长度自动增长List的长度。查找元素效率高，插入删除效率低，因为会引起其他元素位置改变 <实现类有ArrayList,LinkedList,Vector>
