@@ -2889,3 +2889,67 @@ public class BookController {
 </body>
 </html>
 ```
+
+## 拦截器
+SpringMVC的处理器拦截器类似于Servlet开发中的过滤器Filter,用于对处理器进行预处理和后处理。开发者可以自己定义一些拦截器来实现特定的功能。
+
+过滤器
+- servlet规范中的一部分，任何java web工程都可以使用
+- 在url-pattern中配置了/*之后，可以对所有要访问的资源进行拦截
+
+拦截器
+- 拦截器是SpringMVC框架自己的，只有使用了SpringMVC框架的工程才能使用
+- 拦截器只会拦截访问的控制器方法， 如果访问的是jsp/html/css/image/js是不会进行拦截的
+
+区别：拦截器是AOP思想的具体应用。
+
+使用：
+1. 编写一个拦截器
+```java
+public class MyInterceptor implements HandlerInterceptor {
+
+   //在请求处理的方法之前执行
+   //如果返回true执行下一个拦截器
+   //如果返回false就不执行下一个拦截器
+   public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
+       System.out.println("------------处理前------------");
+       return true;
+  }
+
+   //在请求处理方法执行之后执行
+   public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
+       System.out.println("------------处理后------------");
+  }
+
+   //在dispatcherServlet处理后执行,做清理工作.
+   public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
+       System.out.println("------------清理------------");
+  }
+}
+```
+2. 在springmvc的配置文件中配置拦截器
+```xml
+<!--关于拦截器的配置-->
+<mvc:interceptors>
+   <mvc:interceptor>
+       <!--/** 包括路径及其子路径-->
+       <!--/admin/* 拦截的是/admin/add等等这种 , /admin/add/user不会被拦截-->
+       <!--/admin/** 拦截的是/admin/下的所有-->
+       <mvc:mapping path="/**"/>
+       <!--bean配置的就是拦截器-->
+       <bean class="com.kuang.interceptor.MyInterceptor"/>
+   </mvc:interceptor>
+
+   <!-- 可以配置多个拦截器 -->
+    <mvc:interceptor>
+       <!--/** 包括路径及其子路径-->
+       <!--/admin/* 拦截的是/admin/add等等这种 , /admin/add/user不会被拦截-->
+       <!--/admin/** 拦截的是/admin/下的所有-->
+       <mvc:mapping path="/**"/>
+       <!--bean配置的就是拦截器-->
+       <bean class="com.kuang.interceptor.MyInterceptor"/>
+   </mvc:interceptor>
+</mvc:interceptors>
+```
+
+## 文件的上传与下载
