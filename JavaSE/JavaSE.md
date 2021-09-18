@@ -147,6 +147,10 @@ short      Short      2
 long       Long       8
 ```
 
+<img src="./整型数据类型.png">
+
+<img src="./浮点数据类型.png">
+
 ## equals与==的区别
 - 源码分析
 ==比较的是两个字符串的引用地址值相不相同
@@ -185,8 +189,10 @@ char可以与数字进行运算，过程是将字母转换为ASCII值再运算
 
 数字与字符串的拼接:String后面的所有数字都会被转换成String类型，然后进行字符串拼接，如果数字是出现在String前面，则会正常运算后拼接
 
-## 变量类型转换
+## 数据类型转换
 根据位数转换：小到大自动转换，大到小强制转换，short和char相互强制转换
+<img src="./数据类型转换.png">
+
 
 ## final
 当一个变量被final修饰的时候，该变量只有一次赋值的机会，再次赋值会发生编译错误
@@ -226,6 +232,7 @@ n >>> m     //无符号右移，右移后的最前两位补0
 ^           //异或运算，转为二进制，相同为0，不同为1
 ~           //反码，1和0取反，正负号取反
 ```
+<img src="./位运算规则.jpg">
 
 ## JavaDoc
 Java API 文档，可以通过命令行用命令生成或者使用idea生成
@@ -358,15 +365,56 @@ public class StudentTestMethod {
 }
 ```
 
-## 数组的定义
+## 递归
+递归结构两部分
+- 递归头：什么时候不调用自身方法。如果没有头，将陷入死循环
+- 递归体：什么时候需要调用自身方法
+
+递归尽量在基数较小的情况使用，不然容易把堆空间塞满
 ```java
-int[] numbers = {0,2,4,8,6,7};
-或
-int[] numbers = new int[6];
+// 算阶乘
+public int f(int n) {
+    if(n ==1) {
+        return 1;
+    }else {
+        return n*f(n-1);
+    }
+}
 ```
 
-## 复制数组
+## Java创建对象内存分析
+<img src="./Java内存分析.jpg">
 
+<img src="./Java创建对象内存分析.jpg">
+
+1. 程序运行首先在方法区加载类的模板，静态方法与类同时加载
+2. 主方法运行，引用存在于栈中，指向堆空间创建的对象，对象创建时，字符串以及方法从方法区中获取
+
+## 数组
+数组的定义：
+- 其长度是确定的，数组一旦被创建，它的大小就是不可改变的
+- 其元素必须是相同类型，不允许出现其他类型
+- 数组中的元素可以是任何数据类型，包括基本类型和引用类型
+- 数组变量属于引用类型，数组也可以看成是对象，数组中的每个元素相当于该对象的成员变量
+- 数组本身就是对象，Java中对象是在堆中的，因此数组无论保存原始类型还是其他对象类型，数组对象都在堆中
+
+数组的三种初始化：
+静态初始化
+```java
+int[] a = {1,2,3};
+Man[] mans = {new man(1),new man(1)};
+```
+动态初始化
+```java
+int [] a = new int[2];
+a[0] = 1;
+a[1] = 2;
+```
+默认初始化
+
+数组是引用类型，它的元素相当于类的实例变量，因此数组一经分配空间，其中的每个元素也被按照实例变量的方式被隐式初始化，基本类型被初始化为0，引用类型被初始化为null
+
+## 复制数组
 ```java
 System.arraycopy(src, srcPos, dest, destPos, length)
 
@@ -378,7 +426,6 @@ System.arraycopy(src, srcPos, dest, destPos, length)
 ```
 
 ## Arrays类操作数组
-
 ```java
 import java.util.Arrays;//导入Arrays类
  
@@ -412,6 +459,39 @@ public class HelloWorld {
         //填充数组
         //Array.fill(arrayname ,starting index ,ending index ,value)
         //Array.fill(数组名，开始位置，结束位置，填充值)
+        //Array.fill(数组名，填充值)
+        Arrays.fill(a,2,4,10);
+        Arrays.fill(a,10);
+    }
+}
+```
+
+## 冒泡排序
+<img src="./冒泡排序.gif">
+
+算法逻辑：
+1. 比较相邻的元素，如果第一个比第二个大，就交换它们两个
+2. 对每一对相邻的元素都进行比较，等所有的比较完后最后一个数字是这堆数据里的最大数字
+3. 重复步骤一，直到排序完成
+```java
+import java.util.Arrays;
+
+public class Test {
+    public static void main(String[] args) {
+        int []arr= {3,2,8,4,7};//创建数组
+        System.out.println("排序前" + Arrays.toString(arr));
+        //循环实现冒泡排序
+        for(int i=0;i<arr.length-1;i++) {
+            for(int j=0;j<arr.length-i-1;j++) {
+                if(arr[j]>arr[j+1]) {
+                    int temp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                }
+                
+            }
+        }
+        System.out.println("排序后" + Arrays.toString(arr));
     }
 }
 ```
@@ -465,7 +545,7 @@ for(int i=1;i<array2.length;i++){
 }
 ```
 
-## 类与对象(进阶)
+## 类与对象
 
 简单概念：一个有多种属性的东西，叫对象，有相同属性的对象称为一个类
 
@@ -550,7 +630,6 @@ public class Hero {
 ```
 
 访问修饰符
-
 ```java
 //private 私有的
 //package/friendly/default 不写
@@ -558,8 +637,9 @@ public class Hero {
 //public 公共的
 ```
 
-类与类的几种关系
+<img src="./类的修饰关系.png">
 
+类与类的几种关系
 ```
 自身：指的是Hero自己
 同包子类：ADHero这个类是Hero的子类，并且和Hero处于同一个包下
@@ -581,6 +661,8 @@ public static void printGameDuration(){
     System.out.println("已经玩了10分50秒");
 }
 ```
+
+## 
 
 ## 单例模式
 
@@ -671,6 +753,7 @@ AD adi = ad;
 ```
 
 ## instanceof判断类型
+instanceof是Java中的二元运算符，左边是对象，右边是类；当对象是右边类或子类所创建对象时，返回true；否则，返回false。
 ```java
 ADHero ad = new ADHero();
 APHero ap = new APHero();
@@ -691,6 +774,12 @@ System.out.println(h1 instanceof Hero);
 ## 方法重写
 子类继承父类后在自身命名一个父类已有的方法叫做重写，新方法会覆盖父类方法，产生效果，重写的作用是在继承的同时也能灵活地修改方法，节省开发时间和维护成本
 
+重写：需要有继承关系，子类重写父类的方法
+- 方法名必须相同
+- 参数列表必须相同
+- 修饰符：范围可以扩大但不能缩小
+- 抛出的异常：范围可以被缩小，不能被扩大
+
 ## 多态
 类的多态的形成条件
 1. 父类（接口）引用指向子类对象
@@ -700,7 +789,7 @@ System.out.println(h1 instanceof Hero);
 隐藏也是方法的重写，只不过操作的是类方法
 
 ## super
-1. 调用父类构造方法，根据给出参数的数量自动选择哪一个构造方法，默认在子类的构造方法中会有一个`super()`，所以调用子类构造方法时，会默认调用父类无参构造方法，如果父类中没有无参构造方法，super会默认传入一个空字符串
+1. 调用父类构造方法，根据传入参数的数量自动选择一个构造方法，默认在子类的构造方法中会有一个`super()`，所以调用子类构造方法时，会默认调用父类无参构造方法，如果父类中没有无参构造方法，super会默认传入一个空字符串
 2. 调用父类属性，用`super.属性名`的方式
 3. 调用父类方法，用`super.方法名`的方式
 
@@ -725,20 +814,66 @@ public String toString(){
 ```
 
 ## 抽象类
-抽象方法用abstract修饰,只申明，没有方法体
-
-如果一个类中有抽象方法，那么这个类必须为抽象类
-
-抽象类的子类中，必须重写抽象方法
-
-抽象类中可以没有抽象方法，但是抽象类不能被直接实例化
+- 抽象方法用abstract修饰,只申明，没有方法体
+- 如果一个类中有抽象方法，那么这个类必须为抽象类
+- 抽象类的子类中，必须重写抽象方法
+- 抽象类中可以没有抽象方法，但是抽象类不能被直接实例化
 
 ## 内部类
+成员内部类：成员内部类可以直接拿到外部类的私有属性
+```java
+public class Outer{
+    private int id = 10;
+
+    public void out(){
+        System.out.println("这是外部方法");
+    }
+
+    public class Inner {
+        public void in(){
+            System.out.println("这是内部方法");
+        }
+
+        public void getID(){
+            System.out.println(id);
+        }
+    }
+}
+```
+实例化成员内部类
+```java
+public class Test {
+    public static void main(String[] args) {
+        Outer outer = new Outer();
+        Outer.Inner inner = outer.new Inner();
+        inner.getID();
+    }
+}
+```
+局部内部类：定义在方法里面的类
+```java
+public class Outer{
+    public void method(){
+        class Inner{
+            public  void in(){
+                
+            }
+        }
+    }
+}
+```
 非静态内部类不需要在外部类存在一个实例时才可调用
 
 静态内部类可以直接调用，因为没有一个外部类的实例，所以在静态内部类里面不可以访问外部类的实例属性和方法
 
-匿名类就是在实例化抽象类的同时写出抽象方法
+匿名类就是在实例化类的同时写出方法，不使用引用保存实例
+```java
+public class Test {
+    public static void main(String[] args) {
+        new Outer().method();
+    }
+}
+```
 
 声明在主方法中的类叫做本地类
 
@@ -834,6 +969,10 @@ equalsIgnoreCase，忽略大小写判断内容是否一致
 StringBuffer是可变长的字符串
 
 ## 异常处理
+<img src="./Java异常体系结构.jpg">
+
+<img src="./Java异常处理原则.jpg">
+
 单异常处理
 ```java
 //法一：try catch
