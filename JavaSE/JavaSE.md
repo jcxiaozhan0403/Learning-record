@@ -793,26 +793,6 @@ System.out.println(h1 instanceof Hero);
 2. 调用父类属性，用`super.属性名`的方式
 3. 调用父类方法，用`super.方法名`的方式
 
-## Object类
-所有类都默认继承了Object类
-
-```java
-//toString()返回的是一个对象的字符串表达式，一般在对象中重写方法返回一个字符串;
-
-public String toString(){
-    return name;
-}
-```
-
-```java
-//finalize()是一个垃圾回收函数，虚拟机JVM在满足条件是自动调用
-```
-
-```java
-//equals()用于判断两个对象的内容相不相同，相同返回true，不同返回false
-//==比较的则是两个对象在内存中的地址相不相同
-```
-
 ## 抽象类
 - 抽象方法用abstract修饰,只申明，没有方法体
 - 如果一个类中有抽象方法，那么这个类必须为抽象类
@@ -933,19 +913,25 @@ public class Demo {
 默认方法就是一个方法要在多个类中重复使用，写在接口中，避免重复
 
 ## 数字与字符
-封装类：所有的基本类型，都有对应的类类型，比如int对应的类是Integer，这种类就叫做封装类
+封装类：所有的基本类型，都有对应的引用类型，比如int对应的类是Integer，这种类就叫做封装类
 
+装箱：基本类型转换为封装类型
+拆箱：封装类型转换为基本类型
 ```java
 int i = 5;
-//基本类型转换成封装类型
+//装箱
+//法一：构造器装箱JDK9以后弃用
 Integer it = new Integer(i);
+//法二
+Integer it = Integer.valueOf(i);
 
-//封装类型转换成基本类型
+//拆箱
+//法一
 int i2 = it.intValue();
+//法二
+int i2 = Integer.parseInt(it);
 ```
-装箱：基本类型自动转换为类类型
-拆箱：类类型自动转换为基本类型
-
+在JDK1.8以后，提供了自动装箱与拆箱
 ```java
 int i = 5;
 //装箱
@@ -970,6 +956,22 @@ String str2 = it.toString();
 
 //字符串转整数
 int i= Integer.parseInt(x);
+```
+
+## Integer缓冲区
+例一会打印true，因为在堆空间中有一块区域，存放了-128到127这个范围的Integer数组，所以当传入值在这个范围时，引用会直接指向堆空间的数组中的值，所以integer1与integer2指向的是同一个对象
+
+例二会打印false，以为传入值不在-128到127这个范围内，在装箱时就会在堆空间创建新的对象，所以integer3与integer4指向的不是同一个对象
+```java
+//例一
+Integer integer1 = new Integer(100);
+Integer integer2 = new Integer(100);
+System.out.println(integer1 == integer2);
+
+//例二
+Integer integer3 = new Integer(200);
+Integer integer4 = new Integer(200);
+System.out.println(integer1 == integer2);
 ```
 
 ## 格式化输出
@@ -1091,7 +1093,7 @@ try {
 
 ## 常用类
 
-## Object类
+## Object
 Object类是所有类的超类，所有类默认继承Object类
 
 getClass() 返回引用中存储的实际对象类型
@@ -1129,6 +1131,215 @@ finalize() 垃圾回收方法，由JVM自动调用此方法
 垃圾回收：由GC销毁垃圾对象，释放数据存储空间
 自动回收机制：JVM的内存耗尽，一次性回收所有垃圾对象
 手动回收机制：使用System.gc();通知JVM执行垃圾回收
+
+## String
+创建字符串的两种方式及区别
+```java
+// 第一种创建方式，栈内引用直接指向方法区中的常量池中的值
+String str1 = "你好";
+
+// 第二种创建，堆内新建对象，对象指向方法区中的常量池中的值栈内引用指向堆内对象
+String str2 = new String("Hello World");
+```
+length() 返回字符串长度
+```java
+String str = "Hello World";
+int leng = str.length();
+```
+charAt(int index) 返回某个位置的字符
+```java
+String str = "Hello World";
+char c = str.charAt(0);
+```
+contains(String str) 判断是否包含某个子字符串，返回布尔值
+```java
+String str = "Hello World";
+boolean result = str.contains("Hello");
+```
+toCharArray() 将字符串转换为字符数组返回
+```java
+String str = "Hello World";
+char[] strs = str.toCharArray();
+```
+indexOf(String str) 查找str首次出现的下标，返回，如果不存在，返回-1
+```java
+String str = "Hello World";
+int index = str.indexOf("Hello");
+// 从第四位开始查找
+int index = str.indexOf("Hello",4);
+```
+lastIndexOf(String str) 查找字符串在当前字符串中最后一次出现的下标，返回，如果不存在，返回-1;
+```java
+String str = "Java Hello Java CC Java";
+int index = str.lastIndexOf("Java");
+```
+trim() 去掉字符串前后空格
+```java
+String str = "    Hello World    ";
+String str2 = str.trim();
+```
+toUpperCase() 将小写转成大写
+toLowerCase() 将大写转换成小写
+```java
+String str = "Hello World";
+String str2 = str.toUpperCase();
+String str3 = str.toLowerCase();
+```
+endsWith(String str) 判断字符串是否以str结尾
+startsWith(String str) 判断字符串是否以str开头
+```java
+String str = "Hello World";
+boolean r1 = str.startsWith("Hello");
+boolean r2 = str.endsWith("World");
+```
+replace(char oldChar,char newChar) 将旧字符串替换成新字符串
+```java
+String str = "Hello World";
+String str2 = str.replace("World","Java");
+```
+split(String str) 根据str对字符串进行拆分，返回一个字符串数组
+```java
+String str = "Hello World Java PHP C,Python|C++";
+// 以空格分隔字符串
+String[] strs = str.split(" ")
+// 以多个符号分隔字符串空格，逗号竖线都可分隔
+String[] strs = str.split("[ ,|]")
+```
+
+## StringBuffer和StringBuilder
+效率都高于String，都比String节省内存
+StringBuffer和StringBuilder的用法是一样的，StringBuilder的效率高于StringBuffer
+```java
+StringBuilder sb = new StringBuilder();
+// append()追加
+sb.append("Hello World");
+
+// insert()添加
+sb.insert(0,"Hello World");
+
+// replace()替换:取前不取后
+sb.replace(6,11,"Java");
+
+// delete()删除
+sb.delete(6,sb.length());
+
+// 打印
+sb.toString();
+```
+
+## BigDecimal
+float和double类型的主要设计目标是为了科学计算和工程计算。他们执行二进制浮点运算，然而，它们没有提供完全精确的结果。但是，商业计算往往要求结果精确，这时候BigDecimal就派上大用场啦。
+```java
+BigDecimal bd1 = new BigDecimal("1.0");
+BigDecimal bd2 = new BigDecimal("0.9");
+
+// 加
+BigDecimal result1 = bd1.add(bd2);
+// 减
+BigDecimal result2 = bd1.subtract(bd2);
+// 乘
+BigDecimal result3 = bd1.multiply(bd2);
+// 除
+BigDecimal result4 = bd1.divide(bd2);
+
+// 因为除不尽会报错，所以这里保留两位小数四舍五入
+BigDecimal result5 = bd1.divide(bd2).setScale(2, RoundingMode.HALF_UP)
+```
+
+## Date
+Date表示特定的瞬间，精确到毫秒。Date类中的大部分方法都已经被Calendar类中的方法所取代
+```java
+public static void main(String[] args) {
+    // 1 创建Date对象
+    Date date1 = new Date();
+    System.out.println(date1.toString()); //Sun Sep 19 18:53:23 CST 2021
+    System.out.println(date1.toLocaleString()); //2021年9月19日 下午6:53:23
+
+    // 昨天
+    Date date2 = new Date(date1.getTime() - (60*60*24*1000)); 
+    System.out.println(date2.toLocaleString()); //2021年9月18日 下午6:53:23
+
+    // 2 方法after before
+    boolean b1 = date1.after(date2);
+    System.out.println(b1); //true
+    boolean b2 = date1.before(date2);
+    System.out.println(b2); //false
+
+    // 比较compareTo();
+    int d = date1.compareTo(date1);
+    System.out.println(d); // 多的为1 少的为 -1
+
+    // 比较是否相等 equals()
+    boolean b3 = date1.equals(date2);
+    System.out.println(b3); // false
+}
+```
+
+## Calendar
+```java
+public static void main(String[] args) {
+    // 1. 创建 Calendar 对象
+    Calendar calendar = Calendar.getInstance();
+    System.out.println(calendar.getTime().toLocaleString());
+    // 2. 获取时间信息
+    // 获取年
+    int year = calendar.get(Calendar.YEAR);
+    // 获取月 从 0 - 11
+    int month = calendar.get(Calendar.MONTH);
+    // 日
+    int day = calendar.get(Calendar.DAY_OF_MONTH);
+    // 小时
+    int hour = calendar.get(Calendar.HOUR_OF_DAY);
+    // 分钟
+    int minute = calendar.get(Calendar.MINUTE);
+    // 秒
+    int second = calendar.get(Calendar.SECOND);
+    // 3. 修改时间
+    Calendar calendar2 = Calendar.getInstance();
+    calendar2.set(Calendar.DAY_OF_MONTH, x);
+    // 4. add修改时间
+    calendar2.add(Calendar.HOUR, x); // x为正就加 负就减
+    // 5. 补充方法
+    int max = calendar2.getActualMaximum(Calendar.DAY_OF_MONTH);// 月数最大天数
+    int min = calendar2.getActualMinimum(Calendar.DAY_OF_MONTH);    
+}
+```
+
+## SimpleDateFormat
+```java
+public static void main(String[] args) throws ParseException {
+    // 1. 创建对象
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH-mm-ss");
+    // 2. 创建Date
+    Date date = new Date();
+    // 格式化date（日期→字符串）
+    String str = sdf.format(date);
+    System.out.println(str);
+    // 解析（字符串→时间）
+    Date date2 = sdf.parse("1948/03/12");
+    System.out.println(date2);
+}
+```
+
+## System
+```java
+public static void main(String[] args) {
+    //arraycopy 复制
+    //src-原数组 srcPos-从哪个位置开始复制0 dest-目标数组 destPos-目标数组的位置 length-复制的长度
+    int[] arr = {20, 18, 39, 3};
+    int[] dest = new int [4];
+    //System.arraycopy(src, srcPos, dest, destPos, length);
+    System.arraycopy(arr, 0, dest, 0, 4);
+    for (int i : dest) {
+        System.out.println(i);
+    }
+
+    // 返回当前系统时间(毫秒)
+    System.currentTimeMillis();
+
+    // Arrays.copyOf(original, newLength)
+}
+```
 
 ## 集合
 概念：对象的容器，定义了对多个对象进行操作的常用方法。可实现数组的功能
