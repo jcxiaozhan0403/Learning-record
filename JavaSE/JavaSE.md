@@ -156,6 +156,8 @@ long       Long       8
 ==比较的是两个字符串的引用地址值相不相同
 由下面这段equals源码可以分析出equals是先将两个字符串的引用地址拿来进行比较，如果相同则返回true，如果不相同再判断传入字符串是否为String类的实例，如果不是，则返回false，如果是，则将传入字符串转换为String类型，先比较两个字符串的长度，长度一致再将字符串拆分为两个char数组进行遍历比较，如果相同再返回true
 
+注：String类型中的equals是重写的Object类的，Object类中的equals作用跟==相同，只比较引用地址
+
 - 总结：可以简单理解为== 对比的是两个字符串的引用地址，equals对比的是两个字符串的字面值
 ```java
 public boolean equals(Object anObject) {
@@ -662,8 +664,6 @@ public static void printGameDuration(){
 }
 ```
 
-## 
-
 ## 单例模式
 
 单例模式特点
@@ -850,7 +850,8 @@ public class Test {
     }
 }
 ```
-局部内部类：定义在方法里面的类
+局部内部类：定义在外部类的方法里面的类，作用范围和创建对象范围仅限于当前方法，不能添加任何修饰符
+局部内部类访问外部类当前方法中的局部变量时，因无法保障变量的生命周期与自身相同，变量必须修饰为final，这是JDK1.7的规定，JDK1.8以后，这个final会自动添加，不用我们考虑
 ```java
 public class Outer{
     public void method(){
@@ -864,7 +865,7 @@ public class Outer{
 ```
 非静态内部类不需要在外部类存在一个实例时才可调用
 
-静态内部类可以直接调用，因为没有一个外部类的实例，所以在静态内部类里面不可以访问外部类的实例属性和方法
+静态内部类可以直接调用，因为没有一个外部类的实例，所以在静态内部类里面不可以直接访问外部类的属性和方法，若想访问，需要创建外部类的对象来调用
 
 匿名类就是在实例化类的同时写出方法，不使用引用保存实例
 ```java
@@ -874,8 +875,59 @@ public class Test {
     }
 }
 ```
+匿名内部类：匿名内部类也就是没有名字的内部类，正因为没有名字，所以匿名内部类只能使用一次，它通常用来简化代码编写，但使用匿名内部类还有个前提条件：必须继承一个父类或实现一个接口
+在接口上使用匿名内部类
+```java
+interface Person {
+    public void eat();
+}
+ 
+public class Demo {
+    public static void main(String[] args) {
+        Person p = new Person() {
+            public void eat() {
+                System.out.println("eat something");
+            }
+        };
+        p.eat();
+    }
+}
+```
+最常用的情况就是在多线程的实现上，因为要实现多线程必须继承Thread类或是继承Runnable接口
+Thread类的匿名内部类实现
+```java
+public class Demo {
+    public static void main(String[] args) {
+        Thread t = new Thread() {
+            public void run() {
+                for (int i = 1; i <= 5; i++) {
+                    System.out.print(i + " ");
+                }
+            }
+        };
+        t.start();
+    }
+}
+```
+Runnable接口的匿名内部类实现
+```java
+public class Demo {
+    public static void main(String[] args) {
+        Runnable r = new Runnable() {
+            public void run() {
+                for (int i = 1; i <= 5; i++) {
+                    System.out.print(i + " ");
+                }
+            }
+        };
+        Thread t = new Thread(r);
+        t.start();
+    }
+}
+```
 
 声明在主方法中的类叫做本地类
+当外部类与内部类的属性重名时，优先访问内部类属性
 
 ## 默认方法
 默认方法就是一个方法要在多个类中重复使用，写在接口中，避免重复
@@ -1036,6 +1088,47 @@ try {
     e.printStackTrace();
 }
 ```
+
+## 常用类
+
+## Object类
+Object类是所有类的超类，所有类默认继承Object类
+
+getClass() 返回引用中存储的实际对象类型
+```java
+Student stu = new Student();
+Class class = stu.getClass();
+```
+hashCode() 返回对象的哈希值
+哈希值：根据对象的地址或字符串或数字使用hash算法计算出来的int类型的数值
+```java
+Student stu = new Student();
+int hash = stu.hashCode();
+```
+toString() 返回该对象的字符串表示，因为默认打印的是类的内存地址，所以通常我们都会重写这个方法，达到输出字符串的目的
+```java
+public class Student {
+    private String name;
+    private int age;
+
+    public Student(String name, int age){
+        this.name = name;
+        this.age = age
+    }
+
+    public String toString() {
+        return "name:" + name + "age:" + age;
+    }
+}
+
+Student stu = new Student("张三",20);
+String stuInfo = stu.toString();
+```
+finalize() 垃圾回收方法，由JVM自动调用此方法
+垃圾对象：没有有效引用指向此对象
+垃圾回收：由GC销毁垃圾对象，释放数据存储空间
+自动回收机制：JVM的内存耗尽，一次性回收所有垃圾对象
+手动回收机制：使用System.gc();通知JVM执行垃圾回收
 
 ## 集合
 概念：对象的容器，定义了对多个对象进行操作的常用方法。可实现数组的功能
