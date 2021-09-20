@@ -134,18 +134,17 @@ java中有8种基本数据类型，除此之外都是引用数据类型
 
 凡是引用数据类型，都可以使用null作为值
 
-```
-类型       包装类     字节
-int        Intger     4
-float      Float      4
-double     Double     8
-boolean    Boolean    1
-char       Character  2
-           String
-byte       Byte       1
-short      Short      2
-long       Long       8
-```
+| 基本类 | 包装类 |  字节 |
+| :----: | :---:  | :---: |
+| int    | Intger |   4   |
+| float  | Float  |   4   |
+| double | Double |   8   |
+| boolean| Boolean|   1   |
+| char | Character|   2   |
+|       |  String |       |
+| byte  |  Byte   |   1   |
+| short |  Short  |   2   |
+| long  |  Long   |   8   |
 
 <img src="./整型数据类型.png">
 
@@ -1093,21 +1092,179 @@ try {
 
 ## 常用类
 
+## 内部类
+- 概念：在一个类的内部再定义一个完整的类，当外部类与内部类的属性重名时，优先访问内部类属性
+- 分类：成员内部类、静态内部类、局部内部类、匿名内部类
+
+### 成员内部类
+- 成员内部类在类的内部定义，与外部类的变量和方法同级别的类
+- 成员内部类可以直接拿到外部类的私有属性
+- 成员内部类里不能定义静态成员、可以包含静态常量(final)，这个静态常量在不实例化外部类的情况下可以调用
+
+```java
+public class Outer{
+    private int id = 10;
+
+    public void out(){
+        System.out.println("这是外部方法");
+    }
+
+    public class Inner {
+        static final String XXX = "这是一个静态常量";
+
+        public void in(){
+            System.out.println("这是内部方法");
+        }
+
+        public void getID(){
+            System.out.println(id);
+        }
+    }
+}
+```
+实例化成员内部类
+```java
+public class Test {
+    public static void main(String[] args) {
+        // 在没有实例化外部类的情况下可调用内部类的静态常量
+        String xxx = Outer.Inner.XXX;
+        System.out.println(xxx);
+
+        Outer outer = new Outer();
+        Outer.Inner inner = outer.new Inner();
+        inner.getID();
+    }
+}
+```
+### 局部内部类
+- 局部内部类就是定义在外部类的方法里面的类，作用范围和创建对象范围仅限于当前方法，不能添加任何修饰符
+- 局部内部类访问外部类当前方法中的局部变量时，因无法保障变量的生命周期与自身相同，变量必须修饰为final，这是JDK1.7的规定，JDK1.8以后，这个final会自动添加，不用我们考虑
+
+```java
+public class Outer{
+    public void method(){
+        class Inner{
+            private String str = "一个局部变量";
+
+            public  void in(){
+                
+            }
+        }
+    }
+}
+```
+
+### 静态内部类
+- 非静态内部类需要在外部类存在一个实例时才可以调用，静态内部类可以直接调用，因为没有一个外部类的实例，所以在静态内部类里面不可以直接访问外部类的属性和方法，若想访问，需要创建外部类的对象来调用
+
+```java
+public class Outer{
+
+    private String name = "xxx";
+    private int age = 20;
+
+    static class Inner{
+        private String address = "上海";
+        private String phone = "111";
+        private static int count = 1000;
+
+        public void show(){
+            Outer outer = new Outer();
+
+            System.out.println(outer.name);
+            System.out.println(outer.age);
+
+            System.out.println(address);
+            System.out.println(phone);
+
+            System.out.println(Inner.count);
+        }
+    }
+}
+```
+
+### 匿名内部类
+- 匿名内部类也就是没有名字的内部类，正因为没有名字，所以匿名内部类只能使用一次，它通常用来简化代码编写，但使用匿名内部类还有个前提条件：必须继承一个父类或实现一个接口
+- 匿名类就是在实例化类的同时写出方法，不使用引用保存实例
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        new Outer().method();
+    }
+}
+```
+在接口上使用匿名内部类
+```java
+interface Person {
+    public void eat();
+}
+ 
+public class Demo {
+    public static void main(String[] args) {
+        Person p = new Person() {
+            public void eat() {
+                System.out.println("eat something");
+            }
+        };
+        p.eat();
+    }
+}
+```
+最常用的情况就是在多线程的实现上，因为要实现多线程必须继承Thread类或是继承Runnable接口
+Thread类的匿名内部类实现
+```java
+public class Demo {
+    public static void main(String[] args) {
+        Thread t = new Thread() {
+            public void run() {
+                for (int i = 1; i <= 5; i++) {
+                    System.out.print(i + " ");
+                }
+            }
+        };
+        t.start();
+    }
+}
+```
+Runnable接口的匿名内部类实现
+```java
+public class Demo {
+    public static void main(String[] args) {
+        Runnable r = new Runnable() {
+            public void run() {
+                for (int i = 1; i <= 5; i++) {
+                    System.out.print(i + " ");
+                }
+            }
+        };
+        Thread t = new Thread(r);
+        t.start();
+    }
+}
+```
+
 ## Object
 Object类是所有类的超类，所有类默认继承Object类
 
-getClass() 返回引用中存储的实际对象类型
+### getClass() 
+返回引用中存储的实际对象类型
 ```java
 Student stu = new Student();
 Class class = stu.getClass();
 ```
-hashCode() 返回对象的哈希值
+
+### hashCode() 
+返回对象的哈希值
+
 哈希值：根据对象的地址或字符串或数字使用hash算法计算出来的int类型的数值
 ```java
 Student stu = new Student();
 int hash = stu.hashCode();
 ```
-toString() 返回该对象的字符串表示，因为默认打印的是类的内存地址，所以通常我们都会重写这个方法，达到输出字符串的目的
+
+### toString() 
+返回该对象的字符串表示，因为默认打印的是类的内存地址，所以通常我们都会重写这个方法，达到输出字符串的目的
 ```java
 public class Student {
     private String name;
@@ -1126,14 +1283,25 @@ public class Student {
 Student stu = new Student("张三",20);
 String stuInfo = stu.toString();
 ```
-finalize() 垃圾回收方法，由JVM自动调用此方法
-垃圾对象：没有有效引用指向此对象
-垃圾回收：由GC销毁垃圾对象，释放数据存储空间
-自动回收机制：JVM的内存耗尽，一次性回收所有垃圾对象
-手动回收机制：使用System.gc();通知JVM执行垃圾回收
+
+### equals()
+比较两个对象地址是否相同，这个方法在String中被重写了，重写后的方法先对比引用地址，如不相同则对比字面值
+```java
+Student stu1 = new Student();
+Student stu2 = new Student();
+boolean result = stu1.equals(stu2);
+```
+
+### finalize() 
+垃圾回收方法，由JVM自动调用此方法
+- 垃圾对象：没有有效引用指向此对象
+- 垃圾回收：由GC销毁垃圾对象，释放数据存储空间
+- 自动回收机制：JVM的内存耗尽，一次性回收所有垃圾对象
+- 手动回收机制：使用System.gc();通知JVM执行垃圾回收
 
 ## String
-创建字符串的两种方式及区别
+
+### 创建字符串的两种方式及区别
 ```java
 // 第一种创建方式，栈内引用直接指向方法区中的常量池中的值
 String str1 = "你好";
@@ -1141,63 +1309,86 @@ String str1 = "你好";
 // 第二种创建，堆内新建对象，对象指向方法区中的常量池中的值栈内引用指向堆内对象
 String str2 = new String("Hello World");
 ```
-length() 返回字符串长度
+
+### length()
+返回字符串长度
 ```java
 String str = "Hello World";
 int leng = str.length();
 ```
-charAt(int index) 返回某个位置的字符
+
+### charAt(int index)
+返回某个位置的字符
 ```java
 String str = "Hello World";
 char c = str.charAt(0);
 ```
-contains(String str) 判断是否包含某个子字符串，返回布尔值
+
+### contains(String str)
+判断是否包含某个子字符串，返回布尔值
 ```java
 String str = "Hello World";
 boolean result = str.contains("Hello");
 ```
-toCharArray() 将字符串转换为字符数组返回
+
+### toCharArray()
+将字符串转换为字符数组返回
 ```java
 String str = "Hello World";
 char[] strs = str.toCharArray();
 ```
-indexOf(String str) 查找str首次出现的下标，返回，如果不存在，返回-1
+### indexOf(String str)
+查找str首次出现的下标，返回，如果不存在，返回-1
 ```java
 String str = "Hello World";
 int index = str.indexOf("Hello");
 // 从第四位开始查找
 int index = str.indexOf("Hello",4);
 ```
-lastIndexOf(String str) 查找字符串在当前字符串中最后一次出现的下标，返回，如果不存在，返回-1;
+
+### lastIndexOf(String str)
+查找字符串在当前字符串中最后一次出现的下标，返回，如果不存在，返回-1;
 ```java
 String str = "Java Hello Java CC Java";
 int index = str.lastIndexOf("Java");
 ```
-trim() 去掉字符串前后空格
+
+### trim()
+去掉字符串前后空格
 ```java
 String str = "    Hello World    ";
 String str2 = str.trim();
 ```
-toUpperCase() 将小写转成大写
-toLowerCase() 将大写转换成小写
+
+### toUpperCase()
+将小写转成大写
+### toLowerCase()
+将大写转换成小写
 ```java
 String str = "Hello World";
 String str2 = str.toUpperCase();
 String str3 = str.toLowerCase();
 ```
-endsWith(String str) 判断字符串是否以str结尾
-startsWith(String str) 判断字符串是否以str开头
+
+### endsWith(String str)
+判断字符串是否以str结尾
+### startsWith(String str)
+判断字符串是否以str开头
 ```java
 String str = "Hello World";
 boolean r1 = str.startsWith("Hello");
 boolean r2 = str.endsWith("World");
 ```
-replace(char oldChar,char newChar) 将旧字符串替换成新字符串
+
+### replace(char oldChar,char newChar)
+将旧字符串替换成新字符串
 ```java
 String str = "Hello World";
 String str2 = str.replace("World","Java");
 ```
-split(String str) 根据str对字符串进行拆分，返回一个字符串数组
+
+### split(String str)
+根据str对字符串进行拆分，返回一个字符串数组
 ```java
 String str = "Hello World Java PHP C,Python|C++";
 // 以空格分隔字符串
@@ -1206,9 +1397,15 @@ String[] strs = str.split(" ")
 String[] strs = str.split("[ ,|]")
 ```
 
-## StringBuffer和StringBuilder
-效率都高于String，都比String节省内存
-StringBuffer和StringBuilder的用法是一样的，StringBuilder的效率高于StringBuffer
+## 可变字符串
+- StringBuffer : 可变长字符串，运行效率慢、线程安全
+
+- StringBuilder : 可变长字符串、运行快、线程不安全
+
+- StringBuffer和StringBuilder的效率都高于String，都比String节省内存
+
+- StringBuffer和StringBuilder的用法是一样的，StringBuilder的效率高于StringBuffer
+
 ```java
 StringBuilder sb = new StringBuilder();
 // append()追加
@@ -1228,7 +1425,8 @@ sb.toString();
 ```
 
 ## BigDecimal
-float和double类型的主要设计目标是为了科学计算和工程计算。他们执行二进制浮点运算，然而，它们没有提供完全精确的结果。但是，商业计算往往要求结果精确，这时候BigDecimal就派上大用场啦。
+- float和double类型的主要设计目标是为了科学计算和工程计算。他们执行二进制浮点运算，然而，它们没有提供完全精确的结果。但是，商业计算往往要求结果精确，这时候BigDecimal就派上大用场啦。
+
 ```java
 BigDecimal bd1 = new BigDecimal("1.0");
 BigDecimal bd2 = new BigDecimal("0.9");
@@ -1247,7 +1445,8 @@ BigDecimal result5 = bd1.divide(bd2).setScale(2, RoundingMode.HALF_UP)
 ```
 
 ## Date
-Date表示特定的瞬间，精确到毫秒。Date类中的大部分方法都已经被Calendar类中的方法所取代
+- Date表示特定的瞬间，精确到毫秒。Date类中的大部分方法都已经被Calendar类中的方法所取代
+
 ```java
 public static void main(String[] args) {
     // 1 创建Date对象
@@ -1276,6 +1475,8 @@ public static void main(String[] args) {
 ```
 
 ## Calendar
+- Calendar提供了获取或设置各种日历字段的方法
+
 ```java
 public static void main(String[] args) {
     // 1. 创建 Calendar 对象
@@ -1306,6 +1507,8 @@ public static void main(String[] args) {
 ```
 
 ## SimpleDateFormat
+- SimpleDateFormat是一个以与语言环境有关的方式来格式化和解析日期的具体类
+
 ```java
 public static void main(String[] args) throws ParseException {
     // 1. 创建对象
@@ -1322,6 +1525,8 @@ public static void main(String[] args) throws ParseException {
 ```
 
 ## System
+- 主要用于获取系统的属性数据和其他操作，构造方法私有的
+
 ```java
 public static void main(String[] args) {
     //arraycopy 复制
@@ -1347,6 +1552,8 @@ public static void main(String[] args) {
 集合与数组区别
 1. 数组长度固定，集合长度不固定
 2. 数组可以存储基本类型和引用类型，集合只能存储引用类型
+
+<img src="./Collection体系集合.jpg">
 
 Collection 是最基本的集合接口，一个 Collection 代表一组 Object，即 Collection 的元素, Java不提供直接继承自Collection的类，只提供继承于的子接口(如List和set)
 
