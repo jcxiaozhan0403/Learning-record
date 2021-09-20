@@ -1,7 +1,6 @@
 package cn.com.scitc.studentmanager.mapper;
 
 import cn.com.scitc.studentmanager.pojo.User;
-import com.alibaba.fastjson.JSONObject;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

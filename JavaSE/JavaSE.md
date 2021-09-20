@@ -1525,7 +1525,7 @@ public static void main(String[] args) throws ParseException {
 ```
 
 ## System
-- 主要用于获取系统的属性数据和其他操作，构造方法私有的
+- 主要用于获取系统的属性数据和其他操作，构造方法私有化
 
 ```java
 public static void main(String[] args) {
@@ -1555,44 +1555,189 @@ public static void main(String[] args) {
 
 <img src="./Collection体系集合.jpg">
 
-Collection 是最基本的集合接口，一个 Collection 代表一组 Object，即 Collection 的元素, Java不提供直接继承自Collection的类，只提供继承于的子接口(如List和set)
+Collection是最基本的集合接口，一个Collection代表一组Object，即Collectio的元素, Java不提供直接继承自Collection的类，只提供继承于的子接口(如List和set)
+
+## Collection父接口
+特点：代表一组任意类型的对象，无序、无下标、不能重复
+
+```java
+public static void main(String[] args) {
+    // 创建集合
+    Collection collection = new ArrayList();
+
+    // 添加元素
+    collection.add("苹果");        
+    collection.add("香蕉");        
+    collection.add("梨子");
+
+    // 删除元素
+    collection.remove("苹果");
+
+    // 清空集合
+    collection.clear();
+
+    // 遍历(无下标，所以循环遍历时只能使用增强for循环)
+    for(Object obj : collection) {
+        System.out.println(obj);
+    }
+
+    // 使用迭代器遍历   
+    //remove(); 删除当前元素
+    Iterator it = collection.iterator();
+    //haNext(); 判断有没有下一个元素
+    while(it.hasNext()){
+        //next(); 获取元素
+        Object obj = it.next();
+        //移除当前元素
+        // 使用collection.remove()会报并发修改异常
+        it.remove();
+    }
+
+    // 判断集合是否存在指定元素
+    boolean result1 = collection.contains("梨子");
+    // 判断集合是否为空
+    boolean result2 = collection.inEmpty();
+
+    // 获取集合元素个数
+    int num = collection.size();
+}
+```
 
 ## Set和List的区别
-1. Set 接口实例存储的是无序的，不重复的数据。List 接口实例存储的是有序的，可以重复的元素
-2. Set检索效率低下，删除和插入效率高，插入和删除不会引起元素位置改变 <实现类有HashSet,TreeSet>
-3. List和数组类似，可以动态增长，根据实际存储的数据的长度自动增长List的长度。查找元素效率高，插入删除效率低，因为会引起其他元素位置改变 <实现类有ArrayList,LinkedList,Vector>
+1. Set接口实例存储的是无序的，不重复的数据。List接口实例存储的是有序的，可以重复的元素
+2. Set检索效率低下，删除和插入效率高，插入和删除不会引起元素位置改变，实现类有HashSet,TreeSet
+3. List和数组类似，可以动态增长，根据实际存储的数据的长度自动增长List的长度。查找元素效率高，插入删除效率低，因为会引起其他元素位置改变，实现类有ArrayList,LinkedList,Vector
 
-List集合的遍历
+## List子接口
+特点：有序、有下标、元素可重复
 ```java
-import java.util.*;
- 
-public class Test{
- public static void main(String[] args) {
-     List<String> list=new ArrayList<>();
-     list.add("Hello");
-     list.add("World");
-     list.add("HAHAHAHA");
-     
-     //第一种遍历方法使用增强型for循环遍历list
-     for (String str : list) {   
-        System.out.println(str);
-     }
- 
-     //第二种遍历，把链表变为数组相关的内容进行遍历
-     String[] strArray=new String[list.size()];
-     list.toArray(strArray);
-     for(int i=0;i<strArray.length;i++)
-     {
-        System.out.println(strArray[i]);
-     }
-     
-    //第三种遍历 使用迭代器进行相关遍历
-     Iterator<String> ite=list.iterator();
-     while(ite.hasNext())//判断下一个元素之后有值
-     {
-         System.out.println(ite.next());
-     }
- }
+public static void main(String[] args) {
+    // 创建集合
+    List list = new ArrayList<>();
+
+    // 添加元素
+    list.add("苹果");
+    list.add("梨子");
+    list.add("香蕉");
+
+    // 删除元素
+    list.remove("梨子");
+    // 使用索引删除
+    list.remove(0);
+
+    // 遍历
+    // 使用for循环
+    for (int i= 0; i<list.size(); i++) {
+        System.out.println(list.get(i));
+    }
+    // 使用增强for循环
+    for(Object obj : list) {
+        System.out.println(obj);
+    }
+    // 使用迭代器遍历
+    //remove(); 删除当前元素
+    Iterator it = list.iterator();
+    //haNext(); 判断有没有下一个元素
+    while(it.hasNext()){
+        //next(); 获取元素
+        Object obj = it.next();
+        //移除当前元素
+        // list.remove()会报并发修改异常
+        it.remove();
+    }
+    // 使用列表迭代器，列表迭代器可以从前向后遍历，也可以从后向前遍历
+    // 创建迭代器
+    // 从前向后遍历
+    ListIterator it1 = list.listIterator();
+    while(it1.hasNext()){
+        System.out.println();
+    }
+    // 从后向前遍历(因为是同一个迭代器，在上一次遍历之后，迭代器已经指向了集合末尾，所以这里可以直接开始向前遍历)
+    while(it1.hasNext()){
+        System.out.println();
+    }
+
+    // 获取元素出现位置
+    System.out.println(list.indexOf("香蕉"));
+
+    // List集合添加整数元素(自动装箱)
+    list.add(10);
+    list.add(20);
+
+    // 删除List中的整数元素
+    list.remove(list.indexOf(10));
+
+    // 返回子集合，取头不取尾
+    List subList = list.subList(0,2);
+
+    // 集合转换为数组
+    String[] array =new String[list.size()];
+    list.toArray(array);
+}
+```
+
+## List实现类
+ArrayList：数组结构实现，查询快，增删慢，运行效率快，线程不安全
+Vector：数组结构实现，查询快，增删慢，运行效率慢，线程安全
+LinkedList：链表结构实现，增删快，查询慢
+
+### ArrayList
+源码分析：
+- 如果没有向集合中添加任何元素时，容量0，添加一个后，容量为10
+- 每次扩容是原来的1.5倍
+```java
+private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {}; //一个空数组
+
+private static final int DEFAULT_CAPACITY = 10; //默认容量
+
+private int size; //实际元素个数
+
+transient Object[] elementData; //存放元素的数组
+```
+```java
+// 构造方法，将空数组赋值给存放元素的数组
+public ArrayList() {
+    this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
+}
+
+// 添加方法
+public boolean add(E e) {
+    ensureCapacityInternal(size + 1);  // Increments modCount!!
+    elementData[size++] = e;
+    return true;
+}
+
+private void ensureCapacityInternal(int minCapacity) {
+    ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));
+}
+
+private static int calculateCapacity(Object[] elementData, int minCapacity) {
+    if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
+        return Math.max(DEFAULT_CAPACITY, minCapacity);
+    }
+    return minCapacity;
+}
+
+private void ensureExplicitCapacity(int minCapacity) {
+    modCount++;
+
+    // overflow-conscious code
+    if (minCapacity - elementData.length > 0)
+        grow(minCapacity);
+}
+
+// 此方法不仅是创建出新的数组，其中还有扩容的操作
+private void grow(int minCapacity) {
+    // overflow-conscious code
+    int oldCapacity = elementData.length;
+    int newCapacity = oldCapacity + (oldCapacity >> 1);
+    if (newCapacity - minCapacity < 0)
+        newCapacity = minCapacity;
+    if (newCapacity - MAX_ARRAY_SIZE > 0)
+        newCapacity = hugeCapacity(minCapacity);
+    // minCapacity is usually close to size, so this is a win:
+    // 复制出一个新的数组，容量为10
+    elementData = Arrays.copyOf(elementData, newCapacity);
 }
 ```
 

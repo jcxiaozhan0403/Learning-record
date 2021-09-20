@@ -1,6 +1,5 @@
 package cn.com.scitc.studentmanager.mapper;
 
-import cn.com.scitc.studentmanager.pojo.Student;
 import cn.com.scitc.studentmanager.pojo.Teacher;
 import org.apache.ibatis.annotations.Mapper;
 
