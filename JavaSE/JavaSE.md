@@ -1677,22 +1677,26 @@ public static void main(String[] args) {
 ```
 
 ## List实现类
-ArrayList：数组结构实现，查询快，增删慢，运行效率快，线程不安全
-Vector：数组结构实现，查询快，增删慢，运行效率慢，线程安全
-LinkedList：链表结构实现，增删快，查询慢
+- ArrayList：数组结构实现，查询快，增删慢，运行效率快，线程不安全
+- Vector：数组结构实现，查询快，增删慢，运行效率慢，线程安全
+- LinkedList：链表结构实现，增删快，查询慢
 
 ### ArrayList
 源码分析：
 - 如果没有向集合中添加任何元素时，容量0，添加一个后，容量为10
-- 每次扩容是原来的1.5倍
+- 首次添加元素时，ArrayList会进行第一次扩容，之后每当判断到容量不够时，就会扩容，每次扩容是原来的1.5倍
 ```java
-private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {}; //一个空数组
+//一个空数组
+private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {}; 
 
-private static final int DEFAULT_CAPACITY = 10; //默认容量
+//默认容量
+private static final int DEFAULT_CAPACITY = 10; 
 
-private int size; //实际元素个数
+//实际元素个数
+private int size; 
 
-transient Object[] elementData; //存放元素的数组
+//存放元素的数组
+transient Object[] elementData; 
 ```
 ```java
 // 构造方法，将空数组赋值给存放元素的数组
@@ -1726,7 +1730,7 @@ private void ensureExplicitCapacity(int minCapacity) {
         grow(minCapacity);
 }
 
-// 此方法不仅是创建出新的数组，其中还有扩容的操作
+// 扩容
 private void grow(int minCapacity) {
     // overflow-conscious code
     int oldCapacity = elementData.length;
@@ -1736,10 +1740,186 @@ private void grow(int minCapacity) {
     if (newCapacity - MAX_ARRAY_SIZE > 0)
         newCapacity = hugeCapacity(minCapacity);
     // minCapacity is usually close to size, so this is a win:
-    // 复制出一个新的数组，容量为10
+    // 复制出一个新的数组，覆盖原数组
     elementData = Arrays.copyOf(elementData, newCapacity);
 }
 ```
+
+## Vector
+添加、删除、判断都与List相同，遍历使用枚举器
+```java
+Vector vector = new Vector();
+Enumeration en = vector.elements();
+while(en.hasMoreElements()){
+  String o = (String)en.nextElement();
+  System.out.println(o);
+}
+```
+
+## LinkedList
+常用方法都与List相同
+源码分析：
+- 首次添加元素之后，first以及last都会指向第一个节点
+- 之后每次添加元素，first始终指向第一个节点，last会指向当前节点
+- 每个节点中的next属性存储下一个节点，prev属性存储上一个节点
+```java
+// 集合大小，初始为0
+transient int size = 0;
+
+// 指向集合第一个元素，初始为null
+transient Node<E> first;
+
+// 指向集合最后一个元素，初始为null
+transient Node<E> last;
+```
+
+```java
+// 添加方法
+public boolean add(E e) {
+    linkLast(e);
+    return true;
+}
+
+void linkLast(E e) {
+    final Node<E> l = last;
+    final Node<E> newNode = new Node<>(l, e, null);
+    last = newNode;
+    if (l == null)
+        first = newNode;
+    else
+        l.next = newNode;
+    size++;
+    modCount++;
+}
+
+// 集合中的一个节点
+private static class Node<E> {
+    // 数据
+    E item;
+    // 下一个节点
+    Node<E> next;
+    // 上一个节点
+    Node<E> prev;
+
+    Node(Node<E> prev, E element, Node<E> next) {
+        this.item = element;
+        this.next = next;
+        this.prev = prev;
+    }
+}
+```
+
+## 泛型
+- 本质是参数化类型，把类型作为参数传递
+- 常见形式有泛型类、泛型接口、泛型方法
+- <T,...> T为类型占位符，表示一种引用类型，可以写多个逗号隔开
+- 好处 1. 提高代码重用性 2. 防止类型转换异常，提高代码安全性
+
+### 泛型类
+```java
+// 写一个泛型类
+public class MyGeneric<T>{
+  //使用泛型T
+  //1 创建变量
+  T t;
+  //2 泛型作为方法的参数
+  public void show(T t){
+    sout(t);
+  }
+  //3 泛型作为方法的返回值
+  public T getT(){
+    return t;
+  }
+}
+```
+```java
+// 使用泛型类
+public class TestGeneric{
+  public static void main(String[] args){
+    //使用泛型类创建对象
+    // 注意： 1. 泛型只能使用引用类型
+    //			 2. 不用泛型类型对象之间不能相互赋值
+    MyGeneric<String> myGeneric = new MyGeneric<String>();
+    myGeneric.t = "hello";
+    myGeneric.show("hello world!");
+    String string = myGeneric.getT();
+    
+    MyGeneric<Integer> myGeneric2 = new MyGeneric<Integer>();
+    myGeneric2.t = 100;
+    myGeneric2.show(200);
+    Integer integer = myGeneric2.getT();
+    
+  }
+}
+```
+
+### 泛型接口
+方式一：在实现类继承接口的同时定义泛型类型，用此方式实例化出的对象泛型类型固定
+```java
+public interface MyInterface<T> {
+    T server(T t);
+}
+```
+```java
+public class MyInterfaceImpl implements MyInterface<String>{
+    @Override
+    public String server(String s) {
+        System.out.println(s);
+        return s;
+    }
+}
+```
+```java
+public static void main(String[] args) {
+    MyInterfaceImpl impl = new MyInterfaceImpl();
+    impl.server("方式一");
+
+}
+```
+方式二：在实现类继承接口时不定义泛型类型，在实例化的时候再指定泛型类型，用此方式可以用一个实现类实现多种泛型类型的对象
+```java
+public interface MyInterface<T> {
+    T server(T t);
+}
+```
+```java
+public class MyInterfaceImpl<T> implements MyInterface<T>{
+    @Override
+    public String server(T t) {
+        System.out.println(t);
+        return t;
+    }
+}
+```
+```java
+public static void main(String[] args) {
+    MyInterfaceImpl<String> impl = new MyInterfaceImpl();
+    impl.server("方式二");
+}
+```
+
+### 泛型方法
+```java
+public class MyGenericMethod{
+  //泛型方法
+  public <T> T show(T t){
+    sout("泛型方法" + t);
+    return t;
+  }
+}
+
+//调用
+MyGenericMethod myGenericMethod = new MyGenericMethod();
+myGenericMethod.show("字符串");// 自动类型为字符串
+myGenericMethod.show(200);// integer类型
+myGenericMethod.show(3.14);// double类型
+```
+
+
+
+
+
+
 
 Map的遍历
 ```java
