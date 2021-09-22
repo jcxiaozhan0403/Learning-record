@@ -152,12 +152,12 @@ java中有8种基本数据类型，除此之外都是引用数据类型
 
 ## equals与==的区别
 - 源码分析
-==比较的是两个字符串的引用地址值相不相同
-由下面这段equals源码可以分析出equals是先将两个字符串的引用地址拿来进行比较，如果相同则返回true，如果不相同再判断传入字符串是否为String类的实例，如果不是，则返回false，如果是，则将传入字符串转换为String类型，先比较两个字符串的长度，长度一致再将字符串拆分为两个char数组进行遍历比较，如果相同再返回true
+==比较的是两个字符串的内存地址值相不相同
+由下面这段equals源码可以分析出equals是先将两个字符串的内存地址拿来进行比较，如果相同则返回true，如果不相同再判断传入字符串是否为String类的实例，如果不是，则返回false，如果是，则将传入字符串转换为String类型，先比较两个字符串的长度，长度一致再将字符串拆分为两个char数组进行遍历比较，如果相同再返回true
 
-注：String类型中的equals是重写的Object类的，Object类中的equals作用跟==相同，只比较引用地址
+注：String类型中的equals是重写的Object类的，Object类中的equals作用跟==相同，只比较内存地址
 
-- 总结：可以简单理解为== 对比的是两个字符串的引用地址，equals对比的是两个字符串的字面值
+- 总结：可以简单理解为== 对比的是两个字符串的内存地址，equals对比的是两个字符串的字面值
 ```java
 public boolean equals(Object anObject) {
     if (this == anObject) {
@@ -1285,7 +1285,7 @@ String stuInfo = stu.toString();
 ```
 
 ### equals()
-比较两个对象地址是否相同，这个方法在String中被重写了，重写后的方法先对比引用地址，如不相同则对比字面值
+比较两个对象地址是否相同，这个方法在String中被重写了，重写后的方法先对比内存地址，如不相同则对比字面值
 ```java
 Student stu1 = new Student();
 Student stu2 = new Student();
@@ -1546,16 +1546,124 @@ public static void main(String[] args) {
 }
 ```
 
+## 泛型
+- 本质是参数化类型，把类型作为参数传递
+- 常见形式有泛型类、泛型接口、泛型方法
+- <T,...> T为类型占位符，表示一种引用类型，可以写多个逗号隔开
+- 好处 1. 提高代码重用性 2. 防止类型转换异常，提高代码安全性
+
+### 泛型类
+```java
+// 写一个泛型类
+public class MyGeneric<T>{
+  //使用泛型T
+  //1 创建变量
+  T t;
+  //2 泛型作为方法的参数
+  public void show(T t){
+    sout(t);
+  }
+  //3 泛型作为方法的返回值
+  public T getT(){
+    return t;
+  }
+}
+```
+```java
+// 使用泛型类
+public class TestGeneric{
+  public static void main(String[] args){
+    //使用泛型类创建对象
+    // 注意： 1. 泛型只能使用引用类型
+    //			 2. 不用泛型类型对象之间不能相互赋值
+    MyGeneric<String> myGeneric = new MyGeneric<String>();
+    myGeneric.t = "hello";
+    myGeneric.show("hello world!");
+    String string = myGeneric.getT();
+    
+    MyGeneric<Integer> myGeneric2 = new MyGeneric<Integer>();
+    myGeneric2.t = 100;
+    myGeneric2.show(200);
+    Integer integer = myGeneric2.getT();
+    
+  }
+}
+```
+
+### 泛型接口
+方式一：在实现类继承接口的同时定义泛型类型，用此方式实例化出的对象泛型类型固定
+```java
+public interface MyInterface<T> {
+    T server(T t);
+}
+```
+```java
+public class MyInterfaceImpl implements MyInterface<String>{
+    @Override
+    public String server(String s) {
+        System.out.println(s);
+        return s;
+    }
+}
+```
+```java
+public static void main(String[] args) {
+    MyInterfaceImpl impl = new MyInterfaceImpl();
+    impl.server("方式一");
+
+}
+```
+方式二：在实现类继承接口时不定义泛型类型，在实例化的时候再指定泛型类型，用此方式可以用一个实现类实现多种泛型类型的对象
+```java
+public interface MyInterface<T> {
+    T server(T t);
+}
+```
+```java
+public class MyInterfaceImpl<T> implements MyInterface<T>{
+    @Override
+    public String server(T t) {
+        System.out.println(t);
+        return t;
+    }
+}
+```
+```java
+public static void main(String[] args) {
+    MyInterfaceImpl<String> impl = new MyInterfaceImpl();
+    impl.server("方式二");
+}
+```
+
+### 泛型方法
+```java
+public class MyGenericMethod{
+  //泛型方法
+  public <T> T show(T t){
+    sout("泛型方法" + t);
+    return t;
+  }
+}
+
+//调用
+MyGenericMethod myGenericMethod = new MyGenericMethod();
+myGenericMethod.show("字符串");// 自动类型为字符串
+myGenericMethod.show(200);// integer类型
+myGenericMethod.show(3.14);// double类型
+```
+
 ## 集合
 概念：对象的容器，定义了对多个对象进行操作的常用方法。可实现数组的功能
+
+所有集合类都位于 java.util 包下。Java的集合类主要由两个接口派生而出：Collection 和 Map，Collection 和 Map 是 Java 集合框架的根接口，这两个接口又包含了一些子接口或实现类。
 
 集合与数组区别
 1. 数组长度固定，集合长度不固定
 2. 数组可以存储基本类型和引用类型，集合只能存储引用类型
 
-<img src="./Collection体系集合.jpg">
+## Collection集合体系
 
-Collection是最基本的集合接口，一个Collection代表一组Object，即Collectio的元素, Java不提供直接继承自Collection的类，只提供继承于的子接口(如List和set)
+<img src="./Collection体系集合.jpg">
 
 ## Collection父接口
 特点：代表一组任意类型的对象，无序、无下标、不能重复
@@ -1745,7 +1853,7 @@ private void grow(int minCapacity) {
 }
 ```
 
-## Vector
+### Vector
 添加、删除、判断都与List相同，遍历使用枚举器
 ```java
 Vector vector = new Vector();
@@ -1756,7 +1864,7 @@ while(en.hasMoreElements()){
 }
 ```
 
-## LinkedList
+### LinkedList
 常用方法都与List相同
 源码分析：
 - 首次添加元素之后，first以及last都会指向第一个节点
@@ -1809,186 +1917,310 @@ private static class Node<E> {
 }
 ```
 
-## 泛型
-- 本质是参数化类型，把类型作为参数传递
-- 常见形式有泛型类、泛型接口、泛型方法
-- <T,...> T为类型占位符，表示一种引用类型，可以写多个逗号隔开
-- 好处 1. 提高代码重用性 2. 防止类型转换异常，提高代码安全性
+## Set子接口
+特点：无序、无下标、元素不可重复
+方法：全部继承自Collection中的方法
+增、删、遍历、判断与collection一致
 
-### 泛型类
-```java
-// 写一个泛型类
-public class MyGeneric<T>{
-  //使用泛型T
-  //1 创建变量
-  T t;
-  //2 泛型作为方法的参数
-  public void show(T t){
-    sout(t);
-  }
-  //3 泛型作为方法的返回值
-  public T getT(){
-    return t;
-  }
-}
-```
-```java
-// 使用泛型类
-public class TestGeneric{
-  public static void main(String[] args){
-    //使用泛型类创建对象
-    // 注意： 1. 泛型只能使用引用类型
-    //			 2. 不用泛型类型对象之间不能相互赋值
-    MyGeneric<String> myGeneric = new MyGeneric<String>();
-    myGeneric.t = "hello";
-    myGeneric.show("hello world!");
-    String string = myGeneric.getT();
-    
-    MyGeneric<Integer> myGeneric2 = new MyGeneric<Integer>();
-    myGeneric2.t = 100;
-    myGeneric2.show(200);
-    Integer integer = myGeneric2.getT();
-    
-  }
-}
-```
+## Set实现类
+- HashSet：基于HashCode计算元素存放位置，当在同一个位置存入的两个元素哈希码相同时，会调用equals再次进行确认，对比两个元素的内存地址，如果也为true，则判定为同一个元素，拒绝后者存入，如果不为true，说明不是同一个元素，则在此位置形成链表
+- TreeSet：基于排列顺序实现元素不重复，实现了SortedSet接口，对集合元素自动排序，元素对象的类型必须实现Comparable接口，指定排序规则，通过CompareTo方法确定是否为重复元素
 
-### 泛型接口
-方式一：在实现类继承接口的同时定义泛型类型，用此方式实例化出的对象泛型类型固定
+### HashSet
+存储结构：哈希表(数组+链表+红黑树)
+
+重写hashCode()和equals()方法，可以改变结果
 ```java
-public interface MyInterface<T> {
-    T server(T t);
+@Override
+public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    User user = (User) o;
+
+    if (age != user.age) return false;
+    return name != null ? name.equals(user.name) : user.name == null;
 }
-```
-```java
-public class MyInterfaceImpl implements MyInterface<String>{
-    @Override
-    public String server(String s) {
-        System.out.println(s);
-        return s;
-    }
+
+@Override
+public int hashCode() {
+    int result = name != null ? name.hashCode() : 0;
+    // 使用31这个质数，减少散列冲突
+    result = 31 * result + age;
+    return result;
 }
 ```
 ```java
 public static void main(String[] args) {
-    MyInterfaceImpl impl = new MyInterfaceImpl();
-    impl.server("方式一");
+    // 创建集合
+    HashSet<String> hashSet = new HashSet<String>();
 
+    // 添加元素
+    hashSet.add("苹果");
+    hashSet.add("梨子");
+    hashSet.add("香蕉");
+
+    // 删除元素
+    hashSet.remove("梨子");
+
+    // 遍历
+    // 使用增强for循环
+    for(Object obj : hashSet) {
+        System.out.println(obj);
+    }
+    // 使用迭代器遍历
+    //remove(); 删除当前元素
+    Iterator it = hashSet.iterator();
+    //haNext(); 判断有没有下一个元素
+    while(it.hasNext()){
+        //next(); 获取元素
+        System.out.println(it.next());
+        //移除当前元素
+        // list.remove()会报并发修改异常
+        it.remove();
+    }
+
+    System.out.println(hashSet.toString());
 }
 ```
-方式二：在实现类继承接口时不定义泛型类型，在实例化的时候再指定泛型类型，用此方式可以用一个实现类实现多种泛型类型的对象
+
+### TreeSet
+存储结构：红黑树
+要求：使用TreeSet存储引用类型数据时，元素需要要实现Comparable接口，compareTo()方法返回值为0，认为是重复元素
+
 ```java
-public interface MyInterface<T> {
-    T server(T t);
-}
-```
-```java
-public class MyInterfaceImpl<T> implements MyInterface<T>{
+public class Student implements Comparable<Student>{
+    private String name;
+    private int age;
+
+    public Student() {
+    }
+
+    public Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
-    public String server(T t) {
-        System.out.println(t);
-        return t;
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+    
+    //重写compareTo方法，这里我们的逻辑是先按照姓名比较，然后再按照年龄比较
+    @Override
+    public int compareTo(Student o) {
+        int n1 = this.getName().compareTo(o.getName());
+        int n2 = this.age - o.getAge();
+        return n1==0? n2: n1;
     }
 }
 ```
 ```java
+public class Test {
+    public static void main(String[] args) {
+        TreeSet<Student> treeSet = new TreeSet<>();
+
+        Student stu1 = new Student("张三",20);
+        Student stu2 = new Student("李四",21);
+        Student stu3 = new Student("张三",22);
+
+        treeSet.add(stu1);
+        treeSet.add(stu2);
+        treeSet.add(stu3);
+        
+        System.out.println(treeSet.size());
+        System.out.println(treeSet.toString());
+    }
+}
+```
+也可以不继承Comparable接口，使用比较器，在创建集合的同时，指定比较规则
+```java
+TreeSet<Student> students = new TreeSet<>(new Comparator<Student>() {
+    @Override
+    public int compare(Student stu1, Student stu2) {
+        int n1 = stu1.getName().compareTo(stu2.getName());
+        int n2 = stu1.getAge() - stu2.getAge();
+        return n1==0? n2: n1;
+    }
+});
+```
+```java
+// 重写compare
+@override
+public int compare(Person o1, Person o2){
+  int n1 = o1.getAge()-o2.getAge();
+  int n2 = o1.getName().comareTo(o2.getName());
+  return n1 == 0 ? n2 : n1;
+}
+```
+
+## Map接口
+
+<img src="./Map体系集合.jpg">
+
+## Map父接口
+特点：用于存储任意键值对(key - value)，键：无序、无下标、不允许重复(唯一)，值：无序、无下标、允许重复
+
+```java
 public static void main(String[] args) {
-    MyInterfaceImpl<String> impl = new MyInterfaceImpl();
-    impl.server("方式二");
-}
-```
+    //创建Map集合
+    Map<String, String> map = new HashMap<>();
 
-### 泛型方法
-```java
-public class MyGenericMethod{
-  //泛型方法
-  public <T> T show(T t){
-    sout("泛型方法" + t);
-    return t;
-  }
-}
+    // 1. 添加元素
+    map.put("cn", "中国");
+    map.put("uk", "英国");
+    map.put("cn", "zhongguo"); // 添加重复建，值会覆盖
 
-//调用
-MyGenericMethod myGenericMethod = new MyGenericMethod();
-myGenericMethod.show("字符串");// 自动类型为字符串
-myGenericMethod.show(200);// integer类型
-myGenericMethod.show(3.14);// double类型
-```
+    // 2. 删除元素
+    map.remove("uk");
 
+    // 3. 遍历
+    //第一种：
+    //遍历所有的key，用key查找对应value
+    for (String key : map.keySet()) {
+        System.out.println("key= "+ key + " and value= " + map.get(key));
+    }
 
+    //第二种：
+    //通过Map.entrySet(键值对映射)使用iterator遍历key和value
+    Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+    while (it.hasNext()) {
+        Map.Entry<String, String> entry = it.next();
+        System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
+    }
 
+    //第三种：推荐，尤其是容量大时
+    //通过Map.entrySet遍历key和value
+    for (Map.Entry<String, String> entry : map.entrySet()) {
+        System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
+    }
 
-
-
-
-Map的遍历
-```java
-import java.util.*;
- 
-public class Test{
-     public static void main(String[] args) {
-      Map<String, String> map = new HashMap<String, String>();
-      map.put("1", "value1");
-      map.put("2", "value2");
-      map.put("3", "value3");
-      
-      //第一种：普遍使用，二次取值
-      //通过Map.keySet遍历key和value
-      for (String key : map.keySet()) {
-       System.out.println("key= "+ key + " and value= " + map.get(key));
-      }
-      
-      //第二种
-      //通过Map.entrySet使用iterator遍历key和value
-      Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
-      while (it.hasNext()) {
-       Map.Entry<String, String> entry = it.next();
-       System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
-      }
-      
-      //第三种：推荐，尤其是容量大时
-      //通过Map.entrySet遍历key和value
-      for (Map.Entry<String, String> entry : map.entrySet()) {
-       System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
-      }
+    //第四种：
+    //通过Map.values()遍历所有的value，但不能遍历key
+    for (String v : map.values()) {
+        System.out.println("value= " + v);
+    }
     
-      //第四种
-      //通过Map.values()遍历所有的value，但不能遍历key
-      for (String v : map.values()) {
-       System.out.println("value= " + v);
-      }
-     }
+    // 4.判断
+    System.out.println(map.containsKey("cn"));
+    System.out.println(map.containsValue("中国"));
 }
 ```
 
-集合常用方法
+## Map实现类
+- HashMap：线程不安全，运行效率快，允许使用null作为key或是value
+
+### HashMap
+存储结构：哈希表(数组+链表+红黑树)
+增、删、遍历、判断与Map父接口一致
+
+源码分析：
+- HashMap刚创建时，table是null，节省空间，当添加第一个元素时，table容量调整为16
+- 当元素个数大于阈值（16*0.75 = 12）时，会进行扩容，扩容后的大小为原来的两倍，目的是减少调整元素的个数
+- jdk1.8 当每个链表长度 >8 ，并且数组元素个数 ≥64时，会调整成红黑树，目的是提高效率
+- jdk1.8 当链表长度 <6 时 调整成链表
+- jdk1.8 以前，链表时头插入，之后为尾插入
 ```java
-转换
-集合 –> 数组 ： toArray()
-数组 –> 集合 ： Arrays.asList(T...t)
+// 初始容量
+static final int DEFAULT_INITIAL_CAPACITY = 1 << 4;
 
-删除
-al.remove(1); //删除当前集合对应的索引值上的元素。（bbb）
-al.remove(new Integer(1)); //删除当前集合中对应的元素(1)
+// 最大容量
+static final int MAXIMUM_CAPACITY = 1 << 30;
 
-添加
-list.add("内容");
+// 默认加载因子，容量超过75%则自动扩容
+static final float DEFAULT_LOAD_FACTOR = 0.75f;
+
+// 键值对映射数组，用于存放传入的键值对，初始为null
+transient Node<K,V>[] table;
+
+// 数组大小，初始为0
+transient int size;
+```
+```java
+// 添加方法
+public V put(K key, V value) {
+    return putVal(hash(key), key, value, false, true);
+}
+
+static final int hash(Object key) {
+    int h;
+    return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+}
+
+final V putVal(int hash, K key, V value, boolean onlyIfAbsent,boolean evict) {
+    Node<K,V>[] tab; Node<K,V> p; int n, i;
+    // 这一个if判断了table赋给tab的值是否为空，实际上进行了初始化，table的容量变为16
+    if ((tab = table) == null || (n = tab.length) == 0)
+        n = (tab = resize()).length;
+    if ((p = tab[i = (n - 1) & hash]) == null)
+        tab[i] = newNode(hash, key, value, null);
+    else {
+        Node<K,V> e; K k;
+        if (p.hash == hash &&
+            ((k = p.key) == key || (key != null && key.equals(k))))
+            e = p;
+        else if (p instanceof TreeNode)
+            e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
+        else {
+            for (int binCount = 0; ; ++binCount) {
+                if ((e = p.next) == null) {
+                    p.next = newNode(hash, key, value, null);
+                    if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+                        treeifyBin(tab, hash);
+                    break;
+                }
+                if (e.hash == hash &&
+                    ((k = e.key) == key || (key != null && key.equals(k))))
+                    break;
+                p = e;
+            }
+        }
+        if (e != null) { // existing mapping for key
+            V oldValue = e.value;
+            if (!onlyIfAbsent || oldValue == null)
+                e.value = value;
+            afterNodeAccess(e);
+            return oldValue;
+        }
+    }
+    ++modCount;
+    // 当元素个数超过阈值，进行扩容，阈值16*0.75=12，每一次扩容为原来的2倍
+    if (++size > threshold)
+        resize();
+    afterNodeInsertion(evict);
+    return null;
+}
 ```
 
-迭代器的使用
-```java
-//创建一个迭代器对象
-Iterat iterat = list.iterator();
+### Hashtable
+线程安全，运行效率慢；不允许null作为key或是value
 
-//返回迭代器的下一个元素，并且更新迭代器的状态
-iterat.next()
+### Properties
+Hashtable的子类，要求key和value都是string，通常用于配置文件的读取
 
-//用于检测集合中是否还有元素
-iterat.hasNext()
-    
-//将迭代器返回的元素删除
-iterat.remove()
-```
+### TreeMap
+实现了SortedMap接口（是map的子接口），可以对key自动排序
+TreeMap存储引用类型数据的时候，也和TreeSet一样，需要实现Comparable接口，或者是在创建集合的同时，指定比较规则，具体使用，参照TreeSet
+
 ## I/O
 文件和文件夹都是用File代表
 
@@ -2093,7 +2325,7 @@ thread.getPriority();
 thread.setPriority(xxx);
 ```
 
-# Lambda表达式
+## Lambda表达式
 
 Lambda简化了匿名内部类，方法引用简化了lambda
 任何接口，如果只包含唯一一个抽象方法，name它就是一个函数式接口

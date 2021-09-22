@@ -1,9 +1,8 @@
-import java.util.*;
+import java.util.HashMap;
 
 public class Test {
     public static void main(String[] args) {
-        MyInterfaceImpl impl = new MyInterfaceImpl();
-        impl.server("方式一");
-
+        HashMap<String,String> map = new HashMap<>();
+        map.put("","");
     }
 }

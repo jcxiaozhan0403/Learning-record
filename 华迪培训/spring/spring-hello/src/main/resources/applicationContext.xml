@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--使用Spring来创建对象，在spring中这些对象都被称之为bean;
+    注意：交给Spring创建对象的前提是需要类创建了相应的set方法！！！-->
+    <!--id:相当于对象名（变量名）
+        class：该类型的全限定名称
+        property:设置该对象的属性
+        name：该对象的属性名
+        value：属性具体的值，只能写基本数据类型
+        ref：引用spring容器中创建好的对象
+    -->
+    <bean id="hello01" class="pojo.Hello">
+        <property name="talk" value="你好吗？"/>
+    </bean>
+
+</beans>
