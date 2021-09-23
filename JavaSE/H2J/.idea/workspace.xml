@@ -24,8 +24,17 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/H2J/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/H2J/Test.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JFream组件.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java基础[06-集合].pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../异常分类.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../类的初始化.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../类的加载.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../线程五大状态.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../避免死锁的方法.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,13 +76,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../华迪培训/spring" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -265,6 +275,7 @@
       <workItem from="1632277646571" duration="42000" />
       <workItem from="1632291687518" duration="11487000" />
       <workItem from="1632357552219" duration="3227000" />
+      <workItem from="1632391382934" duration="3297000" />
     </task>
     <servers />
   </component>

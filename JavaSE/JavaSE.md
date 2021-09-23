@@ -2270,8 +2270,149 @@ public static void main(String[] args) {
 }
 ```
 
-## I/O
-文件和文件夹都是用File代表
+## I/O流
+概念：内存与存储设备之间传输数据的通道
+
+<img src="./流的概念.jpg">
+
+## 流的分类
+
+### 按方向
+- 输入流：将`存储设备`中的内容读到`内存`中
+- 输出流：将`内存`中的内容写到`存储设备`中
+
+### 按单位
+- 字节流：以字节为单位，可以读写所有数据
+- 字符流：以字符为单位，只能读写文本数据
+
+### 按功能
+- 节点流：具有实际传输数据的读写功能
+- 过滤流：在节点流的基础之上增强功能
+
+## 字节流
+字节流的两个超类：InputStream字节输入流和OutputStream字节输出流
+
+```java
+//InputStream 字节输入流
+public int read(){}
+public int read(byte[] b){}
+public int read(byte[] b, int off, int len){}
+
+// OutputStream 字节输出流
+public void write(int n){}
+public void write(byte[] b){}
+public void write(byte[] b, int off, int len){}
+```
+
+### 文件字节流
+
+文件字节输入流
+
+```java
+public static void main(String[] args) throws IOException {
+    // 1 创建FileInputStream 并指定文件路径
+    FileInputStream fis = new FileInputStream("e:\\hello.txt");
+
+    // 2 读取文件
+    // fis.read();
+
+    // 2.1单字节读取
+    // int data = 0;
+    // while((data = fis.read()) != -1){
+    //     System.out.println((char)data);
+    // }
+
+    // 2.2 使用数组一次读取多个字节
+    byte[] buf = new byte[3]; // 大小为3的缓存区
+    // 返回读取字节的ASCII码，读不到则返回-1
+    // int count = fis.read(buf);
+    // System.out.println(new String(buf));
+    // System.out.println(count);
+    // int count2 = fis.read(buf);
+    // System.out.println(new String(buf));
+    // System.out.println(count2);
+
+    // 上述优化后
+    int count = 0;
+    while((count = fis.read(buf)) != -1){
+        System.out.print(new String(buf, 0, count));
+    }
+
+    // 3 关闭流
+    fis.close();
+}
+```
+
+文件字节输出流
+```java
+public static void main(String[] args) throws IOException {
+    // 1 创建文件字节输出流
+    // 构造时只填写路径的话，默认每次输出都覆盖源文件，第二个参数添加true，表示追加输出
+    FileOutputStream fos = new FileOutputStream("e:\\hello.txt", true);
+    // 2 写入文件
+    // 单个字符的写入
+    fos.write(97);
+    fos.write('a');
+    // 字符串的写入
+    String string = "hello world";
+    fos.write(string.getBytes());
+    // 3 关闭
+    fos.close();
+}
+```
+
+### 图片复制Demo
+```java
+public static void main(String[] args) throws IOException {
+    // 1 创建流
+    // 1.1 文件字节输入流
+    FileInputStream fis = new FileInputStream("e://aaa.jpg");
+    
+    // 1.2 文件字节输出流
+    FileOutputStream fos = new FileOutputStream("e://bbb.jpg");
+    
+    // 2 边读边写
+    byte[] buf = new byte[1024];
+    int count = 0;
+    while((count = fis.read(buf)) != -1){
+        fos.write(buf, 0, count);
+    }
+    
+    // 3 关闭流
+    fis.close();
+    fos.close();
+}
+```
+
+### 字节缓冲流
+缓冲流：BufferedInputStream和BufferedOutputStream
+- 提高IO效率，减少访问磁盘次数
+- 数据存储在缓冲区中，flush是将缓冲区的内容写入文件中，也可以直接close
+
+```java
+public static void main(String[] args) throws IOException {
+    // 1 创建BufferedInputStream
+    FileInputStream fis = new FileInputStream("e://hello.txt");
+    BufferedInputStream bis = new BufferedInputStream(fis);
+    // 2 读取
+    int data = 0;
+    while((data = bis.read()) != -1){
+        System.out.println((char)data);
+    }
+    // 用自己创建的缓冲流
+    byte[] buf = new byte[1024];
+    int count = 0;
+    while((count = bis.read(buf)) != -1){
+        System.out.println(new String(buf, 0, count));
+    }
+
+    // 3 关闭
+    // 缓冲流在关闭的时候会自动关闭字节流
+    bis.close();
+
+}
+```
+
 
 ```
 字节流
