@@ -1653,17 +1653,17 @@ myGenericMethod.show(3.14);// double类型
 ```
 
 ## 集合
-概念：对象的容器，定义了对多个对象进行操作的常用方法。可实现数组的功能
+概念：对象的容器，定义了对多个对象进行操作的常用方法，可实现数组的功能
 
-所有集合类都位于 java.util 包下。Java的集合类主要由两个接口派生而出：Collection 和 Map，Collection 和 Map 是 Java 集合框架的根接口，这两个接口又包含了一些子接口或实现类。
+所有集合类都位于`java.util`包下，Java的集合类主要由两个接口派生而出，Collection和Map，Collection和Map是Java集合框架的根接口，这两个接口又包含了一些子接口或实现类。
 
-集合与数组区别
+集合与数组区别:
 1. 数组长度固定，集合长度不固定
 2. 数组可以存储基本类型和引用类型，集合只能存储引用类型
 
-## Collection集合体系
+## Collection体系集合
 
-<img src="./Collection体系集合.jpg">
+<img src="https://img.jcxiaozhan.top/Java%E9%9B%86%E5%90%88%E4%B8%80.jpg">
 
 ## Collection父接口
 特点：代表一组任意类型的对象，无序、无下标、不能重复
@@ -1690,13 +1690,13 @@ public static void main(String[] args) {
     }
 
     // 使用迭代器遍历   
-    //remove(); 删除当前元素
+    // 删除当前元素
     Iterator it = collection.iterator();
-    //haNext(); 判断有没有下一个元素
+    // 判断有没有下一个元素
     while(it.hasNext()){
-        //next(); 获取元素
+        // 获取元素
         Object obj = it.next();
-        //移除当前元素
+        // 移除当前元素
         // 使用collection.remove()会报并发修改异常
         it.remove();
     }
@@ -1712,12 +1712,13 @@ public static void main(String[] args) {
 ```
 
 ## Set和List的区别
-1. Set接口实例存储的是无序的，不重复的数据。List接口实例存储的是有序的，可以重复的元素
+1. Set接口存储的是无序、无下标、不重复的数据。List接口存储的是有序的、有下标、可以重复的元素
 2. Set检索效率低下，删除和插入效率高，插入和删除不会引起元素位置改变，实现类有HashSet,TreeSet
 3. List和数组类似，可以动态增长，根据实际存储的数据的长度自动增长List的长度。查找元素效率高，插入删除效率低，因为会引起其他元素位置改变，实现类有ArrayList,LinkedList,Vector
 
 ## List子接口
 特点：有序、有下标、元素可重复
+
 ```java
 public static void main(String[] args) {
     // 创建集合
@@ -1738,25 +1739,28 @@ public static void main(String[] args) {
     for (int i= 0; i<list.size(); i++) {
         System.out.println(list.get(i));
     }
+
     // 使用增强for循环
     for(Object obj : list) {
         System.out.println(obj);
     }
+    
     // 使用迭代器遍历
-    //remove(); 删除当前元素
     Iterator it = list.iterator();
-    //haNext(); 判断有没有下一个元素
+    // 判断有没有下一个元素
     while(it.hasNext()){
-        //next(); 获取元素
+        // 获取元素
         Object obj = it.next();
-        //移除当前元素
-        // list.remove()会报并发修改异常
+
+        // 移除当前元素
+        // 如果使用list.remove()会报并发修改异常
         it.remove();
     }
+
     // 使用列表迭代器，列表迭代器可以从前向后遍历，也可以从后向前遍历
     // 创建迭代器
-    // 从前向后遍历
     ListIterator it1 = list.listIterator();
+    // 从前向后遍历
     while(it1.hasNext()){
         System.out.println();
     }
@@ -1772,7 +1776,7 @@ public static void main(String[] args) {
     list.add(10);
     list.add(20);
 
-    // 删除List中的整数元素
+    // 删除List中的整数元素，直接传入整数，会被当做下标，所以这里通过获取下标，用下标来进行删除
     list.remove(list.indexOf(10));
 
     // 返回子集合，取头不取尾
@@ -1785,25 +1789,26 @@ public static void main(String[] args) {
 ```
 
 ## List实现类
-- ArrayList：数组结构实现，查询快，增删慢，运行效率快，线程不安全
-- Vector：数组结构实现，查询快，增删慢，运行效率慢，线程安全
-- LinkedList：链表结构实现，增删快，查询慢
+1. ArrayList：数组结构实现，必须要连续空间，查询快，增删慢，运行效率快，线程不安全
+2. Vector：数组结构实现，查询快，增删慢，运行效率慢，线程安全
+3. LinkedList：双向链表结构实现，增删快，查询慢
 
 ### ArrayList
 源码分析：
 - 如果没有向集合中添加任何元素时，容量0，添加一个后，容量为10
 - 首次添加元素时，ArrayList会进行第一次扩容，之后每当判断到容量不够时，就会扩容，每次扩容是原来的1.5倍
+
 ```java
-//一个空数组
+// 一个空数组
 private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {}; 
 
-//默认容量
+// 默认容量
 private static final int DEFAULT_CAPACITY = 10; 
 
-//实际元素个数
+// 实际元素个数
 private int size; 
 
-//存放元素的数组
+// 存放元素的数组
 transient Object[] elementData; 
 ```
 ```java
@@ -1814,7 +1819,7 @@ public ArrayList() {
 
 // 添加方法
 public boolean add(E e) {
-    ensureCapacityInternal(size + 1);  // Increments modCount!!
+    ensureCapacityInternal(size + 1);
     elementData[size++] = e;
     return true;
 }
@@ -1833,28 +1838,25 @@ private static int calculateCapacity(Object[] elementData, int minCapacity) {
 private void ensureExplicitCapacity(int minCapacity) {
     modCount++;
 
-    // overflow-conscious code
     if (minCapacity - elementData.length > 0)
         grow(minCapacity);
 }
 
 // 扩容
 private void grow(int minCapacity) {
-    // overflow-conscious code
     int oldCapacity = elementData.length;
     int newCapacity = oldCapacity + (oldCapacity >> 1);
     if (newCapacity - minCapacity < 0)
         newCapacity = minCapacity;
     if (newCapacity - MAX_ARRAY_SIZE > 0)
         newCapacity = hugeCapacity(minCapacity);
-    // minCapacity is usually close to size, so this is a win:
     // 复制出一个新的数组，覆盖原数组
     elementData = Arrays.copyOf(elementData, newCapacity);
 }
 ```
 
 ### Vector
-添加、删除、判断都与List相同，遍历使用枚举器
+添加、删除、判断都与List子接口相同，遍历使用枚举器
 ```java
 Vector vector = new Vector();
 Enumeration en = vector.elements();
@@ -1865,11 +1867,12 @@ while(en.hasMoreElements()){
 ```
 
 ### LinkedList
-常用方法都与List相同
+常用方法都与List子接口相同
 源码分析：
 - 首次添加元素之后，first以及last都会指向第一个节点
 - 之后每次添加元素，first始终指向第一个节点，last会指向当前节点
 - 每个节点中的next属性存储下一个节点，prev属性存储上一个节点
+
 ```java
 // 集合大小，初始为0
 transient int size = 0;
@@ -1880,7 +1883,6 @@ transient Node<E> first;
 // 指向集合最后一个元素，初始为null
 transient Node<E> last;
 ```
-
 ```java
 // 添加方法
 public boolean add(E e) {
@@ -1919,17 +1921,16 @@ private static class Node<E> {
 
 ## Set子接口
 特点：无序、无下标、元素不可重复
-方法：全部继承自Collection中的方法
-增、删、遍历、判断与collection一致
+方法：全部继承自Collection父接口中的方法，添加、删除、遍历、判断与collection父接口中一致
 
 ## Set实现类
-- HashSet：基于HashCode计算元素存放位置，当在同一个位置存入的两个元素哈希码相同时，会调用equals再次进行确认，对比两个元素的内存地址，如果也为true，则判定为同一个元素，拒绝后者存入，如果不为true，说明不是同一个元素，则在此位置形成链表
-- TreeSet：基于排列顺序实现元素不重复，实现了SortedSet接口，对集合元素自动排序，元素对象的类型必须实现Comparable接口，指定排序规则，通过CompareTo方法确定是否为重复元素
+1. HashSet：基于HashCode计算元素存放位置，当在同一个位置存入的两个元素哈希码相同时，会调用equals再次进行确认，对比两个元素的内存地址，如果也为true，则判定为同一个元素，拒绝后者存入，如果为false，说明不是同一个元素，则在此位置形成链表
+2. TreeSet：基于排列顺序实现元素不重复，实现了SortedSet接口，对集合元素自动排序，元素对象的类型必须实现Comparable接口，指定排序规则，通过CompareTo方法确定是否为重复元素
 
 ### HashSet
 存储结构：哈希表(数组+链表+红黑树)
 
-重写hashCode()和equals()方法，可以改变结果
+重写hashCode()和equals()方法，可以自定义hash的计算规则，从而改变结果
 ```java
 @Override
 public boolean equals(Object o) {
@@ -1968,25 +1969,24 @@ public static void main(String[] args) {
     for(Object obj : hashSet) {
         System.out.println(obj);
     }
+
     // 使用迭代器遍历
-    //remove(); 删除当前元素
     Iterator it = hashSet.iterator();
-    //haNext(); 判断有没有下一个元素
+    // 判断有没有下一个元素
     while(it.hasNext()){
-        //next(); 获取元素
+        // 获取元素
         System.out.println(it.next());
-        //移除当前元素
-        // list.remove()会报并发修改异常
+        // 删除当前元素
+        // 使用hashSet.remove()会报并发修改异常
         it.remove();
     }
-
     System.out.println(hashSet.toString());
 }
 ```
 
 ### TreeSet
 存储结构：红黑树
-要求：使用TreeSet存储引用类型数据时，元素需要要实现Comparable接口，compareTo()方法返回值为0，认为是重复元素
+要求：使用TreeSet存储引用类型数据时，元素需要要实现Comparable接口，重写compareTo()方法，方法返回值为0，认为是重复元素
 
 ```java
 public class Student implements Comparable<Student>{
@@ -2059,26 +2059,20 @@ TreeSet<Student> students = new TreeSet<>(new Comparator<Student>() {
     public int compare(Student stu1, Student stu2) {
         int n1 = stu1.getName().compareTo(stu2.getName());
         int n2 = stu1.getAge() - stu2.getAge();
-        return n1==0? n2: n1;
+        return n1 == 0? n2: n1;
     }
 });
 ```
-```java
-// 重写compare
-@override
-public int compare(Person o1, Person o2){
-  int n1 = o1.getAge()-o2.getAge();
-  int n2 = o1.getName().comareTo(o2.getName());
-  return n1 == 0 ? n2 : n1;
-}
-```
 
-## Map接口
+## Map体系集合
 
-<img src="./Map体系集合.jpg">
+<img src="https://img.jcxiaozhan.top/Java%E9%9B%86%E5%90%88%E4%BA%8C.jpg">
 
 ## Map父接口
-特点：用于存储任意键值对(key - value)，键：无序、无下标、不允许重复(唯一)，值：无序、无下标、允许重复
+特点：
+- 用于存储任意键值对(key - value)
+- 键：无序、无下标、不允许重复(唯一)
+- 值：无序、无下标、允许重复
 
 ```java
 public static void main(String[] args) {
@@ -2088,7 +2082,8 @@ public static void main(String[] args) {
     // 1. 添加元素
     map.put("cn", "中国");
     map.put("uk", "英国");
-    map.put("cn", "zhongguo"); // 添加重复建，值会覆盖
+    // 添加重复键，值会覆盖
+    map.put("cn", "zhongguo"); 
 
     // 2. 删除元素
     map.remove("uk");
@@ -2127,7 +2122,10 @@ public static void main(String[] args) {
 ```
 
 ## Map实现类
-- HashMap：线程不安全，运行效率快，允许使用null作为key或是value
+1. HashMap：线程不安全，运行效率快，允许使用null作为key或是value
+2. Hashtable：线程安全，运行效率慢；不允许null作为key或是value
+3. Properties：hashtable的子类，要求key和value都是string，通常用于配置文件的读取
+4. TreeMap：实现了SortedMap接口（是map的子接口），可以对key自动排序
 
 ### HashMap
 存储结构：哈希表(数组+链表+红黑树)
@@ -2139,6 +2137,7 @@ public static void main(String[] args) {
 - jdk1.8 当每个链表长度 >8 ，并且数组元素个数 ≥64时，会调整成红黑树，目的是提高效率
 - jdk1.8 当链表长度 <6 时 调整成链表
 - jdk1.8 以前，链表时头插入，之后为尾插入
+
 ```java
 // 初始容量
 static final int DEFAULT_INITIAL_CAPACITY = 1 << 4;
@@ -2220,6 +2219,56 @@ Hashtable的子类，要求key和value都是string，通常用于配置文件的
 ### TreeMap
 实现了SortedMap接口（是map的子接口），可以对key自动排序
 TreeMap存储引用类型数据的时候，也和TreeSet一样，需要实现Comparable接口，或者是在创建集合的同时，指定比较规则，具体使用，参照TreeSet
+
+## Collections工具类
+集合工具类，定义了除了存取以外的集合常用方法
+
+```java
+public static void main(String[] args) {
+    List<Integer> list = new ArrayList<>();
+    list.add(20);
+    list.add(5);
+    list.add(12);
+    list.add(30);
+    list.add(6);
+
+    // sort排序(由小到大)
+    System.out.println("排序前：" + list.toString());
+    Collections.sort(list);
+    System.out.println("排序后：" + list.toString());
+
+    // binarySearch二分查找
+    int i = Collections.binarySearch(list,12);
+    System.out.println(i);
+
+    // copy复制
+    List<Integer> dest = new ArrayList<>();
+    for (int k = 0;k < list.size();i++) {
+        dest.add(0);
+    }
+    Collections.copy(dest,list);
+    System.out.println(dest.toString());
+
+    // reverse反转
+    Collections.reverse(list);
+    System.out.println("反转后：" + list);
+
+    // shuffle 打乱
+    Collections.shuffle(list);
+    System.out.println("打乱后：" + list);
+
+    // list转数组,如果数组大小小于集合大小，则会直接存入，如果数组大小大于集合大小，多余部分会用默认值填充
+    Integer[] arr = list.toArray(new Integer[10]);
+    System.out.println(arr.length);
+    System.out.println(Arrays.toString(arr));
+
+    // 数组转集合
+    String[] names = {"张三","李四","王五"};
+    // 得到的是一个受限集合，不能增删
+    List<String> list2 = Arrays.asList(names);
+    System.out.println(list2);
+}
+```
 
 ## I/O
 文件和文件夹都是用File代表

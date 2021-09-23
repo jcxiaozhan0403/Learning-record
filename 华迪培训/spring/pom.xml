@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>spring-hello</module>
+        <module>spring-02</module>
     </modules>
 
     <properties>

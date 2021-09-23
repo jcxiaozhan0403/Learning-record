@@ -1226,15 +1226,15 @@ xmlns:context="http://www.springframework.org/schema/context"
 xsi:schemaLocation="http://www.springframework.org/schema/context
 https://www.springframework.org/schema/context/spring-context.xsd">
 ```
-3. 指定扫描包，包下所有类的注解才会生效
+2. 添加注解支持
 ```xml
+<!-- 开启注解支持，主要目的是使用@Autowired注解 -->
+<context:annotation-config/>
+
+<!-- 除了具有<context:annotation-config/>的功能以外，还可以指定package下扫描以及注册的javabean，还具有自动将带有@Component，@Service，@Repository等注解的对象注册到spring容器中的功能，因此使用<context:component-scan />后，就可以将<context:annotation-config/>移除 -->
 <context:component-scan base-package="cn.com.scitc.spring" />
 ```
-4. 添加注解支持
-```xml
-<context:annotation-config/>
-```
-5. 常见注解
+3. 常见注解
 ```java
 // 等价于<bean id="" class="" />
 @Component
@@ -1280,8 +1280,8 @@ JavaConfig 原来是 Spring 的一个子项目，它通过 Java 类的方式提�
 public class MyConfig {
 
     //注册一个bean，就相当于我们之前写的一个bean标签
-    //这个方法的名字，就相当于bean标签中的id属性
-    //这个方法的返回值，就相当于bean标签中的class属性
+    //方法名，就相当于bean标签中的id属性
+    //方法的返回值，就相当于bean标签中的class属性
     @Bean
     public Dog dog(){
         return new Dog(); //返回值就是要注入到bean的对象
