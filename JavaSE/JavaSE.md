@@ -2273,7 +2273,7 @@ public static void main(String[] args) {
 ## I/O流
 概念：内存与存储设备之间传输数据的通道
 
-<img src="./流的概念.jpg">
+<img src="https://img.jcxiaozhan.top/JavaIO%E6%B5%81%E4%B8%80.jpg">
 
 ## 流的分类
 
@@ -2290,47 +2290,48 @@ public static void main(String[] args) {
 - 过滤流：在节点流的基础之上增强功能
 
 ## 字节流
-字节流的两个超类：InputStream字节输入流和OutputStream字节输出流
+字节流的两个超类：`InputStream`和`OutputStream`
 
 ```java
-//InputStream 字节输入流
+//InputStream字节输入流
 public int read(){}
 public int read(byte[] b){}
 public int read(byte[] b, int off, int len){}
 
-// OutputStream 字节输出流
+// OutputStream字节输出流
 public void write(int n){}
 public void write(byte[] b){}
 public void write(byte[] b, int off, int len){}
 ```
 
 ### 文件字节流
-
 文件字节输入流
 
 ```java
 public static void main(String[] args) throws IOException {
-    // 1 创建FileInputStream 并指定文件路径
+    // 创建FileInputStream
     FileInputStream fis = new FileInputStream("e:\\hello.txt");
 
-    // 2 读取文件
+    // 读取文件
     // fis.read();
 
-    // 2.1单字节读取
-    // int data = 0;
-    // while((data = fis.read()) != -1){
-    //     System.out.println((char)data);
-    // }
-
-    // 2.2 使用数组一次读取多个字节
-    byte[] buf = new byte[3]; // 大小为3的缓存区
+    // 单字节读取
     // 返回读取字节的ASCII码，读不到则返回-1
-    // int count = fis.read(buf);
-    // System.out.println(new String(buf));
-    // System.out.println(count);
-    // int count2 = fis.read(buf);
-    // System.out.println(new String(buf));
-    // System.out.println(count2);
+    int data = 0;
+    while((data = fis.read()) != -1){
+        System.out.println((char)data);
+    }
+
+    // 使用数组一次读取多个字节
+    // 创建大小为3的数组，将数组传入read就会3个3个地进行读取
+    byte[] buf = new byte[3];
+    // 返回读取的长度
+    int count = fis.read(buf);
+    System.out.println(new String(buf));
+    System.out.println(count);
+    int count2 = fis.read(buf);
+    System.out.println(new String(buf));
+    System.out.println(count2);
 
     // 上述优化后
     int count = 0;
@@ -2338,25 +2339,28 @@ public static void main(String[] args) throws IOException {
         System.out.print(new String(buf, 0, count));
     }
 
-    // 3 关闭流
+    // 关闭流
     fis.close();
 }
 ```
-
 文件字节输出流
+
 ```java
 public static void main(String[] args) throws IOException {
-    // 1 创建文件字节输出流
-    // 构造时只填写路径的话，默认每次输出都覆盖源文件，第二个参数添加true，表示追加输出
+    // 创建FileOutputStream
+    // 构造时只填写路径的话，默认每次写出都覆盖源文件(从流开启到关闭，算一次)，第二个参数添加true，表示追加输出
     FileOutputStream fos = new FileOutputStream("e:\\hello.txt", true);
-    // 2 写入文件
-    // 单个字符的写入
+
+    // 写出文件
+    // 单个字符的写出
     fos.write(97);
     fos.write('a');
-    // 字符串的写入
+
+    // 字符串的写出
     String string = "hello world";
     fos.write(string.getBytes());
-    // 3 关闭
+    
+    // 关闭
     fos.close();
 }
 ```
@@ -2364,84 +2368,520 @@ public static void main(String[] args) throws IOException {
 ### 图片复制Demo
 ```java
 public static void main(String[] args) throws IOException {
-    // 1 创建流
-    // 1.1 文件字节输入流
+    // 创建FileInputStream
+    // 文件字节输入流
     FileInputStream fis = new FileInputStream("e://aaa.jpg");
     
-    // 1.2 文件字节输出流
+    // 创建FileOutputStream
+    // 文件字节输出流
     FileOutputStream fos = new FileOutputStream("e://bbb.jpg");
     
-    // 2 边读边写
+    // 边读边写
     byte[] buf = new byte[1024];
     int count = 0;
     while((count = fis.read(buf)) != -1){
         fos.write(buf, 0, count);
     }
     
-    // 3 关闭流
+    // 关闭流
     fis.close();
     fos.close();
 }
 ```
 
 ### 字节缓冲流
-缓冲流：BufferedInputStream和BufferedOutputStream
+字节缓冲流：`BufferedInputStream`和`BufferedOutputStream`
 - 提高IO效率，减少访问磁盘次数
-- 数据存储在缓冲区中，flush是将缓冲区的内容写入文件中，也可以直接close
+- 数据存储在缓冲区中，flush是将缓冲区的内容写出到文件中，也可以直接close
 
 ```java
 public static void main(String[] args) throws IOException {
-    // 1 创建BufferedInputStream
-    FileInputStream fis = new FileInputStream("e://hello.txt");
+    // 创建BufferedInputStream
+    FileInputStream fis = new FileInputStream("e:\\hello.txt");
     BufferedInputStream bis = new BufferedInputStream(fis);
-    // 2 读取
+    
+    // 读取
     int data = 0;
     while((data = bis.read()) != -1){
         System.out.println((char)data);
     }
-    // 用自己创建的缓冲流
-    byte[] buf = new byte[1024];
+    
+    // 自己创建的缓冲区(在缓冲流里面再使用自己创建的缓冲区，会极大提升效率)
+    byte[] buf = new byte[1024*2];
     int count = 0;
     while((count = bis.read(buf)) != -1){
         System.out.println(new String(buf, 0, count));
     }
 
-    // 3 关闭
+    // 关闭
     // 缓冲流在关闭的时候会自动关闭字节流
     bis.close();
 
 }
 ```
-
-
-```
-字节流
-
-输入流： InputStream
-输出流：OutputStream
-
-文件输入流：FileInputStream
-文件输出流：FileOutputStream
-
-字符流
-
-Reader
-Writer
-```
-
-将流定义在try括号里,他会自动关闭
 ```java
-try (FileInputStream fis = new FileInputStream(f)) {}
+public static void main(String[] args) throws IOException {
+    // 创建BufferedOutputStream
+    FileOutputStream fos = new FileOutputStream("e:\\hello.txt");
+    BufferedOutputStream bos = new BufferedOutputStream(fos);
+    
+    // 写出文件
+    for(int i = 0; i < 10; i ++){
+        // 写入8k缓冲区
+        bos.write("hello".getBytes());
+        // 从缓冲区强制写出
+        bos.flush();
+    }
+    
+    // 关闭
+    bos.close();
+}
+```
+
+### 对象流
+对象流：`ObjectOutputStream`和`ObjectInputStream`
+
+- 增强了缓冲区功能
+- 增强了读写8种基本数据类型和字符串的功能
+- 增强了读写对象的功能
+
+使用流传输对象的过程称为序列化、反序列化
+
+### 序列化和反序列化
+序列化：使用流将对象存储到硬盘上称为序列化
+```java
+public class Student implements Serializable {
+    private String name;
+    private int age;
+
+    public Student() {
+    }
+
+    public Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}
+```
+```java
+public static void main(String[] args) throws IOException {
+    // 创建对象流
+    FileOutputStream fos = new FileOutputStream("e:\\student.bin");
+    ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+    // 序列化（写出操作）
+    Student zhangsan = new Student("张三", 20);
+    oos.writeObject(zhangsan);
+
+    // 关闭
+    oos.close();
+    System.out.println("序列化完成");
+}
+```
+反序列化：使用流将对象从硬盘上读取出来的过程称为反序列化
+```java
+public static void main(String[] args) {
+    // 创建对象流
+    FileInputStream fis = new FileInputStream("e:\\student.bin");
+    ObjectInputStream ois = new ObjectInputStream(fis);
+
+    // 读取文件（反序列化）
+    Student s = (Student)ois.readObject();
+
+    // 关闭
+    ois.close();
+
+    System.out.println("反序列化完成");
+    System.out.println(s.toString());
+}
+```
+注意：
+- 某个类要想序列化必须实现Serializable接口
+- 在将要序列化的类中通常添加`private static  final long serialVersionUID = 100L;`属性，作为序列化版本号ID，保证序列化的类和反序列化的类是同一个类
+- 使用transient修饰属性，这个属性就不能序列化
+- 静态属性不能序列化
+- 序列化多个对象，可以借助集合来实现
+
+## 字符流
+字符流的两个超类：`Reader`和`Writer`
+```java
+// Reader字符输入流
+public int read(){}
+public int read(char[] c){}
+public int read(char[] b, int off, int len){}
+
+// Writer字符输出流
+public void write(int n){}
+public void write(String str){}
+public void write(char[] c){}
+```
+
+### 文件字符流
+文件字符输入流
+
+```java
+public static void main(String[] args) throws IOException, ClassNotFoundException {
+    // 创建FileReader
+    FileReader fr = new FileReader("e:\\hello.txt");
+
+    // 读取文件
+    // 单个字符读取
+    // 返回读取字符的ASCII码，读不到则返回-1
+    int data = 0;
+    while((data = fr.read()) != -1){
+        System.out.print((char)data);
+    }
+
+
+    // 使用数组一次读取多个字节
+    // 创建大小为2的数组，将数组传入read()方法中就会2个2个地进行读取
+    char[] buf = new char[2];
+    int count = 0;
+    while((count = fr.read(buf)) != -1){
+        System.out.println(new String(buf, 0, count));
+    }
+
+    // 3. 关闭流
+    fr.close();
+}
+```
+文件字符输出流
+
+```java
+public static void main(String[] args) throws IOException {
+    // 1. 创建FileWriter对象
+    // 构造时只填写路径的话，默认每次写出都覆盖源文件(从流开启到关闭，算一次写出)，第二个参数添加true，表示追加输出
+    FileWriter fw = new FileWriter("e:\\hello.txt",true);
+
+    // 2. 写出文件
+    for(int i = 0; i < 10; i ++){
+        fw.write("这里写一些内容进去");
+        // 缓存区要堆积满了才会一次性写出，在文件极小的情况下可能会存在不写出的问题，所以最好手动调用flush()方法，每次都强制写出
+        fw.flush();
+    }
+
+    // 3. 关闭
+    fw.close();
+}
+```
+
+### 字符缓冲流
+字符缓冲流：`BufferedReade`r和`BufferedWirter`
+- 高效读写、支持输入换行符、可一次写一行读一行
+
+```java
+public static void main(String[] args) throws IOException {
+    // 创建缓冲流
+    FileReader fr = new FileReader("e:\\hello.txt");
+    BufferedReader br = new BufferedReader(fr);
+
+    // 读取
+    // 第一种方式
+    char[] buf = new char[1024];
+    int count = 0;
+    while((count = br.read(buf)) != -1){
+        System.out.println(new String(buf, 0, count));
+    }
+
+    // 第二种方式 一行一行读取
+    String line = null;
+    while((line = br.readLine()) != null){
+        System.out.println(line);
+    }
+
+    // 关闭
+    br.close();
+}
+```
+```java
+public static void main(String[] args) throws IOException {
+    // 创建BufferedWriter
+    FileWriter fw = new FileWriter("e:\\hello.txt");
+    BufferedWriter bw = new BufferedWriter(fw);
+    
+    // 写出文件
+    for(int i = 0; i < 10; i ++){
+        bw.write("写出的内容");
+        // 写一个换行符
+        bw.newLine();
+        // 从缓冲区强制写出
+        bw.flush();
+    }
+
+    // 关闭
+    // 缓冲流在关闭的时候会自动关闭字节流
+    bw.close();
+}
+```
+
+### PrintWriter
+封装了print() / println() 方法 支持写出后换行
+支持数据原样打印
+```java
+public static void main(String[] args) throws FileNotFoundException {
+    // 1 创建打印流
+    PrintWriter pw = new PrintWriter("e:\\hello.txt");
+    
+    // 2 打印
+    pw.println(12);
+    pw.println(true);
+    pw.println(3.14);
+    pw.println('a');
+    
+    // 3 关闭
+    pw.close();
+}
+```
+
+### 桥转换流
+桥转换流：`InputStreamReader`和`OutputStreamWriter`
+- 可将字节流转换为字符流
+- 可设置字符的编码方式
+
+```java
+public static void main(String[] args) throws IOException {
+    // 创建InputStreamReader
+    FileInputStream fis = new FileInputStream("e:\\hello.txt");
+    InputStreamReader isr = new InputStreamReader(fis, "gbk");
+    // 读取文件
+    int data = 0;
+    while((data = isr.read()) != -1){
+        System.out.println((char)data);
+    }
+    // 关闭
+    isr.close();
+}
+```
+```java
+public static void main(String[] args) throws IOException {
+    // 创建OutputStreamReader
+    FileOutputStream fos = new FileOutputStream("e:\\hello.txt");
+    OutputStreamWriter osw = new OutputStreamWriter(fos,"utf-8");
+
+    // 写出文件
+    for(int i = 0; i < 10; i ++){
+        osw.write("所写内容");
+        osw.flush();
+    }
+
+    // 关闭
+    osw.close();
+}
+```
+
+## File类
+概念：代表物理盘符中的一个文件或文件夹
+```java
+public static void main(String[] args) throws IOException {
+    separator();
+}
+
+// 分隔符
+public static void separator(){
+    System.out.println("路径分隔符" + File.pathSeparator);
+    System.out.println("名称分隔符" + File.separator);
+}
+// 文件操作
+public static void fileOpen() throws IOException {
+    // 创建文件
+    File file = new File("...");
+    if(!file.exists()){ // 是否存在
+        boolean b = file.createNewFile();
+    }
+
+    // 删除文件
+    // 直接删除
+    file.delete(); // 成功true
+    // 使用jvm退出时删除
+    file.deleteOnExit();
+
+    // 获取文件信息
+    System.out.println("获取绝对路径" + file.getAbsolutePath());
+    System.out.println("获取路径" + file.getPath());
+    System.out.println("获取文件名称" + file.getName());
+    System.out.println("获取夫目录" + file.getParent());
+    System.out.println("获取文件长度" + file.length());
+    System.out.println("文件创建时间" + new Date(file.lastModified()).toLocaleString());
+
+    // 判断
+    System.out.println("是否可写" + file.canWrite());
+    System.out.println("是否是文件" + file.isFile());
+    System.out.println("是否隐藏" + file.isHidden());
+}
+
+
+// 文件夹操作
+public static void directoryOpe() throws Exception{
+    // 创建文件夹
+    File dir = new File("...");
+    System.out.println(dir.toString());
+    if(!dir.exists()){
+        //dir.mkdir(); // 只能创建单级目录
+        dir.mkdirs(); // 创建多级目录
+    }
+
+    // 删除文件夹
+    // 直接删除
+    dir.delete(); // 只能删除最底层空目录
+    // 使用jvm删除
+    dir.deleteOnExit();
+
+    // 获取文件夹信息
+    System.out.println("获取绝对路径" + dir.getAbsolutePath());
+    System.out.println("获取路径" + dir.getPath());
+    System.out.println("获取文件名称" + dir.getName());
+    System.out.println("获取夫目录" + dir.getParent());
+    System.out.println("获取文件长度" + dir.length());
+    System.out.println("文件夹创建时间" + new Date(dir.lastModified()).toLocaleString());
+
+    // 判断
+    System.out.println("是否是文件夹" + dir.isFile());
+    System.out.println("是否隐藏" + dir.isHidden());
+
+    // 遍历文件夹
+    File dir2 = new File("...");
+    String[] files = dir2.list();
+    for(String string : files){
+        System.out.println(string);
+    }
+
+    // FileFilter接口的使用
+    File[] files2 = dir2.listFiles(new FileFilter(){
+
+        @Override
+        public boolean accept(File pathname){
+            if(pathname.getName().endsWith(".jpg")){
+                return true;
+            }else {
+                return false;
+            }
+        }
+    });
+    
+    for(File file : files2){
+        System.out.println(file.getName());
+    }
+}
+```
+
+## 递归遍历文件夹
+```java
+public static void main(String[] args) {
+    listDir(new File("e:\\myfiles"));
+}
+public static void listDir(File dir){
+    File[] files = dir.listFiles();
+    System.out.println(dir.getAbsolutePath());
+    if(files != null && files.length > 0){
+        for(File file : files){
+            if(file.isDirectory()){
+                // 递归
+                listDir(file);
+            }else {
+                System.out.println(file.getAbsolutePath());
+            }
+        }
+    }
+}
+```
+
+## 递归删除文件夹
+```java
+public static void deleteDir(File dir){
+    File[] files = dir.listFiles();
+    if(files != null && files.length > 0){
+        for(File file : files){
+            if(file.isDirectory()){
+                // 递归
+                deleteDir(file);
+            }else{
+                // 删除文件
+                System.out.println(file.getAbsolutePath() + "删除" + file.delete());
+            }
+        }
+    }
+}
+```
+
+## Properties
+```java
+public static void main(String[] args) throws IOException {
+    // 1.创建
+    Properties properties = new Properties();
+
+    // 2.添加数据
+    properties.setProperty("driver","com.mysql.jdbc.Driver");
+    properties.setProperty("url","jdbc:mysql://localhost:3306/ssmbuild?useSSL=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8");
+    properties.setProperty("username","root");
+    properties.setProperty("password","lishuang001219");
+
+    // 3.遍历
+    Set<String> proNames = properties.stringPropertyNames();
+    for (String pro : proNames) {
+        System.out.println(pro + "=" + properties.getProperty(pro));
+    }
+
+    // 4.和流相关的方法
+    // list方法
+    PrintWriter pw = new PrintWriter("e:\\db.properties");
+    properties.list(pw);
+    pw.close();
+
+    // store方法 保存
+    FileOutputStream fos = new FileOutputStream("e:\\db.properties");
+    properties.store(fos,"注释");
+    fos.close();
+
+    // load方法 加载
+    Properties properties1 = new Properties();
+    FileInputStream fis = new FileInputStream("e:\\db.properties");
+    properties1.load(fis);
+    fis.close();
+    System.out.println(properties1.toString());
+
+}
+```
+
+## 流的关闭
+```java
+// 将流定义在try括号里,它会自动关闭
+try (FileInputStream fis = new FileInputStream(f)) {
+    
+}
 
 //在finally里面关闭流,需要将fis定义在try外面
 finally {
-    if (null != fis)
+    if (null != fis) {
         try {
             fis.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
 }
 ```
 

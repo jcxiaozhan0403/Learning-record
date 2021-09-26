@@ -1,6 +1,6 @@
 import dao.impl.UserDaoImpl2;
 import org.junit.Test;
-import service.impl.UserServiceImpl;
+import com.service.impl.UserServiceImpl;
 
 public class TestUserService {
 

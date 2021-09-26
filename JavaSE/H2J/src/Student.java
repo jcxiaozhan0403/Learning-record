@@ -1,4 +1,7 @@
-public class Student implements Comparable<Student>{
+import java.io.Serializable;
+
+public class Student implements Serializable{
+    private static  final long serialVersionUID = 100L;
     private String name;
     private int age;
 
@@ -32,12 +35,5 @@ public class Student implements Comparable<Student>{
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';
-    }
-
-    @Override
-    public int compareTo(Student o) {
-        int n1 = this.getName().compareTo(o.getName());
-        int n2 = this.age - o.getAge();
-        return n1==0? n2: n1;
     }
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+        <context:component-scan base-package="com" />
+    
+         <!--aop的配置-->
+         <aop:config>
+           <!--切入点  expression:表达式匹配要执行的方法-->
+        <!-- 第一个*表示返回值的类型任意 -->
+        <!-- cn.com.scitc.service.UserServiceImpl表示被切入的类 -->
+        <!-- 第二个*表示被切入类下的所有方法 -->
+        <!-- (..)表示参数个数不固定 -->
+       <aop:pointcut id="pointcut" expression="execution(* com.service.impl.UserServiceImpl.*(..))"/>
+       <!--执行环绕; advice-ref执行方法 . pointcut-ref切入点-->
+       <aop:advisor advice-ref="log" pointcut-ref="pointcut"/>
+       <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"/>
+     </aop:config>
+
+</beans>
