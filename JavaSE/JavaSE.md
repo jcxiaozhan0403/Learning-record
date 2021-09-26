@@ -2887,33 +2887,67 @@ finally {
 
 ## 多线程
 
-继承类实现
+### 线程、进程、多线程
+进程：进程是程序的一次执行过程，是一个动态的概念，是系统资源分配的单位
+线程：通常在一个进程中可以包含若干个线程，一个进程中至少有一个线程，不然没有存在的意义，线程时CPU调度和执行的单位
+多线程：真正的多线程是有多个CUP，同时执行，如果在只有一个CPU的情况下，同一时间只能执行一个代码，因为切换速度很快，造成了同时执行的假象
+
+- 线程就是独立的执行路径
+- 在程序运行时，即使没有自己创建线程，后台也会有多个线程，如主线程、gc线程
+- main()称为主线程，为系统入口，用于执行整个程序
+- 在一个线程中，如果开辟了多个线程，线程的运行由调度器安排调度，调度器是与操作系统紧密相关的，先后顺序是不可人为干预的
+- 对同一份资源操作时，会存在资源抢夺的问题，需要加入并发控制
+- 线程会带来额外的开销，如CPU调度时间(排队时间)，并发控制开销
+- 每个线程在自己的工作内存交互，内存控制不当会造成数据不一致
+
+## 线程的实现
+### 方式一：继承Thread类
 ```java
-// 1.创建一个线程类，继承Thread，重写run方法，run方法里面写需要使用到多线程的操作
-public class TestThread1 extends Thread {
+// 继承Thread类，重写run()方法，方法体里面编写业务代码
+public class Test extends Thread{
+
     @Override
     public void run() {
-        //run方法线程体
+        for (int i=0; i<100; i++) {
+            System.out.println("我在吃饭-------------------");
+        }
     }
-} 
-// 2.实例化一个线程对象，调用start方法开启线程
-// 注：线程开启不一定立即执行，由CPU调度执行
-TestThread1 testThread1 = new TestThread1();
-testThread1.start();
+
+    public static void main(String[] args) throws IOException {
+        Test test = new Test();
+        // 调用start()开启线程
+        test.start();
+        // 由执行结果可以知道，多个线程是交替执行的，具体是靠CUP调度，无法人为干预
+        for (int i=0; i<1000 ;i++) {
+            System.out.println("我在睡觉");
+        }
+
+    }
+}
 ```
+
 继承Runnable接口实现(常用)
 ```java
-// 1.创建类，继承Runnable接口，重写run方法，run方法里面写需要使用到多线程的操作
-public class TestThread1 implements Runnable {
+public class Test implements Runnable{
+
     @Override
     public void run() {
-        //run方法线程体
+        for (int i=0; i<100; i++) {
+            System.out.println("我在吃饭-------------------");
+        }
     }
-} 
-// 2.创建Runnable接口类的实例对象
-TestThread1 testThread1 = new TestThread1();
-// 3.创建线程对象，通过线程对象来开启线程
-new Thread(testThread1).start();
+
+    public static void main(String[] args) throws IOException {
+        Test test = new Test();
+
+        new Thread(test).start();
+
+        for (int i=0; i<1000 ;i++) {
+            System.out.println("我在睡觉");
+        }
+
+    }
+}
 ```
 继承Callable接口实现
 ```java

@@ -24,26 +24,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/H2J/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/H2J/Student.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/H2J/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/H2J/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSE.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SSM/SSM.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/SSM.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SSM/spring/.idea/artifacts/spring_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/spring/.idea/artifacts/spring_war.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SSM/spring/.idea/artifacts/spring_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../SSM/spring/.idea/artifacts/spring_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../华迪培训/spring/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../华迪培训/spring/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../华迪培训/spring/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../华迪培训/spring/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../华迪培训/spring/spring-hello/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../华迪培训/spring/spring-hello/src/main/java/com/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../华迪培训/spring/spring-hello/src/main/java/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../华迪培训/spring/spring-hello/src/main/java/com/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../华迪培训/spring/spring-hello/src/test/java/TestUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../华迪培训/spring/spring-hello/src/test/java/TestUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../华迪培训/spring/spring-hello/target/classes/service/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../华迪培训/spring/spring-hello/target/classes/service/impl/UserServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../华迪培训/spring/spring-hello/target/test-classes/TestUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../华迪培训/spring/spring-hello/target/test-classes/TestUserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../华迪培训/笔记.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../项目/Swing学生管理系统/project02/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/Swing学生管理系统/project02/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../项目/Swing学生管理系统/project02/out/production/project02/handler/JDBCUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/Swing学生管理系统/project02/out/production/project02/handler/JDBCUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../项目/Swing学生管理系统/project02/out/production/project02/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/Swing学生管理系统/project02/out/production/project02/jdbc.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -289,6 +272,7 @@
       <workItem from="1632474993850" duration="6229000" />
       <workItem from="1632537849757" duration="4680000" />
       <workItem from="1632617570876" duration="6338000" />
+      <workItem from="1632653093865" duration="987000" />
     </task>
     <servers />
   </component>
