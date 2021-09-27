@@ -2926,7 +2926,7 @@ public class Test extends Thread{
 }
 ```
 
-继承Runnable接口实现(常用)
+### 方式二：继承Runnable接口实现(常用)
 ```java
 public class Test implements Runnable{
 
@@ -2949,10 +2949,136 @@ public class Test implements Runnable{
     }
 }
 ```
-继承Callable接口实现
-```java
 
+### 方式三：继承Callable接口实现
+```java
+// 继承Callable接口，重写call()方法，方法体里面编写业务代码
+public class Test implements Callable<Boolean> {
+
+    @Override
+    public Boolean call() throws Exception {
+        for (int i=0; i<100; i++) {
+            System.out.println("我在吃饭-------------------");
+        }
+        return true;
+    }
+
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        Test test = new Test();
+
+        // 创建服务
+        ExecutorService ser = Executors.newFixedThreadPool(1);
+        
+        // 提交执行(开启线程)
+        Future<Boolean> result = ser.submit(test);
+
+        // 用get获取返回值，但是get()会阻塞线程
+        //System.out.println(result.get());
+
+        // 关闭服务
+        ser.shutdownNow();
+
+        for (int i=0; i<1000 ;i++) {
+            System.out.println("我在睡觉");
+        }
+    }
+}
 ```
+
+## 初识并发问题
+多个线程抢夺同一份资源
+```java
+public class Test implements Runnable{
+    private int tecikNums = 10;
+
+    @Override
+    public void run() {
+        while(true) {
+            if (tecikNums != 0) {
+                try {
+                    tecikNums--;
+                    System.out.println(Thread.currentThread().getName() + "==>" + "拿到了第" + tecikNums + "张票");
+                    // 线程休眠，模拟延时
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                break;
+            }
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        Test test = new Test();
+
+        new Thread(test,"黄牛").start();
+        new Thread(test,"小明").start();
+        new Thread(test,"小红").start();
+    }
+
+}
+```
+
+## 龟兔赛跑Demo
+```java
+public class Test implements Runnable{
+    private static String winner;
+
+    @Override
+    public void run() {
+
+        for (int i=0; i<=100; i++) {
+            if (gameOver(i)) {
+                break;
+            }
+
+            // 通过线程名选择对应操作
+            if (Thread.currentThread().getName().equals("乌龟")) {
+                // 乌龟每一步都比兔子慢10毫秒
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("乌龟走了第" + i + "步");
+            }else if (Thread.currentThread().getName().equals("兔子")) {
+                // 兔子走到第50步的时候，模拟兔子睡觉
+                if (i==50) {
+                    try {
+                        Thread.sleep(1700);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println("兔子走了第" + i + "步");
+            }
+        }
+    }
+
+    // 开启乌龟和兔子两个线程
+    public static void main(String[] args) {
+        Test test = new Test();
+
+        new Thread(test,"乌龟").start();
+        new Thread(test,"兔子").start();
+    }
+
+    // 判断比赛是否继续
+    public boolean gameOver(int step) {
+        if (winner != null) {
+            return true;
+        }else if (step == 100) {
+            winner = Thread.currentThread().getName();
+            System.out.println("胜利者：" + winner);
+            return true;
+        }
+        return false;
+    }
+}
+```
+
 获取线程名字
 ```java
 Thread.currentThread().getName()
@@ -2989,50 +3115,378 @@ thread.getPriority();
 thread.setPriority(xxx);
 ```
 
-## Lambda表达式
-
-Lambda简化了匿名内部类，方法引用简化了lambda
-任何接口，如果只包含唯一一个抽象方法，name它就是一个函数式接口
+## Lamda表达式
+函数式接口：只包含一个方法的接口就是函数式接口，也叫功能性接口
+Lamda简化了匿名内部类，方法引用简化了lamda
+基本语法：接口 对象 = (参数表) -> {代码实现};
 
 ```java
-interface Demo02 {
-    void test();
+// 定义一个函数式接口
+interface Demo {
+    void test(int i);
 }
 
-// 匿名内部类常规写法
-public class Lambda {
+// Lamda表达式用法
+public class Lamda {
     public static void main(String[] args) {
-        Demo02 demo02 = new Demo02() {
-            @Override
-            public void test() {
-                System.out.println("Hello World");
-            }
+        // 基本写法
+        Demo demo01 = (int i) -> {
+            System.out.println("Hello World" + i);
         };
-        demo02.test();
+        demo01.test(10);
+
+        // 简化一：参数类型可省略
+        Demo demo02 = (i) -> {
+            System.out.println("Hello World" + i);
+        };
+        demo02.test(10);
+
+        // 简化二：括号可省略
+        Demo demo03 = i -> {
+            System.out.println("Hello World" + i);
+        };
+        demo03.test(10);
+
+        // 简化三：如果只有一行业务代码，那么花括号可省略
+        Demo demo04 = i -> System.out.println("Hello World" + i);
+        demo04.test(10);
     }
 }
+```
+Lamda表达式在多线程中的运用
+```java
+public class Test {
+    public static void main(String[] args) throws IOException {
+        // 用Lamda表达式+匿名类的方式实现了Runnable接口
+        new Thread(() -> {
+            for (int i=0; i<100; i++) {
+                System.out.println("我在吃饭-------------------");
+            };
+        }).start();
 
-// Lambda用法
-public class Lambda {
-    public static void main(String[] args) {
-        Demo02 demo02 = () -> {
-            System.out.println("Hello World");
-        };
-        demo02.test();
+        // 由执行结果可以知道，多个线程是交替执行的，具体是靠CUP调度，无法人为干预
+        for (int i=0; i<1000 ;i++) {
+            System.out.println("我在睡觉");
+        }
     }
 }
 ```
 
-## 线程锁
+## 线程状态
+
+<img src="./线程五大状态.jpg">
+
+线程中断后，进入死亡状态，就不可再次启动了
+
 ```java
-// 保证线程同步依靠队列和锁
-// 多个线程时，为保证一个方法被一个线程执行时不被影响，需要锁住此方法
+public class Test implements Runnable{
+
+    @Override
+    public void run() {
+        for (int i=0; i<5; i++) {
+            try {
+                Thread.sleep(1000); //TIMED_WAITING
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("线程终止了");
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+
+        Test test = new Test();
+        Thread thread = new Thread(test);
+
+        Thread.State state = thread.getState();
+        System.out.println(state); //NEW
+
+        thread.start();
+        state = thread.getState();
+        System.out.println(state); //RUNNABLE
+
+        // 只要线程不终止，就一直打印线程状态
+        while (Thread.State.TERMINATED != state) {
+            Thread.sleep(200);
+            state = thread.getState();
+            System.out.println(state);
+        }
+    }
+}
+```
+### 线程停止
+JDK提供了stop()和destroy()方法来停止线程，但是这两个方法都已经废除，不推荐使用
+最好的做法是，自己创建一个标志位来控制线程的停止
+```java
+public class Test extends Thread{
+    private static boolean flag = false;
+
+
+    @Override
+    public void run() {
+        for (int i=0; i<100; i++) {
+            if (flag) {
+                break;
+            }
+            System.out.println("我在吃饭-------------------");
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        Test test = new Test();
+        // 调用start()开启线程
+        test.start();
+        // 由执行结果可以知道，多个线程是交替执行的，具体是靠CUP调度，无法人为干预
+        for (int i=0; i<1000 ;i++) {
+            if (i==50) {
+                flag = true;
+                System.out.println("线程停止了");
+            }
+            System.out.println("我在睡觉");
+        }
+
+    }
+}
+```
+
+### 线程休眠
+- sleep时间制定当前线程阻塞的毫秒数
+- sleep存在异常InterruptedException
+- sleep时间达到后线程进入就绪状态
+- sleep可以模拟网络延时，倒计时等
+- 每一个对象都有一个锁，sleep不会释放锁
+
+```java
+try {
+    Thread.sleep(5000);
+} catch (InterruptedException e) {
+    e.printStackTrace();
+}
+```
+
+### 线程礼让
+- 线程礼让，让当前正在执行的线程暂停，但不阻塞
+- 将线程从运行状态转为就绪状态
+- 让CPU重新调度，礼让不一定成功，主要还是CUP调度决定
+
+```java
+public class Test implements Runnable{
+
+    @Override
+    public void run() {
+        System.out.println(Thread.currentThread().getName() + "线程开始执行");
+        // 线程礼让
+        Thread.yield();
+        System.out.println(Thread.currentThread().getName() + "线程停止执行");
+    }
+
+    public static void main(String[] args) {
+        Test test = new Test();
+
+        new Thread(test,"A").start();
+        new Thread(test,"B").start();
+    }
+}
+```
+
+### 线程强制执行
+join合并线程，待此线程执行完成后，在执行其他线程，其他线程阻塞
+
+```java
+public class Test implements Runnable{
+
+    @Override
+    public void run() {
+       for (int i=0; i<=500; i++) {
+           System.out.println("插队线程正在执行" + i);
+       }
+
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        Test test = new Test();
+        Thread thread = new Thread(test);
+        thread.start();
+
+        for (int i=0; i<=100; i++) {
+            if (i == 50) {
+                // 主线程执行到50的时候，插队线程开始执行，因为阻塞，一直要到插队线程执行完毕，主线程才会接着执行
+                thread.join();
+            }
+            System.out.println("主线程在执行" + i);
+        }
+    }
+}
+```
+
+### 线程优先级
+Java提供一个线程调度器来监控处于就绪状态的所有线程，线程调度器按照优先级觉得线程执行顺序的先后，优先级低也不代表一定后执行，主要还是调度器控制
+```java
+// 最小优先级
+public final static int MIN_PRIORITY = 1;
+// 默认优先级
+public final static int NORM_PRIORITY = 5;
+// 最大优先级
+public final static int MAX_PRIORITY = 10;
+```
+获取、设置优先级，最好在线程开启之前进行设置
+```java
+Test test = new Test();
+Thread thread = new Thread(test);
+// 获取
+thread.getPriority();
+
+// 设置
+thread.setPriority(4);
+
+// 线程开启
+thread.start();
+```
+
+### 守护线程
+- 线程分为用户线程和守护线程
+- 虚拟机必须确保用户线程执行完毕
+- 虚拟机不用等待守护线程执行完毕
+
+设置守护线程
+```java
+Test test = new Test();
+Thread thread = new Thread(test);
+
+thread.setDaemon(true); //默认为false，表示用户线程，一般创建的都为用户线程，true为守护线程
+```
+
+## 线程同步
+- 形成条件：队列+锁
+- 线程同步是一种等待机制，多个需要同时访问此对象的线程进入这个对象的等待池，形成队列，前面的线程使用完毕，下一个线程再使用
+- 由于同一进程的多个线程共享同一块存储空间，为了避免访问冲突，加入了锁机制synchronized，当一个线程获得对象的排它锁，独占资源，其他线程必须等待，使用后再释放锁
+
+使用锁存在一些问题：
+- 一个线程持有锁会导致其他所有需要此锁的线程挂起
+- 在多线程竞争下，加锁、释放锁会导致较多的上下文切换和调度延时，引起性能问题
+- 一个优先级高的线程等待一个优先级低的线程时，会导致优先级倒置，引起性能问题
+
+## 线程锁
+线程同步是依靠锁实现的，锁又分为同步方法和同步代码块两种
+对于普通同步方法，锁是当前实例对象。 如果有多个实例 那么锁对象必然不同无法实现同步。
+对于静态同步方法，锁是当前类的Class对象。有多个实例 但是锁对象是相同的  可以完成同步。
+对于同步方法块，锁是Synchonized括号里配置的对象。对象最好是只有一个的 如当前类的 class 是只有一个的  锁对象相同 也能实现同步。
+
+```java
+// 同步方法：多个线程时，为保证一个方法被一个线程执行时不被影响，需要锁住此方法，一般对于增删改操作才上锁，默认锁住的是当前方法的所在类的实例对象
 private synchronized void buy(){
 
 }
 
-// 多个对象使用同一共享资源时，为了不被影响，需要锁住此资源
-synchronized(Obj){}
+// 同步块：写在方法中，多个对象使用同一共享资源时，为了不被影响，需要锁住此资源
+synchronized(Obj){
+
+}
+```
+
+## 死锁
+
+<img src=".\避免死锁的方法.jpg">
+
+简单死锁现象
+```java
+public class Test extends Thread{
+    // 玩具刀和玩具枪都只有一份
+    static Knife knife = new Knife();
+    static Gun gun = new Gun();
+
+    @Override
+    public void run() {
+
+        if (Thread.currentThread().getName().equals("小明")) {
+            synchronized (knife) {
+                // 小明在获得玩具枪的同时，还想去获取玩具刀，但是玩具刀在小黄那里，无法获取，于是小明就等待，小黄也在等待小明使用完玩具枪这个资源，两个线程互相等待，就形成了死锁现象
+                System.out.println("小明得到了玩具枪");
+                synchronized (gun) {
+                    System.out.println("小明得到了玩具刀");
+                }
+            }
+        }else {
+            synchronized (gun) {
+                System.out.println("小黄得到了玩具刀");
+                synchronized (knife) {
+                    System.out.println("小明得到了玩具刀");
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Test test = new Test();
+
+        Thread thread1 = new Thread(test,"小明");
+        Thread thread2 = new Thread(test,"小黄");
+
+        thread1.start();
+        thread2.start();
+
+    }
+}
+
+// 刀
+class Knife  {
+
+}
+
+// 枪
+class Gun {
+
+}
+```
+解决：在抱有资源的情况下，尽量不要去抢夺资源
+```java
+public class Test extends Thread{
+    // 玩具刀和玩具枪都只有一份
+    static Knife knife = new Knife();
+    static Gun gun = new Gun();
+
+    @Override
+    public void run() {
+
+        if (Thread.currentThread().getName().equals("小明")) {
+            // 这一次，小黄和小明都在资源使用完成后再访问别的资源，所以避免了死锁
+            synchronized (knife) {
+                System.out.println("小明得到了玩具枪");
+            }
+            synchronized (gun) {
+                System.out.println("小明得到了玩具刀");
+            }
+        }else {
+            synchronized (gun) {
+                System.out.println("小黄得到了玩具刀");
+            }
+            synchronized (knife) {
+                System.out.println("小明得到了玩具刀");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Test test = new Test();
+
+        Thread thread1 = new Thread(test,"小明");
+        Thread thread2 = new Thread(test,"小黄");
+
+        thread1.start();
+        thread2.start();
+
+    }
+}
+
+// 刀
+class Knife  {
+
+}
+
+// 枪
+class Gun {
+
+}
 ```
 
 ## 生成者与消费者关系模式
