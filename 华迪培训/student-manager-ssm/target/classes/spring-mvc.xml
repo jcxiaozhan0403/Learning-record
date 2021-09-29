@@ -27,13 +27,29 @@
     <!-- 4.扫描web相关的bean -->
     <context:component-scan base-package="controller" />
 
-    <!--拦截器的配置-->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <!--拦截的是/student/下的所有-->
-            <mvc:mapping path="/student/**"/>
-            <!--绑定拦截器-->
-            <bean class="interceptor.MyInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
+<!--    &lt;!&ndash;拦截器的配置&ndash;&gt;-->
+<!--    <mvc:interceptors>-->
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash;拦截的是/student/下的所有&ndash;&gt;-->
+<!--            <mvc:mapping path="/student/**"/>-->
+<!--            &lt;!&ndash;绑定拦截器&ndash;&gt;-->
+<!--            <bean class="interceptor.MyInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--    </mvc:interceptors>-->
+
+    <!--解决JSON乱码问题-->
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+            </bean>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
+                        <property name="failOnEmptyBeans" value="false"/>
+                    </bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 </beans>

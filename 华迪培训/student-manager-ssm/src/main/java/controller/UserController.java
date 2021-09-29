@@ -25,7 +25,7 @@ public class UserController {
             User user = userService.findInfoByUsername(username);
             if (user.getPassword().equals(password)) {
                 request.getSession().setAttribute("currentUser",user);
-                return "redirect:/student/list";
+                return "redirect:/student/toStudentPage";
             }
         }catch (Exception e){
             System.out.println("登录错误");

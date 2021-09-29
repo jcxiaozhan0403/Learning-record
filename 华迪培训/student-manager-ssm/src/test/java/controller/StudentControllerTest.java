@@ -12,7 +12,7 @@ public class StudentControllerTest extends TestCase {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         StudentServiceImpl studentService = context.getBean("StudentServiceImpl", StudentServiceImpl.class);
 
-        PageInfo list = studentService.findStudentList(2,3);
-        System.out.println(list);
+        PageInfo list = studentService.findStudentList(1,3);
+        System.out.println(list.getList());
     }
 }

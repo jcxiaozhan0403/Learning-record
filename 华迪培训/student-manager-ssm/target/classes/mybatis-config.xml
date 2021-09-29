@@ -8,11 +8,6 @@
         <package name="pojo"/>
     </typeAliases>
 
-    <!--配置分页插件-->
-<!--    <plugins>-->
-<!--        <plugin interceptor="com.github.pagehelper.PageInterceptor" />-->
-<!--    </plugins>-->
-
     <mappers>
         <mapper resource="mapper/StudentMapper.xml"/>
         <mapper resource="mapper/UserMapper.xml"/>

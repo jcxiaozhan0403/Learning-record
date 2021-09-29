@@ -5,8 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pojo.Student;
 import service.StudentService;
 
@@ -18,10 +17,15 @@ public class StudentController {
     @Qualifier("StudentServiceImpl")
     private StudentService studentService;
 
-    @RequestMapping("/list")
-    public String list(Model model) {
-        PageInfo list = studentService.findStudentList(1,2);
-        model.addAttribute("list", list);
+    @RequestMapping("/list/{pageNum}/{pageSize}")
+    @ResponseBody
+    public PageInfo list(Model model, @PathVariable int pageNum, @PathVariable int pageSize) {
+        PageInfo pageInfo = studentService.findStudentList(pageNum,pageSize);
+        return pageInfo;
+    }
+
+    @RequestMapping("/toStudentPage")
+    public String list() {
         return "student";
     }
 
@@ -33,7 +37,7 @@ public class StudentController {
     @RequestMapping("/insert")
     public String addPaper(Student student) {
         studentService.addStudent(student);
-        return "redirect:/student/list";
+        return "redirect:/student/toStudentPage";
     }
 
     @RequestMapping("/edit/{id}")
@@ -46,12 +50,12 @@ public class StudentController {
     @RequestMapping("/update")
     public String updateStudent(Student student) {
         studentService.updateStudent(student);
-        return "redirect:/student/list";
+        return "redirect:/student/toStudentPage";
     }
 
     @RequestMapping("/delete/{id}")
     public String deleteStudent(@PathVariable("id") int id) {
         studentService.deleteStudentById(id);
-        return "redirect:/student/list";
+        return "redirect:/student/toStudentPage";
     }
 }

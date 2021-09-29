@@ -620,8 +620,270 @@ Limit实现
 -- 从索引0开始，查询20条记录
 select * from `student` limit 0,20
 ```
-分页插件
+## 分页插件的使用
 [MybatisPageHelper](https://pagehelper.github.io/)
+
+### 后端
+1. 导入依赖
+```xml
+<!--分页-->
+<dependency>
+    <groupId>com.github.pagehelper</groupId>
+    <artifactId>pagehelper</artifactId>
+    <version>5.1.2</version>
+</dependency>
+```
+2. 添加配置
+```xml
+<!-- 3.配置SqlSessionFactory对象 -->
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 注入数据库连接池 -->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 配置MyBaties全局配置文件:mybatis-config.xml -->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!--分页插件-->
+        <property name="plugins">
+                <set>
+                        <bean class="com.github.pagehelper.PageInterceptor">
+                                <property name="properties">
+                                        <props>
+                                                <prop key="helperDialect">mysql</prop>
+                                        </props>
+                                </property>
+                        </bean>
+                </set>
+        </property>
+</bean>
+```
+3. service层
+```java
+public interface StudentService {
+    //查询全部Student,返回list集合
+    PageInfo findStudentList(int pageNum,int pageSize);
+}
+```
+```java
+public PageInfo findStudentList(int pageNum,int pageSize) {
+    // 分页语句之后紧跟的第一次查询才会分页，所以此结构最合理
+    PageHelper.startPage(pageNum,pageSize);
+    List<Student> list = studentMapper.findStudentList();
+    PageInfo pageInfo = new PageInfo(list);
+    return pageInfo;
+}
+```
+4. controller层
+```java
+@RequestMapping("/list/{pageNum}/{pageSize}")
+@ResponseBody
+// 前台传递两个参数，第一个参数为页码，就是你要查询第几页的数据，第二个参数是，一页几条记录
+public PageInfo list(Model model, @PathVariable int pageNum, @PathVariable int pageSize) {
+    PageInfo pageInfo = studentService.findStudentList(pageNum,pageSize);
+    // 插件将处理好后的集合封装在了PageInfo对象里面，直接返回到前端即可
+    return pageInfo;
+}
+```
+5. PageInfo类的常见属性
+```java
+public class PageInfo<T> implements Serializable {
+private static final long serialVersionUID = 1L;
+//当前页
+private int pageNum;
+//每页的数量
+private int pageSize;
+//当前页的数量
+private int size;
+//由于startRow 和endRow 不常用，这里说个具体的用法
+//可以在页面中"显示startRow 到endRow 共size 条数据"
+//当前页面第一个元素在数据库中的行号
+private int startRow;
+//当前页面最后一个元素在数据库中的行号
+private int endRow;
+//总记录数
+private long total;
+//总页数
+private int pages;
+//结果集
+private List<T> list;
+//前一页
+private int prePage;
+//下一页
+private int nextPage;
+//是否为第一页
+private boolean isFirstPage = false;
+//是否为最后一页
+private boolean isLastPage = false;
+//是否有前一页
+private boolean hasPreviousPage = false;
+//是否有下一页
+private boolean hasNextPage = false;
+//导航页码数
+private int navigatePages;
+//所有导航页号
+private int[] navigatepageNums;
+//导航条上的第一页
+private int navigateFirstPage;
+//导航条上的最后一页
+private int navigateLastPage;
+}
+```
+
+### 前端
+1. 导入依赖，我使用了JQuery和BootStrap
+```html
+<link href="https://cdn.usebootstrap.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+```
+
+1. HTML部分
+```html
+<!-- 搭建基本表结构，固定表头 -->
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <table class="table table-hover table-striped" style='vertical-align: middle;text-align: center;'>
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>班级</th>
+                <th>学号</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+
+            <tbody id="tbody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- 用nav搭建基本页码结构 -->
+<div class="row">
+    <nav aria-label="..." class="col-md-3 offset-md-9 mt-3">
+        <ul class="pagination" id="pageNum">
+        </ul>
+    </nav>
+</div>
+```
+
+2. Javascript部分
+```html
+<script>
+    $(function () {
+        // 页面加载时默认获取第一页数据，这里是一页5条记录的分法
+        getPageList(1,5);
+
+        // 首页
+        let navigateFirstPage;
+
+        // 末页
+        let navigateLastPage;
+
+        // 当前页
+        let pageNum;
+
+        // 下一页
+        let nextPage;
+
+        // 上一页
+        let prePage;
+
+        // 页码集
+        let navigatepageNums;
+    });
+
+    function getPageList(pageNum,pageSize) {
+        console.log("查询第" + pageNum + "页数据，每页" + pageSize + "条");
+
+        $.get({
+            url:"${pageContext.request.contextPath}/student/list/" + pageNum + "/" + pageSize,
+            data:{},
+            success: function (data) {
+                myTable(data);
+            },
+            error: function () {
+                alert("失败");
+            }
+        });
+    }
+
+    // 表格渲染
+    function myTable(data) {
+        // 获取后台传递过来的一些重要的对象属性
+        // 首页
+        navigateFirstPage = data.navigateFirstPage;
+        // 末页
+        navigateLastPage = data.navigateLastPage
+        // 当前页
+        pageNum = data.nowPage;
+        // 下一页
+        nextPage = data.nextPage;
+        // 上一页
+        prePage = data.prePage;
+        // 页码集
+        navigatepageNums = data.navigatepageNums;
+
+
+        // 取出数据
+        let arr = data.list;
+
+        // 清空表格
+        $("#tbody").html("");
+        // 填充表格
+        // 已经拿到了数据，他们封装在一个数组里面，这里我是JSP页面，所以拼接有点不一样，具体拼接请自己思考
+        for(let i =0; i<arr.length ;i++) {
+            let html = "<tr>" +
+                "<td>" + arr[i].id +"</td>" +
+                "<td>" + arr[i].name +"</td>" +
+                "<td>" + arr[i].age +"</td>" +
+                "<td>" + arr[i].sex +"</td>" +
+                "<td>" + arr[i].cls +"</td>" +
+                "<td>" + arr[i].num +"</td>" +
+                "<td>" +
+                '<a class="btn btn-primary" href="<c:url value="/student/edit/'+ arr[i].id +'" />" style="margin-right: 10px">修改</a>' +
+                '<a class="btn btn-danger" href="<c:url value="/student/delete/'+ arr[i].id +'" />">删除</a>' +
+                "</td>" +
+                "</tr>"
+            
+            // 追加表格体到页面上
+            $("#tbody").append(html);
+        }
+
+        // 清空页数导航栏
+        $("#pageNum").html("");
+        // 填充页数导航栏
+        for(let i=0; i<navigatepageNums.length ;i++) {
+            nowPage = navigatepageNums[i];
+
+            let pageNum = '<li class="page-item">' +
+                '<button class="page-link" onclick="getPageList($(this).text(),5)">' + nowPage + '</button>' +
+                "</li>";
+
+            let pageStart = '<li class="page-item">' +
+                '<button class="page-link" onclick="getPageList(navigateFirstPage,5)">首页</button>' +
+                "</li>";
+
+            let pageEnd = '<li class="page-item">' +
+                '<button class="page-link" onclick="getPageList(nextPage,5)">下一页</button>' +
+                "</li>";
+
+            if(i == 0) {
+                pageNum = pageStart + pageNum;
+            }
+            if(i == navigatepageNums.length -1) {
+                pageNum = pageNum + pageEnd;
+            }
+            
+            // 追加导航栏到页面上
+            $("#pageNum").append(pageNum);
+        }
+
+        // 为当前页面添加激活样式
+        $("li.page-item")[data.pageNum].className += ' active';
+    }
+</script>
+```
 
 ## 日志
 标准日志工厂的实现

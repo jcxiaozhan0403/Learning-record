@@ -8,8 +8,8 @@
           <element id="module-output" name="student-manager-ssm" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: com.github.jsqlparser:jsqlparser:4.0" />
-          <element id="library" level="project" name="Maven: com.github.pagehelper:pagehelper:5.2.1" />
+          <element id="library" level="project" name="Maven: com.github.jsqlparser:jsqlparser:1.0" />
+          <element id="library" level="project" name="Maven: com.github.pagehelper:pagehelper:5.1.2" />
           <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.5" />
           <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.19" />
           <element id="library" level="project" name="Maven: javax.servlet.jsp:jsp-api:2.2" />
@@ -35,6 +35,9 @@
           <element id="library" level="project" name="Maven: org.webjars.bower:jquery:3.5.1" />
           <element id="library" level="project" name="Maven: org.webjars:bootstrap:4.6.0" />
           <element id="library" level="project" name="Maven: org.webjars:popper.js:2.5.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.12.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.12.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.12.4" />
         </element>
       </element>
     </root>
