@@ -1,7 +1,7 @@
 <template>
 <div class="">
   <el-table
-      :data="tableData"
+      :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
       border
       style="width: 100%; margin-top: 20px;">
       <el-table-column
@@ -91,6 +91,15 @@
       </el-table-column>
     </el-table>
 
+    <el-pagination
+    @current-change="handleCurrentChange"
+    :current-page="currentPage"
+    :page-size="pagesize"
+    background
+    layout="prev, pager, next"
+    :total="tableData.length">
+    </el-pagination>
+
     <el-dialog title="编辑学生信息" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-input v-model="form.index" autocomplete="off" v-show="false"></el-input>
@@ -132,9 +141,6 @@
 </div>
 </template>
 
-
-
-
 <script type="text/javascript">
 import { getGrades, getClazzs } from '@/api/clazz';
 import { listStudent, updateStudent, deleteStudent } from '@/api/student';
@@ -142,6 +148,8 @@ import { listStudent, updateStudent, deleteStudent } from '@/api/student';
 export default {
   data () {
     return {
+      currentPage:1, //初始页
+      pagesize:15,    //    每页的数据
       formLabelWidth:'',
       dialogFormVisible: false,
       clazzVisible: false,
@@ -161,7 +169,19 @@ export default {
       }
     }
   },
+  created() {
+    this.loadData();
+  },
   methods: {
+      // 初始页currentPage、初始每页数据数pagesize和数据data
+      // handleSizeChange: function (size) {
+      //         this.pagesize = size;
+      //         console.log(this.pagesize)  //每页下拉显示数据
+      // },
+      handleCurrentChange: function(currentPage){
+        this.currentPage = currentPage;
+        console.log(this.currentPage)  //点击第几页
+      },
       handleEdit(index, row) {
         this.form.index = index;
         this.form.id = row.id
@@ -302,3 +322,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+.el-pagination {
+  float: right;
+  margin-top: 15px;
+}
+</style>

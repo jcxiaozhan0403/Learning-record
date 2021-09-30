@@ -1,7 +1,7 @@
 <template>
 <div class="">
   <el-table
-      :data="tableData"
+      :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
       border
       style="width: 100%; margin-top: 20px;">
       <el-table-column
@@ -74,6 +74,14 @@
       </el-table-column>
     </el-table>
 
+    <el-pagination
+    @current-change="handleCurrentChange"
+    :current-page="currentPage"
+    :page-size="pagesize"
+    background
+    layout="prev, pager, next"
+    :total="tableData.length">
+    </el-pagination>
 
     <el-dialog title="编辑教师信息" :visible.sync="dialogFormVisible">
       <el-form :model="form">
@@ -107,14 +115,13 @@
 </div>
 </template>
 
-
-
-
 <script type="text/javascript">
 import {listTeacher, updateTeacher, deleteTeacher} from '@/api/teacher'
 export default {
   data () {
     return {
+      currentPage:1, //初始页
+      pagesize:15,    //    每页的数据
       formLabelWidth:'',
       sexRadio: '',
       tableData: [],
@@ -131,88 +138,95 @@ export default {
 
     }
   },
-    methods: {
-      handleEdit(index, row) {
-        this.form.index = index;
-        this.form.id = row.id
-        this.form.age = row.age
-        this.formsex = row.sex
-        this.form.num = row.num
-        this.form.name = row.name
-        this.form.course = row.course
-        this.dialogFormVisible = true;
-      },
-      handleDelete(index, row) {
-        //删除记录
-        var id = row.id;
-        this.$confirm('此操作将永久删除该条数据, 是否继续?', '警告', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-        }).then(() => {
-          deleteTeacher(id).then(
-            response => {
-              this.tableData.splice(index, 1);
-              this.$message({
-                  message: response.message,
-                  type: 'success'
-                });
-            }
-          )
-         }).catch((response) => {
-           console.log(response);
-           this.$message({
-             type: 'info',
-             message: '已取消删除'
-           });
-         });
-      },
-      loadData(){
-        listTeacher().then(
+  created() {
+    this.loadData();
+  },
+  methods: {
+    handleCurrentChange: function(currentPage){
+      this.currentPage = currentPage;
+      console.log(this.currentPage)  //点击第几页
+    },
+    handleEdit(index, row) {
+      this.form.index = index;
+      this.form.id = row.id
+      this.form.age = row.age
+      this.formsex = row.sex
+      this.form.num = row.num
+      this.form.name = row.name
+      this.form.course = row.course
+      this.dialogFormVisible = true;
+    },
+    handleDelete(index, row) {
+      //删除记录
+      var id = row.id;
+      this.$confirm('此操作将永久删除该条数据, 是否继续?', '警告', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+      }).then(() => {
+        deleteTeacher(id).then(
           response => {
-            this.tableData = response.data.data;
-          }
-        )
-      },
-      handleUpdateStudent(){
-        var id = this.form.id;
-        var age = this.form.age;
-        var sex = this.formsex;
-        var num = this.form.num;
-        var name = this.form.name;
-        var course = this.form.course;
-        var data = {
-          id: id,
-          age: age,
-          sex: sex,
-          num: num,
-          name: name,
-          course: course
-        }
-
-        updateTeacher(data).then(
-          //更新页面数据
-
-          response => {
-            // var i = this.form.index;
-            // this.tableData[i].age = age;
-            // this.tableData[i].sex = sex;
-            // this.tableData[i].num = num;
-            // this.tableData[i].name = name;
-            // this.tableData[i].grade = grade;
-            // this.tableData[i].clazz = clazz;
-            // this.tableData[i].address = address;
-            // this.dialogFormVisible = false;
-            this.dialogFormVisible = false;
-            this.loadData()
+            this.tableData.splice(index, 1);
             this.$message({
-              message: response.message,
-              type: "success"
-            })
+                message: response.message,
+                type: 'success'
+              });
           }
         )
-
+        }).catch((response) => {
+          console.log(response);
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+    },
+    loadData(){
+      listTeacher().then(
+        response => {
+          this.tableData = response.data.data;
+        }
+      )
+    },
+    handleUpdateStudent(){
+      var id = this.form.id;
+      var age = this.form.age;
+      var sex = this.formsex;
+      var num = this.form.num;
+      var name = this.form.name;
+      var course = this.form.course;
+      var data = {
+        id: id,
+        age: age,
+        sex: sex,
+        num: num,
+        name: name,
+        course: course
       }
+
+      updateTeacher(data).then(
+        //更新页面数据
+
+        response => {
+          // var i = this.form.index;
+          // this.tableData[i].age = age;
+          // this.tableData[i].sex = sex;
+          // this.tableData[i].num = num;
+          // this.tableData[i].name = name;
+          // this.tableData[i].grade = grade;
+          // this.tableData[i].clazz = clazz;
+          // this.tableData[i].address = address;
+          // this.dialogFormVisible = false;
+          this.dialogFormVisible = false;
+          this.loadData()
+          this.$message({
+            message: response.message,
+            type: "success"
+          })
+        }
+      )
+
+    }
     },
   mounted: function(){
     this.loadData();
@@ -231,3 +245,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+.el-pagination {
+  float: right;
+  margin-top: 15px;
+}
+</style>

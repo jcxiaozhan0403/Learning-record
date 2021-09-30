@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <el-table
-        :data="tableData"
+        :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
         border
         style="width: 100%">
         <el-table-column
@@ -73,6 +73,16 @@
           </template>
         </el-table-column>
     </el-table>
+
+    <el-pagination
+    @current-change="handleCurrentChange"
+    :current-page="currentPage"
+    :page-size="pagesize"
+    background
+    layout="prev, pager, next"
+    :total="tableData.length">
+    </el-pagination>
+
     <el-dialog title="编辑班级信息" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-input v-model="form.id" autocomplete="off" v-show="false"></el-input>
@@ -99,14 +109,13 @@
 
 </template>
 
-
-
-
 <script type="text/javascript">
 import { listClazz,updateClazz,deleteClazz } from '@/api/clazz'
 export default {
   data () {
     return {
+      currentPage:1, //初始页
+      pagesize:15,    //    每页的数据
       dialogFormVisible: false,
       formLabelWidth:'100px',
       tableData: [],
@@ -120,7 +129,14 @@ export default {
       }
     }
   },
+  created() {
+    this.loadData();
+  },
   methods: {
+      handleCurrentChange: function(currentPage){
+        this.currentPage = currentPage;
+        console.log(this.currentPage)  //点击第几页
+      },
       loadData(){
         var response = listClazz().then(
           response => {
@@ -214,3 +230,9 @@ export default {
     }
 }
 </script>
+<style scoped>
+.el-pagination {
+  float: right;
+  margin-top: 15px;
+}
+</style>
