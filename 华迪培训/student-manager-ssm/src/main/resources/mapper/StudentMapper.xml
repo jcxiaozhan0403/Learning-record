@@ -34,4 +34,12 @@
         SELECT * from student
     </select>
 
+    <select id="findByClsContaining" resultType="Student">
+        select * from student where cls = #{cls}
+    </select>
+
+    <select id="findByNameContaining" resultType="Student">
+        select * from student where name = #{name}
+    </select>
+
 </mapper>

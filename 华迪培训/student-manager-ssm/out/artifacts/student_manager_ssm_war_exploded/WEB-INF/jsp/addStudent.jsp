@@ -28,7 +28,7 @@
 
     <div class="row">
         <div class="col-md-1 offset-md-11 mb-3">
-            <a class="btn btn-primary" href="<c:url value="/student/list" />">返回</a>
+            <a class="btn btn-primary" href="<c:url value="/student/toStudentPage" />">返回</a>
         </div>
     </div>
 

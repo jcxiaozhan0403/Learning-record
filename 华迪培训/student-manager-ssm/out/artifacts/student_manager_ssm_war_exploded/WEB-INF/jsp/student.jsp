@@ -13,6 +13,8 @@
         }
     </style>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
     $(function () {
         // 页面加载，获取第一页数据
@@ -35,6 +37,8 @@
 
         // 页码集
         let navigatepageNums;
+
+
     });
 
     function getPageList(pageNum,pageSize) {
@@ -44,7 +48,28 @@
             url:"${pageContext.request.contextPath}/student/list/" + pageNum + "/" + pageSize,
             data:{},
             success: function (data) {
-                test(data);
+                myTable(data);
+            },
+            error: function () {
+                alert("失败");
+            }
+        });
+    }
+
+    // 搜索
+    function searchList(pageNum,pageSize) {
+        console.log("查询第" + pageNum + "页数据，每页" + pageSize + "条");
+
+        $.post({
+            url:"${pageContext.request.contextPath}/student/search",
+            data:{
+                pageNum : pageNum,
+                pageSize : pageSize,
+                select : $("#select").val(),
+                content : $("#content").val()
+            },
+            success: function (data) {
+                myTable(data);
             },
             error: function () {
                 alert("失败");
@@ -53,7 +78,7 @@
     }
 
     // 表格渲染
-    function test(data) {
+    function myTable(data) {
         navigateFirstPage = data.navigateFirstPage;
         pageNum = data.nowPage;
         nextPage = data.nextPage;
@@ -131,8 +156,17 @@
             </div>
 
             <div class="row">
-                <div class="col-md-1 offset-md-11 mb-3">
-                    <a class="btn btn-primary" href="<c:url value="/student/add" />">新增</a>
+                <div class="col-md-5 mb-3 mt-3">
+                    <form class="form-inline" action="<c:url value="/student/search" /> " method="post">
+                        <select class="custom-select my-1 mr-sm-2" name="select" id="select">
+                            <option selected value="2">姓名</option>
+                            <option value="1">班级</option>
+                        </select>
+
+                        <input type="text" class="form-control mr-sm-2" id="content" placeholder="请输入查询内容" name="content">
+                        <input class="btn btn-primary" id="search" type="button" value="搜索" onclick="searchList(1,5)" />
+                        <a class="btn btn-primary ml-2" href="<c:url value="/student/add" />">添加</a>
+                    </form>
                 </div>
             </div>
 
