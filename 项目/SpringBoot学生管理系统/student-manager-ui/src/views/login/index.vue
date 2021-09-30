@@ -175,7 +175,7 @@ $light_gray:#eee;
 .login-container {
   min-height: 100%;
   width: 100%;
-  background-color: $bg;
+  background-image: url("https://img.jcxiaozhan.top/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87.png");
   overflow: hidden;
 
   .login-form {
@@ -185,6 +185,7 @@ $light_gray:#eee;
     padding: 160px 35px 0;
     margin: 0 auto;
     overflow: hidden;
+    margin-top: 130px;
   }
 
   .tips {
