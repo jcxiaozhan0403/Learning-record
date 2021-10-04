@@ -780,9 +780,15 @@ System.out.println(h1 instanceof Hero);
 - 抛出的异常：范围可以被缩小，不能被扩大
 
 ## 多态
-类的多态的形成条件
-1. 父类（接口）引用指向子类对象
-2. 调用的方法有重写
+1. 使用父类类型的引用指向子类的对象；
+2. 该引用只能调用父类中定义的方法和变量；
+3. 如果子类中重写了父类中的一个方法，那么在调用这个方法的时候，将会调用子类中的这个方法；（动态连接、动态调用）
+4. 变量不能被重写（覆盖），”重写“的概念只针对方法，如果在子类中”重写“了父类中的变量，那么在编译时会报错。
+
+多态的3个必要条件：
+1. 继承
+2. 重写   
+3. 父类引用指向子类对象。
 
 ## 隐藏
 隐藏也是方法的重写，只不过操作的是类方法
@@ -2887,23 +2893,25 @@ finally {
 
 ## 多线程
 
-### 线程、进程、多线程
-进程：进程是程序的一次执行过程，是一个动态的概念，是系统资源分配的单位
-线程：通常在一个进程中可以包含若干个线程，一个进程中至少有一个线程，不然没有存在的意义，线程时CPU调度和执行的单位
-多线程：真正的多线程是有多个CUP，同时执行，如果在只有一个CPU的情况下，同一时间只能执行一个代码，因为切换速度很快，造成了同时执行的假象
+## 线程、进程、多线程
+- 进程：进程是程序的一次执行过程，是一个动态的概念，是系统资源分配的单位
+- 线程：通常在一个进程中可以包含若干个线程，一个进程中至少有一个线程，不然没有存在的意义，线程是CPU调度和执行的单位
+- 多线程：真正的多线程是有多个CUP，同时执行，如果在只有一个CPU的情况下，同一时间只能执行一个代码，因为切换速度很快，造成了同时执行的假象
 
-- 线程就是独立的执行路径
-- 在程序运行时，即使没有自己创建线程，后台也会有多个线程，如主线程、gc线程
-- main()称为主线程，为系统入口，用于执行整个程序
-- 在一个线程中，如果开辟了多个线程，线程的运行由调度器安排调度，调度器是与操作系统紧密相关的，先后顺序是不可人为干预的
-- 对同一份资源操作时，会存在资源抢夺的问题，需要加入并发控制
-- 线程会带来额外的开销，如CPU调度时间(排队时间)，并发控制开销
-- 每个线程在自己的工作内存交互，内存控制不当会造成数据不一致
+
+> 1. 线程就是独立的执行路径
+> 2. 在程序运行时，即使没有自己创建线程，后台也会有多个线程，如主线程、gc线程
+> 3. main()称为主线程，为系统入口，用于执行整个程序
+> 4. 在一个线程中，如果开辟了多个线程，线程的运行由调度器安排调度，调度器是与操作系统紧密相关的，先后顺序是不可人为干预的
+> 5. 对同一份资源操作时，会存在资源抢夺的问题，需要加入并发控制
+> 6. 线程会带来额外的开销，如CPU调度时间(排队时间)，并发控制开销
+> 7. 每个线程在自己的工作内存交互，内存控制不当会造成数据不一致
+
 
 ## 线程的实现
 ### 方式一：继承Thread类
 ```java
-// 继承Thread类，重写run()方法，方法体里面编写业务代码
+// 继承Thread类，重写run()方法，在run()方法体内编写业务代码
 public class Test extends Thread{
 
     @Override
@@ -2917,7 +2925,7 @@ public class Test extends Thread{
         Test test = new Test();
         // 调用start()开启线程
         test.start();
-        // 由执行结果可以知道，多个线程是交替执行的，具体是靠CUP调度，无法人为干预
+        // 由执行结果可以知道，多个线程是交替执行的，具体执行先后顺序是靠调度器调度的，无法人为干预
         for (int i=0; i<1000 ;i++) {
             System.out.println("我在睡觉");
         }
@@ -2987,7 +2995,10 @@ public class Test implements Callable<Boolean> {
 ```
 
 ## 初识并发问题
-多个线程抢夺同一份资源
+并发问题：多个线程操作同时操作共享数据所导致的
+
+### Demo：抢票
+
 ```java
 public class Test implements Runnable{
     private int tecikNums = 10;
@@ -3021,7 +3032,8 @@ public class Test implements Runnable{
 }
 ```
 
-## 龟兔赛跑Demo
+### Demo：龟兔赛跑
+
 ```java
 public class Test implements Runnable{
     private static String winner;
@@ -3079,29 +3091,35 @@ public class Test implements Runnable{
 }
 ```
 
-获取线程名字
+## 线程方法
+- 获取当前线程名字
+
 ```java
 Thread.currentThread().getName()
 ```
-线程休眠
+- 线程休眠
+
 ```java
 // 每个对象都有一个锁，sleep不会释放锁
+// 休眠1秒
 Thread.Sleep(1000);
 ```
-线程礼让
+- 线程礼让
+
 ```java
 // 线程礼让是让当前进程暂停，转为就绪状态，让CUP重新调度，所以礼让不一定成功，主要看CPU怎么调度
 Thread.yield();
 ```
-线程强制执行
+- 线程强制执行
+
 ```java
 // 调用join方法会让主线程处于阻塞状态，先将线程内的内容执行完毕，再次开始执行主线程
 Demo demo = new Demo();
 Thread thread = new Thread(demo);
 thread.join();
 ```
-线程优先级
-- 优先级低只是意味着获得调度的概率低，并不是优先级低就不会被调用了，还是看CPU调度
+- 线程优先级：优先级低只是意味着获得调度的概率低，并不是优先级低就不会被调用了，还是得看调度器的调度
+
 ```java
 // 线程的优先级用数字表示，范围1~10
 Thread.MIN_PRIORITY = 1;
@@ -3113,12 +3131,16 @@ Thread thread = new Thread(demo);
 thread.getPriority();
 // 设置线程优先级
 thread.setPriority(xxx);
+
+// 线程优先级的实现原理，类似于买彩票，买一张中奖概率小，那就买100张，其实这里设置优先级就是增加提供给调度器的线程数量，数量越大，就越容易被调度
 ```
 
 ## Lamda表达式
 函数式接口：只包含一个方法的接口就是函数式接口，也叫功能性接口
+
 Lamda简化了匿名内部类，方法引用简化了lamda
-基本语法：接口 对象 = (参数表) -> {代码实现};
+
+基本语法：`接口 对象 = (参数表) -> {代码实现};`
 
 ```java
 // 定义一个函数式接口
@@ -3174,7 +3196,7 @@ public class Test {
 
 ## 线程状态
 
-<img src="./线程五大状态.jpg">
+<img src="https://img.jcxiaozhan.top/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%80.jpg">
 
 线程中断后，进入死亡状态，就不可再次启动了
 
@@ -3216,7 +3238,9 @@ public class Test implements Runnable{
 ```
 ### 线程停止
 JDK提供了stop()和destroy()方法来停止线程，但是这两个方法都已经废除，不推荐使用
-最好的做法是，自己创建一个标志位来控制线程的停止
+
+最好的做法是，自己创建一个标志位来控制线程的停止,达到某一条件，就自动停止
+
 ```java
 public class Test extends Thread{
     private static boolean flag = false;
@@ -3266,8 +3290,8 @@ try {
 
 ### 线程礼让
 - 线程礼让，让当前正在执行的线程暂停，但不阻塞
-- 将线程从运行状态转为就绪状态
-- 让CPU重新调度，礼让不一定成功，主要还是CUP调度决定
+- 将线程从运行状态重新转为就绪状态，等待调度器调度
+- 礼让不一定成功，主要还是看调度器的调度
 
 ```java
 public class Test implements Runnable{
@@ -3290,7 +3314,7 @@ public class Test implements Runnable{
 ```
 
 ### 线程强制执行
-join合并线程，待此线程执行完成后，在执行其他线程，其他线程阻塞
+join合并线程，待此线程执行完成后，再执行其他线程，其他线程会阻塞
 
 ```java
 public class Test implements Runnable{
@@ -3343,12 +3367,11 @@ thread.setPriority(4);
 thread.start();
 ```
 
-### 守护线程
+## 守护线程
 - 线程分为用户线程和守护线程
 - 虚拟机必须确保用户线程执行完毕
 - 虚拟机不用等待守护线程执行完毕
 
-设置守护线程
 ```java
 Test test = new Test();
 Thread thread = new Thread(test);
@@ -3361,16 +3384,19 @@ thread.setDaemon(true); //默认为false，表示用户线程，一般创建的�
 - 线程同步是一种等待机制，多个需要同时访问此对象的线程进入这个对象的等待池，形成队列，前面的线程使用完毕，下一个线程再使用
 - 由于同一进程的多个线程共享同一块存储空间，为了避免访问冲突，加入了锁机制synchronized，当一个线程获得对象的排它锁，独占资源，其他线程必须等待，使用后再释放锁
 
-使用锁存在一些问题：
-- 一个线程持有锁会导致其他所有需要此锁的线程挂起
-- 在多线程竞争下，加锁、释放锁会导致较多的上下文切换和调度延时，引起性能问题
-- 一个优先级高的线程等待一个优先级低的线程时，会导致优先级倒置，引起性能问题
+> 使用锁存在一些问题：
+> 1. 一个线程持有锁会导致其他所有需要此锁的线程挂起
+> 2. 在多线程竞争下，加锁、释放锁会导致较多的上下文切换和调度延时，引起性能问题
+> 3. 一个优先级高的线程等待一个优先级低的线程时，会导致优先级倒置，引起性能问题
 
 ## 线程锁
-线程同步是依靠锁实现的，锁又分为同步方法和同步代码块两种
-对于普通同步方法，锁是当前实例对象。 如果有多个实例 那么锁对象必然不同无法实现同步。
-对于静态同步方法，锁是当前类的Class对象。有多个实例 但是锁对象是相同的  可以完成同步。
-对于同步方法块，锁是Synchonized括号里配置的对象。对象最好是只有一个的 如当前类的 class 是只有一个的  锁对象相同 也能实现同步。
+- 线程同步是依靠锁实现的，锁又分为同步方法和同步代码块两种
+
+- 对于普通同步方法，锁的是当前实例对象。 如果有多个实例 那么锁的对象必然不同，就无法实现同步。
+
+- 对于静态同步方法，锁的是当前类的Class对象。有多个实例 但是锁对象是相同的  可以实现同步。
+
+- 对于同步代码块，锁的是Synchonized括号里的对象。对象最好是线程操作的公共资源
 
 ```java
 // 同步方法：多个线程时，为保证一个方法被一个线程执行时不被影响，需要锁住此方法，一般对于增删改操作才上锁，默认锁住的是当前方法的所在类的实例对象
@@ -3384,9 +3410,52 @@ synchronized(Obj){
 }
 ```
 
+Lock与Synchonized功能相似，显式定义了锁，配合异常使用，一般在finally里面关闭
+```java
+public class Lock implements Runnable{
+    private int ticks = 10;
+
+    ReentrantLock lock = new ReentrantLock();
+
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                lock.lock();
+                if (ticks>0) {
+                    Thread.sleep(100);
+                    System.out.println(Thread.currentThread().getName() + "拿到了第" + ticks + "张票");
+                    ticks--;
+                }else {
+                    break;
+                }
+            } catch (Exception e) {
+
+            }finally {
+                lock.unlock();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Lock lock = new Lock();
+        
+        new Thread(lock,"线程一").start();
+        new Thread(lock,"线程二").start();
+        new Thread(lock,"线程三").start();
+    }
+}
+```
+
+Lock与Synchonized的区别：
+- Lock是显式锁(手动开启与关闭)，Synchonized是隐式锁，出作用域自动关闭
+- Lock只有代码块锁，Synchonized有代码块锁和方法锁
+- Lock性能好
+- 使用顺序：Lock > 同步代码块 > 同步方法
+
 ## 死锁
 
-<img src=".\避免死锁的方法.jpg">
+<img src="https://img.jcxiaozhan.top/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BA%8C.jpg">
 
 简单死锁现象
 ```java
@@ -3489,9 +3558,232 @@ class Gun {
 }
 ```
 
-## 生成者与消费者关系模式
-- 管程法
-- 信号灯法
+## 线程通信——生成者与消费者关系问题
+
+<img src="https://img.jcxiaozhan.top/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%89.jpg">
+
+### 管程法
+利用一个缓冲区来解决问题
+```java
+public class Test {
+    public static void main(String[] args) {
+        SynContainer container = new SynContainer();
+
+        new Productor(container).start();
+        new Consumer(container).start();
+    }
+
+}
+
+// 生产者
+class Productor extends Thread {
+    // 获取容器
+    SynContainer container;
+
+    // 构造方法传入容器
+    public Productor(SynContainer container) {
+        this.container = container;
+    }
+
+    // 生产者的线程操作
+    @Override
+    public void run() {
+        try {
+            for (int i=0; i<20; i++) {
+                System.out.println("生产了第" + (i+1) + "只鸡");
+                container.push(new Chicken(i+1));
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+// 消费者
+class  Consumer extends Thread {
+    SynContainer container;
+
+    public Consumer(SynContainer container) {
+        this.container = container;
+    }
+
+    @Override
+    public void run() {
+        try {
+            for (int i=0; i<20; i++) {
+                System.out.println("消费了第" + container.pop().getId() + "只鸡");
+            }
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+// 产品
+class Chicken {
+    // 产品编号
+    private int id;
+
+    public Chicken(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+}
+
+// 缓冲区
+class SynContainer {
+    // 容器大小
+    static Chicken[] chickens = new Chicken[10];
+    // 计数器
+    int count = 0;
+
+    // 生产者放入商品
+    public synchronized void push(Chicken chicken) throws InterruptedException {
+        if (count == chickens.length) {
+            // 容器满了，生产者停止生产，等待消费者消费
+            this.wait();
+        }
+
+        // 容器没满，放入产品到容器
+        chickens[count] = chicken;
+        count++;
+
+        //可以通知消费者消费
+        this.notify();
+    }
+
+    public synchronized Chicken pop() throws InterruptedException {
+        // 判断是否能消费
+        if (count == 0) {
+            // 容器为空，停止消费，等待生产者生产
+            this.wait();
+        }
+
+        // 容器不为空，从容器拿出产品
+        count--;
+        Chicken chicken = chickens[count];
+
+        //可以通知消费者消费
+        this.notify();
+
+        return chicken;
+    }
+}
+```
+
+### 信号灯法
+利用一个标识符来解决问题
+
+```java
+public class Test02 {
+    public static void main(String[] args) {
+        Process process = new Process();
+        new Productor(process).start();
+        new Consumer(process).start();
+    }
+}
+
+// 生产者
+class Productor extends Thread {
+    Process process;
+
+    // 构造方法传入容器
+    public Productor(Process process) {
+        this.process = process;
+    }
+
+    // 生产者的线程操作
+    @Override
+    public void run() {
+        for (int i=0; i<20; i++) {
+            try {
+                this.process.push(new Chicken(i+1));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+// 消费者
+class  Consumer extends Thread {
+    Process process;
+
+    // 构造方法传入容器
+    public Consumer(Process process) {
+        this.process = process;
+    }
+
+    // 消费者的线程操作
+    @Override
+    public void run() {
+        for (int i=0; i<20; i++) {
+            try {
+                process.pop();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+// 产品
+class Chicken {
+    // 产品编号
+    private int id;
+
+    public Chicken() {
+    }
+
+    public Chicken(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "鸡，id为" + id;
+    }
+}
+
+// 过程
+class Process {
+    Chicken chicken;
+
+    // 标识符  true时消费者等待  false时生产者等待
+    private boolean flag = true;
+
+    // 生产过程
+    public synchronized void push(Chicken chicken) throws InterruptedException {
+        if (!flag) {
+            this.wait();
+        }
+
+        System.out.println("生产了" + chicken);
+        this.notifyAll();
+        this.chicken = chicken;
+        this.flag = !this.flag;
+    }
+
+    // 消费过程
+    public  synchronized void pop() throws InterruptedException {
+        if (flag) {
+            this.wait();
+        }
+
+        System.out.println("消费了" + chicken);
+        this.notifyAll();
+        this.flag = !this.flag;
+
+    }
+}
+```
 
 ## 线程池
 ```java
@@ -3859,21 +4151,29 @@ Assertions.assertEquals("期望值","实际值")
 ```
 
 ## 注解
-三个内置注解
+
+<img src="./什么是注解.jpg">
+
+### 内置注解
+
 ```java
-// 重写的注解
+// 此注解只用于修饰方法，表示该方法是重写的父类的方法
 @Override
 
-// 不推荐程序员使用，但是可以使用，或者推荐更好的方式
+// 此注解修饰的属性、方法、类不推荐程序员使用，但是可以使用，或者推荐更好的方式
 @Deprecated
 
-// 镇压警告
+// 镇压警告，用来修饰方法、类、属性，需要传一个参数，参数是定义好了的，一般不使用，要使用也使用all参数，镇压所有警告
 @SuppressWarnings("all")
 ```
-元注解：用来注释注解的注解
+
+
+### 元注解
+用来注解注解的注解
+
 ```java
-// 指明注解可以写实哪些元素，传入值如下
-@Target(value={ElementType.CONSTRUCTOR,ElementType.FIELD})
+// 规定注解的使用范围，传入值如下
+@Target(value={ElementType.METHOD,ElementType.TYPE})
 /*
     ElementType.CONSTRUCTOR ：构造器
 
@@ -3890,87 +4190,426 @@ Assertions.assertEquals("期望值","实际值")
     ElementType.TYPE：类、接口（包括注解类型和 enum 声明）
 */
 
-// 指明注解的生命周期，传入值如下
+// 规定注解的作用范围，表示注解到什么地方还有效果
+// RUNTIME > CLASS > SOURCE
 @Retention(value={RetentionPolicy.SOURCE})
 /*
-RetentionPolicy.SOURCE
+RetentionPolicy.SOURCE：源码阶段
 
-RetentionPolicy.CLASS
+RetentionPolicy.CLASS：编译后
 
-RetentionPolicy.RUNTIME
+RetentionPolicy.RUNTIME：运行时
 */
 
 // 使用此修饰的注解将会被 javadoc 工具提取成文档，使用此注解，其 @Retention 必须被设置为 RetentionPolicy.RUNTIME
 @Documented
 
-// 具有继承性
+// 规定此注解是否可以被继承
 @Inherited
 ```
-自定义注解
+
+### 自定义注解
 ```java
 // 基本格式
 // public @interface 注解名{定义内容}
 
-@Target({ElementType.TYPE,ElementType.METHOD})
-@Retention(RetentionPolicy.RUNTIME)
-@interface MyAnnotation2{
-    // 注解的参数：参数类型 + 参数名();
-    String name() default ""; //用default来设置默认值
-    int age();
-    int id() default -1; //如果默认值为-1，代表不存在
-    String[] schools() default {"清华大学","北京大学"};
+// 测试类
+public class Test02 {
+    @Annotation(age = 18)
+    public void test() {}
+    
+    @Annotation2("")
+    public void test2() {}
 }
 
 @Target({ElementType.TYPE,ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@interface MyAnnotation{
-    String value(); //如果只有一个参数，默认设置其名字为value，在使用时就可简写
+@interface Annotation {
+    // 注解的参数 ： 参数类型 + 参数名();
+    // 用default来设置默认值
+    String name() default "";
+    int age();
+    int id() default -1; // 如果默认值为-1，代表不存在
+    String[] schools() default  {"北京大学","清华大学"};
+}
+
+@Target({ElementType.TYPE,ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@interface Annotation2 {
+    //如果只有一个参数，默认设置其名字为value，在使用时就可简写，不用写参数名，直接传值即可
+    String value();
 }
 ```
 
 ## 反射
+概念：加载完类之后，在堆内存的方法区中就生产了一个Class类型的对象(一个类只有一个Class对象)，这个对象就包含了完整的类的结构信息。我们可以通过这个对象看到类的结构，这个对象就像是一面镜子，透过这个镜子看到类的结构，称之为反射
+
+正常方式：引入需要的"包类"名称 ==> 通过new实例化 ==>获取实例化对象
+反射方式：实例化对象 ==> getClass()方法 ==> 取得完整的"包类"名称
+
 优点：可以实现动态创建对象和编译，体现出很大的灵活性
 缺点：对性能有影响。使用反射基本上是一种解释操作，我们告诉JVM要做什么，这类操作总是慢于直接执行相同的操作
 一个类只有一个Class对象
+
+<img src="./Class类.jpg">
+
+### 获取class类的几种方式
+
+```java
+// 测试类
+public class Test02 {
+    public static void main(String[] args) throws ClassNotFoundException {
+        Person student = new Studnet();
+
+        // 方式一：通过对象获取
+        Class c1 = student.getClass();
+        System.out.println(c1.hashCode());
+
+        // 方式二：forName获取
+        Class c2 = Class.forName("Student");
+        System.out.println(c2.hashCode());
+
+        // 方式三：通过类名.class获取
+        Class c3 = Student.class;
+        System.out.println(c3.hashCode());
+
+        // 方式四：对于基本数据类型，可以使用其包装类的TYPE属性获取
+        Class c4 = Integer.TYPE;
+        System.out.println(c4);
+    }
+}
+
+class Studnet extends Person{
+
+}
+
+class Person {
+
+}
+```
+
+### 所有类型的Class
+```java
+// 所有类型的Class
+public class Test02 {
+    public static void main(String[] args) {
+        Class c1 = Object.class; //类
+        Class c2 = Comparable.class; //接口
+        Class c3 = String[].class; //一维数组
+        Class c4 = int[][].class; //二维数组
+        Class c5 = Override.class; //注解
+        Class c6 = ElementType.class; //枚举
+        Class c7 = Integer.class;  //基本数据类型
+        Class c8 = void.class; //void
+        Class c9 = Class.class; //Class
+
+        System.out.println(c1);
+        System.out.println(c2);
+        System.out.println(c3);
+        System.out.println(c4);
+        System.out.println(c5);
+        System.out.println(c6);
+        System.out.println(c7);
+        System.out.println(c8);
+        System.out.println(c9);
+    }
+}
+```
+
+### 类的加载过程
+
+<img src="./类的加载.jpg">
+
+<img src="./类的初始化.jpg">
+
+```java
+// 测试类的初始化过程
+public class Test02 {
+    static {
+        System.out.println("Main类被加载");
+    }
+
+    public static void main(String[] args) throws ClassNotFoundException {
+        // 主动引用
+        //Son son = new Son();
+
+        // 反射也会产生主动引用
+        Class.forName("Son");
+
+        // 被动引用不会引起类的初始化
+        System.out.println(Son.b);
+
+        Son[] array = new Son[5];
+
+        System.out.println(Son.M);
+    }
+}
+
+class Father {
+    static int b = 2;
+    static {
+        System.out.println("父类被加载");
+    }
+}
+
+class Son extends Father {
+    static {
+        System.out.println("子类被加载");
+    }
+
+    static int m = 100;
+    static final int M = 1;
+}
+```
+
+## 类加载器
+
+<img src="./类加载器.jpg">
+
+```java
+// 测试类的初始化过程
+public class Test02 {
+
+    public static void main(String[] args) throws ClassNotFoundException {
+        // 获取系统类加载器
+        ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
+        System.out.println(systemClassLoader);
+
+        // 获取系统类加载器的父类加载器(扩展类加载器)
+        ClassLoader parent = systemClassLoader.getParent();
+        System.out.println(parent);
+
+        //获取扩展类加载器的父类加载器(根加载器)
+        ClassLoader parent1 = parent.getParent();
+        System.out.println(parent1);
+
+        //测试当前类是哪个加载器加载的
+        ClassLoader classLoader = Class.forName("Test02").getClassLoader();
+        System.out.println(classLoader);
+
+        //测试JDK内置的类是哪个加载器加载的
+        classLoader = Class.forName("java.lang.Object").getClassLoader();
+        System.out.println(classLoader);
+
+    }
+}
+```
+
+## Class对象获取类信息
+```java
+// Class获取类的信息
+public class Test02 {
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchFieldException, NoSuchMethodException {
+        Class c1 = Class.forName("Student");
+
+        System.out.println(c1.getName()); // 获得包名 + 类名
+        System.out.println(c1.getSimpleName()); // 获得类名
+
+        // 获得类的public属性
+        Field[] fields = c1.getFields();
+        for (Field field : fields) {
+            System.out.println(field);
+        }
+        // 获取类的所有属性
+        fields = c1.getDeclaredFields();
+        for (Field field : fields) {
+            System.out.println(field);
+        }
+
+        // 获取指定属性
+        Field name = c1.getDeclaredField("name");
+        System.out.println(name);
+
+        //获取类的方法：除了类自身的方法外，还会获取所继承的类中的方法
+        System.out.println("===============================");
+        Method[] methods = c1.getMethods();
+        for (Method method : methods) {
+            System.out.println(method);
+        }
+        methods = c1.getDeclaredMethods();
+        for (Method method : methods) {
+            System.out.println(method);
+        }
+
+        // 获取指定方法
+        Method getName = c1.getMethod("getName",null);
+        Method setName = c1.getMethod("setName", String.class);
+        System.out.println(getName);
+        System.out.println(setName);
+
+        // 获取构造器
+        System.out.println("===============================");
+        Constructor[] constructors = c1.getConstructors();
+        for (Constructor constructor : constructors) {
+            System.out.println(constructor);
+        }
+        constructors = c1.getDeclaredConstructors();
+        for (Constructor constructor : constructors) {
+            System.out.println(constructor);
+        }
+
+        // 获取指定构造器
+        Constructor declaredConstructor = c1.getDeclaredConstructor(String.class,int.class);
+        System.out.println(declaredConstructor);
+    }
+}
+```
+
+## 通过反射动态创建对象
+
 ```java
 // 通过反射，动态创建对象
+public class Test02 {
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchFieldException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        // 获得Class对象
+        Class c1 = Class.forName("Student");
 
-// 获得Class对象
-Class c1 = Class.forName("com.Student");
+        // 通过反射构建一个对象
+        Student student = (Student) c1.newInstance();
 
-// 构建一个对象
-Student student = (Student)c1.newInstance();
+        // 通过构造器构建对象
+        Constructor constructor = c1.getDeclaredConstructor(String.class,int.class);
+        Student student1 = (Student)constructor.newInstance("小明",18);
 
-// 通过构造器构建对象
-Constructor constructor = c1.getDeclaredConstructor(String.class,int.class);
-Student student = (Student)constructor.newInstance("小明",18);
+        // 通过反射直接调用方法
+        Student student2 = (Student) c1.newInstance();
+        // 通过反射获取一个方法
+        Method setName = c1.getDeclaredMethod("setName",String.class);
+        // invoke激活获取的方法
+        setName.invoke(student2,"张三");
+        System.out.println(student2);
 
-// 通过反射调用普通方法
-// 通过反射获取一个方法
-User user3 = (User)c1.newInstance();
-Method setName = c1.getDeclaredMethod("setName",String.class);
+        // 通过反射操作属性
+        Student student3 = new Student();
+        Field name = c1.getDeclaredField("name");
+        // 对于私有属性，不能直接操作，需要关闭程序的安全检测,true为关闭
+        name.setAccessible(true);
+        name.set(student3,"李四");
+        System.out.println(student3);
+    }
+}
+```
 
-// 用invoke激活方法
-// invoke(对象，"值")
-setName.invoke(user3,"李爽");
+## 反射操作泛型
+```java
+// 反射操作泛型
+public class Test02 {
+    public static void main(String[] args) throws NoSuchMethodException {
+        Method method = Test02.class.getMethod("test1", Map.class, List.class);
+        // 获得泛型参数列表
+        Type[] genericParameterTypes = method.getGenericParameterTypes();
+        for (Type genericParameterType : genericParameterTypes) {
+            System.out.println(genericParameterType);
+            if (genericParameterType instanceof ParameterizedType) {
+                // 遍历参数列表内的泛型信息
+                Type[] actualTypeArguments = ((ParameterizedType) genericParameterType).getActualTypeArguments();
+                for (Type actualTypeArgument : actualTypeArguments) {
+                    System.out.println(actualTypeArgument);
+                }
+            }
+        }
 
-// 通过反射操作属性
-User user4 = (User)c1.newInstance();
-Field name = c1.getDeclaredField("属性名");
-// 对于私有属性，不能直接操作，需要关闭程序的安全检测,true为关闭
-name.setAccessible(true);
-name.set(user4,"李爽");
+        method = Test02.class.getMethod("test2",null);
+        // 获取泛型返回值
+        Type genericReturnType = method.getGenericReturnType();
+        if (genericReturnType instanceof  ParameterizedType) {
+            Type[] actualTypeArguments = ((ParameterizedType) genericReturnType).getActualTypeArguments();
+            // 遍历返回值内的泛型参数
+            for (Type actualTypeArgument : actualTypeArguments) {
+                System.out.println(actualTypeArgument);
+            }
+        }
 
-// 通过反射获得注解
-c1.getAnnotations();
+    }
 
-// 获取注解的值
-Student student = (Student)c1.getAnnotation(Student.class);
-student.value();
+    public void test1(Map<String,String> map, List<String> list) {
+        System.out.println("test01");
+    }
 
-// 获得类指定的注解
-Field f = c1.getDeclaredField("name");
-Student annotation = f.getAnnotation(Student.class);
-annotation.name();
-annotation.age();
+    public List<String> test2() {
+        return null;
+    }
+}
+```
+
+## 反射操作注解
+```java
+// 反射操作泛型
+public class Test02 {
+    public static void main(String[] args) throws NoSuchMethodException, ClassNotFoundException, NoSuchFieldException {
+        Class c1 = Class.forName("Student");
+        // 获取注解
+        Annotation[] annotations = c1.getAnnotations();
+        for (Annotation annotation : annotations) {
+            System.out.println(annotation);
+        }
+
+        // 获取指定的类注解的值
+        MyAnnotation annotation = (MyAnnotation) c1.getAnnotation(MyAnnotation.class);
+        System.out.println(annotation.value());
+
+        // 获取指定的属性注解的值
+        Field f = c1.getDeclaredField("name");
+        MyAnnotation2 annotation1 = f.getAnnotation(MyAnnotation2.class);
+        System.out.println(annotation1.columnName());
+        System.out.println(annotation1.type());
+        System.out.println(annotation1.length());
+    }
+}
+
+@MyAnnotation("student")
+class Student {
+    @MyAnnotation2(columnName = "name",type = "String",length = 10)
+    private String name;
+    @MyAnnotation2(columnName = "age",type = "int",length = 4)
+    private int age;
+
+    public Student() {
+    }
+
+    public Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}
+
+// 类的注解
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@interface MyAnnotation {
+    String value();
+}
+
+// 属性的注解
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
+@interface MyAnnotation2 {
+    String columnName();
+    String type();
+    int length();
+}
 ```

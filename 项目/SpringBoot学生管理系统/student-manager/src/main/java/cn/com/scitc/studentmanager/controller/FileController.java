@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @ Modified By：
  * @Version: 1.0
  */
-@CrossOrigin
+
 @RestController
 @RequestMapping(name = "avatar")
 public class FileController {
@@ -20,7 +20,7 @@ public class FileController {
     public ResultData uploadAvatar(@RequestParam("file")MultipartFile file){
         try{
             if(file.isEmpty()){
-                return ResultData.ok(ResultCode.SUCCESS,"文件参数为空");
+                return ResultData.ok(ResultCode.ERROR,"文件参数为空");
             }else{
                 String fileName = file.getOriginalFilename();
                 System.out.println(fileName);
@@ -29,6 +29,5 @@ public class FileController {
         }catch (Exception e){
             return ResultData.ok(ResultCode.ERROR,"上传失败");
         }
-
     }
 }

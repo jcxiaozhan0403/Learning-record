@@ -12,7 +12,6 @@
           class="avatar-uploader"
           action="http://127.0.0.1:8080/avatar/upload"
           :show-file-list="false"
-          :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload">
           <img v-if="imageUrl" :src="imageUrl" class="avatar">
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -27,7 +26,7 @@
 </template>
 
 <script>
-import {updateUserInfo} from '@/api/user'
+import {updateUserInfo,upload} from '@/api/user'
 export default {
   data() {
     return {
@@ -71,16 +70,29 @@ export default {
       this.imageUrl = URL.createObjectURL(file.raw);
     },
     beforeAvatarUpload(file) {
-      const isJPG = file.type === 'image/jpeg';
+      const isJPG = file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png';
       const isLt2M = file.size / 1024 / 1024 < 5;
 
       if (!isJPG) {
         this.$message.error('上传头像图片只能是 JPG 格式!');
+        return false
       }
       if (!isLt2M) {
+        return false
         this.$message.error('上传头像图片大小不能超过 5MB!');
       }
-      return isJPG && isLt2M;
+      // return isJPG && isLt2M;
+
+      let fd = new FormData()
+      fd.append('file', file);
+      console.log(fd);
+      
+      upload(fd).then(
+        response=>{
+          console.log(response);
+        }
+      )
+      return false
     }
   },
   mounted: function() {

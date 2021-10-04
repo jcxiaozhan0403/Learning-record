@@ -38,3 +38,11 @@ export function updateUserPassword(data) {
     data
   })
 }
+
+export function upload(data) {
+  return request({
+    url: '/avatar/upload',
+    method: 'post',
+    data
+  })
+}

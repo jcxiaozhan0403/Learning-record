@@ -24,9 +24,19 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/H2J/Gun.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/H2J/Knife.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/H2J/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/H2J/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vue/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Vue/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/SSM学生管理系统/student-manager-ssm/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SSM学生管理系统/student-manager-ssm/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/baojia/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/baojia/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/user/update.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/user/update.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager/src/main/java/cn/com/scitc/studentmanager/controller/FileController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +78,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../SSM/ssmbuild" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -89,7 +99,7 @@
       <recent name="multithreading" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.Test02">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -101,21 +111,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Demo01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="reflection.Demo01" />
+    <configuration name="Demo02" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Demo02" />
       <module name="H2J" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="reflection.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Demo02" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Demo02" />
+    <configuration name="Lock" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Lock" />
       <module name="H2J" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -135,26 +139,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UnsafeDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="multithreading.UnsafeDemo" />
+    <configuration name="Test02" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test02" />
       <module name="H2J" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="multithreading.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test02" />
+        <item itemvalue="Application.Lock" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.Test01" />
         <item itemvalue="Application.Demo02" />
-        <item itemvalue="Application.Demo01" />
-        <item itemvalue="Application.UnsafeDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -274,6 +272,9 @@
       <workItem from="1632617570876" duration="6338000" />
       <workItem from="1632653093865" duration="987000" />
       <workItem from="1632702873921" duration="15558000" />
+      <workItem from="1633225858076" duration="21860000" />
+      <workItem from="1633315622391" duration="3511000" />
+      <workItem from="1633328322966" duration="11542000" />
     </task>
     <servers />
   </component>
