@@ -4157,22 +4157,22 @@ Assertions.assertEquals("期望值","实际值")
 ### 内置注解
 
 ```java
-// 此注解只用于修饰方法，表示该方法是重写的父类的方法
+// 此注解只用于修饰方法，表示该方法是重写的方法
 @Override
 
 // 此注解修饰的属性、方法、类不推荐程序员使用，但是可以使用，或者推荐更好的方式
 @Deprecated
 
-// 镇压警告，用来修饰方法、类、属性，需要传一个参数，参数是定义好了的，一般不使用，要使用也使用all参数，镇压所有警告
+// 镇压警告，用来修饰方法、类、属性，需要传一个参数，参数是定义好了的，一般不使用，要使用一般传入all，镇压所有警告
 @SuppressWarnings("all")
 ```
 
 
 ### 元注解
-用来注解注解的注解
+用来修饰注解的注解
 
 ```java
-// 规定注解的使用范围，传入值如下
+// 规定注解的修饰范围，传入值如下
 @Target(value={ElementType.METHOD,ElementType.TYPE})
 /*
     ElementType.CONSTRUCTOR ：构造器
@@ -4190,7 +4190,7 @@ Assertions.assertEquals("期望值","实际值")
     ElementType.TYPE：类、接口（包括注解类型和 enum 声明）
 */
 
-// 规定注解的作用范围，表示注解到什么地方还有效果
+// 规定注解的生命周期，表示注解到什么地方还有效果
 // RUNTIME > CLASS > SOURCE
 @Retention(value={RetentionPolicy.SOURCE})
 /*
@@ -4204,7 +4204,7 @@ RetentionPolicy.RUNTIME：运行时
 // 使用此修饰的注解将会被 javadoc 工具提取成文档，使用此注解，其 @Retention 必须被设置为 RetentionPolicy.RUNTIME
 @Documented
 
-// 规定此注解是否可以被继承
+// 规定注解是否可以被继承
 @Inherited
 ```
 
@@ -4242,18 +4242,18 @@ public class Test02 {
 ```
 
 ## 反射
-概念：加载完类之后，在堆内存的方法区中就生产了一个Class类型的对象(一个类只有一个Class对象)，这个对象就包含了完整的类的结构信息。我们可以通过这个对象看到类的结构，这个对象就像是一面镜子，透过这个镜子看到类的结构，称之为反射
+概念：类加载之后，在堆内存的方法区中就生产了一个Class类型的对象，`一个类只有一个Class对象`，这个对象就包含了完整的类的结构信息。我们可以通过这个对象看到类的结构，这个对象就像是一面镜子，透过这个镜子看到类的结构，称之为反射
 
-正常方式：引入需要的"包类"名称 ==> 通过new实例化 ==>获取实例化对象
-反射方式：实例化对象 ==> getClass()方法 ==> 取得完整的"包类"名称
+> 正常方式：引入需要的"包类"名称 ==> 通过new实例化 ==>获取实例化对象
+> 反射方式：实例化对象 ==> getClass()方法 ==> 取得完整的"包类"名称
 
-优点：可以实现动态创建对象和编译，体现出很大的灵活性
-缺点：对性能有影响。使用反射基本上是一种解释操作，我们告诉JVM要做什么，这类操作总是慢于直接执行相同的操作
+- 优点：可以实现动态创建对象和编译，体现出很大的灵活性
+- 缺点：对性能有影响。使用反射基本上是一种解释操作，我们告诉JVM要做什么，这类操作总是慢于直接执行相同的操作
 一个类只有一个Class对象
 
 <img src="./Class类.jpg">
 
-### 获取class类的几种方式
+### 获取Class对象的几种方式
 
 ```java
 // 测试类
@@ -4288,7 +4288,7 @@ class Person {
 }
 ```
 
-### 所有类型的Class
+### 所有类型的Class对象
 ```java
 // 所有类型的Class
 public class Test02 {
@@ -4316,7 +4316,67 @@ public class Test02 {
 }
 ```
 
-### 类的加载过程
+### Class对象获取类信息
+```java
+// Class获取类的信息
+public class Test02 {
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchFieldException, NoSuchMethodException {
+        Class c1 = Class.forName("Student");
+
+        System.out.println(c1.getName()); // 获得包名 + 类名
+        System.out.println(c1.getSimpleName()); // 获得类名
+
+        // 获得类的public属性
+        Field[] fields = c1.getFields();
+        for (Field field : fields) {
+            System.out.println(field);
+        }
+        // 获取类的所有属性
+        fields = c1.getDeclaredFields();
+        for (Field field : fields) {
+            System.out.println(field);
+        }
+
+        // 获取指定属性
+        Field name = c1.getDeclaredField("name");
+        System.out.println(name);
+
+        //获取类的方法：除了类自身的方法外，还会获取所继承的类中的方法
+        System.out.println("===============================");
+        Method[] methods = c1.getMethods();
+        for (Method method : methods) {
+            System.out.println(method);
+        }
+        methods = c1.getDeclaredMethods();
+        for (Method method : methods) {
+            System.out.println(method);
+        }
+
+        // 获取指定方法
+        Method getName = c1.getMethod("getName",null);
+        Method setName = c1.getMethod("setName", String.class);
+        System.out.println(getName);
+        System.out.println(setName);
+
+        // 获取构造器
+        System.out.println("===============================");
+        Constructor[] constructors = c1.getConstructors();
+        for (Constructor constructor : constructors) {
+            System.out.println(constructor);
+        }
+        constructors = c1.getDeclaredConstructors();
+        for (Constructor constructor : constructors) {
+            System.out.println(constructor);
+        }
+
+        // 获取指定构造器
+        Constructor declaredConstructor = c1.getDeclaredConstructor(String.class,int.class);
+        System.out.println(declaredConstructor);
+    }
+}
+```
+
+## 类的加载过程
 
 <img src="./类的加载.jpg">
 
@@ -4395,67 +4455,12 @@ public class Test02 {
 }
 ```
 
-## Class对象获取类信息
-```java
-// Class获取类的信息
-public class Test02 {
-    public static void main(String[] args) throws ClassNotFoundException, NoSuchFieldException, NoSuchMethodException {
-        Class c1 = Class.forName("Student");
+### 双亲委派机制
+- 描述：某个特定的类加载器在接到加载类的请求时，首先将加载任务委托给父类加载器，依次递归，如果父类加载器可以完成类加载任务，就成功返回；只有父类加载器无法完成此加载任务时，才自己去加载。
 
-        System.out.println(c1.getName()); // 获得包名 + 类名
-        System.out.println(c1.getSimpleName()); // 获得类名
+- 意义：防止内存中出现多份同样的字节码
 
-        // 获得类的public属性
-        Field[] fields = c1.getFields();
-        for (Field field : fields) {
-            System.out.println(field);
-        }
-        // 获取类的所有属性
-        fields = c1.getDeclaredFields();
-        for (Field field : fields) {
-            System.out.println(field);
-        }
-
-        // 获取指定属性
-        Field name = c1.getDeclaredField("name");
-        System.out.println(name);
-
-        //获取类的方法：除了类自身的方法外，还会获取所继承的类中的方法
-        System.out.println("===============================");
-        Method[] methods = c1.getMethods();
-        for (Method method : methods) {
-            System.out.println(method);
-        }
-        methods = c1.getDeclaredMethods();
-        for (Method method : methods) {
-            System.out.println(method);
-        }
-
-        // 获取指定方法
-        Method getName = c1.getMethod("getName",null);
-        Method setName = c1.getMethod("setName", String.class);
-        System.out.println(getName);
-        System.out.println(setName);
-
-        // 获取构造器
-        System.out.println("===============================");
-        Constructor[] constructors = c1.getConstructors();
-        for (Constructor constructor : constructors) {
-            System.out.println(constructor);
-        }
-        constructors = c1.getDeclaredConstructors();
-        for (Constructor constructor : constructors) {
-            System.out.println(constructor);
-        }
-
-        // 获取指定构造器
-        Constructor declaredConstructor = c1.getDeclaredConstructor(String.class,int.class);
-        System.out.println(declaredConstructor);
-    }
-}
-```
-
-## 通过反射动态创建对象
+## 反射操作对象
 
 ```java
 // 通过反射，动态创建对象
