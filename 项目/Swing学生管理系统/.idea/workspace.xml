@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2649cff7-9c48-4a4f-beeb-cc840e8b38a7" name="默认的" comment="默认的">
-      <change beforePath="$PROJECT_DIR$/../../华迪培训/笔记.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../华迪培训/笔记.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/baojia/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/baojia/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/baojia/src/main/java/com/xlhj/baojia/common/ResultCode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/baojia/src/main/java/com/xlhj/baojia/common/ResultData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/baojia/src/main/java/com/xlhj/baojia/service/impl/SysUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/baojia/src/main/java/com/xlhj/baojia/service/impl/SysUserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/baojia/src/main/java/com/xlhj/baojia/util/JwtTokenUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/baojia/src/main/java/com/xlhj/baojia/util/JwtTokenUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/baojia/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/baojia/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/vue-admin-template/README-zh.md" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/vue-admin-template/README-zh.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/vue-admin-template/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/vue-admin-template/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/vue-admin-template/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/vue-admin-template/src/api/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBoot学生管理系统/vue-admin-template/src/views/login/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBoot学生管理系统/vue-admin-template/src/views/login/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project02/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project02/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaSE/H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaSE/H2J/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +50,7 @@
       <workItem from="1625931168279" duration="10000" />
       <workItem from="1631070126319" duration="1282000" />
       <workItem from="1631082603848" duration="627000" />
+      <workItem from="1633433743870" duration="842000" />
     </task>
     <servers />
   </component>
