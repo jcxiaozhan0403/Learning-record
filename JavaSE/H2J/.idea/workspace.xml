@@ -22,7 +22,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的" />
+    <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/H2J/MyAnnotation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/H2J/MyAnnotation2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/H2J/Student.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/H2J/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/H2J/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/H2J/Test02.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/Swing学生管理系统/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/Swing学生管理系统/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,7 +96,7 @@
       <recent name="multithreading" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test02">
+  <component name="RunManager" selected="Application.Test">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -133,9 +145,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Test02" />
         <item itemvalue="Application.Lock" />
-        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Test01" />
         <item itemvalue="Application.Demo02" />
       </list>
@@ -261,6 +273,7 @@
       <workItem from="1633315622391" duration="3511000" />
       <workItem from="1633328322966" duration="11542000" />
       <workItem from="1633433722019" duration="20000" />
+      <workItem from="1633658759812" duration="7055000" />
     </task>
     <servers />
   </component>
@@ -278,5 +291,16 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Test.java</url>
+          <line>3</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,14 +1,11 @@
-import java.util.concurrent.locks.ReentrantLock;
-
-public class Test extends Thread{
-    private int ticks = 10;
-
+// DCL懒汉式单例
+public class Test {
     public static void main(String[] args) {
-
-        Test test = new Test();
-
-        new Thread(test,"线程一").start();
-        new Thread(test,"线程二").start();
-        new Thread(test,"线程三").start();
+        int i = 7;
+        do {
+            System.out.println(--i);
+            --i;
+        } while (i != 0);
+        System.out.println(i);
     }
 }

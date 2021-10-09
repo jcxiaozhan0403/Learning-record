@@ -2,6 +2,7 @@
 ```
 Alt+Ins 生成方法
 Ctrl+Alt+t 创建异常代码块
+Alt+Shift+Ins 抛出异常、导入包
 ```
 
 ## 常用DOS命令
@@ -53,9 +54,9 @@ javadoc -encoding UTF-8 -charset UTF-8 java文件名
 JAVA_HOME  jdk根目录
 path  %JAVA_HOME%\jre\bin  %JAVA_HOME%\bin
 
-JDK(java开发工具包)
-JRE(java运行环境，包含一些函数、库之类的)
-JVM(java虚拟机，负责编译)
+JDK(Java开发工具包)
+JRE(Java运行环境，包含一些函数、库之类的)
+JVM(Java虚拟机，负责编译)
 包含关系
 JDK>JRE>JVM
 
@@ -130,7 +131,7 @@ System.out.println("hello world");
 ## 数据类型
 Java是一种强类型语言，强类型语言：先定义后使用，数据类型严格
 
-java中有8种基本数据类型，除此之外都是引用数据类型
+Java中有8种基本数据类型，除此之外都是引用数据类型
 
 凡是引用数据类型，都可以使用null作为值
 
@@ -155,7 +156,7 @@ java中有8种基本数据类型，除此之外都是引用数据类型
 ==比较的是两个字符串的内存地址值相不相同
 由下面这段equals源码可以分析出equals是先将两个字符串的内存地址拿来进行比较，如果相同则返回true，如果不相同再判断传入字符串是否为String类的实例，如果不是，则返回false，如果是，则将传入字符串转换为String类型，先比较两个字符串的长度，长度一致再将字符串拆分为两个char数组进行遍历比较，如果相同再返回true
 
-注：String类型中的equals是重写的Object类的，Object类中的equals作用跟==相同，只比较内存地址
+> 注：String类型中的equals是重写的Object类的，Object类中的equals作用跟==相同，只比较内存地址
 
 - 总结：可以简单理解为== 对比的是两个字符串的内存地址，equals对比的是两个字符串的字面值
 ```java
@@ -217,6 +218,8 @@ final 除了修饰变量，还可以修饰类，修饰方法
 &&  //逻辑与
 ||  //逻辑或
 !   //逻辑非
+    
+//短路：逻辑前半段得出结果成立了，将不再进行符号后半段的运算
 &   //短路与
 |   //短路或
 ^   //异或
@@ -230,7 +233,7 @@ n >> m      //右移，值等于n/2的m次方，如果为负数运算，则右�
 n >>> m     //无符号右移，右移后的最前两位补0
 &           //逻辑与
 |           //逻辑或
-^           //异或运算，转为二进制，相同为0，不同为1
+^           //异或运算，转为二进制进行比较运算，相同为0，不同为1
 ~           //反码，1和0取反，正负号取反
 ```
 <img src="./位运算规则.jpg">
@@ -270,7 +273,7 @@ nextLine()与next()的区别：
 - next()在读取字符时，会将第一个字符之前的空白字符过滤掉
 
 ## switch判断
-switch语句中的变量类型可以是byte、short、int、char、String
+switch语句中的参数类型可以是byte、short、int、char、String
 ```java
 int score = 100
 
@@ -435,9 +438,9 @@ public class HelloWorld {
         int a[] = new int[] { 18, 62, 68, 82, 65, 9 };
  
         // copyOfRange(int[] original, int from, int to)
-        // 第一个参数表示源数组
-        // 第二个参数表示开始位置(取得到)
-        // 第三个参数表示结束位置(取不到)
+        // 参数一：源数组
+        // 参数二：开始位置(取得到)
+        // 参数三：结束位置(取不到)
         int[] b = Arrays.copyOfRange(a, 0, 3);
  
         for (int i = 0; i < b.length; i++) {
@@ -451,7 +454,7 @@ public class HelloWorld {
         Arrays.sort(a); 
 
         //binarySearch方法搜索元素出现的位置，必须在sort排序前提下
-        //数字62出现的位置
+        //数字62在a数组中第一次出现的位置
         Arrays.binarySearch(a, 62); 
 
         //比较两个数组内容是否完全相同
@@ -459,9 +462,12 @@ public class HelloWorld {
 
         //填充数组
         //Array.fill(arrayname ,starting index ,ending index ,value)
-        //Array.fill(数组名，开始位置，结束位置，填充值)
-        //Array.fill(数组名，填充值)
+        // 参数一：要操作的数组
+        // 参数二：开始位置(取得到)
+        // 参数三：结束位置(取不到)
+        // 参数四：填充值
         Arrays.fill(a,2,4,10);
+        // 用一个值填充整个数组
         Arrays.fill(a,10);
     }
 }
@@ -471,7 +477,7 @@ public class HelloWorld {
 <img src="./冒泡排序.gif">
 
 算法逻辑：
-1. 比较相邻的元素，如果第一个比第二个大，就交换它们两个
+1. 比较相邻的元素，较大元素右移
 2. 对每一对相邻的元素都进行比较，等所有的比较完后最后一个数字是这堆数据里的最大数字
 3. 重复步骤一，直到排序完成
 ```java
@@ -479,7 +485,7 @@ import java.util.Arrays;
 
 public class Test {
     public static void main(String[] args) {
-        int []arr= {3,2,8,4,7};//创建数组
+        int []arr= {3,9,2,8,7,4};//创建数组
         System.out.println("排序前" + Arrays.toString(arr));
         //循环实现冒泡排序
         for(int i=0;i<arr.length-1;i++) {
@@ -488,11 +494,10 @@ public class Test {
                     int temp=arr[j];
                     arr[j]=arr[j+1];
                     arr[j+1]=temp;
-                }
-                
+                }    
             }
         }
-        System.out.println("排序后" + Arrays.toString(arr));
+         System.out.println("排序后" + Arrays.toString(arr));
     }
 }
 ```
@@ -599,8 +604,7 @@ public class Weapon extends Item{
 }
 ```
 
-构造方法:对象实例化是通过调用构造方法实现的，构造方法方法名和类名一致，无返回值，如果未申明，系统会默认生成一个无参构造方法，如果申明了一个带参的构造方法，那么无参的构造方法将失效
-一旦定义了有参构造方法，就必须显示定义无参构造方法，否则会报错
+构造方法：对象实例化是通过调用构造方法实现的，构造方法方法名和类名一致，无返回值，如果未定义，系统会默认生成一个无参构造方法，如果定义了一个带参的构造方法，那么系统将不会生成无参构造，需要自己手动定义无参构造，否则会报错
 
 包：package，一般将比较接近的类，规划在同一个包下
 
@@ -610,7 +614,7 @@ public class Weapon extends Item{
 
 package charactor;
  
-//Weapon类在其他包里，使用必须进行import
+//Weapon类在其他包里，要使用必须用import导入
 import property.Weapon;
  
 public class Hero {
@@ -640,15 +644,6 @@ public class Hero {
 
 <img src="./类的修饰关系.png">
 
-类与类的几种关系
-```
-自身：指的是Hero自己
-同包子类：ADHero这个类是Hero的子类，并且和Hero处于同一个包下
-不同包子类：Support这个类是Hero的子类，但是在另一个包下
-同包类： GiantDragon 这个类和Hero是同一个包，但是彼此没有继承关系
-其他类：Item这个类，在不同包，也没有继承关系的类
-```
-
 类方法、类属性和对象方法、对象属性
 
 ```java
@@ -667,24 +662,69 @@ public static void printGameDuration(){
 
 单例模式特点
 
-1. 只允许有一个实例
-2. 单例类必须创建自己的实例
+1. 单例类只能有一个实例
+2. 单例类必须自己创建自己的唯一实例
 3. 单例类必须给其他类提供获取实例的方法
 
 什么是单例模式
 
-1. 构造方法私有化
+1. 构造方法私有化，创建唯一实例
 2. 静态属性指向实例
-3. public static的 getInstance方法，返回第二步的静态属性
+3. 提供静态方法，返回静态属性
 
-**饿汉式**，是立即加载的方式，无论是否会用到这个对象，都会加载。
-如果在构造方法里写了性能消耗较大，占时较久的代码，比如建立与数据库的连接，那么就会在启动的时候感觉稍微有些卡顿。
+### 饿汉式
+在类创建的同时就已经创建好一个静态的对象供系统使用，以后不再改变，所以天生是线程安全的
 
-**懒汉式**，是延迟加载的方式，只有使用的时候才会加载。 并且有线程安全的考量
+如果在构造方法里写了性能消耗较大，占时较久的代码，比如建立与数据库的连接，那么就会在启动的时候感觉稍微有些卡顿
+
+```java
+// 饿汉式单例
+public class Test {
+    private Test() {
+        
+    }
+    
+    private final static Test TEST = new Test();
+    
+    public static Test getInstance() {
+        return TEST;
+    }
+}
+```
+
+### 懒汉式
+在调用getInstance时才创建实例对象
 
 使用懒汉式，在启动的时候，会感觉到比饿汉式略快，因为并没有做对象的实例化。 但是在第一次调用的时候，会进行实例化操作，感觉上就略慢。
 
 看业务需求，如果业务上允许有比较充分的启动和初始化时间，就使用饿汉式，否则就使用懒汉式
+
+```java
+// DCL懒汉式单例
+public class Test {
+
+    private Test() {
+
+    }
+
+    // volatile关键字 1.保证变量的内存可见性 2.禁止指令重排序
+    private volatile static Test test = null;
+
+    // 双重检测锁模式
+    public static Test getInstance() {
+        // 第一次判断，实例为空，就有获取锁的资格
+        if (test == null) {
+            // 锁住类，保证同一时间只能有一条线程进行操作
+            synchronized (Test.class) {
+                if (test == null) {
+                   test = new Test();
+                }
+            }
+        }
+        return test;
+    }
+}
+```
 
 ## 枚举
 枚举是一种特殊的类，通常配合switch使用
@@ -720,7 +760,7 @@ for (Season s : Season.values()) {
 ```
 
 ## 接口
-接口是一种约定，继承接口后必须调用接口方法
+接口是一种约定，继承接口后必须重写接口的方法
 
 ## 对象类型转换
 用来代表类的对象的变量叫做引用
