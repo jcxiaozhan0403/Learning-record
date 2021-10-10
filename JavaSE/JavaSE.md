@@ -60,6 +60,8 @@ JVM(Java虚拟机，负责编译)
 包含关系
 JDK>JRE>JVM
 
+<img src="./JDK、JRE、JVM.jpg">
+
 ## 注释
 ```JAVA
 //文档注释

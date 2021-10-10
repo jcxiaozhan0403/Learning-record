@@ -183,7 +183,7 @@ selext * from 表1,表2
 select * from 表1 inner join 表2 on 关联条件
 
 隐式内连接
-select * from 表1，,表2 where 关联条件
+select * from 表1,表2 where 关联条件
 ```
 
 3. 外连接 outer join(outer可省略)
