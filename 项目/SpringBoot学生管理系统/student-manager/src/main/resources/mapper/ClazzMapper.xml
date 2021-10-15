@@ -32,6 +32,10 @@
     </delete>
 
     <update id="updateClazz">
-        update clazz set grade=#{grade}, clazz=#{clazz}, headTeacher=#{headTeacher}, totalStudent=#{totalStudent} where id=#{id}
+        update clazz set grade=#{grade}, clazz=#{clazz}, headTeacher=#{headTeacher}, totalStudent=#{totalStudent}, currentTotalStudent=#{currentTotalStudent} where id=#{id}
     </update>
+
+    <select id="findClazz" resultMap="BaseResultMap">
+        select * from clazz where clazz=#{clazz}
+    </select>
 </mapper>

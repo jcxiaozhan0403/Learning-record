@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+/**
+ * @author John.Cena
+ * @date 2021/10/15 11:35
+ * @Description: 用户控制器
+ */
 @CrossOrigin
 @RestController
 @RequestMapping("/user")
@@ -20,6 +25,12 @@ public class UserController {
     @Autowired
     User user;
 
+    /**
+     *
+     * @param loginBody
+     * @return
+     * 登录验证
+     */
     @PostMapping("/login")
     public ResultData login(@RequestBody LoginBody loginBody) {
         boolean validate = userServiceImpl.validate(loginBody.getUsername(),loginBody.getPassword());
@@ -33,7 +44,12 @@ public class UserController {
         }
     }
 
-
+    /**
+     *
+     * @param token
+     * @return
+     * 获取用户信息
+     */
     @GetMapping("info")
     public ResultData getInfo(@RequestParam String token) {
         user = userServiceImpl.selectUserByToken(token);
@@ -41,6 +57,11 @@ public class UserController {
     }
 
 
+    /**
+     *
+     * @return
+     * 注销
+     */
     @PostMapping("logout")
     @ResponseBody
     public ResultData logout() {
@@ -48,12 +69,24 @@ public class UserController {
         return ResultData.ok();
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     * 更新用户信息
+     */
     @PostMapping("/info/update")
     public ResultData updateUserInfo(@RequestBody User user) {
         userServiceImpl.updateUserInfo(user);
         return ResultData.ok();
     }
 
+    /**
+     *
+     * @param jsonObject
+     * @return
+     * 更新密码
+     */
     @PostMapping("/info/updatePassword")
     public ResultData updatePassword(@RequestBody JSONObject jsonObject) {
         return userServiceImpl.updatePassword(jsonObject);

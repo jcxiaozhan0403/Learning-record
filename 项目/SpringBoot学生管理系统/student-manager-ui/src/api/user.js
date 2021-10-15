@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 
+// 登录验证
 export function login(data) {
   return request({
     url: '/user/login',
@@ -8,6 +9,7 @@ export function login(data) {
   })
 }
 
+// 获取用户信息
 export function getInfo(token) {
   return request({
     url: '/user/info',
@@ -16,6 +18,7 @@ export function getInfo(token) {
   })
 }
 
+// 注销
 export function logout() {
   return request({
     url: '/user/logout',
@@ -23,6 +26,7 @@ export function logout() {
   })
 }
 
+// 更新用户信息
 export function updateUserInfo(data) {
   return request({
     url: '/user/info/update',
@@ -31,17 +35,10 @@ export function updateUserInfo(data) {
   })
 }
 
+// 更新密码
 export function updateUserPassword(data) {
   return request({
     url: '/user/info/updatePassword',
-    method: 'post',
-    data
-  })
-}
-
-export function upload(data) {
-  return request({
-    url: '/avatar/upload',
     method: 'post',
     data
   })

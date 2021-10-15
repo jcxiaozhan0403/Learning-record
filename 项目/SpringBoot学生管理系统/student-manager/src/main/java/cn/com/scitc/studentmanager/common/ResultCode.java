@@ -1,16 +1,14 @@
 package cn.com.scitc.studentmanager.common;
 
 /**
- *
- * 统一状态码
- *
+ * @author John.Cena
+ * @date 2021/10/15 11:35
+ * @Description: 统一返回的状态码
  */
 public interface ResultCode {
+    // 成功
+    Integer SUCCESS = 20000;
 
-    /**成功*/
-    public static Integer SUCCESS = 20000;
-    /**失败*/
-    public static Integer ERROR = 20001;
-    /**未授权*/
-    public static Integer UNAUTHORIZED = 401;
+    // 失败
+    Integer ERROR = 20001;
 }

@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-@MapperScan("com.example.mapper")
+@MapperScan("cn.com.scitc.student.studentmanager.mapper")
 @SpringBootApplication
 public class StudentManagerApplication {
 

@@ -10,7 +10,7 @@
     </el-input>
 
     <el-table
-        :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
+        :data="tableData"
         border
         style="margin-top: 20px; width:100%;">
         <el-table-column

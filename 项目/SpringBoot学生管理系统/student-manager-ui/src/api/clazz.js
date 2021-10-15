@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 
+// 班级列表
 export function listClazz(){
   return request({
     url: '/clazz/list',
@@ -7,7 +8,7 @@ export function listClazz(){
   })
 }
 
-
+// 更新班级
 export function updateClazz(data){
   return request({
     url: '/clazz/update',
@@ -16,7 +17,7 @@ export function updateClazz(data){
   })
 }
 
-
+// 删除班级
 export function deleteClazz(id){
   return request({
     url: '/clazz/delete/' + id,
@@ -24,7 +25,7 @@ export function deleteClazz(id){
   })
 }
 
-
+// 添加班级
 export function addClazz(data){
   return request({
     url: '/clazz/add/',
@@ -33,6 +34,7 @@ export function addClazz(data){
   })
 }
 
+// 年级列表
 export function getGrades(){
   return request({
     url: '/clazz/grades',
@@ -40,6 +42,7 @@ export function getGrades(){
   })
 }
 
+// 根据年级获取班级
 export function getClazzs(grade){
   return request({
     url: '/clazz/clazzs?grade=' + grade,

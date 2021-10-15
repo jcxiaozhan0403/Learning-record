@@ -1859,6 +1859,8 @@ private int size;
 // 存放元素的数组
 transient Object[] elementData; 
 ```
+
+
 ```java
 // 构造方法，将空数组赋值给存放元素的数组
 public ArrayList() {
@@ -4045,10 +4047,10 @@ Class.forName("com.mysql.cj.jdbc.Driver"); //Mysql 8.0
 ```java
 //Sqlserver
 String url = "jdbc:sqlserver://localhost:1433;databaseName=soft1901"; //SqlServer
-String url = "jdbc:mysql://localhost:3306/student?useSSL=false&serverTimezone=UTC;"; //Mysql 8.0
+String url = "jdbc:mysql://localhost:3306/student?useSSL=false&userUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8"; //Mysql
 conn = DriverManager.getConnection(url,"sa","lishuang001219");
 
-//Mysql 5.0
+//Mysql
 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/","sa", "lishuang001219");
 ```
 4. 创建关闭函数

@@ -9,30 +9,33 @@ import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author John.Cena
+ * @date 2021/10/15 11:35
+ * @Description: 用户服务实现类
+ */
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
-
     @Autowired
     User user;
 
-
-    // 根据token查询用户信息，用于登录
     @Override
     public User selectUserByToken(String token) {
         return userMapper.selectUserByToken(token);
     }
 
-//    @Override
-//    public String findPassWordByUsername(String username, String password) {
-//        return null;
-//    }
-
-    // 验证登录
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     * 登录验证
+     */
     public boolean validate(String username,String password) {
         try {
-            String passwordInDB = userMapper.findPassWordByUsername(username,password);
+            String passwordInDB = userMapper.findPassWordByUsername(username);
             if (password.equals(passwordInDB)) {
                 return true;
             }else {
@@ -43,32 +46,27 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    // 验证通过更新token
     @Override
     public void createToken(String token,int user_id) {
         userMapper.createToken(token,user_id);
     }
 
-    // 根据用户名查询id
     @Override
     public int findIdByUsername(String username) {
         int id = userMapper.findIdByUsername(username);
         return id;
     }
 
-    // 清空token表
     @Override
     public void cleanToken() {
         userMapper.cleanToken();
     }
 
-    // 更新用户信息
     @Override
     public void updateUserInfo(User user) {
         userMapper.updateUserInfo(user);
     }
 
-    // 修改密码
     @Override
     public ResultData updatePassword(JSONObject jsonObject) {
         int id = jsonObject.getIntValue("id");

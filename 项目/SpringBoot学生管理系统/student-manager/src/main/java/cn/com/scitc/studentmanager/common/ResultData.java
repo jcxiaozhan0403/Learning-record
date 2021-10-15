@@ -4,11 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
- *
- * 统一返回结果
- *
- *
+ * @author John.Cena
+ * @date 2021/10/15 11:35
+ * @Description: 统一返回结果
+ * 状态、状态码、消息
  */
 public class ResultData {
 
@@ -53,8 +52,9 @@ public class ResultData {
     }
 
     /**
-     * 返回静态成功方法
-     * @return
+     *
+     * @return ResultData
+     * 返回成功
      */
     public static ResultData ok() {
         ResultData result = new ResultData();
@@ -65,10 +65,11 @@ public class ResultData {
     }
 
     /**
-     * 返回成功方法
+     *
      * @param code
      * @param message
      * @return
+     * 返回成功
      */
     public static ResultData ok(Integer code, String message) {
         ResultData result = new ResultData();
@@ -79,8 +80,9 @@ public class ResultData {
     }
 
     /**
-     * 返回静态失败方法
+     *
      * @return
+     * 返回失败
      */
     public static ResultData error() {
         ResultData result = new ResultData();
@@ -91,10 +93,11 @@ public class ResultData {
     }
 
     /**
-     * 返回失败方法
+     *
      * @param code
      * @param message
      * @return
+     * 返回失败
      */
     public static ResultData error(Integer code, String message) {
         ResultData result = new ResultData();

@@ -1,6 +1,7 @@
 server:
   port: 8080
 
+# 数据库配置
 spring:
   datasource:
     username: root
@@ -8,6 +9,7 @@ spring:
     url: jdbc:mysql://localhost:3306/student-manager?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.jdbc.Driver
 
+# mybatis配置
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: cn.com.scitc.studentmanager.pojo

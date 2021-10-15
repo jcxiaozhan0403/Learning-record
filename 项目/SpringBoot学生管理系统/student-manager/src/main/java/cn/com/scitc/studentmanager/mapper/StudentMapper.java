@@ -5,23 +5,62 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+/**
+ * @author John.Cena
+ * @date 2021/10/15 11:35
+ * @Description: 学生模块
+ */
 @Mapper
 public interface StudentMapper {
-    // 学生列表
+    /**
+     *
+     * @return
+     * 学生列表
+     */
     List<Student> listStudent();
 
-    // 添加学生
+    /**
+     *
+     * @param student
+     * 添加学生
+     */
     void addStudent(Student student);
 
-    // 删除学生
+    /**
+     *
+     * @param id
+     * 删除学生
+     */
     void deleteStudent(Integer id);
 
-    // 修改学生
+    /**
+     *
+     * @param student
+     * 修改学生
+     */
     void updateStudent(Student student);
 
-    //根据学号模糊查询学生信息
+    /**
+     *
+     * @param num
+     * @return
+     * 根据学号模糊查询学生信息
+     */
     List<Student> findByNumContaining(String num);
 
-    //根据姓名模糊查询学生信息
+    /**
+     *
+     * @param name
+     * @return
+     * 根据姓名模糊查询学生信息
+     */
     List<Student> findByNameContaining(String name);
+
+    /**
+     *
+     * @param id
+     * @return
+     * 根据id查询学生
+     */
+    Student findById(Integer id);
 }

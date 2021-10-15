@@ -1,11 +1,10 @@
 package cn.com.scitc.studentmanager.vo;
 
 /**
- * @ClassName LoginBody
- * @Description TODO
- * @Author liucaijing
- * @Date 2020/10/27 21:31
- * @Version 1.0
+ * @author John.Cena
+ * @date 2021/10/15 11:35
+ * @Description: 前端实体
+ * 用户名、密码
  */
 public class LoginBody {
 

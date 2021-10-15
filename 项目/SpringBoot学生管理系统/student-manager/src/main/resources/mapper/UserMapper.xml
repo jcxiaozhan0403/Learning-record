@@ -31,7 +31,7 @@
     </delete>
 
     <update id="updateUserInfo">
-        update user set username=#{username}, name=#{name} where id=#{id}
+        update user set username=#{username}, name=#{name} , avatar=#{avatar} where id=#{id}
     </update>
 
     <select id="findById" resultType="cn.com.scitc.studentmanager.pojo.User">

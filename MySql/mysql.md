@@ -206,6 +206,7 @@ delete from 表名 [where 条件]
 --删除表中所有记录,不跟条件，将会逐条删除表数据
 delete from 表名
 ```
+
 ### DQL 查询语言
 测试数据
 ```sql
@@ -409,3 +410,78 @@ limit 0,2
 insert into student (`name`,`pwd`,`addres`) values('张三',md5('123456'),'北京')
 ```
 ### DCL 控制语言
+
+## 事务
+### ACID
+1. 原子性：要么都成功，要么都失败
+2. 一致性：保持业务数据前后一致
+3. 隔离性：多事务执行，相互之间隔离
+4. 持久性：事务一旦提交，不可逆，会持久到数据库中
+
+### 事务隔离中一些可能存在的问题
+1. 脏读：事务A读取到了事务B未提交的数据
+2. 不可重复读：事务A读取到了事务B修改后的数据
+3. 幻读；事务A读取到了事务B提交的数据
+
+### 事务操作
+1. mysql默认开启事务自动提交，先手动关闭提交
+```sql
+-- 关闭
+set autocommit = 0
+
+--开启
+set autocommit = 1
+```
+2. 开启事务
+```sql
+start transaction 
+```
+3. 事务提交
+```sql
+commit
+```
+4. 事务回滚
+```sql
+rollback
+```
+
+## 索引
+> 概念：MySQL官方对索引的定义为：索引（Index）是帮助MySQL高效获取数据的数据结构。提取句子主干，就可以得到索引的本质：索引是数据结构。
+
+### 索引的分类
+- 主键索引(primary key)：唯一的标识，主键不可重复，只能有一个列作为主键
+- 唯一索引(unique key)：避免列中重复的行出现，唯一索引可以重复，多个列都可以标识唯一索引
+- 常规索引(index/key)：默认的，index，key关键字来设置
+- 全文索引(fulltext)：在特定的数据库引擎下才有，MyISAM，快速定位数据
+
+主键索引只有一个，唯一索引可以存在多个
+```sql
+--索引的使用
+--1、在创建表的时候给字段增加索引-- 2、创建完毕后，增加索引
+--显示所有的索引信息 
+
+showindex from student
+
+--增加一个全文索引〔索引名）列名
+alter table school.student add fulltext index `studentname` ('studentname');
+
+-- explain分析sql执行的状况
+explain select * from student; --非全文索引
+
+explain select * from student where match(studentname) against('刘');
+```
+
+### 索引原则
+- 索引不是越多越好
+- 数据量少的情况先不考虑索引
+- 不要给经常变动的数据加索引
+- 给经常查询的字段添加索引
+
+[MySQL索引背后的数据结构及算法原理](http://blog.codinglabs.org/articles/theory-of-mysql-index.html)
+
+## 三大范式
+第一范式（1NF）是指关系中的所有属性都是不可再分的数据项，同一列中不能有多个值（消除属性多值）
+
+第二范式（2NF）数据库表满足第一范式，并且每一列都依赖主键，联合主键时每一列都完全依赖于主键（消除部分依赖）
+
+第三范式（3NF）如果一个关系满足2NF，并且除了主键以外的其他列都不传递依赖于主键列，则满足第三范式（消除传递依赖）

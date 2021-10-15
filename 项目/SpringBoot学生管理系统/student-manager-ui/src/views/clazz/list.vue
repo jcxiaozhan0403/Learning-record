@@ -98,6 +98,9 @@
         <el-form-item label="限定人数" :label-width="formLabelWidth">
           <el-input v-model="form.totalStudent" autocomplete="off"></el-input>
         </el-form-item>
+        <el-form-item label="当前人数" :label-width="formLabelWidth">
+          <el-input v-model="form.currentTotalStudent" autocomplete="off"></el-input>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -125,7 +128,8 @@ export default {
         grade: '',
         clazz: '',
         headTeacher: '',
-        totalStudent: ''
+        totalStudent: '',
+        currentTotalStudent: ''
       }
     }
   },
@@ -153,11 +157,13 @@ export default {
         var clazz = row.clazz;
         var headTeacher = row.headTeacher
         var totalStudent = row.totalStudent
+        var currentTotalStudent = row.currentTotalStudent
         this.form.id = id;
         this.form.grade = grade;
         this.form.clazz = clazz;
         this.form.headTeacher = headTeacher;
         this.form.totalStudent = totalStudent;
+        this.form.currentTotalStudent = currentTotalStudent;
       },
       handleDelete(index, row) {
         var id = row.id;
@@ -189,11 +195,13 @@ export default {
         var clazz = this.form.clazz;
         var headTeacher = this.form.headTeacher
         var totalStudent = this.form.totalStudent
+        var currentTotalStudent = this.form.currentTotalStudent
         if(id===null || id === ""
           || grade===null || grade === ""
           || clazz===null || clazz === ""
           || headTeacher===null || headTeacher === ""
           || totalStudent===null || totalStudent === ""
+          || currentTotalStudent===null || currentTotalStudent === ""
         ){
           this.$message({
               message: '请填写完成的信息',
@@ -206,7 +214,8 @@ export default {
             grade:grade,
             clazz:clazz,
             headTeacher:headTeacher,
-            totalStudent:totalStudent
+            totalStudent:totalStudent,
+            currentTotalStudent:currentTotalStudent
           }
           updateClazz(data).then(
             response => {
@@ -215,6 +224,7 @@ export default {
               this.tableData[i].clazz = clazz;
               this.tableData[i].headTeacher = headTeacher;
               this.tableData[i].totalStudent = totalStudent;
+              this.tableData[i].currentTotalStudent = currentTotalStudent;
               this.dialogFormVisible = false;
               this.$message({
                   message: response.message,

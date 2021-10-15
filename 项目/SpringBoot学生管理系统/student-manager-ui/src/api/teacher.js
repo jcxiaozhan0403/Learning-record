@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 
+// 教师列表
 export function listTeacher(){
   return request({
     url: '/teacher/list',
@@ -7,7 +8,7 @@ export function listTeacher(){
   })
 }
 
-
+// 添加教师
 export function addTeacher(data){
   return request({
     url: '/teacher/add',
@@ -16,7 +17,7 @@ export function addTeacher(data){
   })
 }
 
-
+// 更新教师
 export function updateTeacher(data){
   return request({
     url: '/teacher/update',
@@ -25,7 +26,7 @@ export function updateTeacher(data){
   })
 }
 
-
+// 删除教师
 export function deleteTeacher(id){
   return request({
     url: '/teacher/delete/' + id,
@@ -33,6 +34,7 @@ export function deleteTeacher(id){
   })
 }
 
+// 搜索教师
 export function searchTeacher(data){
   return request({
     url: '/teacher/search',

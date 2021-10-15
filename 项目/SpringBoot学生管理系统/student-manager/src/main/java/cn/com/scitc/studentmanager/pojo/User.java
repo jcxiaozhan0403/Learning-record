@@ -2,6 +2,12 @@ package cn.com.scitc.studentmanager.pojo;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * @author John.Cena
+ * @date 2021/10/15 11:35
+ * @Description: 学生实体
+ * 编号、用户名、密码、姓名、头像
+ */
 @Component
 public class User {
     private Integer id;

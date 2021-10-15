@@ -1,12 +1,11 @@
 package cn.com.scitc.studentmanager.pojo;
 
 import org.springframework.stereotype.Component;
+
 /**
- * @ Author     ：Negen
- * @ Date       ：Created in 15:34 2020/3/6
- * @ Description：班级实体
- * @ Modified By：
- * @Version: 1.0
+ * @author John.Cena
+ * @date 2021/10/15 11:35
+ * @Description: 班级实体
  * 年级、班级、班主任、总人数
  */
 @Component

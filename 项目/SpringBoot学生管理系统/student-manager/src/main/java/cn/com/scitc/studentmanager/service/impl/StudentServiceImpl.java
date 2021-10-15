@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author John.Cena
+ * @date 2021/10/15 11:35
+ * @Description: 学生服务实现类
+ */
 @Service
 public class StudentServiceImpl implements StudentService {
     @Autowired
@@ -43,4 +48,8 @@ public class StudentServiceImpl implements StudentService {
         return studentMapper.findByNameContaining(name);
     }
 
+    @Override
+    public Student findById(Integer id) {
+        return studentMapper.findById(id);
+    }
 }

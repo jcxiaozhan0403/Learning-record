@@ -36,4 +36,8 @@
     <select id="findByNameContaining" resultMap="BaseResultMap">
         select * from student where name = #{name}
     </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        select * from student where id = #{id}
+    </select>
 </mapper>

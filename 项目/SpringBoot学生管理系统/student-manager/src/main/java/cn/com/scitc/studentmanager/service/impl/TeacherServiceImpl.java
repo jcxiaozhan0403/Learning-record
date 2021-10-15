@@ -1,7 +1,6 @@
 package cn.com.scitc.studentmanager.service.impl;
 
 import cn.com.scitc.studentmanager.mapper.TeacherMapper;
-import cn.com.scitc.studentmanager.pojo.Student;
 import cn.com.scitc.studentmanager.pojo.Teacher;
 import cn.com.scitc.studentmanager.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author John.Cena
+ * @date 2021/10/15 11:35
+ * @Description: 教师服务实现类
+ */
 @Service
 public class TeacherServiceImpl implements TeacherService {
     @Autowired
