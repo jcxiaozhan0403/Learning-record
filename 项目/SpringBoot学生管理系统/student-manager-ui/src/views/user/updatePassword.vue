@@ -69,15 +69,5 @@ import {updateUserPassword} from '@/api/user'
         this.$router.push(`/login?redirect=${this.$route.fullPath}`)
       }
     },
-    // watch:{
-    //   grade: {
-    //     handler: function(newVal, oldVal){
-    //       if(newVal != oldVal){
-    //         this.classVisible = true
-    //       }
-    //     },
-    //     deep: true
-    //   }
-    // }
   }
 </script>

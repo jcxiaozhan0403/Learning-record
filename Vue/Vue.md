@@ -678,5 +678,5 @@ Vue.use(ElementUI)
 ```
 npm run build
 ```
-2. 打包会的到一个dist文件夹，将dist文件内的东西(一个文件夹+一个index.html文件)赋值到Springboot项目下的resources/static中，完成整合
+2. 打包会的到一个dist文件夹，将dist文件内的东西(一个文件夹+一个index.html文件)复制到Springboot项目下的resources/static中，完成整合
 

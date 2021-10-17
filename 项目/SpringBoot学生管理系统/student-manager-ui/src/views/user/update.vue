@@ -68,7 +68,6 @@ export default {
         }
         
       )
-      console.log(data);
     },
     onCancel() {
       this.$message({

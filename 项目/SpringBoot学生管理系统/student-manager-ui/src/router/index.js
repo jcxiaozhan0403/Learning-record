@@ -58,7 +58,7 @@ export const constantRoutes = [
   {
     path: '/student',
     component: Layout,
-    redirect: '/student/table',
+    redirect: '/student/list',
     name: 'student',
     meta: { title: '学生信息管理', icon: 'student' },
     children: [
@@ -86,7 +86,7 @@ export const constantRoutes = [
   {
     path: '/teacher',
     component: Layout,
-    redirect: '/teacher/manage',
+    redirect: '/teacher/list',
     name: 'teacher',
     meta: { title: '教师信息管理', icon: 'teacher' },
     children: [
@@ -113,7 +113,7 @@ export const constantRoutes = [
   {
     path: '/clazz',
     component: Layout,
-    redirect: '/class/table2',
+    redirect: '/class/list',
     name: 'clazz',
     meta: { title: '班级信息管理', icon: 'clazz' },
     children: [
@@ -132,20 +132,20 @@ export const constantRoutes = [
     ]
   },
   {
-      path: '/form',
+      path: '/userinfo',
       component: Layout,
-      redirect: '/user/',
+      redirect: '/userinfo/update',
       name: 'user',
       meta: { title: '个人中心', icon: 'user' },
       children: [
         {
-          path: 'index',
+          path: 'update',
           name: 'userInfo',
           component: () => import('@/views/user/update'),
           meta: { title: '个人信息', icon: 'setting' }
         },
         {
-          path: 'add',
+          path: 'updatepassword',
           name: 'UpdatePassword',
           component: () => import('@/views/user/updatePassword'),
           meta: { title: '修改密码', icon: 'setting' }
