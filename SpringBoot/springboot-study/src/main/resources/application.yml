@@ -1,0 +1,13 @@
+user1:
+  name: 李爽
+  age: 18
+  birthday: 2001/4/3
+  likes:
+    - 乒乓
+    - 唱歌
+    - 编程
+  maps: {k1: v1,k2: v2}
+  lists:
+    - list1
+    - list2
+    - list3
