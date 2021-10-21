@@ -18,7 +18,7 @@ Ajax即Asynchronous Javascript And XML（异步JavaScript和XML）在 2005年被
             alert(data);
           },
           error: function () {
-            alert("失败");
+           	 alert("失败");
           }
         })
       }

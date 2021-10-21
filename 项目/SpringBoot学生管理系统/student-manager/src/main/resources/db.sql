@@ -16,28 +16,28 @@ create table token (
 create table student (
     id int(9) primary key  not null auto_increment,     #编号
     name varchar(20) not null,                          #姓名
-    age int(3),                                         #年龄
-    sex int(1),                                         #性别 1：男 0：女
-    num varchar(50) unique,                             #学号
-    grade varchar(10),                                  #年级
-    clazz varchar(10),                                  #班级
-    address varchar(50)                                 #家庭住址
+    age int(3) not null,                                #年龄
+    sex int(1) not null,                                #性别 1：男 0：女
+    num varchar(50) unique not null,                    #学号
+    grade varchar(10) not null,                         #年级
+    clazz varchar(10) not null,                         #班级
+    address varchar(50) not null                        #家庭住址
 );
 
 create table clazz (
     id int(9) primary key  not null auto_increment,     #编号
     grade varchar(20) not null,                         #年级
-    clazz varchar(20),                                  #班级
-    headTeacher varchar(20),                            #班主任
-    totalStudent int(10),                               #人数限定
-    currentTotalStudent int(10)                         #当前人数
+    clazz varchar(20) not null,                         #班级
+    headTeacher varchar(20) not null,                   #班主任
+    totalStudent int(10) not null,                      #人数限定
+    currentTotalStudent int(10) not null                #当前人数
 );
 
 create table teacher (
     id int(9) primary key  not null auto_increment,     #编号
     name varchar(20) not null,                          #姓名
-    age int(3),                                         #年龄
-    sex int(1),                                         #性别 1：男 0：女
-    num varchar(50) unique,                             #工号
-    course varchar(20)                                  #科目
+    age int(3) not null,                                #年龄
+    sex int(1) not null,                                #性别 1：男 0：女
+    num varchar(50) unique not null,                    #工号
+    course varchar(20) not null                         #科目
 );
