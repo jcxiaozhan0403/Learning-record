@@ -332,18 +332,20 @@ service层命名规则：
 3. 创建类，调用Servlet接口，导入包和方法
 4. 配置web.xml文件，添加如下配置
 ```xml
+<!-- 配置servlet类 -->
 <servlet>
     <!-- 别名，任意取 -->
     <servlet-name>my</servlet-name>
     <!-- 类路径 -->
     <servlet-class>com.test.servlet.Servlet01</servlet-class>
-    <!-- 启动优先级 -->
+    <!-- 启动优先级，一般不用 -->
     <load-on-startup>0</load-on-startup>
 </servlet>
 
+<!-- 配置servlet映射 -->
 <servlet-mapping>
     <servlet-name>my</servlet-name>
-    <!-- 访问路径，任意取 -->
+    <!-- 访问路径 -->
     <url-pattern>/myservlet</url-pattern>
 </servlet-mapping>
 ```
@@ -398,6 +400,43 @@ Servlet的生命周期
 3. service 服务 多次
 4. destory 销毁
 
+## 文件下载
+```java
+@WebServlet("/downloadServlet")
+public class DownloadServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //获得请求文件名
+        String filename = request.getParameter("filename");
+        System.out.println(filename);
+
+        //设置文件MIME类型
+        response.setContentType(getServletContext().getMimeType(filename));
+        //设置Content-Disposition
+        response.setHeader("Content-Disposition", "attachment;filename="+filename);
+        //读取目标文件，通过response将目标文件写到客户端
+        //获取目标文件的绝对路径
+        String fullFileName = getServletContext().getRealPath("/download/" + filename);
+        //System.out.println(fullFileName);
+        //读取文件
+        InputStream in = new FileInputStream(fullFileName);
+        OutputStream out = response.getOutputStream();
+        byte[] buffer = new byte[1024];
+        int len;
+        //循环取出流中的数据
+        while((len = in.read(buffer)) != -1){
+            out.write(buffer,0,len);
+        }
+
+        in.close();
+        out.close();
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        this.doPost(request, response);
+    }
+}
+```
+
 ## Cookie
 1. 创建Cookie
 ```java
@@ -437,26 +476,35 @@ for(Cookie cookie : cookies){
 ```java
 // 通过request对象获取Session对象，Session对象是客户端第一次请求服务端自动创建的
 HttpSession session = request.getSession();
-// SessionID值会存放在Cookie里面，会话关闭后失效
+// SessionID值是打开客户端时就自动创建的，会存放在Cookie里面，会话关闭后自动销毁
 System.out.println(session.getId());
 ```
-session操作数据
+
+### 操作session
 ```java
 // 在同一次会话的任意位置，使用到的session是同一个
 HttpSession session = request.getSession();
-// 存放数据
+// 设置session
 session.setAttribute("键","值")
-// 获取数据
+// 获取session值
 session.getAttribute("键")
-// 移除数据
+// 移除session
 session.removeAttribute("键")
 ```
-session生命周期
-1. 浏览器关闭自动销毁
+
+### session生命周期
+1. 浏览器关闭时自动销毁
 2. session超出时效，自动销毁
 ```java
-// 设置Session时效,单位秒
+// 设置session时效，单位秒，设置为负数永不失效
 session.setMaxInactiveInterval(10)
+```
+```xml
+<!--xml方式设置Session默认的失效时间-->
+<session-config>
+  <!--15分钟后Session自动失效，以分钟为单位-->
+  <session-timeout>15</session-timeout>
+</session-config>
 ```
 3. 手动销毁
 ```java
@@ -464,7 +512,7 @@ session.invalidate();
 ```
 
 ## ServletContext
-ServletContext是一个全局对象，项目启动时自动创建，项目关闭时才销毁
+ServletContext是一个全局对象，项目启动时自动创建，项目关闭时才销毁，可应通过它来实现数据共享，但是不建议使用，因为获取多个ServletContext会占用服务器资源，我们一般使用session
 获取ServletContext对象的三种方式
 ```java
 // 通过HttpServlet获取
@@ -541,8 +589,10 @@ if( str != null ){
 ```
 
 ## JSP
-JSP是服务端页面，简化了servlet回传页面的功能
+- JSP是服务端页面，简化了servlet回传页面的功能
+- JSP本质上就是一个Servlet，在Tomcat服务器的工作区我们可以看到，jsp页面在运行时都被转换为了java文件，进行执行，查看此文件我们可以发现，它将我们所写的所有页面元素转换为了Java中的写法
 
+### jsp基础语法
 注解
 ```jsp
 <!-- 这是html注解，会解析到DOM树中 -->
@@ -551,65 +601,98 @@ JSP是服务端页面，简化了servlet回传页面的功能
   //这是java注释，会被解析到编译出的java源文件中
 %>
 
-<%--  这是jsp隐藏注释，只能在jsp中看见，不会被解析 --%>
+<%--  这是jsp隐藏注释，只能在jsp中看见，编译时不会被解析 --%>
 ```
-
-插入成员变量
+jsp表达式
 ```jsp
+<%-- jsp表达式
+    作用：用来将程雪输出，写到客户端
+    <%= 变量名/表达式%>
+--%>
+<%= new java.util.Date()%>
+```
+jsp脚本片段
+```jsp
+<%-- jsp脚本片段 --%>
 <%
-  int a = 10;
+    int sum=0;
+    for (int i = 0; i < 10; i++) {
+        sum+=i;
+    }
+    out.println("<h1>Sum="+sum+"</h1>");
 %>
-```
-
-插入成员变量和成员方法
-```jsp
-<%! 
-  private int a = 10;
-  public void demo(){
-
-  }
-%>
-```
-
-表达式块
-```jsp
+<%-- 嵌入正常的标签 --%>
 <%
-  int count = 10;
+    int x=10;
+    out.print(x);
 %>
-<!-- 结果会显示到前端页面上 -->
-<%=count %>
+<p>这是一个jsp文档</p>
+<%
+    int y=20;
+    out.print(20);
+%>
+<%-- ------------------------------------ --%>
+<%-- 在代码中嵌入html元素 --%>
+<%
+    for (int i = 0; i < 5; i++) {
+%>
+<h1>HelloWorld,<%= new java.util.Date()%></h1>
+<%
+    }
+%>
+```
+```jsp
+<%-- 在代码中嵌入html元素 --%>
+<%
+    for (int i = 0; i < 5; i++) {
+%>
+<h1>HelloWorld,<%= new java.util.Date()%></h1>
+<%
+    }
+%>
+```
+
+### jsp指令
+JSP指令元素的分类
+- page指令：指示JSP的页面设置属性和行为
+- include指令：指示JSP包含哪些其他页面
+- taglib指令：指示JSP页面包含哪些标签库
+
+xml配置错误页
+```xml
+<error-page>
+    <error-code>404</error-code>
+    <location>/error/404.jsp</location>
+</error-page>
+<error-page>
+    <error-code>500</error-code>
+    <location>/error/500.jsp</location>
+</error-page>
 ```
 
 指令语法
 ```jsp
 <%@ 指令名 属性名=属性值 属性名=属性值 %>
 ```
-
-JSP指令元素的分类
-- page指令：指示JSP的页面设置属性和行为
-- include指令：指示JSP包含哪些其他页面
-- taglib指令：指示JSP页面包含哪些标签库
-
 page指令的常用属性
 ```
 import属性：用于导入包或类
 contentType属性：标明JSP被浏览器解析和打开的时候采用的默认字符集
 pageEncoding属性：JSP文件及编译后的Servlet保存到硬盘上采用的字符集
 ```
-
-发生错误跳转至错误页面
 ```jsp
-<%@ page errorPage="/error.jsp" %>
-```
-
-错误页面打印错误信息
-```jsp
+<!-- 导入jar包 -->
+<%@ page import="java.util.Date" %>
+<!-- 指定错误页面 -->
+<%@ page errorPage="error/500.jsp" %>
+<!-- 显示的声明这是一个错误页面 -->
 <%@ page isErrorPage="true" %>
-<%=exception.getMessage() %>
+<!-- 页面编码格式 -->
+<%@ page pageEncoding="utf-8" %>
 ```
 
 include指令(静态联编)
-用于包含页面，实质是将第二个页面完整复制了一份到第一个页面，编译时两个页面编入同一个java文件中，所以是先复制，在编译的顺序
+用于包含页面，实质是将第二个页面完整复制了一份到第一个页面，编译时两个页面编入同一个java文件中，所以是先复制，在编译的顺序，如果两个文件中都使用了java代码，可能会存在变量冲突的问题
 ```jsp
 <!-- page1 -->
 befor
@@ -617,39 +700,398 @@ befor
 after
 ```
 
-两个jsp动作
-这两个动作都是用于指向指定页面的，forward是转向，include是包含
-- forward
-- include(动态联编)
-
-语法
-```jsp
-<jsp:动作名 属性名=属性值></jsp:动作名>
-或
-<jsp:动作名 属性名=属性值/>
-```
-
 静态联编和动态联编的区别
 - 静态联编编译出一个Java文件
 - 动态联编编译出多个Java文件
 
 静态联编和动态联编的应用场景
-- 在静态联编和动态联编都可用时，一般用静态联编
+- 在静态联编和动态联编都可用时，一般用动态联编
 - 需要共享变量时，使用静态联编
 - 存在同名变量需要区分时，用动态联编
 
-## JSTL
-JSTL是JSP标签库
+### 9大内置对象
+- PageContext
+- Request
+- Response
+- Session
+- Application
+- config
+- out
+- page
+- exception
 
-## JSP与Servlet传参
-设置
-```java
-String name = "李爽";
-req.setAttribute("name",name);
-```
-获取
+四种作用域
 ```jsp
-<c:out value="${name}"></c:out>
-<% out.print(request.getAttribute("name")); %>
-<%=request.getAttribute("name")%>
+<%
+  pageContext.setAttribute("name1","val1"); // 仅在页面生效
+  request.setAttribute("name2","val2"); // 在一次请求中生效
+  session.setAttribute("name3","val3"); // 在一次会话中生效(打开浏览器到关闭浏览器)
+  application.setAttribute("name4","val4"); //在服务器中生效，从服务器打开到关闭
+%>
+```
+
+## JSP标签、JSTL标签、EL表达式
+### JSP标签
+```jsp
+<!-- forward是转发 -->
+<jsp:forward page="/page2.jsp" />
+<!-- include是包含，是动态联编 -->
+<jsp:include page="/page2.jsp"/>
+```
+
+### JSTL标签
+引入标签核心库
+```jsp
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+```
+```jsp
+<!-- 用于在JSP中显示数据，就像<%= ... > -->
+<c:out>
+<!-- 用于保存数据 -->
+<c:set>
+<!-- 用于删除数据 -->
+<c:remove>
+<!-- 与我们在一般程序中用的if一样 -->
+<c:if>
+<!-- 本身只当做<c:when>和<c:otherwise>的父标签 -->
+<c:choose>
+<!-- <c:choose>的子标签，用来判断条件是否成立 -->
+<c:when>
+<!-- <c:choose>的子标签，接在<c:when>标签后，当<c:when>标签判断为false时被执行 -->
+<c:otherwise>
+<!-- 基础迭代标签，接受多种集合类型 -->
+<c:forEach>    
+<!-- 使用可选的查询参数来创造一个URL -->
+<c:url>
+```
+c:if
+```jsp
+<%@ page contenttype="text/html;charset=utf-8" language="java" %>
+<%--引入jstl核心标签库，我们才能使用核心标签--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
+<title>title</title>
+</head>
+<body>
+<h4>if测试</h4>
+<hr>
+<form action="jstlcore1.jsp" method="get">
+<%--
+    el表达式获取表单中的数据：
+    ${param.参数名}
+--%>
+<input type="text" name="username" value="${param.username}">
+<input type="submit" value="登录">
+</form>
+<%--判断如果是管理员就登陆成功--%>
+<c:if test="${param.username=='admin'}" scope="page" var="isadmin">
+<c:out value="<h3>登录成功<h3>"/>
+</c:if>
+<c:out value="${isadmin}"/>
+</body>
+</html>
+```
+c:choose
+```jsp
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+<title>Title</title>
+</head>
+<body>
+<c:set var="score" value="50"/>
+<c:choose>
+<c:when test="${score>=60}">
+    <c:out value="成绩合格"/>
+</c:when>
+<c:otherwise>
+    <c:out value="需要补考"/>
+</c:otherwise>
+</c:choose>
+</body>
+</html>
+```
+c:forEach
+```jsp
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Arrays" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<%
+    ArrayList<String> array=new ArrayList<>();
+    array.add("h1");
+    array.add("h2");
+    array.add("h3");
+    array.add("h4");
+    request.setAttribute("list",array);
+%>
+<%--
+    hs 储存便遍历的数据
+    items 被遍历的的对象
+--%>
+<c:forEach var="hs" items="${list}">
+    <c:out value="${hs}"/><br>
+</c:forEach>
+<hr>
+<c:forEach var="hs" items="${list}" varStatus="">  
+</c:forEach>
+</body>
+</html>
+```
+
+## 过滤器
+在客户端与服务端中间加上一层，拦截请求，做出一些特殊处理，比如解决乱码问题
+```java
+public class CharecterFilter  implements Filter {
+    /**
+     * web服务器启动执行该方法
+     */
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        System.out.println("filter初始化了...");
+    }
+    /**
+     * 1. 过滤中的所有代码，在过滤特定请求的时候都会执行
+     * 2. 必须要让过滤器继续同行
+     * @param req
+     * @param resp
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+        req.setCharacterEncoding("utf-8");
+        resp.setCharacterEncoding("utf-8");
+        resp.setContentType("text/html;charset=utf-8");
+        System.out.println("filter执行前...");
+        chain.doFilter(req,resp); //放行，如果不写，程序会被拦截
+        System.out.println("filter执行后...");
+    }
+    //web服务器关闭，执行方法
+    @Override
+    public void destroy() {
+        System.out.println("filter销毁了...");
+    }
+}
+```
+在web.xml中配置
+```xml
+<filter>
+  <filter-name>CharecterFilter</filter-name>
+  <filter-class>com.bug.filter.CharecterFilter</filter-class>
+</filter>
+<filter-mapping>
+  <filter-name>CharecterFilter</filter-name>
+  <url-pattern>/servlet/*</url-pattern>
+</filter-mapping>
+```
+
+## 监听器
+监测网站在线人数（基于session）
+```java
+public class OnlineListen implements HttpSessionListener {
+    /**
+     * 监听session新创建时执行的方法
+     * @param se
+     */
+    @Override
+    public void sessionCreated(HttpSessionEvent se) {
+        ServletContext sc = se.getSession().getServletContext();
+        System.out.println("sessionId:" + se.getSession().getId());
+        Integer onlineCount = (Integer) sc.getAttribute("onlineCount");
+        if (onlineCount == null) {
+            onlineCount = 1;
+        } else {
+            onlineCount++;
+        }
+        sc.setAttribute("onlineCount",onlineCount);
+    }
+    /**
+     * 监听session销毁时执行方法
+     * @param se
+     */
+    @Override
+    public void sessionDestroyed(HttpSessionEvent se) {
+        ServletContext sc = se.getSession().getServletContext();
+        Integer onlineCount = (Integer) sc.getAttribute("onlineCount");
+        if (onlineCount == null) {
+            onlineCount = 0;
+        } else {
+            getSession().invalidate();
+            onlineCount--;
+        }
+        System.out.println("销毁session了--监听到");
+        sc.setAttribute("onlineCount",onlineCount);
+    }
+}
+```
+web.xml中配置
+```xml
+<!--监听器-->
+<listener>
+  <listener-class>com.bug.listener.OnlineListen</listener-class>
+</listener>
+```
+
+## 文件上传
+### 前端
+```jsp
+<!-- 文件上传必须为post请求-->
+<!-- 表单必须加上一个enctype="multipart/form-data"属性 -->
+<!-- 用type="file"的input进行文件上传 -->
+<form action="${pageContext.request.contextPath}/upload.do" method="post" enctype="multipart/form-data">
+    上传用户: <input type="text" name="username"><br/>
+    上传文件：<input type="file" name="file"><br/>
+    <input type="submit" value="提交">
+</form>
+```
+### 后端
+1. 引入依赖
+```xml
+<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+<dependency>
+    <groupId>commons-io</groupId>
+    <artifactId>commons-io</artifactId>
+    <version>2.11.0</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+<dependency>
+    <groupId>commons-fileupload</groupId>
+    <artifactId>commons-fileupload</artifactId>
+    <version>1.4</version>
+</dependency>
+```
+2. 文件处理servlet
+```java
+public class FileUpload extends HttpServlet {
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      //判断用户上传的文件是普通表单还是带文件的表单，如果是普通文件直接返回
+      if (!ServletFileUpload.isMultipartContent(request)) {
+          return;
+      }
+      //创建文件上传保存的路径，在WEB-INF路径下是安全的，用户无法直接访问上传文件
+      //小：上传文件
+      String uploadPath = this.getServletContext().getRealPath("/WEB-INF/upload");
+      System.out.println(uploadPath);
+      File uploadFile = new File(uploadPath);
+      if (!uploadFile.exists()){
+          uploadFile.mkdir();
+      }
+      //临时路径,如果文件好过了预期大小，就把他放到一个临时文件中，过几天自动删除，或者提醒用户转存为永久
+      //大：临时上传文件---qq
+      String tmpPath = this.getServletContext().getRealPath("WEB-INF/tmp");
+      File file = new File(tmpPath);
+      if (!file.exists()){
+          file.mkdir();
+      }
+      //处理上传的文件，一般通过流来获取，可以使用request.getInputStream(),原生态的文件上传流获取，十分麻烦
+      //建议使用 Apache的文件上传组件来实现，common-fileupload，它需要依赖于 commons-io组件；
+      //1、创建DiskFileItemFactory对象，处理文件上传路径或大小的限制
+      DiskFileItemFactory factory = getDiskFileItemFactory(uploadFile);
+      //2、获取ServletFileUpload
+      ServletFileUpload upload = getServletFileUpload(factory);
+      //3、处理上传的文件
+      try {
+          String msg = uploadParseRequest(upload,request,uploadPath);
+          //将数据发给前端
+          request.setAttribute("msg",msg);
+          request.getRequestDispatcher("msg.jsp").forward(request,response);
+      } catch (FileUploadException e) {
+          e.printStackTrace();
+      }
+  }
+  public static DiskFileItemFactory getDiskFileItemFactory(File file){
+      DiskFileItemFactory factory = new DiskFileItemFactory();
+      //通过这个工厂设置一个缓冲区，当上传的文件大于这个缓冲区的时候，将他放到临时文件中
+      factory.setSizeThreshold(1024*1024); //缓冲区大小为1M
+      factory.setRepository(file);//临时文件保存的目录，需要一个File
+      return factory;
+  }
+  public static ServletFileUpload getServletFileUpload(DiskFileItemFactory factory){
+      ServletFileUpload upload = new ServletFileUpload(factory);
+      //监听文件上传进度
+      upload.setProgressListener(new ProgressListener() {
+          @Override
+          //pBytesRead:已经读取到的文件大小
+          //pContentLength ： 文件大小
+          public void update(long pBytesRead, long pContentLength, int pItems) {
+              System.out.println("总大小："+pContentLength+"已上传"+pBytesRead);
+          }
+      });
+      //处理乱码问题
+      upload.setHeaderEncoding("utf-8");
+      //设置单个文件的最大值
+      upload.setFileSizeMax(1024*1024*10);
+      //设置总共能够上传文件的大小
+      upload.setSizeMax(1024 * 1024 * 10);
+      return upload;
+  }
+  public static String uploadParseRequest(ServletFileUpload upload, HttpServletRequest request, String uploadPath) throws FileUploadException, IOException {
+      String msg = "";
+      //把前端请求解析，封装成一个FileItem对象（表单中的输入项）
+      List<FileItem> fileItems = upload.parseRequest(request);
+      for (FileItem fileItem : fileItems) {
+          if (fileItem.isFormField()){
+              String name = fileItem.getFieldName();
+              String value = fileItem.getString("UTF-8");
+              System.out.println(name+":"+value);
+          }else {
+              //****************************处理文件****************************
+              //拿到文件名字
+              String uploadFileName = fileItem.getName();
+              System.out.println("上传的文件名："+uploadFileName);
+              if (uploadFileName.trim().equals("") || uploadFileName==null){
+                  continue;
+              }
+              //获得上传的文件名
+              String fileName = uploadFileName.substring(uploadFileName.lastIndexOf("/")+1);
+              //获得文件的后缀名
+              String fileExName = uploadFileName.substring(uploadFileName.lastIndexOf(".")+1);
+              /*
+              * 如果文件后缀名fileExName不是所需的直接return，不进行处理，告诉用户文件类型不对
+              * */
+              System.out.println("文件信息 [文件名："+fileName+"---文件类型"+fileExName+"]");
+              //可以使用UUID（唯一识别通用码）保证文件名唯一
+              String uuidPath = UUID.randomUUID().toString();
+              //****************************处理文件完毕****************************
+              //真实存在的路径
+              String realPath = uploadPath+"/"+uuidPath;
+              //给每个文件创建一个对应的文件夹
+              File realPathFile = new File(realPath);
+              if (!realPathFile.exists()){
+                  realPathFile.mkdir();
+              }
+              //****************************存放地址完毕*****************************
+              //获得文件上传的流
+              InputStream inputStream = fileItem.getInputStream();
+              //创建一个文件输出流
+              //realPath是真实的文件夹
+              FileOutputStream fos = new FileOutputStream(realPath + "/"+fileName);
+              //创建一个缓冲区
+              byte[] buffer = new byte[1024 * 1024];
+              //判断是否读取完毕
+              int len = 0;
+              while ((len=inputStream.read(buffer))>0){
+                  fos.write(buffer,0,len);
+              }
+              //关闭流
+              fos.close();
+              inputStream.close();
+              msg = "文件上传成功";
+              fileItem.delete();//上传成功，清除临时文件
+              //*************************文件传输完毕**************************
+          }
+      }
+      return msg;
+  }
+}
 ```
