@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+</head>
+<script src='../vue.min.js'></script>
+<body>
+    <div id='app'>
+        <!-- 通过data动态控制class，如果class原本定义了值，会进行合并 -->
+        <h2 class="demo" :class="getClasses()">{{msg}}</h2>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                msg: '你好',
+                isActive: true,
+                isLine: true
+            },
+            computed: {},
+            mounted: {},
+            methods: {
+                getClasses() {
+                    return {active: isActive, line: isLine};
+                }
+            }
+        })
+</script>
+</body>
+</html>

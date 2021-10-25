@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="../vue.min.js"></script>
+<body>
+    <div id="app">
+        {{name}}
+    </div>
+    <script>
+        // 声明式编程
+        const app = new Vue({
+            el: '#app', // 挂载要管理的元素
+            data: { // 数据
+                name: '李爽'
+            },
+            computed: {},
+            mounted: {},
+            methods: {}
+        })
+
+        // 命令式编程
+        // 1.获取元素id
+        // 2.定义变量
+        // 3.将变量赋值给元素
+    </script>
+</body>
+</html>
