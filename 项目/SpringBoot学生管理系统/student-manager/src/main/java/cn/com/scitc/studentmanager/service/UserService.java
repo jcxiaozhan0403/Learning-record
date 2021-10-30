@@ -56,4 +56,11 @@ public interface UserService {
      * 更新密码
      */
     ResultData updatePassword(JSONObject jsonObject);
+
+    /**
+     *
+     * @param user
+     * 添加管理员
+     */
+    void addUser(User user);
 }

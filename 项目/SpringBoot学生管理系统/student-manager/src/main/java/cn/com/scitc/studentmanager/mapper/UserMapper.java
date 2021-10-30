@@ -68,4 +68,11 @@ public interface UserMapper {
      * 根据用户名查询密码
      */
     String findPassWordByUsername(String username);
+
+    /**
+     *
+     * @param user
+     * 添加管理员
+     */
+    void addUser(User user);
 }

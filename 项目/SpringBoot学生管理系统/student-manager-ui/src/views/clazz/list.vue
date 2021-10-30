@@ -92,7 +92,7 @@
         <el-form-item label="班级" :label-width="formLabelWidth">
           <el-input v-model="form.clazz" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="班主任" :label-width="formLabelWidth">
+        <el-form-item label="班导师" :label-width="formLabelWidth">
           <el-input v-model="form.headTeacher" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="限定人数" :label-width="formLabelWidth">

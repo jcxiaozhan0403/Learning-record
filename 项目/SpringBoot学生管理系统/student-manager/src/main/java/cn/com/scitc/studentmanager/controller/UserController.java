@@ -91,4 +91,16 @@ public class UserController {
     public ResultData updatePassword(@RequestBody JSONObject jsonObject) {
         return userServiceImpl.updatePassword(jsonObject);
     }
+
+    /**
+     *
+     * @param user
+     * @return
+     * 添加管理员
+     */
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public ResultData addUser(@RequestBody User user){
+        userServiceImpl.addUser(user);
+        return ResultData.ok();
+    }
 }

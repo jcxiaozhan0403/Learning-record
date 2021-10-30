@@ -80,4 +80,9 @@ public class UserServiceImpl implements UserService {
             return ResultData.error().message("修改失败");
         }
     }
+
+    @Override
+    public void addUser(User user) {
+        userMapper.addUser(user);
+    }
 }

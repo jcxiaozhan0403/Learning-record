@@ -61,9 +61,13 @@ export default {
         avatar: this.form.avatar
       }
 
+      let _this = this;
       updateUserInfo(data).then(
         response=>{
-            this.$message.success(response.message)
+            _this.$message({
+              message: response.message,
+              type: 'success'
+            })
             this.$router.go(0)
         }
         

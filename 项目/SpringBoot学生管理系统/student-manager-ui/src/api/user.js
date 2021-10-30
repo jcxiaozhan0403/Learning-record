@@ -43,3 +43,12 @@ export function updateUserPassword(data) {
     data
   })
 }
+
+// 添加管理员
+export function addUser(data){
+  return request({
+    url: '/user/add',
+    method: 'post',
+    data
+  })
+}

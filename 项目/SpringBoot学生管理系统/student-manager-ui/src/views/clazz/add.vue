@@ -6,7 +6,7 @@
     <el-form-item label="班级">
       <el-input v-model="clazz"></el-input>
     </el-form-item>
-    <el-form-item label="班主任">
+    <el-form-item label="班导师">
       <el-input v-model="headTeacher"></el-input>
     </el-form-item>
     <el-form-item label="限定总人数">

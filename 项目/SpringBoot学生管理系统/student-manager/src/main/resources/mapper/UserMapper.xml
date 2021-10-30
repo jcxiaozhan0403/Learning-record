@@ -42,4 +42,8 @@
         update user set password=#{password} where id=#{id}
     </update>
 
+    <insert id="addUser" parameterType="cn.com.scitc.studentmanager.pojo.User">
+        insert into user (username,password,name,avatar) values (#{username},#{password},#{name},#{avatar})
+    </insert>
+
 </mapper>

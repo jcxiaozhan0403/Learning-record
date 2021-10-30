@@ -149,6 +149,12 @@ export const constantRoutes = [
           name: 'UpdatePassword',
           component: () => import('@/views/user/updatePassword'),
           meta: { title: '修改密码', icon: 'setting' }
+        },
+        {
+          path: 'add',
+          name: 'userAdd',
+          component: () => import('@/views/user/add'),
+          meta: { title: '添加管理员', icon: 'add' }
         }
       ]
   },
