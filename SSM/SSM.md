@@ -14,13 +14,13 @@
 ## mybatis的简单使用
 1. pom文件引入jar包
 ```xml
-<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+<!-- mybatis -->
 <dependency>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis</artifactId>
     <version>3.5.5</version>
 </dependency>
-<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+<!-- mysql-jdbc -->
 <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
@@ -111,7 +111,7 @@ public class User {
             <dataSource type="POOLED">
                 <!-- JDBC配置 -->
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/webapp1901"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8"/>
                 <property name="username" value="root"/>
                 <property name="password" value="lishuang001219"/>
             </dataSource>
