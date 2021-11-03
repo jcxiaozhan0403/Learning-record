@@ -1,8 +1,8 @@
 ## 什么是mybatis
-- MyBatis 是一款优秀的`持久层框架`
-- 它支持自定义 SQL、存储过程以及高级映射
-- MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作
-- MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。
+- MyBatis是一款优秀的`持久层框架`
+- 它支持自定义SQL、存储过程以及高级映射
+- MyBatis免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作
+- MyBatis可以通过简单的XML或注解来配置和映射原始类型、接口和Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录
 
 ## 持久化
 - 因为内存有断电即失的特性，所以需要进行数据持久化
@@ -18,7 +18,7 @@
 <dependency>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis</artifactId>
-    <version>3.5.5</version>
+    <version>3.5.5</version>-
 </dependency>
 <!-- mysql-jdbc -->
 <dependency>
@@ -26,20 +26,24 @@
     <artifactId>mysql-connector-java</artifactId>
     <version>5.1.38</version>
 </dependency>
+<!-- lombok -->
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>RELEASE</version>
+    <scope>compile</scope>
+</dependency>
+<!-- junit测试依赖 -->
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.2</version>
+    <scope>test</scope>
+</dependency>
 ```
 
 2. 创建工具类
 ```java
-package cn.com.scitc.mybatis.utils;
-
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
-import java.io.IOException;
-import java.io.InputStream;
-
 public class MybatisUtil {
     private static SqlSessionFactory sqlSessionFactory;
 
@@ -62,42 +66,7 @@ public class MybatisUtil {
 }
 ```
 
-3. 创建实体类
-```java
-package cn.com.scitc.model;
-
-public class User {
-    private Integer id;
-    private String name;
-    private String mobile;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-}
-```
-
-4. 创建mybatis配置文件
+3. 创建mybatis核心配置文件
 - mybatis-config.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -111,29 +80,42 @@ public class User {
             <dataSource type="POOLED">
                 <!-- JDBC配置 -->
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/student-manager?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8"/>
                 <property name="username" value="root"/>
                 <property name="password" value="lishuang001219"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <!-- 绑定Mapper配置文件 -->
-        <mapper resource="UserMapper.xml"/>
+        <!-- resource下的Mapper资源存在单层目录结构时的写法 -->
+        <mapper resource="StudentMapper.xml"/>
         <!-- resource下的Mapper资源存在多层目录结构时的写法 -->
-        <mapper resource="cn/com/scitc/webapp1901/mapper/UserMapper.xml"/>
+        <mapper resource="mapper/StudentMapper.xml"/>
     </mappers>
 </configuration>
 ```
 
+4. 创建实体类
+```java
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Student {
+    private Integer id;
+    private String name;
+    private Integer age;
+    private Integer sex;
+    private String num;
+    private String grade;
+    private String clazz;
+    private String address;
+}
+```
+
 5. 创建Mapper接口文件
 ```java
-package cn.com.scitc.test.mapper;
-
-import cn.com.scitc.test.pojo.User;
-
-public interface UserMapper {
-    public User findById(Integer id);
+public interface StudentMapper {
+    List<Student> listStudent();
 }
 ```
 
@@ -145,63 +127,44 @@ public interface UserMapper {
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace命名空间：对应一个Mapper接口 -->
-<mapper namespace="cn.com.scitc.mapper.UserMapper">
+<mapper namespace="mapper.StudentMapper">
     <!-- sql语句 -->
     <!-- id对应接口中定义的方法 resultType表示结果集类型 -->
-    <select id="selectUser" resultType="cn.com.scitc.model.User">
-        select * from user where id = #{id}
+    <select id="listStudent" resultType="pojo.Student">
+        select * from student
     </select>
 </mapper>
 ```
 
-7. 创建Dao文件
+7. 创建业务层
 ```java
-package cn.com.scitc.test.dao;
-
-import cn.com.scitc.test.mapper.UserMapper;
-import cn.com.scitc.test.pojo.User;
-import cn.com.scitc.test.utils.MybatisUtils;
-import org.apache.ibatis.session.SqlSession;
-
-public class UserDao implements UserMapper{
-
-    public User findById(Integer id) {
-        //获取SqlSession
-        try(SqlSession session = MybatisUtils.getSqlSession()){
-            //获取Mapper，执行其中方法
-            UserMapper mapper = session.getMapper(UserMapper.class);
-            return mapper.findById(id);
-        }
+public class StudentService implements StudentMapper {
+    @Override
+    public List<Student> listStudent() {
+        StudentMapper mapper = MybatisUtil.getSqlSession().getMapper(StudentMapper.class);
+        return mapper.listStudent();
     }
 }
 ```
 
-7. 编写测试类
+8. 编写测试类
 ```java
-package cn.com.scitc.test;
-
-import cn.com.scitc.test.dao.UserDao;
-import cn.com.scitc.test.pojo.User;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
-class UserDaoTest {
+public class MyTest {
+    StudentService studentService = new StudentService();
 
     @Test
-    void findById() {
-        UserDao userDao = new UserDao();
-        User user = userDao.findById(1);
-        System.out.println(user.getName());
-        Assertions.assertEquals("李爽",user.getName());
+    public void test() {
+        System.out.println(studentService.listStudent());
     }
 }
 ```
 
-8. 目录结构
+9. 目录结构
+
 <img src="D:/Study/Learning-record/SSM/mybatis简单使用目录结构.jpg" style="height:400px;width:300px;text-align:center;">
 
 ## mybatis-generator的简单使用
-注：此插件主要用于自动生成实体类、Mapper接口和Mapper配置文件，mybatis配置文件和Dao层文件需要根据实际应用场景对照生成的文件自行编写
+注：此插件主要用于自动生成实体类、Mapper接口和Mapper配置文件，mybatis核心配置文件和业务层文件需要根据实际应用场景对照生成的文件自行编写
 1. 编写pom文件
 ```xml
 <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
@@ -218,35 +181,45 @@ class UserDaoTest {
 </dependency>
 
 <!-- 添加插件(注意将此行注释删除，中文会引起idea报错) -->
-<plugin>
-    <groupId>org.mybatis.generator</groupId>
-    <artifactId>mybatis-generator-maven-plugin</artifactId>
-    <version>1.4.0</version>
-    <executions>
-        <execution>
-            <id>Generate MyBatis Artifacts</id>
-            <goals>
-                <goal>generate</goal>
-            </goals>
-        </execution>
-    </executions>
-    <dependencies>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.47</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.5.5</version>
-        </dependency>
-    </dependencies>
-    <configuration>
-        <!-- 生成的文件覆盖源文件 -->
-        <overwrite>true</overwrite>
-    </configuration>
-</plugin>
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.3.0</version>
+        </plugin>
+        <plugin>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-maven-plugin</artifactId>
+            <version>1.4.0</version>
+            <executions>
+                <execution>
+                    <id>Generate MyBatis Artifacts</id>
+                    <goals>
+                        <goal>generate</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <dependencies>
+                <dependency>
+                    <groupId>org.mybatis</groupId>
+                    <artifactId>mybatis</artifactId>
+                    <version>3.5.5</version>
+                </dependency>
+                <!-- mysql-jdbc -->
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>5.1.38</version>
+                </dependency>
+            </dependencies>
+            <configuration>
+                <!-- 生成的文件覆盖源文件 -->
+                <overwrite>true</overwrite>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
 ```
 
 2. 编写mybatis-generator配置文件
@@ -258,13 +231,13 @@ class UserDaoTest {
 <generatorConfiguration>
     <context id="simple" targetRuntime="MyBatis3Simple">
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/webapp1901" userId="root" password="lishuang001219"/>
+                        connectionURL="jdbc:mysql://localhost:3306/student-manager" userId="root" password="lishuang001219"/>
         <!--实体存放位置-->
-        <javaModelGenerator targetPackage="cn.com.scitc.webapp1901.pojo" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="pojo" targetProject="src/main/java"/>
         <!--Mapper.xml存放位置-->
-        <sqlMapGenerator targetPackage="cn.com.scitc.webapp1901.mapper" targetProject="src/main/resources"/>
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
         <!--Mapper接口存放位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.com.scitc.webapp1901.mapper" targetProject="src/main/java"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="mapper" targetProject="src/main/java"/>
         <!--需要生成的表-->
         <table tableName="student" />
     </context>
@@ -282,11 +255,10 @@ url=jdbc:mysql://localhost:3306/webapp1901
 username=root
 password=lishuang001219
 ```
-
 - mybatis-config.xml
 ```xml
 <!-- 引入外部配置文件 -->
-<!-- 在引入外部文件后，还可以添加字段，如果存在相同字段，以配置文件中的为准 -->
+<!-- 在引入外部文件后，还可以添加字段，如果存在相同字段，怎使用外部配置文件中的值进行覆盖 -->
 <properties resource="db.properties">
     <property name="username" value="root" />
     <property name="pwd" value="123456" />
@@ -319,6 +291,32 @@ public class User {
 }
 ```
 
+## Mybatis默认别名
+
+|    别名    |  映射类型  |
+| :--------: | :--------: |
+|   _byte    |    byte    |
+|   _long    |    long    |
+|   _short   |   short    |
+|    _int    |    int     |
+|  _integer  |    int     |
+|  _double   |   double   |
+|   _float   |   float    |
+|  _boolean  |  boolean   |
+|   string   |   String   |
+|    byte    |    Byte    |
+|    long    |    Long    |
+|   short    |   Short    |
+|    int     |  Integer   |
+|  integer   |  Integer   |
+|   double   |   Double   |
+|   float    |   Float    |
+|  boolean   |  Boolean   |
+|    date    |    Date    |
+|  decimal   | BigDecimal |
+| bigdecimal | BigDecimal |
+|    map     |    Map     |
+
 ## 注册绑定Mapper文件的多种方式
 方式一：通过resource属性进行绑定(少量Mapper时推荐使用)
 ```xml
@@ -350,8 +348,7 @@ public class User {
 ```
 
 ## Map的使用
-
-当实体类或者数据库表、字段、参数过多时，应当考虑使用map
+当实体类或者数据库表、字段、参数过多时，应当考虑使用map传递参数
 - UserMapper.java
 ```java
 int addUser(Map<String,Object> map);
@@ -387,6 +384,67 @@ void addUser() {
     map.put("userId",5);
     map.put("password",123456);
     User user = userDao.addUser(map);
+}
+```
+
+## 日志
+### 日志工厂
+打印sql语句，帮助排错
+```xml
+<!-- 开启日志 -->
+<settings>
+    <!-- SLF4J | LOG4J | LOG4J2 | JDK_LOGGING | COMMONS_LOGGING | STDOUT_LOGGING | NO_LOGGING -->
+    <setting name="logImpl" value="STDOUT_LOGGING"/>
+</settings>
+```
+
+### Log4j的简单使用
+1. 导入依赖
+```xml
+<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+<dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>1.2.17</version>
+</dependency>
+```
+2. 添加配置文件
+```properties
+### 配置根 ###
+log4j.rootLogger = debug,console ,fileAppender
+
+### 设置输出sql的级别，其中logger后面的内容全部为jar包中所包含的包名 ###
+log4j.logger.org.apache=dubug
+log4j.logger.java.sql.Connection=dubug
+log4j.logger.java.sql.Statement=dubug
+log4j.logger.java.sql.PreparedStatement=dubug
+log4j.logger.java.sql.ResultSet=dubug
+
+### 配置输出到控制台 ###
+log4j.appender.console = org.apache.log4j.ConsoleAppender
+log4j.appender.console.Target = System.out
+log4j.appender.console.layout = org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern =  %d{ABSOLUTE} %5p %c{1}:%L - %m%n
+
+### 配置输出到文件 ###
+log4j.appender.fileAppender = org.apache.log4j.FileAppender
+log4j.appender.fileAppender.File = logs/log.log
+log4j.appender.fileAppender.Append = true
+log4j.appender.fileAppender.Threshold = DEBUG
+log4j.appender.fileAppender.layout = org.apache.log4j.PatternLayout
+log4j.appender.fileAppender.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss}  [ %t:%r ] - [ %p ]  %m%n
+```
+3. 使用
+```java
+public class MyTest {
+    StudentService studentService = new StudentService();
+
+    static Logger logger = Logger.getLogger(MyTest.class);
+
+    @Test
+    public void t1() {
+        logger.info("你好");
+    }
 }
 ```
 
@@ -497,13 +555,8 @@ public class Teacher {
 </reslutMap>
 ```
 
-## 模糊查询的简单实现
-```xml
-<select id="getUserLike" resultType="cn.com.scitc.model.User">
-    select * from user where name like #{value}
-</select>
-```
-
+## 模糊查询两种实现方式
+### 方式一：Java代码层面实现
 ```java
 public void getUserLike() {
     SqlSession session = MybatisUtils.getSqlSession();
@@ -515,6 +568,12 @@ public void getUserLike() {
     }
     sqlSession.close();
 }
+```
+### 方式二：Mapper.xml中拼接实现(相对安全)
+```xml
+<select id="getUserLike" resultType="cn.com.scitc.model.User">
+    select * from user where name like "%"#{value}"%";
+</select>
 ```
 
 ## 动态SQL
