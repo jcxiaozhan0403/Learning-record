@@ -15,4 +15,14 @@ public class UserController {
     public String userCenter() {
         return "userCenter";
     }
+
+    @GetMapping("/course")
+    public String course() {
+        return "course";
+    }
+
+    @GetMapping("/favorites")
+    public String favorites() {
+        return "favorites";
+    }
 }

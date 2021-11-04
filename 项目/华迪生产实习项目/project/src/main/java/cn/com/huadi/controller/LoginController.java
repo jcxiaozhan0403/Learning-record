@@ -36,7 +36,12 @@ public class LoginController {
         System.out.println(password);
         System.out.println(userType);
         req.getSession().setAttribute("name","李爽");
-        return "redirect:/index";
+        if (userType.equals("user")) {
+            return "redirect:/index";
+        }else if (userType.equals("admin")) {
+            return "redirect:/management";
+        }
+        return null;
     }
 
     /**
@@ -56,5 +61,14 @@ public class LoginController {
     @GetMapping("/index")
     public String index() {
         return "index";
+    }
+
+    /**
+     * 跳转到管理界面
+     * @return
+     */
+    @GetMapping("/management")
+    public String management() {
+        return "/manager/index";
     }
 }

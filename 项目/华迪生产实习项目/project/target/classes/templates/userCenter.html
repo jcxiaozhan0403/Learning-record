@@ -18,37 +18,39 @@
         }
     }
 
-    div.menu{
+    a.menu{
         width: 250px;
         height: 150px;
         text-align: center;
         border-radius: 20px;
         font-size: 20px;
         line-height: 150px;
-        cursor:pointer
+        cursor:pointer;
+        text-decoration:none;
+        color: #000;
     }
 
-    div#one{
+    a#one{
         background-color: rgb(84, 112, 198);
     }
 
-    div#one:hover{
+    a#one:hover{
         background-color: #1E90FF;
     }
 
-    div#two {
+    a#two {
         background-color: rgb(145, 204, 117);
     }
 
-    div#two:hover {
+    a#two:hover {
         background-color: #32CD32;
     }
 
-    div#three {
+    a#three {
         background-color: rgb(250, 200, 88);
     }
 
-    div#three:hover {
+    a#three:hover {
         background-color: #FFFF00;
     }
 </style>
@@ -61,52 +63,19 @@ a[href^="http://go.gotourl.xyz/"], a[href^="http://www.upupoo.com/?"], a[href^="
 </style><style type="text/css">.adsbygoogle, .ggbox, .banner-site, .a_p, .a_fr, a[href*="/cpro/"], a[href*="/cpro."], a[href*="/?aff="], a[href*=".umeng.com"], a > img[width="980"][src*=".sinaimg."], a > img[width="960"][src*=".sinaimg."], a > img[src*=".sinaimg."][src$=".gif"][style*="width:960"], .wp.a_t, .widget_ui_ads, .baiduad, .a_pt, .a_mu, #kfivtwin, #haoetv, #gg1 { display: none!important; z-index:-1!important; height:0px!important;}
 </style>
 <body>
-<header>
-    <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8 col-md-7 py-4">
-                    <h4 class="text-white">About</h4>
-                    <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-                </div>
-                <div class="col-sm-4 offset-md-1 py-4">
-                    <h4 class="text-white">Contact</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                        <li><a href="#" class="text-white">Like on Facebook</a></li>
-                        <li><a href="#" class="text-white">Email me</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container d-flex justify-content-between">
-            <a th:href="@{/index}" class="navbar-brand d-flex align-items-center">
-                <img src="/images/logo.svg" width="30" height="30">
-                <strong>智慧医养</strong>
-            </a>
-            <div>
-                <a th:href="@{/userCenter}" th:if="${session.name != null}" th:text="个人中心" style="color: #fff;margin-right: 10px;"></a>
-                <a th:href="@{/login}" th:if="${session.name == null}" class="btn btn-primary" th:text="登录"></a>
-                <a th:if="${session.name != null}" th:text="'你好：'+ ${session.name}" style="color: #fff;margin-right: 10px;"></a>
-                <a th:href="@{/logout}" th:if="${session.name != null}" class="btn btn-danger">注销</a>
-            </div>
-        </div>
-    </div>
-</header>
+<div th:replace="~{fragment/userNav :: nav}"></div>
 
 <div class="container" style="margin-top: 50px;">
     <div class="row">
-        <div id="one" class="col-3 offset-1 menu">
+        <a id="one" class="col-3 offset-1 menu" th:href="@{/course}" target="_blank">
             我的课程
-        </div>
-        <div id="two" class="col-3 offset-1 menu">
+        </a>
+        <a id="two" class="col-3 offset-1 menu" th:href="@{/favorites}" target="_blank">
             我的收藏
-        </div>
-        <div id="three" class="col-3 offset-1 menu" data-toggle="modal" data-target="#exampleModal">
+        </a>
+        <a id="three" class="col-3 offset-1 menu" data-toggle="modal" data-target="#exampleModal">
             我的信息
-        </div>
+        </a>
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -183,4 +152,5 @@ a[href^="http://go.gotourl.xyz/"], a[href^="http://www.upupoo.com/?"], a[href^="
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
 <script src="/webjars/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
-</body></html>
+</body>
+</html>
