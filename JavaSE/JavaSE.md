@@ -4189,6 +4189,138 @@ while (rs.next()) {
 }
 ```
 
+## 数据库连接池
+提供一个池子，需要数据库连接的时候直接从池子里面获取，用完不释放，归还到池子中，使用连接池之后，就不需要手动地创建连接了
+
+### 常用连接池
+- DBCP
+- C3P0
+- Druid（阿里巴巴）
+- HikariDataSource（springboot默认使用）
+
+### DBCP连接池的简单使用
+1. 导入依赖
+```xml
+<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+<dependency>
+    <groupId>commons-dbcp</groupId>
+    <artifactId>commons-dbcp</artifactId>
+    <version>1.4</version>
+</dependency>
+```
+2. 创建配置文件
+- dbcp.properties
+```properties
+driverClassName=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3306/student-manager?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8
+username=root
+password=lishuang001219
+
+#初试连接数
+initialSize=30
+#最大活跃数
+maxTotal=30
+#最大idle数
+maxIdle=10
+#最小idle数
+minIdle=5
+#最长等待时间(毫秒)
+maxWaitMillis=1000
+#程序中的连接不使用后是否被连接池回收(该版本要使用removeAbandonedOnMaintenance和removeAbandonedOnBorrow)
+#removeAbandoned=true
+removeAbandonedOnMaintenance=true
+removeAbandonedOnBorrow=true
+#连接在所指定的秒数内未使用才会被删除(秒)(为配合测试程序才配置为1秒)
+removeAbandonedTimeout=1
+```
+3. 创建工具类
+- DBUtils.java
+```java
+public class DBUtils {
+    private static DataSource dataSource;
+
+    static {
+        // 静态变量代码块中赋值。
+        // 1. 读取，配置配置文件
+        try {
+            Properties properties = new Properties();
+            properties.load(DBUtils.class.getClassLoader().getResourceAsStream("dbcp.properties"));
+            dataSource = BasicDataSourceFactory.createDataSource(properties);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    // 获取连接
+    public static Connection getConnection() throws Exception{
+        return dataSource.getConnection();
+    }
+
+    //封装关闭资源的方法
+    public static void close(Connection connection, Statement statement){
+        if(statement != null){
+            try {
+                statement.close(); // 关闭资源
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(connection != null){
+            try {
+                connection.close(); /// 关闭conn 资源
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public static void close(Connection connection, Statement statement, ResultSet resultSet) throws SQLException {
+        if(statement != null){
+            try {
+                statement.close(); // 关闭资源
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(connection != null){
+            try {
+                connection.close(); /// 关闭conn 资源
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(resultSet != null){
+            resultSet.close();
+        }
+    }
+}
+```
+4. 编写测试类
+```java
+public class MyTest {
+    private static Connection conn;
+
+    @Test
+    public void t2() throws Exception {
+        conn = DBUtils.getConnection();
+
+        String sql = "select * from student";
+        PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            System.out.println(resultSet.getString("name"));
+            System.out.println(resultSet.getInt("age"));
+            System.out.println(resultSet.getString("num"));
+        }
+    }
+}
+```
+
 ## 断言
 ```java
 Assertions.assertEquals("期望值","实际值")

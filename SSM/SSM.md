@@ -947,6 +947,7 @@ private int navigateLastPage;
 ## 日志
 标准日志工厂的实现
 在mybais设置文件中添加日志设置
+
 ```xml
 <settings>
     <setting name="logImpl" value="STDOUT_LOGGING"/>
