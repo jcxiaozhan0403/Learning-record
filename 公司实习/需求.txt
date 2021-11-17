@@ -1,0 +1,23 @@
+1.备案域名 需要多个二级或三级(https://www.nsmc.edu.cn/)域名
+建议  lvsm.nsmc.edu.cn
+
+https://t.lvsm.nsmc.edu.cn
+https://u.lvsm.nsmc.edu.cn
+https://open.lvsm.nsmc.edu.cn
+https://wxapi.lvsm.nsmc.edu.cn
+https://websocket.lvsm.nsmc.edu.cn
+https://shopweb.lvsm.nsmc.edu.cn
+https://shopapi.lvsm.nsmc.edu.cn
+https://schoolweb.lvsm.nsmc.edu.cn
+https://schoolapi.lvsm.nsmc.edu.cn
+https://sysweb.lvsm.nsmc.edu.cn
+https://sysapi.lvsm.nsmc.edu.cn
+
+2.ssl 证书，微信强制要求小程序接口必须走https，为保证数据传输安全，所有域名全部限制https，建议购买泛域名证书,即 *.lvsm.nsmc.edu.cn
+
+3.服务器资源
+应用服务器   *1   要求 windows server 2012+  建议2016    CPU：8核主频2.5G+ 内存：64G+ 硬盘：高速1T
+数据库服务器*2 要求 sqlserver 2012+            建议2016    CPU：8核主频2.5G+ 内存：64G+ 硬盘：高速1T
+
+4.经过认证的微信小程序
+
