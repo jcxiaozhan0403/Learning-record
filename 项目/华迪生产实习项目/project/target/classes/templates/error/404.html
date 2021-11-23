@@ -1,0 +1,28 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>该页面不存在-404.life</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,900" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+
+<div id="notfound">
+    <div class="notfound">
+        <div class="notfound-404">
+            <h1>404</h1>
+            <h2>抱歉！找不到页面</h2>
+        </div>
+        <a th:href="@{/index}">返回首页</a>
+    </div>
+</div>
+
+</body>
+
+</html>

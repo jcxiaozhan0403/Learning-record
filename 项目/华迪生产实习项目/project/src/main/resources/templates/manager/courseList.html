@@ -23,6 +23,9 @@
                 font-size: 3.5rem;
             }
         }
+
+        table{table-layout: fixed;word-break: break-all; word-wrap: break-word; //表格固定布局}
+        .award-name{-o-text-overflow:ellipsis;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;width:100%; //超出部分显示省略号}
     </style>
     <style type="text/css">#MsnDialog.ad, #MyMoveAd, #QQ_Full, #ad-SNSSplashAd, #ad6cn, #adBody07, #adLeftFloat, #adRightFloat, #ad_box1, #ad_box2, #ad_full, #ad_headerbanner, #ads_c_tpc, #ads_top_video, #adtop1, #adx_cggp, #crazy_ad_float, #crazy_ad_layer, #cs_left_couplet, #cs_right_couplet, #doyoo_mon_mask, #doyoo_monitor, #duilian_left, #duilian_right, #eis_pad1, #eis_pad2, #floatAd, #floatad-winpop, #fwin_popad_7ree, #fwin_popad_7ree + #fwin_dialog, #gg300, #googleAdIndexTop, #haoetv1, #js-ad-map, #js_ads_banner_top, #js_ads_banner_top_slide, #kfpopupDiv, #leftCouple, #leftCouplet, #leftFloat + #rightFloat, #left_couple, #left_down_float_ad, #left_float + #right_float, #left_top_ad, #left_up_float_ad, #lovexin1, #lovexin11, #lovexin12, #lovexin13, #lovexin14 { display: none!important; z-index:-1!important; height:0px!important;}
     #lovexin2, #mbjx_ad, #miaov_float_layer, #micast_ads, #movieInfoRight, #my-adsFPR, #navcontainer + .moneyarea, #netease_mail_footer, #olfullad, #overture_ads_bottom_td, #overture_ads_top_td, #popup.t, #ptcmsad1, #qj960a, #qj960b, #results.content-main > .eLeft, #rightCouple, #rightCouple + #leftFloat, #rightCouplet, #rightCouplet + #leftFloat, #right_couple, #right_couple + #left_float, #right_down_float_ad, #right_up_float_ad, #shareman_ad, #sitefocus.focus, #snActive-wrap, #table1[width="468"][height="50"], #table1[width="794"][height="60"], #table1[width="812"][height="50"], #tanx-con-1, #tanx-fold-main, #textggs, #top_ads0, #toperAd2, #toptb + div[align="center"], #tr_ad1, #tr_ad10, #tr_ad11, #tr_ad2, #tr_ad3, #tr_ad4, #tr_ad5, #tr_ad6, #tr_ad7, #tr_ad8, #tr_ad9, #tripadvisor-ad, #xinnxi, #xinxi { display: none!important; z-index:-1!important; height:0px!important;}
@@ -37,26 +40,33 @@
 <div th:replace="~{fragment/managerNav :: nav}"></div>
 
 <main role="main" class="container" style="margin: 0 auto;margin-top: 50px;">
-    <h3>课程列表</h3>
-    <table class="table table-striped" style="width: 1000px;text-align: center;">
+    <h3 style="color: white;">课程列表</h3>
+    <table class="table" style="color:white; text-align: center;" cellpadding="0" cellspacing="0">
         <thead>
         <tr>
-            <th>#</th>
-            <th>Firstname</th>
+            <th>课程编号</th>
+            <th>课程名</th>
+            <th>简述</th>
+            <th>课程封面</th>
+            <th>课程地址</th>
+            <th>讲师</th>
+            <th>类型</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>1</td>
-            <td>Anna</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Debbie</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>John</td>
+        <tr th:each="course : ${courseList}">
+            <td th:text="${course.id}"></td>
+            <td th:text="${course.name}"></td>
+            <td th:text="${course.sketch}" class="award-name"></td>
+            <td th:text="${course.cover}" class="award-name"></td>
+            <td th:text="${course.url}" class="award-name"></td>
+            <td th:text="${course.lecturer}"></td>
+            <td th:text="${course.type}"></td>
+            <td style="white-space: nowrap;">
+                <a th:href="${'/course/edit?id=' + course.id}" class="btn btn-primary"/>修改</a>
+                <a th:href="@{'/deleteCurriculum?id=' + ${course.id}}" class="btn btn-danger" onclick="return confirm('确认删除？');">删除</a>
+            </td>
         </tr>
         </tbody>
     </table>

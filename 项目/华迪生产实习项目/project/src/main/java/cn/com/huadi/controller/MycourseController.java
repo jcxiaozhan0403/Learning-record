@@ -1,15 +1,11 @@
 package cn.com.huadi.controller;
 
-
 import cn.com.huadi.entity.Curriculum;
 import cn.com.huadi.entity.Mycourse;
 import cn.com.huadi.service.impl.CurriculumService;
 import cn.com.huadi.service.impl.MycourseService;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 import util.ExcludeEmptyQueryWrapper;
 
@@ -30,29 +26,31 @@ public class MycourseController {
     MycourseService mycourseService;
     @Autowired
     CurriculumService curriculumService;
-//  8
-    @RequestMapping("/getMycourse")
-    public String getMycourse(String userId){
-        ExcludeEmptyQueryWrapper<Mycourse> queryWrapper = new ExcludeEmptyQueryWrapper<>();
-        queryWrapper.eq("user_id", userId);
-
-        ArrayList<Curriculum> curricula = null;
+    //    15
+    @RequestMapping("/addMyCourse")
+    public String addMyCourse(Mycourse mycourse){
         try {
-            List<Mycourse> list = mycourseService.list(queryWrapper);
-
-            curricula = new ArrayList<>();
-
-            for (Mycourse mycourse : list) {
-                curricula.add(curriculumService.getById(mycourse.getCurriculumId()));
-            }
+            mycourseService.save(mycourse);
         } catch (Exception e) {
             e.printStackTrace();
             return "false";
         }
 
-
-        return curricula.toString();
-
+        return "true";
+    }
+    //    16
+    @RequestMapping("/deleteMyCourse")
+    public String deleteMyCourse(Mycourse mycourse){
+        ExcludeEmptyQueryWrapper<Mycourse> wrapper = new ExcludeEmptyQueryWrapper<>();
+        wrapper.eq("user_id",mycourse.getUserId())
+                .eq("curriculum_id",mycourse.getCurriculumId());
+        try {
+            mycourseService.remove(wrapper);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "false";
+        }
+        return "true";
     }
 }
 

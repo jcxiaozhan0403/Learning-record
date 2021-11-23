@@ -31,10 +31,10 @@
                 <strong>智慧医养</strong>
             </a>
             <div>
-                <a th:href="@{/userCenter}" th:if="${session.name != null}" th:text="个人中心" style="color: #fff;margin-right: 10px;"></a>
-                <a th:href="@{/login}" th:if="${session.name == null}" class="btn btn-primary" th:text="登录"></a>
-                <a th:if="${session.name != null}" th:text="'你好：'+ ${session.name}" style="color: #fff;margin-right: 10px;"></a>
-                <a th:href="@{/logout}" th:if="${session.name != null}" class="btn btn-danger">注销</a>
+                <a th:href="@{/userCenter}" th:if="${session.user != null}" th:text="个人中心" style="color: #fff;margin-right: 10px;"></a>
+                <a th:href="@{/login}" th:if="${session.user == null}" class="btn btn-primary" th:text="登录"></a>
+                <a th:if="${session.user != null}" th:text="'你好：'+ ${session.user.name}" style="color: #fff;margin-right: 10px;"></a>
+                <a th:href="@{/logout}" th:if="${session.user != null}" class="btn btn-danger">注销</a>
             </div>
         </div>
     </div>

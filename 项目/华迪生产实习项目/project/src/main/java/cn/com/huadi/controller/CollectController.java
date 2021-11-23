@@ -1,17 +1,17 @@
 package cn.com.huadi.controller;
 
-
 import cn.com.huadi.entity.Collect;
 import cn.com.huadi.entity.Curriculum;
+import cn.com.huadi.entity.User;
 import cn.com.huadi.service.impl.CollectService;
 import cn.com.huadi.service.impl.CurriculumService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import util.ExcludeEmptyQueryWrapper;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +23,7 @@ import java.util.List;
  * @author yuan点
  * @since 2021-11-06
  */
-@RestController
+@Controller
 public class CollectController {
     @Autowired
     CollectService collectService;
@@ -31,7 +31,7 @@ public class CollectController {
     CurriculumService curriculumService;
 //    9
     @RequestMapping("/getCollect")
-    public String getCollect(String userId){
+    public List<Curriculum> getCollect(String userId){
         ExcludeEmptyQueryWrapper<Collect> queryWrapper = new ExcludeEmptyQueryWrapper<>();
         queryWrapper.eq("user_id",userId);
         ArrayList<Curriculum> curricula = null;
@@ -43,10 +43,40 @@ public class CollectController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
+        }
+
+        return curricula;
+    }
+
+    //    17
+    @RequestMapping("/addCollect")
+    @ResponseBody
+    public String addCollect(Collect collect){
+        try {
+            collectService.save(collect);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "false";
+        }
+        return "true";
+    }
+
+    //    18
+    @RequestMapping("/deleteCollect")
+    public String deleteCollect(Collect collect, HttpServletRequest request){
+        ExcludeEmptyQueryWrapper<Collect> wrapper = new ExcludeEmptyQueryWrapper<>();
+        wrapper.eq("user_id",collect.getUserId())
+                .eq("curriculum_id",collect.getCurriculumId());
+        try {
+            collectService.remove(wrapper);
+        } catch (Exception e) {
+            e.printStackTrace();
             return "false";
         }
 
-        return curricula.toString();
+        User user = (User) request.getSession().getAttribute("user");
+        return "redirect:/favorites?userId=" + user.getId();
     }
 }
 

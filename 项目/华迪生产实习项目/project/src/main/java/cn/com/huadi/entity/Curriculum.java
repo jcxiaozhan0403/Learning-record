@@ -45,5 +45,6 @@ public class Curriculum implements Serializable {
     @ApiModelProperty(value = "课程类型")
     private String type;
 
-
+    @ApiModelProperty(value = "课程标志")
+    private Integer flag;
 }

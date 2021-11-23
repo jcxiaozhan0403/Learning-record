@@ -41,140 +41,22 @@
         <div class="container">
             <h3 style="border-left: 5px solid #1E90FF; padding-left: 15px;">正在学习</h3>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4" th:each="course : ${courseList}">
                     <div class="card mb-4 shadow-sm">
-                        <a th:href="@{/video}"><img src="https://z3.ax1x.com/2021/11/02/IFAbZV.jpg" width="100%" height="255"></a>
+                        <img th:src="${course.cover}" width="100%" height="255">
                         <div class="card-body">
-                            <h3>Java</h3>
-                            <p class="card-text" style="width:288px; height:75px; overflow:hidden;">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <h3 th:text="${course.name}"></h3>
+                            <p class="card-text" style="width:288px; height:75px; overflow:hidden;" th:text="${course.sketch}"></p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">观看</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">收藏</button>
-                                </div>
-                                <small class="text-muted">课时：36</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"></rect><text fill="#eceeef" dy=".3em" x="50%" y="50%">Thumbnail</text></svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">观看</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">收藏</button>
-                                </div>
-                                <small class="text-muted">课时：36</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"></rect><text fill="#eceeef" dy=".3em" x="50%" y="50%">Thumbnail</text></svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">观看</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">收藏</button>
-                                </div>
-                                <small class="text-muted">课时：36</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                    <a th:onclick= "|javascript:addMyCourse('${session.user?.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary" th:href="${course.url}" target="_blank">观看</a>
+                                    <button th:onclick= "|javascript:addCollection('${session.user?.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary" th:if="${session.user != null && session.collects == null}" >收藏</button>
+                                    <div th:each="collect : ${collects}" th:if="${session.user != null}">
+                                        <button th:onclick= "|javascript:deleteCollect('${session.user?.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary" th:if="${session.user != null && collect == course.id}" >取消收藏</button>
 
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"></rect><text fill="#eceeef" dy=".3em" x="50%" y="50%">Thumbnail</text></svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">观看</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">收藏</button>
+                                    </div>
                                 </div>
-                                <small class="text-muted">课时：36</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"></rect><text fill="#eceeef" dy=".3em" x="50%" y="50%">Thumbnail</text></svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">观看</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">收藏</button>
-                                </div>
-                                <small class="text-muted">课时：36</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"></rect><text fill="#eceeef" dy=".3em" x="50%" y="50%">Thumbnail</text></svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"></rect><text fill="#eceeef" dy=".3em" x="50%" y="50%">Thumbnail</text></svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">观看</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">收藏</button>
-                                </div>
-                                <small class="text-muted">课时：36</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"></rect><text fill="#eceeef" dy=".3em" x="50%" y="50%">Thumbnail</text></svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">观看</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">收藏</button>
-                                </div>
-                                <small class="text-muted">课时：36</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"></rect><text fill="#eceeef" dy=".3em" x="50%" y="50%">Thumbnail</text></svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">观看</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">收藏</button>
-                                </div>
-                                <small class="text-muted">课时：36</small>
+                                <small class="text-muted" th:text="'讲师：' + ${course.lecturer}"></small>
                             </div>
                         </div>
                     </div>
@@ -186,4 +68,39 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
 <script src="/webjars/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+<!--页面使用Ajax-->
+<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    function addCollection(userId,curriculumId) {
+        $.get({
+            url:"http://localhost:8080/addCollect",
+            data:{
+                "userId":userId,
+                "curriculumId":curriculumId
+            },
+            success: function (data) {
+                location.replace("http://localhost:8080/index");
+            },
+            error: function () {
+                console.log("失败")
+            }
+        })
+    }
+
+    function deleteCollect(userId,curriculumId) {
+        $.get({
+            url:"http://localhost:8080/deleteCollect",
+            data:{
+                "userId":userId,
+                "curriculumId":curriculumId
+            },
+            success: function (data) {
+                location.replace("http://localhost:8080/course?userId=" + userId);
+            },
+            error: function () {
+                console.log("失败")
+            }
+        })
+    }
+</script>
 </body></html>

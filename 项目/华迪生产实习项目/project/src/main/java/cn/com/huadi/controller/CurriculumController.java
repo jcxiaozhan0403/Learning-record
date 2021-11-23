@@ -3,15 +3,15 @@ package cn.com.huadi.controller;
 
 import cn.com.huadi.entity.Curriculum;
 import cn.com.huadi.service.impl.CurriculumService;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import util.ExcludeEmptyQueryWrapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,25 +22,18 @@ import java.util.List;
  * @author yuan点
  * @since 2021-11-06
  */
-@RestController
+@Controller
 public class CurriculumController {
     @Autowired
     CurriculumService curriculumService;
 
-//    3
-    @RequestMapping("/getCurriculumList")
-    public String getCurriculumList(){
-        List<Curriculum> list = null;
-        try {
-            list = curriculumService.list(null);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "false";
-        }
-        return list.toString();
-    }
-
-//    4
+    /**
+     * 4
+     * 添加课程并且跳转回课程列表
+     * @param
+     * @return
+     * @Description
+     */
     @RequestMapping("/addCurriculum")
     public String addCurriculum(Curriculum curriculum){
         boolean b = false;
@@ -48,12 +41,18 @@ public class CurriculumController {
             b = curriculumService.save(curriculum);
         } catch (Exception e) {
             e.printStackTrace();
-            return "false";
+            return null;
         }
-        return "true";
+        return "redirect:/course/list";
     }
 
-//    5
+
+    /**
+     * 根据课程id删除课程
+     * @param
+     * @return
+     * @Description
+     */
     @RequestMapping("/deleteCurriculum")
     public String deleteCurriculum(String id){
         boolean b = false;
@@ -61,9 +60,9 @@ public class CurriculumController {
           b = curriculumService.removeById(id);
         } catch (Exception e) {
             e.printStackTrace();
-            return "false";
+            return null;
         }
-        return "true";
+        return "redirect:/course/list";
     }
 
 //    6
@@ -76,14 +75,14 @@ public class CurriculumController {
             b = curriculumService.update(curriculum, updateWrapper);
         } catch (Exception e) {
             e.printStackTrace();
-            return "false";
+            return null;
         }
-        return "true";
+        return "redirect:/course/list";
     }
 
 //    7
     @RequestMapping("selectNameType")
-    public String selectNameType(String lecturer,String type){
+    public String selectNameType(String lecturer, String type, Model model){
         ExcludeEmptyQueryWrapper<Curriculum> queryWrapper = new ExcludeEmptyQueryWrapper<>();
         queryWrapper
                     .eq("lecturer",lecturer)
@@ -94,11 +93,75 @@ public class CurriculumController {
             list = curriculumService.list(queryWrapper);
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
+        }
+
+        model.addAttribute("courseList",list);
+        return "index";
+    }
+
+    /**
+     * 跳转到课程修改界面
+     * @param
+     * @return
+     * @Description
+     */
+    @RequestMapping("/course/edit")
+    public String getCurriculumById(String id,Model model){
+        Curriculum curriculum = null;
+        try {
+            curriculum = curriculumService.getById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
             return "false";
+        }
+        model.addAttribute("courseInfo",curriculum);
+        return "/manager/courseEdit";
+    }
+
+    /**
+     * 获取课程讲师数组
+     * @return
+     */
+    @RequestMapping("/getLecturer")
+    @ResponseBody
+    public List<String> getLecturer(){
+        ExcludeEmptyQueryWrapper<Curriculum> queryWrapper = new ExcludeEmptyQueryWrapper<>();
+        queryWrapper.select("distinct lecturer");
+        List<Curriculum> list = curriculumService.list(queryWrapper);
+        ArrayList<String> strings = new ArrayList<>();
+        try {
+            for (Curriculum curriculum : list) {
+                strings.add(curriculum.getLecturer());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return strings;
+    }
+
+    /**
+     * 获取课程类型数组
+     * @return
+     */
+    @RequestMapping("/getType")
+    @ResponseBody
+    public List<String> getType(){
+        ExcludeEmptyQueryWrapper<Curriculum> queryWrapper = new ExcludeEmptyQueryWrapper<>();
+        queryWrapper.select("distinct type");
+        List<Curriculum> list = curriculumService.list(queryWrapper);
+        ArrayList<String> strings = new ArrayList<>();
+        try {
+            for (Curriculum curriculum : list) {
+                strings.add(curriculum.getType());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
 
-        return list.toString();
+        return strings;
     }
+
 }
 
