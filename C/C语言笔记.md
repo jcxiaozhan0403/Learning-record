@@ -8,20 +8,6 @@ int main()
 }
 ```
 
-## 格式化输入
-```
-%d 整数类型
-%f 单精度浮点数
-%lf 双精度浮点数
-```
-
-## 格式化输出
-```
-%d 整数类型
-%f 单精度浮点数
-%f 双精度浮点数
-```
-
 ## 代码规范
 1. ANSI C要求所有的变量需要在程序最开始的时候定义，才能在程序中使用
 2. C99 规定，变量可以在使用时再定义
@@ -176,7 +162,6 @@ int main()
 {
 	int i,j;
 	
-	
 	/*
 	1*1 = 1
 	1*2 = 2 2*2 = 4
@@ -192,5 +177,71 @@ int main()
 	}
 	
 	return 0;
+}
+```
+
+## 数据结构
+- 整数：char、short、int、long、long long
+- 浮点数：float、double、long double
+- 逻辑：bool
+- 指针
+- 自定义类型
+
+用以0开始的数字字面量表示8进制
+用以0x开始的数字面量表示16进制
+
+sizeof：给出某个类型或变量在内存中所占据的字节数
+```c
+double i;
+sizeof(int);
+sizeof(i);
+```
+
+补码计算：原码取反+1
+
+unsigned 将字面量以纯二进制进行计算，主要是后面位运算会使用到
+```c
+unsigned char c;
+```
+
+## 格式化输入
+```
+%u unsigned
+%lu unsigned long long
+%hd short
+%d 整数类型
+%ld long long
+%f 单精度浮点数
+%lf 双精度浮点数
+%o 以8进制的方式进行读取
+%x 以16进制的方式进行读取
+```
+
+## 格式化输出
+```
+%d 整数类型
+%f 单精度浮点数
+%f 双精度浮点数
+%o 以8进制输出
+%x 以16进制输出
+%e 以科学计数方式输出浮点数
+```
+
+## 函数
+```c
+#include <stdio.h>
+
+//函数原型 
+void sum(int a,int b);
+
+int main()
+{	
+	//函数调用
+	sum(99,88);	
+	return 0; 
+}
+
+void sum(int a,int b){
+	printf("%d",a+b);
 }
 ```
