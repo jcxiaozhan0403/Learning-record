@@ -245,3 +245,8 @@ void sum(int a,int b){
 	printf("%d",a+b);
 }
 ```
+
+## 数组
+```c
+
+```
