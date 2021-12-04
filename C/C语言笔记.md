@@ -365,3 +365,158 @@ free(NULL);
 - 用遍历数组的方式可以遍历字符串
 - 不能用运算符对字符串进行操作
 
+### putchar和getchar
+putchar写入单个字符
+getchar读取单个字符
+本应是单个写入读取的，但是在我们终端输入时，输入内容会先存在终端shell缓冲区，在我们按下回车时，才会发送到程序
+在windows下CTRL+Z终止写入，系统会自动在末尾补-1代表输入结束，在Linux为CTRL+D
+```c
+int main()
+{	
+	int ch;
+	
+	while((ch = getchar()) != EOF) {
+		putchar(ch);
+	}
+	
+	printf("EOF");
+	return 0;
+}
+```
+
+## string.h函数库
+strlen：返回数组长度(不包括`/0`)
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{	
+	char str[] = "Hello World";
+	
+	printf("%d",strlen(str));
+	
+	return 0;
+}
+```
+strcmp：比较两个字符串，如果字符串a和b相等，返回0，如果字符串`a>b`返回1，如果字符串`a<b`返回-1，
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{	
+	char a[] = "abc";
+	char b[] = "Abc";
+	
+	printf("%d",strcmp(a,b));
+	
+	return 0;
+}
+```
+strcpy：字符串复制，参数一为目标数组，参数二为原数组
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{	
+	char a[] = "abcgggg";
+	char b[] = "avc";
+	
+	printf("%s",strcpy(b,a));
+	
+	return 0;
+}
+```
+strcat：字符串拼接，a字符串拼接到b字符串后面，返回b
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{	
+	char a[] = "abc";
+	char b[] = "xxabc";
+	
+	printf("b长度=%d\n",strlen(b));
+	
+	printf("%s\n",strcat(b,a));
+	
+	printf("b长度=%d\n",strlen(b));
+	
+	printf("%s\n",b);
+	
+	return 0;
+}
+```
+因为字符串的拼接和复制都存在安全问题，所以有了以下三个衍生函数
+- strncpy：字符串复制，参数一为目标数组，参数二为原数组,参数三为复制的位数，多余部分截断
+- strncat：字符串拼接，参数一为拼接字符串的头部，参数二为拼接字符串的尾部，参数三为拼接后字符串的位数，多余部分截断
+- strncmp：字符串比较，参数一为第一个字符串，参数二为第二个字符串，参数三为比较前几位
+
+### 字符串查找
+strchr：在字符串中从左往右查找字符，参数一为字符串，参数二为要查找的字符，返回字符第一次出现的位置的指针
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{	
+	char a[] = "bcxxxaxxxxsnks";
+	
+	char *p = strchr(a,'a');
+	
+	printf("%s",p);
+	
+	return 0;
+}
+```
+strrchr：在字符串中从右往左查找字符，参数一为字符串，参数二为要查找的字符，返回字符第一次出现的位置的指针，找不到则返回NULL
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{	
+	char a[] = "bcxxxaxxxxsnks";
+	
+	char *p = strchr(a,'x');
+	
+	printf("%s",p);
+	
+	return 0;
+}
+```
+strstr：在字符串中查找另一个字符串，返回第一次出现位置的指针，找不到则返回NULL
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{	
+	char a[] = "aaaahelloxxxxhellohdasldhasld";
+	
+	char *p = strstr(a,"hello");
+	
+	printf("%s",p);
+	
+	return 0;
+}
+```
+strcasestr：忽略大小写，在字符串中查找另一个字符串，返回第一次出现位置的指针，找不到则返回NULL
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{	
+	char a[] = "aaaaHelloxxxxHELLOhdasldhasld";
+	
+	char *p = strstr(a,"hello");
+	
+	printf("%s",p);
+	
+	return 0;
+}
+```

@@ -1,25 +1,13 @@
 #include <stdio.h>
+#include <string.h>
 
 int main()
 {	
-	int month;
+	char a[] = "aaaaHelloxxxxhellohdasldhasld";
 	
-	char *months[] = {
-		"January",
-		"February",
-		"March",
-		"April",
-		"May",
-		"June",
-		"July",
-		"August",
-		"September",
-		"October",
-		"November",
-		"December"
-	};
+	char *p = strstr(a,"hello");
 	
-	scanf("%d",&month); 
-	printf("%s",months[month-1]);
+	printf("%s",p);
+	
 	return 0;
 }
