@@ -2,15 +2,24 @@
 
 int main()
 {	
-	int i = 99;
-	int j = 100;
-	int* const q = &i;
-	q++; 
+	int month;
 	
-	printf("%d",*q);
-	printf("---------------------");
-	printf("%x",&j);
+	char *months[] = {
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December"
+	};
 	
-	
-	return 0; 
+	scanf("%d",&month); 
+	printf("%s",months[month-1]);
+	return 0;
 }
