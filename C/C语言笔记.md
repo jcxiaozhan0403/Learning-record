@@ -520,3 +520,127 @@ int main()
 	return 0;
 }
 ```
+
+## 枚举
+在实际编程中，有些数据的取值往往是有限的，只能是非常少量的整数，并且最好为每个值都取一个名字，以方便在后续代码中使用，比如一个星期只有七天，一年只有十二个月，一个班每周有六门课程等。
+```c
+#include <stdio.h>
+
+int main()
+{	
+	int myColor; 
+	
+	enum COLOR { RED, YELLOW, GREEN };
+	
+	scanf("%d",&myColor);
+	
+	switch(myColor) {
+		case RED: printf("红色"); break;
+		case YELLOW: printf("黄色"); break;
+		case GREEN: printf("绿色"); break;
+	}
+	
+	return 0;
+}
+```
+声明枚举量的时候可以指定值
+```c
+// 这里RED被赋值为1，YELLOW因为没有手动赋值，就会被系统定义为2，BULE会被系统定义为6
+enum COLOR { RED=1, YELLOW, GREEN=5, BULE};
+```
+
+## 结构类型
+结构体是一种集合，它里面包含了多个变量或数组，它们的类型可以相同，也可以不同，每个这样的变量或数组都称为结构体的成员
+简单来说，类似于Java的类，定义一个模板，可以创造多个实例出来，每一个实例都是不同的
+```c
+#include <stdio.h>
+
+int main()
+{	
+	struct demo{
+		int x;
+		int y;
+	}; 
+	
+	struct demo myeg1;
+	struct demo test = {1,2};
+	
+	myeg1.x = 5;
+	myeg1.y = 2;
+	
+	int *t = &myeg1;
+	
+	printf("%d",t[1]);
+	
+	return 0;
+}
+```
+可以用`->`来表示指针所指的结构变量中的成员
+```c
+#include <stdio.h>
+
+int main()
+{	
+	struct date {
+		int month;
+		int day;
+		int year;
+	} myday;
+	
+	struct date *p = &myday;
+	
+	(*p).month = 12;
+	p -> month = 56;
+	
+	printf("%d",myday.month);
+	
+	return 0;
+}
+```
+
+## 联合
+联合的使用，类似于结构体，只是所有的实例共享一块空间，所以，先定义的变量会被后定义的变量覆盖
+```c
+
+```
+
+## 数据类型别名
+c语言提供了一个叫typedef的功能来为一个数据类型定义一个别名
+```c
+#include <stdio.h>
+
+int main()
+{	
+	typedef int Demo;
+	
+	Demo a=0,b;
+	Demo numbers[11];
+	
+	printf("%d",a); 
+	
+	return 0;
+}
+```
+简化结构体的使用
+```c
+#include <stdio.h>
+
+int main()
+{	
+	typedef struct date {
+		int month;
+		int day;
+		int year;
+	} Date;
+	
+	Date test;
+	test.month = 12;
+	test.day = 6;
+	test.year = 2021;
+	
+	
+	printf("%d",test.month); 
+	
+	return 0;
+}
+```

@@ -1,13 +1,18 @@
 #include <stdio.h>
-#include <string.h>
 
 int main()
 {	
-	char a[] = "aaaaHelloxxxxhellohdasldhasld";
+	union data{
+	    int n;
+	    char ch;
+	    short m;
+	} a;
 	
-	char *p = strstr(a,"hello");
+	a.n = 0x40;
+	a.ch = 'h';
+    printf("%X, %c, %hX\n", a.n, a.ch, a.m);
 	
-	printf("%s",p);
+	
 	
 	return 0;
 }
