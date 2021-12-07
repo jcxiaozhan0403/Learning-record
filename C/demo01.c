@@ -2,17 +2,8 @@
 
 int main()
 {	
-	union data{
-	    int n;
-	    char ch;
-	    short m;
-	} a;
-	
-	a.n = 0x40;
-	a.ch = 'h';
-    printf("%X, %c, %hX\n", a.n, a.ch, a.m);
-	
-	
+	printf("%s\t%d\n",__FILE__,__LINE__);
+	printf("%s\t%s\t%d\n",__DATE__,__TIME__,__STDC__);
 	
 	return 0;
 }
