@@ -2,8 +2,6 @@
 
 int main()
 {	
-	printf("%s\t%d\n",__FILE__,__LINE__);
-	printf("%s\t%s\t%d\n",__DATE__,__TIME__,__STDC__);
-	
+	printf("%9.2f",123.456);
 	return 0;
 }

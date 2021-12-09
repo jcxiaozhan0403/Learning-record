@@ -257,6 +257,13 @@ unsigned char c;
 |    ll    |  long long  |
 |    L     | long double |
 
+```c
+printf("%9d\n",123); //总共占9位，右对齐
+printf("%-9d\n",123); //总共占9位，左对齐
+printf("%9.2f\n",123.456); //总共占9位(小数点要占1位)，小数点后保留2位
+printf("%*d\n",8,123); //总共占8位，右对齐
+```
+
 
 
 
@@ -804,3 +811,4 @@ int main()
 	return 0;
 }
 ```
+
