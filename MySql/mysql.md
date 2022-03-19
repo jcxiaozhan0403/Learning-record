@@ -485,3 +485,4 @@ explain select * from student where match(studentname) against('刘');
 第二范式（2NF）数据库表满足第一范式，并且每一列都依赖主键，联合主键时每一列都完全依赖于主键（消除部分依赖）
 
 第三范式（3NF）如果一个关系满足2NF，并且除了主键以外的其他列都不传递依赖于主键列，则满足第三范式（消除传递依赖）
+
