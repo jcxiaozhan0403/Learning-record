@@ -8,8 +8,8 @@ Alt+Shift+Ins 抛出异常、导入包
 ## 常用DOS命令
 进入磁盘
 ```
-盘符+冒号
-例：D:
+// 盘符+冒号
+D:
 ```
 查看当前目录下的所有文件
 ```
@@ -17,9 +17,14 @@ dir
 ```
 切换文件夹
 ```
-cd+目录
-例：cd /d \demo
-    cd demo
+// 进入当前目录下的某个文件夹内
+cd 文件夹名
+
+// 返回上级文件夹
+cd ..
+
+// 进入某一个盘下的某一个文件夹
+cd /d f:\demo
 ```
 清空终端消息
 ```
@@ -39,30 +44,50 @@ notepad 记事本
 ```
 md 目录名 (创建目录)
 rd 目录名 (删除目录)
-cd> 文件名 (文件名)
-del 文件名
+del 文件名 (删除文件)
 ```
 生成java文档
 ```
 javadoc -encoding UTF-8 -charset UTF-8 java文件名
 ```
 
-源文件.java
-编译后的文件.class
+## 环境变量配置
+JAVA_HOME  `jdk根目录`
+path  `%JAVA_HOME%\jre\bin` 、`%JAVA_HOME%\bin`
 
-## 环境配置
-JAVA_HOME  jdk根目录
-path  %JAVA_HOME%\jre\bin  %JAVA_HOME%\bin
+## JDK、JRE、JVM
 
-JDK(Java开发工具包)
-JRE(Java运行环境，包含一些函数、库之类的)
-JVM(Java虚拟机，负责编译)
+JDK：Java开发工具包
+JRE：Java运行环境，包含一些函数、库之类的
+JVM：Java虚拟机，负责编译
+
 包含关系
 JDK>JRE>JVM
 
 <img src="./JDK、JRE、JVM.jpg">
 
+## JDK目录结构
+
+lib：一些可执行文件，编译器javac.exe也在里面
+
+include：JDK由C和C++编写，这个目录里面存放一些头文件
+
+jre：java运行时环境
+
+lib：java的一些库文件
+
+## Hello World
+
+```java
+public class Demo{
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+```
+
 ## 注释
+
 ```JAVA
 //文档注释
 /**

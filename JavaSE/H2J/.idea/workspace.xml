@@ -23,9 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../MySql/mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../MySql/mysql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../C/demo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../C/demo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSE.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +67,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../项目/Swing学生管理系统" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -269,6 +269,7 @@
       <workItem from="1633742823662" duration="1353000" />
       <workItem from="1633942315168" duration="652000" />
       <workItem from="1634009392394" duration="97000" />
+      <workItem from="1650703553181" duration="647000" />
     </task>
     <servers />
   </component>
