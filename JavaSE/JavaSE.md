@@ -20,7 +20,14 @@ Alt+Shift+Ins
 ```
 Ctrl+D
 ```
+快速生成for循环
+
+```
+100.for
+```
+
 ## 常用DOS命令
+
 进入磁盘
 ```
 // 盘符+冒号
@@ -302,17 +309,17 @@ n >>> m     //无符号右移，右移后的最前两位补0
 Java API 文档，可以通过CMD用命令生成或者使用idea生成
 
 ```
-javadoc -encoding UTF-8 -charset UTF-8 x
+javadoc -encoding UTF-8 -charset UTF-8 demo.java
 ```
 
 ## Scanner
 ```java
 Scanner s = new Scanner(System.in);
 
-//判断输入的数是不是一个整数类型
+//判断输入的数是否为整数类型
 s.hasNextInt();
 
-//判断输入的数是不是一个小数类型
+//判断输入的数是否为浮点类型
 s.hasNextFloat();
 
 //使用Scanner读取整数
@@ -329,9 +336,10 @@ System.out.println("读取的字符串是："+c);
 
 s.close(); //关闭，避免内存浪费
 ```
-nextLine()与next()的区别：
+### nextLine()与next()的区别：
+
 - next()读取到空白符就结束，常见空白字符：空格、Tab、回车
-- nextLine()读取到回车结束也就是"\r"
+- nextLine()读取到回车才结束也就是`"\r"`
 
 - nextLine()在读取字符时不做特殊处理
 - next()在读取字符时，会将第一个字符之前的空白字符过滤掉
@@ -382,9 +390,35 @@ public class HelloWorld {
 }
 ```
 
+while循环
+
+```java
+while( 布尔表达式 ) {
+	//代码语句
+}
+```
+
+do...while循环
+
+```java
+do {
+    //代码语句
+}while(布尔表达式);
+```
+
+for循环
+
+```java
+for(初始化; 布尔表达式; 更新) {
+    //代码语句
+}
+```
+
 ## 方法重载
+
 同名方法不同数量或类型的参数传入，得到不同的返回值，通过方法的重载实现，如果有多个同名方法，系统会在调用时自动选择对应数量参数的一个
 重载规则：
+
 - 方法名称必须相同
 - 参数列表必须不同(个数不同、或类型不同、参数排列顺序不同等等)
 - 方法的返回值类型可以相同也可以不同
