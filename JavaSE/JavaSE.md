@@ -426,6 +426,7 @@ for(int i : arr) {
 ## 方法重载
 
 同名方法不同数量或类型的参数传入，得到不同的返回值，通过方法的重载实现，如果有多个同名方法，系统会在调用时自动选择对应数量参数的一个
+
 重载规则：
 
 - 方法名称必须相同
@@ -433,14 +434,14 @@ for(int i : arr) {
 - 方法的返回值类型可以相同也可以不同
 - 仅仅返回类型不同不足以成为方法重载
 
-## 可变参数方法
+## 可变长参数方法
 不定参数的方法是用来避免代码冗余的
-- 可变参数只能作为函数的最后一个参数，但其前面可以有也可以没有任何其他参数
+- 可变长参数只能作为函数的最后一个参数，但其前面可以有也可以没有任何其他参数
 - 由于可变参数必须是最后一个参数，所以一个函数最多只能有一个可变参数
-- Java的可变参数，会被编译器转型为一个数组
+- Java的可变长参数，会被编译器转型为一个数组
 - 变长参数在编译为字节码后，在方法签名中就是以数组形态出现的。这两个方法的签名是一致的，不能作为方法的重载。如果同时出现，是不能编译通过的。可变参数可以兼容数组，反之则不成立
 ```java
-public void foo(String...varargs){}
+public void foo(String... varargs){}
 
 foo("arg1", "arg2", "arg3");
 
@@ -450,7 +451,7 @@ foo(new String[]{"arg1", "arg2", "arg3"});
 
 ```java
 public class StudentTestMethod {
-    // methodName({paramList},paramType…paramName)
+    // methodName({paramList},paramType… paramName)
     // methodName 表示方法名称
     // paramList 表示方法的固定参数列表
     // paramType 表示可变参数的类型
@@ -459,7 +460,7 @@ public class StudentTestMethod {
     
     
     // 定义输出考试学生的人数及姓名的方法
-    public void print(String...names) {
+    public void print(String... names) {
         int count = names.length;    // 获取总个数
         System.out.println("本次参加考试的有"+count+"人，名单如下：");
         for(int i = 0;i < names.length;i++) {
