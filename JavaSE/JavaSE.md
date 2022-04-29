@@ -539,36 +539,36 @@ System.arraycopy(src, srcPos, dest, destPos, length)
 //length: 复制的长度
 ```
 
-## Arrays类操作数组
+## Arrays工具类
 ```java
 import java.util.Arrays;//导入Arrays类
  
 public class HelloWorld {
     public static void main(String[] args) {
-        int a[] = new int[] { 18, 62, 68, 82, 65, 9 };
+        int a[] = new int[] {18,62,68,82,65,9};
  
         // copyOfRange(int[] original, int from, int to)
         // 参数一：源数组
         // 参数二：开始位置(取得到)
         // 参数三：结束位置(取不到)
-        int[] b = Arrays.copyOfRange(a, 0, 3);
+        int[] b = Arrays.copyOfRange(a,0,3);
  
-        for (int i = 0; i < b.length; i++) {
+        for (int i = 0;i< b.length;i++) {
             System.out.print(b[i] + " ");
         }
 
          //toString方法将数组作为字符串打印
         String content = Arrays.toString(a);
 
-        //sort方法将数组进行由小到大排序
+        //sort方法将数组进行由小到大排序(升序)
         Arrays.sort(a); 
 
         //binarySearch方法搜索元素出现的位置，必须在sort排序前提下
         //数字62在a数组中第一次出现的位置
-        Arrays.binarySearch(a, 62); 
+        Arrays.binarySearch(a,62); 
 
         //比较两个数组内容是否完全相同
-        Arrays.equals(a, b)
+        Arrays.equals(a,b)
 
         //填充数组
         //Array.fill(arrayname ,starting index ,ending index ,value)
@@ -577,6 +577,7 @@ public class HelloWorld {
         // 参数三：结束位置(取不到)
         // 参数四：填充值
         Arrays.fill(a,2,4,10);
+        
         // 用一个值填充整个数组
         Arrays.fill(a,10);
     }
