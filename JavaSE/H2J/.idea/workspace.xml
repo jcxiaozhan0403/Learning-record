@@ -25,7 +25,20 @@
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../新建文件夹/JFream组件.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Nginx/笔记.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../公司实习/2-测试报告10001.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../公司实习/【5轮测试报告】川北医学院物资管理平台第五轮功能测试报告10.29.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../公司实习/低值易耗品物资采购平台.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../公司实习/低值易耗品物资采购平台.xmind" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../公司实习/供应商操作手册.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../公司实习/普通用户操作手册(12.12更新).doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../公司实习/笔记.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../公司实习/绘图2.vsd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../公司实习/部署.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../公司实习/部署.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../公司实习/院校管理员操作手册.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../公司实习/需求.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,6 +286,8 @@
       <workItem from="1650873577514" duration="1497000" />
       <workItem from="1650982654373" duration="1402000" />
       <workItem from="1651142085770" duration="860000" />
+      <workItem from="1655004701218" duration="54000" />
+      <workItem from="1655004772301" duration="1523000" />
     </task>
     <servers />
   </component>
