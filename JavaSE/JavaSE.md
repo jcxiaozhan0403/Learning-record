@@ -879,7 +879,9 @@ for (Season s : Season.values()) {
 ```
 
 ## 接口
-接口是一种约定，继承接口后必须重写接口的方法
+- 由interface关键字定义的类被称为接口
+- 接口中的方法默认被public abstract修饰，属性默认被public static final修饰，所以在定义方法和属性时，不需要修饰符
+- 接口用implements关键字继承，接口是多继承的
 
 ## 对象类型转换
 用来代表类的对象的变量叫做引用
@@ -960,10 +962,11 @@ System.out.println(h1 instanceof Hero);
 3. 调用父类方法，用`super.方法名`的方式
 
 ## 抽象类
-- 抽象方法用abstract修饰,只申明，没有方法体
-- 如果一个类中有抽象方法，那么这个类必须为抽象类
+- 抽象方法用abstract关键字修饰,只申明，没有方法体
+- 抽象方法必须在抽象类中，抽象类中可以存在普通方法
 - 抽象类的子类中，必须重写抽象方法
 - 抽象类中可以没有抽象方法，但是抽象类不能被直接实例化
+- 抽象类用extends关键词继承，类是单继承的
 
 ## 内部类
 成员内部类：成员内部类可以直接拿到外部类的私有属性
@@ -1209,7 +1212,8 @@ catch(FileNotFoundException e){
     e.printStackTrace();
 }
 
-//法二：throw 抛出
+//法二：throws 抛出
+//不对异常进行处理，直接抛出，程序会正常运行
 private static void method2() throws FileNotFoundException {
 
     File f = new File("d:/LOL.exe");
@@ -1237,7 +1241,7 @@ try {
     e.printStackTrace();
 }
 finally{
-    //finally中放无论出不出现异常都必会执行的代码
+    //无论出不出现异常finally中的代码都会被执行都必会执行的代
     System.out.println("无论文件是否存在， 都会执行的代码");
 }
 
