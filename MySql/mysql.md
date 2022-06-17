@@ -1,4 +1,76 @@
+## 数据库分类
+
+**关系型数据库：**
+
+- MySQL、Oracle、Sql Server、DB2、SQLite
+- 通过表和表之间，行和列之间的关系进行数据的存储
+
+**非关系型数据库：**
+
+- Redis、MongDB
+- 对象存储，通过对象的自身的属性来决定
+
+## 安装MySQL
+
+1. 解压
+2. 配置环境变量 path MySQL bin目录
+3. MySQL根目录新建配置文件`my.ini`
+4. 编写配置文件
+
+```
+[mysqld]
+basedir=D:\MySQL根目录\
+datadir=D:\MySQL根目录\data\
+port=3306
+skip-grant-tables
+```
+
+5. 安装MySQL服务，MySQL bin目录，管理员CMD
+
+```
+mysqld -install
+```
+
+6. 初始化数据文件，MySQL bin目录，管理员CMD
+
+```
+mysqld -initialize-insecure --user=mysql
+```
+
+7. 启动MySQL服务
+
+```
+net start mysql
+```
+
+8. 登录(第一次登录密码为空即可)
+
+```
+mysql –u root –p
+```
+
+9. 修改密码
+
+```
+update mysql.user set authentication_string=password(‘123456’) where user=‘root’ and Host = ‘localhost’;
+```
+
+10. 退出
+
+```
+exit
+```
+
+11. 修改 my.ini文件，删除最后一句skip-grant-tables
+12. 重启服务
+
+```
+net stop mysql
+net start mysql
+```
+
 ## 数据库字段类型
+
 ### 数值
 |   类型 |        |  字节 |
 | :----: | :---:  | :---: |
