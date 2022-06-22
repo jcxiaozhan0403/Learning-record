@@ -1262,20 +1262,23 @@ try {
 }
 ```
 
-## 常用类
+# 常用类
 
 ## 内部类
 - 概念：在一个类的内部再定义一个完整的类，当外部类与内部类的属性重名时，优先访问内部类属性
 - 分类：成员内部类、静态内部类、局部内部类、匿名内部类
 
 ### 成员内部类
+- 内部类在编译之后也会产生独立的字节码文件
 - 成员内部类在类的内部定义，与外部类的变量和方法同级别的类
 - 成员内部类可以直接拿到外部类的私有属性
-- 成员内部类里不能定义静态成员、可以包含静态常量(final)，这个静态常量在不实例化外部类的情况下可以调用
+- 如果存在同名属性，优先访问成员内部类的属性
+- 成员内部类里不能定义静态成员变量，但是可以定义静态常量(final)，这个静态常量在不实例化外部类的情况下可以调用
 
 ```java
 public class Outer{
     private int id = 10;
+    private String name = "张三";
 
     public void out(){
         System.out.println("这是外部方法");
@@ -1283,9 +1286,16 @@ public class Outer{
 
     public class Inner {
         static final String XXX = "这是一个静态常量";
-
+        private String name = "李四";
+       
         public void in(){
             System.out.println("这是内部方法");
+            
+            //打印李四
+            System.out.println(name);
+            System.out.println(this.name);
+            //打印张三
+            System.out.println(Outer.this.name);
         }
 
         public void getID(){
@@ -1308,25 +1318,9 @@ public class Test {
     }
 }
 ```
-### 局部内部类
-- 局部内部类就是定义在外部类的方法里面的类，作用范围和创建对象范围仅限于当前方法，不能添加任何修饰符
-- 局部内部类访问外部类当前方法中的局部变量时，因无法保障变量的生命周期与自身相同，变量必须修饰为final，这是JDK1.7的规定，JDK1.8以后，这个final会自动添加，不用我们考虑
-
-```java
-public class Outer{
-    public void method(){
-        class Inner{
-            private String str = "一个局部变量";
-
-            public  void in(){
-                
-            }
-        }
-    }
-}
-```
 
 ### 静态内部类
+- 静态内部类不依赖外部类对象，可直接创建或通过类名访问，可以定义静态成员变量
 - 非静态内部类需要在外部类存在一个实例时才可以调用，静态内部类可以直接调用，因为没有一个外部类的实例，所以在静态内部类里面不可以直接访问外部类的属性和方法，若想访问，需要创建外部类的对象来调用
 
 ```java
@@ -1355,9 +1349,39 @@ public class Outer{
 }
 ```
 
+### 局部内部类
+- 局部内部类就是定义在外部类的方法里面的类，作用范围和创建对象范围仅限于当前方法，不能添加任何修饰符
+- 局部内部类访问外部类当前方法中的局部变量时，因无法保障变量的生命周期与自身相同(局部变量在方法执行之后消失，而内部类不会消失)，变量必须修饰为final常量，这是JDK1.7的规定，JDK1.8以后，这个final会自动添加，不用我们考虑
+
+```java
+public class Outer{
+    private String str1 = "外部类变量";
+    public void method(){
+        class Inner{
+            private String str = "局部变量";
+
+            public  void in(){
+                //打印外部类变量
+                System.out.println(str1);
+
+                //打印局部变量
+                System.out.println(str);
+            }
+        }
+
+        Inner inner = new Inner();
+        inner.in();
+    }
+
+    public static void main(String[] args) {
+        new Outer().method();
+    }
+}
+```
+
 ### 匿名内部类
-- 匿名内部类也就是没有名字的内部类，正因为没有名字，所以匿名内部类只能使用一次，它通常用来简化代码编写，但使用匿名内部类还有个前提条件：必须继承一个父类或实现一个接口
-- 匿名类就是在实例化类的同时写出方法，不使用引用保存实例
+- 匿名内部类也就是没有名字的局部内部类，正因为没有名字，所以匿名内部类只能使用一次，它通常用来简化代码编写，但使用匿名内部类还有个前提条件：必须继承一个父类或实现一个接口
+- 匿名类就是在实例化类的重写方法，不使用引用保存实例
 
 ```java
 public class Test {
@@ -1384,7 +1408,9 @@ public class Demo {
 }
 ```
 最常用的情况就是在多线程的实现上，因为要实现多线程必须继承Thread类或是继承Runnable接口
-Thread类的匿名内部类实现
+
+- Thread类的匿名内部类实现 
+
 ```java
 public class Demo {
     public static void main(String[] args) {
@@ -1399,7 +1425,8 @@ public class Demo {
     }
 }
 ```
-Runnable接口的匿名内部类实现
+- Runnable接口的匿名内部类实现
+
 ```java
 public class Demo {
     public static void main(String[] args) {
@@ -1427,9 +1454,9 @@ Class class = stu.getClass();
 ```
 
 ### hashCode() 
-返回对象的哈希值
+返回对象哈希值，是一个整数，表示在哈希表中的位置
 
-哈希值：根据对象的地址或字符串或数字使用hash算法计算出来的int类型的数值
+哈希值：根据对象的地址或字符串或数字使用hash算法计算出来的int类型的数值，一般情况下，相同对象返回相同哈希码
 ```java
 Student stu = new Student();
 int hash = stu.hashCode();
@@ -1824,7 +1851,7 @@ myGenericMethod.show(200);// integer类型
 myGenericMethod.show(3.14);// double类型
 ```
 
-## 集合
+# 集合
 概念：对象的容器，定义了对多个对象进行操作的常用方法，可实现数组的功能
 
 所有集合类都位于`java.util`包下，Java的集合类主要由两个接口派生而出，Collection和Map，Collection和Map是Java集合框架的根接口，这两个接口又包含了一些子接口或实现类。
@@ -2444,7 +2471,7 @@ public static void main(String[] args) {
 }
 ```
 
-## I/O流
+# I/O流
 概念：内存与存储设备之间传输数据的通道
 
 <img src="https://img.jcxiaozhan.top/JavaIO%E6%B5%81%E4%B8%80.jpg">
