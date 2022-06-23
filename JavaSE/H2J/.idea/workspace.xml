@@ -23,13 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
-      <change afterPath="$PROJECT_DIR$/src/Parent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/H2J/Demo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/H2J/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/H2J/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSE.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,7 +275,7 @@
       <workItem from="1655004772301" duration="1523000" />
       <workItem from="1655183751571" duration="2748000" />
       <workItem from="1655278940534" duration="1167000" />
-      <workItem from="1655874256546" duration="7594000" />
+      <workItem from="1655874256546" duration="8189000" />
     </task>
     <servers />
   </component>
