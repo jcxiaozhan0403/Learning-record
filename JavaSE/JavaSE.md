@@ -209,11 +209,35 @@ Java中有8种基本数据类型，除此之外都是引用数据类型
 
 <img src="./浮点数据类型.png">
 
+## 装箱与拆箱
+
+装箱 ：将基本类型转换为引用类型
+
+拆箱：将引用类型转换为基本类型
+
+- JDK1.5以前，手动装箱与拆箱
+
+```
+int num1 = 18;
+//使用构造器装箱
+Integer integer1 = new Integer(num1);
+//调用方法装箱
+Integer integer2 = Integer.valueOf(num1);
+//调用方法拆箱
+int num2 = integer1.intValue();
+```
+
+- JDK1.5之后，提供自动装箱与拆箱
+
+```
+int num = 80;
+Integer integer = num;
+int num2 = integer;
+```
+
 ### 关于浮点数
 
-浮点数是有限的、离散的、存在舍入误差、只能表示大约
-
-银行业务要求精确，所以不能使用浮点数，一般使用BigDecimal数学工具类
+浮点数是有限的、离散的、存在舍入误差、只能表示大银行业务要求精确，所以不能使用浮点数，一般使用BigDecimal数学工具类
 
 ## 转义字符
 
