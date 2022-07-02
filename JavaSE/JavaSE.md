@@ -235,7 +235,25 @@ Integer integer = num;
 int num2 = integer;
 ```
 
-### 关于浮点数
+## Integer缓冲区
+
+Integer对象有一个默认的缓冲区，范围-128-127，创建的对象在这个范围之类的话就会直接使用缓冲区的对象
+
+100在范围内，所以integer1和integer2都是指向了缓冲区的同一个对象，所以比较结果为true
+
+200不在范围内，所以integer3和integer4是分别创建的新对象，所以比较结果为false
+
+```
+Integer integer1 = Integer.valueOf(100);
+Integer integer2 = Integer.valueOf(100);
+System.out.println(integer1 == integer2);	//true
+
+Integer integer3 = Integer.valueOf(200);
+Integer integer4 = Integer.valueOf(200);
+System.out.println(integer3 == integer4);	//false
+```
+
+## 关于浮点数
 
 浮点数是有限的、离散的、存在舍入误差、只能表示大银行业务要求精确，所以不能使用浮点数，一般使用BigDecimal数学工具类
 

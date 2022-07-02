@@ -24,6 +24,11 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/H2J/Son.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/H2J/Son.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/H2J/Test$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/H2J/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Son.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Son.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSE.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +91,7 @@
       <recent name="multithreading" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.Son">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -98,15 +103,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Lock" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Lock" />
+    <configuration name="Parent" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Parent" />
       <module name="H2J" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Parent" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Parent" />
+    <configuration name="Son" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Son" />
       <module name="H2J" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -135,11 +140,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Son" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.Parent" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.Test02" />
-        <item itemvalue="Application.Lock" />
       </list>
     </recent_temporary>
   </component>
@@ -276,6 +281,8 @@
       <workItem from="1655183751571" duration="2748000" />
       <workItem from="1655278940534" duration="1167000" />
       <workItem from="1655874256546" duration="8189000" />
+      <workItem from="1656141416632" duration="1681000" />
+      <workItem from="1656258821318" duration="48000" />
     </task>
     <servers />
   </component>

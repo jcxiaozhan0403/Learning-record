@@ -3,26 +3,15 @@
  * @date 2022/6/22 15:24
  * @Description:
  */
-public class Son implements Parent{
-    @Override
-    public void test() {
-        System.out.println("测试");
-    }
-}
-
-class Test {
+public class Son{
+    private String name;
     public static void main(String[] args) {
-        Parent parent = new Son();
-        Class class1 = parent.getClass();
-        System.out.println(class1);
+        Integer integer1 = Integer.valueOf(100);
+        Integer integer2 = Integer.valueOf(100);
+        System.out.println(integer1 == integer2);
 
-        Parent parent1 = new Parent() {
-            @Override
-            public void test() {
-                Class class1 = parent.getClass();
-                System.out.println(class1);
-            }
-        };
-        parent1.test();
+        Integer integer3 = Integer.valueOf(200);
+        Integer integer4 = Integer.valueOf(200);
+        System.out.println(integer3 == integer4);
     }
 }
