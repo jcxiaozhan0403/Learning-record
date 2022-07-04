@@ -1542,12 +1542,16 @@ boolean result = stu1.equals(stu2);
 
 ## String
 
+- String也叫作字符串常量，因为它在创建之后是不可更改的。
+- 字符串字面值存储在字符串池中，可以共享。
+
 ### 创建字符串的两种方式及区别
+
 ```java
-// 第一种创建方式，栈内引用直接指向方法区中的常量池中的值
+// 第一种创建方式，只在常量池中创建一个对象，栈内引用直接指向方法区中的常量池中的对象
 String str1 = "你好";
 
-// 第二种创建，堆内新建对象，对象指向方法区中的常量池中的值栈内引用指向堆内对象
+// 第二种创建，在堆内新建对象，对象指向方法区中的常量池中的值栈内引用指向堆内对象
 String str2 = new String("Hello World");
 ```
 
@@ -1594,7 +1598,7 @@ String str = "Java Hello Java CC Java";
 int index = str.lastIndexOf("Java");
 ```
 
-### trim()
+### trim()（常用）
 去掉字符串前后空格
 ```java
 String str = "    Hello World    ";
@@ -1612,9 +1616,9 @@ String str3 = str.toLowerCase();
 ```
 
 ### endsWith(String str)
-判断字符串是否以str结尾
+判断字符串是否以某串字符结尾
 ### startsWith(String str)
-判断字符串是否以str开头
+判断字符串是否以某串字符开头
 ```java
 String str = "Hello World";
 boolean r1 = str.startsWith("Hello");
@@ -1628,7 +1632,7 @@ String str = "Hello World";
 String str2 = str.replace("World","Java");
 ```
 
-### split(String str)
+### split(String str)（常用）
 根据str对字符串进行拆分，返回一个字符串数组
 ```java
 String str = "Hello World Java PHP C,Python|C++";
@@ -1639,9 +1643,9 @@ String[] strs = str.split("[ ,|]")
 ```
 
 ## 可变字符串
-- StringBuffer : 可变长字符串，运行效率慢、线程安全
+- StringBuffer : 可变长字符串，JDK1.0提供，运行效率慢、线程安全
 
-- StringBuilder : 可变长字符串、运行快、线程不安全
+- StringBuilder : 可变长字符串，JDK5.0提供，运行效率快、线程不安全
 
 - StringBuffer和StringBuilder的效率都高于String，都比String节省内存
 
@@ -1655,10 +1659,10 @@ sb.append("Hello World");
 // insert()添加
 sb.insert(0,"Hello World");
 
-// replace()替换:取前不取后
+// replace()替换:取头不取尾
 sb.replace(6,11,"Java");
 
-// delete()删除
+// delete()删除:取头不取尾
 sb.delete(6,sb.length());
 
 // 打印
@@ -1686,7 +1690,7 @@ BigDecimal result5 = bd1.divide(bd2).setScale(2, RoundingMode.HALF_UP)
 ```
 
 ## Date
-- Date表示特定的瞬间，精确到毫秒。Date类中的大部分方法都已经被Calendar类中的方法所取代
+- Date表示特定的瞬间，精确到毫秒，JDK1.0提供。JDK1.1之后，Date类中的大部分方法都已经被Calendar类中的方法所取代
 
 ```java
 public static void main(String[] args) {
@@ -1707,7 +1711,7 @@ public static void main(String[] args) {
 
     // 比较compareTo();
     int d = date1.compareTo(date1);
-    System.out.println(d); // 多的为1 少的为 -1
+    System.out.println(d); // 多的为1，少的为-1，相等为0
 
     // 比较是否相等 equals()
     boolean b3 = date1.equals(date2);
@@ -1717,6 +1721,7 @@ public static void main(String[] args) {
 
 ## Calendar
 - Calendar提供了获取或设置各种日历字段的方法
+- 构造方法用protected进行修饰，不能直接创建对象
 
 ```java
 public static void main(String[] args) {
@@ -1728,9 +1733,9 @@ public static void main(String[] args) {
     int year = calendar.get(Calendar.YEAR);
     // 获取月 从 0 - 11
     int month = calendar.get(Calendar.MONTH);
-    // 日
+    // 日，DAY_OF_MONTH和DATE是一样的
     int day = calendar.get(Calendar.DAY_OF_MONTH);
-    // 小时
+    // 小时，HOUR 12小时制，HOUR_OF_DAY 24小时制
     int hour = calendar.get(Calendar.HOUR_OF_DAY);
     // 分钟
     int minute = calendar.get(Calendar.MINUTE);
@@ -1743,12 +1748,13 @@ public static void main(String[] args) {
     calendar2.add(Calendar.HOUR, x); // x为正就加 负就减
     // 5. 补充方法
     int max = calendar2.getActualMaximum(Calendar.DAY_OF_MONTH);// 月数最大天数
-    int min = calendar2.getActualMinimum(Calendar.DAY_OF_MONTH);    
+    int min = calendar2.getActualMinimum(Calendar.DAY_OF_MONTH);// 月数最小天数 
 }
 ```
 
 ## SimpleDateFormat
 - SimpleDateFormat是一个以与语言环境有关的方式来格式化和解析日期的具体类
+- 文本 <==> 日期
 
 ```java
 public static void main(String[] args) throws ParseException {
@@ -1770,11 +1776,11 @@ public static void main(String[] args) throws ParseException {
 
 ```java
 public static void main(String[] args) {
-    //arraycopy 复制
-    //src-原数组 srcPos-从哪个位置开始复制0 dest-目标数组 destPos-目标数组的位置 length-复制的长度
+    //arraycopy 数组复制
+    //System.arraycopy(src, srcPos, dest, destPos, length);
+    //src-原数组 srcPos-从哪个位置开始复制 dest-目标数组 destPos-目标数组的位置 length-复制的长度
     int[] arr = {20, 18, 39, 3};
     int[] dest = new int [4];
-    //System.arraycopy(src, srcPos, dest, destPos, length);
     System.arraycopy(arr, 0, dest, 0, 4);
     for (int i : dest) {
         System.out.println(i);

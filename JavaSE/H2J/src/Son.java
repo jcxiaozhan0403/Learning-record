@@ -4,14 +4,14 @@
  * @Description:
  */
 public class Son{
-    private String name;
     public static void main(String[] args) {
-        Integer integer1 = Integer.valueOf(100);
-        Integer integer2 = Integer.valueOf(100);
-        System.out.println(integer1 == integer2);
+        StringBuilder sb = new StringBuilder();
+        // append()追加
+        sb.append("Hello World");
+        System.out.println(sb);
 
-        Integer integer3 = Integer.valueOf(200);
-        Integer integer4 = Integer.valueOf(200);
-        System.out.println(integer3 == integer4);
+        // delete()删除
+        sb.delete(0,3);
+        System.out.println(sb);
     }
 }
