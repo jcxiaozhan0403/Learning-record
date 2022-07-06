@@ -1939,16 +1939,16 @@ public static void main(String[] args) {
     // 使用迭代器遍历   
     // 删除当前元素
     Iterator it = collection.iterator();
-    // 判断有没有下一个元素
+    // hasNext()判断有没有下一个元素
     while(it.hasNext()){
-        // 获取元素
+        // next()获取元素
         Object obj = it.next();
-        // 移除当前元素
-        // 使用collection.remove()会报并发修改异常
+        // remove()移除当前元素
+        // 使用collection.remove()会报并发修改异常，所以我们只能使用iterator.remove()来删除元素
         it.remove();
     }
 
-    // 判断集合是否存在指定元素
+    // 判断集合是否包含指定元素
     boolean result1 = collection.contains("梨子");
     // 判断集合是否为空
     boolean result2 = collection.inEmpty();
@@ -2004,22 +2004,22 @@ public static void main(String[] args) {
         it.remove();
     }
 
-    // 使用列表迭代器，列表迭代器可以从前向后遍历，也可以从后向前遍历
+    // 使用列表迭代器（List特有），列表迭代器可以从前向后遍历，也可以从后向前遍历
     // 创建迭代器
     ListIterator it1 = list.listIterator();
     // 从前向后遍历
     while(it1.hasNext()){
-        System.out.println();
+        System.out.println(it1.next());
     }
     // 从后向前遍历(因为是同一个迭代器，在上一次遍历之后，迭代器已经指向了集合末尾，所以这里可以直接开始向前遍历)
-    while(it1.hasNext()){
-        System.out.println();
+    while(it1.hasPrevious()){
+        System.out.println(it1.previous());
     }
 
     // 获取元素出现位置
     System.out.println(list.indexOf("香蕉"));
 
-    // List集合添加整数元素(自动装箱)
+    // List集合添加整数元素(自动装箱,JDK1.8新特性)
     list.add(10);
     list.add(20);
 
@@ -2036,9 +2036,9 @@ public static void main(String[] args) {
 ```
 
 ## List实现类
-1. ArrayList：数组结构实现，必须要连续空间，查询快，增删慢，运行效率快，线程不安全
-2. Vector：数组结构实现，查询快，增删慢，运行效率慢，线程安全
-3. LinkedList：双向链表结构实现，增删快，查询慢
+1. ArrayList（常用）：JDK1.2提供，数组结构实现，必须要连续空间，查询快，增删慢，运行效率快，线程不安全
+2. Vector：JDK1.0提供，数组结构实现，查询快，增删慢，运行效率慢，线程安全
+3. LinkedList（常用）：双向链表结构实现，增删快，查询慢
 
 ### ArrayList
 源码分析：
