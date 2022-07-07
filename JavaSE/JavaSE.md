@@ -2042,23 +2042,22 @@ public static void main(String[] args) {
 
 ### ArrayList
 源码分析：
-- 如果没有向集合中添加任何元素时，容量0，添加一个后，容量为10
-- 首次添加元素时，ArrayList会进行第一次扩容，之后每当判断到容量不够时，就会扩容，每次扩容是原来的1.5倍
+- 如果没有向集合中添加任何元素时，容量0，添加第一个元素后，默认容量为10
+- 首次添加元素时，ArrayList会被赋予初始容量10，之后每当判断到容量不够时，就会扩容，每次扩容为原来的1.5倍
 
 ```java
 // 一个空数组
-private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {}; 
+private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};
 
 // 默认容量
-private static final int DEFAULT_CAPACITY = 10; 
+private static final int DEFAULT_CAPACITY = 10;
 
 // 实际元素个数
-private int size; 
+private int size;
 
 // 存放元素的数组
-transient Object[] elementData; 
+transient Object[] elementData;
 ```
-
 
 ```java
 // 构造方法，将空数组赋值给存放元素的数组
@@ -2105,7 +2104,7 @@ private void grow(int minCapacity) {
 ```
 
 ### Vector
-添加、删除、判断都与List子接口相同，遍历使用枚举器
+添加、删除、判断都与List子接口相同，遍历可以使用增强for、迭代器，以及它特有的枚举器
 ```java
 Vector vector = new Vector();
 Enumeration en = vector.elements();
@@ -2122,6 +2121,11 @@ while(en.hasMoreElements()){
 - 之后每次添加元素，first始终指向第一个节点，last会指向当前节点
 - 每个节点中的next属性存储下一个节点，prev属性存储上一个节点
 
+add方法执行步骤：
+1. 创建新Node
+2. 新Node的prev指向last Node
+3. last Node的next指向新Node
+4. 指定新Node为last Node
 ```java
 // 集合大小，初始为0
 transient int size = 0;
