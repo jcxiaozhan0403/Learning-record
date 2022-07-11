@@ -22,11 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Son.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Son.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSE.md" afterDir="false" />
-    </list>
+    <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -282,7 +278,7 @@
       <workItem from="1656258821318" duration="48000" />
       <workItem from="1656729822952" duration="1202000" />
       <workItem from="1656917043344" duration="2394000" />
-      <workItem from="1657157717669" duration="3334000" />
+      <workItem from="1657157717669" duration="3335000" />
     </task>
     <servers />
   </component>
