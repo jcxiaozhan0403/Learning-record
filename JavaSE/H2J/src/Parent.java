@@ -1,3 +1,3 @@
-public interface Parent {
-    void test();
+public interface Parent<T> {
+    T test(T t);
 }

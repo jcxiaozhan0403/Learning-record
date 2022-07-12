@@ -1794,7 +1794,7 @@ public static void main(String[] args) {
 ```
 
 ## 泛型
-- 本质是参数化类型，把类型作为参数传递
+- JDK1.5新特性，本质是参数化类型，把类型作为参数传递
 - 常见形式有泛型类、泛型接口、泛型方法
 - <T,...> T为类型占位符，表示一种引用类型，可以写多个逗号隔开
 - 好处 1. 提高代码重用性 2. 防止类型转换异常，提高代码安全性
@@ -1804,13 +1804,13 @@ public static void main(String[] args) {
 // 写一个泛型类
 public class MyGeneric<T>{
   //使用泛型T
-  //1 创建变量
+  //1.创建变量
   T t;
-  //2 泛型作为方法的参数
+  //2.泛型作为方法的参数
   public void show(T t){
     sout(t);
   }
-  //3 泛型作为方法的返回值
+  //3.泛型作为方法的返回值
   public T getT(){
     return t;
   }
@@ -1822,7 +1822,7 @@ public class TestGeneric{
   public static void main(String[] args){
     //使用泛型类创建对象
     // 注意： 1. 泛型只能使用引用类型
-    //			 2. 不用泛型类型对象之间不能相互赋值
+    //		 2. 不用泛型类型对象之间不能相互赋值
     MyGeneric<String> myGeneric = new MyGeneric<String>();
     myGeneric.t = "hello";
     myGeneric.show("hello world!");
@@ -1857,7 +1857,6 @@ public class MyInterfaceImpl implements MyInterface<String>{
 public static void main(String[] args) {
     MyInterfaceImpl impl = new MyInterfaceImpl();
     impl.server("方式一");
-
 }
 ```
 方式二：在实现类继承接口时不定义泛型类型，在实例化的时候再指定泛型类型，用此方式可以用一个实现类实现多种泛型类型的对象
@@ -1886,6 +1885,7 @@ public static void main(String[] args) {
 ```java
 public class MyGenericMethod{
   //泛型方法
+  //T的作用范围仅限于当前方法
   public <T> T show(T t){
     sout("泛型方法" + t);
     return t;
@@ -2199,7 +2199,7 @@ public boolean equals(Object o) {
 @Override
 public int hashCode() {
     int result = name != null ? name.hashCode() : 0;
-    // 使用31这个质数，减少散列冲突
+    // 使用31这个质数，减少散列冲突，便于进行位运算来提高执行效率
     result = 31 * result + age;
     return result;
 }
