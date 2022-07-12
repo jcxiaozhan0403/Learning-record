@@ -16,7 +16,7 @@ Ctrl+Alt+t
 Alt+Shift+Ins
 ```
 复制当前行到下一行
-
+****
 ```
 Ctrl+D
 ```
@@ -2239,7 +2239,7 @@ public static void main(String[] args) {
 
 ### TreeSet
 存储结构：红黑树
-要求：使用TreeSet存储引用类型数据时，元素需要要实现Comparable接口，重写compareTo()方法，方法返回值为0，认为是重复元素
+要求：使用TreeSet存储引用类型数据时，元素需要要实现Comparable接口，重写compareTo()方法，自定义比较规则，当方法返回值为0时，认为是重复元素
 
 ```java
 public class Student implements Comparable<Student>{
@@ -2281,7 +2281,7 @@ public class Student implements Comparable<Student>{
     //重写compareTo方法，这里我们的逻辑是先按照姓名比较，然后再按照年龄比较
     @Override
     public int compareTo(Student o) {
-        int n1 = this.getName().compareTo(o.getName());
+        int n1 = this.name.compareTo(o.getName());
         int n2 = this.age - o.getAge();
         return n1==0? n2: n1;
     }
@@ -2292,15 +2292,18 @@ public class Test {
     public static void main(String[] args) {
         TreeSet<Student> treeSet = new TreeSet<>();
 
-        Student stu1 = new Student("张三",20);
-        Student stu2 = new Student("李四",21);
-        Student stu3 = new Student("张三",22);
+        Student stu1 = new Student("zhangsan",20);
+        Student stu2 = new Student("lisi",21);
+        Student stu3 = new Student("zhangsan",22);
 
         treeSet.add(stu1);
         treeSet.add(stu2);
         treeSet.add(stu3);
         
         System.out.println(treeSet.size());
+        System.out.println(treeSet.toString());
+        
+        treeSet.remove(new Student("zhangsan",20));
         System.out.println(treeSet.toString());
     }
 }
@@ -2342,6 +2345,7 @@ public static void main(String[] args) {
     map.remove("uk");
 
     // 3. 遍历
+    //注：entrySet的效率高于keySet
     //第一种：
     //遍历所有的key，用key查找对应value
     for (String key : map.keySet()) {
@@ -2371,13 +2375,18 @@ public static void main(String[] args) {
     // 4.判断
     System.out.println(map.containsKey("cn"));
     System.out.println(map.containsValue("中国"));
+    
+    //5.清空集合
+    map.put("uk", "英国");
+    map.clear();
+    System.out.println(map.toString());
 }
 ```
 
 ## Map实现类
-1. HashMap：线程不安全，运行效率快，允许使用null作为key或是value
-2. Hashtable：线程安全，运行效率慢；不允许null作为key或是value
-3. Properties：hashtable的子类，要求key和value都是string，通常用于配置文件的读取
+1. HashMap：JDK1.2提供，线程不安全，运行效率快，允许使用null作为key或是value
+2. Hashtable：JDK1.0提供，线程安全，运行效率慢；不允许null作为key或是value
+3. Properties：Hashtable的子类，要求key和value都是string，通常用于配置文件的读取
 4. TreeMap：实现了SortedMap接口（是map的子接口），可以对key自动排序
 
 ### HashMap
@@ -2387,9 +2396,9 @@ public static void main(String[] args) {
 源码分析：
 - HashMap刚创建时，table是null，节省空间，当添加第一个元素时，table容量调整为16
 - 当元素个数大于阈值（16*0.75 = 12）时，会进行扩容，扩容后的大小为原来的两倍，目的是减少调整元素的个数
-- jdk1.8 当每个链表长度 >8 ，并且数组元素个数 ≥64时，会调整成红黑树，目的是提高效率
-- jdk1.8 当链表长度 <6 时 调整成链表
-- jdk1.8 以前，链表时头插入，之后为尾插入
+- JDK1.8 当每个链表长度 >8 ，并且数组元素个数 ≥64时，会调整成红黑树，目的是提高效率
+- JDK1.8 当链表长度 <6 时 调整成链表
+- JDK1.8 以前，链表时头插入，之后为尾插入
 
 ```java
 // 初始容量
@@ -2490,11 +2499,13 @@ public static void main(String[] args) {
     Collections.sort(list);
     System.out.println("排序后：" + list.toString());
 
-    // binarySearch二分查找
+    // binarySearch二分查找，返回值大于等于0表示位置，小于0表示不存在
     int i = Collections.binarySearch(list,12);
     System.out.println(i);
 
     // copy复制
+    //copy(目标集合，原集合)
+    //只有在两个集合大小相同时，才能进行copy，否则报错，设计缺陷
     List<Integer> dest = new ArrayList<>();
     for (int k = 0;k < list.size();i++) {
         dest.add(0);
@@ -2510,7 +2521,8 @@ public static void main(String[] args) {
     Collections.shuffle(list);
     System.out.println("打乱后：" + list);
 
-    // list转数组,如果数组大小小于集合大小，则会直接存入，如果数组大小大于集合大小，多余部分会用默认值填充
+    // list转数组,如果数组大小小于集合大小，集合中所有元素会直接存入数组，如果数组大小大于集合大小，数组多余部分会用默认值填充
+    // 将基本类型数组转换成集合一般存在问题，所以我们使用包装类数组来
     Integer[] arr = list.toArray(new Integer[10]);
     System.out.println(arr.length);
     System.out.println(Arrays.toString(arr));
