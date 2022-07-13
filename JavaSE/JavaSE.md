@@ -16,7 +16,6 @@ Ctrl+Alt+t
 Alt+Shift+Ins
 ```
 复制当前行到下一行
-****
 ```
 Ctrl+D
 ```
@@ -2706,7 +2705,7 @@ public static void main(String[] args) throws IOException {
 ```
 
 ### 对象流
-对象流：`ObjectOutputStream`和`ObjectInputStream`
+对象流：**ObjectOutputStream**和**ObjectInputStream**
 
 - 增强了缓冲区功能
 - 增强了读写8种基本数据类型和字符串的功能
@@ -2788,13 +2787,14 @@ public static void main(String[] args) {
 ```
 注意：
 - 某个类要想序列化必须实现Serializable接口
+- 序列化类中对象属性要求实现Serializable接口
 - 在将要序列化的类中通常添加`private static  final long serialVersionUID = 100L;`属性，作为序列化版本号ID，保证序列化的类和反序列化的类是同一个类
 - 使用transient修饰属性，这个属性就不能序列化
 - 静态属性不能序列化
 - 序列化多个对象，可以借助集合来实现
 
 ## 字符流
-字符流的两个超类：`Reader`和`Writer`
+字符流的两个超类：**Reader**和**Writer**，它们是两个不能被实例化的抽象类
 ```java
 // Reader字符输入流
 public int read(){}
@@ -2817,7 +2817,7 @@ public static void main(String[] args) throws IOException, ClassNotFoundExceptio
 
     // 读取文件
     // 单个字符读取
-    // 返回读取字符的ASCII码，读不到则返回-1
+    // 返回读取到的字符，读不到则返回-1
     int data = 0;
     while((data = fr.read()) != -1){
         System.out.print((char)data);
@@ -2857,7 +2857,7 @@ public static void main(String[] args) throws IOException {
 ```
 
 ### 字符缓冲流
-字符缓冲流：`BufferedReade`r和`BufferedWirter`
+字符缓冲流：**BufferedReader**和**BufferedWirter**
 - 高效读写、支持输入换行符、可一次写一行读一行
 
 ```java
@@ -2908,6 +2908,7 @@ public static void main(String[] args) throws IOException {
 ### PrintWriter
 封装了print() / println() 方法 支持写出后换行
 支持数据原样打印
+
 ```java
 public static void main(String[] args) throws FileNotFoundException {
     // 1 创建打印流
@@ -2925,7 +2926,7 @@ public static void main(String[] args) throws FileNotFoundException {
 ```
 
 ### 桥转换流
-桥转换流：`InputStreamReader`和`OutputStreamWriter`
+桥转换流：**InputStreamReader**和**OutputStreamWriter**
 - 可将字节流转换为字符流
 - 可设置字符的编码方式
 

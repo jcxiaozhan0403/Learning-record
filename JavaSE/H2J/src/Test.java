@@ -1,12 +1,14 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Test {
-    public static void main(String[] args) {
-        int b[] = {0,1,2,3};
+    public static void main(String[] args) throws IOException {
+        FileReader fr = new FileReader("e:\\测试.txt");
 
-        int len = b.length-1;
-        String xx = new String(b, 0, len);
-
-        System.out.println(xx);
-
-        new String()
+        int date = 0;
+        while((date = fr.read()) != -1){
+            System.out.print(date + " ");
+        }
     }
 }
