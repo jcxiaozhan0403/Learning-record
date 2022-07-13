@@ -2543,8 +2543,8 @@ public static void main(String[] args) {
 ## 流的分类
 
 ### 按方向
-- 输入流：将`存储设备`中的内容读到`内存`中
-- 输出流：将`内存`中的内容写到`存储设备`中
+- 输入流：将**存储设备**中的内容读到**内存**中
+- 输出流：将**内存**中的内容写到**存储设备**中
 
 ### 按单位
 - 字节流：以字节为单位，可以读写所有数据
@@ -2555,7 +2555,7 @@ public static void main(String[] args) {
 - 过滤流：在节点流的基础之上增强功能
 
 ## 字节流
-字节流的两个超类：`InputStream`和`OutputStream`
+字节流的两个超类：**InputStream**和**OutputStream**，它们是两个不能被实例化的抽象类
 
 ```java
 //InputStream字节输入流
@@ -2599,6 +2599,7 @@ public static void main(String[] args) throws IOException {
     System.out.println(count2);
 
     // 上述优化后
+    // new String(buf, 0, count) 从索引0开始取count长度
     int count = 0;
     while((count = fis.read(buf)) != -1){
         System.out.print(new String(buf, 0, count));
@@ -2622,6 +2623,7 @@ public static void main(String[] args) throws IOException {
     fos.write('a');
 
     // 字符串的写出
+    // string.getBytes() 将字符串转换为对应的字节数组
     String string = "hello world";
     fos.write(string.getBytes());
     
@@ -2655,9 +2657,9 @@ public static void main(String[] args) throws IOException {
 ```
 
 ### 字节缓冲流
-字节缓冲流：`BufferedInputStream`和`BufferedOutputStream`
+字节缓冲流：**BufferedInputStream**和**BufferedOutputStream**
 - 提高IO效率，减少访问磁盘次数
-- 数据存储在缓冲区中，flush是将缓冲区的内容写出到文件中，也可以直接close
+- 数据存储在缓冲区中，flush是将缓冲区的内容写出到文件中，也可以直接close，close会自行调用flush
 
 ```java
 public static void main(String[] args) throws IOException {
