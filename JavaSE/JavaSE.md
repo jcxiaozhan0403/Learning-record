@@ -1,3 +1,29 @@
+## Java就业路线
+
+### 阶段一
+
+JavaSE：环境搭建、基础语法、面向对象、数组、集合、常用API、IO流、反射与注解、多线程、网络编程
+
+MySQL：SQL语句
+
+前端：HTML+JS+CSS、BootStrap、JQuery
+
+项目管理：Maven、Git
+
+### 阶段二（学完可就业）
+
+后端：XML、MVC架构模式、Servlet、Filter、JSP、EL、JSTL、AJAX、代理模式、工厂模式、数据库连接池
+
+框架：SSM、SSH、SpringBoot
+
+### 阶段三
+
+SpringCloud、Redis、MQ、Vue
+
+设计模式、JVM优化、算法
+
+Dubbo、ZooKeeper、Docker
+
 ## IDEA快捷键
 
 生成方法
@@ -2984,14 +3010,14 @@ public static void fileOpen() throws IOException {
     // 删除文件
     // 直接删除
     file.delete(); // 成功true
-    // 使用jvm退出时删除
+    // 当jvm退出时进行删除
     file.deleteOnExit();
 
     // 获取文件信息
     System.out.println("获取绝对路径" + file.getAbsolutePath());
     System.out.println("获取路径" + file.getPath());
     System.out.println("获取文件名称" + file.getName());
-    System.out.println("获取夫目录" + file.getParent());
+    System.out.println("获取父目录" + file.getParent());
     System.out.println("获取文件长度" + file.length());
     System.out.println("文件创建时间" + new Date(file.lastModified()).toLocaleString());
 
@@ -3015,14 +3041,14 @@ public static void directoryOpe() throws Exception{
     // 删除文件夹
     // 直接删除
     dir.delete(); // 只能删除最底层空目录
-    // 使用jvm删除
+    // 当jvm退出时进行删除
     dir.deleteOnExit();
 
     // 获取文件夹信息
     System.out.println("获取绝对路径" + dir.getAbsolutePath());
     System.out.println("获取路径" + dir.getPath());
     System.out.println("获取文件名称" + dir.getName());
-    System.out.println("获取夫目录" + dir.getParent());
+    System.out.println("获取父目录" + dir.getParent());
     System.out.println("获取文件长度" + dir.length());
     System.out.println("文件夹创建时间" + new Date(dir.lastModified()).toLocaleString());
 
@@ -3043,6 +3069,7 @@ public static void directoryOpe() throws Exception{
         @Override
         public boolean accept(File pathname){
             if(pathname.getName().endsWith(".jpg")){
+                //true表示满足，false表示不满足
                 return true;
             }else {
                 return false;
@@ -3092,10 +3119,15 @@ public static void deleteDir(File dir){
             }
         }
     }
+    System.out.println(dir.getAbsolutePath() + "删除" + dir.delete());
 }
 ```
 
 ## Properties
+
+- 父类HashTable，线程安全
+- 键值对形式，无泛型
+
 ```java
 public static void main(String[] args) throws IOException {
     // 1.创建
@@ -3108,23 +3140,25 @@ public static void main(String[] args) throws IOException {
     properties.setProperty("password","lishuang001219");
 
     // 3.遍历
+    // - keySet
+    // - entrySet
     Set<String> proNames = properties.stringPropertyNames();
     for (String pro : proNames) {
         System.out.println(pro + "=" + properties.getProperty(pro));
     }
 
     // 4.和流相关的方法
-    // list方法
-    PrintWriter pw = new PrintWriter("e:\\db.properties");
+    // list方法打印到文件
+    PrintWriter pw = new PrintWriter("e:\\db.txt");
     properties.list(pw);
     pw.close();
 
-    // store方法 保存
+    // store方法 保存配置文件
     FileOutputStream fos = new FileOutputStream("e:\\db.properties");
     properties.store(fos,"注释");
     fos.close();
 
-    // load方法 加载
+    // load方法 加载配置文件
     Properties properties1 = new Properties();
     FileInputStream fis = new FileInputStream("e:\\db.properties");
     properties1.load(fis);
