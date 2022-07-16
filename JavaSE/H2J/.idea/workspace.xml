@@ -24,10 +24,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/H2J/Student.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/H2J/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Son.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/H2J/Son.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Son.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSE.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +94,7 @@
       <recent name="multithreading" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Son">
+  <component name="RunManager" selected="Application.Test">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -115,8 +113,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Son" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Son" />
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test" />
       <module name="H2J" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -145,10 +143,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Son" />
-        <item itemvalue="Application.Son" />
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Parent" />
-        <item itemvalue="Application.Son" />
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Test02" />
       </list>
     </recent_temporary>
@@ -296,7 +294,7 @@
       <workItem from="1657682755522" duration="790000" />
       <workItem from="1657697036072" duration="1487000" />
       <workItem from="1657785749695" duration="466000" />
-      <workItem from="1657898330287" duration="1318000" />
+      <workItem from="1657898330287" duration="4919000" />
     </task>
     <servers />
   </component>

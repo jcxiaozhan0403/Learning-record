@@ -3187,7 +3187,7 @@ finally {
 }
 ```
 
-## 多线程
+# 多线程
 
 ## 线程、进程、多线程
 - 进程：进程是程序的一次执行过程，是一个动态的概念，是系统资源分配的单位
@@ -3195,13 +3195,21 @@ finally {
 - 多线程：真正的多线程是有多个CUP，同时执行，如果在只有一个CPU的情况下，同一时间只能执行一个代码，因为切换速度很快，造成了同时执行的假象
 
 
-> 1. 线程就是独立的执行路径
-> 2. 在程序运行时，即使没有自己创建线程，后台也会有多个线程，如主线程、gc线程
-> 3. main()称为主线程，为系统入口，用于执行整个程序
-> 4. 在一个线程中，如果开辟了多个线程，线程的运行由调度器安排调度，调度器是与操作系统紧密相关的，先后顺序是不可人为干预的
-> 5. 对同一份资源操作时，会存在资源抢夺的问题，需要加入并发控制
-> 6. 线程会带来额外的开销，如CPU调度时间(排队时间)，并发控制开销
-> 7. 每个线程在自己的工作内存交互，内存控制不当会造成数据不一致
+> 线程就是独立的执行路径
+>
+> 在程序运行时，即使没有自己创建线程，后台也会有多个线程，如主线程、gc线程
+>
+> main()称为主线程，为系统入口，用于执行整个程序
+>
+> 在一个线程中，如果开辟了多个线程，线程的运行由调度器安排调度，调度器是与操作系统紧密相关的，先后顺序是不可人为干预的
+>
+> 对同一份资源操作时，会存在资源抢夺的问题，需要加入并发控制
+>
+> 线程会带来额外的开销，如CPU调度时间(排队时间)，并发控制开销
+>
+> 每个线程在自己的工作内存交互，内存控制不当会造成数据不一致
+>
+> 用户自定义的线程存在于main()函数中，称为用户线程，gc线程一类的由JVM提供的线程，称为守护线程
 
 
 ## 线程的实现
@@ -3232,6 +3240,7 @@ public class Test extends Thread{
 
 ### 方式二：继承Runnable接口实现(常用)
 ```java
+// 继承Runnable接口，重写run()方法，在run()方法体内编写业务代码
 public class Test implements Runnable{
 
     @Override
@@ -3243,7 +3252,9 @@ public class Test implements Runnable{
 
     public static void main(String[] args) throws IOException {
         Test test = new Test();
-
+		
+        //将继承Runnable接口的类对象作为参数丢入Thread的构造方法
+        //调用Thread对象的start方法开启线程
         new Thread(test).start();
 
         for (int i=0; i<1000 ;i++) {
@@ -3259,6 +3270,7 @@ public class Test implements Runnable{
 // 继承Callable接口，重写call()方法，方法体里面编写业务代码
 public class Test implements Callable<Boolean> {
 
+    // call方法返回值为布尔类型
     @Override
     public Boolean call() throws Exception {
         for (int i=0; i<100; i++) {
@@ -3271,14 +3283,14 @@ public class Test implements Callable<Boolean> {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         Test test = new Test();
 
-        // 创建服务
+        // 创建服务,传入线程数量
         ExecutorService ser = Executors.newFixedThreadPool(1);
         
         // 提交执行(开启线程)
         Future<Boolean> result = ser.submit(test);
 
         // 用get获取返回值，但是get()会阻塞线程
-        //System.out.println(result.get());
+        System.out.println(result.get());
 
         // 关闭服务
         ser.shutdownNow();
@@ -3344,23 +3356,23 @@ public class Test implements Runnable{
 
             // 通过线程名选择对应操作
             if (Thread.currentThread().getName().equals("乌龟")) {
-                // 乌龟每一步都比兔子慢10毫秒
+                // 乌龟每一米都比兔子慢9毫秒
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(9);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("乌龟走了第" + i + "步");
+                System.out.println("乌龟跑了第" + i + "米");
             }else if (Thread.currentThread().getName().equals("兔子")) {
-                // 兔子走到第50步的时候，模拟兔子睡觉
+                // 兔子跑到第50米的时候，模拟兔子睡觉
                 if (i==50) {
                     try {
-                        Thread.sleep(1700);
+                        Thread.sleep(1510);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-                System.out.println("兔子走了第" + i + "步");
+                System.out.println("兔子跑了第" + i + "米");
             }
         }
     }
@@ -3373,11 +3385,13 @@ public class Test implements Runnable{
         new Thread(test,"兔子").start();
     }
 
-    // 判断比赛是否继续
-    public boolean gameOver(int step) {
+    // 判断比赛是否结束
+    public boolean gameOver(int distance) {
+        // 冠军产生，比赛结束
         if (winner != null) {
             return true;
-        }else if (step == 100) {
+            //100米达成，比赛结束
+        }else if (distance == 100) {
             winner = Thread.currentThread().getName();
             System.out.println("胜利者：" + winner);
             return true;
@@ -4108,7 +4122,7 @@ service.shutdown();
 静态代理的缺点：
 - 类多了，多了代理类，工作量变大了，开发效率降低
 
-静态代理的使用
+### 静态代理的使用
 1. 创建接口
 ```java
 //增删改查业务
