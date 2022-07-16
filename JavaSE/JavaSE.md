@@ -123,7 +123,7 @@ JDK>JRE>JVM
 
 ## JDK目录结构
 
-lib：一些可执行文件，编译器javac.exe也在里面
+bin：一些可执行文件，编译器javac.exe也在里面
 
 include：JDK由C和C++编写，这个目录里面存放一些头文件
 
@@ -242,7 +242,7 @@ Java中有8种基本数据类型，除此之外都是引用数据类型
 
 - JDK1.5以前，手动装箱与拆箱
 
-```
+```java
 int num1 = 18;
 //使用构造器装箱
 Integer integer1 = new Integer(num1);
@@ -254,7 +254,7 @@ int num2 = integer1.intValue();
 
 - JDK1.5之后，提供自动装箱与拆箱
 
-```
+```java
 int num = 80;
 Integer integer = num;
 int num2 = integer;
@@ -262,13 +262,13 @@ int num2 = integer;
 
 ## Integer缓冲区
 
-Integer对象有一个默认的缓冲区，范围-128-127，创建的对象在这个范围之类的话就会直接使用缓冲区的对象
+Integer对象有一个默认的缓冲区，范围-128-127，创建的对象在这个范围之内的话就会直接使用缓冲区的对象
 
 100在范围内，所以integer1和integer2都是指向了缓冲区的同一个对象，所以比较结果为true
 
 200不在范围内，所以integer3和integer4是分别创建的新对象，所以比较结果为false
 
-```
+```java
 Integer integer1 = Integer.valueOf(100);
 Integer integer2 = Integer.valueOf(100);
 System.out.println(integer1 == integer2);	//true
@@ -280,7 +280,7 @@ System.out.println(integer3 == integer4);	//false
 
 ## 关于浮点数
 
-浮点数是有限的、离散的、存在舍入误差、只能表示大银行业务要求精确，所以不能使用浮点数，一般使用BigDecimal数学工具类
+浮点数是有限的、离散的、存在舍入误差、只能表示大概，银行业务要求精确，所以不能使用浮点数，一般使用BigDecimal数学工具类
 
 ## 转义字符
 
@@ -292,7 +292,7 @@ System.out.println(integer3 == integer4);	//false
 ==比较的是两个字符串的内存地址值相不相同
 由下面这段equals源码可以分析出equals是先将两个字符串的内存地址拿来进行比较，如果相同则返回true，如果不相同再判断传入字符串是否为String类的实例，如果不是，则返回false，如果是，则将传入字符串转换为String类型，先比较两个字符串的长度，长度一致再将字符串拆分为两个char数组进行遍历比较，如果相同再返回true
 
-> 注：String类型中的equals是重写的Object类的，Object类中的equals作用跟==相同，只比较内存地址
+> 注：String类中的equals方法是重写的Object类的，Object类中的equals作用跟==相同，只比较内存地址
 
 - 总结：可以简单理解为== 对比的是两个字符串的内存地址，equals对比的是两个字符串的字面值
 ```java
@@ -325,7 +325,7 @@ public boolean equals(Object anObject) {
 ## 数据类型的相关计算
 char可以与数字进行运算，过程是将字母转换为ASCII值再运算
 
-数字与字符串的拼接:String后面的所有数字都会被转换成String类型，然后进行字符串拼接，如果数字是出现在String前面，则会正常运算后拼接
+数字与字符串的拼接：String后面的所有数字都会被转换成String类型，然后进行字符串拼接，如果数字是出现在String前面，则会正常运算后拼接
 
 ## 数据类型转换
 根据位数转换：小到大自动转换，大到小强制转换，short和char相互强制转换
@@ -366,7 +366,7 @@ final 除了修饰变量，还可以修饰类，修饰方法
 ```
 
 ### 位运算符
-正数二进制-->反码-->加1-->负数二进制
+正数二进制 ==> 反码 ==> 加1 => 负数二进制
 ```java
 n << m      //左移，值等于n*2的m次方
 n >> m      //右移，值等于n/2的m次方，如果为负数运算，则右移后在前两位补1
