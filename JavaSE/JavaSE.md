@@ -3705,7 +3705,7 @@ thread.setDaemon(true); //默认为false，表示用户线程，一般创建的�
 - 线程同步是一种等待机制，多个需要同时访问此对象的线程进入这个对象的等待池，形成队列，前面的线程使用完毕，下一个线程再使用
 - 由于同一进程的多个线程共享同一块存储空间，为了避免访问冲突，加入了锁机制synchronized，当一个线程获得对象的排它锁，独占资源，其他线程必须等待，使用后再释放锁
 
-> 使用锁存在一些问题：
+使用锁存在一些问题：
 > 1. 一个线程持有锁会导致其他所有需要此锁的线程挂起
 > 2. 在多线程竞争下，加锁、释放锁会导致较多的上下文切换和调度延时，引起性能问题
 > 3. 一个优先级高的线程等待一个优先级低的线程时，会导致优先级倒置，引起性能问题
@@ -3731,7 +3731,7 @@ synchronized(Obj){
 }
 ```
 
-Lock与Synchonized功能相似，显式定义了锁，配合异常使用，一般在finally里面关闭
+Lock是JDK1.5新出现的，Lock与Synchonized功能相似，显式定义了锁，配合异常使用，一般在finally里面关闭。Lock是一个接口，我们一般使用它的子类ReentrantLock
 ```java
 public class Lock implements Runnable{
     private int ticks = 10;
@@ -3742,6 +3742,7 @@ public class Lock implements Runnable{
     public void run() {
         while (true) {
             try {
+                //在操作资源之前加锁
                 lock.lock();
                 if (ticks>0) {
                     Thread.sleep(100);
@@ -3753,6 +3754,7 @@ public class Lock implements Runnable{
             } catch (Exception e) {
 
             }finally {
+                //在finally里面关闭锁
                 lock.unlock();
             }
         }
@@ -3790,15 +3792,25 @@ public class Test extends Thread{
 
         if (Thread.currentThread().getName().equals("小明")) {
             synchronized (knife) {
-                // 小明在获得玩具枪的同时，还想去获取玩具刀，但是玩具刀在小黄那里，无法获取，于是小明就等待，小黄也在等待小明使用完玩具枪这个资源，两个线程互相等待，就形成了死锁现象
-                System.out.println("小明得到了玩具枪");
+                try {
+                    // 小明在获得玩具枪的同时，还想去获取玩具刀，但是玩具刀在小黄那里，无法获取，于是小明就等待，小黄也在等待小明使用完玩具枪这个资源，两个线程互相等待，就形成了死锁现象
+                    System.out.println("小明得到了玩具枪");
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 synchronized (gun) {
                     System.out.println("小明得到了玩具刀");
                 }
             }
         }else {
             synchronized (gun) {
-                System.out.println("小黄得到了玩具刀");
+                try {
+                    System.out.println("小黄得到了玩具刀");
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 synchronized (knife) {
                     System.out.println("小明得到了玩具刀");
                 }
@@ -3893,7 +3905,6 @@ public class Test {
         new Productor(container).start();
         new Consumer(container).start();
     }
-
 }
 
 // 生产者
@@ -4000,7 +4011,7 @@ class SynContainer {
 ```
 
 ### 信号灯法
-利用一个标识符来解决问题
+利用一个标志位来解决问题，生产一个消费一个
 
 ```java
 public class Test02 {
@@ -4108,16 +4119,31 @@ class Process {
 
 ## 线程池
 ```java
-// 1.创建服务，创建线程池，参数为线程池大小
-ExecutorService service = Executors.newFixedThreadPool(10);
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-// 2.执行
-service.execute(new MyThread());
-service.execute(new MyThread());
-service.execute(new MyThread());
+public class Test {
+    public static void main(String[] args) {
+        // 1.创建服务，创建线程池，参数为线程池大小
+        ExecutorService service = Executors.newFixedThreadPool(10);
 
-// 3.关闭连接
-service.shutdown();
+        // 2.执行
+        service.execute(new MyThread());
+        service.execute(new MyThread());
+        service.execute(new MyThread());
+
+        // 3.关闭连接
+        service.shutdown();
+    }
+}
+
+class MyThread implements Runnable{
+
+    @Override
+    public void run() {
+        System.out.println("线程" + Thread.currentThread().getName() + "执行中");
+    }
+}
 ```
 
 ## 静态代理
