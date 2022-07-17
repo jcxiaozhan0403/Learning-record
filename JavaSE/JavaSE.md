@@ -39,7 +39,7 @@ Ctrl+Alt+t
 抛出异常、导入包
 
 ```
-Alt+Shift+Ins
+Alt+回车
 ```
 复制当前行到下一行
 ```
@@ -3653,9 +3653,20 @@ public class Test implements Runnable{
 }
 ```
 
-### 线程优先级
-Java提供一个线程调度器来监控处于就绪状态的所有线程，线程调度器按照优先级觉得线程执行顺序的先后，优先级低也不代表一定后执行，主要还是调度器控制
+### 线程状态观测
 ```java
+Test test = new Test();
+Thread thread = new Thread(test);   //NEW
+Thread.State state = thread.getState();
+thread.start();     //RUNNABLE
+thread.sleep();     //TIMED_WAITING
+//执行完毕，线程终止 TERMINATED
+```
+
+### 线程优先级
+Java提供一个线程调度器来监控处于就绪状态的所有线程，线程调度器按照优先级决定线程执行顺序的先后，优先级低也不代表一定后执行，主要还是调度器控制。优先级越高，表示分配的资源越多，就越有可能被先调度。
+```java
+// 优先级用数字表示，范围1~10
 // 最小优先级
 public final static int MIN_PRIORITY = 1;
 // 默认优先级
