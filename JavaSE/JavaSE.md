@@ -4669,9 +4669,9 @@ Assertions.assertEquals("期望值","实际值")
     ElementType.TYPE：类、接口（包括注解类型和 enum 声明）
 */
 
-// 规定注解的生命周期，表示注解到什么地方还有效果
+// 规定注解的生命周期，表示注解到什么地方还有效果，一般都使用RUNTIME
 // RUNTIME > CLASS > SOURCE
-@Retention(value={RetentionPolicy.SOURCE})
+@Retention(value={RetentionPolicy.RUNTIME})
 /*
 RetentionPolicy.SOURCE：源码阶段
 
@@ -4680,7 +4680,7 @@ RetentionPolicy.CLASS：编译后
 RetentionPolicy.RUNTIME：运行时
 */
 
-// 使用此修饰的注解将会被 javadoc 工具提取成文档，使用此注解，其 @Retention 必须被设置为 RetentionPolicy.RUNTIME
+// 使用此修饰的注解将会被 javadoc 工具提取成文档，使用此注解，其@Retention必须被设置为RetentionPolicy.RUNTIME
 @Documented
 
 // 规定注解是否可以被继承
@@ -4694,22 +4694,23 @@ RetentionPolicy.RUNTIME：运行时
 
 // 测试类
 public class Test02 {
+    //注解参数的传递不分先后顺序
     @Annotation(age = 18)
     public void test() {}
     
-    @Annotation2("")
+    @Annotation2("Hello")
     public void test2() {}
 }
 
 @Target({ElementType.TYPE,ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @interface Annotation {
-    // 注解的参数 ： 参数类型 + 参数名();
+    // 注解的参数：参数类型 + 参数名();
     // 用default来设置默认值
     String name() default "";
     int age();
     int id() default -1; // 如果默认值为-1，代表不存在
-    String[] schools() default  {"北京大学","清华大学"};
+    String[] schools() default {"北京大学","清华大学"};
 }
 
 @Target({ElementType.TYPE,ElementType.METHOD})
