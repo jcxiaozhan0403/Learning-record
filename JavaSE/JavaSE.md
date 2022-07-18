@@ -57,6 +57,12 @@ Ctrl+D
 Crtl+H
 ```
 
+竖排多选
+
+```
+Alt+鼠标左键
+```
+
 ## 常用DOS命令
 
 进入磁盘
@@ -4722,14 +4728,13 @@ public class Test02 {
 ```
 
 ## 反射
-概念：类加载之后，在堆内存的方法区中就生产了一个Class类型的对象，`一个类只有一个Class对象`，这个对象就包含了完整的类的结构信息。我们可以通过这个对象看到类的结构，这个对象就像是一面镜子，透过这个镜子看到类的结构，称之为反射
+概念：类加载之后，在堆内存的方法区中就生产了一个Class类型的对象，**一个类只有一个Class对象**，这个对象就包含了完整的类的结构信息。我们可以通过这个对象看到类的结构，这个对象就像是一面镜子，透过这个镜子看到类的结构，称之为反射
 
-> 正常方式：引入需要的"包类"名称 ==> 通过new实例化 ==>获取实例化对象
+> 正常方式：引入需要的"包类"名称 ==> 通过new实例化 ==> 获取实例化对象
 > 反射方式：实例化对象 ==> getClass()方法 ==> 取得完整的"包类"名称
 
 - 优点：可以实现动态创建对象和编译，体现出很大的灵活性
 - 缺点：对性能有影响。使用反射基本上是一种解释操作，我们告诉JVM要做什么，这类操作总是慢于直接执行相同的操作
-一个类只有一个Class对象
 
 <img src="./Class类.jpg">
 
@@ -4821,18 +4826,20 @@ public class Test02 {
         Field name = c1.getDeclaredField("name");
         System.out.println(name);
 
-        //获取类的方法：除了类自身的方法外，还会获取所继承的类中的方法
+        
         System.out.println("===============================");
+        // 获取本类及其父类的所有public方法
         Method[] methods = c1.getMethods();
         for (Method method : methods) {
             System.out.println(method);
         }
+        // 获取本类的所有方法 
         methods = c1.getDeclaredMethods();
         for (Method method : methods) {
             System.out.println(method);
         }
 
-        // 获取指定方法
+        // 获取指定方法,丢入方法名以及方法参数类型
         Method getName = c1.getMethod("getName",null);
         Method setName = c1.getMethod("setName", String.class);
         System.out.println(getName);
@@ -4907,7 +4914,7 @@ class Son extends Father {
 <img src="./类加载器.jpg">
 
 ```java
-// 测试类的初始化过程
+// 测试类的加载器
 public class Test02 {
 
     public static void main(String[] args) throws ClassNotFoundException {
@@ -4960,7 +4967,7 @@ public class Test02 {
         Student student2 = (Student) c1.newInstance();
         // 通过反射获取一个方法
         Method setName = c1.getDeclaredMethod("setName",String.class);
-        // invoke激活获取的方法
+        // invoke激活获取的方法，丢入对象名以及参数
         setName.invoke(student2,"张三");
         System.out.println(student2);
 
@@ -5023,7 +5030,7 @@ public class Test02 {
 public class Test02 {
     public static void main(String[] args) throws NoSuchMethodException, ClassNotFoundException, NoSuchFieldException {
         Class c1 = Class.forName("Student");
-        // 获取注解
+        // 获取类注解
         Annotation[] annotations = c1.getAnnotations();
         for (Annotation annotation : annotations) {
             System.out.println(annotation);
