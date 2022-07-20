@@ -123,7 +123,7 @@ MYISAM是mysql5.5之前的默认引擎，INNODB是之后版本的默认引擎
 - INNODB：安全性高，支持事务，多表多用户操作
 
 存储区别：
-所有的数据库文件都在data下目录下一个文件夹对应一个数据库
+所有的数据库文件都在data目录下，一个文件夹对应一个数据库
 - INNODB：在本地存储文件夹中只有一个*.frm文件，以及上级目录中的ibdata1文件
 - MYISAM：在本地存储文件夹下有三个文件
   - *.frm 表结构的定义文件
@@ -139,19 +139,19 @@ mysql -uroot -p
 修改用户密码(连接之后)
 
 ```
-update mysql.user set authentication_string=password('123456') where user='root' and Host='localhost'; 
+update mysql.user set authentication_string=password('123456') where user='root' and Host='localhost'
 ```
 
 刷新用户权限
 
 ```
-flush privileges;
+flush privileges
 ```
 
 查看所有数据库
 
 ```sql
-show databases;
+show databases
 ```
 切换数据库
 
@@ -161,12 +161,13 @@ use student
 查看数据库中所有的表
 
 ```sql
-show tables;
+show tables
 ```
 查看数据库中某一张表的结构
 
 ```sql
-describe student;
+describe student
+desc student
 ```
 创建数据库
 
@@ -183,34 +184,42 @@ exit
 
 ### DDL定义语言
 > 操作库
-1. 创建数据库
+创建数据库
+
 ```sql
 create database [if not exists] student
 ```
-2. 删除数据库
+删除数据库
+
 ```sql
 drop database [if exists] student
 ```
-3. 使用数据库
+使用数据库
+
 ```sql
 --如果表名或者字段名是一个关键字，需要用``
 use `u`
 ```
-4. 查看数据库
+查看数据库
+
 ```sql
 --查看所有数据库
 show databases
 ```
-5. 查看数据库创建语句
+查看数据库创建语句
+
 ```
 show create database student
 ```
-6. 查看表的创建语句
+查看表的创建语句
+
 ```sql
 show create table student
 ```
-7. 查看表结构
+查看表结构
+
 ```sql
+describe student
 desc student
 ```
 

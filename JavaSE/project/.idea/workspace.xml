@@ -20,25 +20,69 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c153dd69-5ef6-4153-8e37-8eeb31f5833a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../大二上生产实习/project02/src/view/LoginView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../management/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../management/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../H2J/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/.idea/libraries/spring_security_core_4_2_2_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/.idea/libraries/sqljdbc4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/lib/spring-security-core-4.2.2.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/lib/sqljdbc4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/management.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/out/production/management/com/smis/common/SqlHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/out/production/management/com/smis/dao/AdminDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/out/production/management/com/smis/dao/ClsDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/out/production/management/com/smis/model/Admin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/out/production/management/com/smis/model/Cls.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/out/production/management/com/smis/view/ClsAddFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/out/production/management/com/smis/view/ClsAdminFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/out/production/management/com/smis/view/ClsEditFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/out/production/management/com/smis/view/Login.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/out/production/management/com/smis/view/MainFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/out/production/management/com/smis/view/RePwdFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/out/production/management/prop.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/src/com/smis/common/SqlHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/src/com/smis/dao/AdminDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/src/com/smis/dao/ClsDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/src/com/smis/model/Admin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/src/com/smis/model/Cls.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/src/com/smis/view/ClsAddFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/src/com/smis/view/ClsAdminFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/src/com/smis/view/ClsEditFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/src/com/smis/view/Login.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/src/com/smis/view/MainFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/src/com/smis/view/RePwdFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../management/src/prop.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java.md" beforeDir="false" afterPath="$PROJECT_DIR$/Java.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day02/Test04.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../大二上生产实习/project/out/production/project/com/day02/Test04.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day02/Test03.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day02/Test03.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day02/Test04.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../大二上生产实习/project/src/com/day02/Test04.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/jdbc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/sqlConnection/Connection.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/sqlConnection/JDBCUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/sqlConnection/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/out/production/project02/view/Login.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../大二上生产实习/project02/src/jdbc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/sqlConnection/Connection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/sqlConnection/JDBCUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/sqlConnection/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../大二上生产实习/project02/src/view/Login.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/Demo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/abc/Animals.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/abc/Copy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/abc/Demo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/abc/Dog.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/abc/Example11.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/abc/FinalDemo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/abc/HelloWorld.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/abc/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/abc/Test1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/aboutTable/TableDemo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/applet/AppletDemo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/learning/xxx/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/abc/Animals.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/abc/Copy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/abc/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/abc/Dog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/abc/Example11.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/abc/FinalDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/abc/HelloWorld.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/abc/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/abc/Test1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aboutTable/TableDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/applet/AppletDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xxx/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MySql/mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../MySql/mysql.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +117,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="13" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../项目/Swing学生管理系统" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -85,23 +129,27 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
-  <component name="RunManager" selected="Application.ClientDemo">
-    <configuration name="ClientDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="url.ClientDemo" />
-      <module name="learning" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="url.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+  <component name="RunManager" selected="Application.UserRegister">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Demo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Demo" />
+    <configuration name="MyWin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.sss.MyWin" />
       <module name="learning" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sss.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -132,6 +180,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="xxx.Test" />
+      <module name="learning" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="xxx.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserRegister" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="register.UserRegister" />
       <module name="learning" />
@@ -145,17 +206,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.UserRegister" />
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.MyWin" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -236,6 +293,8 @@
       <workItem from="1609846064594" duration="735000" />
       <workItem from="1609895022709" duration="2062000" />
       <workItem from="1616378502372" duration="88000" />
+      <workItem from="1658329246565" duration="257000" />
+      <workItem from="1658329893974" duration="22000" />
     </task>
     <servers />
   </component>
@@ -253,87 +312,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="842" y="387" key="#Notifications" timestamp="1604025166409">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="842" y="387" key="#Notifications/0.0.1920.1050@0.0.1920.1050" timestamp="1604025166409" />
-    <state x="690" y="280" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1606116013417">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="690" y="280" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1606116013417" />
-    <state x="776" y="325" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605097484613">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="776" y="325" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1605097484613" />
-    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser" timestamp="1606911819421">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1606911819421" />
-    <state x="569" y="72" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1606303214977">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="569" y="72" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1606303214977" />
-    <state x="739" y="280" key="FileChooserDialogImpl" timestamp="1609912805258">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="739" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1609912805258" />
-    <state width="882" height="922" key="GridCell.Tab.0.bottom" timestamp="1609912806716">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="882" height="922" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1609912806716" />
-    <state width="882" height="922" key="GridCell.Tab.0.center" timestamp="1609912806716">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="882" height="922" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1609912806716" />
-    <state width="882" height="922" key="GridCell.Tab.0.left" timestamp="1609912806716">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="882" height="922" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1609912806716" />
-    <state width="882" height="922" key="GridCell.Tab.0.right" timestamp="1609912806716">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="882" height="922" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1609912806716" />
-    <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1603432329584">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1603432329584" />
-    <state width="1877" height="352" key="GridCell.Tab.1.center" timestamp="1603432329584">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1603432329584" />
-    <state width="1877" height="352" key="GridCell.Tab.1.left" timestamp="1603432329584">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1603432329584" />
-    <state width="1877" height="352" key="GridCell.Tab.1.right" timestamp="1603432329584">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1603432329584" />
-    <state x="461" y="169" key="SettingsEditor" timestamp="1606202776404">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="461" y="169" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1606202776404" />
-    <state x="690" y="284" key="extract.method.dialog" timestamp="1605096571110">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="690" y="284" key="extract.method.dialog/0.0.1920.1050@0.0.1920.1050" timestamp="1605096571110" />
-    <state x="334" y="135" key="new project wizard" timestamp="1607329130194">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="334" y="135" key="new project wizard/0.0.1920.1050@0.0.1920.1050" timestamp="1607329130194" />
-    <state x="790" y="270" key="refactoring.ChangeSignatureDialog" timestamp="1605016739316">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="790" y="270" key="refactoring.ChangeSignatureDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1605016739316" />
-    <state x="616" y="243" key="run.anything.popup" timestamp="1602676251986">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1602676251986" />
-    <state x="626" y="231" width="672" height="678" key="search.everywhere.popup" timestamp="1606202807287">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="626" y="231" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1606202807287" />
   </component>
 </project>
