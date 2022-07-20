@@ -131,33 +131,50 @@ MYISAM是mysql5.5之前的默认引擎，INNODB是之后版本的默认引擎
   - *.MYI 索引文件
 
 ## 基本命令行操作
-1. 连接数据库
+连接数据库
+
 ```sql
 mysql -uroot -p
 ```
-2. 查看所有数据库
-```sql
-show databases
+修改用户密码(连接之后)
+
 ```
-3. 切换数据库
+update mysql.user set authentication_string=password('123456') where user='root' and Host='localhost'; 
+```
+
+刷新用户权限
+
+```
+flush privileges;
+```
+
+查看所有数据库
+
 ```sql
---use 库名
+show databases;
+```
+切换数据库
+
+```sql
 use student
 ```
-4. 查看数据库中所有的表
+查看数据库中所有的表
+
 ```sql
-show tables
+show tables;
 ```
-5. 查看数据库中某一张表的结构
+查看数据库中某一张表的结构
+
 ```sql
-describe student
+describe student;
 ```
-6. 创建数据库
+创建数据库
+
 ```sql
---create database 库名
 create database demo
 ```
-7. 退出连接
+退出连接
+
 ```sql
 exit
 ```
@@ -177,7 +194,7 @@ drop database [if exists] student
 3. 使用数据库
 ```sql
 --如果表名或者字段名是一个关键字，需要用``
-use `student`
+use `u`
 ```
 4. 查看数据库
 ```sql

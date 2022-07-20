@@ -618,7 +618,7 @@ System.arraycopy(src, srcPos, dest, destPos, length)
 //length: 复制的长度
 ```
 
-## Arrays工具类
+### Arrays工具类
 ```java
 import java.util.Arrays;//导入Arrays类
  
