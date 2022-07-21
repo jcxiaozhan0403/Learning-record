@@ -184,6 +184,7 @@ exit
 
 ### DDL定义语言
 > 操作库
+
 创建数据库
 
 ```sql
@@ -197,18 +198,18 @@ drop database [if exists] student
 使用数据库
 
 ```sql
---如果表名或者字段名是一个关键字，需要用``
+-- 如果表名或者字段名是一个关键字，需要用``
 use `u`
 ```
 查看数据库
 
 ```sql
---查看所有数据库
+-- 查看所有数据库
 show databases
 ```
 查看数据库创建语句
 
-```
+```sql
 show create database student
 ```
 查看表的创建语句
@@ -225,12 +226,13 @@ desc student
 
 > 操作表
 
-1. 创建表
+创建表
+
 ```sql
---表名字段尽量使用``包裹
---primary key 主键 auto_increment 自增 comment字段注释
---字符串使用单引号包裹
---engine=innodb 表类型 charset=utf8 字符集设置，默认为Latin1，不支持中文
+-- 表名字段尽量使用``包裹
+-- primary key 主键 auto_increment 自增 comment字段注释
+-- 字符串使用单引号包裹
+-- engine=innodb 表类型 charset=utf8 字符集设置，默认为Latin1，不支持中文
 create table if not exists `student` (
 	`id` int(4) not null auto_increment comment '学号',
 	`name` varchar(30) not null default '匿名' comment '姓名',
@@ -242,67 +244,79 @@ create table if not exists `student` (
 	primary key(id)
 )engine=innodb default charset=utf8
 ```
-2. 修改表名
+修改表名
+
 ```sql
 alter table student rename as student1
 ```
-3. 添加表字段
+添加表字段
+
 ```sql
 alter table student add age int
 ```
-4. 修改表字段
+修改表字段
+
 ```sql
---modify仅仅只能修改字段约束
+-- modify仅仅只能修改字段约束
 alter table student modify age varchar(11)
 
---change不仅可以修改字段约束，还可以给字段重命名
+-- change不仅可以修改字段约束，还可以给字段重命名
 alter table student change age age1 int(11)
 ```
-5. 删除表字段
+删除表字段
+
 ```sql
 alter table student drop age1
 ```
-6. 删除表
+删除表
+
 ```sql
---如果存在就删除
+-- 如果存在就删除
 drop table [if exists] student
 ```
-7. 添加外键：物理外键，数据库级别的不建议使用，因为多表关联了，影响表操作，现在一般外键都是通过代码实现逻辑外键，数据库表值存储数据，不关联
+添加外键：物理外键，数据库级别的不建议使用，因为多表关联了，影响表操作，现在一般外键都是通过代码实现逻辑外键，数据库表值存储数据，不关联
+
 ```sql
 alter table student add constraint `FK_gradeid` foreign key(`gradeid`) references `grade`(`gradeid`);
 ```
-8. 清空表数据
-```sql
---删除整表，复制出有相同结构的表
-truncate table user
-```
-
 ### DML操作语言
-1. 插入数据
+
+插入数据
+
 ```sql
---不写字段名，必须保证数据顺序与字段顺序一一对应，自增值直接用null代替即可
+-- 不写字段名，必须保证数据顺序与字段顺序一一对应，自增值直接用null代替即可
 insert into student values (null,'张三','123456','男','2020-09-10 10:00:00','四川','2036786419@qq.com')
 
---也可以根据字段名选择性插入
+-- 也可以根据字段名选择性插入
 insert into student (`id`,`name`,`addres`) values ('8','李四','北京')
 
---批量插入
+-- 批量插入
 insert into student values
 (null,'张三','123456','男','2020-09-10 10:00:00','四川','2036786419@qq.com'),
 (null,'李四','123456','男','2020-09-10 10:00:00','四川','2036786419@qq.com'),
 (null,'王五','123456','男','2020-09-10 10:00:00','四川','2036786419@qq.com')
 ```
-2. 修改数据
+修改数据
+
 ```sql
 update student set name='赵六' where name='张三'
+-- 一次修改多个属性值，用逗号分隔
+update student set name='赵六',age=18 where id = 1
 ```
-3. 删除数据
+删除数据
+
 ```sql
---删除表中某一行记录
+-- 删除表中某一行记录
 delete from 表名 [where 条件]
 
---删除表中所有记录,不跟条件，将会逐条删除表数据
+-- 删除表中所有记录,不跟条件，将会逐条删除表数据
 delete from 表名
+
+-- 删除整表，复制出有相同结构的表
+truncate table user
+
+-- truncate重新设置自增列，计数器会归零。不会影响事务
+-- 关于自增计数，重启数据库后，INNODB引擎计数器清零(存储在内存中，断电即失)，MYISAM引擎计数器不会清零(存储在文件中)
 ```
 
 ### DQL 查询语言
@@ -395,38 +409,41 @@ insert into `subject`(`subjectno`,`subjectname`,`classhour`,`gradeid`)values
 (17,'C#基础',130,1);
 ```
 
-1. 普通查询
+普通查询
+
 ```sql
---查询全部
+-- 查询全部
 select * from student
 
---查询指定字段
+-- 查询指定字段
 select `StudentNo`,`StudnetName` from student
 
---给查询列取别名显示
-select `StudentNo` 学号,`StudentName` 学生姓名 from student
+-- 给查询列取别名显示
+select `StudentNo` 学号,`StudentName` 学生姓名 from student s
 
---Concat函数简单修改查询出的结果
+-- Concat函数简单修改查询出的结果
 select Concat('姓名：',StudentName) '新名字' from student
 
---对查询出的结果去掉重复值显示
+-- 对查询出的结果去掉重复值显示
 select distinct `studentno` from result
 ```
-2. 数据库中的表达式
+数据库中的表达式
+
 ```sql
---查询mysql版本
+-- 查询mysql版本
 select version()
 
---计算
+-- 计算
 select 100*3-1 '计算结果'
 
---查询自增步长
+-- 查询自增步长
 select @@auto_increment_increment
 
---对查询结果进行计算后显示
+-- 对查询结果进行计算后显示
 select `StudentNo`,`StudentResult`+1 '提分后' from result
 ```
-3. 模糊查询
+模糊查询
+
 ```sql
 -- 占位符 _代表一个字符 %代表任意个数字符 
 select `StudentNo`,`StudentName` from `student`
