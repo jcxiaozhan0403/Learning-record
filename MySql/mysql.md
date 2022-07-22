@@ -425,7 +425,7 @@ select `StudentNo` 学号,`StudentName` 学生姓名 from student s
 select Concat('姓名：',StudentName) '新名字' from student
 
 -- 对查询出的结果去掉重复值显示
-select distinct `studentno` from result
+select distinct `studentNo` from result
 ```
 数据库中的表达式
 
@@ -458,7 +458,8 @@ where StudentNo is not null
 select `StudentNo`,`StudentName` from `student`
 where StudentNo is null
 ```
-4. 连接查询
+连接查询
+
 - 交叉查询 cross join
 ```
 查询到两个表的笛卡尔积
@@ -513,20 +514,104 @@ select column_name(s) from table_name1
 union all
 select column_name(s) from table_name2
 ```
-5. 分页
+排序
+
 ```sql
--- 开始查询的位置,每页条数
+-- 根据哪个字段升序/降序排列，写于where条件之后
+order by 字段名 asc/desc
+```
+
+分页
+
+```sql
 select * from `subject`
 limit 0,2
+
+-- 第一页 limit 0,5		(1-1)*5
+-- 第二页 limit 5,5		(2-1)*5
+-- 第三页 limit 10,5		(3-1)*5
+-- 第N页 limit M,5		M = (N-1)*pageSize
+
+-- 【N】当前页
+-- 【pageSize】页面大小
+-- 【M】起始值下标
+-- 【总页数 = 数据总数/页面大小】
 ```
-6. 数据库级别的md5加密
+分组与过滤
+
 ```sql
+-- group by 分组字段 having 过滤条件
+select studentNo,studentClass from student group by studentClass having studentClass = '软件19-1班'
+```
+
+数据库级别的md5加密
+
+```sql
+-- 加密函数
+md5()
+
 -- 在插入时完成加密
 insert into student (`name`,`pwd`,`addres`) values('张三',md5('123456'),'北京')
 ```
 ### DCL 控制语言
 
+## 函数
+
+### 常见函数
+
+```sql
+-- 数学函数
+select abs(-8) -- 绝对值
+select ceiling(9.4) -- 向上取整
+select floor(9.4) -- 向下取整
+select rand() -- 0~1之间的随机数
+select sign(-1) -- 返回参数符号，0返回0，负数返回-1，正数返回1
+
+-- 字符串
+select char_length('代码书写人生') -- 返回字符串长度
+select concat('Hello',' ','World') -- 拼接字符串
+select lower('JDKASDAbhfjas') -- 转小写
+select upper('JDKASDAbhfjas') -- 转大写
+select instr('HelloHHH','H') -- 返回第一次出现子串的位置
+select replace('失败是成功之母','之母','他妈') -- 替换指定字符串
+select substr('sdnaldnaldsd',4,5) -- 从第4个位置，返回长度为5的字符串
+select reverse('赵兄托我帮你办点事') -- 字符串反转
+
+-- 时间和日期
+select current_date() -- 获取当前日期
+select current_date -- 获取当前日期
+select now() -- 获取当前时间
+select localtime() -- 本地时间
+select sysdate() -- 系统时间
+
+select year(now()) -- 年
+select month(now()) -- 月
+select day(now()) -- 日
+select hour(now()) -- 时
+select minute(now()) -- 分
+select second(now()) -- 秒
+
+-- 系统
+select system_user()
+select user()
+select version()
+```
+
+### 聚合函数(常用)
+
+| 函数名  | 作用       |
+| ------- | ---------- |
+| count() | 统计记录数 |
+| sum()   | 求和       |
+| avg()   | 平均值     |
+| max()   | 最大值     |
+| min()   | 最小值     |
+
+- count(*)与count(1)作用差不多
+- count(列名)忽略NULL值
+
 ## 事务
+
 ### ACID
 1. 原子性：要么都成功，要么都失败
 2. 一致性：保持业务数据前后一致

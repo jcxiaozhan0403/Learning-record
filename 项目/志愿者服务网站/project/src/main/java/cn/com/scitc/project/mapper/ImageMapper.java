@@ -12,4 +12,6 @@ public interface ImageMapper {
     Image findImageByName(String name);
 
     int updateByPrimaryKey(Image image);
+
+
 }
