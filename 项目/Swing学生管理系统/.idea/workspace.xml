@@ -5,128 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2649cff7-9c48-4a4f-beeb-cc840e8b38a7" name="默认的" comment="默认的">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_4_bin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/.idea/runConfigurations.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaSE/H2J/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/.idea/libraries/spring_security_core_4_2_2_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/.idea/libraries/sqljdbc4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/lib/spring-security-core-4.2.2.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/lib/sqljdbc4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/management.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/out/production/management/com/smis/common/SqlHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/out/production/management/com/smis/dao/AdminDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/out/production/management/com/smis/dao/ClsDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/out/production/management/com/smis/model/Admin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/out/production/management/com/smis/model/Cls.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/out/production/management/com/smis/view/ClsAddFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/out/production/management/com/smis/view/ClsAdminFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/out/production/management/com/smis/view/ClsEditFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/out/production/management/com/smis/view/Login.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/out/production/management/com/smis/view/MainFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/out/production/management/com/smis/view/RePwdFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/out/production/management/prop.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/src/com/smis/common/SqlHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/src/com/smis/dao/AdminDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/src/com/smis/dao/ClsDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/src/com/smis/model/Admin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/src/com/smis/model/Cls.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/src/com/smis/view/ClsAddFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/src/com/smis/view/ClsAdminFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/src/com/smis/view/ClsEditFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/src/com/smis/view/Login.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/src/com/smis/view/MainFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/src/com/smis/view/RePwdFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/management/src/prop.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaSE/project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/out/production/learning/Demo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/out/production/learning/abc/Animals.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/out/production/learning/abc/Copy.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/out/production/learning/abc/Demo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/out/production/learning/abc/Dog.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/out/production/learning/abc/Example11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/out/production/learning/abc/FinalDemo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/out/production/learning/abc/HelloWorld.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/out/production/learning/abc/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/out/production/learning/abc/Test1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/out/production/learning/aboutTable/TableDemo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/out/production/learning/applet/AppletDemo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/out/production/learning/xxx/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/src/Demo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/src/abc/Animals.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/src/abc/Copy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/src/abc/Demo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/src/abc/Dog.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/src/abc/Example11.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/src/abc/FinalDemo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/src/abc/HelloWorld.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/src/abc/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/src/abc/Test1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/src/aboutTable/TableDemo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/src/applet/AppletDemo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../JavaSE/project/src/xxx/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../MySql/mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../MySql/mysql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Swing学生管理系统.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Swing学生管理系统.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin.sql" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/admin.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/.idea/libraries/mysql_connector_java_5_1_4_bin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/.idea/libraries/mysql_connector_java_5_1_4_bin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/.idea/libraries/mysql_connector_java_8_0_18.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/.idea/libraries/mysql_connector_java_8_0_18.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaSE/project/.idea/runConfigurations.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/lib/mysql-connector-java-5.1.4-bin.jar" beforeDir="false" afterPath="$PROJECT_DIR$/project/lib/mysql-connector-java-5.1.4-bin.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/lib/mysql-connector-java-8.0.18.jar" beforeDir="false" afterPath="$PROJECT_DIR$/project/lib/mysql-connector-java-8.0.18.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/dao/AdminDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/dao/AdminDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/dao/StudentDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/dao/StudentDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/demo/BorderLayoutTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/demo/BorderLayoutTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/demo/FlowLayoutTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/demo/FlowLayoutTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/demo/JtableDemo.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/demo/JtableDemo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/demo/SpringLayoutTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/demo/SpringLayoutTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/demo/StudentCellRender.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/demo/StudentCellRender.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/demo/StudentTableModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/demo/StudentTableModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/demo/Test1.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/demo/Test1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/handler/JDBCUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/handler/JDBCUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/handler/LoginHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/handler/LoginHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/jdbc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/view/AddFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/view/AddFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/view/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/view/LoginView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/view/MainView.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/view/MainView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/view/ModifyFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/view/ModifyFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/view/StudentCellRender.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/view/StudentCellRender.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/out/production/project02/view/StudentTableModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/project/out/production/project02/view/StudentTableModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/project02.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project/project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/src/dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dao/AdminDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/src/dao/StudentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/dao/StudentDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/src/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/src/demo/BorderLayoutTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/demo/BorderLayoutTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/src/demo/FlowLayoutTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/demo/FlowLayoutTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/src/demo/JtableDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/demo/JtableDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/src/demo/SpringLayoutTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/demo/SpringLayoutTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/src/demo/Test1.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/demo/Test1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/src/handler/JDBCUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/handler/JDBCUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/src/handler/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/handler/LoginHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/src/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/jdbc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/src/view/AddFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/view/AddFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/src/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/view/LoginView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/src/view/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/view/MainView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/src/view/ModifyFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/view/ModifyFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/开发文档/1-需求规格说明书.doc" beforeDir="false" afterPath="$PROJECT_DIR$/project/开发文档/1-需求规格说明书.doc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/开发文档/2-项目开发计划.doc" beforeDir="false" afterPath="$PROJECT_DIR$/project/开发文档/2-项目开发计划.doc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/开发文档/3-系统构架设计.doc" beforeDir="false" afterPath="$PROJECT_DIR$/project/开发文档/3-系统构架设计.doc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/开发文档/4-原型设计说明书.doc" beforeDir="false" afterPath="$PROJECT_DIR$/project/开发文档/4-原型设计说明书.doc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/开发文档/5-数据库设计说明书.doc" beforeDir="false" afterPath="$PROJECT_DIR$/project/开发文档/5-数据库设计说明书.doc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/开发文档/6-集成测试计划.doc" beforeDir="false" afterPath="$PROJECT_DIR$/project/开发文档/6-集成测试计划.doc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/开发文档/7-测试报告.doc" beforeDir="false" afterPath="$PROJECT_DIR$/project/开发文档/7-测试报告.doc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/开发文档/8-项目开发总结报告.doc" beforeDir="false" afterPath="$PROJECT_DIR$/project/开发文档/8-项目开发总结报告.doc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project02/开发文档/PPT.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/project/开发文档/PPT.pptx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/student.sql" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/student.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaSE/JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaSE/JavaSE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../志愿者服务网站/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../志愿者服务网站/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +28,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../志愿者服务网站" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../JavaSE/H2J" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -202,6 +82,7 @@
       <workItem from="1633658750564" duration="2000" />
       <workItem from="1658329918846" duration="573000" />
       <workItem from="1658330519040" duration="7000" />
+      <workItem from="1658585016237" duration="730000" />
     </task>
     <servers />
   </component>

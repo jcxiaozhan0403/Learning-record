@@ -10,9 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a67b145-3512-47c1-8db9-e75d14174d43" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../MySql/mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../MySql/mysql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/main/java/cn/com/scitc/project/mapper/ImageMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/java/cn/com/scitc/project/mapper/ImageMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaSE/JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaSE/JavaSE.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +46,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Swing学生管理系统" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -166,6 +164,7 @@
       <workItem from="1658330875084" duration="93000" />
       <workItem from="1658480203304" duration="23000" />
       <workItem from="1658480895685" duration="109000" />
+      <workItem from="1658584957940" duration="54000" />
     </task>
     <servers />
   </component>

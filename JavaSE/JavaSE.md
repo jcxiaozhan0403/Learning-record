@@ -1335,6 +1335,308 @@ try {
 }
 ```
 
+## JDBC
+> 概念：JDBC 指 Java 数据库连接，是由SUN公司提出的一种标准Java应用编程接口（ JAVA API）规范，用来连接 Java 编程语言和广泛的数据库。
+
+### JDBC使用
+
+1. 导入数据库驱动
+
+<img src="./JDBC添加数据库驱动.jpg">
+
+2. 编写代码
+
+```java
+import java.sql.*;
+
+public class Test {
+    // 将数据库对象设置为静态变量，保证连接只有一份
+    private static Connection conn;
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        //加载数据库驱动
+        Class.forName("com.mysql.jdbc.Driver"); //Mysql 5.0
+        //Class.forName("com.mysql.cj.jdbc.Driver"); //Mysql 8.0
+        //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //SqlServer
+
+        //创建连接函数
+        //useSSL=true&userUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+        //useSSL安全连接 userUnicode是否支持中文编码 characterEncoding设置字符集编码 serverTimezone设置时区
+        String url = "jdbc:mysql://localhost:3306/student?useSSL=false&userUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8"; //Mysql
+        //String url = "jdbc:sqlserver://localhost:1433;databaseName=soft1901"; //SqlServer
+        String user = "root";
+        String password = "lishuang001219";
+        conn = DriverManager.getConnection(url,user,password);
+
+        //数据库对象关于事务的操作
+        //conn.setAutoCommit(false); 关闭提交，会自动开启事务
+        //conn.commit();
+        //conn.rollback();
+
+        //创建Statement对象用于执行sql
+        Statement statement = conn.createStatement();
+        
+        //SQL语句
+        String sql = "select * from student";
+        
+        //执行SQL，返回结果集
+        ResultSet resultSet = statement.executeQuery(sql);
+        // statement.execute(sql)  可以执行所有的sql语句，由于效率问题，一般不使用
+        // statement.executeQuery(sql)  执行查询语句，返回一个结果集
+        // statement.executeUpdate(sql) 执行更新、插入、删除语句，返回一个int代表受影响行数
+
+        //操作结果集
+        while (resultSet.next()) {
+            System.out.print(resultSet.getInt("stuId") + " " + resultSet.getString("stuName") + " " + resultSet.getString("stuSex") + " " + resultSet.getInt("stuAge") + " " + resultSet.getString("stuCls") + "\r\n");
+        }
+
+        //关闭连接
+        resultSet.close();
+        statement.close();
+        conn.close();
+    }
+}
+```
+
+### JDBCUtil
+
+JDBCUtil是对JDBC的一个简单封装的工具类，简化了开发过程的同时，不会影响程序性能
+
+```java
+package com.ut;
+
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
+
+/*
+ * 封装一个工具类，能够减少重复代码
+ *
+ *  可以通过一个配置文件的形式，
+ *
+ * */
+public class JDBCUtils {
+    private static  String url;
+    private static String pwd;
+    private static  String user;
+    static {
+        // 静态变量代码块中赋值。
+        // 1. 读取，配置配置文件
+        try {
+            Properties properties = new Properties();
+            properties.load(handler.JDBCUtils.class.getClassLoader().getResourceAsStream("jdbc.properties"));
+            url = properties.getProperty("url");
+            pwd = properties.getProperty("pwd");
+            user = properties.getProperty("user");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    
+    // 获取连接
+    public static Connection getConnection() throws Exception{
+        return DriverManager.getConnection(url,user,pwd);
+    }
+    
+    //关闭资源
+    public static void close(Connection connection, Statement statement){
+        if(statement != null){
+            try {
+                statement.close(); // 关闭资源
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(connection != null){
+            try {
+                connection.close(); /// 关闭conn 资源
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public static void close(Connection connection, Statement statement, ResultSet resultSet) throws SQLException {
+        if(statement != null){
+            try {
+                statement.close(); // 关闭资源
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(connection != null){
+            try {
+                connection.close(); /// 关闭conn 资源
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(resultSet != null){
+            resultSet.close();
+        }
+    }
+}
+```
+
+### PreparedStatement
+
+PreparedStatement是Statement的子类，我们一般使用PreparedStatement来防止sql注入
+
+> 原理：PreparedStatement将传递进去的参数当做字符串，假如字符串中存在转义字符，会被忽略
+
+```java
+//编写sql语句时，使用问号作为占位符
+String sql = "insert into student values (?,?,?,?,?)";
+
+//预编译，填入sql，先不执行
+PreparedStatement ps = conn.prepareStatement(sql);
+
+//设置sql占位符的值
+ps.setString(1,null);
+ps.setString(2,"王麻子");
+ps.setString(3,"男");
+ps.setInt(4,25);
+ps.setString(5,"计网19-1");
+
+//执行sql
+ps.executeUpdate();
+
+//关闭连接
+ps.close();
+conn.close();
+```
+
+## 数据库连接池
+提供一个池子，需要数据库连接的时候直接从池子里面获取，用完不释放，归还到池子中，使用连接池之后，就不需要手动地创建连接了
+
+### 常用连接池
+- DBCP
+- C3P0
+- Druid（阿里巴巴）
+- HikariDataSource（springboot默认使用）
+
+### DBCP连接池的简单使用
+1. 导入依赖
+```xml
+<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+<dependency>
+    <groupId>commons-dbcp</groupId>
+    <artifactId>commons-dbcp</artifactId>
+    <version>1.4</version>
+</dependency>
+```
+2. 创建配置文件
+- dbcp.properties
+```properties
+driverClassName=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3306/student-manager?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8
+username=root
+password=lishuang001219
+
+#初试连接数
+initialSize=30
+#最大活跃数
+maxTotal=30
+#最大idle数
+maxIdle=10
+#最小idle数
+minIdle=5
+#最长等待时间(毫秒)
+maxWaitMillis=1000
+#程序中的连接不使用后是否被连接池回收(该版本要使用removeAbandonedOnMaintenance和removeAbandonedOnBorrow)
+#removeAbandoned=true
+removeAbandonedOnMaintenance=true
+removeAbandonedOnBorrow=true
+#连接在所指定的秒数内未使用才会被删除(秒)(为配合测试程序才配置为1秒)
+removeAbandonedTimeout=1
+```
+3. 创建工具类
+- DBUtils.java
+```java
+public class DBUtils {
+    private static DataSource dataSource;
+
+    static {
+        // 静态变量代码块中赋值。
+        // 1. 读取，配置配置文件
+        try {
+            Properties properties = new Properties();
+            properties.load(DBUtils.class.getClassLoader().getResourceAsStream("dbcp.properties"));
+            dataSource = BasicDataSourceFactory.createDataSource(properties);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    // 获取连接
+    public static Connection getConnection() throws Exception{
+        return dataSource.getConnection();
+    }
+
+    //封装关闭资源的方法
+    public static void close(Connection connection, Statement statement){
+        if(statement != null){
+            try {
+                statement.close(); // 关闭资源
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(connection != null){
+            try {
+                connection.close(); /// 关闭conn 资源
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public static void close(Connection connection, Statement statement, ResultSet resultSet) throws SQLException {
+        if(statement != null){
+            try {
+                statement.close(); // 关闭资源
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(connection != null){
+            try {
+                connection.close(); /// 关闭conn 资源
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(resultSet != null){
+            resultSet.close();
+        }
+    }
+}
+```
+4. 编写测试类
+```java
+public class MyTest {
+    private static Connection conn;
+
+    @Test
+    public void t2() throws Exception {
+        conn = DBUtils.getConnection();
+
+        String sql = "select * from student";
+        PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            System.out.println(resultSet.getString("name"));
+            System.out.println(resultSet.getInt("age"));
+            System.out.println(resultSet.getString("num"));
+        }
+    }
+}
+```
+
 # 常用类
 
 ## 内部类
@@ -4337,295 +4639,6 @@ public class Test {
         pih.setTarget(userService); //设置要代理的对象
         UserService proxy = (UserService)pih.getProxy(); //动态生成代理类！
         proxy.add();
-    }
-}
-```
-
-## JDBC数据库连接
-1. 定义连接(静态)
-```java
-private static Connection conn;
-```
-2. 加载驱动程序
-```java
-Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //SqlServer
-Class.forName("com.mysql.jdbc.Driver"); //Mysql 5.0
-Class.forName("com.mysql.cj.jdbc.Driver"); //Mysql 8.0
-```
-3. 创建连接函数
-```java
-//Sqlserver
-String url = "jdbc:sqlserver://localhost:1433;databaseName=soft1901"; //SqlServer
-String url = "jdbc:mysql://localhost:3306/student?useSSL=false&userUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8"; //Mysql
-conn = DriverManager.getConnection(url,"sa","lishuang001219");
-
-//Mysql
-conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/","sa", "lishuang001219");
-```
-4. 创建关闭函数
-```java
-public static void closeConn(Statement s) throws SQLException {
-    if (s != null){
-        s.close();
-    }
-
-    if (conn != null){
-        try {
-            conn.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
-}
-```
-5. 在主方法中调用连接函数，书写sql语句，再调用关闭函数
-```java
-try {
-    Connection c = getConn();
-} catch (ClassNotFoundException e) {
-    e.printStackTrace();
-} catch (SQLException throwables) {
-    throwables.printStackTrace();
-}
-
-Statement s = conn.createStatement();
-String sql = "insert into student values('007',"+"'阿九'"+","+"'女'"+","+20+")";
-s.execute(sql);
-
-closeConn(s);
-```
-
-## JDBCUtil
-
-JDBCUtil是对JDBC的一个简单封装的工具类，简化了开发过程的同时，不会影响程序性能
-
-```java
-package com.ut;
-
-import java.io.IOException;
-import java.sql.*;
-import java.util.Properties;
-
-/*
- * 封装一个工具类，能够减少重复代码
- *
- *  可以通过一个配置文件的形式，
- *
- * */
-public class JDBCUtils {
-    private static  String url ;
-    private static String pwd;
-    private static  String user;
-    static {
-        // 静态变量代码块中赋值。
-        // 1. 读取，配置配置文件
-        try {
-            Properties properties = new Properties();
-            properties.load(handler.JDBCUtils.class.getClassLoader().getResourceAsStream("jdbc.properties"));
-            url = properties.getProperty("url");
-            pwd = properties.getProperty("pwd");
-            user = properties.getProperty("user");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-    
-    // 获取连接
-    public static Connection getConnection() throws Exception{
-        return DriverManager.getConnection(url,user,pwd);
-    }
-    
-    //封装关闭资源的方法
-    public static void close(Connection connection, Statement statement){
-        if(statement != null){
-            try {
-                statement.close(); // 关闭资源
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if(connection != null){
-            try {
-                connection.close(); /// 关闭conn 资源
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    public static void close(Connection connection, Statement statement, ResultSet resultSet) throws SQLException {
-        if(statement != null){
-            try {
-                statement.close(); // 关闭资源
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if(connection != null){
-            try {
-                connection.close(); /// 关闭conn 资源
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if(resultSet != null){
-            resultSet.close();
-        }
-    }
-}
-```
-
-## JDBC增删改
-```java
-//增加数据
-String sql = "insert into student values('007',"+"'阿九'"+","+"'女'"+","+20+")";
-
-//删除和修改更为简单，注意单双引号的使用即可
-```
-
-## JDBC查询
-```java
-String sql = "select * from hero";
-
-// 执行查询语句，并把结果集返回给ResultSet,基1(下标从一开始)
-ResultSet rs = s.executeQuery(sql);
-while (rs.next()) {
-    int id = rs.getInt("id");// 可以使用字段名
-    String name = rs.getString(2);// 也可以使用字段的顺序
-    float hp = rs.getFloat("hp");
-    int damage = rs.getInt(4);
-    System.out.printf("%d\t%s\t%f\t%d%n", id, name, hp, damage);
-}
-```
-
-## 数据库连接池
-提供一个池子，需要数据库连接的时候直接从池子里面获取，用完不释放，归还到池子中，使用连接池之后，就不需要手动地创建连接了
-
-### 常用连接池
-- DBCP
-- C3P0
-- Druid（阿里巴巴）
-- HikariDataSource（springboot默认使用）
-
-### DBCP连接池的简单使用
-1. 导入依赖
-```xml
-<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
-<dependency>
-    <groupId>commons-dbcp</groupId>
-    <artifactId>commons-dbcp</artifactId>
-    <version>1.4</version>
-</dependency>
-```
-2. 创建配置文件
-- dbcp.properties
-```properties
-driverClassName=com.mysql.jdbc.Driver
-url=jdbc:mysql://localhost:3306/student-manager?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8
-username=root
-password=lishuang001219
-
-#初试连接数
-initialSize=30
-#最大活跃数
-maxTotal=30
-#最大idle数
-maxIdle=10
-#最小idle数
-minIdle=5
-#最长等待时间(毫秒)
-maxWaitMillis=1000
-#程序中的连接不使用后是否被连接池回收(该版本要使用removeAbandonedOnMaintenance和removeAbandonedOnBorrow)
-#removeAbandoned=true
-removeAbandonedOnMaintenance=true
-removeAbandonedOnBorrow=true
-#连接在所指定的秒数内未使用才会被删除(秒)(为配合测试程序才配置为1秒)
-removeAbandonedTimeout=1
-```
-3. 创建工具类
-- DBUtils.java
-```java
-public class DBUtils {
-    private static DataSource dataSource;
-
-    static {
-        // 静态变量代码块中赋值。
-        // 1. 读取，配置配置文件
-        try {
-            Properties properties = new Properties();
-            properties.load(DBUtils.class.getClassLoader().getResourceAsStream("dbcp.properties"));
-            dataSource = BasicDataSourceFactory.createDataSource(properties);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    // 获取连接
-    public static Connection getConnection() throws Exception{
-        return dataSource.getConnection();
-    }
-
-    //封装关闭资源的方法
-    public static void close(Connection connection, Statement statement){
-        if(statement != null){
-            try {
-                statement.close(); // 关闭资源
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if(connection != null){
-            try {
-                connection.close(); /// 关闭conn 资源
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    public static void close(Connection connection, Statement statement, ResultSet resultSet) throws SQLException {
-        if(statement != null){
-            try {
-                statement.close(); // 关闭资源
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if(connection != null){
-            try {
-                connection.close(); /// 关闭conn 资源
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if(resultSet != null){
-            resultSet.close();
-        }
-    }
-}
-```
-4. 编写测试类
-```java
-public class MyTest {
-    private static Connection conn;
-
-    @Test
-    public void t2() throws Exception {
-        conn = DBUtils.getConnection();
-
-        String sql = "select * from student";
-        PreparedStatement preparedStatement = conn.prepareStatement(sql);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        while (resultSet.next()) {
-            System.out.println(resultSet.getString("name"));
-            System.out.println(resultSet.getInt("age"));
-            System.out.println(resultSet.getString("num"));
-        }
     }
 }
 ```
