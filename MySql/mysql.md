@@ -223,6 +223,10 @@ show create table student
 describe student
 desc student
 ```
+查看表的索引信息
+```sql
+show index from student
+```
 
 > 操作表
 
@@ -612,16 +616,26 @@ select version()
 
 ## 事务
 
-### ACID
-1. 原子性：要么都成功，要么都失败
-2. 一致性：保持业务数据前后一致
-3. 隔离性：多事务执行，相互之间隔离
-4. 持久性：事务一旦提交，不可逆，会持久到数据库中
+### 什么是事务
 
-### 事务隔离中一些可能存在的问题
-1. 脏读：事务A读取到了事务B未提交的数据
-2. 不可重复读：事务A读取到了事务B修改后的数据
-3. 幻读；事务A读取到了事务B提交的数据
+要么都成功，要么都失败，将一组SQL放在一个批次中执行
+
+### ACID
+
+**原子性**：要么都成功，要么都失败
+
+**一致性**：保持业务数据前后一致
+
+**隔离性**：多事务执行，相互之间隔离
+
+**持久性**：事务一旦提交，不可逆，会持久到数据库中
+
+### 隔离所导致的问题
+**脏读**：事务A读取到了事务B未提交的数据
+
+**不可重复读**：事务A读取到了事务B修改后的数据(一个事务中多次读取产生不同结果，这不一定是错误，也许是场合不对)
+
+**幻读(虚读)**；事务A读取到了事务B提交的数据
 
 ### 事务操作
 1. mysql默认开启事务自动提交，先手动关闭提交
@@ -629,7 +643,7 @@ select version()
 -- 关闭
 set autocommit = 0
 
---开启
+-- 开启
 set autocommit = 1
 ```
 2. 开启事务
@@ -646,23 +660,31 @@ rollback
 ```
 
 ## 索引
-> 概念：MySQL官方对索引的定义为：索引（Index）是帮助MySQL高效获取数据的数据结构。提取句子主干，就可以得到索引的本质：索引是数据结构。
+> 概念：MySQL官方对索引的定义为：索引（Index）是帮助MySQL高效获取数据的数据结构。
+>
+> 提取句子主干，就可以得到索引的本质：**索引是数据结构**。
 
 ### 索引的分类
-- 主键索引(primary key)：唯一的标识，主键不可重复，只能有一个列作为主键
-- 唯一索引(unique key)：避免列中重复的行出现，唯一索引可以重复，多个列都可以标识唯一索引
-- 常规索引(index/key)：默认的，index，key关键字来设置
-- 全文索引(fulltext)：在特定的数据库引擎下才有，MyISAM，快速定位数据
+**主键索引(primary key)**：唯一的标识，主键不可重复，只能有一个列作为主键
+
+**唯一索引(unique key)**：避免列中重复的行出现，唯一索引可以重复，多个列都可以标识唯一索引
+
+**常规索引(index/key)**：默认的，index，key关键字来设置
+
+**全文索引(fulltext)**：在特定的数据库引擎下才有，MyISAM，快速定位数据
 
 主键索引只有一个，唯一索引可以存在多个
 ```sql
---索引的使用
---1、在创建表的时候给字段增加索引-- 2、创建完毕后，增加索引
---显示所有的索引信息 
+-- 索引的使用
+-- 1. 在创建表的时候给字段增加索引
+-- 2. 创建完毕后，修改表增加索引
+-- 3. 创建索引 id_表名_字段
+create index id_student_name on student_name(`name`) 
 
-showindex from student
+-- 查看表所有的索引信息 
+show index from student
 
---增加一个全文索引〔索引名）列名
+-- 增加一个全文索引〔索引名）列名
 alter table school.student add fulltext index `studentname` ('studentname');
 
 -- explain分析sql执行的状况
@@ -671,7 +693,7 @@ explain select * from student; --非全文索引
 explain select * from student where match(studentname) against('刘');
 ```
 
-### 索引原则
+### 索引使用原则
 - 索引不是越多越好
 - 数据量少的情况先不考虑索引
 - 不要给经常变动的数据加索引
@@ -679,7 +701,40 @@ explain select * from student where match(studentname) against('刘');
 
 [MySQL索引背后的数据结构及算法原理](http://blog.codinglabs.org/articles/theory-of-mysql-index.html)
 
+## 权限管理和备份
+
+```sql
+-- 创建用户 create user 用户名 identified by '密码'
+create user JohnCena identified by '123456'
+
+-- 修改当前用户密码
+set password = password('123456')
+
+-- 修改指定用户密码
+set password for xxx = password('123456')
+
+-- 重命名 rename user 用户名 to 新用户名
+rename user JohnCena to demo
+
+-- 给用户授权
+grant all privileges on *.* to 用户名
+
+-- 查询权限
+show grants for 用户名
+
+-- 撤销用户权限
+revoke all privileges on *.* from 用户名
+
+-- 删除用户
+drop user 用户名
+```
+
+## MySQL备份
+
+
+
 ## 三大范式
+
 第一范式（1NF）是指关系中的所有属性都是不可再分的数据项，同一列中不能有多个值（消除属性多值）
 
 第二范式（2NF）数据库表满足第一范式，并且每一列都依赖主键，联合主键时每一列都完全依赖于主键（消除部分依赖）
