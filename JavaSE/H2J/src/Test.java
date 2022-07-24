@@ -1,3 +1,4 @@
+import javax.sql.DataSource;
 import java.sql.*;
 
 public class Test {
@@ -39,5 +40,8 @@ public class Test {
         //关闭连接
         ps.close();
         conn.close();
+
+        DataSource
+
     }
 }

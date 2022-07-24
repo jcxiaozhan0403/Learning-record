@@ -1506,9 +1506,12 @@ conn.close();
 ```
 
 ## 数据库连接池
-提供一个池子，需要数据库连接的时候直接从池子里面获取，用完不释放，归还到池子中，使用连接池之后，就不需要手动地创建连接了
+> 数据库连接池负责分配、管理和释放数据库连接，它允许应用程序重复使用一个现有的数据库连接，而不是再重新建立一个；释放空闲时间超过最大空闲时间的数据库连接来避免因为没有释放数据库连接而引起的数据库连接遗漏。这项技术能明显提高对数据库操作的性能。
 
-### 常用连接池
+> 所有的数据库连接池都是继承了DataSource接口来进行实现的。
+
+### 常用开源数据源
+
 - DBCP
 - C3P0
 - Druid（阿里巴巴）
@@ -1525,7 +1528,9 @@ conn.close();
 </dependency>
 ```
 2. 创建配置文件
-- dbcp.properties
+
+`dbcp.properties`
+
 ```properties
 driverClassName=com.mysql.jdbc.Driver
 url=jdbc:mysql://localhost:3306/student-manager?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8
@@ -1550,7 +1555,9 @@ removeAbandonedOnBorrow=true
 removeAbandonedTimeout=1
 ```
 3. 创建工具类
-- DBUtils.java
+
+`DBUtils.java`
+
 ```java
 public class DBUtils {
     private static DataSource dataSource;
@@ -1561,6 +1568,7 @@ public class DBUtils {
         try {
             Properties properties = new Properties();
             properties.load(DBUtils.class.getClassLoader().getResourceAsStream("dbcp.properties"));
+            //使用工厂，创建数据源
             dataSource = BasicDataSourceFactory.createDataSource(properties);
 
         } catch (IOException e) {
