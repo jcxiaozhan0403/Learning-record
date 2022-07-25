@@ -14,7 +14,82 @@
 
 在Java中，动态web资源开发的技术统称为JavaWeb
 
+## TomCat
+
+### 目录结构
+
+bin：存放一些可执行的脚本文件，启动关闭之类的
+
+conf：配置文件
+
+lib：依赖的jar包
+
+logs：日志文件
+
+temp：临时文件
+
+webapps：发布网站的文件夹
+
+### 访问TomCat
+
+bin目录下的可执行文件
+
+`startup.bat`：启动服务器
+
+`shutdown.bat`：关闭服务器
+
+默认访问地址：https://localhost:8080
+
+## 网站的访问流程
+
+1. 输入网址，按下回车
+2. 检索主机的hosts配置文件下有无域名映射
+   - 有：直接返回对应的IP地址
+   - 无：检索DNS服务器，找到对应的IP地址就返回，没有的话返回404
+
+## Http
+
+> Http（超文本传输协议）是一个简单的请求响应协议，它运行在TCP上面
+
+### 两个时代
+
+第一个时代(Http/1.0)：客户端与web服务器连接后，只能获取一个web资源，断开连接
+
+第二个时代(Http/1.1)：客户端与web服务器连接后，可以获取多个web资源
+
+### Http请求
+
+#### 请求行
+
+请求方式：GET, POST, OPTIONS, PUT, DELETE, TRACE, CONNECT...
+
+- GET：请求能够携带的参数较少，大小有限制，会在浏览器的URL地址栏显示数据内容，不安全但高效
+- POST：请求能够携带的参数没有限制，大小没有限制，不会在浏览器的URL地址栏显示数据内容，安全但不高效
+
+#### 消息头
+
+```
+Accept: 支持的数据类型
+Accept-Encoding: 支持的编码格式
+Accept-Language: 语言环境
+Cache-Control: 缓存控制
+Connection: 请求完毕后的连接状态
+Host: 主机
+...
+```
+
+### 状态码
+
+200：请求成功
+
+404：找不到资源
+
+3xx：请求重定向
+
+5xx：服务器错误
+
 ## MVC开发模式
+
 ```
 C: controller
 
