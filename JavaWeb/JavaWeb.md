@@ -88,6 +88,70 @@ Host: 主机
 
 5xx：服务器错误
 
+## Maven
+
+概念：在JavaWeb开发中，需要使用大量的jar包，手动导入太过繁琐，所以我们使用Maven来自动导入
+
+==核心思想：约定大于配置，非不要不配置，使用默认值有时会达到最好的效果==
+
+### Maven安装配置
+
+1. 下载解压
+2. 配置环境变量
+   - `M2_HOME`：maven根目录下的bin目录
+   - `MAVEN_HOME`：maven的根目录
+   - 添加path变量：`%MAVEN_HOME%\bin`
+
+3. 测试环境配置
+
+```
+mvn -version
+```
+
+4. 修改配置文件`conf/settings.xml`，添加阿里云镜像，提升下载速度
+
+```xml
+<mirror>
+    <id>aliyunmaven</id>
+    <mirrorOf>*</mirrorOf>
+    <name>阿里云公共仓库</name>
+    <url>https://maven.aliyun.com/repository/public</url>
+</mirror>
+```
+
+5. 手动指定本地仓库，在maven根目录新建仓库文件夹`maven-repo`，添加如下配置
+
+```
+<localRepository>D:\environment\Maven\apache-maven-3.8.3\maven-repo</localRepository>
+```
+
+### Maven资源导出问题
+
+我们在开发过程中可能会遇到导出失败的问题，在`pom.xml`文件添加如下配置
+
+```xml
+<build>
+    <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*.properties</include>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.properties</include>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+    </resources>
+</build>
+```
+
 ## MVC开发模式
 
 ```
