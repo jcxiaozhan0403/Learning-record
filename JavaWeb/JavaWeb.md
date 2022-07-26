@@ -152,6 +152,98 @@ mvn -version
 </build>
 ```
 
+## Servlet
+
+### HelloServlet
+
+1. 创建javaweb Maven项目
+2. 修改`web.xml`文件到tomcat标准版本
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+  version="3.1"
+  metadata-complete="true">
+
+</web-app>
+```
+
+3. `pom.xml`中导入servlrt依赖
+
+```xml
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>4.0.1</version>
+</dependency>
+<dependency>
+    <groupId>javax.servlet.jsp</groupId>
+    <artifactId>javax.servlet.jsp-api</artifactId>
+    <version>2.3.3</version>
+</dependency>
+```
+
+4. 创建java类，继承HttpServlet类，重写方法
+
+```java
+public class HelloServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title>Hello World!</title>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h1>Hello World!</h1>");
+        out.println("</body>");
+        out.println("</html>");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+}
+```
+
+5. 在`web.xml`中配置servlet映射
+
+```xml
+<!-- 配置servlet类 -->
+<servlet>
+    <!-- 别名，任意取 -->
+    <servlet-name>helloServlet</servlet-name>
+    <!-- 类路径 -->
+    <servlet-class>com.test.servlet.HelloServlet</servlet-class>
+    <!-- 启动优先级，一般不用 -->
+    <load-on-startup>0</load-on-startup>
+</servlet>
+
+<!-- 配置servlet映射 -->
+<servlet-mapping>
+    <servlet-name>helloServlet</servlet-name>
+    <!-- 访问路径 -->
+    <url-pattern>/HelloServlet</url-pattern>
+</servlet-mapping>
+```
+
+```java
+//servlet3.0可以通过注解来配置映射
+@WebServlet(value = { "/HelloServlet" , "/demo" },loadOnStartup = 0)
+public class Servlet01 extends HttpServlet {}
+```
+
+6. 访问
+
+```
+http://localhost:8080/HelloServlet
+```
+
 ## MVC开发模式
 
 ```
@@ -180,42 +272,6 @@ service层命名规则：
 ```
 
 ## Servlet
-1. 创建javaweb Maven项目
-2. pom.xml中导入servlrt依赖
-```xml
-<dependency>
-    <groupId>javax.servlet</groupId>
-    <artifactId>javax.servlet-api</artifactId>
-    <version>4.0.1</version>
-    <scope>provided</scope>
-</dependency>
-```
-3. 创建类，调用Servlet接口，导入包和方法
-4. 配置web.xml文件，添加如下配置
-```xml
-<!-- 配置servlet类 -->
-<servlet>
-    <!-- 别名，任意取 -->
-    <servlet-name>my</servlet-name>
-    <!-- 类路径 -->
-    <servlet-class>com.test.servlet.Servlet01</servlet-class>
-    <!-- 启动优先级，一般不用 -->
-    <load-on-startup>0</load-on-startup>
-</servlet>
-
-<!-- 配置servlet映射 -->
-<servlet-mapping>
-    <servlet-name>my</servlet-name>
-    <!-- 访问路径 -->
-    <url-pattern>/myservlet</url-pattern>
-</servlet-mapping>
-```
-5. Servlet3.0之后可以用注解方式来进行配置，如下
-```java
-@WebServlet(value = { "/ls" , "/demo" },loadOnStartup = 0)
-public class Servlet01 extends HttpServlet {}
-```
-
 Servlet的三种使用方式
 1. 调用Servlet接口，重写5个方法
 2. 继承GenericServlet类，重写service方法
