@@ -244,6 +244,190 @@ public class Servlet01 extends HttpServlet {}
 http://localhost:8080/HelloServlet
 ```
 
+### Mapping映射问题
+
+一个Servlet可以指定一个映射路径
+
+```xml
+<servlet-mapping>
+    <servlet-name>hello</servlet-name>
+    <url-pattern>/hello</url-pattern>
+</servlet-mapping>
+```
+
+一个Servlet可以指定多个映射路径
+
+```xml
+<servlet-mapping>
+    <servlet-name>hello</servlet-name>
+    <url-pattern>/hello</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>hello</servlet-name>
+    <url-pattern>/hello2</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>hello</servlet-name>
+    <url-pattern>/hello3</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>hello</servlet-name>
+    <url-pattern>/hello4</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>hello</servlet-name>
+    <url-pattern>/hello5</url-pattern>
+</servlet-mapping>
+```
+
+一个Servlet可以指定通用映射路径
+
+```xml
+<servlet-mapping>
+    <servlet-name>hello</servlet-name>
+    <url-pattern>/hello/*</url-pattern>
+</servlet-mapping>
+```
+
+默认请求路径
+
+```xml
+<servlet-mapping>
+    <servlet-name>hello</servlet-name>
+    <url-pattern>/*</url-pattern>
+</servlet-mapping>
+```
+
+指定一些后缀或者前缀等等…
+
+```xml
+<!-- 注意，*前面不能加项目映射的路径-->
+<servlet-mapping>
+    <servlet-name>hello</servlet-name>
+    <url-pattern>*.demo</url-pattern>
+</servlet-mapping>
+```
+
+优先级问题：指定了固有的映射路径优先级最高，如果找不到就会走默认的处理请求
+
+```xml
+<!--404-->
+<servlet>
+    <servlet-name>error</servlet-name>
+    <servlet-class>com.kuang.servlet.ErrorServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>error</servlet-name>
+    <url-pattern>/*</url-pattern>
+</servlet-mapping>
+```
+
+### ServletContext
+
+> ServletContext是一个全局对象，项目启动时自动创建，项目关闭时才销毁，全局唯一，可以通过它来实现**数据共享**，但是不建议使用，因为获取多个ServletContext对象会占用服务器资源，我们一般使用session来传递数据
+
+获取ServletContext对象的三种方式
+
+```java
+// 通过HttpServlet获取
+ServletContext servletContext = this.getServletContext();
+// 通过request对象获取
+ServletContext servletContext = request.getServletContext();
+// 通过session对象获取
+ServletContext servletContext = session.getServletContext();
+```
+
+#### 数据共享
+
+这个Servlet中保存的数据，可以在另外一个servlet中拿到
+
+```java
+public class DemoServlet1 extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //this.getInitParameter() 初始化参数
+        //this.getServletConfig() Servlet配置
+        //this.getServletContext() Servlet上下文
+        ServletContext context = this.getServletContext();
+        String username = "小明"; //数据
+        
+        //将一个数据保存在了ServletContext
+        context.setAttribute("username",username);
+    }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
+}
+```
+
+```java
+public class DemoServlet2 extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ServletContext context = this.getServletContext();
+        //从ServletContext获取username值的对象出来
+        String username = (String) context.getAttribute("username");
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("utf-8");
+        resp.getWriter().print("名字:"+username);
+    }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
+}
+```
+
+#### 获取初始化参数
+
+```xml
+<!--配置一些web应用初始化参数-->
+<context-param>
+    <param-name>application-name</param-name>
+    <param-value>学习Servlet</param-value>
+</context-param>
+```
+
+```java
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws  ServletException, IOException {
+    ServletContext context = this.getServletContext();
+    //获取初始化参数
+    String url = context.getInitParameter("application-name");
+    resp.setContentType("text/html");
+    resp.setCharacterEncoding("utf-8");
+    resp.getWriter().print(url);
+}
+```
+
+#### 请求转发
+
+```java
+@Override
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    ServletContext context = this.getServletContext();
+
+    //调用forward实现请求转发
+    //requestDispatcher.forward(req,resp); 
+    context.getRequestDispatcher("/demo3").forward(req,resp);
+}
+```
+
+#### 读取资源文件
+
+```java
+@Override
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    //使用相对路径来引入资源文件
+    InputStream is = this.getServletContext().getResourceAsStream("/WEB-INF/db.properties");
+    Properties prop = new Properties();
+    prop.load(is);
+    String user = prop.getProperty("username");
+    String pwd = prop.getProperty("password");
+    resp.getWriter().print(user+":"+pwd);
+}
+```
+
 ## MVC开发模式
 
 ```
@@ -426,18 +610,6 @@ session.setMaxInactiveInterval(10)
 3. 手动销毁
 ```java
 session.invalidate();
-```
-
-## ServletContext
-ServletContext是一个全局对象，项目启动时自动创建，项目关闭时才销毁，可应通过它来实现数据共享，但是不建议使用，因为获取多个ServletContext会占用服务器资源，我们一般使用session
-获取ServletContext对象的三种方式
-```java
-// 通过HttpServlet获取
-ServletContext servletContext = this.getServletContext();
-// 通过request对象获取
-ServletContext servletContext = request.getServletContext();
-// 通过session对象获取
-ServletContext servletContext = session.getServletContext();
 ```
 
 ## Session应用场景
