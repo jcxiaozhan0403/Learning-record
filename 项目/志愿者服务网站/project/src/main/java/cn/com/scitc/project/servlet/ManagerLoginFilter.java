@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/manager/*")
+@WebFilter(urlPatterns = "/management/*")
 public class ManagerLoginFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }
@@ -28,12 +28,12 @@ public class ManagerLoginFilter implements Filter {
             // 未登录状态处理
 
             // 访问指定路径时不进行处理
-            if (uri.contains("/manager/login") || uri.contains("/manager/checkLogin")){
+            if (uri.contains("/management/login") || uri.contains("/management/checkLogin")){
 
             }else {
                 // 直接访问主页则重定向到登录页
 //                response.sendRedirect("login");
-                response.sendRedirect("/project/manager/login");
+                response.sendRedirect("/project/management/login");
                 return;
             }
         }else {

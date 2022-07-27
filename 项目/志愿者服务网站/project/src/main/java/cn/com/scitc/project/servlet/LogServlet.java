@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(value = "/manager/log")
+@WebServlet(value = "/management/log")
 public class LogServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LogDao dao = new LogDao();
         List<Log> logs = dao.findAll();
         req.setAttribute("logs",logs);
-        req.getRequestDispatcher("/WEB-INF/manager/log/log.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/management/log/log.jsp").forward(req,resp);
     }
 }

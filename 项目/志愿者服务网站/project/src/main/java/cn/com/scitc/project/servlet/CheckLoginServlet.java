@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Calendar;
 
-@WebServlet(urlPatterns = "/manager/checkLogin")
+@WebServlet(urlPatterns = "/management/checkLogin")
 public class CheckLoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,7 +41,7 @@ public class CheckLoginServlet extends HttpServlet {
             dao.updateByPrimaryKey(manager);
 
             // 保存session
-              session.setAttribute("currentUser",manager);
+            session.setAttribute("currentUser",manager);
 
             // 跳转到主页
             resp.sendRedirect("home");

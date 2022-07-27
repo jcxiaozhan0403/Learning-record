@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-@WebServlet(urlPatterns = "/manager/user/update")
+@WebServlet(urlPatterns = "/management/user/update")
 public class UserUpdateServlet  extends HttpServlet {
     private Manager manager = new Manager();
     private ManagerDao managerDao = new ManagerDao();

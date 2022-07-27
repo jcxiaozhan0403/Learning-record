@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Calendar;
 
-@WebServlet(urlPatterns = "/manager/image/update")
+@WebServlet(urlPatterns = "/management/image/update")
 public class ImageUpdateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(value = {"/manager/login"})
+@WebServlet(value = {"/management/login"})
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ImageDao dao = new ImageDao();
         Image image = dao.findImageById(4);
         request.setAttribute("loginbk",image.getUrl());
-        request.getRequestDispatcher("/WEB-INF/manager/login.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/management/login.jsp").forward(request,response);
     }
 }

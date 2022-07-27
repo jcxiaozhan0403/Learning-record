@@ -44,7 +44,7 @@
         <a href="<c:url value="/page2" />">川信志愿者</a>
         <a href="<c:url value="/page3" />">雷锋热线</a>
         <a href="<c:url value="/page4" />">公益广告</a>
-        <a href="<c:url value="/manager/login" />">管理员登录</a>
+        <a href="<c:url value="/management/login" />">管理员登录</a>
     </div>
 </div>
 <style>

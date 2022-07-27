@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/manager/image/list")
+@WebServlet(urlPatterns = "/management/image/list")
 public class ImageListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,6 +23,6 @@ public class ImageListServlet extends HttpServlet {
             map.put(image.getName(),image.getUrl());
         }
         req.setAttribute("images",map);
-        req.getRequestDispatcher("/WEB-INF/manager/image/list.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/management/image/list.jsp").forward(req,resp);
     }
 }

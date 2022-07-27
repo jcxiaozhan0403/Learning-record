@@ -15,7 +15,6 @@
           <element id="module-output" name="project" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: javax.servlet.jsp:jsp-api:2.2" />
           <element id="library" level="project" name="Maven: org.webjars:font-awesome:4.7.0" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.5.5" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.38" />
