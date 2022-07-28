@@ -508,7 +508,10 @@ public class DownServlet extends HttpServlet {
 
 相同点：都会跳转到新的页面
 
-不同点：请求转发url不会发生改变，重定向url发生改变
+不同点：
+
+- 请求转发url不会发生改变，只有一次请求
+- 重定向url发生改变，相当于两次请求
 
 ```java
 //使用servletContext请求转发
@@ -519,6 +522,114 @@ request.getRequestDispatcher("/xxx").forward(request,response);
 //重定向
 response.sendRedirect("/xxx");
 ```
+
+### 设置中文编码
+
+```java
+//设置请求编码
+request.setCharacterEncoding(“UTF-8”);
+//设置响应编码
+response.setCharacterEncoding(“UTF-8”);
+response.setContentType("text/html;charset=utf-8");
+```
+
+## Cookie、Session
+
+**会话**：用户打开一个浏览器，点击了很多超链接，访问了多个web资源，关闭浏览器，这个过程可以称之为会话
+
+**有状态会话**：客户端访问了一次服务端之后，服务端记录，下一次访问时，服务端知道，称之为有状态会话
+
+Cookie：
+
+- Cookie一般保存在本地用户的appData文件夹下
+- 一个Cookie只能保存一个信息
+- 一个web站点可以给浏览器发送多个Cookie，最多存放20个Cookie
+- Cookie大小限制4kb
+- 浏览器上限300个Cookie
+
+```java
+// 创建Cookie对象
+Cookie cookie = new Cookie("键","值");
+// 设置Cookie的作用范围
+//只对demo路径下的资源生效
+cookie.setPath("/demo");
+// 设置Cookie的时效,>0 表示多少秒,=0 立马失效,<0 浏览器关闭 ,默认-1
+cookie.setMaxAge(-1);
+// 将Cookie响应给客户端
+resp.addCookie(cookie);
+
+//默认只能获取到一个Cookie数组，我们需要遍历这个数组来拿到有效信息
+Cookie[] cookies = req.getCookies();
+
+for(Cookie cookie : cookies){
+  system.out.println("name" + cookie.getName() + "value" + cookie.getValue());
+}
+
+//编码、解码，防止中文乱码
+URLEncoder.encode("李爽","utf-8");
+URLDecoder.decode("李爽","utf-8");
+```
+
+Session
+
+- 服务器会给每一个用户（浏览器）创建一个Session对象
+- 一个Session独占一个浏览器，只要浏览器没关闭，这个Session就存在
+
+```java
+// 通过request对象获取Session对象，Session对象是客户端第一次请求服务端自动创建的
+HttpSession session = request.getSession();
+// SessionID值是打开客户端时就自动创建的，会存放在Cookie里面，会话关闭后自动销毁
+System.out.println(session.getId());
+
+// 在同一次会话的任意位置，使用到的session是同一个
+HttpSession session = request.getSession();
+// 设置session
+session.setAttribute("键","值");
+// 获取session值
+session.getAttribute("键");
+// 移除session中的某个值
+session.removeAttribute("键");
+```
+
+### Session生命周期
+
+1. 浏览器关闭时自动销毁
+2. session超出时效，自动销毁
+
+```java
+// 设置session时效，单位秒，设置为负数永不失效
+session.setMaxInactiveInterval(10)
+```
+
+```xml
+<!--xml方式设置Session默认的失效时间-->
+<session-config>
+  <!--15分钟后Session自动失效，以分钟为单位-->
+  <session-timeout>15</session-timeout>
+</session-config>
+```
+
+3. 手动销毁，相当于关闭浏览器
+
+```java
+session.invalidate();
+```
+
+### Session应用场景
+
+1. 临时数据传递：HttpServletRequest
+2. 登录状态管理：HttpSession
+3. 访问次数统计：ServletContext
+
+### Cookie和Session的区别
+
+- Cookie数据存放在客户的浏览器上，Session数据放在服务器上。
+
+- Session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能
+  考虑到减轻服务器性能方面，应当使用Cookie。
+
+- Cookie不是很安全，别人可以分析存放在本地的Cookie并进行Cookie欺骗
+  考虑到安全应当使用Session。
 
 ## MVC开发模式
 
@@ -569,22 +680,10 @@ PrintWriter printWriter = resp.getWriter();
 printWriter.println("成功");
 ```
 
-转发
-多个资源共同处理同一个请求，地址栏不发生变化
-```java
-req.getRequestDispatcher("/xxx").forward(req,resp);
-```
-
 通过请求在服务器不同资源间传递数据
 ```java
 req.setAttribute("键","值");
 req.getAttribute("键");
-```
-
-重定向
-重定向跳转相当于两次请求，所以无法通过请求进行数据传递
-```java
-resp.sendRedirect("/xxxx/demo");
 ```
 
 Servlet的生命周期
@@ -592,86 +691,6 @@ Servlet的生命周期
 2. init 初始化
 3. service 服务 多次
 4. destory 销毁
-
-
-## Cookie
-1. 创建Cookie
-```java
-// 创建Cookie对象
-Cookie cookie = new Cookie("键","值");
-// 设置Cookie的访问路径
-cookie.setPath("/demo"); //只对demo路径下的资源生效
-// 设置Cookie的时效,>0 表示多少秒,=0 浏览器关闭,<0 浏览器关闭 ,默认-1
-cookie.setMaxAge(-1);
-// 将Cookie响应给客户端
-resp.addCookie(cookie);
-```
-2. 获取Cookie
-```java
-Cookie[] cookies = req.getCookies();
-
-for(Cookie cookie : cookies){
-  system.out.println("name" + cookie.getName() + "value" + cookie.getValue());
-}
-```
-3. 修改
-当新设置的cookie与已存在的cookie的键值对和路径都相同时，会发生覆盖，时效会以新的cookie为准
-
-设置和获取中文cookie
-```java
-// 设置
-Cookie cookie = new Cookie(URLEncoder.encode("姓名","UTF-8"),URLEncoder.encode("张三","UTF-8"));
-// 获取
-Cookie[] cookies = req.getCookies();
-
-for(Cookie cookie : cookies){
-  system.out.println("name" + URLDecoder.decode(cookie.getName(),"UTF-8") + "value" + URLDecoder.decode(cookie.getValue(),"UTF-8"));
-}
-```
-
-## Session
-```java
-// 通过request对象获取Session对象，Session对象是客户端第一次请求服务端自动创建的
-HttpSession session = request.getSession();
-// SessionID值是打开客户端时就自动创建的，会存放在Cookie里面，会话关闭后自动销毁
-System.out.println(session.getId());
-```
-
-### 操作session
-```java
-// 在同一次会话的任意位置，使用到的session是同一个
-HttpSession session = request.getSession();
-// 设置session
-session.setAttribute("键","值")
-// 获取session值
-session.getAttribute("键")
-// 移除session
-session.removeAttribute("键")
-```
-
-### session生命周期
-1. 浏览器关闭时自动销毁
-2. session超出时效，自动销毁
-```java
-// 设置session时效，单位秒，设置为负数永不失效
-session.setMaxInactiveInterval(10)
-```
-```xml
-<!--xml方式设置Session默认的失效时间-->
-<session-config>
-  <!--15分钟后Session自动失效，以分钟为单位-->
-  <session-timeout>15</session-timeout>
-</session-config>
-```
-3. 手动销毁
-```java
-session.invalidate();
-```
-
-## Session应用场景
-1. 临时数据传递：HttpServletRequest
-2. 登录状态管理：HttpSession
-3. 访问次数统计：ServletContext
 
 ## 过滤器
 过滤器是存在于客户端和服务端之间的一道程序，主要是为了解决多个Servlet共性代码冗余的问题
