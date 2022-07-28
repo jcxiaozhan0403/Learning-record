@@ -402,6 +402,8 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws  S
 
 #### 请求转发
 
+请求转发不会改变访问路径
+
 ```java
 @Override
 protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -426,6 +428,96 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
     String pwd = prop.getProperty("password");
     resp.getWriter().print(user+":"+pwd);
 }
+```
+
+### 文件下载
+```java
+@WebServlet("/downloadServlet")
+public class DownServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        //设置图片路径(可以使用相对路径或者绝对路径，这里使用的绝对路径)
+        String realPath = "D:\\Study\\Learning-record\\项目\\华迪生产实习项目\\demo\\target\\classes\\1.jpg";
+        //获取图片名称（截取路径最后一个 \ 后面出现的字符串作为图片名称）
+        String fileName = realPath.substring(realPath.lastIndexOf("\\") + 1);
+        //设置响应头
+        response.setHeader("Content-Disposition","attachment;filename="+fileName);
+        //FileInputStream流被称为文件字节输入流，意思指对文件数据以字节的形式进行读取操作如读取图片视频等
+        FileInputStream in = new FileInputStream(realPath);
+        //设置缓冲区
+        int len =0;
+        byte[] buffer = new byte[1024];
+        //将响应的数据写入响应流
+        ServletOutputStream outputStream= response.getOutputStream();
+        // 将FileOutputStream流写入到buffer缓冲区,使用OutputStream将缓冲区中的数据 输出到客户端！
+        while ((len=in.read(buffer))>0){
+            outputStream.write(buffer,0,len);
+        }
+        //关闭
+        in.close();
+        outputStream.close();
+    }
+}
+```
+
+### 验证码图片生成
+
+```java
+@WebServlet("/index")
+public class DownServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //设置浏览器3秒刷新一次
+        response.setHeader("refresh","3");
+
+        //在内存中创建一个图片
+        BufferedImage image = new BufferedImage(100,50, BufferedImage.TYPE_INT_BGR);
+        //创建画笔
+        Graphics2D g = (Graphics2D) image.getGraphics();
+        //设置背景颜色
+        g.setColor(Color.white);
+        g.fillRect(0,0,100,50);
+        //给图片写数据
+        g.setColor(Color.BLUE);
+        g.setFont(new Font(null,Font.BOLD,25));
+        //从0,20这个坐标点开始填充字符串
+        g.drawString(makeNum(),0,35);
+
+        //设置浏览器关闭缓存
+        response.setDateHeader("expires",-1);
+        response.setHeader("Cache-Control","no-cache");
+        response.setHeader("Pragma","no-cache");
+
+        //将图片返回到浏览器
+        ImageIO.write(image,"jpg",response.getOutputStream());
+    }
+
+    private String makeNum() {
+        Random random = new Random();
+        String num = random.nextInt(9999999) + "";
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < 7 - num.length(); i++) {
+            sb.append("0");
+        }
+        num = sb.toString() + num;
+        return num;
+    }
+}
+```
+
+### 请求转发与重定向
+
+相同点：都会跳转到新的页面
+
+不同点：请求转发url不会发生改变，重定向url发生改变
+
+```java
+//使用servletContext请求转发
+this.getServletContext().getNamedDispatcher("/xxx").forward(request,response);
+//使用request请求转发
+request.getRequestDispatcher("/xxx").forward(request,response);
+
+//重定向
+response.sendRedirect("/xxx");
 ```
 
 ## MVC开发模式
@@ -501,42 +593,6 @@ Servlet的生命周期
 3. service 服务 多次
 4. destory 销毁
 
-## 文件下载
-```java
-@WebServlet("/downloadServlet")
-public class DownloadServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //获得请求文件名
-        String filename = request.getParameter("filename");
-        System.out.println(filename);
-
-        //设置文件MIME类型
-        response.setContentType(getServletContext().getMimeType(filename));
-        //设置Content-Disposition
-        response.setHeader("Content-Disposition", "attachment;filename="+filename);
-        //读取目标文件，通过response将目标文件写到客户端
-        //获取目标文件的绝对路径
-        String fullFileName = getServletContext().getRealPath("/download/" + filename);
-        //System.out.println(fullFileName);
-        //读取文件
-        InputStream in = new FileInputStream(fullFileName);
-        OutputStream out = response.getOutputStream();
-        byte[] buffer = new byte[1024];
-        int len;
-        //循环取出流中的数据
-        while((len = in.read(buffer)) != -1){
-            out.write(buffer,0,len);
-        }
-
-        in.close();
-        out.close();
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.doPost(request, response);
-    }
-}
-```
 
 ## Cookie
 1. 创建Cookie
