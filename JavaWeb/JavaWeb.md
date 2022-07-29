@@ -533,6 +533,30 @@ response.setCharacterEncoding(“UTF-8”);
 response.setContentType("text/html;charset=utf-8");
 ```
 
+### Servlet的生命周期
+
+#### 实例化
+
+当用户第一次访问Servlet时，由容器调用Servlet的构造器创建具体的Servlet对象，也可以在容器启动之后立刻创建实例，在`web.xml`中如下代码可以设置Servlet实例的创建时间
+
+```xml
+<!--正数代表容器启动即创建，负数或者默认不设置代表第一次访问时创建-->
+<!--实例化只会执行一次-->
+<load-on-startup>1</load-on-startup>
+```
+
+#### 初始化
+
+在初始化阶段，init()方法会被调用。这个方法在javax.servlet.Servlet接口中定义。方法以一个ServletConfig类型的对象作为参数，init()方法只被执行一次
+
+#### 服务
+
+当客户有一个请求时，容器会将请求和响应对象传给Servlet，以参数形式传给service()方法，service()方法会执行多次
+
+#### 销毁
+
+当Servlet容器停止或者重新启动都会引起销毁Servlet对象并调用destroy()方法，destroy()方法只执行一次
+
 ## Cookie、Session
 
 **会话**：用户打开一个浏览器，点击了很多超链接，访问了多个web资源，关闭浏览器，这个过程可以称之为会话
@@ -623,13 +647,13 @@ session.invalidate();
 
 ### Cookie和Session的区别
 
-- Cookie数据存放在客户的浏览器上，Session数据放在服务器上。
+- Cookie数据存放在客户的浏览器上，Session数据放在服务器上
 
 - Session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能
-  考虑到减轻服务器性能方面，应当使用Cookie。
+  考虑到减轻服务器性能方面，应当使用Cookie
 
 - Cookie不是很安全，别人可以分析存放在本地的Cookie并进行Cookie欺骗
-  考虑到安全应当使用Session。
+  考虑到安全应当使用Session
 
 ## MVC开发模式
 
@@ -657,40 +681,6 @@ service层命名规则：
   service接口层：com.xxx.service [接口]:单表用表名Service，多表用业务名Service
   service实现层：com.xxx.service [接口]:单表用表名ServiceImpl，多表用业务名ServiceImpl
 ```
-
-## Servlet
-Servlet的三种使用方式
-1. 调用Servlet接口，重写5个方法
-2. 继承GenericServlet类，重写service方法
-3. 继承HttpServlet类，重写doPost和doGet方法，分开处理两种类型的请求 (常用)
-
-对传入的对象设置编码格式，用于解决表单提交时，post方法后台接收中文乱码问题
-```java
-req.setCharacterEncoding("utf-8");
-```
-
-设置响应内容的编码格式,用于响应内容回显时乱码问题
-```java
-response.setContentType("text/html;charset=UTF-8");
-```
-
-回显信息到页面
-```java
-PrintWriter printWriter = resp.getWriter();
-printWriter.println("成功");
-```
-
-通过请求在服务器不同资源间传递数据
-```java
-req.setAttribute("键","值");
-req.getAttribute("键");
-```
-
-Servlet的生命周期
-1. 实例化
-2. init 初始化
-3. service 服务 多次
-4. destory 销毁
 
 ## 过滤器
 过滤器是存在于客户端和服务端之间的一道程序，主要是为了解决多个Servlet共性代码冗余的问题
@@ -753,13 +743,66 @@ if( str != null ){
 ```
 
 ## JSP
-- JSP是服务端页面，简化了servlet回传页面的功能
-- JSP本质上就是一个Servlet，在Tomcat服务器的工作区我们可以看到，jsp页面在运行时都被转换为了java文件，进行执行，查看此文件我们可以发现，它将我们所写的所有页面元素转换为了Java中的写法
+### 什么是JSP
 
-### jsp基础语法
-注解
+Java Server Pages：Java服务端页面，也和Servlet一样，是一项动态Web技术
+
+特点：语法类似于Html，在页面中可以嵌入Java代码，为用户提供动态数据
+
+### JSP原理
+
+查看idea的工作目录
+
+```
+C:\Users\爽\AppData\Local\JetBrains\IntelliJIdea2021.2\tomcat\dc3554a5-af09-4b99-a1e8-b6bf4ed7c7d4\work\Catalina\localhost\ROOT\org\apache\jsp
+```
+
+发现JSP文件被转换成了Java文件，我们可以得到结论：==JSP本质是一个Servlet==
+
+#### 生命周期
+
+```java
+//初始化
+public void _jspInit() {
+}
+//销毁
+public void _jspDestroy() {
+}
+//Service
+public void _jspService(HttpServletRequest request, HttpServletResponse response){
+}
+```
+
+#### 九大内置对象
+
+以在JSP页面中直接使用
+
+```java
+final javax.servlet.jsp.PageContext pageContext;	//页面上下文
+javax.servlet.http.HttpSession session = null;		//session
+final javax.servlet.ServletContext application;		//applicationContext
+final javax.servlet.ServletConfig config;			//config
+javax.servlet.jsp.JspWriter out = null;				//out
+final java.lang.Object page = this;					//page
+HttpServletRequest request							//请求
+HttpServletResponse response						//响应
+exception								//该对象用于处理JSP文件执行时发生的错误和异常
+```
+
 ```jsp
-<!-- 这是html注解，会解析到DOM树中 -->
+<%
+  pageContext.setAttribute("name1","val1"); // 仅在页面生效
+  request.setAttribute("name2","val2"); // 在一次请求中生效
+  session.setAttribute("name3","val3"); // 在一次会话中生效(打开浏览器到关闭浏览器)
+  application.setAttribute("name4","val4"); //在服务器中生效，从服务器打开到关闭
+%>
+```
+
+### JSP基础语法
+
+注释
+```jsp
+<!-- 这是html注释，会解析到DOM树中 -->
 
 <%
   //这是java注释，会被解析到编译出的java源文件中
@@ -767,17 +810,12 @@ if( str != null ){
 
 <%--  这是jsp隐藏注释，只能在jsp中看见，编译时不会被解析 --%>
 ```
-jsp表达式
+变量名/表达式：使用`<%= %>`进行包裹
 ```jsp
-<%-- jsp表达式
-    作用：用来将程雪输出，写到客户端
-    <%= 变量名/表达式%>
---%>
 <%= new java.util.Date()%>
 ```
-jsp脚本片段
+java代码片段：使用`<% %>`进行包裹
 ```jsp
-<%-- jsp脚本片段 --%>
 <%
     int sum=0;
     for (int i = 0; i < 10; i++) {
@@ -785,7 +823,6 @@ jsp脚本片段
     }
     out.println("<h1>Sum="+sum+"</h1>");
 %>
-<%-- 嵌入正常的标签 --%>
 <%
     int x=10;
     out.print(x);
@@ -795,8 +832,8 @@ jsp脚本片段
     int y=20;
     out.print(20);
 %>
-<%-- ------------------------------------ --%>
-<%-- 在代码中嵌入html元素 --%>
+
+<!-- 在代码中嵌入html元素 -->
 <%
     for (int i = 0; i < 5; i++) {
 %>
@@ -805,42 +842,25 @@ jsp脚本片段
     }
 %>
 ```
-```jsp
-<%-- 在代码中嵌入html元素 --%>
-<%
-    for (int i = 0; i < 5; i++) {
-%>
-<h1>HelloWorld,<%= new java.util.Date()%></h1>
-<%
-    }
-%>
-```
+### JSP指令
+JSP指令语法
 
-### jsp指令
-JSP指令元素的分类
-- page指令：指示JSP的页面设置属性和行为
-- include指令：指示JSP包含哪些其他页面
-- taglib指令：指示JSP页面包含哪些标签库
-
-xml配置错误页
-```xml
-<error-page>
-    <error-code>404</error-code>
-    <location>/error/404.jsp</location>
-</error-page>
-<error-page>
-    <error-code>500</error-code>
-    <location>/error/500.jsp</location>
-</error-page>
-```
-
-指令语法
 ```jsp
 <%@ 指令名 属性名=属性值 属性名=属性值 %>
 ```
+
+JSP指令的分类
+
+- page指令：定义网页依赖属性，比如脚本语言、error页面、缓存需求等等
+- include指令：定义JSP包含哪些其他页面
+- taglib指令：定义JSP页面包含哪些标签库
+
+#### page指令
+
 page指令的常用属性
+
 ```
-import属性：用于导入包或类
+import属性：用于导入类
 contentType属性：标明JSP被浏览器解析和打开的时候采用的默认字符集
 pageEncoding属性：JSP文件及编译后的Servlet保存到硬盘上采用的字符集
 ```
@@ -855,8 +875,23 @@ pageEncoding属性：JSP文件及编译后的Servlet保存到硬盘上采用的�
 <%@ page pageEncoding="utf-8" %>
 ```
 
-include指令(静态联编)
+```xml
+<!--web.xml配置错误页面-->
+<error-page>
+    <error-code>404</error-code>
+    <location>/error/404.jsp</location>
+</error-page>
+<error-page>
+    <error-code>500</error-code>
+    <location>/error/500.jsp</location>
+</error-page>
+```
+
+#### include指令
+
+include指令（静态联编）
 用于包含页面，实质是将第二个页面完整复制了一份到第一个页面，编译时两个页面编入同一个java文件中，所以是先复制，在编译的顺序，如果两个文件中都使用了java代码，可能会存在变量冲突的问题
+
 ```jsp
 <!-- page1 -->
 befor
@@ -872,27 +907,6 @@ after
 - 在静态联编和动态联编都可用时，一般用动态联编
 - 需要共享变量时，使用静态联编
 - 存在同名变量需要区分时，用动态联编
-
-### 9大内置对象
-- PageContext
-- Request
-- Response
-- Session
-- Application
-- config
-- out
-- page
-- exception
-
-四种作用域
-```jsp
-<%
-  pageContext.setAttribute("name1","val1"); // 仅在页面生效
-  request.setAttribute("name2","val2"); // 在一次请求中生效
-  session.setAttribute("name3","val3"); // 在一次会话中生效(打开浏览器到关闭浏览器)
-  application.setAttribute("name4","val4"); //在服务器中生效，从服务器打开到关闭
-%>
-```
 
 ## JSP标签、JSTL标签、EL表达式
 ### JSP标签
