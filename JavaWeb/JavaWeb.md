@@ -655,33 +655,6 @@ session.invalidate();
 - Cookie不是很安全，别人可以分析存放在本地的Cookie并进行Cookie欺骗
   考虑到安全应当使用Session
 
-## MVC开发模式
-
-```
-C: controller
-
-M：model，业务模型层，完成业务处理
-    dao层：直接操作数据库
-    service层：调用dao层来完成业务实现，负责管理所调用的dao层
-
-V：view 视图层，将处理结果响应到界面
-
-
-Dao层角色：
-  Dao接口层
-  Dao实现层
-Dao层命名规则：
-  Dao接口层：com.xxx.dao [接口]：表名Dao
-  Dao实现层：com.xxx.daoImpl [实现类]：表名DaoImpl
-
-service层角色：
-  service接口层
-  service实现层
-service层命名规则：
-  service接口层：com.xxx.service [接口]:单表用表名Service，多表用业务名Service
-  service实现层：com.xxx.service [接口]:单表用表名ServiceImpl，多表用业务名ServiceImpl
-```
-
 ## 过滤器
 过滤器是存在于客户端和服务端之间的一道程序，主要是为了解决多个Servlet共性代码冗余的问题
 
@@ -775,7 +748,7 @@ public void _jspService(HttpServletRequest request, HttpServletResponse response
 
 #### 九大内置对象
 
-以在JSP页面中直接使用
+可以在JSP页面中直接使用
 
 ```java
 final javax.servlet.jsp.PageContext pageContext;	//页面上下文
@@ -789,11 +762,13 @@ HttpServletResponse response						//响应
 exception								//该对象用于处理JSP文件执行时发生的错误和异常
 ```
 
+作用范围
+
 ```jsp
 <%
   pageContext.setAttribute("name1","val1"); // 仅在页面生效
-  request.setAttribute("name2","val2"); // 在一次请求中生效
-  session.setAttribute("name3","val3"); // 在一次会话中生效(打开浏览器到关闭浏览器)
+  request.setAttribute("name2","val2"); 	// 在一次请求中生效
+  session.setAttribute("name3","val3"); 	// 在一次会话中生效(打开浏览器到关闭浏览器)
   application.setAttribute("name4","val4"); //在服务器中生效，从服务器打开到关闭
 %>
 ```
@@ -908,90 +883,148 @@ after
 - 需要共享变量时，使用静态联编
 - 存在同名变量需要区分时，用动态联编
 
-## JSP标签、JSTL标签、EL表达式
-### JSP标签
+### JSP标签、JSTL标签、EL表达式
+#### 依赖
+
+```xml
+<!-- jstl标签库 -->
+<dependency>
+    <groupId>javax.servlet.jsp.jstl</groupId>
+    <artifactId>jstl-api</artifactId>
+    <version>1.2</version>
+</dependency>
+<!-- standard标签库 -->
+<dependency>
+    <groupId>taglibs</groupId>
+    <artifactId>standard</artifactId>
+    <version>1.1.2</version>
+</dependency>
+```
+
+#### EL表达式
+
+`${ }`
+
+1. 获取数据
+
+2. 执行运算
+
+3. 获取web开发的常用对象
+
+#### JSP标签
+
 ```jsp
 <!-- forward是转发 -->
-<jsp:forward page="/page2.jsp" />
+<jsp:forward page="/page2.jsp">
+    <!-- 可以携带参数，相当于https://localhost:8080/page2.jsp?name=JohnCena&age=18 -->
+	<jsp:param name="name" value="JohnCena" />
+    <jsp:param name="age" value="18" />
+</jsp:forward>
 <!-- include是包含，是动态联编 -->
 <jsp:include page="/page2.jsp"/>
 ```
 
-### JSTL标签
-引入标签核心库
+#### JSTL标签库
+
+JSTL标签库的使用就是为了弥补HTML标签的不足；它自定义许多标签，可以供我们使用，标签的功能和Java代码一样！
+
+分为核心标签库、格式化标签、SQL 标签库、XML 标签库、JSTL 函数库
+
+##### 核心标签库
+
+引入JSTL核心标签库
+
 ```jsp
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 ```
 ```jsp
-<!-- 用于在JSP中显示数据，就像<%= ... > -->
+<!-- 显示数据 -->
 <c:out>
-<!-- 用于保存数据 -->
+    
+<!-- 保存数据 -->
 <c:set>
-<!-- 用于删除数据 -->
+
+<!-- 删除数据 -->
 <c:remove>
+
 <!-- 与我们在一般程序中用的if一样 -->
 <c:if>
+
 <!-- 本身只当做<c:when>和<c:otherwise>的父标签 -->
 <c:choose>
+
 <!-- <c:choose>的子标签，用来判断条件是否成立 -->
 <c:when>
+
 <!-- <c:choose>的子标签，接在<c:when>标签后，当<c:when>标签判断为false时被执行 -->
 <c:otherwise>
-<!-- 基础迭代标签，接受多种集合类型 -->
+
+<!-- 基础遍历标签，接受多种集合类型 -->
 <c:forEach>    
+
 <!-- 使用可选的查询参数来创造一个URL -->
 <c:url>
 ```
-c:if
+`<c:if>`
+
 ```jsp
-<%@ page contenttype="text/html;charset=utf-8" language="java" %>
-<%--引入jstl核心标签库，我们才能使用核心标签--%>
+<%@ page contentType="text/html;charset=utf-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<title>title</title>
+    <title>title</title>
 </head>
 <body>
 <h4>if测试</h4>
 <hr>
-<form action="jstlcore1.jsp" method="get">
-<%--
-    el表达式获取表单中的数据：
-    ${param.参数名}
---%>
-<input type="text" name="username" value="${param.username}">
-<input type="submit" value="登录">
+<form action="index.jsp" method="get">
+    <%--
+        el表达式获取表单中的数据：
+        ${param.参数名}
+    --%>
+    <input type="text" name="username" value="${param.username}">
+    <input type="submit" value="登录">
 </form>
 <%--判断如果是管理员就登陆成功--%>
 <c:if test="${param.username=='admin'}" scope="page" var="isadmin">
-<c:out value="<h3>登录成功<h3>"/>
+    <h3><c:out value="登录成功"/></h3>
 </c:if>
 <c:out value="${isadmin}"/>
 </body>
 </html>
 ```
-c:choose
+`<c:choose>`
+
 ```jsp
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-<title>Title</title>
+    <title>Title</title>
 </head>
 <body>
-<c:set var="score" value="50"/>
+<c:set var="score" value="100"/>
+<!-- 类似于if-else级联的条件判断，存在先后关系 -->
 <c:choose>
-<c:when test="${score>=60}">
-    <c:out value="成绩合格"/>
-</c:when>
-<c:otherwise>
-    <c:out value="需要补考"/>
-</c:otherwise>
+    <c:when test="${score>=70}">
+        <c:out value="成绩合格"/>
+    </c:when>
+    <c:when test="${score>=90}">
+        <c:out value="成绩优秀"/>
+    </c:when>
+    <c:when test="${score>=80}">
+        <c:out value="成绩良好"/>
+    </c:when>
+<!-- 类似于default,所有条件不满足时，走此标签 -->
+    <c:otherwise>
+        <c:out value="需要补考"/>
+    </c:otherwise>
 </c:choose>
 </body>
 </html>
 ```
-c:forEach
+`<c:forEach>`
+
 ```jsp
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Arrays" %>
@@ -1011,20 +1044,121 @@ c:forEach
     request.setAttribute("list",array);
 %>
 <%--
-    hs 储存便遍历的数据
-    items 被遍历的的对象
+    hs      每一次遍历出来的变量
+    items   要遍历的的对象
+    begin   从哪里开始
+    end     到哪里结束
+    step    步长
 --%>
 <c:forEach var="hs" items="${list}">
     <c:out value="${hs}"/><br>
-</c:forEach>
-<hr>
-<c:forEach var="hs" items="${list}" varStatus="">  
 </c:forEach>
 </body>
 </html>
 ```
 
+## JavaBean
+
+实体类(entity、pojo、vo)，一般用来和数据库的字段做映射 ORM(对象关系映射)
+
+JavaBean有特定的写法：
+
+- 必须要有一个无参构造
+- 属性必须私有化
+- 必须有对应的get/set方法
+
+| id   | name | address | sex  |
+| ---- | ---- | ------- | ---- |
+| 1    | 张三 | 北京    | 男   |
+| 2    | 李四 | 广东    | 男   |
+| 3    | 王五 | 上海    | 男   |
+
+```java
+public class User {
+    private int id;
+    private String name;
+    private String address;
+    private String sex;
+
+    public User() {
+        
+    }
+
+    public User(int id, String name, String address, String sex) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.sex = sex;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+}
+
+List<User> userList = new ArrayList<>();
+userList.add(new User(1,"张三","北京","男"));
+userList.add(new User(1,"李四","广东","男"));
+userList.add(new User(1,"王五","上海","男"));
+```
+
+## MVC三层架构
+
+MVC：Model、View、Controller 模型、视图、控制器
+
+### Model
+
+- 业务处理 ：业务逻辑（Service）
+  - Service接口类：Service
+  - Service实现类：ServiceImpl
+- 数据持久层：CRUD （Dao）
+  - Dao接口类：Dao
+  - Dao实现类：DaoImpl
+
+Service层调用Dao层的CRUD来实现业务
+
+### View
+
+- 展示数据
+- 提供操作发起请求：form、img、a
+
+### Controller
+
+- 接收用户请求
+- 调用业务
+- 控制视图跳转
+
+
 ## 过滤器
+
 在客户端与服务端中间加上一层，拦截请求，做出一些特殊处理，比如解决乱码问题
 ```java
 public class CharecterFilter  implements Filter {
