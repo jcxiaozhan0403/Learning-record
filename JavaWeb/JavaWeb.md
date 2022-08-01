@@ -655,66 +655,6 @@ session.invalidate();
 - Cookie不是很安全，别人可以分析存放在本地的Cookie并进行Cookie欺骗
   考虑到安全应当使用Session
 
-## 过滤器
-过滤器是存在于客户端和服务端之间的一道程序，主要是为了解决多个Servlet共性代码冗余的问题
-
-1. 创建过滤器
-创建一个java类，继承Filter接口
-```java
-public class Demo implements Filter {
-
-}
-```
-2. 让请求继续传递
-```java
-filterChain.doFilter(servletRequest,servletResponse);
-```
-3. web.xml配置Filter
-```xml
-<filter>
-    <!-- 别名，任意取 -->
-    <filter-name>my</filter-name>
-    <!-- 类路径 -->
-    <filter-class>com.test.filter.Filter</filter-class>
-    <!-- 启动优先级 -->
-    <load-on-startup>0</load-on-startup>
-</filter>
-
-<filter-mapping>
-    <filter-name>my</filter-name>
-    <!-- 拦截的资源路径，任意取 -->
-    <url-pattern>/myservlet</url-pattern>
-</filter-mapping>
-```
-4. 注解配置过滤器
-```java
-@WebFilter(value = "拦截的资源路径")
-```
-在一个Web应用中，可以开发编写多个Filter，这些Filter组合起来称为一个Filter链
-
-Filter优先级
-- 如果都为注解配置，按照类名的字符串顺序排列
-- 如果都为xml配置，按照编写顺序，从上到下排列
-- 如果xml优先级高于注解
-- 如果既有注解，又有xml，会进行多次过滤
-
-过滤器完成权限验证
-```java
-// 拆箱，完成类型转换
-HttpServletRequest request = (HttpServletRequest)servletRequest;
-HttpServletRequest response = (HttpServletResponse)servletResponse;
-//获取session对象
-HttpSession session = request.getSession();
-//获取session内的信息
-String str = (String)session.getAttribute("键");
-//判断
-if( str != null ){
-  filterChain.doFilter(request,response);
-}else{
-  response.sendRedirect("/xxx/login.html");
-}
-```
-
 ## JSP
 ### 什么是JSP
 
@@ -1159,7 +1099,7 @@ Service层调用Dao层的CRUD来实现业务
 
 ## 过滤器
 
-在客户端与服务端中间加上一层，拦截请求，做出一些特殊处理，比如解决乱码问题
+在客户端与服务端中间加上一层，拦截请求，做出一些特殊处理，比如解决乱码、添加日志等问题
 ```java
 public class CharecterFilter  implements Filter {
     /**
@@ -1172,17 +1112,19 @@ public class CharecterFilter  implements Filter {
     /**
      * 1. 过滤中的所有代码，在过滤特定请求的时候都会执行
      * 2. 必须要让过滤器继续同行
-     * @param req
-     * @param resp
-     * @param chain
+     * @param req 	请求
+     * @param resp 	响应
+     * @param chain 链接
      * @throws IOException
      * @throws ServletException
      */
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+        //在过滤器中设置编码，处理乱码问题
         req.setCharacterEncoding("utf-8");
         resp.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
+        
         System.out.println("filter执行前...");
         chain.doFilter(req,resp); //放行，如果不写，程序会被拦截
         System.out.println("filter执行后...");
@@ -1194,7 +1136,7 @@ public class CharecterFilter  implements Filter {
     }
 }
 ```
-在web.xml中配置
+在`web.xml`中配置
 ```xml
 <filter>
   <filter-name>CharecterFilter</filter-name>
@@ -1205,9 +1147,40 @@ public class CharecterFilter  implements Filter {
   <url-pattern>/servlet/*</url-pattern>
 </filter-mapping>
 ```
+注解配置过滤器
+```java
+@WebFilter(value = "拦截的资源路径")
+```
+
+在一个Web应用中，可以开发编写多个Filter，这些Filter组合起来称为一个Filter链
+
+### 过滤器优先级
+
+- 如果都为注解配置，按照类名的字符串顺序排列
+- 如果都为xml配置，按照编写顺序，从上到下排列
+- 如果xml优先级高于注解
+- 如果既有注解，又有xml，会进行多次过滤
+
+### 过滤器完成权限验证
+
+```java
+// 拆箱，完成类型转换
+HttpServletRequest request = (HttpServletRequest)servletRequest;
+HttpServletRequest response = (HttpServletResponse)servletResponse;
+//获取session对象
+HttpSession session = request.getSession();
+//获取session内的信息
+String str = (String)session.getAttribute("键");
+//判断
+if( str != null ){
+  filterChain.doFilter(request,response);
+}else{
+  response.sendRedirect("/xxx/login.html");
+}
+```
 
 ## 监听器
-监测网站在线人数（基于session）
+监测网站在线人数（基于Session）
 ```java
 public class OnlineListen implements HttpSessionListener {
     /**
@@ -1245,7 +1218,7 @@ public class OnlineListen implements HttpSessionListener {
     }
 }
 ```
-web.xml中配置
+`web.xml`中配置
 ```xml
 <!--监听器-->
 <listener>
