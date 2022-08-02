@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iframe</title>
+
+    <script>
+        function go() {
+            var url = document.getElementById("url").value;
+            document.getElementById("ifram1").src=url;
+        }
+    </script>
+</head>
+<body>
+
+<div>
+    <p>
+        <input type="text" id="url" value="http://www.kuangstudy.com">
+        <input type="button" value="提交" onclick="go()">
+
+    </p>
+</div>
+
+<div>
+    <iframe id="ifram1" style="width:100%;height: 500px" ></iframe>
+</div>
+</body>
+</html>

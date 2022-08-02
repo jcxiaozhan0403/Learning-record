@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/mvc
+   https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+<!--    1.注解驱动-->
+    <mvc:annotation-driven/>
+<!--    2.静态资源过滤-->
+    <mvc:default-servlet-handler/>
+<!--    <mvc:resources location="/static/img/" mapping="/img/**"/>-->
+<!--    <mvc:resources location="/static/js/" mapping="/js/**"/>-->
+<!--    <mvc:resources location="/static/css/" mapping="/css/**"/>-->
+
+    <!--    3.扫描包：controller-->
+    <context:component-scan base-package="com.cheng.controller"/>
+
+    <!-- JSON乱码问题配置 -->
+<!--    <mvc:annotation-driven>-->
+<!--        <mvc:message-converters register-defaults="true">-->
+<!--            <bean class="org.springframework.http.converter.StringHttpMessageConverter">-->
+<!--                <constructor-arg value="UTF-8"/>-->
+<!--            </bean>-->
+<!--            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
+<!--                <property name="objectMapper">-->
+<!--                    <bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">-->
+<!--                        <property name="failOnEmptyBeans" value="false"/>-->
+<!--                    </bean>-->
+<!--                </property>-->
+<!--            </bean>-->
+<!--        </mvc:message-converters>-->
+<!--    </mvc:annotation-driven>-->
+<!--    4.试图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+<!--    拦截器配置-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.cheng.config.MyInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/user/**"/>
+            <bean class="com.cheng.config.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- com.cheng.config.LoginInterceptor.扫描web相关的bean -->
+    <context:component-scan base-package="com.cheng.controller" />
+</beans>
