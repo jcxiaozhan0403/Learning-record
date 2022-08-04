@@ -10,4 +10,6 @@ import cn.com.pojo.User;
  */
 public interface UserService {
     User getUser(String userCode);
+
+    int updatePwd(String userCode,String newpassword);
 }

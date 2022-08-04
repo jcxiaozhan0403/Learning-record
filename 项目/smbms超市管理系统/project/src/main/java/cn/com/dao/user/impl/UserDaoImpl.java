@@ -6,6 +6,7 @@ import cn.com.util.JDBCUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * @author John.Cena
@@ -40,10 +41,37 @@ public class UserDaoImpl implements UserDao {
                 user.setModifyBy(resultSet.getInt("modifyBy"));
                 user.setModifyDate(resultSet.getDate("modifyDate"));
             }
-            JDBCUtils.close(connection,preparedStatement,resultSet);
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            try {
+                JDBCUtils.close(connection,preparedStatement,resultSet);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+
+
         return user;
+    }
+
+    public int updatePwd(String userCode,String newpassword) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        int result = 0;
+
+        try {
+            connection = JDBCUtils.getConnection();
+            String sql = "update smbms_user set userPassword = ? where userCode = userCode";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,newpassword);
+            result = preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.close(connection,preparedStatement);
+        }
+
+        return result;
     }
 }

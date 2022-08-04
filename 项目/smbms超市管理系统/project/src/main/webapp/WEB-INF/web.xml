@@ -40,6 +40,26 @@
         <url-pattern>/logout.do</url-pattern>
     </servlet-mapping>
 
+    <!--修改密码-->
+    <servlet>
+        <servlet-name>pwdmodify</servlet-name>
+        <servlet-class>cn.com.servlet.PwdModifyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>pwdmodify</servlet-name>
+        <url-pattern>/mdPassword.do</url-pattern>
+    </servlet-mapping>
+
+    <!--订单管理-->
+    <servlet>
+        <servlet-name>BillServlet</servlet-name>
+        <servlet-class>cn.com.servlet.BillServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BillServlet</servlet-name>
+        <url-pattern>/bill</url-pattern>
+    </servlet-mapping>
+
     <!--欢迎页面-->
     <welcome-file-list>
         <welcome-file>/login.jsp</welcome-file>

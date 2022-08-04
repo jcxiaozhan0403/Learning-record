@@ -1,5 +1,6 @@
 package cn.com.service.user.impl;
 
+import cn.com.dao.user.UserDao;
 import cn.com.dao.user.impl.UserDaoImpl;
 import cn.com.pojo.User;
 import cn.com.service.user.UserService;
@@ -11,9 +12,13 @@ import cn.com.service.user.UserService;
  */
 public class UserServiceImpl implements UserService {
 
-    UserDaoImpl userDaoImpl = new UserDaoImpl();
+    UserDao userDao = new UserDaoImpl();
 
     public User getUser(String userCode) {
-        return userDaoImpl.getUser(userCode);
+        return userDao.getUser(userCode);
+    }
+
+    public int updatePwd(String userCode, String newpassword) {
+        return userDao.updatePwd(userCode,newpassword);
     }
 }

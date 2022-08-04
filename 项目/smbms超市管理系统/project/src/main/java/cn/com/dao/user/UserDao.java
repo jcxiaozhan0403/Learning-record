@@ -9,4 +9,6 @@ import cn.com.pojo.User;
  */
 public interface UserDao {
     User getUser(String userCode);
+
+    int updatePwd(String userCode,String newpassword);
 }
