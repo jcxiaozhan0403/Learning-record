@@ -60,6 +60,26 @@
         <url-pattern>/bill</url-pattern>
     </servlet-mapping>
 
+    <!--供应商管理管理-->
+    <servlet>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>cn.com.servlet.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/userList</url-pattern>
+    </servlet-mapping>
+
+    <!--用户管理-->
+    <servlet>
+        <servlet-name>ProviderServlet</servlet-name>
+        <servlet-class>cn.com.servlet.ProviderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProviderServlet</servlet-name>
+        <url-pattern>/provider</url-pattern>
+    </servlet-mapping>
+
     <!--欢迎页面-->
     <welcome-file-list>
         <welcome-file>/login.jsp</welcome-file>

@@ -39,13 +39,13 @@
                     <th width="10%">用户角色</th>
                     <th width="30%">操作</th>
                 </tr>
-                   <c:forEach var="user" items="${userList }" varStatus="status">
+                   <c:forEach var="user" items="${userList}" varStatus="status">
 					<tr>
 						<td>
-						<span>${user.userCode }</span>
+						<span>${user.userCode}</span>
 						</td>
 						<td>
-						<span>${user.userName }</span>
+						<span>${user.userName}</span>
 						</td>
 						<td>
 							<span>

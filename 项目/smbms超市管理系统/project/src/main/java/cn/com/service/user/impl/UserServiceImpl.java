@@ -5,6 +5,8 @@ import cn.com.dao.user.impl.UserDaoImpl;
 import cn.com.pojo.User;
 import cn.com.service.user.UserService;
 
+import java.util.List;
+
 /**
  * @author John.Cena
  * @date 2022/8/2 17:39
@@ -20,5 +22,13 @@ public class UserServiceImpl implements UserService {
 
     public int updatePwd(String userCode, String newpassword) {
         return userDao.updatePwd(userCode,newpassword);
+    }
+
+    public List<User> getUserList() {
+        return userDao.getUserList();
+    }
+
+    public int getTotalCount() {
+        return userDao.getTotalCount();
     }
 }

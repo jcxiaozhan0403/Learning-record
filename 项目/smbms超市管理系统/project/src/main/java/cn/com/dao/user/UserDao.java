@@ -2,6 +2,8 @@ package cn.com.dao.user;
 
 import cn.com.pojo.User;
 
+import java.util.List;
+
 /**
  * @author John.Cena
  * @date 2022/8/2 16:53
@@ -11,4 +13,8 @@ public interface UserDao {
     User getUser(String userCode);
 
     int updatePwd(String userCode,String newpassword);
+
+    List<User> getUserList();
+
+    int getTotalCount();
 }

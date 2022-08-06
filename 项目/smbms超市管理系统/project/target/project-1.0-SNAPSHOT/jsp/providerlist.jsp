@@ -11,10 +11,10 @@
         	<form method="get" action="${pageContext.request.contextPath }/jsp/provider.do">
 				<input name="method" value="query" type="hidden">
 				<span>供应商编码：</span>
-				<input name="queryProCode" type="text" value="${queryProCode }">
+				<input name="queryProCode" type="text" value="${queryProCode}">
 				
 				<span>供应商名称：</span>
-				<input name="queryProName" type="text" value="${queryProName }">
+				<input name="queryProName" type="text" value="${queryProName}">
 				
 				<input value="查 询" type="submit" id="searchbutton">
 				<a href="${pageContext.request.contextPath }/jsp/provideradd.jsp">添加供应商</a>
@@ -31,13 +31,13 @@
                 <th width="10%">创建时间</th>
                 <th width="30%">操作</th>
             </tr>
-            <c:forEach var="provider" items="${providerList }" varStatus="status">
+            <c:forEach var="provider" items="${providerList}" varStatus="status">
 				<tr>
 					<td>
-					<span>${provider.proCode }</span>
+					<span>${provider.proCode}</span>
 					</td>
 					<td>
-					<span>${provider.proName }</span>
+					<span>${provider.proName}</span>
 					</td>
 					<td>
 					<span>${provider.proContact}</span>

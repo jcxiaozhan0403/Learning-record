@@ -28,16 +28,6 @@ public class BillServlet extends HttpServlet {
         req.getSession().setAttribute("providerList",providerList);
         req.getSession().setAttribute("billList",billList);
 
-        Iterator it = billList.iterator();
-        // 判断有没有下一个元素
-        while(it.hasNext()){
-            // 获取元素
-            Bill bill = (Bill) it.next();
-            System.out.println(bill.toString());
-        }
-
         req.getRequestDispatcher("/jsp/billlist.jsp").forward(req,resp);
-
-
     }
 }

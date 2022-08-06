@@ -102,7 +102,6 @@ public class BillDaoImpl implements BillDao {
                 e.printStackTrace();
             }
         }
-
         return list;
     }
 }
