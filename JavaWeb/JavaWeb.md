@@ -1399,6 +1399,7 @@ public class FileUpload extends HttpServlet {
 ### 基本原理
 要在网络上实现邮件功能，必须要有专门的邮件服务器。这些邮件服务器类似于现实生活中的邮局，它主要负责接收用户投递过来的邮件，并把邮件投递到邮件接收者的电子邮箱中。
 邮件的收发遵循两种协议：
+
 - SMTP协议：通常把处理用户smtp请求(邮件发送请求)的服务器称之为SMTP服务器(邮件发送服务器)。
 - POP3协议：通常把处理用户pop3请求(邮件接收请求)的服务器称之为POP3服务器(邮件接收服务器)。
 
@@ -1433,11 +1434,13 @@ public class SendEamil {
         properties.setProperty("mail.host","smtp.qq.com");
         properties.setProperty("mail.transport.protocol","smtp");
         properties.setProperty("mail.smtp.auth","true");
-        //QQ存在一个特性设置SSL加密，其他邮箱不用编写
+        
+        //QQ邮箱存在一个特性设置SSL加密，其他邮箱不用编写
         MailSSLSocketFactory sf = new MailSSLSocketFactory();
         sf.setTrustAllHosts(true);
         properties.put("mail.smtp.ssl.enable", "true");
         properties.put("mail.smtp.ssl.socketFactory", sf);
+        
         //创建一个session对象
         Session session = Session.getDefaultInstance(properties, new Authenticator() {
             @Override
@@ -1445,25 +1448,29 @@ public class SendEamil {
                 return new PasswordAuthentication("619046217@qq.com","16位授权码");
             }
         });
+        
         //开启debug模式，控制台打印发送过程
         session.setDebug(true);
-        //获取连接对象
+        
+        //发送邮件步骤
+        //1.获取连接对象
         Transport transport = session.getTransport();
-        //连接服务器
-        transport.connect("smtp.qq.com","619046217@qq.com","16位授权码");
-        //创建邮件对象
+        //2.连接服务器
+        transport.connect("smtp.qq.com","349636607@qq.com","16位授权码");
+        //3.创建邮件对象，进行简单邮件内容设置
         MimeMessage mimeMessage = new MimeMessage(session);
-        //邮件发送人
-        mimeMessage.setFrom(new InternetAddress("619046217@qq.com"));
-        //邮件接收人
+        //3.1设置邮件发送人
+        mimeMessage.setFrom(new InternetAddress("349636607@qq.com"));
+        //3.2设置邮件接收人
         mimeMessage.setRecipient(Message.RecipientType.TO,new InternetAddress("875203654@qq.com"));
-        //邮件标题
+        //3.3设置邮件标题
         mimeMessage.setSubject("Hello Mail");
-        //邮件内容
+        //3.4设置邮件内容
         mimeMessage.setContent("我的想法是把代码放进一个循环里","text/html;charset=UTF-8");
-        //发送邮件
+        //4.发送邮件
         transport.sendMessage(mimeMessage,mimeMessage.getAllRecipients());
-        //关闭连接
+        
+        //5.关闭连接
         transport.close();
     }
 }
