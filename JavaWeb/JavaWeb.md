@@ -1414,9 +1414,9 @@ SMTP服务器地址：一般是 smtp.xxx.com，比如163邮箱是smtp.163.com，
 ```xml
 <!-- https://mvnrepository.com/artifact/mail.jar/mail.jar -->
 <dependency>
-    <groupId>mail.jar</groupId>
-    <artifactId>mail.jar</artifactId>
-    <version>1.4</version>
+    <groupId>javax.mail</groupId>
+    <artifactId>mail</artifactId>
+    <version>1.4.7</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/javax.activation/activation -->
 <dependency>
@@ -1431,8 +1431,11 @@ public class SendEamil {
     public static void main(String[] args) throws MessagingException, GeneralSecurityException {
         //创建一个配置文件并保存
         Properties properties = new Properties();
+        //设置qq邮件服务器
         properties.setProperty("mail.host","smtp.qq.com");
+        //邮件发送协议
         properties.setProperty("mail.transport.protocol","smtp");
+        //需要验证用户密码
         properties.setProperty("mail.smtp.auth","true");
         
         //QQ邮箱存在一个特性设置SSL加密，其他邮箱不用编写
@@ -1445,14 +1448,14 @@ public class SendEamil {
         Session session = Session.getDefaultInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("619046217@qq.com","16位授权码");
+                return new PasswordAuthentication("349636607@qq.com","16位授权码");
             }
         });
         
         //开启debug模式，控制台打印发送过程
         session.setDebug(true);
         
-        //发送邮件步骤
+        //发送邮件5个步骤
         //1.获取连接对象
         Transport transport = session.getTransport();
         //2.连接服务器
@@ -1462,14 +1465,13 @@ public class SendEamil {
         //3.1设置邮件发送人
         mimeMessage.setFrom(new InternetAddress("349636607@qq.com"));
         //3.2设置邮件接收人
-        mimeMessage.setRecipient(Message.RecipientType.TO,new InternetAddress("875203654@qq.com"));
+        mimeMessage.setRecipient(Message.RecipientType.TO,new InternetAddress("349636607@qq.com"));
         //3.3设置邮件标题
-        mimeMessage.setSubject("Hello Mail");
+        mimeMessage.setSubject("来自John.Cena的问候");
         //3.4设置邮件内容
-        mimeMessage.setContent("我的想法是把代码放进一个循环里","text/html;charset=UTF-8");
+        mimeMessage.setContent("Hello World","text/html;charset=UTF-8");
         //4.发送邮件
         transport.sendMessage(mimeMessage,mimeMessage.getAllRecipients());
-        
         //5.关闭连接
         transport.close();
     }
@@ -1479,58 +1481,70 @@ public class SendEamil {
 ### 复杂文件发送
 发送多媒体带附件的邮件
 ```java
-public class SendComplexEmail {
-    public static void main(String[] args) throws GeneralSecurityException, MessagingException {
+public class SendEamil {
+    public static void main(String[] args) throws MessagingException, GeneralSecurityException {
+        //创建一个配置文件并保存
         Properties prop = new Properties();
-        prop.setProperty("mail.host", "smtp.qq.com");  设置QQ邮件服务器
-        prop.setProperty("mail.transport.protocol", "smtp"); // 邮件发送协议
-        prop.setProperty("mail.smtp.auth", "true"); // 需要验证用户名密码
-        // QQ邮箱设置SSL加密
+        //设置QQ邮件服务器
+        prop.setProperty("mail.host", "smtp.qq.com");
+        // 邮件发送协议
+        prop.setProperty("mail.transport.protocol", "smtp");
+        // 需要验证用户名密码
+        prop.setProperty("mail.smtp.auth", "true");
+        //QQ邮箱存在一个特性设置SSL加密，其他邮箱不用编写
         MailSSLSocketFactory sf = new MailSSLSocketFactory();
         sf.setTrustAllHosts(true);
         prop.put("mail.smtp.ssl.enable", "true");
         prop.put("mail.smtp.ssl.socketFactory", sf);
-        //1、创建定义整个应用程序所需的环境信息的 Session 对象
+
+        //创建一个session对象
         Session session = Session.getDefaultInstance(prop, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                //传入发件人的姓名和授权码
-                return new PasswordAuthentication("619046217@qq.com","16位授权码");
+                //传入发件人的邮箱和授权码
+                return new PasswordAuthentication("349636607@qq.com","gpoqueahgfulbgdi");
             }
         });
-        //2、通过session获取transport对象
+
+        //开启debug模式，控制台打印发送过程
+        session.setDebug(true);
+
+        //发送邮件5个步骤
+        //1.获取连接对象
         Transport transport = session.getTransport();
-        //3、通过transport对象邮箱用户名和授权码连接邮箱服务器
-        transport.connect("smtp.qq.com","619046217@qq.com","16位授权码");
-        //4、创建邮件,传入session对象
+        //2.连接服务器
+        transport.connect("smtp.qq.com","349636607@qq.com","gpoqueahgfulbgdi");
+        //3.创建邮件对象，进行邮件内容设置
         MimeMessage mimeMessage = complexEmail(session);
-        //5、发送邮件
+        //4.发送邮件
         transport.sendMessage(mimeMessage,mimeMessage.getAllRecipients());
-        //6、关闭连接
+        //5.关闭连接
         transport.close();
     }
+
     public static MimeMessage complexEmail(Session session) throws MessagingException {
         //消息的固定信息
         MimeMessage mimeMessage = new MimeMessage(session);
-        //发件人
-        mimeMessage.setFrom(new InternetAddress("619046217@qq.com"));
-        //收件人
-        mimeMessage.setRecipient(Message.RecipientType.TO,new InternetAddress("619046217@qq.com"));
-        //邮件标题
+        //设置发件人
+        mimeMessage.setFrom(new InternetAddress("349636607@qq.com"));
+        //设置收件人
+        mimeMessage.setRecipient(Message.RecipientType.TO,new InternetAddress("349636607@qq.com"));
+        //设置邮件标题
         mimeMessage.setSubject("带图片和附件的邮件");
-        //邮件内容
+        //设置邮件内容
         //准备图片数据
         MimeBodyPart image = new MimeBodyPart();
-        DataHandler handler = new DataHandler(new FileDataSource("E:\\IdeaProjects\\WebEmail\\resources\\测试图片.png"));
+        DataHandler handler = new DataHandler(new FileDataSource("D:\\一些文档\\icon.jpg"));
         image.setDataHandler(handler);
-        image.setContentID("test.png"); //设置图片id
+        //设置图片id，随意，相当于别名
+        image.setContentID("test.png");
         //准备文本
         MimeBodyPart text = new MimeBodyPart();
         text.setContent("这是一段文本<img src='cid:test.png'>","text/html;charset=utf-8");
-        //附件
+        //添加附件
         MimeBodyPart appendix = new MimeBodyPart();
-        appendix.setDataHandler(new DataHandler(new FileDataSource("E:\\IdeaProjects\\WebEmail\\resources\\测试文件.txt")));
-        appendix.setFileName("test.txt");
+        appendix.setDataHandler(new DataHandler(new FileDataSource("D:\\一些文档\\云函数自动签到.md")));
+        appendix.setFileName("云函数自动签到.md");
         //拼装邮件正文
         MimeMultipart mimeMultipart = new MimeMultipart();
         mimeMultipart.addBodyPart(image);
