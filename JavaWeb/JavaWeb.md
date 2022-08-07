@@ -1502,7 +1502,7 @@ public class SendEamil {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 //传入发件人的邮箱和授权码
-                return new PasswordAuthentication("349636607@qq.com","gpoqueahgfulbgdi");
+                return new PasswordAuthentication("349636607@qq.com","16位授权码");
             }
         });
 
@@ -1513,7 +1513,7 @@ public class SendEamil {
         //1.获取连接对象
         Transport transport = session.getTransport();
         //2.连接服务器
-        transport.connect("smtp.qq.com","349636607@qq.com","gpoqueahgfulbgdi");
+        transport.connect("smtp.qq.com","349636607@qq.com","16位授权码");
         //3.创建邮件对象，进行邮件内容设置
         MimeMessage mimeMessage = complexEmail(session);
         //4.发送邮件
