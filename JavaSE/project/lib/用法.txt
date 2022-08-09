@@ -1,6 +1,0 @@
-
-将jar包导入
-调用
-String password = "admin";
-Mademd5 md = new Mademd5();
-user.setAdminpassword(md.toMd5(password));

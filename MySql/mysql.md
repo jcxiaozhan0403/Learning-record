@@ -465,8 +465,8 @@ where StudentNo is null
 连接查询
 
 - 交叉查询 cross join
-```
-查询到两个表的笛卡尔积
+```sql
+-- 查询到两个表的笛卡尔积
 
 select * from 表1 cross join 表2
 
@@ -474,46 +474,48 @@ selext * from 表1,表2
 ```
 
 - 内连接 inner join(inner可省略)
-```
-显式内连接
+```sql
+-- 显式内连接
 select * from 表1 inner join 表2 on 关联条件
 
-隐式内连接
+-- 隐式内连接
 select * from 表1,表2 where 关联条件
 ```
 
 - 外连接 outer join(outer可省略)
-```
-左外连接
+```sql
+-- 左外连接
 select * from 表1 left outer join 表2 on 关联条件
 
-右外连接
+-- 右外连接
 select * from 表1 right outer join 表2 on 关联条件
 ```
 
 - 子查询
-```
-带in的子查询
+```sql
+-- 带in的子查询
 select * from 表1 where 字段 in (子查询语句)
 
-带exists的子查询
+-- 带exists的子查询
 select * from 表1 where exists (子查询语句)  //子查询语句成立，显示查询结果
 
-带any的子查询
+-- 带any的子查询
 select * from 表1 where 字段 > any (子查询语句)
 
-带all的子查询
+-- 带all的子查询
 select * from 表1 where 字段 > all (子查询语句)
 ```
 
 - 合并查询结果
-```
-union 合并后去重
+```sql
+-- 合并后去重
+union
 select column_name(s) from table_name1
 union
 select column_name(s) from table_name2
 
-union all 只合并，不去重
+-- 只合并，不去重
+union all
 select column_name(s) from table_name1
 union all
 select column_name(s) from table_name2
@@ -528,9 +530,6 @@ order by 字段名 asc/desc
 分页
 
 ```sql
-select * from `subject`
-limit 0,2
-
 -- 第一页 limit 0,5		(1-1)*5
 -- 第二页 limit 5,5		(2-1)*5
 -- 第三页 limit 10,5		(3-1)*5
@@ -540,6 +539,8 @@ limit 0,2
 -- 【pageSize】页面大小
 -- 【M】起始值下标
 -- 【总页数 = 数据总数/页面大小】
+select * from `subject`
+limit 0,2
 ```
 分组与过滤
 
