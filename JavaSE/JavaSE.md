@@ -250,7 +250,7 @@ Java中有8种基本数据类型，除此之外都是引用数据类型
 ```java
 int num1 = 18;
 
-//使用构造器装箱
+//使用构造器装箱，构造器装箱JDK9以后弃用
 Integer integer1 = new Integer(num1);
 
 //调用方法装箱
@@ -1022,7 +1022,7 @@ System.out.println(h1 instanceof Hero);
 1. 使用父类类型的引用指向子类的对象；
 2. 该引用只能调用父类中定义的方法和变量；
 3. 如果子类中重写了父类中的一个方法，那么在调用这个方法的时候，将会调用子类中的这个方法；（动态连接、动态调用）
-4. 变量不能被重写（覆盖），”重写“的概念只针对方法，如果在子类中”重写“了父类中的变量，那么在编译时会报错。
+4. 变量不能被重写，"重写"的概念是针对方法来说的，子类变量与父类变量是不关联的，是独立的。
 
 多态的3个必要条件：
 1. 继承
@@ -1077,6 +1077,7 @@ public class Test {
 ```
 局部内部类：定义在外部类的方法里面的类，作用范围和创建对象范围仅限于当前方法，不能添加任何修饰符
 局部内部类访问外部类当前方法中的局部变量时，因无法保障变量的生命周期与自身相同，变量必须修饰为final，这是JDK1.7的规定，JDK1.8以后，这个final会自动添加，不用我们考虑
+
 ```java
 public class Outer{
     public void method(){
@@ -1158,35 +1159,6 @@ public class Demo {
 默认方法就是一个方法要在多个类中重复使用，写在接口中，避免重复
 
 ## 数字与字符
-封装类：所有的基本类型，都有对应的引用类型，比如int对应的类是Integer，这种类就叫做封装类
-
-装箱：基本类型转换为封装类型
-拆箱：封装类型转换为基本类型
-
-```java
-int i = 5;
-//装箱
-//法一：构造器装箱JDK9以后弃用
-Integer it = new Integer(i);
-//法二
-Integer it = Integer.valueOf(i);
-
-//拆箱
-//法一
-int i2 = it.intValue();
-//法二
-int i2 = Integer.parseInt(it);
-```
-在JDK1.8以后，提供了自动装箱与拆箱
-```java
-int i = 5;
-//装箱
-Integer it = i;
-
-//拆箱
-int it2 = it;
-```
-
 数字与字符串的转换
 ```java
 int i = 5;
@@ -1202,22 +1174,6 @@ String str2 = it.toString();
 
 //字符串转整数
 int i= Integer.parseInt(x);
-```
-
-## Integer缓冲区
-例一会打印true，因为在堆空间中有一块区域，存放了-128到127这个范围的Integer数组，所以当传入值在这个范围时，引用会直接指向堆空间的数组中的值，所以integer1与integer2指向的是同一个对象
-
-例二会打印false，以为传入值不在-128到127这个范围内，在装箱时就会在堆空间创建新的对象，所以integer3与integer4指向的不是同一个对象
-```java
-//例一
-Integer integer1 = new Integer(100);
-Integer integer2 = new Integer(100);
-System.out.println(integer1 == integer2);
-
-//例二
-Integer integer3 = new Integer(200);
-Integer integer4 = new Integer(200);
-System.out.println(integer1 == integer2);
 ```
 
 ## 格式化输出
@@ -1276,8 +1232,8 @@ StringBuffer是可变长的字符串
 单异常处理
 ```java
 //法一：try catch
-//如果文件存在，就会顺序往下执行，并且不执行catch块中的代码
-//如果文件不存在，try 里的代码会立即终止，程序流程会运行到对应的catch块中
+//如果不出现异常，程序就会顺序往下执行，并且不执行catch块中的代码
+//如果出现异常，try里的代码会立即终止，程序流程会运行到对应的catch块中
 try{
     System.out.println("试图打开 d:/LOL.exe");
     new FileInputStream(f);
@@ -1288,7 +1244,7 @@ catch(FileNotFoundException e){
     e.printStackTrace();
 }
 
-//法二：throws 抛出
+//法二：throws抛出
 //不对异常进行处理，直接抛出，程序会正常运行
 private static void method2() throws FileNotFoundException {
 
@@ -1414,7 +1370,7 @@ import java.util.Properties;
 /*
  * 封装一个工具类，能够减少重复代码
  *
- *  可以通过一个配置文件的形式，
+ * 可以通过一个配置文件的形式，导入
  *
  * */
 public class JDBCUtils {
