@@ -1,4 +1,7 @@
-## 什么是mybatis
+# MyBatis
+
+## 什么是MyBatis
+
 - MyBatis是一款优秀的`持久层框架`
 - 它支持自定义SQL、存储过程以及高级映射
 - MyBatis免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作
@@ -9,16 +12,16 @@
 - 持久化就是将程序的数据在持久状态和瞬时状态转化的过程
 
 ## 持久层
-完成持久化工作的代码块
+定义：完成持久化工作的代码块
 
-## mybatis的简单使用
+## MyBatis的简单使用
 1. pom文件引入jar包
 ```xml
 <!-- mybatis -->
 <dependency>
     <groupId>org.mybatis</groupId>
     <artifactId>mybatis</artifactId>
-    <version>3.5.5</version>-
+    <version>3.5.7</version>
 </dependency>
 <!-- mysql-jdbc -->
 <dependency>
@@ -30,8 +33,7 @@
 <dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
-    <version>RELEASE</version>
-    <scope>compile</scope>
+    <version>1.18.20</version>
 </dependency>
 <!-- junit测试依赖 -->
 <dependency>
@@ -67,7 +69,9 @@ public class MybatisUtil {
 ```
 
 3. 创建mybatis核心配置文件
-- mybatis-config.xml
+
+`mybatis-config.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
@@ -86,6 +90,7 @@ public class MybatisUtil {
             </dataSource>
         </environment>
     </environments>
+    
     <mappers>
         <!-- resource下的Mapper资源存在单层目录结构时的写法 -->
         <mapper resource="StudentMapper.xml"/>
@@ -120,13 +125,15 @@ public interface StudentMapper {
 ```
 
 6. 创建Mapper配置文件
-- UserMapper.xml
+
+`UserMapper.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- namespace命名空间：对应一个Mapper接口 -->
+<!-- namespace命名空间：绑定一个对应的Mapper接口 -->
 <mapper namespace="mapper.StudentMapper">
     <!-- sql语句 -->
     <!-- id对应接口中定义的方法 resultType表示结果集类型 -->
@@ -141,6 +148,7 @@ public interface StudentMapper {
 public class StudentService implements StudentMapper {
     @Override
     public List<Student> listStudent() {
+        //获取mapper对象
         StudentMapper mapper = MybatisUtil.getSqlSession().getMapper(StudentMapper.class);
         return mapper.listStudent();
     }
@@ -163,7 +171,154 @@ public class MyTest {
 
 <img src="D:/Study/Learning-record/SSM/mybatis简单使用目录结构.jpg" style="height:400px;width:300px;text-align:center;">
 
+## CRUD
+
+1. 实体类
+
+```java
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class Student {
+    private int stuId;
+    private String stuName;
+    private String stuSex;
+    private int stuAge;
+    private String stuCls;
+}
+```
+
+2. Mapper接口
+
+```java
+public interface StudentMapper {
+    //添加一个学生
+    int addStudent(Student student);
+	//删除一个学生
+    int deleteStudent(int stuId);
+	//修改一个学生
+    int updateStudent(Student student);
+	//查询一个学生
+    Student getStudent(int stuId);
+}
+```
+
+3. Mapper配置文件
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间：绑定一个对应的Mapper接口 -->
+<mapper namespace="mapper.StudentMapper">
+    <insert id="addStudent" parameterType="entity.Student">
+        insert into student (stuName, stuSex, stuAge, stuCls) value(#{stuName}, #{stuSex}, #{stuAge}, #{stuCls})
+    </insert>
+
+    <delete id="deleteStudent" parameterType="int">
+        delete from student where stuId = #{stuId}
+    </delete>
+
+    <update id="updateStudent" parameterType="entity.Student">
+        update student set stuName = #{stuName}, stuSex = #{stuSex}, stuAge = #{stuAge}, stuCls = #{stuCls} where stuId = #{stuId}
+    </update>
+
+    <select id="getStudent" parameterType="int" resultType="entity.Student">
+        select * from student where stuId = #{stuId}
+    </select>
+</mapper>
+```
+
+3. Service接口
+
+```java
+public interface StudentService {
+    int addStudent(Student student);
+
+    int deleteStudent(int stuId);
+
+    int updateStudent(Student student);
+
+    Student getStudent(int stuId);
+}
+```
+
+4.Service实现类
+
+```java
+public class StudentServiceImpl implements StudentService {
+
+    @Override
+    public int addStudent(Student student) {
+        SqlSession sqlSession = MybatisUtil.getSqlSession();
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        int rs = mapper.addStudent(student);
+        sqlSession.commit();
+        return rs;
+    }
+
+    @Override
+    public int deleteStudent(int stuId) {
+        SqlSession sqlSession = MybatisUtil.getSqlSession();
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        int rs = mapper.deleteStudent(stuId);
+        sqlSession.commit();
+        return rs;
+    }
+
+    @Override
+    public int updateStudent(Student student) {
+        SqlSession sqlSession = MybatisUtil.getSqlSession();
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        int rs = mapper.updateStudent(student);
+        sqlSession.commit();
+        return rs;
+    }
+
+    @Override
+    public Student getStudent(int stuId) {
+        SqlSession sqlSession = MybatisUtil.getSqlSession();
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        return mapper.getStudent(stuId);
+    }
+}
+```
+
+5. 测试类
+
+```java
+public class MyTest {
+    StudentServiceImpl studentService = new StudentServiceImpl();
+
+    @Test
+    public void addStudent(){
+        Student student = new Student(0,"赵小二", "男", 25, "软件19-1");
+        studentService.addStudent(student);
+    }
+
+    @Test
+    public void deleteStudent(){
+        studentService.deleteStudent(7);
+    }
+
+    @Test
+    public void updateStudent(){
+        Student student = new Student(5,"赵小二", "女", 18, "软件19-1");
+        studentService.updateStudent(student);
+    }
+
+    @Test
+    public void getStudent(){
+        Student student = studentService.getStudent(1);
+        System.out.println(student.toString());
+    }
+}
+```
+
 ## mybatis-generator的简单使用
+
 注：此插件主要用于自动生成实体类、Mapper接口和Mapper配置文件，mybatis核心配置文件和业务层文件需要根据实际应用场景对照生成的文件自行编写
 1. 编写pom文件
 ```xml

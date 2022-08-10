@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间：绑定一个对应的Mapper接口 -->
+<mapper namespace="mapper.StudentMapper">
+    <insert id="addStudent" parameterType="entity.Student">
+        insert into student (stuName, stuSex, stuAge, stuCls) value(#{stuName}, #{stuSex}, #{stuAge}, #{stuCls})
+    </insert>
+
+    <delete id="deleteStudent" parameterType="int">
+        delete from student where stuId = #{stuId}
+    </delete>
+
+    <update id="updateStudent" parameterType="entity.Student">
+        update student set stuName = #{stuName}, stuSex = #{stuSex}, stuAge = #{stuAge}, stuCls = #{stuCls} where stuId = #{stuId}
+    </update>
+
+    <select id="getStudent" parameterType="int" resultType="entity.Student">
+        select * from student where stuId = #{stuId}
+    </select>
+</mapper>

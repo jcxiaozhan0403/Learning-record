@@ -8,13 +8,13 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/webapp1901"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/student?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8"/>
                 <property name="username" value="root"/>
                 <property name="password" value="lishuang001219"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <mapper resource="test/mapper/ManagerMapper.xml"/>
+        <mapper resource="mapper/StudentMapper.xml"/>
     </mappers>
 </configuration>

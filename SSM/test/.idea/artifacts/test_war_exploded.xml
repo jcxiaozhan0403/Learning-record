@@ -6,6 +6,7 @@
         <exploded>true</exploded>
         <module>test</module>
         <packaging>war</packaging>
+        <unpackNestedArchives>false</unpackNestedArchives>
       </options>
     </properties>
     <root id="root">
@@ -14,8 +15,9 @@
           <element id="module-output" name="test" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.5.5" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.5.7" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.38" />
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.20" />
         </element>
       </element>
       <element id="directory" name="META-INF">
