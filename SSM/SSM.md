@@ -317,6 +317,210 @@ public class MyTest {
 }
 ```
 
+## Map的使用
+当实体类或者数据库表、字段、参数过多时，应当考虑使用map传递参数，不用传入完整对象，所以可定制度高
+
+`UserMapper.java`
+
+```java
+int addUser(Map<String,Object> map);
+```
+
+`UserMapper.xml`
+
+```xml
+<insert id="addUser" parameterType="map">
+    insert into user (id,pwd) value (#{userId},#{passWord})
+</insert>
+```
+
+`UserDao.java`
+
+```java
+public int addUser(Map<String,Object> map) {
+    //获取SqlSession
+    try(SqlSession session = MybatisUtils.getSqlSession()){
+        //获取Mapper，执行其中方法
+        UserMapper mapper = session.getMapper(UserMapper.class);
+        int result = mapper.addUser(map);
+        session.commit();
+        return result;
+    }
+}
+```
+
+测试代码
+```java
+@Test
+void addUser() {
+    UserDao userDao = new UserDao();
+    Map<String,Object> map = new Map<String,Object>();
+    map.put("userId",5);
+    map.put("password",123456);
+    User user = userDao.addUser(map);
+}
+```
+
+## 模糊查询两种实现方式
+### 方式一：Java代码层面实现
+```java
+public void getUserLike() {
+    SqlSession session = MybatisUtils.getSqlSession();
+    UserMapper mapper = session.getMapper(UserMapper.class);
+    List<User> userList = mapper.getUserLike("%李%");
+
+    for(User user : userList) {
+        System.out.println(user);
+    }
+    sqlSession.close();
+}
+```
+### 方式二：Mapper.xml中拼接实现(相对安全)
+```xml
+<select id="getUserLike" resultType="cn.com.scitc.model.User">
+    select * from user where name like "%" #{value} "%"
+</select>
+```
+
+## 配置解析
+
+### 核心配置文件
+
+`mybatis-config.xml`是Mybatis系统核心配置文件，能做一下配置
+
+```xml
+<!-- 注意元素节点的顺序！顺序不对会报错 -->
+configuration（配置）
+properties（属性）
+settings（设置）
+typeAliases（类型别名）
+typeHandlers（类型处理器）
+objectFactory（对象工厂）
+plugins（插件）
+environments（环境配置）
+environment（环境变量）
+transactionManager（事务管理器）
+dataSource（数据源）
+databaseIdProvider（数据库厂商标识）
+mappers（映射器）
+```
+
+### environments环境配置
+
+配置MyBatis的多套运行环境，将SQL映射到多个不同的数据库上，必须指定其中一个为默认运行环境（通过default指定）
+
+- **事务管理器（transactionManager）**
+  - JDBC – 这个配置直接使用了 JDBC 的提交和回滚功能，是默认配置
+  - MANAGED – 这个配置几乎没做什么
+- **数据源（dataSource）**
+  - UNPOOLED – 这个数据源的实现会每次请求时打开和关闭连接
+  - POOLED – 这种数据源的实现利用“池”的概念将 JDBC 连接对象组织起来，避免了创建新的连接实例时所必需的初始化和认证时间
+  - JNDI – 这个数据源实现是为了能在如 EJB 或应用服务器这类容器中使用，容器可以集中或在外部配置数据源，然后放置一个 JNDI 上下文的数据源引用
+
+```xml
+<environments default="one">
+ <environment id="one">
+   <transactionManager type="JDBC">
+     <property name="..." value="..."/>
+   </transactionManager>
+   <dataSource type="POOLED">
+     <property name="driver" value="${driver}"/>
+     <property name="url" value="${url}"/>
+     <property name="username" value="${username}"/>
+     <property name="password" value="${password}"/>
+   </dataSource>
+ </environment>
+    
+ <environment id="two">
+   <transactionManager type="JDBC">
+     <property name="..." value="..."/>
+   </transactionManager>
+   <dataSource type="POOLED">
+     <property name="driver" value="${driver}"/>
+     <property name="url" value="${url}"/>
+     <property name="username" value="${username}"/>
+     <property name="password" value="${password}"/>
+   </dataSource>
+ </environment>
+</environments>
+```
+
+### mappers映射
+
+映射器 : 定义映射SQL语句文件
+
+#### mapper配置文件引入
+
+使用相对于类路径的资源引用
+
+```xml
+<mappers>
+ <mapper resource="org/mybatis/builder/PostMapper.xml"/>
+</mappers>
+```
+
+使用完全限定资源定位符
+
+```xml
+<mappers>
+ <mapper url="file:///var/mappers/AuthorMapper.xml"/>
+</mappers>
+```
+
+使用映射器接口实现类的完全限定类名，需要配置文件名称和接口名称一致，并且位于同一目录下
+
+```xml
+<mappers>
+ <mapper class="org.mybatis.builder.AuthorMapper"/>
+</mappers>
+```
+
+将包内的映射器接口实现全部注册为映射器，需要配置文件名称和接口名称一致，并且位于同一目录下
+
+```xml
+<mappers>
+ <package name="org.mybatis.builder"/>
+</mappers>
+```
+
+### properties优化
+
+提取数据库配置文件
+
+`db.properties`
+
+```properties
+driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3306/student?useSSL=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+username=root
+password=lishuang001219
+```
+
+`mybatis-config.xml`
+
+```xml
+<!-- 引入外部配置文件 -->
+<properties resource="db.properties" />
+<!-- 在引入外部文件后，还可以添加字段，如果存在相同字段，则使用外部配置文件中的值进行覆盖 -->
+<properties resource="db.properties">
+    <property name="username" value="root" />
+    <property name="pwd" value="123456" />
+</properties>
+
+<environments default="development">
+    <environment id="development">
+        <transactionManager type="JDBC"/>
+        <dataSource type="POOLED">
+            <!-- 直接使用配置文件中的值 -->
+            <property name="driver" value="${driver}"/>
+            <property name="url" value="${url}"/>
+            <property name="username" value="${username}"/>
+            <property name="password" value="${password}"/>
+        </dataSource>
+    </environment>
+</environments>
+```
+
 ## mybatis-generator的简单使用
 
 注：此插件主要用于自动生成实体类、Mapper接口和Mapper配置文件，mybatis核心配置文件和业务层文件需要根据实际应用场景对照生成的文件自行编写
@@ -402,24 +606,6 @@ public class MyTest {
 3. 双击一键生成代码
 <img src="D:/Study/Learning-record/SSM/mybatis-generator.jpg" style="height:300px;width:500px;text-align:center;">
 
-## 提取数据库配置文件
-- db.properties
-```properties
-driver=com.mysql.jdbc.Driver
-url=jdbc:mysql://localhost:3306/webapp1901
-username=root
-password=lishuang001219
-```
-- mybatis-config.xml
-```xml
-<!-- 引入外部配置文件 -->
-<!-- 在引入外部文件后，还可以添加字段，如果存在相同字段，怎使用外部配置文件中的值进行覆盖 -->
-<properties resource="db.properties">
-    <property name="username" value="root" />
-    <property name="pwd" value="123456" />
-</properties>
-```
-
 ## 类型别名
 
 - 类型别名是为Java类型设置一个短的名字
@@ -500,46 +686,6 @@ public class User {
     <result column="signDatetime" property="signdatetime" />
     <result column="signDate" property="signdate" />
 </resultMap>
-```
-
-## Map的使用
-当实体类或者数据库表、字段、参数过多时，应当考虑使用map传递参数
-- UserMapper.java
-```java
-int addUser(Map<String,Object> map);
-```
-
-- UserMapper.xml
-```xml
-<insert id="addUser" parameterType="map">
-    insert into user (id,pwd) value (#{userId},#{passWord})
-</insert>
-```
-
-- UserDao.java
-```java
-public int addUser(Map<String,Object> map) {
-    //获取SqlSession
-    try(SqlSession session = MybatisUtils.getSqlSession()){
-        //获取Mapper，执行其中方法
-        UserMapper mapper = session.getMapper(UserMapper.class);
-        int result = mapper.addUser(map);
-        session.commit();
-        return result;
-    }
-}
-```
-
-测试代码
-```java
-@Test
-void addUser() {
-    UserDao userDao = new UserDao();
-    Map<String,Object> map = new Map<String,Object>();
-    map.put("userId",5);
-    map.put("password",123456);
-    User user = userDao.addUser(map);
-}
 ```
 
 ## 日志
@@ -708,27 +854,6 @@ public class Teacher {
         <result property="tid" column="tid" />
     </collection>
 </reslutMap>
-```
-
-## 模糊查询两种实现方式
-### 方式一：Java代码层面实现
-```java
-public void getUserLike() {
-    SqlSession session = MybatisUtils.getSqlSession();
-    UserMapper mapper = session.getMapper(UserMapper.class);
-    List<User> userList = mapper.getUserLike("%李%");
-
-    for(User user : userList) {
-        System.out.println(user);
-    }
-    sqlSession.close();
-}
-```
-### 方式二：Mapper.xml中拼接实现(相对安全)
-```xml
-<select id="getUserLike" resultType="cn.com.scitc.model.User">
-    select * from user where name like "%"#{value}"%";
-</select>
 ```
 
 ## 动态SQL
