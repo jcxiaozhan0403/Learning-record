@@ -459,7 +459,7 @@ mappers（映射器）
 </mappers>
 ```
 
-使用完全限定资源定位符
+使用完全限定资源定位符，不推荐使用
 
 ```xml
 <mappers>
@@ -521,109 +521,24 @@ password=lishuang001219
 </environments>
 ```
 
-## mybatis-generator的简单使用
+### typeAliases类型别名
 
-注：此插件主要用于自动生成实体类、Mapper接口和Mapper配置文件，mybatis核心配置文件和业务层文件需要根据实际应用场景对照生成的文件自行编写
-1. 编写pom文件
+类型别名可为 Java 类型设置一个缩写名字。 它仅用于 XML 配置，意在降低冗余的全限定类名书写
+
+实体类较少时，给实体类手动设置别名
+
 ```xml
-<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
-<dependency>
-    <groupId>org.mybatis</groupId>
-    <artifactId>mybatis</artifactId>
-    <version>3.5.5</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <version>5.1.38</version>
-</dependency>
-
-<!-- 添加插件(注意将此行注释删除，中文会引起idea报错) -->
-<build>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>3.3.0</version>
-        </plugin>
-        <plugin>
-            <groupId>org.mybatis.generator</groupId>
-            <artifactId>mybatis-generator-maven-plugin</artifactId>
-            <version>1.4.0</version>
-            <executions>
-                <execution>
-                    <id>Generate MyBatis Artifacts</id>
-                    <goals>
-                        <goal>generate</goal>
-                    </goals>
-                </execution>
-            </executions>
-            <dependencies>
-                <dependency>
-                    <groupId>org.mybatis</groupId>
-                    <artifactId>mybatis</artifactId>
-                    <version>3.5.5</version>
-                </dependency>
-                <!-- mysql-jdbc -->
-                <dependency>
-                    <groupId>mysql</groupId>
-                    <artifactId>mysql-connector-java</artifactId>
-                    <version>5.1.38</version>
-                </dependency>
-            </dependencies>
-            <configuration>
-                <!-- 生成的文件覆盖源文件 -->
-                <overwrite>true</overwrite>
-            </configuration>
-        </plugin>
-    </plugins>
-</build>
-```
-
-2. 编写mybatis-generator配置文件
-- generatorConfig.xml
-```xml
-<!DOCTYPE generatorConfiguration PUBLIC
-        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
-        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
-<generatorConfiguration>
-    <context id="simple" targetRuntime="MyBatis3Simple">
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/student-manager" userId="root" password="lishuang001219"/>
-        <!--实体存放位置-->
-        <javaModelGenerator targetPackage="pojo" targetProject="src/main/java"/>
-        <!--Mapper.xml存放位置-->
-        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
-        <!--Mapper接口存放位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="mapper" targetProject="src/main/java"/>
-        <!--需要生成的表-->
-        <table tableName="student" />
-    </context>
-</generatorConfiguration>
-```
-
-3. 双击一键生成代码
-<img src="D:/Study/Learning-record/SSM/mybatis-generator.jpg" style="height:300px;width:500px;text-align:center;">
-
-## 类型别名
-
-- 类型别名是为Java类型设置一个短的名字
-- 存在的意义仅在于用来减少类完全限定名的冗余
-```xml
-<!-- 可以给实体类起别名 -->
 <typeAliases>
-    <typeAlias type="cn.com.scitc.webapp1901.pojo.User" alias="User">
+    <typeAlias type="cn.com.scitc.webapp1901.pojo.User" alias="User" />
 </typeAliases>
 ```
-也可以指定一个包名，Mybatis会在包名下面搜索需要的Java Bean，比如：扫描实体类的包，它的默认别名就是这个类的类名，首字母小写
+实体类较多时，设置包扫描，自动添加别名，默认为以类的首字母小写作为别名，但是直接使用类名也可以
 ```xml
 <typeAliases>
     <package name="cn.com.scitc.webapp1901.pojo" />
 </typeAliases>
 ```
-实体类较少时，使用第一种
-实体类较多时，使用第二种，第二种如果需要DIY别名，需要使用注解
+包扫描，自定义别名，需要使用注解
 
 ```java
 @Alias("UserPojo")
@@ -632,7 +547,7 @@ public class User {
 }
 ```
 
-## Mybatis默认别名
+#### 默认别名
 
 |    别名    |  映射类型  |
 | :--------: | :--------: |
@@ -658,43 +573,60 @@ public class User {
 | bigdecimal | BigDecimal |
 |    map     |    Map     |
 
-## 注册绑定Mapper文件的多种方式
-方式一：通过resource属性进行绑定(少量Mapper时推荐使用)
-```xml
-<mappers>
-    <mapper resource="cn/com/scitc/webapp1901/mapper/UserMapper.xml"/>
-</mappers>
-```
+### 其他配置
 
-方式二：通过扫描包进行绑定(少量Mapper时推荐使用)
-此方式注意：
+- [settings设置](https://mybatis.org/mybatis-3/zh/configuration.html#settings)
 
-1. 接口和他的Mapper配置文件必须同名
-2. 接口和他的Mapper配置文件必须在同一个包下
-```xml
-<mappers>
-    <mapper class="cn.com.scitc.webapp1901.dao"/>
-</mappers>
-```
+- [typeHandlers类型处理器](https://mybatis.org/mybatis-3/zh/configuration.html#typeHandlers)
+- [objectFactory对象工厂](https://mybatis.org/mybatis-3/zh/configuration.html#objectFactory)
+- plugins插件
+  - [MyBatis Generator Core](https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core)
+  - [MyBatis Plus](https://www.mybatis-plus.com/)
+  - [通用mapper](https://mapperhelper.github.io/docs/)
 
-## 结果集映射(resultMap)
+## 生命周期和作用域
+
+理解我们目前已经讨论过的不同作用域和生命周期类是至关重要的，因为错误的使用会导致非常严重的并发问题
+
+### SqlSessionFactoryBuilder
+
+SqlSessionFactoryBuilder的作用在于创建SqlSessionFactory，创建成功后，SqlSessionFactoryBuilder就失去了作用，所以它只能存在于创建SqlSessionFactory的方法中，而不要让其长期存在。==因此SqlSessionFactoryBuilder 实例的最佳作用域是方法作用域（也就是局部方法变量）。==
+
+### SqlSessionFactory
+
+1. SqlSessionFactory 可以被认为是一个数据库连接池，它的作用是创建SqlSession接口对象。因为MyBatis 的本质就是 Java 对数据库的操作，所以SqlSessionFactory的生命周期存在于整个 MyBatis 的应用之中，所以一旦创建了 SqlSessionFactory，就要长期保存它，直至不再使用MyBatis应用，所以可以认为 SqlSessionFactory的生命周期就等同于MyBatis的应用周期。
+2. 由于SqlSessionFactory是一个对数据库的连接池，所以它占据着数据库的连接资源。如果创建多个SqlSessionFactory，那么就存在多个数据库连接池，这样不利于对数据库资源的控制，也会导致数据库连接资源被消耗光，出现系统宕机等情况，所以尽量避免发生这样的情况。
+3. 因此在一般的应用中我们往往希望 SqlSessionFactory 作为一个单例，让它在应用中被共享。所以说 ==SqlSessionFactory的最佳作用域是应用作用域。==
+
+### SqlSession
+
+如果说SqlSessionFactory相当于数据库连接池，那么SqlSession就相当于一个数据库连接（Connection对象），你可以在一个事务里面执行多条 SQL，然后通过它的commit、rollback等方法，提交或者回滚事务。所以它应该存活在一个业务请求中，处理完整个请求后，应该关闭这条连接，让它归还给 SqlSessionFactory，否则数据库资源就很快被耗费精光，系统就会瘫痪，所以用 try...catch...finally... 语句来保证其正确关闭。==所以SqlSession的最佳的作用域是请求或方法作用域。==
+
+## 结果集映射
 当数据库中的列名和实体类中的属性名不完全相同时，需要用到结果集映射
 ```xml
-<resultMap id="BaseResultMap" type="cn.com.scitc.webapp1901.model.Signin">
+<resultMap id="userMap" type="com.entity.User">
     <!-- column数据库中的字段，property实体类中的属性 -->
-    <result column="studentId" property="studentid" />
-    <result column="signDatetime" property="signdatetime" />
-    <result column="signDate" property="signdate" />
+    <result column="id" property="id" />
+    <result column="username" property="username" />
+    <!-- 这里我们看到，只有password字段与属性名不匹配，所以我们可以只配置这一个字段就行，相同字段不用配置也可以 -->
+    <result column="password" property="pwd" />
 </resultMap>
+
+<select id="selectUsers" resultType="userMap">
+  select * from user
+</select>
 ```
 
 ## 日志
+指定 MyBatis 所用日志的具体实现，在核心配置文件的settings标签中进行配置
+
 ### 日志工厂
-打印sql语句，帮助排错
+
 ```xml
 <!-- 开启日志 -->
 <settings>
-    <!-- SLF4J | LOG4J | LOG4J2 | JDK_LOGGING | COMMONS_LOGGING | STDOUT_LOGGING | NO_LOGGING -->
+    <!-- SLF4J | LOG4J（3.5.9 起废弃） | LOG4J2 | JDK_LOGGING | COMMONS_LOGGING | STDOUT_LOGGING（控制台默认输出） | NO_LOGGING -->
     <setting name="logImpl" value="STDOUT_LOGGING"/>
 </settings>
 ```
@@ -709,7 +641,10 @@ public class User {
     <version>1.2.17</version>
 </dependency>
 ```
-2. 添加配置文件
+2. 添加Log4j配置文件
+
+`log4j.properties`
+
 ```properties
 ### 配置根 ###
 log4j.rootLogger = debug,console ,fileAppender
@@ -735,17 +670,32 @@ log4j.appender.fileAppender.Threshold = DEBUG
 log4j.appender.fileAppender.layout = org.apache.log4j.PatternLayout
 log4j.appender.fileAppender.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss}  [ %t:%r ] - [ %p ]  %m%n
 ```
-3. 使用
+3. setting设置日志实现
+
+```xml
+<settings>
+   <setting name="logImpl" value="LOG4J"/>
+</settings>
+```
+
+4. 测试
+
 ```java
-public class MyTest {
-    StudentService studentService = new StudentService();
+//注意导包：org.apache.log4j.Logger
+static Logger logger = Logger.getLogger(MyTest.class);
 
-    static Logger logger = Logger.getLogger(MyTest.class);
-
-    @Test
-    public void t1() {
-        logger.info("你好");
-    }
+@Test
+public void selectUser() {
+   logger.info("info：进入selectUser方法");
+   logger.debug("debug：进入selectUser方法");
+   logger.error("error: 进入selectUser方法");
+   SqlSession session = MybatisUtils.getSession();
+   UserMapper mapper = session.getMapper(UserMapper.class);
+   List<User> users = mapper.selectUser();
+   for (User user: users){
+       System.out.println(user);
+  }
+   session.close();
 }
 ```
 
@@ -1519,7 +1469,93 @@ fragment标签与insert、replace、include属性
 <div th:insert="main/footer :: copy"></div>
 ```
 
+## mybatis-generator的简单使用
+
+注：此插件主要用于自动生成实体类、Mapper接口和Mapper配置文件，mybatis核心配置文件和业务层文件需要根据实际应用场景对照生成的文件自行编写
+1. 编写pom文件
+```xml
+<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.5.5</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>5.1.38</version>
+</dependency>
+
+<!-- 添加插件(注意将此行注释删除，中文会引起idea报错) -->
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.3.0</version>
+        </plugin>
+        <plugin>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-maven-plugin</artifactId>
+            <version>1.4.0</version>
+            <executions>
+                <execution>
+                    <id>Generate MyBatis Artifacts</id>
+                    <goals>
+                        <goal>generate</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <dependencies>
+                <dependency>
+                    <groupId>org.mybatis</groupId>
+                    <artifactId>mybatis</artifactId>
+                    <version>3.5.5</version>
+                </dependency>
+                <!-- mysql-jdbc -->
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>5.1.38</version>
+                </dependency>
+            </dependencies>
+            <configuration>
+                <!-- 生成的文件覆盖源文件 -->
+                <overwrite>true</overwrite>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+
+2. 编写mybatis-generator配置文件
+- generatorConfig.xml
+```xml
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="simple" targetRuntime="MyBatis3Simple">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/student-manager" userId="root" password="lishuang001219"/>
+        <!--实体存放位置-->
+        <javaModelGenerator targetPackage="pojo" targetProject="src/main/java"/>
+        <!--Mapper.xml存放位置-->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+        <!--Mapper接口存放位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="mapper" targetProject="src/main/java"/>
+        <!--需要生成的表-->
+        <table tableName="student" />
+    </context>
+</generatorConfiguration>
+```
+
+3. 双击一键生成代码
+<img src="D:/Study/Learning-record/SSM/mybatis-generator.jpg" style="height:300px;width:500px;text-align:center;">
+
 ## Spring简介
+
 - Spring是一个开源的免费的框架(容器)
 - Spring是一个轻量级的、非入侵的框架
 - 控制反转(IOC)、面向切面编程(AOP)
