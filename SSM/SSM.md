@@ -904,15 +904,105 @@ collection属性值的三种情况
 - 如果传入的参数是多个的时候，我们就需要把它们封装成一个Map了，当然单参数也可以封装成map，实际上如果你在传入参数的时候，在MyBatis里面也是会把它封装成一个Map的，map的key就是参数名，所以这个时候collection属性值就是传入的List或array对象在自己封装的map里面的key
 
 ## 分页
-Limit实现
+### limit实现
+
+在SQL层面实现分页
+
+语法
+
 ```sql
 -- 从索引0开始，查询20条记录
 select * from `student` limit 0,20
 ```
-## 分页插件的使用
-[MybatisPageHelper](https://pagehelper.github.io/)
+步骤：
 
-### 后端
+1. 编写Mapper接口
+
+```java
+//选择全部用户实现分页
+List<User> selectUser(Map<String,Integer> map);
+```
+
+2. 编写Mapper配置文件
+
+```xml
+<select id="selectUser" parameterType="map" resultType="user">
+  select * from user limit #{startIndex},#{pageSize}
+</select>
+```
+
+3. 测试
+
+```java
+//分页查询 , 两个参数startIndex , pageSize
+@Test
+public void testSelectUser() {
+   SqlSession session = MybatisUtils.getSession();
+   UserMapper mapper = session.getMapper(UserMapper.class);
+
+   int currentPage = 1;  //第几页
+   int pageSize = 2;  //每页显示几个
+   Map<String,Integer> map = new HashMap<String,Integer>();
+   map.put("startIndex",(currentPage-1)*pageSize);
+   map.put("pageSize",pageSize);
+
+   List<User> users = mapper.selectUser(map);
+
+   for (User user: users){
+       System.out.println(user);
+  }
+
+   session.close();
+}
+```
+
+### RowBounds实现
+
+在Java代码层面来实现分页，但是在开发中一般都不会使用这种方式
+
+步骤：
+
+1. 编写Mapper接口
+
+```java
+//选择全部用户RowBounds实现分页
+List<User> getUserByRowBounds();
+```
+
+2. 编写mapper文件
+
+```xml
+<select id="getUserByRowBounds" resultType="user">
+select * from user
+</select>
+```
+
+3. 测试
+
+```java
+@Test
+public void testUserByRowBounds() {
+   SqlSession session = MybatisUtils.getSession();
+
+   int currentPage = 2;  //第几页
+   int pageSize = 2;  //每页显示几个
+   RowBounds rowBounds = new RowBounds((currentPage-1)*pageSize,pageSize);
+
+   //通过session.**方法进行传递rowBounds，[此种方式现在已经不推荐使用了]
+   List<User> users = session.selectList("com.kuang.mapper.UserMapper.getUserByRowBounds", null, rowBounds);
+
+   for (User user: users){
+       System.out.println(user);
+  }
+   session.close();
+}
+```
+
+### PageHelper分页插件
+
+[Mybatis-PageHelper](https://pagehelper.github.io/)
+
+#### 后端
 1. 导入依赖
 ```xml
 <!--分页-->
@@ -1016,7 +1106,7 @@ private int navigateLastPage;
 }
 ```
 
-### 前端
+#### 前端
 1. 导入依赖，我使用了JQuery和BootStrap
 ```html
 <link href="https://cdn.usebootstrap.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -1174,70 +1264,6 @@ private int navigateLastPage;
 </script>
 ```
 
-## 日志
-标准日志工厂的实现
-在mybais设置文件中添加日志设置
-
-```xml
-<settings>
-    <setting name="logImpl" value="STDOUT_LOGGING"/>
-<settings>
-```
-
-log4j的使用
-1. 在pom中导入依赖
-```xml
-<!-- https://mvnrepository.com/artifact/log4j/log4j -->
-<dependency>
-    <groupId>log4j</groupId>
-    <artifactId>log4j</artifactId>
-    <version>1.2.17</version>
-</dependency>
-```
-2. 创建log4j配置文件
-- log4j.properties
-```
-#将等级为DEBUG的日志信息输出到console和file这两个目的地，console和file的定义在下面的代码
-log4j.rootLogger=DEBUG,console,file
-
-#控制台输出的相关设置
-log4j.appender.console = org.apache.log4j.ConsoleAppender
-log4j.appender.console.Target = System.out
-log4j.appender.console.Threshold=DEBUG
-log4j.appender.console.layout = org.apache.log4j.PatternLayout
-log4j.appender.console.layout.ConversionPattern=[%c]-%m%n
-
-#文件输出的相关设置
-log4j.appender.file = org.apache.log4j.RollingFileAppender
-log4j.appender.file.File=./log/kuang.log
-log4j.appender.file.MaxFileSize=10mb
-log4j.appender.file.Threshold=DEBUG
-log4j.appender.file.layout=org.apache.log4j.PatternLayout
-log4j.appender.file.layout.ConversionPattern=[%p][%d{yy-MM-dd}][%c]%m%n
-
-#日志输出级别
-log4j.logger.org.mybatis=DEBUG
-log4j.logger.java.sql=DEBUG
-log4j.logger.java.sql.Statement=DEBUG
-log4j.logger.java.sql.ResultSet=DEBUG
-log4j.logger.java.sql.PreparedStatement=DEBUG
-```
-3. 修改mybais设置文件中的日志设置
-```xml
-<settings>
-    <setting name="logImpl" value="LOG4J"/>
-<settings>
-```
-
-在类中手动添加日志输出
-- UserDao.java
-```java
-static Logger logger = Logger.getLogger(UserDao.class);
-logger.info("xxxxxx");
-logger.debug("xxxxxx");
-logger.error("xxxxxx");
-```
-
 ## 缓存
 1. 什么是缓存
    - 存在内存中的临时数据。
@@ -1374,22 +1400,25 @@ public class User implements Serializable {
 ```
 
 ## 使用注解开发
-1. 在工具类中设置事务自动提交
+1. 在工具类中开启事务自动提交
 ```java
 public static SqlSession getSqlSession(){
     return sqlSessionFactory.openSession(true);
 }
 ```
 2. 在mybatis配置文件中绑定接口类
-- mybatis-config.xml
+
 ```xml
 <mappers>
     <mapper class="cn.com.scitc.webapp1901.mapper.UserMapper" />
 </mappers>
 ```
 3. 编写Mapper接口文件
-- UserMapper.java
+
+`UserMapper.java`
+
 ```java
+//查询用户列表
 @Select("select * from user")
 List<User> getUsers();
 
@@ -1410,17 +1439,22 @@ int updateUser(User user);
 
 //根据id删除用
 @Delete("delete from user where id = #{id}")
-int deleteUser(@Param("id")int id);
+int deleteUser(@Param("id") int id);
 ```
 
-关于@Param
-- 在方法只接受一个参数的情况下，可以不使用@Param。
-- 在方法接受多个参数的情况下，建议一定要使用@Param注解给参数命名。
-- 如果参数是 JavaBean ， 则不能使用@Param。
-- 不使用@Param注解时，参数只能有一个，并且是Javabean。
+> 关于@Param
 
+- 基本类型的参数或者String类型，需要加上
+- 引用类型不需要加
+- 如果只有一个基本类型的话，可以忽略，但是建议加上
+- 我们在SQL中引用的就是@Param中设置的属性名
+
+## Mybatis执行流程
+
+<img src="./Mybatis执行流程.jpg" style="height:50%; width:50%;"/>
 
 ## Thymeleaf模板引擎
+
 html文件根标签属性引入Thymeleaf
 ```html
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
