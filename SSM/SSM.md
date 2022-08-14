@@ -703,7 +703,8 @@ public void selectUser() {
 多对一环境准备
 实体类
 
-- Student.java
+`Student.java`
+
 ```java
 public class Student {
     private int id;
@@ -712,7 +713,8 @@ public class Student {
     private Teacher teacher;
 }
 ```
-- Teacher.java
+`Teacher.java`
+
 ```java
 public class Teacher {
     private int id;
@@ -720,7 +722,7 @@ public class Teacher {
 }
 ```
 
-方法一：按查询嵌套处理
+方法一：按查询嵌套处理（子查询）
 ```xml
 <select id="getStydent" resultMap="studentTeacher">
     select  * from student
@@ -729,15 +731,15 @@ public class Teacher {
 <resultMap id="studentTeacher" type="Student">
     <result property="id" column="id" />
     <result property="name" column="name" />
-<!-- 复杂属性，单独处理 对象：association 集合：collection 指定属性的类型：javaType -->
-<association property="teacher" column="tid" javaType="Teacher" select="getTeacher" />
+    <!--association关联属性 property属性名 javaType属性类型 column在多的一方的表中的列名-->
+    <association property="teacher" column="tid" javaType="Teacher" select="getTeacher" />
 </resultMap>
 
 <select id="getTeacher" resultMap="Teacher">
     select * from teacher where id = #{tid}
 </select>
 ```
-方法二：按结果嵌套查询
+方法二：按结果嵌套查询（关联查询）
 ```xml
 <select id="getStudent" resultMap="StudentTeacher">
     select s.id sid,s.name sname,t.name tname from student s,teacher t where s.tid = t.id;
@@ -756,7 +758,8 @@ public class Teacher {
 多对一环境准备
 实体类
 
-- Student.java
+`Student.java`
+
 ```java
 public class Student {
     private int id;
@@ -764,7 +767,8 @@ public class Student {
     private int tid;
 }
 ```
-- Teacher.java
+`Teacher.java`
+
 ```java
 public class Teacher {
     private int id;
@@ -1452,6 +1456,51 @@ int deleteUser(@Param("id") int id);
 ## Mybatis执行流程
 
 <img src="./Mybatis执行流程.jpg" style="height:50%; width:50%;"/>
+
+## Lombok
+
+Lombok项目是一个Java库，它会自动插入编辑器和构建工具中，Lombok提供了一组有用的注释，用来消除Java类中的大量样板代码。仅五个字符(@Data)就可以替换数百行代码从而产生干净，简洁且易于维护的Java类。
+
+常用注解：
+
+@Data 注解在类上；提供类所有属性的 getting 和 setting 方法，此外还提供了equals、canEqual、hashCode、toString 方法、无参构造方法
+@Setter ：注解在属性上；为属性提供 setting 方法
+@Setter ：注解在属性上；为属性提供 getting 方法
+@Log4j ：注解在类上；为类提供一个 属性名为log 的 log4j 日志对象
+@NoArgsConstructor ：注解在类上；为类提供一个无参的构造方法
+@AllArgsConstructor ：注解在类上；为类提供一个全参的构造方法
+@Cleanup : 可以关闭流     （不建议使用）
+@Builder ： 被注解的类加个构造者模式
+@Synchronized ： 加个同步锁
+@SneakyThrows : 等同于try/catch 捕获异常
+@NonNull : 如果给参数加个这个注解 参数为null会抛出空指针异常
+@Value : 注解和@Data类似，区别在于它会把所有成员变量默认定义为private final修饰，并且不会生成set方法。
+
+简单使用：
+
+1. idea安装lombok插件
+2. 导入lombok的jar包
+
+```xml
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.20</version>
+</dependency>
+```
+
+3. 使用
+
+```java
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class User {
+    private int id;
+    private String name;
+    private String password;
+}
+```
 
 ## Thymeleaf模板引擎
 
