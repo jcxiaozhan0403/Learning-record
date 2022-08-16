@@ -13,7 +13,7 @@ Spring理念 : 使现有技术更加实用 . 本身就是一个大杂烩 , **整
 ## 优点
 
 > 1. Spring是一个开源免费的框架 , 容器
-> 2. Spring是一个轻量级的框架 , 非侵入式的 
+> 2. Spring是一个轻量级的框架 , 非侵入式的
 >    1. 轻量级：本身很小
 >    2. 非侵入式：使用它不会影响原来代码的情况
 > 3. 控制反转 IoC  , 面向切面 Aop
@@ -23,9 +23,7 @@ Spring理念 : 使现有技术更加实用 . 本身就是一个大杂烩 , **整
 
 ## 组成
 
-![Spring七大模块](Spring-image/Spring七大模块.jpg)
-
- 
+<img src ="./Spring-image/Spring七大模块.jpg" style="width:90%;text-align:center;">
 
 > 各模块概述
 
