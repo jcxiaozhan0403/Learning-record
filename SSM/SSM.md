@@ -2095,12 +2095,13 @@ Spring容器在初始化时先读取配置文件，根据配置文件或元数�
     <bean id="hello" class="cn.com.scitc.spring.pojo.Hello"></bean>
 </beans>
 ```
-3. 获取配置文件中的对象
+3. 测试
 ```java
 public class MyTest {
     public static void main(String[] args) {
         // 拿到一个spring容器
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        
         // 拿到spring容器中的bean对象
         Hello hello = (Hello) context.getBean("hello");
         System.out.println(hello);
@@ -2132,11 +2133,13 @@ public class MyTest {
     </bean>
     ```
 
+==总结：在配置文件加载的时候。其中管理的对象都已经初始化了！==
+
 ## Spring配置
 1. Bean配置
 ```xml
 <!-- 
-    id：唯一标识符
+    id：唯一标识符，相当于变量
     class：全限定名 包名+类名
     name：别名，可以有多个，分隔符也比较人性化，可以使用逗号分隔，也可以使用空格或者分号分隔
  -->
@@ -2145,20 +2148,35 @@ public class MyTest {
 </bean>
 ```
 2. 合并多个配置文件
-- applicationContext.xml
+
+`applicationContext.xml`
+
 ```xml
 <import resource="beans01.xml" />
 <import resource="beans02.xml" />
 <import resource="beans03.xml" />
 ```
-1. 别名
+3. 别名
+
 ```xml
 <!-- 用别名也可以获取到对象，多取一个名字而已，并没有什么用，并且name使用得较多 -->
-<alias name="user" alias="userNew">
+<alias name="user" alias="userNew" />
 ```
 
 ## 依赖注入(DI)
-- Set注入：要求被注入的属性 , 必须有set方法 , set方法的方法名由set + 属性首字母大写 , 如果属性是boolean类型 , 没有set方法 , 是 is
+### 构造器注入
+
+```xml
+<bean id="exampleBean" class="examples.ExampleBean">
+    <constructor-arg index="0" value="7500000"/>
+    <constructor-arg index="1" value="42"/>
+</bean>
+```
+
+### Set注入
+
+要求被注入的属性 , 必须有set方法 , set方法的方法名由set + 属性首字母大写 , 如果属性是boolean类型 , 没有set方法 , 用is
+
 1. 常量注入
 ```xml
  <bean id="student" class="cn.com.scitc.spring.pojo.Student">
@@ -2237,10 +2255,10 @@ public class MyTest {
 </property>
 ```
 
-## c命名空间和p命名空间
+### c命名空间和p命名空间注入
 他们的使用实质上就是简化赋值操作，p对应变量赋值，c对应构造器参数赋值
 ```xml
-<!-- 首先在头部引入约束文件 -->
+<!-- 首先在配置文件头部引入约束文件 -->
 xmlns:p="http://www.springframework.org/schema/p"
 xmlns:c="http://www.springframework.org/schema/c"
 ```
@@ -2262,7 +2280,18 @@ xmlns:c="http://www.springframework.org/schema/c"
 
 ## Bean的自动装配
 
-自动装配是指spring自动给bean中的引用类型赋值
+> 自动装配就是让应用程序上下文为你找出依赖项的过程。说的通俗一点，就是Spring会在上下文中自动查找，并自动给bean装配与其关联的属性！
+
+Spring中bean有三种装配机制，分别是：
+
+1. 在xml中显式配置；
+2. 在java中显式配置；
+3. 隐式的bean发现机制和自动装配。
+
+Spring实现自动装配的两个步骤：
+
+1. 组件扫描(component scanning)：spring会自动发现应用上下文中所创建的bean；
+2. 自动装配(autowiring)：spring自动满足bean之间的依赖，也就是我们说的IoC/DI；
 
 ```java
 public class Hello {
@@ -2287,25 +2316,30 @@ public class Hello {
 }
 ```
 
-1. byName
+### byName实现
+
+byName会自动在容器上下文中查找，和自己对象set方法后面的值对应的beanid
+
 ```xml
-<!-- byName会自动在容器上下文中查找，和自己对象set方法后面的值对应的beanid -->
 <bean id="cat" class="cn.com.scitc.spring.pojo.Cat" />
 <bean id="dog" class="cn.com.scitc.spring.pojo.Dog" />
 <bean id="hello" class="cn.com.scitc.spring.pojo.Hello" autowire="byName"/>
 ```
-2. byType
+### byType实现
+
+byType会自动在容器上下文中查找，和自己对象属性类型相同的bean
+
 ```xml
-<!-- byType会自动在容器上下文中查找，和自己对象属性类型相同的bean -->
 <bean class="cn.com.scitc.spring.pojo.Cat" />
 <bean class="cn.com.scitc.spring.pojo.Dog" />
 <bean id="hello" class="cn.com.scitc.spring.pojo.Hello" autowire="byType"/>
 ```
-小结
-- byName的时候，需要保证所有bean的id唯一，并且这个bean需要和自动注入的属性的set方法的值一致！
-- byType的时候，需要保证所有bean的id唯一，并且这个bean需要和自动注入的属性的类型一致！
+### 小结
 
-## 注解实现自动装配
+- 使用byName的时候，需要保证所有bean的id唯一，并且这个id需要和自动注入的属性的set方法的值一致！
+- 使用byType的时候，需要保证所有bean的class唯一，并且这个class需要和自动注入的属性的类型一致！
+
+### 注解实现自动装配
 1. 导入约束
 ```xml
 xmlns:context="http://www.springframework.org/schema/context"
