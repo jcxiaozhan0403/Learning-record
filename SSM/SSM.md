@@ -2500,17 +2500,19 @@ public class MyTest {
 ```
 
 ## Spring中的AOP
-使用：
+
 导入依赖
+
 ```xml
 <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
 <dependency>
-    <groupId>org.aspectj</groupId>
-    <artifactId>aspectjweaver</artifactId>
-    <version>1.9.4</version>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjweaver</artifactId>
+    <version>1.9.4</version>
 </dependency>
 ```
-方式一：使用原生spring API实现
+### 方式一：使用原生Spring API实现AOP
+
 1. 创建接口
 ```java
 //增删改查业务
@@ -2547,30 +2549,30 @@ public class UserServiceImpl implements UserService {
 ```java
 public class Log implements MethodBeforeAdvice {
 
-    //method : 要执行的目标对象的方法
-    //objects : 被调用的方法的参数
-    //Object : 目标对象
+    /**
+     * @param method 要执行的目标对象的方法
+     * @param args 被调用的方法的参数
+     * @param target 目标对象
+     */
     @Override
-    public void before(Method method, Object[] objects, Object o) throws Throwable {
-        System.out.println( o.getClass().getName() + "的" + method.getName() + "方法被执行了");
+    public void before(Method method, Object[] args, Object target) throws Throwable {
+        System.out.println( target.getClass().getName() + "的" + method.getName() + "方法被执行了");
     }
 }
 ```
 ```java
 public class AfterLog implements AfterReturningAdvice {
-    //returnValue 返回值
-    //method被调用的方法
-    //args 被调用的方法的对象的参数
-    //target 被调用的目标对象
-    @Override
-    public void afterReturning(Object returnValue, Method method, Object[] args, Object target) throws Throwable {
-        System.out.println("执行了" + target.getClass().getName()
-        +"的"+method.getName()+"方法,"
-        +"返回值："+returnValue);
-    }
+
+    /**
+     * @param returnValue 返回值
+     */
+    @Override
+    public void afterReturning(Object returnValue, Method method, Object[] args, Object target) throws Throwable {
+        System.out.println( target.getClass().getName() + "的" + method.getName() + "方法被执行了，返回值为" + returnValue);
+    }
 }
 ```
-4. 在spring配置文件中实现aop切入
+4. 在Spring配置文件中实现aop切入
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -2586,15 +2588,15 @@ public class AfterLog implements AfterReturningAdvice {
     <bean id="log" class="cn.com.scitc.log.Log"/>
     <bean id="afterLog" class="cn.com.scitc.log.AfterLog"/>
 
-    <!--aop的配置-->
+    <!--aop的配置，需要现在头部导入约束-->
     <aop:config>
         <!--切入点  expression:表达式匹配要执行的方法-->
         <!-- 第一个*表示返回值的类型任意 -->
         <!-- cn.com.scitc.service.UserServiceImpl表示被切入的类 -->
         <!-- 第二个*表示被切入类下的所有方法 -->
-        <!-- (..)表示参数个数不固定 -->
+        <!-- (..)表示方法的参数个数不固定 -->
         <aop:pointcut id="pointcut" expression="execution(* cn.com.scitc.service.UserServiceImpl.*(..))"/>
-        <!--执行环绕; advice-ref执行方法 . pointcut-ref切入点-->
+        <!--执行环绕; advice-ref增强类 pointcut-ref切入点-->
         <aop:advisor advice-ref="log" pointcut-ref="pointcut"/>
         <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"/>
     </aop:config>
@@ -2613,7 +2615,8 @@ public class MyTest {
 }
 ```
 
-方式二：自定义实现AOP
+### 方式二：自定义实现AOP
+
 1. 自定义创建切入类
 ```java
 public class DiyPointcut {
@@ -2655,7 +2658,8 @@ public class MyTest {
 }
 ```
 
-方式三：注解实现AOP
+### 方式三：注解实现AOP
+
 1. 自定义创建切入类，用注解标注
 ```java
 @Aspect
@@ -2681,9 +2685,10 @@ public class AnnotationPointcut {
     }
 }
 ```
-2. 在spring配置文件中添加bean，并开启注解支持
+2. 在spring配置文件中注册bean，并开启注解支持
 ```xml
 <bean id="annotationPointcut" class="com.kuang.config.AnnotationPointcut"/>
+
 <aop:aspectj-autoproxy/>
 ```
 aop:aspectj-autoproxy：说明
@@ -2693,7 +2698,21 @@ aop:aspectj-autoproxy：说明
 <aop:aspectj-autoproxy />有一个proxy-target-class属性，默认为false，表示使用jdk动态代理织入增强，当配为<aop:aspectj-autoproxy  poxy-target-class="true"/>时，表示使用CGLib动态代理技术织入增强。不过即使proxy-target-class设置为false，如果目标类没有声明接口，则spring将自动使用CGLib动态代理。
 ```
 
+3. 测试
+
+```java
+public class MyTest {
+    @Test
+    public void test(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        UserService userService = (UserService) context.getBean("userService");
+        userService.add();
+    }
+}
+```
+
 ## Spring中的测试类
+
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:application.xml") //构建虚拟spring容器

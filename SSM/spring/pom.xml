@@ -58,6 +58,12 @@
             <artifactId>lombok</artifactId>
             <version>1.18.22</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.4</version>
+        </dependency>
     </dependencies>
 
     <build>
