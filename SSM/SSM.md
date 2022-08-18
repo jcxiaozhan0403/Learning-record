@@ -2340,18 +2340,23 @@ byType会自动在容器上下文中查找，和自己对象属性类型相同�
 - 使用byType的时候，需要保证所有bean的class唯一，并且这个class需要和自动注入的属性的类型一致！
 
 ### 注解实现自动装配
-1. 导入约束
+JDK1.5开始支持注解，Spring2.5开始全面支持注解
+
+#### 简单使用
+
+1. 在核心配置文件头部添加约束
+
 ```xml
 xmlns:context="http://www.springframework.org/schema/context"
 
 xsi:schemaLocation="http://www.springframework.org/schema/context
 https://www.springframework.org/schema/context/spring-context.xsd">
 ```
-2. 添加注解支持
+2. 使用标签开启注解支持
 ```xml
 <context:annotation-config/>
 ```
-3. 使用：直接在属性上添加注解即可，使用注解方式可以不用写set方法，但建议写上
+3. 直接在属性上添加注解即可，使用注解方式可以不用写set方法，但建议写上
 ```java
 public class Hello {
     private String str;
@@ -2373,29 +2378,40 @@ public class Hello {
     }
 }
 ```
-4. 多个bean对象时，@Autowired配合@Qualifier使用
+4. @Autowired配合@Qualifier使用，来区分多个同类型的bean对象
+
+```xml
+<bean id="cat1" class="Cat" />
+<bean id="cat2" class="Cat" />
+<bean id="cat3" class="Cat" />
+```
+
 ```java
 @Autowired
-@Qualifier(value="dog01")
-private Dog dog;
+@Qualifier(value="cat1")
+private Cat cat;
 ```
-@Resource
--  @Resource如有指定的name属性，先按该属性进行byName方式查找装配
--  其次再进行默认的byName方式进行装配
--  如果以上都不成功，则按byType的方式自动装配
--  都不成功，则报异常。
+**@Nullable**：表示此字段可以为null
+
+**@Resource**：Java提供的注解，与@Autowired类似，也是用于自动装配的
+
 ```java
 @Resource(name = "cat2")
 private Cat cat;
 ```
-小结：
-@Resource和@Autowired的区别
+
+#### @Resource和@Autowired的区别
+
 - 都是用来自动装配的，都可以放在属性字段上
-- @Autowired 通过byType的方式实现，而且必须要求这个对象存在！
-- @Resource(常用) 默认通过byName方式实现，如果找不到名字，则通过byType实现！如果两个都找不到，就报错
+- @Autowired 先通过byType的方式进行注入，如果相同类型bean存在多个，则通过byName的方式进行注入，而且必须要求这个对象存在！
+- @Resource 先通过byName方式进行注入（把属性名作为名字进行查找，找到将bean注入），如果找不到名字，则通过byType进行注入，如果两个都找不到就报错
+- 当指定@Resource的name属性时，只会通过byName注入，找不到就报错
 
 ## Spring注解开发
+==在spring4之后，想要使用注解形式，必须得要引入spring-aop的jar包==，一般情况下我们导包的时候maven会帮我们自动导入，如果注解开发出现问题，可以尝试检查是否正确导入了spring-aop的jar包
+
 1. 导入约束
+
 ```xml
 xmlns:context="http://www.springframework.org/schema/context"
 
@@ -2419,7 +2435,7 @@ https://www.springframework.org/schema/context/spring-context.xsd">
 // 1.属性赋值
 @Value("李爽")
 private String name;
-// 2. 参数赋值
+// 2.参数赋值
 @Value("王麻子")
 public void setName(String name) {
     this.name = name;
@@ -2438,18 +2454,20 @@ controller【@Controller】
 @Scope("prototype")
 ```
 
-小结
-xml与注解：
+### xml与注解
+
    - xml更加万能，适用于任何场合！维护简单方便
    - 注解只应用于自己的类，维护复杂
-最佳使用原则：xml用来管理bean，注解只负责完成属性的注入
+
+==最佳使用原则：xml用来管理bean，注解只负责完成属性的注入==
 
 ## 使用Java类方式配置Spring
 JavaConfig 原来是 Spring 的一个子项目，它通过 Java 类的方式提供 Bean 的定义信息，在 Spring4 的版本， JavaConfig 已正式成为 Spring4 的核心功能 
 
-创建一个配置类来代替xml配置文件
+1. 创建一个配置类来代替xml配置文件
+
 ```java
-//代表这是一个配置类，但是配置类也会被spring容器托管，它会注册到容器中，因为它本来就是一个@Component组件
+//代表这是一个配置类，但是配置类也会被spring容器托管，它会注册到容器中，因为它本来就是一个Component组件
 @Configuration
 @ComponentScan("cn.com.scitc") //扫描包
 @Import(MyConfig2.class) //导入整合另外的配置类
@@ -2460,12 +2478,14 @@ public class MyConfig {
     //方法的返回值，就相当于bean标签中的class属性
     @Bean
     public Dog dog(){
-        return new Dog(); //返回值就是要注入到bean的对象
+        //返回值就是要注入到bean的对象
+        return new Dog();
     }
 
 }
 ```
-获取配置类
+2. 获取配置类
+
 ```java
 public class MyTest {
     public static void main(String[] args) {
