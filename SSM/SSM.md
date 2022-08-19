@@ -63,7 +63,7 @@ public class MybatisUtil {
 
     public static SqlSession getSqlSession(){
         //创建并返回SqlSession
-        return sqlSessionFactory.openSession();
+        return sqlSessionFactory.openSession(true);
     }
 }
 ```
@@ -2713,21 +2713,90 @@ public class MyTest {
 
 ## Spring中的测试类
 
-```java
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:application.xml") //构建虚拟spring容器
-```
+1.  添加依赖
 
-## Spring整合Mybatis(方式一)
-1. 导入依赖
 ```xml
 <dependency>
-    <groupId>org.mybatis</groupId>
-    <artifactId>mybatis-spring</artifactId>
-    <version>2.0.2</version>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-test</artifactId>
+    <version>5.3.9</version>
+</dependency>
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.2</version>
 </dependency>
 ```
-2. 配置Maven静态资源导出过滤问题
+
+2. 测试类添加注解
+
+```java
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:application.xml")	//注解寻找配置文件
+```
+
+## Spring整合Mybatis
+
+导入依赖
+
+```xml
+<!-- junit -->
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+</dependency>
+<!-- mybatis -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.5.2</version>
+</dependency>
+<!-- mysql-jdbc -->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>5.1.47</version>
+</dependency>
+<!-- spring-webmvc -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+    <version>5.3.12</version>
+</dependency>
+<!-- spring-jdbc -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-jdbc</artifactId>
+    <version>5.3.12</version>
+</dependency>
+<!-- spring织入 -->
+<dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjweaver</artifactId>
+    <version>1.9.4</version>
+</dependency>
+<!-- spring-mybatis整合 -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis-spring</artifactId>
+    <version>2.0.2</version>
+</dependency>
+<!-- lombok -->
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.22</version>
+</dependency>
+<!-- spring-test -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-test</artifactId>
+    <version>5.3.9</version>
+</dependency>
+```
+配置Maven静态资源导出过滤问题
+
 ```xml
 <build>
     <resources>
@@ -2750,9 +2819,12 @@ public class MyTest {
     </resources>
 </build>
 ```
-3. 创建mybatis配置文件
+### 方式一（常用）
 
-- mybatis-config.xml
+1. 创建mybatis配置文件
+
+`mybatis-config.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
@@ -2765,77 +2837,82 @@ public class MyTest {
         <setting name="logImpl" value="Log4j"/>
     </settings>
     
-    <!--开启别名-->
+    <!--开启别名（包扫描）-->
     <typeAliases>
         <package name="com.bao.pojo"/>
     </typeAliases>
     
+    <!--注册mapper（包扫描）-->
     <mappers>
-        <!-- 绑定Mapper配置文件 -->
-        <mapper resource="UserMapper.xml"/>
-        <!-- resource下的Mapper资源存在多层目录结构时的写法 -->
-        <mapper resource="cn/com/scitc/webapp1901/mapper/UserMapper.xml"/>
+        <package name="cn.com.mapper"/>
     </mappers>
 </configuration>
 ```
-4. 创建一个新的spring配置文件，用于配置mybatis
+2. 创建一个新的spring配置文件，用于配置mybatis
 
-- spring-mapper.xml
+`spring-mybatis.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--配置数据源：数据源有非常多，可以使用第三方的，也可使使用Spring的-->
+    <context:annotation-config/>
+
+    <!--  用Spring的数据源替换Mybatis的数据源  -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-       <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-       <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8"/>
-       <property name="username" value="root"/>
-       <property name="password" value="123456"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/student?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="lishuang001219"/>
     </bean>
 
     <!--配置SqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-       <property name="dataSource" ref="dataSource"/>
-       <!--关联Mybatis配置文件-->
-       <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="dataSource" ref="dataSource" />
+        <!-- 绑定Mybatis配置文件 -->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
     </bean>
 
     <!--注册sqlSessionTemplate，相当于之前Mybatis中的sqlSession-->
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-       <!--利用构造器注入-->
-       <constructor-arg index="0" ref="sqlSessionFactory"/>
+        <!--SqlSessionTemplate这个类没有Set方法，所以我们只能使用构造器注入属性值-->
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
     
-    <bean id="userDaoImpl" class="com.kuang.dao.UserDaoImpl">
-        <!--向userDaoImpl Set注入sqlSession-->
-       <property name="sqlSession" ref="sqlSession"/>
+    <bean id="studentMapperImpl" class="cn.com.mapper.impl.StudentMapperImpl">
+        <!--向studentMapperImpl中Set注入sqlSession-->
+        <property name="sqlSession" ref="sqlSession" />
     </bean>
 
 </beans>
 ```
-6. 增加Mapper接口的实现类；私有化sqlSessionTemplate
+3. 增加Mapper接口的实现类；私有化sqlSessionTemplate
+
 ```java
-public class UserMapperImpl implements UserMapper {
+public class StudentMapperImpl implements StudentMapper {
+    //私有化SqlSessionTemplate，使用Spring注入
+    private SqlSessionTemplate sqlSession;
 
-    //sqlSession不用我们自己创建了，Spring来管理
-    private SqlSessionTemplate sqlSession;
+     public void setSqlSession(SqlSessionTemplate sqlSession) {
+         this.sqlSession = sqlSession;
+     }
 
-    public void setSqlSession(SqlSessionTemplate sqlSession) {
-        this.sqlSession = sqlSession;
-    }
-
-    public List<User> selectUser() {
-        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        return mapper.selectUser();
-    }
-    
+    @Override
+    public List<Student> studentList() {
+        return sqlSession.getMapper(StudentMapper.class).studentList();
+    }
 }
 ```
-7. 在原有的spring配置文件中导入新的配置文件
-- applicationContext.xml
+4. 在原有的spring核心配置文件中导入新的配置文件
+
+`applicationContext.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -2843,116 +2920,111 @@ public class UserMapperImpl implements UserMapper {
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <import resource="spring-mapper.xml"/>
+    <import resource="spring-mybatis.xml"/>
     
 </beans>
 ```
-8. 编写测试类
+5. 编写测试类
+
 ```java
-@Test
-public void test2(){
-    ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-    UserMapper userDaoImpl = context.getBean("userDaoImpl",UserMapper.class);
-    List<User> user = mapper.selectUser();
-    System.out.println(user);
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:spring-mybatis.xml")
+public class MyTest {
+    @Test
+    public void test(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring-mybatis.xml");
+        StudentMapper StudentMapperImpl = context.getBean("studentMapperImpl",StudentMapper.class);
+
+        List<Student> students = StudentMapperImpl.studentList();
+        for (Student student : students){
+            System.out.println(student.toString());
+        }
+    }
 }
 ```
 
-## Spring整合Mybatis(方式二)
-1. 导入依赖
-```xml
-<dependency>
-    <groupId>org.mybatis</groupId>
-    <artifactId>mybatis-spring</artifactId>
-    <version>2.0.2</version>
-</dependency>
-```
-2. 配置Maven静态资源导出过滤问题
-```xml
-<build>
-    <resources>
-        <resource>
-            <directory>src/main/java</directory>
-            <includes>
-                <include>**/*.properties</include>
-                <include>**/*.xml</include>
-            </includes>
-            <filtering>false</filtering>
-        </resource>
-        <resource>
-            <directory>src/main/resources</directory>
-            <includes>
-                <include>**/*.properties</include>
-                <include>**/*.xml</include>
-            </includes>
-            <filtering>false</filtering>
-        </resource>
-    </resources>
-</build>
-```
-4. 创建mybatis配置文件
-- mybatis-config.xml
+### 方式二（简化版）
+1. 创建mybatis配置文件
+
+`mybatis-config.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+    
     <!--设置日志-->
     <settings>
         <setting name="logImpl" value="Log4j"/>
     </settings>
-
-    <!--开启别名-->
+    
+    <!--开启别名（包扫描）-->
     <typeAliases>
         <package name="com.bao.pojo"/>
     </typeAliases>
-
+    
+    <!--注册mapper（包扫描）-->
     <mappers>
-        <!-- 绑定Mapper配置文件 -->
-        <mapper resource="UserMapper.xml"/>
-        <!-- resource下的Mapper资源存在多层目录结构时的写法 -->
-        <mapper resource="cn/com/scitc/webapp1901/mapper/UserMapper.xml"/>
+        <package name="cn.com.mapper"/>
     </mappers>
 </configuration>
 ```
-5. 创建一个新的spring配置文件，用于配置mybatis
-- spring-mapper.xml
+2. 创建一个新的spring配置文件，用于配置mybatis
+
+`spring-mybatis.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--配置数据源：数据源有非常多，可以使用第三方的，也可使使用Spring的，这里是Spring默认提供的-->
+    <context:annotation-config/>
+
+    <!--  用Spring的数据源替换Mybatis的数据源  -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-       <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-       <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8"/>
-       <property name="username" value="root"/>
-       <property name="password" value="123456"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/student?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="lishuang001219"/>
     </bean>
 
     <!--配置SqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-       <property name="dataSource" ref="dataSource"/>
-       <!--关联Mybatis配置文件-->
-       <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="dataSource" ref="dataSource" />
+        <!-- 绑定Mybatis配置文件 -->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
     </bean>
-    
-    <!--配置(MapperScannerConfigurer)的bean，可以将创建的所有映射器都自动注入到sqlSessionFactory实例中 -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <!-- 注入sqlSessionFactory，需要指定sqlSessionFactory ,这里只绑定名字，不绑定引用，所以用value-->
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-        <!-- 给出需要扫描的Mapper接口包 -->
-        <property name="basePackage" value="com.bao.dao"/>
+
+    <bean id="studentMapperImpl2" class="cn.com.mapper.impl.StudentMapperImpl2">
+        <!--向StudentMapperImpl2注入sqlSessionFactory值，SqlSessionDaoSupport类要使用-->
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
 
 </beans>
 ```
-6. 在原有的spring配置文件中导入新的配置文件
-- applicationContext.xml
+3. 增加Mapper接口的实现类，继承SqlSessionDaoSupport，通过getSqlSession方法获取SqlSession
+
+```java
+public class StudentMapperImpl2 extends SqlSessionDaoSupport implements StudentMapper {
+    @Override
+    public List<Student> studentList() {
+        //使用getSqlSession方法可以直接获取SqlSession
+        return getSqlSession().getMapper(StudentMapper.class).studentList();
+    }
+}
+```
+
+4. 在原有的spring配置文件中导入新的配置文件
+
+`applicationContext.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -2960,18 +3032,25 @@ public void test2(){
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <import resource="spring-mapper.xml"/>
+    <import resource="spring-mybatis.xml"/>
     
 </beans>
 ```
 7. 编写测试类
 ```java
-@Test
-public void test2(){
-    ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-    UserMapper mapper = context.getBean("userMapper",UserMapper.class);
-    List<User> user = mapper.selectUser();
-    System.out.println(user);
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:spring-mybatis.xml")
+public class MyTest {
+    @Test
+    public void test(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring-mybatis.xml");
+        StudentMapper StudentMapperImpl = context.getBean("studentMapperImpl2",StudentMapper.class);
+
+        List<Student> students = StudentMapperImpl.studentList();
+        for (Student student : students){
+            System.out.println(student.toString());
+        }
+    }
 }
 ```
 
@@ -2983,10 +3062,10 @@ public void test2(){
 
 ### 事务的特性(ACID)
 四个特性：
-1. 原子性(atomicity)：事务是原子性操作，由一系列动作组成，事务的原子性确保动作要么全部完成，要么完全不起作用
-2. 一致性(consistency)：一旦所有事务动作完成，事务就要被提交。数据和资源处于一种满足业务规则的一致性状态中
-3. 隔离性(isolation) ：可能多个事务会同时处理相同的数据，因此每个事务都应该与其他事务隔离开来，防止数据损坏
-4. 持久性(durability) ：事务一旦完成，无论系统发生什么错误，结果都不会受到影响。通常情况下，事务的结果被写到持久化存储器中
+1. 原子性（atomicity）：事务是原子性操作，由一系列动作组成，事务的原子性确保动作要么全部完成，要么完全不起作用
+2. 一致性（consistency）：一旦所有事务动作完成，事务就要被提交。数据和资源处于一种满足业务规则的一致性状态中
+3. 隔离性（isolation）：可能多个事务会同时处理相同的数据，因此每个事务都应该与其他事务隔离开来，防止数据损坏
+4. 持久性（durability）：事务一旦完成，无论系统发生什么错误，结果都不会受到影响。通常情况下，事务的结果被写到持久化存储器中
 
 ### 事物的分类
 1. 编程式事务管理：将事务管理代码嵌到业务方法中来控制事务的提交和回滚 -  缺点：必须在每个事务操作业务逻辑中包含额外的事务管理代码
@@ -3013,7 +3092,7 @@ create table `user2`  (
 insert into `user2` values (1, '张三', 1000);
 insert into `user2` values (2, '李四', 1000);
 ```
-2. `pom.xml`导入依赖
+2. 导入依赖
 ```xml
 <dependencies>
     <dependency>
@@ -3109,7 +3188,9 @@ insert into `user2` values (2, '李四', 1000);
 </build>
 ```
 3. 日志配置文件
-- `log4j.properties`
+
+`log4j.properties`
+
 ```properties
 #将等级为DEBUG的日志信息输出到console和file这两个目的地，console和file的定义在下面的代码
 log4j.rootLogger=DEBUG,console,file
@@ -3140,7 +3221,7 @@ log4j.logger.java.sql.Statement=DEBUG
 log4j.logger.java.sql.ResultSet=DEBUG
 log4j.logger.java.sql.PreparedStatement=DEBUG
 ```
-5. 创建实体类`User`
+5. 创建实体类
 ```java
 @Data
 @AllArgsConstructor
@@ -3163,7 +3244,10 @@ public interface UserMapper {
 
 }
 ```
-7. 创建mybatis映射文件`UserMapper.xml`
+7. 创建mybatis映射文件
+
+`UserMapper.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
@@ -3179,13 +3263,19 @@ public interface UserMapper {
     </update>
 </mapper>
 ```
-8. 创建业务层接口`UserService`
+8. 创建业务层接口
+
+`UserService`
+
 ```java
 public interface UserService {
     void turnMoney();
 }
 ```
-9. 创建业务层实现类`UserServiceImpl`
+9. 创建业务层实现类
+
+`UserServiceImpl`
+
 ```java
 @Service
 @Transactional
@@ -3208,7 +3298,10 @@ public class UserServiceImpl implements UserService {
     }
 }
 ```
-10. 创建spring配置文件`applicationContext.xml`
+10. 创建Spring配置文件
+
+`applicationContext.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -3225,7 +3318,10 @@ public class UserServiceImpl implements UserService {
 
 </beans>
 ```
-11. 创建mybatis配置文件`mybatis-config.xml`
+11. 创建Mybatis配置文件
+
+`mybatis-config.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
@@ -3248,7 +3344,10 @@ public class UserServiceImpl implements UserService {
 
 </configuration>
 ```
-12. 创建spring-mybatis整合配置文件`spring-mybatis.xml`
+12. 创建spring-mybatis整合配置文件
+
+`spring-mybatis.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -3288,7 +3387,8 @@ public class UserServiceImpl implements UserService {
         <!--配置数据源-->
         <constructor-arg ref="dataSource" />
     </bean>
-    <!--2.开启事务注解，需要导入tx命名空间-->
+    
+    <!--2.开启事务注解，需要导入约束-->
     <!--transaction-manager="transactionManager" : 绑定事务管理器-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>
@@ -3303,8 +3403,11 @@ public void test1(){
 }
 ```
 
-### propagation：事务的传播行为
-概念：多事务方法之间进行调用，这个过程中事务是如何进行管理的
+### @Transactional注解的常见属性
+
+#### propagation：事务的传播行为
+
+> 概念：多事务方法之间进行调用，这个过程中事务是如何进行管理的
 
 事务方法：对数据库的数据进行变化的方法，就好比增删改方法
 ```java
@@ -3332,7 +3435,7 @@ Spring框架事务传播行为有7种，重点了解REQUIRED和REQUIRED_NEW
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 ```
 
-### isolation：事务的隔离级别
+#### isolation：事务的隔离级别
  事务具有隔离性，多事务之间不会产生影响，事务之间一旦产生影响会出现3大问题：脏读、不可重复读、虚读（幻读）
 
 <img src="./事务的三大问题.png">
@@ -3347,7 +3450,7 @@ Spring框架事务传播行为有7种，重点了解REQUIRED和REQUIRED_NEW
 //可重复读是mysql的默认隔离级别
 ```
 
-### timeout：超时时间
+#### timeout：超时时间
 - 事务需要在一定时间内进行提交，如果未提交则进行回滚
 - 以秒为单位
 - 默认值为-1：表示没有超时时间
@@ -3356,7 +3459,7 @@ Spring框架事务传播行为有7种，重点了解REQUIRED和REQUIRED_NEW
 @Transactional(timeout = 10)
 ```
 
-### readOnly：是否只读
+#### readOnly：是否只读
 - 读：指的是查询的操作	写：指的是增删改操作
 - readOnly默认值是false，表示可以增删改查
 - 设置值为true，表示只可以查，不可以增删改
@@ -3365,14 +3468,14 @@ Spring框架事务传播行为有7种，重点了解REQUIRED和REQUIRED_NEW
 @Transactional(readOnly = true)
 ```
 
-### rollbackfor：回滚
+#### rollbackfor：回滚
 - 设置出现哪些异常需要回滚
 
 ```java
 @Transactional(rollbackFor = NullPointerException.class)
 ```
 
-### noRollbackFor：不回滚
+#### noRollbackFor：不回滚
 - 设置出现哪些异常不需要回滚
 
 ```
@@ -3380,14 +3483,14 @@ Spring框架事务传播行为有7种，重点了解REQUIRED和REQUIRED_NEW
 ```
 
 ### Spring中声明式事务的实现(xml方式)
-1.  使用spring事务管理(在配置文件中导入约束)
+1.  在配置文件中导入事务约束
 ```xml
 xmlns:tx="http://www.springframework.org/schema/tx"
 
 http://www.springframework.org/schema/tx
-http://www.springframework.org/schema/tx/spring-tx.xsd">
+http://www.springframework.org/schema/tx/spring-tx.xsd"
 ```
-2. 在配置文件中添加事务管理器
+2. 添加事务管理器
 ```xml
 <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
     <property name="dataSource" ref="dataSource" />
@@ -3408,7 +3511,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
     </tx:attributes>
 </tx:advice>
 ```
-4. 配置AOP
+4. 通过AOP的方式织入事务
 ```xml
 <!--配置aop织入事务-->
 <aop:config>
