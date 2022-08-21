@@ -3522,38 +3522,78 @@ http://www.springframework.org/schema/tx/spring-tx.xsd"
 
 # SpringMVC
 
-## SpringMVC
+## 回顾MVC
+
+- MVC是模型(Model)、视图(View)、控制器(Controller)的简写，是一种软件设计规范。
+- 用将**业务逻辑**、**数据**、**显示**分离的方式来组织代码。
+- MVC主要作用是降低了视图与业务逻辑间的双向耦合。
+- MVC不是一种设计模式，==MVC是一种架构模式==。当然不同的MVC存在差异。
 
 vo：也是实体类，它是视图层对象，是根据前端提供的属性封装对象
-MVC三层模型职责
-- Controller：控制器
-  1. 取得表单数据
-  2. 调用业务逻辑
-  3. 转向指定页面
-- Model：模型
-  1. 业务逻辑
-  2. 保存数据的状态
-- View：视图
-  1. 显示页面
 
-## SpringMVC执行原理
+### MVC三层架构职责
+
+#### Controller：控制器
+
+1. 取得表单数据
+2. 调用业务逻辑
+3. 转向指定页面
+
+#### Model：模型
+
+1. 业务逻辑
+2. 保存数据的状态
+
+#### View：视图
+
+显示页面
+
+## SpringMVC是什么
+
+> Spring MVC是Spring Framework的一部分，是基于Java实现MVC的轻量级Web框架。
+
+## SpringMVC的特点
+
+1. 轻量级，简单易学
+2. 高效 , 基于请求响应的MVC框架
+3. 与Spring兼容性好，无缝结合
+4. ==约定大于配置==
+5. 功能强大：RESTful、数据验证、格式化、本地化、主题等
+6. 简洁灵活
+
+## DispatcherServlet
+
+Spring的web框架围绕DispatcherServlet设计。DispatcherServlet的作用是将请求分发到不同的处理器。从Spring 2.5开始，使用Java 5或者以上版本的用户可以采用基于注解的controller声明方式。
+
+Spring MVC框架像许多其他MVC框架一样, **以请求为驱动** , **围绕一个中心Servlet分派请求及提供其他功能**，**DispatcherServlet是一个实际的Servlet (它继承自HttpServlet 基类)**。
+
+<img src="./DispatcherServlet继承关系.jpg" style="width:100%"/>
+
+SpringMVC的原理如下图所示：
+
+​	当发起请求时被前置的控制器拦截到请求，根据请求参数生成代理请求，找到请求对应的实际控制器，控制器处理请求，创建数据模型，访问数据库，将模型响应给中心控制器，控制器使用模型与视图渲染视图结果，将结果返回给中心控制器，再将结果返回给请求者。
+
+<img src="./SpringMVC执行原理.png" />
+
+## SpringMVC执行流程
+
 <img src="./SpringMVC执行流程.png">
 
 图为SpringMVC的一个较完整的流程图，实线表示SpringMVC框架提供的技术，不需要开发者实现，虚线表示需要开发者实现。
 
 1. DispatcherServlet表示前置控制器，是整个SpringMVC的控制中心。用户发出请求，DispatcherServlet接收请求并拦截请求。
-我们假设请求的url为 : http://localhost:8080/SpringMVC/hello
+我们假设请求的url为 : http://localhost:8080/project-test/hello
 如上url拆分成三部分：
-http://localhost:8080服务器域名
-SpringMVC部署在服务器上的web站点
-hello表示控制器
-通过分析，如上url表示为：请求位于服务器localhost:8080上的SpringMVC站点的hello控制器。
-2. HandlerMapping为处理器映射。DispatcherServlet调用HandlerMapping,HandlerMapping根据请求url查找Handler。
-3. HandlerExecution表示具体的Handler,其主要作用是根据url查找控制器，如上url被查找控制器为：hello。
-4. HandlerExecution将解析后的信息传递给DispatcherServlet,如解析控制器映射等。
+http://localhost:8080：服务器域名
+project-test：部署在服务器上的web站点
+hello：控制器
+通过分析，如上url表示为：请求位于服务器localhost:8080上的project-test站点的hello控制器。
+2. HandlerMapping为处理器映射。DispatcherServlet调用HandlerMapping，HandlerMapping根据请求url查找Handler。
+3. HandlerExecution表示具体的Handler，其主要作用是根据url查找控制器，如上url被查找控制器为：hello。
+4. HandlerExecution将解析后的信息传递给DispatcherServlet，如解析控制器映射等。
 5. HandlerAdapter表示处理器适配器，其按照特定的规则去执行Handler。
 6. Handler让具体的Controller执行。
-7. Controller将具体的执行信息返回给HandlerAdapter,如ModelAndView。
+7. Controller将具体的执行信息返回给HandlerAdapter，如ModelAndView。
 8. HandlerAdapter将视图逻辑名或模型传递给DispatcherServlet。
 9. DispatcherServlet调用视图解析器(ViewResolver)来解析HandlerAdapter传递的逻辑视图名。
 10. 视图解析器将解析的逻辑视图名传给DispatcherServlet。
@@ -3563,55 +3603,31 @@ hello表示控制器
 ## 注解开发SpringMVC
 1. 创建Web项目，导入相关依赖
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <groupId>cn.com.scitc</groupId>
-    <artifactId>SpringMVC</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>springmvc-01-servlet</module>
-        <module>springmvc-02-hellomvc</module>
-        <module>springmvc-03-annotation</module>
-    </modules>
-
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>5.3.7</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.2</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-    </dependencies>
-</project>
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+    <version>5.3.7</version>
+</dependency>
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>servlet-api</artifactId>
+    <version>2.5</version>
+</dependency>
+<dependency>
+    <groupId>javax.servlet.jsp</groupId>
+    <artifactId>jsp-api</artifactId>
+    <version>2.2</version>
+</dependency>
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
+</dependency>
 ```
 2. 配置`web.xml`，注册DispatcherServlet
 ```xml
@@ -3624,10 +3640,12 @@ hello表示控制器
     <servlet>
         <servlet-name>springmvc</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!--关联SpringMVC配置文件-->
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:springmvc-servlet.xml</param-value>
+            <param-value>classpath:spring-mvc.xml</param-value>
         </init-param>
+        <!--配置启动优先级，值为1表示随服务器一同启动，因为它需要接管所有的请求，去所以我们把优先级设置得很高-->
         <load-on-startup>1</load-on-startup>
     </servlet>
 
@@ -3638,7 +3656,7 @@ hello表示控制器
 
 </web-app>
 ```
-3. 添加springmvc配置文件`springmvc-servlet.xml`
+3. 添加SpringMVC配置文件`spring-mvc.xml`
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -4190,7 +4208,9 @@ public class FastJsonDemo {
 </build>
 ```
 3. 添加spring配置文件
-- applicationContext.xml
+
+`applicationContext.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -4201,7 +4221,9 @@ public class FastJsonDemo {
 </beans>
 ```
 4. 添加Mybatis配置文件
-- mybatis-config.xml
+
+`mybatis-config.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
@@ -4213,7 +4235,9 @@ public class FastJsonDemo {
 ```
 配置Mybatis层
 1. 添加数据库配置文件
-- jdbc.properties
+
+`jdbc.properties`
+
 ```properties
 jdbc.driverClassName = com.mysql.jdbc.Driver
 jdbc.url = jdbc:mysql://localhost:3306/ssmbuild?useSSL=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8
@@ -4221,7 +4245,9 @@ jdbc.username = root
 jdbc.password = lishuang001219
 ```
 2. 编写Mybatis配置文件
-- mybatis-config.xml
+
+`mybatis-config.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
@@ -4237,7 +4263,7 @@ jdbc.password = lishuang001219
 </configuration>
 ```
 3. 编写实体类
-- Book
+
 ```java
 @Data
 @AllArgsConstructor
@@ -4250,7 +4276,7 @@ public class Book {
 }
 ```
 4. 编写dao层的mapper接口
-- BookMapper
+
 ```java
 public interface BookMapper {
     //增加一个Book
@@ -4270,7 +4296,9 @@ public interface BookMapper {
 }
 ```
 5. 编写Mapper文件
-- BookMapper.xml
+
+`BookMapper.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
@@ -4311,7 +4339,7 @@ public interface BookMapper {
 </mapper>
 ```
 6. 编写Service层的接口和实现类
-- BookService.java
+
 ```java
 public interface BookService {
     //增加一个Book
@@ -4330,7 +4358,6 @@ public interface BookService {
     List<Book> findBookList();
 }
 ```
-- BookServiceImpl.java
 ```java
 public class BookServiceImpl implements BookService {
 
@@ -4365,7 +4392,9 @@ public class BookServiceImpl implements BookService {
 
 配置Spring层
 1. 编写Spring-Mybatis整合文件
-- spring-dao.xml
+
+`spring-dao.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -4406,7 +4435,8 @@ public class BookServiceImpl implements BookService {
 
 </beans>
 ```
-- spring-service.xml
+`spring-service.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -4434,7 +4464,9 @@ public class BookServiceImpl implements BookService {
 </beans>
 ```
 配置SpringMVC层
-- web.xml
+
+`web.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
@@ -4476,7 +4508,8 @@ public class BookServiceImpl implements BookService {
     </session-config>
 </web-app>
 ```
-- spring-mvc.xml
+`spring-mvc.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -4507,7 +4540,9 @@ public class BookServiceImpl implements BookService {
 </beans>
 ```
 用Spring配置文件整合所有配置
-- applicationContext.xml
+
+`applicationContext.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -4523,7 +4558,7 @@ public class BookServiceImpl implements BookService {
 ```
 测试
 1. 编写controller
-- BookController
+
 ```java
 @Controller
 @RequestMapping("/book")
@@ -4543,7 +4578,9 @@ public class BookController {
 }
 ```
 2. 编写首页
-- index.jsp
+
+`index.jsp`
+
 ```jsp
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML>
