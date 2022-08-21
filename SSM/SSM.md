@@ -3651,6 +3651,8 @@ hello：控制器
 
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
+        <!--/ 匹配所有的请求；（不包括.jsp）-->
+   		<!--/* 匹配所有的请求；（包括.jsp）-->
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
@@ -3670,11 +3672,11 @@ hello：控制器
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <!-- 自动扫描包 -->
-    <context:component-scan base-package="controller" />
-    <!--通过默认方式过滤静态资源-->
+    <!-- 自动扫描包，让包下的注解生效 -->
+    <context:component-scan base-package="cn.com.*" />
+    <!--通过默认方式过滤静态资源（js、css、mp3...）-->
     <mvc:default-servlet-handler />
-    <!--开启注解支持-->
+    <!--自动注入HandlerMapping以及HandlerAdapter-->
     <mvc:annotation-driven />
 
     <!-- 视图解析器 -->
