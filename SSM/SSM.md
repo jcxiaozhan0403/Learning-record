@@ -3722,7 +3722,10 @@ ${msg}
 ```
 
 ## RestFul代码风格
-RestFul风格是将请求地址中携带的参数以斜线分割的一种代码风格
+> Restful就是一个资源定位及资源操作的风格。不是标准也不是协议，只是一种风格。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制。
+>
+> RestFul风格是将请求地址中携带的参数以斜线分割的一种代码风格
+
 ```java
 // https://localost:8080/hello?a=1&b=2
 // https://localost:8080/hello/1/2
@@ -3730,52 +3733,81 @@ RestFul风格是将请求地址中携带的参数以斜线分割的一种代码�
 public class HelloController {
 
     @RequestMapping("/hello/{a}/{b}")
+    //使用@PathVariable来获取参数
     public String hello(@PathVariable int a, @PathVariable int b) {
         int res = a + b;
         return String.valueOf(res);
     }
+    
+   	//用不同的注解对应不同的请求方式
+    @GetMapping("/hello/{a}/{b}")
+	@PostMapping("/hello/{a}/{b}")
+    @PutMapping("/hello/{a}/{b}")
+    @DeleteMapping("/hello/{a}/{b}")
+    @PatchMapping("/hello/{a}/{b}")
 }
 ```
 
 ## 转发与重定向
-不配置视图解析器的情况下
+相同点：都会跳转到新的页面
+
+不同点：
+
+- 请求转发url不会发生改变，只有一次请求
+- 重定向url发生改变，相当于两次请求
+
+不配置视图解析器的情况下，只能指定具体资源路径
+
 ```java
 @Controller
 public class ResultSpringMVC {
-    @RequestMapping("/rsm/t1")
-    public String test1(){
-        //转发
-        return "/index.jsp";
+    @RequestMapping("/t1")
+    public String t1(){
+        //转发一
+        return "/WEB-INF/jsp/test1.jsp";
     }
  
-    @RequestMapping("/rsm/t2")
-    public String test2(){
+    @RequestMapping("/t2")
+    public String t2(){
         //转发二
-        return "forward:/index.jsp";
+        return "forward:/WEB-INF/jsp/test2.jsp"
     }
  
-    @RequestMapping("/rsm/t3")
-    public String test3(){
+    @RequestMapping("/t3")
+    public String t3(){
         //重定向
-        return "redirect:/index.jsp";
+        return "redirect:/WEB-INF/jsp/test3.jsp"
     }
 }
 ```
-配置视图解析器的情况下
+配置视图解析器的情况下（常用）
 ```java
 @Controller
-public class ResultSpringMVC2 {
-    @RequestMapping("/rsm2/t1")
-    public String test1(){
-        //转发
-        return "test";
+public class ResultSpringMVC {
+    @RequestMapping("/t1")
+    public String t1(){
+        //转发一
+        return "test1";
     }
- 
-    @RequestMapping("/rsm2/t2")
-    public String test2(){
+
+    @RequestMapping("/t2")
+    public String t2(){
+        //转发二
+        //访问具体路径
+        return "forward:/WEB-INF/jsp/test2.jsp";
+        
+        //访问请求路径
+        //return "forward:/t1";
+    }
+
+    @RequestMapping("/t3")
+    public String t3(){
         //重定向
-        return "redirect:/index.jsp";
-        //return "redirect:hello.do"; //hello.do为另一个请求/
+        //访问具体路径
+        return "redirect:/WEB-INF/jsp/test2.jsp";
+        
+        //访问请求路径
+        //return "redirect:/t1";
     }
 }
 ```
@@ -3799,7 +3831,7 @@ public String test(String name) {
     return "test";
 }
 ```
-提交的参数名与接收方法内的参数名不一致时
+提交的参数名与接收方法内的参数名不一致时，用**@RequestParam**来显式定义请求地址中的参数名
 ```java
 // https://localhost:8080/test?realName=xxxx
 @GetMapping("/test")
@@ -3813,12 +3845,12 @@ public String test(@RequestParam("realName") String name) {
 // pojo
 public class User {
     private String name;
+    private int id;
     private int age;
-    private int sex;
 }
 ```
 ```java
-//  http://localhost:8080/test?name=lishuang&id=1&age=20
+// http://localhost:8080/test?name=lishuang&id=1&age=20
 @GetMapping("/test")
 public String test(User user) {
     System.out.println(user);
@@ -3826,8 +3858,9 @@ public String test(User user) {
 }
 ```
 
-## 数据传输到前端的三种方式
-Model(常用)
+## 数据回显到前端的三种方式
+### Model(常用)
+
 ```java
 @RequestMapping("/userList1")
 public String hello(Model model) throws Exception {
@@ -3840,7 +3873,8 @@ public String hello(Model model) throws Exception {
 }
 ```
 
-ModelMap
+### ModelMap
+
 ```java
 @RequestMapping("/userList2")
 public String hello(ModelMap modelMap) throws Exception {
@@ -3853,7 +3887,8 @@ public String hello(ModelMap modelMap) throws Exception {
 }
 ```
 
-ModelAndView
+### ModelAndView
+
 ```java
 @RequestMapping("/userList3")
 public ModelAndView hello(ModelAndView modelAndView) throws Exception {
@@ -3867,8 +3902,22 @@ public ModelAndView hello(ModelAndView modelAndView) throws Exception {
 }
 ```
 
-## SpringMVC解决乱码问题
-`web.xml`加入如下配置
+### 区别
+
+Model 只有寥寥几个方法只适合用于储存数据，简化了新手对于Model对象的操作和理解；
+
+ModelMap 继承了 LinkedMap ，除了实现了自身的一些方法，同样的继承 LinkedMap 的方法和特性；
+
+ModelAndView 可以在储存数据的同时，可以进行设置返回的逻辑视图，进行控制展示层的跳转。
+
+## 解决乱码问题
+
+### Spring的乱码过滤器
+
+配置Spring自带的乱码过滤器，可解决大部分乱码问题
+
+`web.xml`
+
 ```xml
 <filter>
     <filter-name>encoding</filter-name>
@@ -3883,7 +3932,10 @@ public ModelAndView hello(ModelAndView modelAndView) throws Exception {
     <url-pattern>/*</url-pattern>
 </filter-mapping>
 ```
-自定义过滤器：当上面Spring自带的配置无法解决乱码问题时，可使用下面这个过滤器,并且在`web.xml`中配置过滤器
+### 自定义乱码过滤器
+
+当遇到乱码问题，Spring自带的过滤器解决不了时，可使用下面这个自定义的过滤器，并在配置文件内进行注册
+
 ```java
 public class GenericEncodingFilter implements Filter {
  
@@ -3992,7 +4044,10 @@ class MyRequest extends HttpServletRequestWrapper {
 </filter-mapping>
 ```
 
-## 利用Jackson将对象转换为JSON格式
+## Json交互处理
+
+### Jackson
+
 1. 导入依赖
 ```xml
 <dependency>
@@ -4001,7 +4056,10 @@ class MyRequest extends HttpServletRequestWrapper {
     <version>2.12.4</version>
 </dependency>
 ```
-2. 配置`springmvc-servlet.xml`统一解决json乱码问题
+2. 添加配置，统一解决JSON乱码问题
+
+`spring-mvc.xml`
+
 ```xml
 <mvc:annotation-driven>
     <mvc:message-converters register-defaults="true">
@@ -4070,7 +4128,7 @@ public String getUse2() throws JsonProcessingException {
 }
 ```
 
-## 利用FastJson将对象转换为JSON格式
+### FastJson
 1. 导入依赖
 ```xml
 <dependency>

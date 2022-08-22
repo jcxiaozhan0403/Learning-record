@@ -1,5 +1,6 @@
 package cn.com.controller;
 
+import cn.com.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,12 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Description:
  */
 @Controller
-public class HelloController {
-
-    @RequestMapping("/hello")
-    public String hello(Model model){
-        model.addAttribute("str","你好");
-
-        return "hello";
+public class ResultSpringMVC {
+    @RequestMapping("/test")
+    public String test(User user, Model model){
+        model.addAttribute("name",user.getName());
+        model.addAttribute("age",user.getAge());
+        return "test";
     }
 }
