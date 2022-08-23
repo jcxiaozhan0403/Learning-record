@@ -23,7 +23,6 @@ import java.util.List;
 public class BookController {
     //controller 调 service层
     @Autowired
-    @Qualifier("BookServiceImpl")
     private BookService bookService;
 
     //查询全部书籍，并且返回到一个展示页面
