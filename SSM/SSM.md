@@ -4676,7 +4676,98 @@ public class BookController {
 </html>
 ```
 
+## AJAX
+
+Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。
+
+AJAX 不是新的编程语言，而是一种使用现有标准的新方法。
+
+AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。
+
+AJAX 不需要任何浏览器插件，但需要用户允许JavaScript在浏览器上执行。
+
+### 简单使用
+
+前端
+
+```jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+   <title>ajax</title>
+   <script src="${pageContext.request.contextPath}/statics/js/jquery-3.1.1.min.js"></script>
+   <script>
+       function a1(){
+           $.post({
+               url:"${pageContext.request.contextPath}/a3",
+               data:{'name':$("#name").val()},
+               success:function (data) {
+                   if (data.toString()=='OK'){
+                       $("#userInfo").css("color","green");
+                   }else {
+                       $("#userInfo").css("color","red");
+                   }
+                   $("#userInfo").html(data);
+               }
+           });
+       }
+       
+       function a2(){
+           $.post({
+               url:"${pageContext.request.contextPath}/a3",
+               data:{'pwd':$("#pwd").val()},
+               success:function (data) {
+                   if (data.toString()=='OK'){
+                       $("#pwdInfo").css("color","green");
+                   }else {
+                       $("#pwdInfo").css("color","red");
+                   }
+                   $("#pwdInfo").html(data);
+               }
+           });
+       }
+   </script>
+</head>
+<body>
+<p>
+  用户名:<input type="text" id="name" onblur="a1()"/>
+   <span id="userInfo"></span>
+</p>
+<p>
+  密码:<input type="text" id="pwd" onblur="a2()"/>
+   <span id="pwdInfo"></span>
+</p>
+</body>
+</html>
+```
+
+后端
+
+```java
+@RequestMapping("/a3")
+public String ajax3(String name,String pwd){
+    String msg = "";
+    //模拟数据库中存在数据
+    if (name!=null){
+        if ("admin".equals(name)){
+            msg = "OK";
+        }else {
+            msg = "用户名输入错误";
+        }
+    }
+    if (pwd!=null){
+        if ("123456".equals(pwd)){
+            msg = "OK";
+        }else {
+            msg = "密码输入有误";
+        }
+    }
+    return msg; //由于@RestController注解，将msg转成json格式返回
+}
+```
+
 ## 拦截器
+
 SpringMVC的处理器拦截器类似于Servlet开发中的过滤器Filter,用于对处理器进行预处理和后处理。开发者可以自己定义一些拦截器来实现特定的功能。
 
 过滤器
@@ -4738,4 +4829,4 @@ public class MyInterceptor implements HandlerInterceptor {
 </mvc:interceptors>
 ```
 
-## 文件的上传与下载重定向
+## 文件的上传与下载
