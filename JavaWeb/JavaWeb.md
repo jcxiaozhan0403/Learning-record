@@ -1248,14 +1248,8 @@ public class OnlineListen implements HttpSessionListener {
 </form>
 ```
 ### 后端
-1. 引入依赖
+1. 导入文件上传的jar包，commons-fileupload ， Maven会自动帮我们导入他的依赖包 commons-io包；
 ```xml
-<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-<dependency>
-    <groupId>commons-io</groupId>
-    <artifactId>commons-io</artifactId>
-    <version>2.11.0</version>
-</dependency>
 <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 <dependency>
     <groupId>commons-fileupload</groupId>
