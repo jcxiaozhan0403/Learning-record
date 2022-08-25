@@ -1,11 +1,18 @@
-## 快速入门
+## 简介
+
+> MyBatis-Plus(简称 MP)是一个MyBatis的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。
+
+官网：https://baomidou.com/
+
+## 简单使用
+
 1. 测试数据
 ```sql
 drop table if exists user;
 
 create table user
 (
-	id bigint(20) not null comment '主键id',
+	id bigint(20) not null auto_increment comment '主键id',
 	name varchar(30) null default null comment '姓名',
 	age int(11) null default null comment '年龄',
 	email varchar(50) null default null comment '邮箱',
@@ -21,111 +28,304 @@ insert into user (id, name, age, email) values
 (4, 'Sandy', 21, 'test4@baomidou.com'),
 (5, 'Billie', 24, 'test5@baomidou.com');
 ```
-2. 创建SpringBoot项目，导入pom依赖
+2. 导入pom依赖，mybatis-plus包会自动导入对应版本的mybatis
 ```xml
-<!-- 数据库连接依赖 -->
+<!-- spring-webmvc -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+    <version>5.2.9.RELEASE</version>
+</dependency>
+<!-- spring-jdbc -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-jdbc</artifactId>
+    <version>5.2.9.RELEASE</version>
+</dependency>
+<!-- spring织入 -->
+<dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjweaver</artifactId>
+    <version>1.9.4</version>
+</dependency>
+<!-- spring-test -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-test</artifactId>
+    <version>5.2.9.RELEASE</version>
+</dependency>
+<!-- junit -->
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+</dependency>
+<!-- mysql-jdbc -->
 <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
+    <version>5.1.47</version>
+</dependency>
+<!-- mybatis-plus -->
+<dependency>
+    <groupId>com.baomidou</groupId>
+    <artifactId>mybatis-plus</artifactId>
+    <version>3.4.3</version>
 </dependency>
 <!-- lombok -->
 <dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
-</dependency>
-<!-- MybatisPlus -->
-<dependency>
-    <groupId>com.baomidou</groupId>
-    <artifactId>mybatis-plus-boot-starter</artifactId>
-    <version>3.4.0</version>
+    <version>1.18.22</version>
 </dependency>
 ```
-4. 编写数据库连接配置
+4. 创建数据库配置文件
+
+`database.properties`
+
 ```properties
-spring.datasource.username=root
-spring.datasource.password=lishuang001219
-spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-spring.datasource.url=jdbc:mysql://localhost:3306/mybatis_plus?useSSL=false&userUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/mybatis_plus?useSSL=false&userUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+jdbc.username=root
+jdbc.password=lishuang001219
 ```
-5. 实体类
+5. 创建Mybatis核心配置文件
+
+`mybatis-config.xml`
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--开启别名（包扫描）-->
+    <typeAliases>
+        <package name="entity"/>
+    </typeAliases>
+
+</configuration>
+```
+
+6. 创建spring-mybatis-plus配置文件
+
+`spring-mybatis-plus.xml`
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--开启注解支持-->
+    <context:annotation-config/>
+
+    <!--关联数据库配置文件-->
+    <context:property-placeholder location="classpath:database.properties"/>
+
+    <!--配置数据源：数据源有非常多，可以使用第三方的，也可使使用Spring的-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--这里使用MP提供的sqlSessionFactory，完成了Spring与MP的整合-->
+    <bean id="sqlSessionFactory"
+          class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+</beans>
+```
+
+7. 创建Spring核心配置文件
+
+`applicationContext.xml`
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="spring-mybatis-plus.xml" />
+
+</beans>
+```
+
+8. 创建实体类
+
 ```java
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
-    private Long id;
+    private long id;
     private String name;
-    private Integer age;
+    private int age;
     private String email;
 }
 ```
-6. Mapper
-```java
-@Mapper
-// 用Mpper注解标记
-public interface UserMapper extends BaseMapper<User> {
-    // 继承BaseMapper完成大部分CRUD操作
-}
-```
-7. 启动类
-```java
-// 添加注解扫描项目中的Mapper
-@MapperScan("cn.com.mybatisplus.mapper")
-@SpringBootApplication
-public class MybatisPlusApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(MybatisPlusApplication.class, args);
-    }
-}
-```
-8. 测试
-```java
-@SpringBootTest
-class MybatisPlusApplicationTests {
+9. 创建Mapper接口
 
-    @Autowired
-    UserMapper userMapper;
+```java
+// 可以使用Mpper注解标记Mapper
+@Mapper
+// 继承BaseMapper完成大部分CRUD操作
+public interface UserMapper extends BaseMapper<User> {
     
+}
+```
+Mpper接口过多的时候，配置自动扫描
+
+```xml
+<!--扫描mapper接口，使用的依然是Mybatis原生的扫描器-->
+<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="basePackage" value="mapper"/>
+</bean>
+```
+
+10. 测试
+
+```java
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:applicationContext.xml")	//注解寻找配置文件
+public class MyTest {
+    @Autowired
+    private UserMapper userMapper;
+
     @Test
-    void contextLoads() {
+    public void test(){
         List<User> users = userMapper.selectList(null);
         for (User user : users) {
             System.out.println(user);
         }
     }
-
 }
 ```
 
-## 配置日志
-```properties
-# 日志
-mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
+## 注解
+
+### 表名映射
+
+在实体类的名字与表名不对应的时候，我们需要手动给实体类配置表名映射
+
+```java
+//注解的参数就是数据库表的名字
+@TableName("tb_user")
+public class User {
+    private long id;
+    private String name;
+    private int age;
+    private String email;
+}
 ```
 
-## 主键生成策略
-在插入数据时如果不设置主键。默认会使用雪花算法生成一个唯一id
+### 属性映射
 
-雪花算法：
+在实体类字段与数据库表列名不一致的时候，可以手动配置，使其对应
+
+```java
+@TableField("age")
+private int ageOne;
+```
+
+### 主键生成策略
+
+在插入数据时如果不设置主键,MP默认会使用雪花算法生成一个唯一id
+
+#### 雪花算法
 snowflake是Twitter开源的分布式ID生成算法，结果是一个long型的ID。其核心思想是：使用41bit作为毫秒数，10bit作为机器的ID（5个bit是数据中心（北京、香港···），5个bit的机器ID），12bit作为毫秒内的流水号（意味着每个节点在每毫秒可以产生 4096 个 ID），最后还有一个符号位，永远是0。
 
-选择主键的生成策略
 ```java
-// 实体类添加注解
 @TableId(type = IdType.AUTO)
 private Long id;
 ```
 ```java
 public enum IdType {
     AUTO, //数据库id自增，如果选择此方式，数据库主键也必须添加自增属性
-    INPUT, //手动输入，选择此方式，如果插入时没有id字段，会默认用null填充
-    ID_WORKER, //默认的全局唯一id 雪花算法
+    INPUT, //手动输入，选择此方式，如果插入时没有id字段，会默认用null进行填充
+    ID_WORKER, //生成全局唯一id 雪花算法，默认
     UUID, //全球唯一id  uuid
     NONE;//未设置主键
 }
 ```
 
+## 全局配置
+
+对于批量的设置，使用注解会比较繁琐，我们可以使用xml进行批量全局配置
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--开启注解支持-->
+    <context:annotation-config/>
+
+    <!--关联数据库配置文件-->
+    <context:property-placeholder location="classpath:database.properties"/>
+
+    <!--配置数据源：数据源有非常多，可以使用第三方的，也可使使用Spring的-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--这里使用MP提供的sqlSessionFactory，完成了Spring与MP的整合-->
+    <bean id="sqlSessionFactory"
+          class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--将全局配置类注入到MybatisSqlSessionFactoryBean中-->
+        <property name="globalConfig" ref="globalConfig"/>
+        <!--将配置类注入到MybatisSqlSessionFactoryBean中-->
+        <property name="configuration" ref="configuration" />
+    </bean>
+
+    <!--扫描mapper接口，使用的依然是Mybatis原生的扫描器-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="mapper"/>
+    </bean>
+
+    <bean id="dbConfig" class="com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig">
+        <!--配置实体类表映射，统一前缀-->
+        <property name="tablePrefix" value="tb_" />
+        <!--配置主键生成策略-->
+        <property name="idType" value="AUTO" />
+    </bean>
+
+    <bean id="globalConfig" class="com.baomidou.mybatisplus.core.config.GlobalConfig">
+        <property name="dbConfig" ref="dbConfig" />
+    </bean>
+    
+    <bean id="configuration" class="com.baomidou.mybatisplus.core.MybatisConfiguration" >
+        <!--关闭驼峰自动映射-->
+        <property name="mapUnderscoreToCamelCase" value="false" />
+        <!--配置日志实现类-->
+        <property name="logImpl" value="org.apache.ibatis.logging.stdout.StdOutImpl" />
+    </bean>
+</beans>
+```
+
+## Wrapper
+
 ## 自动填充
+
 创建时间、更改时间！ 这些操作一般都是自动化完成，我们不希望手动更新
 
 阿里巴巴开发手册︰几乎所有的表都要配置`gmt_create`、`gmt_modified`这两个字段，而且需要自动化
@@ -285,7 +485,64 @@ public void testPage(){
 ```
 
 ## CRUD
-### 查询
+### 增
+
+```java
+@Test
+public void testInsert(){
+    User user = new User();
+    user.setName("John.Cena");
+    user.setAge(21);
+    user.setEmail("349636607@qq.com");
+    userMapper.insert(user);
+}
+```
+
+### 删
+```java
+@Test
+public void testDeleteById(){
+    //删除单个值
+    userMapper.deleteById(1);
+}
+
+@Test
+public void testDeleteBatchIds(){
+    ArrayList<Integer> integers = new ArrayList<Integer>();
+    //删除多个值
+    integers.add(2);
+    integers.add(3);
+    integers.add(4);
+    userMapper.deleteBatchIds(integers);
+}
+
+@Test
+public void testD(){
+    HashMap<String, Object> map = new HashMap<String, Object>();
+    //按条件删除，多个条件用and连接
+    map.put("age","18");
+    map.put("name","John.Cena");
+    userMapper.deleteByMap(map);
+}
+```
+
+### 改
+
+```java
+@Test
+public void testUpdate(){
+    User user = new User();
+    user.setId(3);
+    user.setName("John.Cena");
+    user.setAge(22);
+    user.setEmail("1111@qq.com");
+    //修改对应Id的内容
+    userMapper.updateById(user);
+}
+```
+
+### 查
+
 1. 通过id查询单个用户
 ```java
 @Test//通过id查询单个用户
@@ -313,25 +570,6 @@ public void testMap(){
     map.put("age",18);
     List<User> users = userMapper.selectByMap(map);
     users.forEach(System.out::println);
-}
-```
-
-### 删除
-```java
-@Test
-public void testDeleteById(){
-    userMapper.deleteById(1359507762519068681L);
-}
-@Test
-public void testDeleteBatchIds(){
-  userMapper.deleteBatchIds(Arrays.asList(1359507762519068675L,1359507762519068676L));
-}
-@Test
-public void testD(){
-    HashMap<String, Object> map = new HashMap<>();
-    map.put("age","18");
-    map.put("name","lol");
-    userMapper.deleteByMap(map);
 }
 ```
 

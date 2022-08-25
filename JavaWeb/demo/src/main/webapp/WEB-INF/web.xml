@@ -6,12 +6,4 @@
          version="3.1"
          metadata-complete="true">
 
-    <servlet>
-        <servlet-name>demo</servlet-name>
-        <servlet-class>servlet.FileUpload</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>demo</servlet-name>
-        <url-pattern>/upload.do</url-pattern>
-    </servlet-mapping>
 </web-app>

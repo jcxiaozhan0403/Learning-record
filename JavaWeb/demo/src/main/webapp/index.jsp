@@ -7,10 +7,6 @@
     <title>Title</title>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/upload.do" method="post" enctype="multipart/form-data">
-    上传用户: <input type="text" name="username"><br/>
-    上传文件：<input type="file" name="file"><br/>
-    <input type="submit" value="提交">
-</form>
+
 </body>
 </html>
