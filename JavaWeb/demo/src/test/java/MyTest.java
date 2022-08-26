@@ -1,3 +1,5 @@
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.TableFieldInfo;
 import entity.User;
 import mapper.UserMapper;
 import org.junit.Test;
@@ -10,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Predicate;
+
 
 /**
  * @author John.Cena
@@ -53,5 +57,49 @@ public class MyTest {
         user.setAge(22);
         user.setEmail("1111@qq.com");
         userMapper.updateById(user);
+    }
+
+    @Test
+    public void testUpdatex(){
+        QueryWrapper queryWrapper = new QueryWrapper();
+        HashMap<String, Object> map = new HashMap<String,Object>();
+        map.put("name","李爽");
+        map.put("age","21");
+        Object o = queryWrapper.allEq(map);
+
+        List list = userMapper.selectList(queryWrapper);
+
+        for (Object o1 : list) {
+            System.out.println(o1);
+        }
+
+    }
+
+    @Test
+    public void testSelect02(){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select(User.class, new Predicate<TableFieldInfo>() {
+            @Override
+            public boolean test(TableFieldInfo tableFieldInfo) {
+                return "name".equals(tableFieldInfo.getColumn());
+            }
+        });
+        List<User> users = userMapper.selectList(queryWrapper);
+        System.out.println(users);
+    }
+
+    @Test
+    public void testSelect03(){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+
+        queryWrapper.select(User.class,new Predicate<TableFieldInfo>() {
+            @Override
+            public boolean test(TableFieldInfo tableFieldInfo) {
+                return !"email".equals(tableFieldInfo.getColumn());
+            }
+        });
+
+        List<User> users = userMapper.selectList(queryWrapper);
+        System.out.println(users);
     }
 }

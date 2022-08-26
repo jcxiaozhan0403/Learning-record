@@ -324,6 +324,190 @@ public enum IdType {
 
 ## Wrapper
 
+> 我们在实际操作数据库的时候会涉及到很多的条件，所以MP为我们提供了一个功能强大的条件构造器 Wrapper，使用它可以让我们非常方便的构造条件。
+
+Wrapper接口提供了一个抽象子类**AbstractWapper**
+
+**AbstractWapper**抽象类有两个子类**QueryWrapper**和**UpdateWrapper**，我们使用这两个类来编写条件
+
+### QueryWrapper
+
+#### 常用方法
+
+eq：equals，等于
+gt：greater than ，大于 >
+ge：greater than or equals，大于等于≥
+lt：less than，小于<
+le：less than or equals，小于等于≤
+between：相当于SQL中的BETWEEN
+like：模糊匹配。like("name","黄")，相当于SQL的name like '%黄%'
+likeRight：模糊匹配右半边。likeRight("name","黄")，相当于SQL的name like '黄%'
+likeLeft：模糊匹配左半边。likeLeft("name","黄")，相当于SQL的name like '%黄'
+notLike：notLike("name","黄")，相当于SQL的name not like '%黄%'
+isNull
+isNotNull
+and：SQL连接符AND
+or：SQL连接符OR
+
+in: in(“age",{1,2,3})相当于 age in(1,2,3)
+
+groupBy: groupBy("id","name")相当于 group by id,name
+
+orderByAsc :orderByAsc("id","name")相当于 order by id ASC,name ASC
+
+orderByDesc :orderByDesc ("id","name")相当于 order by id DESC,name DESC
+
+> select id,name,age,email from user where age>18 and email='349636607@qq.com'
+
+```java
+@Test
+public void testWrapper01(){
+    QueryWrapper wrapper = new QueryWrapper();
+    wrapper.gt("age",18);
+    wrapper.eq("email","349636607@qq.com");
+    List<User> users = userMapper.selectList(wrapper);
+    System.out.println(users);
+}
+```
+
+> select id,name,age,email from user where id in(1,2,3) and age between 12 and 29 and name like '%李%'
+
+```java
+@Test
+public void testWrapper02(){
+    QueryWrapper<User> wrapper = new QueryWrapper<>();
+    wrapper.in("id",1,2,3);
+    wrapper.between("age",12,29);
+    wrapper.like("name","李");
+    List<User> users = userMapper.selectList(wrapper);
+    System.out.println(users);
+}
+```
+
+> select id,name,age,email from user where id in(1,2,3) and age > 10 order by age desc
+
+```java
+@Test
+public void testWrapper03(){
+    QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+    queryWrapper.in("id",1,2,3);
+    queryWrapper.gt("age",10);
+    queryWrapper.orderByDesc("age");
+    List<User> users = userMapper.selectList(queryWrapper);
+    System.out.println(users);
+}
+```
+
+#### select方法
+
+select用于指定查询哪些列
+
+> select id,name from user
+
+```java
+@Test
+public void testSelect01(){
+    QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+    queryWrapper.select("id","name");
+    List<User> users = userMapper.selectList(queryWrapper);
+    System.out.println(users);
+}
+```
+
+方法的第一个参数为实体类的class对象，第二个参数为Predicate类型，可以使用lambda的写法，过滤要查询的字段 (主键除外)。
+
+重写test方法，return true表示此字段要查询，false表示忽略不查询
+
+> select id,name from user
+
+```java
+@Test
+public void testSelect02(){
+    QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+    queryWrapper.select(User.class, new Predicate<TableFieldInfo>() {
+        @Override
+        public boolean test(TableFieldInfo tableFieldInfo) {
+            return "name".equals(tableFieldInfo.getColumn());
+        }
+    });
+    List<User> users = userMapper.selectList(queryWrapper);
+    System.out.println(users);
+}
+```
+
+方法第一个参数为Predicate类型，可以使用lambda的写法，过滤要查询的字段 (主键除外) 。(此方法存在问题)
+
+忽略email这一列进行查询
+
+> select id,name,age from user
+
+```java
+@Test
+public void testSelect03(){
+    QueryWrapper<User> queryWrapper = new QueryWrapper<>(new User());
+    queryWrapper.select(new Predicate<TableFieldInfo>() {
+        @Override
+        public boolean test(TableFieldInfo tableFieldInfo) {
+            return !"email".equals(tableFieldInfo.getColumn());
+        }
+    });
+    List<User> users = userMapper.selectList(queryWrapper);
+    System.out.println(users);
+}
+```
+
+### UpdateWrapper
+
+我们前面在使用update方法时需要创建一个实体类对象传入，用来指定要更新的列及对应的值。但是如果需要更新的列比较少时，创建这么一个对象显的有点麻烦和复杂。
+
+​		我们可以使用UpdateWrapper的set方法来设置要更新的列及其值。同时这种方式也可以使用Wrapper去指定更复杂的更新条件。
+
+> update user set age = 99 where id > 1
+
+```java
+@Test
+public void testUpdateWrapper(){
+    UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+    updateWrapper.gt("id",1);
+    updateWrapper.set("age",99);
+    userMapper.update(null,updateWrapper);
+}
+```
+
+### Lambda条件构造器
+
+我们前面在使用条件构造器时列名都是用字符串的形式去指定。这种方式无法在编译期确定列名的合法性。
+
+​	所以MP提供了一个Lambda条件构造器可以让我们直接以实体类的方法引用的形式来指定列名。这样就可以弥补上述缺陷。
+
+> select id,name,age,email from user where age > 18 and email = '349636607@qq.com'
+
+如果使用之前的条件构造器写法如下
+
+```java
+@Test
+public void testLambdaWrapper(){
+    QueryWrapper<User> queryWrapper = new QueryWrapper();
+    queryWrapper.gt("age",18);
+    queryWrapper.eq("email","349636607@qq.com");
+    List<User> users = userMapper.selectList(queryWrapper);
+}
+```
+
+如果使用Lambda条件构造器写法如下
+
+```java
+@Test
+public void testLambdaWrapper2(){
+    LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+    queryWrapper.gt(User::getAge,18);
+    queryWrapper.eq(User::getEmail,"349636607@qq.com");
+    List<User> users = userMapper.selectList(queryWrapper);
+}
+```
+
+## 自定义SQL
+
 ## 自动填充
 
 创建时间、更改时间！ 这些操作一般都是自动化完成，我们不希望手动更新
