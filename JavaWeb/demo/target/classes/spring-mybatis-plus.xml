@@ -2,13 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        https://www.springframework.org/schema/context/spring-context.xsd">
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <!--开启注解支持-->
-    <context:annotation-config/>
+    <context:component-scan base-package="mapper" />
+    <context:component-scan base-package="service" />
 
     <!--关联数据库配置文件-->
     <context:property-placeholder location="classpath:database.properties"/>
@@ -27,6 +30,11 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="globalConfig" ref="globalConfig"/>
         <property name="configuration" ref="configuration" />
+        <property name="plugins">
+            <array>
+                <ref bean="mybatisPlusInterceptor"/>
+            </array>
+        </property>
     </bean>
 
     <!--扫描mapper接口，使用的依然是Mybatis原生的扫描器-->
@@ -47,4 +55,18 @@
         <property name="mapUnderscoreToCamelCase" value="false" />
         <property name="logImpl" value="org.apache.ibatis.logging.stdout.StdOutImpl" />
     </bean>
+
+    <bean id="mybatisPlusInterceptor" class="com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor">
+        <property name="interceptors">
+            <list>
+                <ref bean="paginationInnerInterceptor"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="paginationInnerInterceptor" class="com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor">
+        <!-- 对于单一数据库类型来说,都建议配置该值,避免每次分页都去抓取数据库类型 -->
+        <constructor-arg name="dbType" value="H2"/>
+    </bean>
+
 </beans>

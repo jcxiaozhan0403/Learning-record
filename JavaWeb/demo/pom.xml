@@ -87,5 +87,10 @@
       <artifactId>aspectjweaver</artifactId>
       <version>1.9.4</version>
     </dependency>
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>5.2.1</version>
+    </dependency>
   </dependencies>
 </project>

@@ -273,8 +273,9 @@ public enum IdType {
         http://www.springframework.org/schema/context
         https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--开启注解支持-->
-    <context:annotation-config/>
+    <!--开启包扫描，自动将注解注册为bean-->
+    <context:component-scan base-package="mapper" />
+    <context:component-scan base-package="service" />
 
     <!--关联数据库配置文件-->
     <context:property-placeholder location="classpath:database.properties"/>
@@ -297,7 +298,7 @@ public enum IdType {
         <property name="configuration" ref="configuration" />
     </bean>
 
-    <!--扫描mapper接口，使用的依然是Mybatis原生的扫描器-->
+    <!--动态扫描mapper接口，使用的依然是Mybatis原生的扫描器-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="mapper"/>
     </bean>
@@ -460,7 +461,7 @@ public void testSelect03(){
 
 我们前面在使用update方法时需要创建一个实体类对象传入，用来指定要更新的列及对应的值。但是如果需要更新的列比较少时，创建这么一个对象显的有点麻烦和复杂。
 
-​		我们可以使用UpdateWrapper的set方法来设置要更新的列及其值。同时这种方式也可以使用Wrapper去指定更复杂的更新条件。
+我们可以使用UpdateWrapper的set方法来设置要更新的列及其值。同时这种方式也可以使用Wrapper去指定更复杂的更新条件。
 
 > update user set age = 99 where id > 1
 
@@ -478,7 +479,7 @@ public void testUpdateWrapper(){
 
 我们前面在使用条件构造器时列名都是用字符串的形式去指定。这种方式无法在编译期确定列名的合法性。
 
-​	所以MP提供了一个Lambda条件构造器可以让我们直接以实体类的方法引用的形式来指定列名。这样就可以弥补上述缺陷。
+所以MP提供了一个Lambda条件构造器可以让我们直接以实体类的方法引用的形式来指定列名。这样就可以弥补上述缺陷。
 
 > select id,name,age,email from user where age > 18 and email = '349636607@qq.com'
 
@@ -507,6 +508,151 @@ public void testLambdaWrapper2(){
 ```
 
 ## 自定义SQL
+
+虽然MP为我们提供了很多常用的方法，并且也提供了条件构造器。但是如果真的遇到了复杂的SQL时，我们还是需要自己去定义方法，自己去写对应的SQL，这样SQL也更有利于后期维护。
+
+因为MP是对mybatis做了增强，所以还是支持之前Mybatis的方式去自定义方法。
+
+同时也支持在使用Mybatis的自定义方法时使用MP的条件构造器帮助我们进行条件构造。
+
+1. 在Mapper中定义方法
+
+```java
+public interface UserMapper extends BaseMapper<User> {
+
+    User findMyUser(Long id);
+}
+
+```
+
+2. 创建Mapper映射文件
+
+`UserMapper.xml`
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间：绑定一个对应的Mapper接口 -->
+<mapper namespace="mapper.UserMapper">
+    <select id="findMyUser" resultType="entity.User">
+        select * from tb_user where id = #{id}
+    </select>
+</mapper>
+```
+
+3. 如果没有动态扫码mapper，就需要在在配置文件中手动注入mapper
+
+```xml
+<bean id="sqlSessionFactory"
+      class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
+    <property name="mapperLocations" value="classpath:/mapper/**/*.xml" />
+</bean>
+```
+
+4. 测试
+
+```java
+@Test
+public void test(){
+    User myUser = userMapper.findMyUser(1l);
+    System.out.println(myUser);
+}
+```
+
+## 分页插件
+
+1. 配置分页过滤器
+
+`spring-mybatis-plus.xml`
+
+```xml
+<bean id="mybatisPlusInterceptor" class="com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor">
+    <property name="interceptors">
+        <list>
+            <ref bean="paginationInnerInterceptor"/>
+        </list>
+    </property>
+</bean>
+
+<bean id="paginationInnerInterceptor" class="com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor">
+    <!-- 对于单一数据库类型来说,都建议配置该值,避免每次分页都去抓取数据库类型 -->
+    <constructor-arg name="dbType" value="H2"/>
+</bean>
+
+<bean id="sqlSessionFactory"
+      class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"/>
+    <property name="globalConfig" ref="globalConfig"/>
+    <property name="configuration" ref="configuration" />
+    <property name="plugins">
+        <array>
+            <ref bean="mybatisPlusInterceptor"/>
+        </array>
+    </property>
+</bean>
+```
+
+2. 测试
+
+```java
+@Test
+public void testPage(){
+    /**
+         * new Page<>(current,size);
+         * current：页码
+         * size：每一页容量
+         */
+    IPage<User> page = new Page<>(1,2);
+
+    userMapper.selectPage(page, null);
+    System.out.println("总页数" + page.getPages());
+    System.out.println("当前页的数据:" + page.getRecords());
+    System.out.println("总记录数:" + page.getTotal());
+    System.out.println("当前页码:" + page.getCurrent());
+    System.out.println("页面容量" + page.getSize());
+}
+```
+
+**除了使用MP提供的分页插件外，PageHelper也是可以正常用于MP的**
+
+## Service CRUD接口
+
+相比于Mapper接口，Service层主要是支持了更多批量操作的方法。
+
+1. Service接口继承IService
+
+```java
+public interface UserService extends IService<User> {
+
+}
+```
+
+2. Service实现类继承ServiceImpl
+
+```java
+@Service
+public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements UserService {
+	
+}
+```
+
+3. 测试
+
+```java
+@Autowired
+private UserService userService;
+
+
+@Test
+public void testSeervice(){
+    List<User> list = userService.list();
+    System.out.println(list);
+}
+```
+
+
 
 ## 自动填充
 
@@ -640,31 +786,6 @@ public void testOptimisticLocker2(){
     userMapper.updateById(user2);
     //自旋锁来多次尝试提交！
     userMapper.updateById(user1);//如果没有乐观锁就会覆盖插队线程的值
-}
-```
-
-## 分页查询
-1. 注册分页插件
-```java
- //分页插件
-// 最新版
-@Bean
-public MybatisPlusInterceptor mybatisPlusInterceptor() {
-    MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
-    interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.H2));
-    return interceptor;
-}
-```
-2. 测试
-```java
-@Test//测试分页查询
-public void testPage(){
-    //参数一current：当前页   参数二size：页面大小
-    //使用了分页插件之后，所有的分页操作都变得简单了
-    Page<User> page = new Page<>(2,5);
-    userMapper.selectPage(page,null);
-    page.getRecords().forEach(System.out::println);
-    System.out.println("总页数==>"+page.getTotal());
 }
 ```
 

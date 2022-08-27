@@ -1,5 +1,5 @@
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.TableFieldInfo;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import entity.User;
 import mapper.UserMapper;
 import org.junit.Test;
@@ -7,13 +7,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import service.UserService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.function.Predicate;
-
 
 /**
  * @author John.Cena
@@ -26,80 +22,35 @@ public class MyTest {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private UserService userService;
+
     @Test
     public void testDeleteById(){
-        userMapper.deleteById(1);
-    }
-
-    @Test
-    public void testDeleteBatchIds(){
-        ArrayList<Integer> integers = new ArrayList<Integer>();
-        integers.add(2);
-        integers.add(3);
-        integers.add(4);
-        userMapper.deleteBatchIds(integers);
-    }
-
-    @Test
-    public void testD(){
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        //
-        map.put("age","18");
-        map.put("name","John.Cena");
-        userMapper.deleteByMap(map);
-    }
-
-    @Test
-    public void testUpdate(){
-        User user = new User();
-        user.setId(3);
-        user.setName("John.Cena");
-        user.setAge(22);
-        user.setEmail("1111@qq.com");
-        userMapper.updateById(user);
-    }
-
-    @Test
-    public void testUpdatex(){
-        QueryWrapper queryWrapper = new QueryWrapper();
-        HashMap<String, Object> map = new HashMap<String,Object>();
-        map.put("name","李爽");
-        map.put("age","21");
-        Object o = queryWrapper.allEq(map);
-
-        List list = userMapper.selectList(queryWrapper);
-
-        for (Object o1 : list) {
-            System.out.println(o1);
+        List<User> list = userService.list();
+        for (User user : list) {
+            System.out.println(user.toString());
         }
 
     }
 
-    @Test
-    public void testSelect02(){
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.select(User.class, new Predicate<TableFieldInfo>() {
-            @Override
-            public boolean test(TableFieldInfo tableFieldInfo) {
-                return "name".equals(tableFieldInfo.getColumn());
-            }
-        });
-        List<User> users = userMapper.selectList(queryWrapper);
-        System.out.println(users);
-    }
 
     @Test
-    public void testSelect03(){
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+    public void testPage(){
+        /**
+         * new Page<>(current,size);
+         * current：页码
+         * size：每一页容量
+         */
+        IPage<User> page = new Page<>(1,2);
 
-        queryWrapper.select(User.class,new Predicate<TableFieldInfo>() {
-            @Override
-            public boolean test(TableFieldInfo tableFieldInfo) {
-                return !"email".equals(tableFieldInfo.getColumn());
-            }
-        });
-
-        List<User> users = userMapper.selectList(queryWrapper);
-        System.out.println(users);
+        userMapper.selectPage(page, null);
+        System.out.println("总页数" + page.getPages());
+        System.out.println("当前页的数据:" + page.getRecords());
+        System.out.println("总记录数:" + page.getTotal());
+        System.out.println("当前页码:" + page.getCurrent());
+        System.out.println("页面容量" + page.getSize());
     }
+
+
 }
