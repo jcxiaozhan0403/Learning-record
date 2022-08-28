@@ -652,7 +652,122 @@ public void testSeervice(){
 }
 ```
 
+## 代码生成器
 
+MP提供了一个代码生成器，可以让我们一键生成实体类，Mapper接口，Service，Controller等全套代码
+
+1. 添加依赖
+
+```xml
+<!--mybatisplus代码生成器-->
+<dependency>
+    <groupId>com.baomidou</groupId>
+    <artifactId>mybatis-plus-generator</artifactId>
+    <version>3.4.1</version>
+</dependency>
+<!--模板引擎-->
+<dependency>
+    <groupId>org.freemarker</groupId>
+    <artifactId>freemarker</artifactId>
+</dependency>
+<!--slf4j日志-->
+<!--springboot项目自带，spring项目需要手动导入-->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version>1.7.7</version>
+</dependency>
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-log4j12</artifactId>
+    <version>1.7.7</version>
+</dependency>
+```
+
+2. 创建生成类，并执行
+
+`旧版`
+
+```java
+public class CodeGenerator {
+    public static void main(String[] args) {
+        // 1. 构建一个代码生成器对象
+        AutoGenerator ag = new AutoGenerator();
+
+        // 2. 配置策略
+        // 2.1 全局配置
+        GlobalConfig gc = new GlobalConfig();
+        String projectPath = System.getProperty("user.dir"); //获取当前项目路径
+        gc.setOutputDir(projectPath+"/src/main/java"); //将代码生成到项目路径下
+        gc.setAuthor("John.Cena"); // 设置作者
+        gc.setOpen(false); // 生成完是否打开文件夹
+        gc.setFileOverride(true); // 是否覆盖文件
+        gc.setServiceName("%sService"); // service文件名字格式
+        gc.setIdType(IdType.AUTO); // 主键生成策略
+        gc.setDateType(DateType.ONLY_DATE); // 日期格式
+//        gc.setSwagger2(true); // 是否配置swagger
+        ag.setGlobalConfig(gc);
+
+        // 2.2 数据源配置
+        DataSourceConfig dsc = new DataSourceConfig();
+        dsc.setDbType(DbType.MYSQL); // 数据库类型
+        dsc.setDriverName("com.mysql.jdbc.Driver"); // 驱动名字
+        dsc.setUrl("jdbc:mysql://localhost:3306/mybatis_plus?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8"); // url
+        dsc.setUsername("root");
+        dsc.setPassword("lishuang001219");
+        ag.setDataSource(dsc);
+
+        // 2.3 包配置
+        PackageConfig pc = new PackageConfig();
+        pc.setParent("com.generator");
+        ag.setPackageInfo(pc);
+
+        // 2.4 策略配置
+        StrategyConfig sc = new StrategyConfig();
+        sc.setInclude("tb_user"); // 设置要映射的表名
+        sc.setNaming(NamingStrategy.underline_to_camel); // 设置类命名规则-下划线转驼峰
+        sc.setColumnNaming(NamingStrategy.underline_to_camel); //设置字段命名规则
+        sc.setEntityLombokModel(true); //是否使用Lombok
+        sc.setRestControllerStyle(true); // controller采用restful风格
+        //同时,也可以配置自动填充,逻辑删除,乐观锁等等...
+        ag.setStrategy(sc);
+
+        //使用Freemarker作为模板引擎
+        ag.setTemplateEngine(new FreemarkerTemplateEngine());
+
+        // 3. 执行代码生成器
+        ag.execute();
+    }
+}
+```
+
+`新版`
+
+```java
+public class CodeGenerator {
+    public static void main(String[] args) {
+        FastAutoGenerator.create("jdbc:mysql://localhost:3306/mybatis_plus?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8", "root", "lishuang001219")
+                .globalConfig(builder -> {
+                    builder.author("John.Cena") // 设置作者
+//                            .enableSwagger() // 开启 swagger 模式，这里开启的是对swagger2的支持
+                            .fileOverride() // 覆盖已生成文件
+                            .outputDir(".\\src\\main\\java"); // 指定输出到项目路径下
+                })
+                .packageConfig(builder -> {
+                    builder.parent("com") // 设置父包名
+                            .moduleName("generator"); // 设置父包模块名
+//                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "D://")); // 设置mapperXml生成路径
+                })
+                .strategyConfig(builder -> {
+                    builder.addInclude("tb_user") // 设置需要生成的表名
+                            .addTablePrefix("tb_", "c_"); // 设置过滤表前缀
+                })
+                //使用freemark引擎要引入freemark的依赖
+                .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
+                .execute();
+    }
+}
+```
 
 ## 自动填充
 
@@ -693,13 +808,14 @@ public class User {
 //字段  字段添加填充内容
 @TableField(fill = FieldFill.INSERT)//value = ("create_time"),
 private Date createTime;
+
 @TableField(fill = FieldFill.INSERT_UPDATE)
 private Date updateTime;
 ```
 3. 创建处理器
 ```java
 @Slf4j//日志
-@Component//丢到springboot里   一定不要忘记把处理器加到Ioc容器中!
+@Component//注册组件
 public class MyMetaObjectHandler extends MetaObjectHandler {//extends
     @Override//插入时的填充策略
     public void insertFill(MetaObject metaObject) {
@@ -717,14 +833,62 @@ public class MyMetaObjectHandler extends MetaObjectHandler {//extends
 ```
 4. 插入数据时，不用设置新增的两个字段，数据库会自动创建、更新
 
+## 逻辑删除
+
+> 我们在删除的时候通常不会使用delete真正地对数据进行删除。而是使用一个标志字段，控制数据的展示
+
+==注：如果3.3.0版本之前还需要在对应的逻辑字段上加上`@TableLogic`注解==
+
+1. 在数据库表中加入一个标志字段，例如flag，用1表示删除，用0表示未删除
+2. 在配置文件中配置逻辑删除
+
+```xml
+<bean id="dbConfig" class="com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig">
+    <property name="tablePrefix" value="tb_" />
+    <property name="idType" value="AUTO" />
+    <!--全局逻辑删除字段名-->
+    <property name="logicDeleteField" value="flag" />
+    <!--用1表示逻辑已删除值-->
+    <property name="logicDeleteValue" value="1" />
+    <!--用0表示逻辑未删除值-->
+    <property name="logicNotDeleteValue" value="0" />
+</bean>
+
+<bean id="globalConfig" class="com.baomidou.mybatisplus.core.config.GlobalConfig">
+    <property name="dbConfig" ref="dbConfig" />
+</bean>
+```
+
+3. 测试
+
+```java
+//查看控制台两条sql执行语句发现，逻辑删除已经实现
+//UPDATE tb_user SET flag=1 WHERE id=? AND flag=0
+//SELECT id,name,age,email,flag FROM tb_user WHERE id IN ( ? , ? , ? ) AND flag=0
+
+@Test
+public void testDeleteById(){
+    //删除单个值
+    userMapper.deleteById(1);
+}
+
+@Test//通过id查询多个用户
+public void testSelectBatchIds(){
+    List<User> users = userMapper.selectBatchIds(Arrays.asList(1L, 2L, 3L));
+    users.forEach(System.out::println);
+    //System.out.println(users);
+}
+```
+
 ## 乐观锁&悲观锁
-乐观锁：顾名思义十分乐观,他总是认为不会出现问题,无论干什么都不上锁!如果出现了问题,再次更新值测试
-悲观锁：顾名思义十分悲观,他总是认为出现问题,无论干什么都会上锁!再去操作!
+
+乐观锁：顾名思义十分乐观，他总是认为不会出现问题，无论干什么都不上锁，如果出现了问题，再次更新值测试
+悲观锁：顾名思义十分悲观，他总是认为出现问题，无论干什么都会上锁，再去操作!
 
 ### 乐观锁机制
 1. 取出记录时，获取当前version
 2. 更新时，带上这个version
-3. 执行更新时，set version = newVersion where version = oldVersion，如果version不对,就更新失败
+3. 执行更新时，set version = newVersion where version = oldVersion，如果version不对，就更新失败
 
 ```sql
 --乐观锁：先查询，获得版本号
@@ -736,11 +900,12 @@ update user set name = "wsk",version = version+1
 where id = 1 and version = 1
 ```
 
-### MybatisPlus中乐观锁的使用
+### MP中乐观锁的使用
 1. 表中添加version字段
 2. 实体类中添加属性
 ```java
-@Version//乐观锁version注解
+//乐观锁version注解
+@Version
 private Integer version;
 ```
 3. 注册组件，一般会把Mybatis的配置专门抽取出来，单独写一个配置类
@@ -758,34 +923,37 @@ public class MyBatisPlusConfig {
 }
 ```
 4. 测试
-- 成功
+
+`成功`
+
 ```java
-@Test//测试乐观锁成功
-public void testOptimisticLocker1(){
-    //1、查询用户信息
-    User user = userMapper.selectById(1L);
-    //2、修改用户信息
-    user.setAge(18);
-    user.setEmail("2803708553@qq.com");
-    //3、执行更新操作
-    userMapper.updateById(user);
+@Test
+public void test(){
+    QueryWrapper<User> wrapper = new QueryWrapper<>();
+    wrapper.eq("id",3);
+    User user = userMapper.selectOne(wrapper);
+
+    user.setAge(25);
+    int i = userMapper.updateById(user);
 }
 ```
-- 失败
+
+`失败`
+
 ```java
-@Test//测试乐观锁失败  多线程下
-public void testOptimisticLocker2(){
-    //线程1
-    User user1 = userMapper.selectById(1L);
+@Test
+public void test(){
+    User user1 = userMapper.selectById(1l);
     user1.setAge(1);
-    user1.setEmail("2803708553@qq.com");
-    //模拟另外一个线程执行了插队操作
-    User user2 = userMapper.selectById(1L);
-    user2.setAge(2);
-    user2.setEmail("2803708553@qq.com");
+    user1.setName("线程一");
+
+    //模拟线程插队
+    User user2 = userMapper.selectById(1l);
+    user2.setAge(100);
+    user2.setName("线程二");
+
     userMapper.updateById(user2);
-    //自旋锁来多次尝试提交！
-    userMapper.updateById(user1);//如果没有乐观锁就会覆盖插队线程的值
+    userMapper.updateById(user1);
 }
 ```
 

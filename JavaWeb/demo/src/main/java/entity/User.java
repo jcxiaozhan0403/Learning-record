@@ -1,5 +1,6 @@
 package entity;
 
+import com.baomidou.mybatisplus.annotation.Version;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,4 +18,7 @@ public class User {
     private String name;
     private int age;
     private String email;
+    private int flag;
+    @Version
+    private int version;
 }

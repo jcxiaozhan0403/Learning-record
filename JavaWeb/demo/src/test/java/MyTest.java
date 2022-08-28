@@ -1,5 +1,4 @@
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import entity.User;
 import mapper.UserMapper;
 import org.junit.Test;
@@ -9,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import service.UserService;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -27,30 +27,29 @@ public class MyTest {
 
     @Test
     public void testDeleteById(){
-        List<User> list = userService.list();
-        for (User user : list) {
-            System.out.println(user.toString());
-        }
-
+        //删除单个值
+        userMapper.deleteById(1);
     }
 
+    @Test//通过id查询多个用户
+    public void testSelectBatchIds(){
+        List<User> users = userMapper.selectBatchIds(Arrays.asList(1L, 2L, 3L));
+        users.forEach(System.out::println);
+        //System.out.println(users);
+    }
 
     @Test
-    public void testPage(){
-        /**
-         * new Page<>(current,size);
-         * current：页码
-         * size：每一页容量
-         */
-        IPage<User> page = new Page<>(1,2);
+    public void test(){
+        User user1 = userMapper.selectById(1l);
+        user1.setAge(1);
+        user1.setName("线程一");
 
-        userMapper.selectPage(page, null);
-        System.out.println("总页数" + page.getPages());
-        System.out.println("当前页的数据:" + page.getRecords());
-        System.out.println("总记录数:" + page.getTotal());
-        System.out.println("当前页码:" + page.getCurrent());
-        System.out.println("页面容量" + page.getSize());
+        //模拟线程插队
+        User user2 = userMapper.selectById(1l);
+        user2.setAge(100);
+        user2.setName("线程二");
+
+        userMapper.updateById(user2);
+        userMapper.updateById(user1);
     }
-
-
 }

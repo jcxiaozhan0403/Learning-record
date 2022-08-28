@@ -45,6 +45,9 @@
     <bean id="dbConfig" class="com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig">
         <property name="tablePrefix" value="tb_" />
         <property name="idType" value="AUTO" />
+        <property name="logicDeleteField" value="flag" />
+        <property name="logicDeleteValue" value="1" />
+        <property name="logicNotDeleteValue" value="0" />
     </bean>
 
     <bean id="globalConfig" class="com.baomidou.mybatisplus.core.config.GlobalConfig">
@@ -60,6 +63,7 @@
         <property name="interceptors">
             <list>
                 <ref bean="paginationInnerInterceptor"/>
+                <ref bean="optimisticLockerInnerInterceptor"/>
             </list>
         </property>
     </bean>
@@ -68,5 +72,7 @@
         <!-- 对于单一数据库类型来说,都建议配置该值,避免每次分页都去抓取数据库类型 -->
         <constructor-arg name="dbType" value="H2"/>
     </bean>
+
+    <bean class="com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor" id="optimisticLockerInnerInterceptor"/>
 
 </beans>
