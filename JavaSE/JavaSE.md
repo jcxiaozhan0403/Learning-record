@@ -1309,10 +1309,12 @@ try {
 import java.sql.*;
 
 public class Test {
-    // 将数据库对象设置为静态变量，保证连接只有一份
+    // 将数据库连接对象设置为静态变量，保证连接只有一份
     private static Connection conn;
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         //加载数据库驱动
+        //jdbc4.0之后不需要显式的去加载驱动，如果驱动包符合SPI模式就会自动加载，就是说程序会自动去项目中查找是否有驱动，不写也是可以的
+        //为了兼容老版本，还是建议显示加载数据库驱动
         Class.forName("com.mysql.jdbc.Driver"); //Mysql 5.0
         //Class.forName("com.mysql.cj.jdbc.Driver"); //Mysql 8.0
         //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //SqlServer
@@ -1361,7 +1363,7 @@ public class Test {
 JDBCUtil是对JDBC的一个简单封装的工具类，简化了开发过程的同时，不会影响程序性能
 
 ```java
-package com.ut;
+package utils;
 
 import java.io.IOException;
 import java.sql.*;
@@ -1373,7 +1375,7 @@ import java.util.Properties;
  * 可以通过一个配置文件的形式，导入
  *
  * */
-public class JDBCUtils {
+public class JDBCUtil {
     private static  String url;
     private static String pwd;
     private static  String user;
@@ -1382,7 +1384,7 @@ public class JDBCUtils {
         // 1. 读取，配置配置文件
         try {
             Properties properties = new Properties();
-            properties.load(handler.JDBCUtils.class.getClassLoader().getResourceAsStream("jdbc.properties"));
+            properties.load(JDBCUtils.class.getClassLoader().getResourceAsStream("jdbc.properties"));
             url = properties.getProperty("url");
             pwd = properties.getProperty("pwd");
             user = properties.getProperty("user");
@@ -1391,12 +1393,12 @@ public class JDBCUtils {
         }
 
     }
-    
+
     // 获取连接
     public static Connection getConnection() throws Exception{
         return DriverManager.getConnection(url,user,pwd);
     }
-    
+
     //关闭资源
     public static void close(Connection connection, Statement statement){
         if(statement != null){
@@ -1466,7 +1468,7 @@ conn.close();
 
 ## 数据库连接池
 > 数据库连接池负责分配、管理和释放数据库连接，它允许应用程序重复使用一个现有的数据库连接，而不是再重新建立一个；释放空闲时间超过最大空闲时间的数据库连接来避免因为没有释放数据库连接而引起的数据库连接遗漏。这项技术能明显提高对数据库操作的性能。
-
+>
 > 所有的数据库连接池都是继承了DataSource接口来进行实现的。
 
 ### 常用开源数据源
@@ -1518,6 +1520,18 @@ removeAbandonedTimeout=1
 `DBUtils.java`
 
 ```java
+package utils;
+
+import org.apache.commons.dbcp.BasicDataSourceFactory;
+
+import javax.sql.DataSource;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
+
 public class DBUtils {
     private static DataSource dataSource;
 
@@ -1600,6 +1614,8 @@ public class MyTest {
             System.out.println(resultSet.getInt("age"));
             System.out.println(resultSet.getString("num"));
         }
+        
+        
     }
 }
 ```
