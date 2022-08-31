@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.springframework.boot:spring-boot-test:2.5.6">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../Maven/apache-maven-3.8.3/maven-repo/org/springframework/boot/spring-boot-test/2.5.6/spring-boot-test-2.5.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../Maven/apache-maven-3.8.3/maven-repo/org/springframework/boot/spring-boot-test/2.5.6/spring-boot-test-2.5.6.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/../../Maven/apache-maven-3.8.3/maven-repo/org/springframework/boot/spring-boot-test/2.5.6/spring-boot-test-2.5.6-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../Maven/apache-maven-3.8.3/maven-repo/org/springframework/boot/spring-boot-test/2.5.6/spring-boot-test-2.5.6-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../../Maven/apache-maven-3.8.3/maven-repo/org/springframework/boot/spring-boot-test/2.5.6/spring-boot-test-2.5.6-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../Maven/apache-maven-3.8.3/maven-repo/org/springframework/boot/spring-boot-test/2.5.6/spring-boot-test-2.5.6-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

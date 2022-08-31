@@ -15,7 +15,7 @@ import java.io.IOException;
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    @Qualifier("UserServiceImpl")
+//    @Qualifier("UserServiceImpl")
     private UserService userService;
 
     @PostMapping("/login")

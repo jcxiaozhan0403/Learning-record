@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: io.swagger:swagger-models:1.5.6">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../Maven/apache-maven-3.8.3/maven-repo/io/swagger/swagger-models/1.5.6/swagger-models-1.5.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../Maven/apache-maven-3.8.3/maven-repo/io/swagger/swagger-models/1.5.6/swagger-models-1.5.6.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/../../Maven/apache-maven-3.8.3/maven-repo/io/swagger/swagger-models/1.5.6/swagger-models-1.5.6-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../Maven/apache-maven-3.8.3/maven-repo/io/swagger/swagger-models/1.5.6/swagger-models-1.5.6-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../../Maven/apache-maven-3.8.3/maven-repo/io/swagger/swagger-models/1.5.6/swagger-models-1.5.6-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../Maven/apache-maven-3.8.3/maven-repo/io/swagger/swagger-models/1.5.6/swagger-models-1.5.6-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

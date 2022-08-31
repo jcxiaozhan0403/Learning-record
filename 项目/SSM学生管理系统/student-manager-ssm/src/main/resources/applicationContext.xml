@@ -4,8 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <import resource="spring-mapper.xml"/>
-    <import resource="spring-service.xml"/>
+    <import resource="spring-mybatis.xml"/>
     <import resource="spring-mvc.xml"/>
 
 </beans>

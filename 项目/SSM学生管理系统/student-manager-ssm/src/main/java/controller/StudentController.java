@@ -14,7 +14,7 @@ import service.StudentService;
 public class StudentController {
 
     @Autowired
-    @Qualifier("StudentServiceImpl")
+//
     private StudentService studentService;
 
     private static final String Cls = "1";

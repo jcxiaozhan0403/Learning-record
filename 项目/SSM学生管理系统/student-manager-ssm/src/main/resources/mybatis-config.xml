@@ -7,10 +7,5 @@
     <typeAliases>
         <package name="pojo"/>
     </typeAliases>
-
-    <mappers>
-        <mapper resource="mapper/StudentMapper.xml"/>
-        <mapper resource="mapper/UserMapper.xml"/>
-    </mappers>
-
+    
 </configuration>

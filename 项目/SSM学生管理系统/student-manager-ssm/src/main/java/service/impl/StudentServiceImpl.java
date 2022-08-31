@@ -3,6 +3,7 @@ package service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import mapper.StudentMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pojo.Student;
 import service.StudentService;
@@ -13,6 +14,7 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
 
     //调用dao层的操作，设置一个set接口，方便Spring管理
+    @Autowired
     private StudentMapper studentMapper;
 
     public void setStudentMapper(StudentMapper studentMapper) {

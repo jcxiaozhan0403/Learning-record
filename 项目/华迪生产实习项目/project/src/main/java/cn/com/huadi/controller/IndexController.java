@@ -7,11 +7,11 @@ import cn.com.huadi.entity.User;
 import cn.com.huadi.service.impl.CollectService;
 import cn.com.huadi.service.impl.CurriculumService;
 import cn.com.huadi.service.impl.MycourseService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import util.ExcludeEmptyQueryWrapper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,8 +31,6 @@ public class IndexController {
     CurriculumService curriculumService;
     @Autowired
     CollectService collectService;
-    @Autowired
-    CollectController collectController;
 
     /**
      * 跳转到用户个人中心页面
@@ -65,7 +63,7 @@ public class IndexController {
         System.out.println(collects);
 
 
-        ExcludeEmptyQueryWrapper<Mycourse> queryWrapper = new ExcludeEmptyQueryWrapper<>();
+        QueryWrapper<Mycourse> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id", userId);
 
         ArrayList<Curriculum> curricula = null;
@@ -95,7 +93,7 @@ public class IndexController {
      */
     @RequestMapping("/favorites")
     public String favorites(String userId, Model model) {
-        ExcludeEmptyQueryWrapper<Collect> queryWrapper = new ExcludeEmptyQueryWrapper<>();
+        QueryWrapper<Collect> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id",userId);
         ArrayList<Curriculum> curricula = null;
         try {

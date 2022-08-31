@@ -1,16 +1,11 @@
 package cn.com.huadi.controller;
 
-import cn.com.huadi.entity.Curriculum;
 import cn.com.huadi.entity.Mycourse;
 import cn.com.huadi.service.impl.CurriculumService;
 import cn.com.huadi.service.impl.MycourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import util.ExcludeEmptyQueryWrapper;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <p>

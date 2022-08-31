@@ -47,9 +47,6 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/index}">不限</a>
                 </li>
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" th:href="@{'/selectNameType?type=' + ${course.type}}" th:text="${course.type}" th:if="${course.type != }"></a>-->
-<!--                </li>-->
             </ul>
             <ul class="nav justify-content-start" id="courseLecturer">
                 <li class="nav-item" style="margin-top: 7px;">
@@ -58,16 +55,12 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/index}">不限</a>
                 </li>
-<!--                <li class="nav-item" th:each="course : ${courseList}" th:if="${course.lecturer} != null">-->
-<!--                    <a class="nav-link" th:href="@{'/selectNameType?lecturer=' + ${course.lecturer}}" th:text="${course.lecturer}"></a>-->
-<!--                </li>-->
             </ul>
         </div>
     </section>
 
     <div class="album py-5 bg-light">
         <div class="container">
-
             <div class="row">
                 <div class="col-md-4" th:each="course : ${courseList}">
                     <div class="card mb-4 shadow-sm">
@@ -81,7 +74,6 @@
                                     <button th:onclick= "|javascript:addCollection('${session.user?.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary" th:if="${session.user != null && session.collects == null}" >收藏</button>
                                     <div th:each="collect : ${collects}" th:if="${session.user != null}">
                                         <button th:onclick= "|javascript:deleteCollect('${session.user?.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary" th:if="${session.user != null && collect == course.id}" >取消收藏</button>
-
                                     </div>
                                 </div>
                                 <small class="text-muted" th:text="'讲师：' + ${course.lecturer}"></small>
