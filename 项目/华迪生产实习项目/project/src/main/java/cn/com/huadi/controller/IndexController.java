@@ -4,9 +4,9 @@ import cn.com.huadi.entity.Collect;
 import cn.com.huadi.entity.Curriculum;
 import cn.com.huadi.entity.Mycourse;
 import cn.com.huadi.entity.User;
-import cn.com.huadi.service.impl.CollectService;
-import cn.com.huadi.service.impl.CurriculumService;
-import cn.com.huadi.service.impl.MycourseService;
+import cn.com.huadi.service.impl.CollectServiceImpl;
+import cn.com.huadi.service.impl.CurriculumServiceImpl;
+import cn.com.huadi.service.impl.MycourseServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,11 +26,13 @@ import java.util.List;
 @Controller
 public class IndexController {
     @Autowired
-    MycourseService mycourseService;
+    MycourseServiceImpl mycourseServiceImpl;
     @Autowired
-    CurriculumService curriculumService;
+    CurriculumServiceImpl curriculumServiceImpl;
     @Autowired
-    CollectService collectService;
+    CollectServiceImpl collectServiceImpl;
+    @Autowired
+    CollectController collectController;
 
     /**
      * 跳转到用户个人中心页面
@@ -60,20 +62,18 @@ public class IndexController {
             }
             model.addAttribute("collects",collects);
         }
-        System.out.println(collects);
-
 
         QueryWrapper<Mycourse> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id", userId);
 
         ArrayList<Curriculum> curricula = null;
         try {
-            List<Mycourse> list = mycourseService.list(queryWrapper);
+            List<Mycourse> list = mycourseServiceImpl.list(queryWrapper);
 
             curricula = new ArrayList<>();
 
             for (Mycourse mycourse : list) {
-                curricula.add(curriculumService.getById(mycourse.getCurriculumId()));
+                curricula.add(curriculumServiceImpl.getById(mycourse.getCurriculumId()));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,10 +97,10 @@ public class IndexController {
         queryWrapper.eq("user_id",userId);
         ArrayList<Curriculum> curricula = null;
         try {
-            List<Collect> list = collectService.list(queryWrapper);
+            List<Collect> list = collectServiceImpl.list(queryWrapper);
             curricula = new ArrayList<>();
             for (Collect collect : list) {
-                curricula.add(curriculumService.getById(collect.getCurriculumId()));
+                curricula.add(curriculumServiceImpl.getById(collect.getCurriculumId()));
             }
         } catch (Exception e) {
             e.printStackTrace();

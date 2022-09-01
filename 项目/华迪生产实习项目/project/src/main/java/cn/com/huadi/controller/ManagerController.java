@@ -2,8 +2,8 @@ package cn.com.huadi.controller;
 
 import cn.com.huadi.entity.Curriculum;
 import cn.com.huadi.entity.User;
-import cn.com.huadi.service.impl.CurriculumService;
-import cn.com.huadi.service.impl.UserService;
+import cn.com.huadi.service.impl.CurriculumServiceImpl;
+import cn.com.huadi.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,16 +20,16 @@ import java.util.List;
 @Controller
 public class ManagerController {
     @Autowired
-    CurriculumService curriculumService;
+    CurriculumServiceImpl curriculumServiceImpl;
     @Autowired
-    UserService userService;
+    UserServiceImpl userServiceImpl;
 
 
     @RequestMapping("/course/list")
     public String getCurriculumList(Model model){
         List<Curriculum> list = null;
         try {
-            list = curriculumService.list(null);
+            list = curriculumServiceImpl.list(null);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -43,7 +43,7 @@ public class ManagerController {
     public String userList(Model model) {
         List<User> list = null;
         try {
-            list = userService.list();
+            list = userServiceImpl.list();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

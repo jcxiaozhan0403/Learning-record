@@ -7,6 +7,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CurriculumService extends ServiceImpl<CurriculumMapper, Curriculum> implements ICurriculumService {
+public class CurriculumServiceImpl extends ServiceImpl<CurriculumMapper, Curriculum> implements ICurriculumService {
 
 }

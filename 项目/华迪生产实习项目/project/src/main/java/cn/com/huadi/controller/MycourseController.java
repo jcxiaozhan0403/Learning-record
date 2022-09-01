@@ -1,50 +1,43 @@
 package cn.com.huadi.controller;
 
 import cn.com.huadi.entity.Mycourse;
-import cn.com.huadi.service.impl.CurriculumService;
-import cn.com.huadi.service.impl.MycourseService;
+import cn.com.huadi.service.impl.CurriculumServiceImpl;
+import cn.com.huadi.service.impl.MycourseServiceImpl;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author yuan点
- * @since 2021-11-06
- */
 @RestController
 public class MycourseController {
     @Autowired
-    MycourseService mycourseService;
+    MycourseServiceImpl mycourseServiceImpl;
     @Autowired
-    CurriculumService curriculumService;
-    //    15
+    CurriculumServiceImpl curriculumServiceImpl;
+
+    /**
+     * 收藏课程
+     * @param mycourse
+     * @return
+     */
     @RequestMapping("/addMyCourse")
     public String addMyCourse(Mycourse mycourse){
-        try {
-            mycourseService.save(mycourse);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "false";
-        }
-
+        mycourseServiceImpl.save(mycourse);
         return "true";
     }
-    //    16
+
+    /**
+     * 取消收藏课程
+     * @param mycourse
+     * @return
+     */
     @RequestMapping("/deleteMyCourse")
     public String deleteMyCourse(Mycourse mycourse){
-        ExcludeEmptyQueryWrapper<Mycourse> wrapper = new ExcludeEmptyQueryWrapper<>();
+        QueryWrapper<Mycourse> wrapper = new QueryWrapper<>();
         wrapper.eq("user_id",mycourse.getUserId())
                 .eq("curriculum_id",mycourse.getCurriculumId());
-        try {
-            mycourseService.remove(wrapper);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "false";
-        }
+
+        mycourseServiceImpl.remove(wrapper);
         return "true";
     }
 }

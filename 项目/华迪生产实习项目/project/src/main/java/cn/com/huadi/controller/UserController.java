@@ -1,8 +1,8 @@
 package cn.com.huadi.controller;
 
 import cn.com.huadi.entity.User;
-import cn.com.huadi.service.impl.RoleService;
-import cn.com.huadi.service.impl.UserService;
+import cn.com.huadi.service.impl.RoleServiceImpl;
+import cn.com.huadi.service.impl.UserServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,9 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class UserController {
     @Autowired
-    UserService userService;
+    UserServiceImpl userServiceImpl;
     @Autowired
-    RoleService roleService;
+    RoleServiceImpl roleServiceImpl;
 
 
 //    10
@@ -38,7 +38,7 @@ public class UserController {
         if (equals){
             user.setPwd(pwd2);
             try {
-                userService.update(user, updateWrapper);
+                userServiceImpl.update(user, updateWrapper);
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
@@ -51,7 +51,7 @@ public class UserController {
     @RequestMapping("/deleteUser")
     public String deleteUser(String id){
         try {
-            userService.removeById(id);
+            userServiceImpl.removeById(id);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -63,7 +63,7 @@ public class UserController {
     @RequestMapping("/addUser")
     public String addUser(User user){
         try {
-            userService.save(user);
+            userServiceImpl.save(user);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -77,7 +77,7 @@ public class UserController {
         UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("id",user.getId());
         try {
-            userService.update(user,updateWrapper);
+            userServiceImpl.update(user,updateWrapper);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -95,7 +95,7 @@ public class UserController {
     public String getUserById(String id, Model model){
         User user = null;
         try {
-            user = userService.getById(id);
+            user = userServiceImpl.getById(id);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

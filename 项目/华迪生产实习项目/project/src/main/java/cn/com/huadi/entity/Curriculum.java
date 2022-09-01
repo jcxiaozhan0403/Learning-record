@@ -24,6 +24,4 @@ public class Curriculum implements Serializable {
     private String lecturer;
 
     private String type;
-
-    private Integer flag;
 }

@@ -1,12 +1,11 @@
 package cn.com.huadi.controller;
 
-import cn.com.huadi.entity.Collect;
 import cn.com.huadi.entity.Curriculum;
 import cn.com.huadi.entity.Role;
 import cn.com.huadi.entity.User;
-import cn.com.huadi.service.impl.CurriculumService;
-import cn.com.huadi.service.impl.RoleService;
-import cn.com.huadi.service.impl.UserService;
+import cn.com.huadi.service.impl.CurriculumServiceImpl;
+import cn.com.huadi.service.impl.RoleServiceImpl;
+import cn.com.huadi.service.impl.UserServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,11 +27,11 @@ import java.util.List;
 @Controller
 public class LoginController {
     @Autowired
-    UserService userService;
+    UserServiceImpl userServiceImpl;
     @Autowired
-    RoleService roleService;
+    RoleServiceImpl roleServiceImpl;
     @Autowired
-    CurriculumService curriculumService;
+    CurriculumServiceImpl curriculumServiceImpl;
     @Autowired
     CollectController collectController;
 
@@ -41,8 +40,8 @@ public class LoginController {
      * 跳转到到登录页面
      * @return
      */
-    @GetMapping("/login")
-    public String toLogin() {
+    @GetMapping(value = {"/login","/"})
+    public String toLoginPage() {
        return "login";
     }
 
@@ -55,7 +54,7 @@ public class LoginController {
      * @return
      */
     @RequestMapping("/checkLogin")
-    public String longin(@RequestParam("username") String name, @RequestParam("password") String pwd, @RequestParam("userType") String role, HttpServletRequest request){
+    public String checkLogin(@RequestParam("username") String name, @RequestParam("password") String pwd, @RequestParam("userType") String role, HttpServletRequest request){
         HttpSession session = request.getSession();
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         User user = null;
@@ -65,23 +64,25 @@ public class LoginController {
                 .eq("pwd",pwd)
                 .eq("role",role);
         try {
-            user = userService.getOne(queryWrapper);
-            byId = roleService.getById(role);
+            user = userServiceImpl.getOne(queryWrapper);
+            byId = roleServiceImpl.getById(role);
         } catch (Exception e) {
             e.printStackTrace();
         }
         if (user != null){
-
             if (role.equals("2")) {
+                //session中存入用户信息和用户权限
                 session.setAttribute("user",user);
                 session.setAttribute("role",byId);
+                //普通用户管理界面
                 return "redirect:/index";
             }else if (role.equals("1")){
                 session.setAttribute("user",user);
                 session.setAttribute("role",byId);
+                //管理员管理界面
                 return "redirect:/management";
             }
-
+        //验证失败跳转登录页面
         }else {
             return "/login";
         }
@@ -96,6 +97,7 @@ public class LoginController {
     @GetMapping("/logout")
     public String logout(HttpServletRequest req) {
         User user = (User) req.getSession().getAttribute("user");
+        //清除session中的用户信息和权限信息
         if ( user != null){
             req.getSession().removeAttribute("user");
             req.getSession().removeAttribute("role");
@@ -112,39 +114,30 @@ public class LoginController {
      */
     @GetMapping("/index")
     public String index(Model model,HttpServletRequest request) {
-        List<Integer> collects = new ArrayList<>();
-
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+
         if (user != null) {
-            List<Curriculum> curriculums = collectController.getCollect(user.getId().toString());
-            for (Curriculum curriculum : curriculums) {
+            //查询用户的收藏课程列表
+            List<Integer> collects = new ArrayList<>();
+            List<Curriculum> curricula = collectController.getCollect(user.getId().toString());
+            for (Curriculum curriculum : curricula) {
                 collects.add(curriculum.getId());
             }
-            model.addAttribute("collects",collects);
-        }
-        System.out.println(collects);
-        List<Curriculum> list = null;
-        try {
-            list = curriculumService.list(null);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+
+            //存入用户所有收藏课程的id
+            session.setAttribute("collects",collects);
+        }else {
+            //没有用户信息，跳转到登录页面
+            return "redirect:/login";
         }
 
-        model.addAttribute("courseList",list);
+        //查询所有课程列表
+        List<Curriculum> courseList = null;
+        courseList = curriculumServiceImpl.list(null);
+        model.addAttribute("courseList",courseList);
+
         return "index";
-    }
-
-
-    /**
-     * 重定向到主页
-     * @return
-     */
-    @GetMapping("/")
-    public String indexRedirect() {
-
-        return "redirect:/index";
     }
 
     /**

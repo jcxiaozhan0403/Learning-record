@@ -1,190 +1,195 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="/images/logo.svg" type="image/svg">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v3.8.5">
-    <title>智慧医养—在线健康教育平台</title>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="/images/logo.svg" type="image/svg">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Jekyll v3.8.5">
+        <title>智慧医养—在线健康教育平台</title>
+        
+        <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+        <script src="/webjars/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+        <link href="/webjars/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/index.css" />
 
-    <!-- Bootstrap core CSS -->
-    <link href="/webjars/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/index.css" />
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
             }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+        </style>
+        <style type="text/css">#MsnDialog.ad, #MyMoveAd, #QQ_Full, #ad-SNSSplashAd, #ad6cn, #adBody07, #adLeftFloat, #adRightFloat, #ad_box1, #ad_box2, #ad_full, #ad_headerbanner, #ads_c_tpc, #ads_top_video, #adtop1, #adx_cggp, #crazy_ad_float, #crazy_ad_layer, #cs_left_couplet, #cs_right_couplet, #doyoo_mon_mask, #doyoo_monitor, #duilian_left, #duilian_right, #eis_pad1, #eis_pad2, #floatAd, #floatad-winpop, #fwin_popad_7ree, #fwin_popad_7ree + #fwin_dialog, #gg300, #googleAdIndexTop, #haoetv1, #js-ad-map, #js_ads_banner_top, #js_ads_banner_top_slide, #kfpopupDiv, #leftCouple, #leftCouplet, #leftFloat + #rightFloat, #left_couple, #left_down_float_ad, #left_float + #right_float, #left_top_ad, #left_up_float_ad, #lovexin1, #lovexin11, #lovexin12, #lovexin13, #lovexin14 { display: none!important; z-index:-1!important; height:0px!important;}
+        #lovexin2, #mbjx_ad, #miaov_float_layer, #micast_ads, #movieInfoRight, #my-adsFPR, #navcontainer + .moneyarea, #netease_mail_footer, #olfullad, #overture_ads_bottom_td, #overture_ads_top_td, #popup.t, #ptcmsad1, #qj960a, #qj960b, #results.content-main > .eLeft, #rightCouple, #rightCouple + #leftFloat, #rightCouplet, #rightCouplet + #leftFloat, #right_couple, #right_couple + #left_float, #right_down_float_ad, #right_up_float_ad, #shareman_ad, #sitefocus.focus, #snActive-wrap, #table1[width="468"][height="50"], #table1[width="794"][height="60"], #table1[width="812"][height="50"], #tanx-con-1, #tanx-fold-main, #textggs, #top_ads0, #toperAd2, #toptb + div[align="center"], #tr_ad1, #tr_ad10, #tr_ad11, #tr_ad2, #tr_ad3, #tr_ad4, #tr_ad5, #tr_ad6, #tr_ad7, #tr_ad8, #tr_ad9, #tripadvisor-ad, #xinnxi, #xinxi { display: none!important; z-index:-1!important; height:0px!important;}
+        #zds_ad, ._cggp, ._ggs, ._popIn_recommend_article_ad, ._popIn_recommend_article_ad_reserved, .a_cn, .a_fl, .a_pb, .a_pr, .a_sxc, .a_xsfl, .ad-above-footer, .ad-below-adjacent-post, .ad-below-header-menu, .ad-below-post-title, .ad-below-related-post, .ad-couplet-common, .ad-left-down, .ad-left-top, .ad-right-down, .ad-right-top, .ad-site, .ad250left, .ad250right, .ad300left, .ad336left, .ad990x130, .ad990x90, .ad_couplebanner, .ad_fixed, .ad_footerbanner, .ad_headerbanner, .ad_hf, .ad_home_current, .ad_midd, .ad_right_1, .ad_right_2, .ad_thread, .ads > a > img[src*=".sinaimg."], .adsense160, .adsense200, .adsoho, .assort-ad, .banner-ad-section, .bdyp-sygg-ul, .below_ads, .bm.a_c, .bn728-93, .bottom-adv, .bottomSponsor { display: none!important; z-index:-1!important; height:0px!important;}
+        .bus_adsbox, .cari-ads, .chat-ad, .chat-right-ad, .chat-sysbroadcast-ad, .chat-top-ad, .comiis_adbox, .con_ad, .content-video > .ads, .content-video > .ads-player, .content_ad_300, .couplet_9cb0d, .customSlideshow-ad-below, .d_slidebanner, .f-sign-cont[data-dysign-adid], .gg1000, .gg430, .gg_300, .gg_950, .gg_960, .gg_full, .ggad, .ggdistich, .gggtop, .ggpost-below, .ggtop, .google_adsense2, .gpt_ads_box, .hao123-unionad-pic, .heg > .div-list, .his-sign-cont[data-dysign-adid], .iHead960x90, .index_alert_gg, .indexad2, .indexad3, .indexad4, .it618_firstad_flex, .kf_qycn_com_cckf_welcomebox, .leftadv, .lol-ad, .lol_ad, .lyzm-prevent, .menutab_ad, .ml_ad1, .ml_ad3, .ml_ad5, .mlad, .movie-advert-link, .pagead_3, .player-bottom-gg { display: none!important; z-index:-1!important; height:0px!important;}
+        .readerAd, .room-ad-bottom, .room-ad-top, .room-ad-video-down, .scupioadslot, .sxAdBox, .theme_custom_slidebox-ad-below, .tipadds, .tmall_ad_container, .top-read-ad, .topSponsor, .toy52_outer, .toy52apparel_ALL, .twavt-ads, .wf_ad_block, .widget_ad_sidebar, .widget_adbox, .wp.a_f, .wp.a_h, .wumii-bottom-popup, .wumii-widget-ad, .wzad, .yd_ad, .yd_ad1, .yd_ad2, .yd_ad3, .yd_ad5, .yd_ad6, .zone_wap_banner2, A[href*=".com/?Agent="], a[href*=".123ch.cn"], a[href*=".222bz.com/"], a[href*=".9xiazaiqi.com"], a[href*=".com/?Extend="], a[href*=".com/?p="][target="_blank"] > img[src$=".gif"], a[href*=".com/Register.aspx?aid="], a[href*=".com/Register/?a="], a[href*=".com/Register?a="], a[href*=".com?aff="], a[href*=".com?intr="], a[href*=".downok.com"], a[href*=".qpzqxz.com/"], a[href*=".qtj5.com/"], a[href*=".tudown.com/"], a[href*=".wjLkj.com/"], a[href*=".yyk2.com/"], a[href*="/?INTR="], a[href*="/?Intr="], a[href*="/?intr="], a[href^="http://ad.moemoe."] { display: none!important; z-index:-1!important; height:0px!important;}
+        a[href^="http://go.gotourl.xyz/"], a[href^="http://www.upupoo.com/?"], a[href^="https://hi.potvpn.com/?from="], body[onload*="u()"] > #x, div#ad_id, div[id^="ad_thread"], img[src$="/2016-0114-700X70.gif"] ~ a[onmouseover="this.style.background='#DEF5CD';"]:nth-child(-n+226), img[src$="/2016-0114-700X70.gif"] ~ span[class^="f"] > span > a[onmouseover="this.style.background='#DEF5CD';"]:first-child:last-child, img[src$="/47650fdad90b35b07d9339b792713f7e.gif"] ~ a[onmouseover="this.style.background='#DEF5CD';"]:nth-child(-n+226), img[src$="/47650fdad90b35b07d9339b792713f7e.gif"] ~ span[class^="f"] > span > a[onmouseover="this.style.background='#DEF5CD';"]:first-child:last-child, img[src$="/a1b45005bda18472821222856c6d4f99.gif"] ~ a[onmouseover="this.style.background='#DEF5CD';"]:nth-child(-n+226), img[src$="/a1b45005bda18472821222856c6d4f99.gif"] ~ span[class^="f"] > span > a[onmouseover="this.style.background='#DEF5CD';"]:first-child:last-child, script + #rbbox, script + .sptable[cellpadding="5"], script + .sptable_do_not_remove[cellpadding="5"], table[style="border:#e8e8e8 1px solid;"] + div[style="margin-top:5px"] > table[style="width:100%;"][cellspacing="0"][cellpadding="1"][bordercolor="#999999"][border="1"], [style="display:none"] + iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div:not([id]):not([class]):not([style]) > div:not([id]):not([class]):not([style]) > iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[style^="width: 100%;"][style$="display: block;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[style^="width: 100%;"][style$="margin: 0px;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[style^="width: 100%;"][style$="opacity: 100;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[style^="width: 100%;"][style$="overflow: hidden;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[style^="width: 100%;"][style$="visibility: visible;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[style^="width: 100%;"][style$="z-index: inherit;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], #cpro_container, a[href*="/mobads.php?"], div[id][style="width: 100%;"] > div > div > iframe[scrolling="no"][src^="http"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[id][style="width: 100%;"] > div > iframe[scrolling="no"][src^="http"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[id][style="width: 100%;"] > iframe[scrolling="no"][src^="http"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[style="width: 100%;"]:not([id]):not([class]) > iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[style^="width: 100%;"]:not([id]):not([class]) > iframe[scrolling="no"][src^="http"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], .footer > #box[style="width:100%;height:100%;position:fixed;top:0"], a[href^="http://yunbofangbt."], #j-new-ad, .a_sxfl, .a_sxmu, .a_sxp, .a_sxpb, .heg > .partner-list, a[href^="/dasp.php?a="], [class^="ADTOPLB"] { display: none!important; z-index:-1!important; height:0px!important;}
+        </style>
+        <style type="text/css">.adsbygoogle, .ggbox, .banner-site, .a_p, .a_fr, a[href*="/cpro/"], a[href*="/cpro."], a[href*="/?aff="], a[href*=".umeng.com"], a > img[width="980"][src*=".sinaimg."], a > img[width="960"][src*=".sinaimg."], a > img[src*=".sinaimg."][src$=".gif"][style*="width:960"], .wp.a_t, .widget_ui_ads, .baiduad, .a_pt, .a_mu, #kfivtwin, #haoetv, #gg1 { display: none!important; z-index:-1!important; height:0px!important;}
+        </style>
+    </head>
+    <script>
+        window.onload = init;
+        function init() {
+            let courseTypes = null;
+            let courseLecturers = null;
+
+            btnChange();
+
+            $.get({
+                url:"http://localhost:8080/getLecturer",
+                success: function (data) {
+                    courseLecturers = data;
+
+                    for (let j = 0;j<courseLecturers.length;j++) {
+                        let href = "/selectNameType?lecturer=" + courseLecturers[j] + "&type=null";
+
+                        let str = "<li class='nav-item'> " +
+                            "<a class='nav-link' href='"+ href + "'>" + courseLecturers[j] + "</a></li>";
+
+                        $("#courseLecturer").append(str);
+                    }
+                },
+                error: function () {
+                    console.log("失败")
+                }
+            })
+
+            $.get({
+                url:"http://localhost:8080/getType",
+                success: function (data) {
+                    courseTypes = data;
+
+                    for (let i = 0;i<courseTypes.length;i++) {
+                        let href = "/selectNameType?lecturer=null&type=" + courseTypes[i];
+                        let str = "<li class='nav-item'> " +
+                            "<a class='nav-link' href='"+ href + "'>" + courseTypes[i] + "</a></li>";
+                        $("#courseType").append(str);
+                    }
+                },
+                error: function () {
+                    console.log("失败")
+                }
+            })
         }
-    </style>
-    <style type="text/css">#MsnDialog.ad, #MyMoveAd, #QQ_Full, #ad-SNSSplashAd, #ad6cn, #adBody07, #adLeftFloat, #adRightFloat, #ad_box1, #ad_box2, #ad_full, #ad_headerbanner, #ads_c_tpc, #ads_top_video, #adtop1, #adx_cggp, #crazy_ad_float, #crazy_ad_layer, #cs_left_couplet, #cs_right_couplet, #doyoo_mon_mask, #doyoo_monitor, #duilian_left, #duilian_right, #eis_pad1, #eis_pad2, #floatAd, #floatad-winpop, #fwin_popad_7ree, #fwin_popad_7ree + #fwin_dialog, #gg300, #googleAdIndexTop, #haoetv1, #js-ad-map, #js_ads_banner_top, #js_ads_banner_top_slide, #kfpopupDiv, #leftCouple, #leftCouplet, #leftFloat + #rightFloat, #left_couple, #left_down_float_ad, #left_float + #right_float, #left_top_ad, #left_up_float_ad, #lovexin1, #lovexin11, #lovexin12, #lovexin13, #lovexin14 { display: none!important; z-index:-1!important; height:0px!important;}
-    #lovexin2, #mbjx_ad, #miaov_float_layer, #micast_ads, #movieInfoRight, #my-adsFPR, #navcontainer + .moneyarea, #netease_mail_footer, #olfullad, #overture_ads_bottom_td, #overture_ads_top_td, #popup.t, #ptcmsad1, #qj960a, #qj960b, #results.content-main > .eLeft, #rightCouple, #rightCouple + #leftFloat, #rightCouplet, #rightCouplet + #leftFloat, #right_couple, #right_couple + #left_float, #right_down_float_ad, #right_up_float_ad, #shareman_ad, #sitefocus.focus, #snActive-wrap, #table1[width="468"][height="50"], #table1[width="794"][height="60"], #table1[width="812"][height="50"], #tanx-con-1, #tanx-fold-main, #textggs, #top_ads0, #toperAd2, #toptb + div[align="center"], #tr_ad1, #tr_ad10, #tr_ad11, #tr_ad2, #tr_ad3, #tr_ad4, #tr_ad5, #tr_ad6, #tr_ad7, #tr_ad8, #tr_ad9, #tripadvisor-ad, #xinnxi, #xinxi { display: none!important; z-index:-1!important; height:0px!important;}
-    #zds_ad, ._cggp, ._ggs, ._popIn_recommend_article_ad, ._popIn_recommend_article_ad_reserved, .a_cn, .a_fl, .a_pb, .a_pr, .a_sxc, .a_xsfl, .ad-above-footer, .ad-below-adjacent-post, .ad-below-header-menu, .ad-below-post-title, .ad-below-related-post, .ad-couplet-common, .ad-left-down, .ad-left-top, .ad-right-down, .ad-right-top, .ad-site, .ad250left, .ad250right, .ad300left, .ad336left, .ad990x130, .ad990x90, .ad_couplebanner, .ad_fixed, .ad_footerbanner, .ad_headerbanner, .ad_hf, .ad_home_current, .ad_midd, .ad_right_1, .ad_right_2, .ad_thread, .ads > a > img[src*=".sinaimg."], .adsense160, .adsense200, .adsoho, .assort-ad, .banner-ad-section, .bdyp-sygg-ul, .below_ads, .bm.a_c, .bn728-93, .bottom-adv, .bottomSponsor { display: none!important; z-index:-1!important; height:0px!important;}
-    .bus_adsbox, .cari-ads, .chat-ad, .chat-right-ad, .chat-sysbroadcast-ad, .chat-top-ad, .comiis_adbox, .con_ad, .content-video > .ads, .content-video > .ads-player, .content_ad_300, .couplet_9cb0d, .customSlideshow-ad-below, .d_slidebanner, .f-sign-cont[data-dysign-adid], .gg1000, .gg430, .gg_300, .gg_950, .gg_960, .gg_full, .ggad, .ggdistich, .gggtop, .ggpost-below, .ggtop, .google_adsense2, .gpt_ads_box, .hao123-unionad-pic, .heg > .div-list, .his-sign-cont[data-dysign-adid], .iHead960x90, .index_alert_gg, .indexad2, .indexad3, .indexad4, .it618_firstad_flex, .kf_qycn_com_cckf_welcomebox, .leftadv, .lol-ad, .lol_ad, .lyzm-prevent, .menutab_ad, .ml_ad1, .ml_ad3, .ml_ad5, .mlad, .movie-advert-link, .pagead_3, .player-bottom-gg { display: none!important; z-index:-1!important; height:0px!important;}
-    .readerAd, .room-ad-bottom, .room-ad-top, .room-ad-video-down, .scupioadslot, .sxAdBox, .theme_custom_slidebox-ad-below, .tipadds, .tmall_ad_container, .top-read-ad, .topSponsor, .toy52_outer, .toy52apparel_ALL, .twavt-ads, .wf_ad_block, .widget_ad_sidebar, .widget_adbox, .wp.a_f, .wp.a_h, .wumii-bottom-popup, .wumii-widget-ad, .wzad, .yd_ad, .yd_ad1, .yd_ad2, .yd_ad3, .yd_ad5, .yd_ad6, .zone_wap_banner2, A[href*=".com/?Agent="], a[href*=".123ch.cn"], a[href*=".222bz.com/"], a[href*=".9xiazaiqi.com"], a[href*=".com/?Extend="], a[href*=".com/?p="][target="_blank"] > img[src$=".gif"], a[href*=".com/Register.aspx?aid="], a[href*=".com/Register/?a="], a[href*=".com/Register?a="], a[href*=".com?aff="], a[href*=".com?intr="], a[href*=".downok.com"], a[href*=".qpzqxz.com/"], a[href*=".qtj5.com/"], a[href*=".tudown.com/"], a[href*=".wjLkj.com/"], a[href*=".yyk2.com/"], a[href*="/?INTR="], a[href*="/?Intr="], a[href*="/?intr="], a[href^="http://ad.moemoe."] { display: none!important; z-index:-1!important; height:0px!important;}
-    a[href^="http://go.gotourl.xyz/"], a[href^="http://www.upupoo.com/?"], a[href^="https://hi.potvpn.com/?from="], body[onload*="u()"] > #x, div#ad_id, div[id^="ad_thread"], img[src$="/2016-0114-700X70.gif"] ~ a[onmouseover="this.style.background='#DEF5CD';"]:nth-child(-n+226), img[src$="/2016-0114-700X70.gif"] ~ span[class^="f"] > span > a[onmouseover="this.style.background='#DEF5CD';"]:first-child:last-child, img[src$="/47650fdad90b35b07d9339b792713f7e.gif"] ~ a[onmouseover="this.style.background='#DEF5CD';"]:nth-child(-n+226), img[src$="/47650fdad90b35b07d9339b792713f7e.gif"] ~ span[class^="f"] > span > a[onmouseover="this.style.background='#DEF5CD';"]:first-child:last-child, img[src$="/a1b45005bda18472821222856c6d4f99.gif"] ~ a[onmouseover="this.style.background='#DEF5CD';"]:nth-child(-n+226), img[src$="/a1b45005bda18472821222856c6d4f99.gif"] ~ span[class^="f"] > span > a[onmouseover="this.style.background='#DEF5CD';"]:first-child:last-child, script + #rbbox, script + .sptable[cellpadding="5"], script + .sptable_do_not_remove[cellpadding="5"], table[style="border:#e8e8e8 1px solid;"] + div[style="margin-top:5px"] > table[style="width:100%;"][cellspacing="0"][cellpadding="1"][bordercolor="#999999"][border="1"], [style="display:none"] + iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div:not([id]):not([class]):not([style]) > div:not([id]):not([class]):not([style]) > iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[style^="width: 100%;"][style$="display: block;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[style^="width: 100%;"][style$="margin: 0px;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[style^="width: 100%;"][style$="opacity: 100;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[style^="width: 100%;"][style$="overflow: hidden;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[style^="width: 100%;"][style$="visibility: visible;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[style^="width: 100%;"][style$="z-index: inherit;"] iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], #cpro_container, a[href*="/mobads.php?"], div[id][style="width: 100%;"] > div > div > iframe[scrolling="no"][src^="http"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[id][style="width: 100%;"] > div > iframe[scrolling="no"][src^="http"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[id][style="width: 100%;"] > iframe[scrolling="no"][src^="http"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[style="width: 100%;"]:not([id]):not([class]) > iframe[scrolling="no"][src*="//"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], div[style^="width: 100%;"]:not([id]):not([class]) > iframe[scrolling="no"][src^="http"][src*="?"][src*="="][src*="&"][width][height][frameborder="0"], .footer > #box[style="width:100%;height:100%;position:fixed;top:0"], a[href^="http://yunbofangbt."], #j-new-ad, .a_sxfl, .a_sxmu, .a_sxp, .a_sxpb, .heg > .partner-list, a[href^="/dasp.php?a="], [class^="ADTOPLB"] { display: none!important; z-index:-1!important; height:0px!important;}
-    </style><style type="text/css">.adsbygoogle, .ggbox, .banner-site, .a_p, .a_fr, a[href*="/cpro/"], a[href*="/cpro."], a[href*="/?aff="], a[href*=".umeng.com"], a > img[width="980"][src*=".sinaimg."], a > img[width="960"][src*=".sinaimg."], a > img[src*=".sinaimg."][src$=".gif"][style*="width:960"], .wp.a_t, .widget_ui_ads, .baiduad, .a_pt, .a_mu, #kfivtwin, #haoetv, #gg1 { display: none!important; z-index:-1!important; height:0px!important;}
-</style>
-</head>
-<body>
-<div th:replace="~{fragment/userNav :: nav}"></div>
 
-<main role="main" style="background: rgb(248, 249, 250);">
+        //控制收藏按钮的显示
+        //判断到取消收藏按钮存在时删除当前板块的收藏按钮
+        function btnChange(){
+            $('.cancelCollectBtn').each(function (){
+                $(this).parent().parent().children('button.collectBtn').remove();
+            })
+        }
 
-    <section class="container text-center" style="background: rgb(238, 238, 238);margin-top: 40px;">
-        <div class="container">
-            <ul class="nav justify-content-start" id="courseType">
-                <li class="nav-item" style="margin-top: 7px;">
-                    <span>类型</span>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/index}">不限</a>
-                </li>
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" th:href="@{'/selectNameType?type=' + ${course.type}}" th:text="${course.type}" th:if="${course.type != }"></a>-->
-<!--                </li>-->
-            </ul>
-            <ul class="nav justify-content-start" id="courseLecturer">
-                <li class="nav-item" style="margin-top: 7px;">
-                    <span>讲师</span>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/index}">不限</a>
-                </li>
-<!--                <li class="nav-item" th:each="course : ${courseList}" th:if="${course.lecturer} != null">-->
-<!--                    <a class="nav-link" th:href="@{'/selectNameType?lecturer=' + ${course.lecturer}}" th:text="${course.lecturer}"></a>-->
-<!--                </li>-->
-            </ul>
-        </div>
-    </section>
+        function addCollection(userId,curriculumId) {
+            $.post({
+                url:"http://localhost:8080/addCollect",
+                data:{
+                    "userId":userId,
+                    "curriculumId":curriculumId
+                },
+                success: function (data) {
+                    location.reload();
+                },
+                error: function () {
+                    console.log("失败")
+                }
+            })
+        }
 
-    <div class="album py-5 bg-light">
-        <div class="container">
+        //收藏课程
+        function addMyCourse(userId,curriculumId) {
+            $.post({
+                url:"http://localhost:8080/addMyCourse",
+                data:{
+                    "userId":userId,
+                    "curriculumId":curriculumId
+                },
+                success: function (data) {
+                    console.log("成功")
+                    location.reload();
+                },
+                error: function () {
+                    console.log("失败")
+                }
+            })
+        }
 
-            <div class="row">
-                <div class="col-md-4" th:each="course : ${courseList}">
-                    <div class="card mb-4 shadow-sm">
-                        <img th:src="${course.cover}" width="100%" height="255">
-                        <div class="card-body">
-                            <h3 th:text="${course.name}"></h3>
-                            <p class="card-text" style="width:288px; height:75px; overflow:hidden;" th:text="${course.sketch}"></p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <a th:onclick= "|javascript:addMyCourse('${session.user?.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary" th:href="${course.url}" target="_blank">观看</a>
-                                    <button th:onclick= "|javascript:addCollection('${session.user?.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary" th:if="${session.user != null && session.collects == null}" >收藏</button>
-                                    <div th:each="collect : ${collects}" th:if="${session.user != null}">
-                                        <button th:onclick= "|javascript:deleteCollect('${session.user?.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary" th:if="${session.user != null && collect == course.id}" >取消收藏</button>
+        //取消收藏课程
+        function deleteCollect(userId,curriculumId) {
+            $.get({
+                url:"http://localhost:8080/deleteCollect",
+                data:{
+                    "userId":userId,
+                    "curriculumId":curriculumId
+                },
+                success: function (data) {
+                    console.log("成功")
+                    location.reload();
+                },
+                error: function () {
+                    console.log("失败")
+                }
+            })
+        }
+    </script>
+    <body>
+        <!--导航条模板-->
+        <div th:replace="~{fragment/userNav :: nav}"></div>
+        <main role="main" style="background: rgb(248, 249, 250);">
+            <section class="container text-center" style="background: rgb(238, 238, 238);margin-top: 40px;">
+                <div class="container">
+                    <ul class="nav justify-content-start" id="courseType">
+                        <li class="nav-item" style="margin-top: 7px;">
+                            <span>类型</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/index}">不限</a>
+                        </li>
+                    </ul>
+                    <ul class="nav justify-content-start" id="courseLecturer">
+                        <li class="nav-item" style="margin-top: 7px;">
+                            <span>讲师</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/index}">不限</a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
 
+            <div class="album py-5 bg-light">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4" th:each="course : ${courseList}">
+                            <div class="card mb-4 shadow-sm">
+                                <img th:src="${course.cover}" width="100%" height="255">
+                                <div class="card-body">
+                                    <h3 th:text="${course.name}"></h3>
+                                    <p class="card-text" style="width:288px; height:75px; overflow:hidden;" th:text="${course.sketch}"></p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a type="button" class="btn btn-sm btn-outline-secondary" th:href="${course.url}" target="_blank">观看</a>
+                                            <button th:onclick= "|javascript:addCollection('${session.user.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary collectBtn">收藏</button>
+                                            <div th:each="collect : ${session.collects}" th:if="${session.user != null}">
+                                                <button th:onclick= "|javascript:deleteCollect('${session.user.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary cancelCollectBtn" th:if="${session.user != null && collect == course.id}">取消收藏</button>
+                                            </div>
+                                        </div>
+                                        <small class="text-muted" th:text="'讲师：' + ${course.lecturer}"></small>
                                     </div>
                                 </div>
-                                <small class="text-muted" th:text="'讲师：' + ${course.lecturer}"></small>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</main>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-<script src="/webjars/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
-<!--页面使用Ajax-->
-<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    window.onload = init;
-    function init() {
-        let courseTypes = null;
-        let courseLecturers = null;
-
-        $.get({
-            url:"http://localhost:8080/getLecturer",
-            success: function (data) {
-                courseLecturers = data;
-
-                for (let j = 0;j<courseLecturers.length;j++) {
-                    let href = "/selectNameType?lecturer=" + courseLecturers[j];
-                    let str = "<li class='nav-item'> " +
-                        "<a class='nav-link' href="+ href +">" + courseLecturers[j] + "</a></li>";
-                    $("#courseLecturer").append(str);
-                }
-            },
-            error: function () {
-                console.log("失败")
-            }
-        })
-
-        $.get({
-            url:"http://localhost:8080/getType",
-            success: function (data) {
-                courseTypes = data;
-
-                for (let i = 0;i<courseTypes.length;i++) {
-                    let href = "/selectNameType?type=" + courseTypes[i];
-                    let str = "<li class='nav-item'> " +
-                        "<a class='nav-link' href="+ href +">" + courseTypes[i] + "</a></li>";
-                    $("#courseType").append(str);
-                }
-            },
-            error: function () {
-                console.log("失败")
-            }
-        })
-    }
-
-    function addCollection(userId,curriculumId) {
-        $.post({
-            url:"http://localhost:8080/addCollect",
-            data:{
-                "userId":userId,
-                "curriculumId":curriculumId
-            },
-            success: function (data) {
-                location.reload();
-            },
-            error: function () {
-                console.log("失败")
-            }
-        })
-    }
-
-    function addMyCourse(userId,curriculumId) {
-        $.post({
-            url:"http://localhost:8080/addMyCourse",
-            data:{
-                "userId":userId,
-                "curriculumId":curriculumId
-            },
-            success: function (data) {
-                location.reload();
-            },
-            error: function () {
-                console.log("失败")
-            }
-        })
-    }
-
-    function deleteCollect(userId,curriculumId) {
-        $.get({
-            url:"http://localhost:8080/deleteCollect",
-            data:{
-                "userId":userId,
-                "curriculumId":curriculumId
-            },
-            success: function (data) {
-                location.reload();
-            },
-            error: function () {
-                console.log("失败")
-            }
-        })
-    }
-</script>
-</body></html>
+        </main>
+    </body>
+</html>

@@ -7,6 +7,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CollectService extends ServiceImpl<CollectMapper, Collect> implements ICollectService {
+public class CollectServiceImpl extends ServiceImpl<CollectMapper, Collect> implements ICollectService {
 
 }
