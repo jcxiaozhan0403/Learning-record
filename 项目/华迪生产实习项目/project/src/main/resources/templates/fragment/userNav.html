@@ -31,6 +31,7 @@
                 <strong>智慧医养</strong>
             </a>
             <div>
+                <a th:href="@{/management}" style="color: #fff;margin-right: 10px;" th:if="${session.user.role == 1}">控制台</a>
                 <a th:href="@{/userCenter}" th:if="${session.user != null}" th:text="个人中心" style="color: #fff;margin-right: 10px;"></a>
                 <a th:href="@{/login}" th:if="${session.user == null}" class="btn btn-primary" th:text="登录"></a>
                 <a th:if="${session.user != null}" th:text="'你好：'+ ${session.user.name}" style="color: #fff;margin-right: 10px;"></a>

@@ -12,9 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +32,9 @@ public class IndexController {
     CollectServiceImpl collectServiceImpl;
     @Autowired
     CollectController collectController;
+    @Autowired
+    MycourseController mycourseController;
+
 
     /**
      * 跳转到用户个人中心页面
@@ -50,37 +52,19 @@ public class IndexController {
      * @return
      */
     @RequestMapping("/course")
-    public String course(String userId, Model model, HttpServletRequest request) {
+    public String course(@RequestParam("userId") String userId, Model model) {
+        //查询用户的课程列表
+        List<Curriculum> courseList = mycourseController.getMycourse(userId);
+
+        model.addAttribute("courseList",courseList);
+
+        //存入用户所有收藏课程的id
         List<Integer> collects = new ArrayList<>();
-
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        if (user != null) {
-            List<Curriculum> curriculums = collectController.getCollect(user.getId().toString());
-            for (Curriculum curriculum : curriculums) {
-                collects.add(curriculum.getId());
-            }
-            model.addAttribute("collects",collects);
+        List<Curriculum> curricula = collectController.getCollect(userId);
+        for (Curriculum curriculum : curricula) {
+            collects.add(curriculum.getId());
         }
-
-        QueryWrapper<Mycourse> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("user_id", userId);
-
-        ArrayList<Curriculum> curricula = null;
-        try {
-            List<Mycourse> list = mycourseServiceImpl.list(queryWrapper);
-
-            curricula = new ArrayList<>();
-
-            for (Mycourse mycourse : list) {
-                curricula.add(curriculumServiceImpl.getById(mycourse.getCurriculumId()));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-
-        model.addAttribute("courseList",curricula);
+        model.addAttribute("collects",collects);
 
         return "course";
     }
@@ -93,21 +77,17 @@ public class IndexController {
      */
     @RequestMapping("/favorites")
     public String favorites(String userId, Model model) {
-        QueryWrapper<Collect> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("user_id",userId);
-        ArrayList<Curriculum> curricula = null;
-        try {
-            List<Collect> list = collectServiceImpl.list(queryWrapper);
-            curricula = new ArrayList<>();
-            for (Collect collect : list) {
-                curricula.add(curriculumServiceImpl.getById(collect.getCurriculumId()));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        QueryWrapper<Collect> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id",userId);
+        ArrayList<Curriculum> curricula = new ArrayList<>();
+        List<Collect> list = collectServiceImpl.list(wrapper);
+
+        for (Collect collect : list) {
+            curricula.add(curriculumServiceImpl.getById(collect.getCurriculumId()));
         }
 
         model.addAttribute("courseList",curricula);
+
         return "favorites";
     }
 }

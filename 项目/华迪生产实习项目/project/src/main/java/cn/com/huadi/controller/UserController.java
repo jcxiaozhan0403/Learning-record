@@ -8,17 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author yuan点
- * @since 2021-11-06
- */
 @Controller
 public class UserController {
     @Autowired
@@ -27,24 +20,33 @@ public class UserController {
     RoleServiceImpl roleServiceImpl;
 
 
-//    10
+    /**
+     * 修改密码
+     * @param pwd1
+     * @param pwd2
+     * @param request
+     * @return
+     */
     @RequestMapping("setPwd")
-    public String setPwd(String pwd1,String pwd2,HttpServletRequest request){
+    public String setPwd(@RequestParam("pwd1") String pwd1,@RequestParam("pwd2") String pwd2, HttpServletRequest request,Model model){
         User user = (User) request.getSession().getAttribute("user");
-        boolean equals = pwd1.equals(user.getPwd());
 
-        UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.eq("id",user.getId());
-        if (equals){
+        UpdateWrapper<User> wrapper = new UpdateWrapper<>();
+        wrapper.eq("id",user.getId());
+
+        if (pwd1.equals(user.getPwd())){
             user.setPwd(pwd2);
             try {
-                userServiceImpl.update(user, updateWrapper);
+                userServiceImpl.update(user,wrapper);
+                return "redirect:/login";
             } catch (Exception e) {
-                e.printStackTrace();
-                return null;
+                model.addAttribute("msg","修改失败");
+                return "/userCenter";
             }
+        }else {
+            model.addAttribute("msg","修改失败");
+            return "/userCenter";
         }
-        return "redirect:/logout";
     }
 
 //  12

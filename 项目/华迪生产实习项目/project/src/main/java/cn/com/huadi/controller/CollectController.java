@@ -2,6 +2,7 @@ package cn.com.huadi.controller;
 
 import cn.com.huadi.entity.Collect;
 import cn.com.huadi.entity.Curriculum;
+import cn.com.huadi.entity.Mycourse;
 import cn.com.huadi.entity.User;
 import cn.com.huadi.service.impl.CollectServiceImpl;
 import cn.com.huadi.service.impl.CurriculumServiceImpl;
@@ -10,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,34 +41,32 @@ public class CollectController {
         return curricula;
     }
 
-    //    17
+    /**
+     * 收藏课程
+     * @param collect
+     * @return
+     */
     @RequestMapping("/addCollect")
     @ResponseBody
     public String addCollect(Collect collect){
-        try {
-            collectServiceImpl.save(collect);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "false";
-        }
+        collectServiceImpl.save(collect);
         return "true";
     }
 
-    //    18
+    /**
+     * 取消收藏课程
+     * @param collect
+     * @return
+     */
+    @ResponseBody
     @RequestMapping("/deleteCollect")
-    public String deleteCollect(Collect collect, HttpServletRequest request){
+    public String deleteCollect(Collect collect){
         QueryWrapper<Collect> wrapper = new QueryWrapper<>();
         wrapper.eq("user_id",collect.getUserId())
                 .eq("curriculum_id",collect.getCurriculumId());
-        try {
-            collectServiceImpl.remove(wrapper);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "false";
-        }
 
-        User user = (User) request.getSession().getAttribute("user");
-        return "redirect:/favorites?userId=" + user.getId();
+        collectServiceImpl.remove(wrapper);
+        return "true";
     }
 }
 

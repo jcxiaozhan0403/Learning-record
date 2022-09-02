@@ -126,15 +126,14 @@ public class LoginController {
             }
 
             //存入用户所有收藏课程的id
-            session.setAttribute("collects",collects);
+            model.addAttribute("collects",collects);
         }else {
             //没有用户信息，跳转到登录页面
             return "redirect:/login";
         }
 
         //查询所有课程列表
-        List<Curriculum> courseList = null;
-        courseList = curriculumServiceImpl.list(null);
+        List<Curriculum> courseList = curriculumServiceImpl.list(null);
         model.addAttribute("courseList",courseList);
 
         return "index";

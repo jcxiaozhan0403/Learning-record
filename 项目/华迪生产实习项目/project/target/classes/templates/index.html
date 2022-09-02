@@ -7,24 +7,12 @@
         <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
         <meta name="generator" content="Jekyll v3.8.5">
         <title>智慧医养—在线健康教育平台</title>
-        
+
         <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
         <script src="/webjars/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
         <link href="/webjars/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/index.css" />
 
-        <style>
-            .bd-placeholder-img {
-                font-size: 1.125rem;
-                text-anchor: middle;
-            }
-
-            @media (min-width: 768px) {
-                .bd-placeholder-img-lg {
-                    font-size: 3.5rem;
-                }
-            }
-        </style>
         <style type="text/css">#MsnDialog.ad, #MyMoveAd, #QQ_Full, #ad-SNSSplashAd, #ad6cn, #adBody07, #adLeftFloat, #adRightFloat, #ad_box1, #ad_box2, #ad_full, #ad_headerbanner, #ads_c_tpc, #ads_top_video, #adtop1, #adx_cggp, #crazy_ad_float, #crazy_ad_layer, #cs_left_couplet, #cs_right_couplet, #doyoo_mon_mask, #doyoo_monitor, #duilian_left, #duilian_right, #eis_pad1, #eis_pad2, #floatAd, #floatad-winpop, #fwin_popad_7ree, #fwin_popad_7ree + #fwin_dialog, #gg300, #googleAdIndexTop, #haoetv1, #js-ad-map, #js_ads_banner_top, #js_ads_banner_top_slide, #kfpopupDiv, #leftCouple, #leftCouplet, #leftFloat + #rightFloat, #left_couple, #left_down_float_ad, #left_float + #right_float, #left_top_ad, #left_up_float_ad, #lovexin1, #lovexin11, #lovexin12, #lovexin13, #lovexin14 { display: none!important; z-index:-1!important; height:0px!important;}
         #lovexin2, #mbjx_ad, #miaov_float_layer, #micast_ads, #movieInfoRight, #my-adsFPR, #navcontainer + .moneyarea, #netease_mail_footer, #olfullad, #overture_ads_bottom_td, #overture_ads_top_td, #popup.t, #ptcmsad1, #qj960a, #qj960b, #results.content-main > .eLeft, #rightCouple, #rightCouple + #leftFloat, #rightCouplet, #rightCouplet + #leftFloat, #right_couple, #right_couple + #left_float, #right_down_float_ad, #right_up_float_ad, #shareman_ad, #sitefocus.focus, #snActive-wrap, #table1[width="468"][height="50"], #table1[width="794"][height="60"], #table1[width="812"][height="50"], #tanx-con-1, #tanx-fold-main, #textggs, #top_ads0, #toperAd2, #toptb + div[align="center"], #tr_ad1, #tr_ad10, #tr_ad11, #tr_ad2, #tr_ad3, #tr_ad4, #tr_ad5, #tr_ad6, #tr_ad7, #tr_ad8, #tr_ad9, #tripadvisor-ad, #xinnxi, #xinxi { display: none!important; z-index:-1!important; height:0px!important;}
         #zds_ad, ._cggp, ._ggs, ._popIn_recommend_article_ad, ._popIn_recommend_article_ad_reserved, .a_cn, .a_fl, .a_pb, .a_pr, .a_sxc, .a_xsfl, .ad-above-footer, .ad-below-adjacent-post, .ad-below-header-menu, .ad-below-post-title, .ad-below-related-post, .ad-couplet-common, .ad-left-down, .ad-left-top, .ad-right-down, .ad-right-top, .ad-site, .ad250left, .ad250right, .ad300left, .ad336left, .ad990x130, .ad990x90, .ad_couplebanner, .ad_fixed, .ad_footerbanner, .ad_headerbanner, .ad_hf, .ad_home_current, .ad_midd, .ad_right_1, .ad_right_2, .ad_thread, .ads > a > img[src*=".sinaimg."], .adsense160, .adsense200, .adsoho, .assort-ad, .banner-ad-section, .bdyp-sygg-ul, .below_ads, .bm.a_c, .bn728-93, .bottom-adv, .bottomSponsor { display: none!important; z-index:-1!important; height:0px!important;}
@@ -96,6 +84,7 @@
                     "curriculumId":curriculumId
                 },
                 success: function (data) {
+                    console.log("成功")
                     location.reload();
                 },
                 error: function () {
@@ -104,10 +93,10 @@
             })
         }
 
-        //收藏课程
-        function addMyCourse(userId,curriculumId) {
-            $.post({
-                url:"http://localhost:8080/addMyCourse",
+        //取消收藏课程
+        function deleteCollect(userId,curriculumId) {
+            $.get({
+                url:"http://localhost:8080/deleteCollect",
                 data:{
                     "userId":userId,
                     "curriculumId":curriculumId
@@ -122,10 +111,10 @@
             })
         }
 
-        //取消收藏课程
-        function deleteCollect(userId,curriculumId) {
-            $.get({
-                url:"http://localhost:8080/deleteCollect",
+        //添加到我的课程
+        function addMyCourse(userId,curriculumId) {
+            $.post({
+                url:"http://localhost:8080/addMyCourse",
                 data:{
                     "userId":userId,
                     "curriculumId":curriculumId
@@ -176,10 +165,10 @@
                                     <p class="card-text" style="width:288px; height:75px; overflow:hidden;" th:text="${course.sketch}"></p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a type="button" class="btn btn-sm btn-outline-secondary" th:href="${course.url}" target="_blank">观看</a>
-                                            <button th:onclick= "|javascript:addCollection('${session.user.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary collectBtn">收藏</button>
-                                            <div th:each="collect : ${session.collects}" th:if="${session.user != null}">
-                                                <button th:onclick= "|javascript:deleteCollect('${session.user.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary cancelCollectBtn" th:if="${session.user != null && collect == course.id}">取消收藏</button>
+                                            <a type="button" th:onclick="|javascript:addMyCourse('${session.user.id}','${course.id}')|" class="btn btn-sm btn-outline-secondary" th:href="@{'https://' + ${course.url}}" target="_blank">观看</a>
+                                            <button th:onclick="|javascript:addCollection('${session.user.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary collectBtn">收藏</button>
+                                            <div th:each="collect : ${collects}" th:if="${session.user != null}">
+                                                <button th:onclick="|javascript:deleteCollect('${session.user.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary cancelCollectBtn" th:if="${session.user != null && collect == course.id}">取消收藏</button>
                                             </div>
                                         </div>
                                         <small class="text-muted" th:text="'讲师：' + ${course.lecturer}"></small>

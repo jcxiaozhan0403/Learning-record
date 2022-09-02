@@ -84,6 +84,7 @@
                     "curriculumId":curriculumId
                 },
                 success: function (data) {
+                    console.log("成功")
                     location.reload();
                 },
                 error: function () {
@@ -92,10 +93,10 @@
             })
         }
 
-        //收藏课程
-        function addMyCourse(userId,curriculumId) {
-            $.post({
-                url:"http://localhost:8080/addMyCourse",
+        //取消收藏课程
+        function deleteCollect(userId,curriculumId) {
+            $.get({
+                url:"http://localhost:8080/deleteCollect",
                 data:{
                     "userId":userId,
                     "curriculumId":curriculumId
@@ -110,10 +111,10 @@
             })
         }
 
-        //取消收藏课程
-        function deleteCollect(userId,curriculumId) {
-            $.get({
-                url:"http://localhost:8080/deleteCollect",
+        //添加到我的课程
+        function addMyCourse(userId,curriculumId) {
+            $.post({
+                url:"http://localhost:8080/addMyCourse",
                 data:{
                     "userId":userId,
                     "curriculumId":curriculumId
@@ -164,10 +165,10 @@
                                     <p class="card-text" style="width:288px; height:75px; overflow:hidden;" th:text="${course.sketch}"></p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a type="button" class="btn btn-sm btn-outline-secondary" th:href="${course.url}" target="_blank">观看</a>
-                                            <button th:onclick= "|javascript:addCollection('${session.user.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary collectBtn">收藏</button>
-                                            <div th:each="collect : ${session.collects}" th:if="${session.user != null}">
-                                                <button th:onclick= "|javascript:deleteCollect('${session.user.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary cancelCollectBtn" th:if="${session.user != null && collect == course.id}">取消收藏</button>
+                                            <a type="button" th:onclick="|javascript:addMyCourse('${session.user.id}','${course.id}')|" class="btn btn-sm btn-outline-secondary" th:href="@{'https://' + ${course.url}}" target="_blank">观看</a>
+                                            <button th:onclick="|javascript:addCollection('${session.user.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary collectBtn">收藏</button>
+                                            <div th:each="collect : ${collects}" th:if="${session.user != null}">
+                                                <button th:onclick="|javascript:deleteCollect('${session.user.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary cancelCollectBtn" th:if="${session.user != null && collect == course.id}">取消收藏</button>
                                             </div>
                                         </div>
                                         <small class="text-muted" th:text="'讲师：' + ${course.lecturer}"></small>
