@@ -49,62 +49,41 @@ public class UserController {
         }
     }
 
-//  12
-    @RequestMapping("/deleteUser")
-    public String deleteUser(String id){
-        try {
-            userServiceImpl.removeById(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-        return "redirect:/user/list";
-    }
-
-//    13
+    /**
+     * 添加用户
+     * @param user
+     * @return
+     */
     @RequestMapping("/addUser")
     public String addUser(User user){
-        try {
-            userServiceImpl.save(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-        return "redirect:/user/list";
-    }
-
-//    14
-    @RequestMapping("/updateUser")
-    public String updateUser(User user){
-        UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.eq("id",user.getId());
-        try {
-            userServiceImpl.update(user,updateWrapper);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        userServiceImpl.save(user);
         return "redirect:/user/list";
     }
 
     /**
-     * 跳转到用户修改界面
-     * @param
+     * 删除用户
+     * @param id
      * @return
-     * @Description
      */
-    @RequestMapping("/user/edit")
-    public String getUserById(String id, Model model){
-        User user = null;
-        try {
-            user = userServiceImpl.getById(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+    @RequestMapping("/deleteUser")
+    public String deleteUser(String id){
+        userServiceImpl.removeById(id);
+        return "redirect:/user/list";
+    }
 
-        model.addAttribute("userInfo",user);
-        return "/manager/userEdit";
+    /**
+     * 修改用户
+     * @param user
+     * @return
+     */
+    @RequestMapping("/updateUser")
+    public String updateUser(User user){
+        UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("id",user.getId());
+
+        userServiceImpl.update(user,updateWrapper);
+
+        return "redirect:/user/list";
     }
 
 }

@@ -7,7 +7,6 @@ import cn.com.huadi.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -24,43 +23,76 @@ public class ManagerController {
     @Autowired
     UserServiceImpl userServiceImpl;
 
-
+    /**
+     * 跳转到课程管理界面
+     * @param model
+     * @return
+     */
     @RequestMapping("/course/list")
     public String getCurriculumList(Model model){
-        List<Curriculum> list = null;
-        try {
-            list = curriculumServiceImpl.list(null);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        List<Curriculum> courseList = curriculumServiceImpl.list(null);
 
-        model.addAttribute("courseList",list);
+        model.addAttribute("courseList",courseList);
         return "/manager/courseList";
     }
 
-    @GetMapping("/user/list")
-    public String userList(Model model) {
-        List<User> list = null;
-        try {
-            list = userServiceImpl.list();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+    /**
+     * 跳转到课程添加界面
+     * @return
+     */
+    @RequestMapping("/course/add")
+    public String courseAdd(){
+        return "/manager/courseAdd";
+    }
 
-        model.addAttribute("userList",list);
+    /**
+     * 跳转到课程修改界面
+     * @param
+     * @return
+     * @Description
+     */
+    @RequestMapping("/course/edit")
+    public String getCurriculumById(String id,Model model){
+        Curriculum courseInfo = curriculumServiceImpl.getById(id);
+
+        model.addAttribute("courseInfo",courseInfo);
+        return "/manager/courseEdit";
+    }
+
+    /**
+     * 跳转到用户管理界面
+     * @param model
+     * @return
+     */
+    @RequestMapping("/user/list")
+    public String userList(Model model) {
+        List<User> userList = userServiceImpl.list(null);
+
+        model.addAttribute("userList",userList);
         return "/manager/userList";
     }
 
-    @GetMapping("/user/add")
+    /**
+     * 跳转到用户添加界面
+     * @return
+     */
+    @RequestMapping("/user/add")
     public String userAdd(){
         return "/manager/userAdd";
     }
 
-    @GetMapping("/course/add")
-    public String courseAdd(){
-        return "/manager/courseAdd";
+    /**
+     * 跳转到用户修改界面
+     * @param
+     * @return
+     * @Description
+     */
+    @RequestMapping("/user/edit")
+    public String getUserById(String id, Model model){
+        User userInfo = userServiceImpl.getById(id);
+
+        model.addAttribute("userInfo",userInfo);
+        return "/manager/userEdit";
     }
 
 }

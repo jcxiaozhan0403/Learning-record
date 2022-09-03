@@ -6,24 +6,13 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>智慧医养—添加用户</title>
+    <title>智慧医养—修改用户</title>
 
-    <!-- Bootstrap core CSS -->
+    <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
     <link href="/webjars/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/index.css" />
 
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
     <style type="text/css">#MsnDialog.ad, #MyMoveAd, #QQ_Full, #ad-SNSSplashAd, #ad6cn, #adBody07, #adLeftFloat, #adRightFloat, #ad_box1, #ad_box2, #ad_full, #ad_headerbanner, #ads_c_tpc, #ads_top_video, #adtop1, #adx_cggp, #crazy_ad_float, #crazy_ad_layer, #cs_left_couplet, #cs_right_couplet, #doyoo_mon_mask, #doyoo_monitor, #duilian_left, #duilian_right, #eis_pad1, #eis_pad2, #floatAd, #floatad-winpop, #fwin_popad_7ree, #fwin_popad_7ree + #fwin_dialog, #gg300, #googleAdIndexTop, #haoetv1, #js-ad-map, #js_ads_banner_top, #js_ads_banner_top_slide, #kfpopupDiv, #leftCouple, #leftCouplet, #leftFloat + #rightFloat, #left_couple, #left_down_float_ad, #left_float + #right_float, #left_top_ad, #left_up_float_ad, #lovexin1, #lovexin11, #lovexin12, #lovexin13, #lovexin14 { display: none!important; z-index:-1!important; height:0px!important;}
     #lovexin2, #mbjx_ad, #miaov_float_layer, #micast_ads, #movieInfoRight, #my-adsFPR, #navcontainer + .moneyarea, #netease_mail_footer, #olfullad, #overture_ads_bottom_td, #overture_ads_top_td, #popup.t, #ptcmsad1, #qj960a, #qj960b, #results.content-main > .eLeft, #rightCouple, #rightCouple + #leftFloat, #rightCouplet, #rightCouplet + #leftFloat, #right_couple, #right_couple + #left_float, #right_down_float_ad, #right_up_float_ad, #shareman_ad, #sitefocus.focus, #snActive-wrap, #table1[width="468"][height="50"], #table1[width="794"][height="60"], #table1[width="812"][height="50"], #tanx-con-1, #tanx-fold-main, #textggs, #top_ads0, #toperAd2, #toptb + div[align="center"], #tr_ad1, #tr_ad10, #tr_ad11, #tr_ad2, #tr_ad3, #tr_ad4, #tr_ad5, #tr_ad6, #tr_ad7, #tr_ad8, #tr_ad9, #tripadvisor-ad, #xinnxi, #xinxi { display: none!important; z-index:-1!important; height:0px!important;}
     #zds_ad, ._cggp, ._ggs, ._popIn_recommend_article_ad, ._popIn_recommend_article_ad_reserved, .a_cn, .a_fl, .a_pb, .a_pr, .a_sxc, .a_xsfl, .ad-above-footer, .ad-below-adjacent-post, .ad-below-header-menu, .ad-below-post-title, .ad-below-related-post, .ad-couplet-common, .ad-left-down, .ad-left-top, .ad-right-down, .ad-right-top, .ad-site, .ad250left, .ad250right, .ad300left, .ad336left, .ad990x130, .ad990x90, .ad_couplebanner, .ad_fixed, .ad_footerbanner, .ad_headerbanner, .ad_hf, .ad_home_current, .ad_midd, .ad_right_1, .ad_right_2, .ad_thread, .ads > a > img[src*=".sinaimg."], .adsense160, .adsense200, .adsoho, .assort-ad, .banner-ad-section, .bdyp-sygg-ul, .below_ads, .bm.a_c, .bn728-93, .bottom-adv, .bottomSponsor { display: none!important; z-index:-1!important; height:0px!important;}
@@ -37,43 +26,43 @@
 <div th:replace="~{fragment/managerNav :: nav}"></div>
 
 <main role="main" class="container" style="margin: 0 auto;margin-top: 50px;">
-    <form id="userNew" method="post" th:action="@{/updateUser}" class="needs-validation" novalidate style="width: 500px; margin: 0 auto;color: white;">
+    <form id="userNew" method="post" th:action="@{/updateUser}" class="needs-validation" style="width: 500px; margin: 0 auto;color: white;">
         <h3 style="color: white;margin-bottom: 25px;">修改用户</h3>
         <input type="text" class="form-control" id="id" name="id" th:value="${userInfo.getId()}" hidden>
         <div class="form-group">
             <label for="name">用户名</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="用户名" th:value="${userInfo.getName()}">
+            <input type="text" class="form-control" id="name" name="name" placeholder="用户名" th:value="${userInfo.getName()}" required>
         </div>
         <div class="form-group">
             <label for="pwd">密码</label>
-            <input type="text" class="form-control" id="pwd" name="pwd" placeholder="密码" th:value="${userInfo.getPwd()}">
+            <input type="text" class="form-control" id="pwd" name="pwd" placeholder="密码" th:value="${userInfo.getPwd()}" required>
         </div>
         <div class="form-group">
             <label for="age">年龄</label>
-            <input type="text" class="form-control" id="age" name="age" placeholder="年龄" th:value="${userInfo.getAge()}">
+            <input type="text" class="form-control" id="age" name="age" placeholder="年龄" th:value="${userInfo.getAge()}" required>
         </div>
         <div class="form-group custom-control custom-radio custom-control-inline">
-            <input type="radio" id="man" name="sex" class="custom-control-input" value="1" required>
+            <input type="radio" id="man" name="sex" class="custom-control-input" value="1" th:checked="${userInfo.sex == 1}" required>
             <label class="custom-control-label" for="man">男</label>
         </div>
         <div class="form-group custom-control custom-radio custom-control-inline">
-            <input type="radio" id="woman" name="sex" class="custom-control-input" value="0" required>
+            <input type="radio" id="woman" name="sex" class="custom-control-input" value="0" th:checked="${userInfo.sex == 0}" required>
             <label class="custom-control-label" for="woman">女</label>
         </div>
         <div class="form-group">
             <label for="mailbox">邮箱</label>
-            <input type="text" class="form-control" id="mailbox" name="mailbox" placeholder="邮箱" th:value="${userInfo.getMailbox()}">
+            <input type="text" class="form-control" id="mailbox" name="mailbox" placeholder="邮箱" th:value="${userInfo.getMailbox()}" required>
         </div>
         <div class="form-group">
             <label for="unmber">手机号</label>
-            <input type="text" class="form-control" id="unmber" name="unmber" placeholder="手机号" th:value="${userInfo.getUnmber()}">
+            <input type="text" class="form-control" id="unmber" name="unmber" placeholder="手机号" th:value="${userInfo.getUnmber()}" required>
         </div>
         <div class="form-group custom-control custom-radio custom-control-inline">
-            <input type="radio" id="user" name="role" class="custom-control-input" value="2" required>
+            <input type="radio" id="user" name="role" class="custom-control-input" value="2" th:checked="${userInfo.role == 2}" required>
             <label class="custom-control-label" for="user">普通用户</label>
         </div>
         <div class="form-group custom-control custom-radio custom-control-inline">
-            <input type="radio" id="admin" name="role" class="custom-control-input" value="1" required>
+            <input type="radio" id="admin" name="role" class="custom-control-input" value="1" th:checked="${userInfo.role == 1}" required>
             <label class="custom-control-label" for="admin">管理员</label>
         </div>
         <br>
@@ -81,7 +70,4 @@
         <a th:href="@{/user/list}" type="submit" class="btn btn-secondary">取消</a>
     </form>
 </main>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-<script src="/webjars/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
 </body></html>

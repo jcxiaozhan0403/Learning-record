@@ -137,7 +137,7 @@
                                     <p class="card-text" style="width:288px; height:75px; overflow:hidden;" th:text="${course.sketch}"></p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a type="button" th:onclick="|javascript:addMyCourse('${session.user.id}','${course.id}')|" class="btn btn-sm btn-outline-secondary" th:href="${course.url}" target="_blank">观看</a>
+                                            <a type="button" th:onclick="|javascript:addMyCourse('${session.user.id}','${course.id}')|" class="btn btn-sm btn-outline-secondary" th:href="@{'https://' + ${course.url}}" target="_blank">观看</a>
                                             <button th:onclick="|javascript:addCollection('${session.user.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary collectBtn">收藏</button>
                                             <div th:each="collect : ${collects}" th:if="${session.user != null}">
                                                 <button th:onclick="|javascript:deleteCollect('${session.user.id}','${course.id}')|" type="button" class="btn btn-sm btn-outline-secondary cancelCollectBtn" th:if="${session.user != null && collect == course.id}">取消收藏</button>

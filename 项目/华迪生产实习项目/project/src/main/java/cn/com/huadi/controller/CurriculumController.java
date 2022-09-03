@@ -5,7 +5,6 @@ import cn.com.huadi.entity.Curriculum;
 import cn.com.huadi.service.impl.CurriculumServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,69 +15,48 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author yuan点
- * @since 2021-11-06
- */
 @Controller
 public class CurriculumController {
     @Autowired
     CurriculumServiceImpl curriculumServiceImpl;
 
     /**
-     * 4
-     * 添加课程并且跳转回课程列表
+     * 添加课程
      * @param
      * @return
      * @Description
      */
     @RequestMapping("/addCurriculum")
     public String addCurriculum(Curriculum curriculum){
-        boolean b = false;
-        try {
-            b = curriculumServiceImpl.save(curriculum);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        curriculumServiceImpl.save(curriculum);
         return "redirect:/course/list";
     }
 
 
     /**
-     * 根据课程id删除课程
+     * 删除课程
      * @param
      * @return
      * @Description
      */
     @RequestMapping("/deleteCurriculum")
     public String deleteCurriculum(String id){
-        boolean b = false;
-        try {
-          b = curriculumServiceImpl.removeById(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        curriculumServiceImpl.removeById(id);
         return "redirect:/course/list";
     }
 
-//    6
+    /**
+     * 修改课程
+     * @param curriculum
+     * @return
+     */
     @RequestMapping("/updateCurriculum")
     public String updateCurriculum(Curriculum curriculum){
         UpdateWrapper<Curriculum> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("id", curriculum.getId());
-        boolean b = false;
-        try {
-            b = curriculumServiceImpl.update(curriculum, updateWrapper);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+
+        curriculumServiceImpl.update(curriculum, updateWrapper);
+
         return "redirect:/course/list";
     }
 
@@ -107,25 +85,6 @@ public class CurriculumController {
 
         model.addAttribute("courseList",list);
         return "index";
-    }
-
-    /**
-     * 跳转到课程修改界面
-     * @param
-     * @return
-     * @Description
-     */
-    @RequestMapping("/course/edit")
-    public String getCurriculumById(String id,Model model){
-        Curriculum curriculum = null;
-        try {
-            curriculum = curriculumServiceImpl.getById(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "false";
-        }
-        model.addAttribute("courseInfo",curriculum);
-        return "/manager/courseEdit";
     }
 
     /**

@@ -34,14 +34,14 @@
                 <a th:href="@{/index}" style="color: #fff;margin-right: 10px;">首页</a>
                 <span style="position: relative">
                     <a th:if="${session.user != null}" class="dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #fff;margin-right: 10px;">课程管理</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown01" style="position: absolute; top: 40px; left: -75px;">
+                    <div class="dropdown-menu" aria-labelledby="dropdown01" style="position: absolute; top: 35px; left: -30px;">
                         <a class="dropdown-item" th:href="@{/course/list}">课程列表</a>
                         <a class="dropdown-item" th:href="@{/course/add}">添加课程</a>
                     </div>
                 </span>
                 <span style="position: relative">
                     <a th:if="${session.user != null}" class="dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #fff;margin-right: 10px;">用户管理</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown02" style="position: absolute; top: 40px; left: -75px;">
+                    <div class="dropdown-menu" aria-labelledby="dropdown02" style="position: absolute; top: 35px; left: -30px;">
                         <a class="dropdown-item" th:href="@{/user/list}">用户列表</a>
                         <a class="dropdown-item" th:href="@{/user/add}">新增用户</a>
                     </div>

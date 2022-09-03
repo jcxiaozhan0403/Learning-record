@@ -1,27 +1,23 @@
 package com.controller;
 
+import com.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author John.Cena
  * @date 2022/9/1 9:57
  * @Description:
  */
-@RestController
+@Controller
 public class LoginController {
 
     @RequestMapping("/demo")
-    public String myTest(@RequestParam("lecturer") String lecturer){
+    public String myTest(Model model){
+        User user = new User(1, "John", "123456", 1, 1);
 
-        if(lecturer.equals("null")){
-            System.out.println("1111111111111111111111111");
-        }else{
-            System.out.println("22222222222222222222");
-        }
+        model.addAttribute("user",user);
 
         return "demo";
     }
