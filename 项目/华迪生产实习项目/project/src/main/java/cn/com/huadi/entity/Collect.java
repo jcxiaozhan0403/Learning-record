@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// 收藏
+// 我的收藏
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

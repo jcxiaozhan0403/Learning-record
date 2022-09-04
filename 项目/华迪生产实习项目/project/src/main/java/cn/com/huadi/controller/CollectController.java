@@ -2,8 +2,6 @@ package cn.com.huadi.controller;
 
 import cn.com.huadi.entity.Collect;
 import cn.com.huadi.entity.Curriculum;
-import cn.com.huadi.entity.Mycourse;
-import cn.com.huadi.entity.User;
 import cn.com.huadi.service.impl.CollectServiceImpl;
 import cn.com.huadi.service.impl.CurriculumServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
