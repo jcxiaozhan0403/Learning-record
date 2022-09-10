@@ -111,7 +111,7 @@ SpringBoot将所有的功能场景都抽取出来，做成一个个的starter �
 
 ## 热部署
 
-修改代码之后只要重新编译即可看到效果，不用重新部署
+导入如下依赖，修改代码之后只要重新编译即可看到效果，不用重新部署
 
 ```xml
 <!-- springBoot devtools的热部署 修改代码之后需要重新编译一下即可 -->
@@ -277,3 +277,291 @@ private static Map<String, List<String>> loadSpringFactories(@Nullable ClassLoad
 4. 它会给容器中导入非常多的自动配置类（xxxAutoConfiguration），就是给容器中导入这个场景需要的所有组件，并配置好这些组件
 5. 有了自动配置类，免去了我们手动编写配置注入功能组件等的工作
 
+## 配置文件
+
+### 基本语法
+
+1. properties文件
+
+```properties
+key=value
+```
+
+2. yaml文件
+
+> YAML是 "YAML Ain't a Markup Language" （YAML不是一种标记语言）的递归缩写。在开发的这种语言时，YAML 的意思其实是："Yet Another Markup Language"（仍是一种标记语言）
+
+==这种语言以数据作为中心，而不是以标记语言为重点==
+
+```yaml
+key: value
+
+# 对象
+student01:
+  name: 李爽
+  age: 20
+
+# 行内写法
+student02: {name: 张三,age: 22}
+
+# 数组
+list01:
+  - dog
+  - cat
+  - dark
+
+# 行内写法
+list02: [dog,pig,cat]
+```
+
+==注：==
+
+- “ ” 双引号，不会转义字符串里面的特殊字符 ， 特殊字符会作为本身想表示的意思；
+
+  比如 ：name: "kuang \n shen"  输出 ：kuang  换行  shen
+
+- ' ' 单引号，会转义特殊字符 ， 特殊字符最终会变成和普通字符一样输出
+
+  比如 ：name: ‘kuang \n shen’  输出 ：kuang  \n  shen
+
+### 属性值注入
+
+`Person.java`
+
+```java
+@Component //注册bean到容器中
+public class Person {
+    private String name;
+    private Integer age;
+    private Boolean happy;
+    private Date birth;
+    private Map<String,Object> maps;
+    private List<Object> lists;
+    
+    //有参无参构造、get、set方法、toString()方法  
+}
+```
+
+`application.yml`
+
+```yaml
+person:
+  name: qinjiang
+  age: 3
+  happy: false
+  birth: 2000/01/01
+  maps: {k1: v1,k2: v2}
+  lists:
+   - code
+   - girl
+   - music
+```
+
+`Person.java`
+
+```java
+/*
+@ConfigurationProperties作用：
+将配置文件中配置的每一个属性的值，映射到这个组件中；
+告诉SpringBoot将本类中的所有属性和配置文件中相关的配置进行绑定
+参数 prefix = “person” : 将配置文件中的person下面的所有属性一一对应
+*/
+@Component //注册bean
+@ConfigurationProperties(prefix = "person")
+public class Person {
+    private String name;
+    private Integer age;
+    private Boolean happy;
+    private Date birth;
+    private Map<String,Object> maps;
+    private List<Object> lists;
+    private Dog dog;
+}
+```
+
+通过yaml进行属性值注入，会有警告，但不会影响运行，我们可以导入下面依赖来消除警告
+
+```xml
+<!-- 导入配置文件处理器，配置文件进行绑定就会有提示，需要重启 -->
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-configuration-processor</artifactId>
+  <optional>true</optional>
+</dependency>
+```
+
+使用properties配置文件来进行属性值注入
+
+### 配置文件的加载
+
+**@PropertySource ：**加载指定的配置文件；
+
+**@configurationProperties**：默认从全局配置文件中获取值；
+
+测试**@configurationProperties**+**properties配置文件**的方式注入属性值
+
+`application.properties`
+
+```properties
+name=李爽
+age=21
+```
+
+`Person.java`
+
+```java
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@PropertySource("classpath:application.properties")
+@Component
+public class Person {
+    @Value("${name}")
+    private String name;
+    @Value("${age}")
+    private int age;
+}
+```
+
+### yaml与properties的区别
+
+|              |       yaml       |      properties       |
+| :----------: | :--------------: | :-------------------: |
+|     功能     | 批量注入配置属性 | 使用Value单个指定属性 |
+|   松散绑定   |       支持       |        不支持         |
+|     SpEL     |      不支持      |         支持          |
+|    JSR303    |       支持       |        不支持         |
+| 复杂类型封装 |       支持       |        不支持         |
+
+松散绑定：驼峰与中划线两者之间的自动映射，例如firstName与first-name
+
+SpEL：springboot提供的一些可以直接用与EL表达式的值，例如${random.uuid}
+
+## JSR303校验
+
+<img src="./JSR303校验.jpg">
+
+### 简单使用
+
+1. 导入依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-validation</artifactId>
+</dependency>
+```
+
+2. `Person.java`
+
+```java
+@Validated	//开启数据校验
+public class Person {
+    private String name;
+
+    //验证是否符合邮箱格式
+    @Email
+    private int age;
+}
+```
+
+### 常用注解
+
+```java
+@NotNull(message="名字不能为空")
+private String userName;
+@Max(value=120,message="年龄最大不能查过120")
+private int age;
+@Email(message="邮箱格式错误")
+private String email;
+
+空检查
+@Null       验证对象是否为null
+@NotNull    验证对象是否不为null, 无法查检长度为0的字符串
+@NotBlank   检查约束字符串是不是Null还有被Trim的长度是否大于0,只对字符串,且会去掉前后空格.
+@NotEmpty   检查约束元素是否为NULL或者是EMPTY.
+    
+Booelan检查
+@AssertTrue     验证 Boolean 对象是否为 true  
+@AssertFalse    验证 Boolean 对象是否为 false  
+    
+长度检查
+@Size(min=, max=) 验证对象（Array,Collection,Map,String）长度是否在给定的范围之内  
+@Length(min=, max=) string is between min and max included.
+
+日期检查
+@Past       验证 Date 和 Calendar 对象是否在当前时间之前  
+@Future     验证 Date 和 Calendar 对象是否在当前时间之后  
+@Pattern    验证 String 对象是否符合正则表达式的规则
+
+.......等等
+除此以外，我们还可以自定义一些数据校验规则
+```
+
+## SpringBoot多环境配置切换
+
+### 配置文件加载路径及优先级
+
+官方定义了4个配置文件可以被加载的路径，自动加载名为application的配置文件
+
+1. file:./config/
+2. file:./
+3. classpath:/config/
+4. classpath:/
+
+加载优先级
+
+```
+优先级1：项目路径下的config文件夹内的配置文件
+优先级2：项目路径下的配置文件
+优先级3：资源路径下的config文件夹内的配置文件
+优先级4：资源路径下的配置文件
+```
+
+### 多环境配置
+
+我们在主配置文件编写的时候，文件名可以是 application-{profile}.properties/yml , 用来指定多个环境版本；
+
+例如：
+
+- application-test.properties 代表测试环境配置
+
+- application-dev.properties 代表开发环境配置
+
+在主配置文件中激活配置
+
+`application.properties`
+
+```properties
+#比如在配置文件中指定使用dev环境，我们可以通过设置不同的端口号进行测试；
+#我们启动SpringBoot，就可以看到已经切换到dev下的配置了；
+spring.profiles.active=dev
+```
+
+> yaml的多文档块
+
+和properties配置文件中一样，但是使用yml去实现不需要创建多个配置文件，更加方便了 !
+
+```yaml
+server:
+  port: 8081
+#选择要激活那个环境块
+spring:
+  profiles:
+    active: test
+
+---
+server:
+  port: 8083
+spring:
+  profiles: dev #配置环境的名称
+
+
+---
+server:
+  port: 8084
+spring:
+  profiles: test  #配置环境的名称
+```
+
+==注：如果yml和properties同时都配置了端口，并且没有激活其他环境 ， 默认会使用properties配置文件的！==
