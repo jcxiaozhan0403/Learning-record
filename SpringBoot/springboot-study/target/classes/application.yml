@@ -1,3 +1,2 @@
-person:
-  name: 李爽
-  age: 18
+# 开启springboot的调试类
+debug: true
