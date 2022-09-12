@@ -97,3 +97,23 @@ netsh winsock reset
 
 ## Docker安装软件
 
+我们可以在下面这个网站搜索到一些镜像来进行安装
+
+https://hub.docker.com/
+
+### Docker安装命令文档说明
+
+https://docs.docker.com/engine/reference/commandline/run/
+
+### Docker安装Redis镜像
+
+```Java
+//参数说明
+//-d 在后台运行容器并打印容器id
+//-p 将容器端口映射到宿主机 宿主机端口:容器端口
+//-name 给容器命名
+//--restart 设置重启策略，默认为no，表示容器退出时不自动重启
+//-V 绑定挂载卷
+//redis:latest 指定镜像版本，latest为最新版
+docker run -d -p 6379:6379 --name redis redis:latest
+```
