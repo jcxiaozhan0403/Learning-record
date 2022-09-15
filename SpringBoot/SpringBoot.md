@@ -681,3 +681,39 @@ spring:
 ```
 
 ==注：如果yml和properties同时都配置了端口，并且没有激活其他环境 ， 默认会使用properties配置文件的！==
+
+## SpringBoot Web
+
+### 静态资源处理
+
+在普通的JavaWeb项目中，我们在main/webapp这个路径下放我们的静态资源。
+
+### webjars
+
+Webjars本质就是以jar包的方式引入我们的静态资源 ， 我们以前要导入一个静态资源文件，直接导入即可。
+
+使用SpringBoot需要使用Webjars，我们可以去搜索一下：
+
+网站：https://www.webjars.org 
+
+要使用jQuery，我们只要要引入jQuery对应版本的pom依赖即可！
+
+我们可以在`/webjars/**`这个路径下引用我们导入的webjar资源
+
+```xml
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>jquery</artifactId>
+    <version>3.4.1</version>
+</dependency>
+```
+
+### SpringBoot默认静态资源加载路径
+
+1. `classpath:/META-INF/resources/`
+2. `classpath:/resources/`
+3. `classpath:/static/`
+4. `classpath:/public/`
+
+上面是SpringBoot的四个默认静态资源加载路径，通过测试我们可以得出，他们的优先级情况是
+
