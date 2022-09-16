@@ -1,5 +1,0 @@
-# 开启springboot的调试类
-debug: true
-spring:
-  web:
-    locale:

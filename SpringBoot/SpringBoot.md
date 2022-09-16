@@ -715,5 +715,247 @@ Webjars本质就是以jar包的方式引入我们的静态资源 ， 我们以�
 3. `classpath:/static/`
 4. `classpath:/public/`
 
-上面是SpringBoot的四个默认静态资源加载路径，通过测试我们可以得出，他们的优先级情况是
+上面是SpringBoot的四个默认静态资源加载路径，通过测试我们可以得出，他们的优先级情况是`1 > 2 > 3 > 4`
 
+可以通过配置文件手动设置静态资源路径，不过设置过后，几个默认路径都会失效
+
+## Thymeleaf模板引擎
+
+html文件根标签属性引入Thymeleaf
+```html
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+```
+语法
+```html
+<h1 th:text="'姓名：'+${name}"></h1>
+<h1 th:text="|姓名：${name}|"></h1>
+<h1 th:utext="'姓名：'+${name}"></h1>
+<h1 th:each="user:${users}" th:text="${user}"></h1>
+```
+fragment标签与insert、replace、include属性
+```html
+<!-- 用fragment标签定义 -->
+<footer th:fragment="copy">
+  &copy; 2011 The Good Thymes Virtual Grocery
+</footer>
+
+<!-- 用insert属性在元素下引用定义好的片段 -->
+<!-- 效果如下 
+<div>
+    <footer>
+        &copy; 2011 The Good Thymes Virtual Grocery
+    </footer>
+</div> 
+-->
+<div th:insert="footer :: copy"></div>
+
+<!-- 用replace属性在元素下引用定义好的片段 -->
+<!-- 效果如下 
+<footer>
+    &copy; 2011 The Good Thymes Virtual Grocery
+</footer>
+-->
+<div th:replace="footer :: copy"></div>
+
+<!-- 用include属性在元素下引用定义好的片段 -->
+<!-- 效果如下 
+<div>
+    &copy; 2011 The Good Thymes Virtual Grocery
+</div>
+-->
+<div th:include="footer :: copy"></div>
+
+<!-- 注：当定义标签与使用标签不存在于同一个目录中时，引用时要带上路径 -->
+<div th:insert="main/footer :: copy"></div>
+```
+
+## SpringMVC自动装配
+
+> 文档地址：https://docs.spring.io/spring-boot/docs/2.2.5.RELEASE/reference/htmlsingle/#boot-features-spring-mvc-auto-configuration
+
+```java
+Spring MVC Auto-configuration
+// Spring Boot为Spring MVC提供了自动配置，它可以很好地与大多数应用程序一起工作。
+Spring Boot provides auto-configuration for Spring MVC that works well with most applications.
+// 自动配置在Spring默认设置的基础上添加了以下功能：
+The auto-configuration adds the following features on top of Spring’s defaults:
+// 包含视图解析器
+Inclusion of ContentNegotiatingViewResolver and BeanNameViewResolver beans.
+// 支持静态资源文件夹的路径，以及webjars
+Support for serving static resources, including support for WebJars 
+// 自动注册了Converter：
+// 转换器，这就是我们网页提交数据到后台自动封装成为对象的东西，比如把"1"字符串自动转换为int类型
+// Formatter：【格式化器，比如页面给我们了一个2019-8-10，它会给我们自动格式化为Date对象】
+Automatic registration of Converter, GenericConverter, and Formatter beans.
+// HttpMessageConverters
+// SpringMVC用来转换Http请求和响应的的，比如我们要把一个User对象转换为JSON字符串，可以去看官网文档解释；
+Support for HttpMessageConverters (covered later in this document).
+// 定义错误代码生成规则的
+Automatic registration of MessageCodesResolver (covered later in this document).
+// 首页定制
+Static index.html support.
+// 图标定制
+Custom Favicon support (covered later in this document).
+// 初始化数据绑定器：帮我们把请求数据绑定到JavaBean中！
+Automatic use of a ConfigurableWebBindingInitializer bean (covered later in this document).
+
+/*
+如果您希望保留Spring Boot MVC功能，并且希望添加其他MVC配置（拦截器、格式化程序、视图控制器和其他功能），则可以添加自己
+的@configuration类，类型为webmvcconfiguer，但不添加@EnableWebMvc。如果希望提供
+RequestMappingHandlerMapping、RequestMappingHandlerAdapter或ExceptionHandlerExceptionResolver的自定义
+实例，则可以声明WebMVCregistrationAdapter实例来提供此类组件。
+*/
+If you want to keep Spring Boot MVC features and you want to add additional MVC configuration 
+(interceptors, formatters, view controllers, and other features), you can add your own 
+@Configuration class of type WebMvcConfigurer but without @EnableWebMvc. If you wish to provide 
+custom instances of RequestMappingHandlerMapping, RequestMappingHandlerAdapter, or 
+ExceptionHandlerExceptionResolver, you can declare a WebMvcRegistrationsAdapter instance to provide such components.
+
+// 如果您想完全控制Spring MVC，可以添加自己的@Configuration，并用@EnableWebMvc进行注释。
+If you want to take complete control of Spring MVC, you can add your own @Configuration annotated with @EnableWebMvc.
+```
+
+## SpringMVC扩展
+
+探究源码，我们可以得到如下结论：
+
+==ContentNegotiatingViewResolver这个视图解析器就是用来组合所有的视图解析器的，它在IOC容器中查找视图解析器，找到最优解进行赋值使用==
+
+我们尝试向IOC容器中注册一个自定义的视图解析器
+
+```java
+@Configuration
+public class MyWebMvcConfigurer implements WebMvcConfigurer {
+    @Bean //放到bean中
+    public ViewResolver myViewResolver(){
+        return new MyViewResolver();
+    }
+
+    //我们写一个静态内部类，视图解析器就需要实现ViewResolver接口
+    private static class MyViewResolver implements ViewResolver{
+        @Override
+        public View resolveViewName(String s, Locale locale) throws Exception {
+            return null;
+        }
+    }
+}
+```
+
+之后我们对`DispatcherServlet`类的`doDispatch()`方法进行DeBug发现，我们自定义的视图解析器，也进入了它的视图遍历列表，参与了循环
+
+==结论：所以说，我们如果想要使用自己定制化的东西，我们只需要给容器中添加这个组件就好了！剩下的事情SpringBoot就会帮我们做了！==
+
+## 国际化
+
+1. 在resources资源文件下新建一个i18n文件，存放国际化配置文件
+2. 在i18n文件夹内创建多个配置文件，对应多个语言
+
+`login.properties` 默认
+
+```properties
+login.btn=登录
+login.password=密码
+login.remember=记住我
+login.tip=请登录
+login.username=用户名
+```
+
+`login_zh_CN.properties` 中国
+
+```properties
+login.btn=登录
+login.password=密码
+login.remember=记住我
+login.tip=请登录
+login.username=用户名
+```
+
+`login_en_US.properties` 美国
+
+```properties
+login.btn=Sign in
+login.password=Password
+login.remember=Remember me
+login.tip=Please sign in
+login.username=Username
+```
+
+3. 在配置文件中配置语言包位置
+
+```yml
+spring:
+  messages:
+    basename: i18n.login
+```
+
+4. 在webmvc的自动配置文件中有一个区域信息解析器`LocaleResolver`，我们可以自己写一个类，来覆盖它，完成国际化切换的操作
+
+`MyLocaleResolver.java`
+
+```java
+//可以在链接上携带区域信息
+public class MyLocaleResolver implements LocaleResolver {
+
+    //解析请求
+    @Override
+    public Locale resolveLocale(HttpServletRequest request) {
+        // 获取参数l
+        String language = request.getParameter("l");
+        // 如果没有获取到就使用系统默认的区域
+        Locale locale = Locale.getDefault();
+        //如果请求链接不为空
+        if (!StringUtils.isEmpty(language)){
+            //分割请求参数
+            String[] split = language.split("_");
+            //国家，地区
+            locale = new Locale(split[0],split[1]);
+        }
+        return locale;
+    }
+
+    @Override
+    public void setLocale(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Locale locale) {
+
+    }
+}
+```
+
+5. 在IOC容器中注册我们的自定义解析器
+
+`MyMvcConfig.java`
+
+```java
+@Configuration
+public class MyMvcConfig implements WebMvcConfigurer {
+    @Bean
+    public LocaleResolver localeResolver(){
+        return new MyLocaleResolver();
+    }
+}
+```
+
+6. 前端进行国际化配置
+
+```html
+<form class="form-signin" th:action="@{/index}" method="post">
+    <img class="mb-4" th:src="@{/img/bootstrap-solid.svg}" alt="" width="72" height="72">
+    <!-- 国际化参数用 # 取值 -->
+    <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}"></h1>
+    <label for="username" class="sr-only" th:text="#{login.username}"></label>
+    <input type="text" id="username" class="form-control" th:placeholder="#{login.username}" name="username">
+    <label for="password" class="sr-only" th:text="#{login.password}"></label>
+    <input type="password" id="password" class="form-control" th:placeholder="#{login.password}" name="password">
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me" th:text="#{login.remember}">
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.btn}"></button>
+    <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+
+    <!-- thymeleaf特有传参方式（key=value）-->
+    <!-- 通过l参数来控制页面国际化-->
+    <a class="btn btn-sm" th:href="@{/login(l='zh_CN')}">中文</a>
+    <a class="btn btn-sm" th:href="@{/login(l='en_US')}">English</a>
+</form>
+```

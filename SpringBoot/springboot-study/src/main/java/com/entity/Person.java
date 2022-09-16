@@ -17,7 +17,6 @@ import javax.validation.constraints.Email;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ConfigurationProperties(prefix = "person")
 @Component
 @Validated
 public class Person {

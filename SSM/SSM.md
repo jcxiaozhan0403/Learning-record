@@ -1758,7 +1758,7 @@ fragment标签与insert、replace、include属性
 -->
 <div th:include="footer :: copy"></div>
 
-<!-- 注：当定义标签与使用标签不存在与同一个目录中时，引用时要带上路径 -->
+<!-- 注：当定义标签与使用标签不存在于同一个目录中时，引用时要带上路径 -->
 <div th:insert="main/footer :: copy"></div>
 ```
 
