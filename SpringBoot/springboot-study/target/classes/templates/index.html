@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
+<script src="/webjars/bootstrap/4.6.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.6.1/css/bootstrap.min.css">
+<body>
+<form class="form-signin" th:action="@{/index}" method="post">
+    <!-- 国际化参数用 # 取值 -->
+    <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}"></h1>
+    <label for="username" class="sr-only" th:text="#{login.username}"></label>
+    <input type="text" id="username" class="form-control" th:placeholder="#{login.username}" name="username">
+    <label for="password" class="sr-only" th:text="#{login.password}"></label>
+    <input type="password" id="password" class="form-control" th:placeholder="#{login.password}" name="password">
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me" th:text="#{login.remember}">
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.btn}"></button>
+    <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+
+    <!-- thymeleaf特有传参方式（key=value）-->
+    <!-- 通过l参数来控制页面国际化-->
+    <a class="btn btn-sm" th:href="@{/login(l='zh_CN')}">中文</a>
+    <a class="btn btn-sm" th:href="@{/login(l='en_US')}">English</a>
+</form>
+</body>
+</html>

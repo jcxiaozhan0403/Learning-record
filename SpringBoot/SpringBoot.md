@@ -959,3 +959,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
     <a class="btn btn-sm" th:href="@{/login(l='en_US')}">English</a>
 </form>
 ```
+
+## 自定义错误页面
+
+可以在springboot的静态资源路径、或者模板引擎目录`templates`下创建`error`目录用来存放自定义的错误页面，页面以错误码命名，例如404.html、5xx.html等，一个页面代表一个错误或一类错误，springboot会识别，并在系统错误发生时进行跳转
