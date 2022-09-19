@@ -963,3 +963,61 @@ public class MyMvcConfig implements WebMvcConfigurer {
 ## 自定义错误页面
 
 可以在springboot的静态资源路径、或者模板引擎目录`templates`下创建`error`目录用来存放自定义的错误页面，页面以错误码命名，例如404.html、5xx.html等，一个页面代表一个错误或一类错误，springboot会识别，并在系统错误发生时进行跳转
+
+## SpringData
+
+对于数据访问层，无论是SQL(关系型数据库) 还是NOSQL(非关系型数据库)，SpringBoot底层都是采用 SpringData的方式进行统一处理。
+
+SpringBoot底层都是采用Spring Data的方式进行统一处理各种数据库，SpringData也是Spring中与 SpringBoot、SpringCloud等齐名的知名项目。
+
+SpingData 官网：https://spring.io/projects/spring-data
+
+数据库相关的启动器，可以参考官方文档：
+
+https://docs.spring.io/spring-boot/docs/2.2.5.RELEASE/reference/htmlsingle/#using-boot-starter
+
+### 测试JDBC
+
+1. 导入依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jdbc</artifactId>
+</dependency>
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <scope>runtime</scope>
+</dependency>
+```
+
+2. 配置数据库连接参数、
+
+```yaml
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot-data?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8
+    username: root
+    password: lishuang001219
+```
+
+3. 测试，使用`jdbcTemplate`
+
+```java
+@SpringBootTest
+public class MyTest {
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    @Test
+    public void text() {
+        String sql = "select * from user";
+        List<Map<String, Object>> maps = jdbcTemplate.queryForList(sql);
+        System.out.println(maps);
+    }
+}
+```
+
