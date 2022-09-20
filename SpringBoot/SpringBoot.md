@@ -1,4 +1,4 @@
-## SpringBoot简介
+## 简介
 
 ### 回顾Spring
 
@@ -22,7 +22,7 @@ Spring是一个开源框架，2003 年兴起的一个轻量级的Java开发框�
 
 > Spring Boot是由Pivotal团队提供的全新[框架](https://baike.baidu.com/item/框架/1212667?fromModule=lemma_inlink)，其设计目的是用来[简化](https://baike.baidu.com/item/简化/3374416?fromModule=lemma_inlink)新[Spring](https://baike.baidu.com/item/Spring/85061?fromModule=lemma_inlink)应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。通过这种方式，Spring Boot致力于在蓬勃发展的快速应用开发领域(rapid application development)成为领导者。
 
-## Spring Boot的主要优点
+## 主要优点
 
 - 为所有Spring开发者更快的入门
 - **开箱即用**，提供各种默认配置来简化项目配置
@@ -614,7 +614,7 @@ Booelan检查
 除此以外，我们还可以自定义一些数据校验规则
 ```
 
-## SpringBoot多环境配置切换
+## 多环境配置切换
 
 ### 配置文件加载路径及优先级
 
@@ -1177,3 +1177,90 @@ public FilterRegistrationBean webStatFilter() {
     return bean;
 }
 ```
+
+## 整合Mybatis
+
+1. 导入依赖
+
+```xml
+<dependency>
+    <groupId>org.mybatis.spring.boot</groupId>
+    <artifactId>mybatis-spring-boot-starter</artifactId>
+    <version>2.2.2</version>
+</dependency>
+```
+
+2. 在springboot配置文件中进行mybatis的相关配置
+
+```yaml
+mybatis:
+  # 指定mapper.xml的位置
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  # 扫描包配置别名
+  type-aliases-package: com.entity
+  configuration:
+    #默认开启驼峰命名法，可以不用设置该属性
+    map-underscore-to-camel-case: true
+```
+
+3. 创建实体类
+
+```java
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class User {
+    private Integer id;
+    private String name;
+    private Integer age;
+}
+```
+
+4. 创建Mapper接口
+
+```java
+@Mapper
+@Repository
+public interface UserMapper {
+    List<User> userList();
+}
+```
+
+5. 创建XML映射文件
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间：绑定一个对应的Mapper接口 -->
+<mapper namespace="com.mapper.UserMapper">
+  <!-- sql语句 -->
+  <!-- id对应接口中定义的方法 resultType表示结果集类型 -->
+  <select id="userList" resultType="User">
+    select * from user
+  </select>
+</mapper>
+```
+
+6. 创建Controller
+
+```java
+@RestController
+public class UserController {
+    @Autowired
+    UserMapper userMapper;
+
+    @RequestMapping("/list")
+    public String list(){
+        return userMapper.userList().toString();
+    }
+}
+```
+
+7. 测试
+
+```
+http://localhost:8080/list
+```
+

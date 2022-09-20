@@ -4,3 +4,13 @@ spring:
     url: jdbc:mysql://localhost:3306/springboot-data?useSSL=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
     username: root
     password: lishuang001219
+
+mybatis:
+  # 指定 mapper.xml 的位置
+  mapper-locations: classpath:com/mapper/*.xml
+
+  #扫描实体类的位置,在此处指明扫描实体类的包，在 mapper.xml 中就可以不写实体类的全路径名
+  type-aliases-package: com.entity
+  configuration:
+    #默认开启驼峰命名法，可以不用设置该属性
+    map-underscore-to-camel-case: true
