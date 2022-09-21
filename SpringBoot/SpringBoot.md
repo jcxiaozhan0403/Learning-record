@@ -1264,3 +1264,89 @@ public class UserController {
 http://localhost:8080/list
 ```
 
+## SpringSecurity
+
+> Spring 是一个非常流行和成功的 Java 应用开发框架。Spring Security 基于 Spring 框架，提供了一套 Web 应用安全性的完整解决方案。一般来说，Web 应用的安全性包括用户认证（Authentication）和用户授权（Authorization）两个部分。
+
+### 用户认证
+
+用户认证指的是验证某个用户是否为系统中的合法主体，也就是说用户能否访问该系统。用户认证一般要求用户提供用户名和密码。系统通过校验用户名和密码来完成认证过程。
+
+### 用户授权
+
+用户授权指的是验证某个用户是否有权限执行某个操作。在一个系统中，不同用户所具有的权限是不同的。比如对一个文件来说，有的用户只能进行读取，而有的用户可以进行修改。一般来说，系统会为不同的用户分配不同的角色，而每个角色则对应一系列的权限。
+
+### 使用
+
+==SpringSecurity是基于AOP实现的，所以我们在不用改变原有代码的前提下，就能加入安全验证==
+
+1. 导入依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+    <version>2.7.3</version>
+</dependency>
+```
+
+2. 创建Spring Security配置类
+
+参考官网：https://spring.io/projects/spring-security
+
+`SecurityConfig`
+
+```java
+@EnableWebSecurity // 开启WebSecurity模式
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
+    // 定制请求的授权规则
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        // 链式编程
+        // 首页所有人可以访问
+        http.authorizeRequests().antMatchers("/").permitAll()
+                .antMatchers("/level1/**").hasRole("vip1")
+                .antMatchers("/level2/**").hasRole("vip2")
+                .antMatchers("/level3/**").hasRole("vip3");
+
+        // 开启自动配置的登录功能
+        // /login 请求来到登录页
+        // /login?error 重定向到这里表示登录失败
+        http.formLogin();
+
+        // 定制登录页面
+        // http.formLogin()
+        //  .usernameParameter("username")
+        //  .passwordParameter("password")
+        //  .loginPage("/toLogin")
+        //  .loginProcessingUrl("/login"); // 登陆表单提交请求
+
+        //....
+        //开启自动配置的注销的功能
+        // /logout 注销请求
+        http.csrf().disable();//关闭csrf功能:跨站请求伪造,默认只能通过post方式提交logout请求
+        http.logout().logoutSuccessUrl("/");
+
+        //记住我
+        http.rememberMe();
+
+        //定制记住我的参数！
+        //http.rememberMe().rememberMeParameter("remember");
+    }
+
+    //定制认证规则
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // inMemoryAuthentication在内存中定义，也可以在jdbc中去拿....
+        // passwordEncoder定义密码的加密规则，有多种加密方式可选，bcrypt是官方推荐的
+        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+                .withUser("kuangshen").password(new BCryptPasswordEncoder().encode("123456")).roles("vip2","vip3")
+                .and()
+                .withUser("root").password(new BCryptPasswordEncoder().encode("123456")).roles("vip1","vip2","vip3")
+                .and()
+                .withUser("guest").password(new BCryptPasswordEncoder().encode("123456")).roles("vip1","vip2");
+    }
+}
+```
+
