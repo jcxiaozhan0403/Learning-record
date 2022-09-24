@@ -1299,46 +1299,53 @@ http://localhost:8080/list
 ```java
 @EnableWebSecurity // 开启WebSecurity模式
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
     // 定制请求的授权规则
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // 链式编程
-        // 首页所有人可以访问
-        http.authorizeRequests().antMatchers("/").permitAll()
-                .antMatchers("/level1/**").hasRole("vip1")
-                .antMatchers("/level2/**").hasRole("vip2")
-                .antMatchers("/level3/**").hasRole("vip3");
+        http.authorizeRequests()
+            // 首页所有人可以访问
+            .antMatchers("/").permitAll()
+            // 拥有vip1权限的用户可以访问如下url的页面
+            .antMatchers("/level1/**").hasRole("vip1")
+            .antMatchers("/level2/**").hasRole("vip2")
+            .antMatchers("/level3/**").hasRole("vip3");
 
-        // 开启自动配置的登录功能
-        // /login 请求来到登录页
-        // /login?error 重定向到这里表示登录失败
+        // 开启登录功能
+        // 默认/login请求来到登录页，login?error 重定向到这里表示登录失败
         http.formLogin();
 
-        // 定制登录页面
-        // http.formLogin()
-        //  .usernameParameter("username")
-        //  .passwordParameter("password")
-        //  .loginPage("/toLogin")
-        //  .loginProcessingUrl("/login"); // 登陆表单提交请求
+//        // 定制登录页面
+//        http.formLogin()
+//            // 自定义登录页面地址
+//            .loginPage("/loginPage")
+//            // 自定义登录验证地址
+//            .loginProcessingUrl("/loginValidation")
+//            // 自定义password对应name
+//            .passwordParameter("pwd")
+//            // 自定义username对应name
+//            .usernameParameter("user");
 
-        //....
-        //开启自动配置的注销的功能
-        // /logout 注销请求
+
         http.csrf().disable();//关闭csrf功能:跨站请求伪造,默认只能通过post方式提交logout请求
-        http.logout().logoutSuccessUrl("/");
+        //开启注销功能
+        // 默认/logout为注销请求
+        http.logout()
+            //注销成功跳转url
+            .logoutSuccessUrl("/");
 
-        //记住我
-        http.rememberMe();
+        // 开启记住我
+        http.rememberMe()
+            // 自定义记住我复选框对应name
+            .rememberMeParameter("rememberMe");
 
-        //定制记住我的参数！
-        //http.rememberMe().rememberMeParameter("remember");
     }
 
     //定制认证规则
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // inMemoryAuthentication在内存中定义，也可以在jdbc中去拿....
+        // inMemoryAuthentication在内存中定义，也可以在jdbc中去拿，将inMemoryAuthentication()替换为jdbcAuthentication()即可
         // passwordEncoder定义密码的加密规则，有多种加密方式可选，bcrypt是官方推荐的
         auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
                 .withUser("kuangshen").password(new BCryptPasswordEncoder().encode("123456")).roles("vip2","vip3")
@@ -1350,3 +1357,62 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
 
+### thymeleaf与springsecurity结合获取登录信息
+
+1. 导入依赖
+
+```xml
+<!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5 -->
+<dependency>
+    <groupId>org.thymeleaf.extras</groupId>
+    <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+    <version>3.0.4.RELEASE</version>
+</dependency>
+```
+
+2. 使用
+
+```html
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <!--如果未登录-->
+        <div sec:authorize="isAnonymous()">
+            <a class="item" th:href="@{/login}">
+               登录
+            </a>
+        </div>
+
+        <!--如果已登录-->
+        <div sec:authorize="isAuthenticated()">
+            <a class="item">
+                用户名：<span sec:authentication="name"></span>
+                角色：<span sec:authentication="principal.authorities"></span>
+            </a>
+        </div>
+    </div>
+    <div>
+        <a th:href="@{/main/hello}">去hello页面</a>
+    </div>
+</body>
+</html>
+```
+
+#### sec:authorize
+
+1. sec:authorize="isAnonymous()" //用户为游客则显示
+2. sec:authorize="isAuthenticated()" //用户通过验证则显示
+3. sec:authorize="hasRole('common')" //用户为common角色则显示
+4. sec:authorize="hasAuthority('ROLE_vip')"//用户为ROLE_vip权限则显示
+
+#### sec:authentication
+
+1. sec:authentication="name"  //当前用户的用户名
+2. sec:authentication="principal.username" //同上
+3. sec:authentication="principal.authorities" //当前用户的身份
+4. sec:authentication="principal.password" //当前用户的密码(显示不出来，但确实有)

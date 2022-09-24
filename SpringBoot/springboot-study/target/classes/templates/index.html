@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <!--如果未登录-->
+        <div sec:authorize="isAnonymous()">
+            <a class="item" th:href="@{/login}">
+               登录
+            </a>
+        </div>
+
+        <!--如果已登录-->
+        <div sec:authorize="isAuthenticated()">
+            <a class="item">
+                用户名：<span sec:authentication="name"></span>
+                角色：<span sec:authentication="principal.authorities"></span>
+            </a>
+        </div>
+    </div>
+    <div>
+        <a th:href="@{/main/hello}">去欢迎页</a>
+    </div>
+</body>
+</html>
