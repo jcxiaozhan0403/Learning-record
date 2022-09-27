@@ -78,14 +78,6 @@ public class Demo11 {
             System.out.println((i+1) + ":\t" + results[i]);
         }
     }
-
-    /**
-     * 将算式打印为正确格式 1+1=
-     * @return
-     */
-    public String equationToString(){
-        return "";
-    }
 }
 
 // 使用面向对象的思维，将算式提取为一个类
