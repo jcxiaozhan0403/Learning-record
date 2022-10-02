@@ -2,19 +2,20 @@ import java.util.Random;
 
 /**
  * @author John.Cena
- * @date 2022/9/29 11:39
+ * @date 2022/10/2 11:59
  * @Description:
  */
-// 16.修改程序，使其可以产生任意整数数值范围、任意个二元运算的习题
-// 测试一：产生50道[0..200]的加法或减法二元运算
-// 测试二：产生50道[-100..100]的加法或减法二元运算
-public class Demo16 {
+
+// 17.改变案例程序，使其可以产生最多3个数值的[0..100]的二元算式，尽可能整齐打印输出，每行5列算式
+// 逻辑无误，运行时间异常
+public class Demo17 {
+    //保存3个数值
+    //18.通过数组长度，来控制数值
+   public static int[] values = new int[3];
+
     public static void main(String[] args) {
-        int[][] equations = generateEquations(10, 0, 200);
-        printExercise(equations,5);
-        printCalculations(equations);
-        equations = generateEquations(50, -100, 100);
-        printExercise(equations,6);
+        int[][] equations = generateEquations(50, 0, 200);
+        printExercise(equations);
         printCalculations(equations);
     }
 
@@ -25,25 +26,31 @@ public class Demo16 {
      * @return
      */
     public static int[] generateEquation(int minOperandValue, int maxOperandValue){
+        setValues(values,minOperandValue,maxOperandValue);
         int leftOperand = 0, rightOperand = 0, operator = 0, value = 0;
         //算式：使用一个包含四个成员的数组[leftOperand,rightOperand,operator,value]表示算式Equation
         int[] equation = new int[4];
-
         Random random = new Random();
         //生成操作符
         operator = random.nextInt(2);
         switch (operator){
             //加法算式
             case 0:
-                leftOperand = random.nextInt(maxOperandValue - minOperandValue + 1) + minOperandValue;
-                rightOperand = random.nextInt(maxOperandValue - minOperandValue + 1) + minOperandValue;
-                value = leftOperand + rightOperand;
+                do{
+                    leftOperand = random.nextInt(maxOperandValue - minOperandValue + 1) + minOperandValue;
+                    rightOperand = random.nextInt(maxOperandValue - minOperandValue + 1) + minOperandValue;
+                    value = leftOperand + rightOperand;
+                    //判断产生的答案是否在范围内
+                }while (!isContains(values,value));
                 break;
             //减法算式
             case 1:
-                leftOperand = random.nextInt(maxOperandValue - minOperandValue + 1) + minOperandValue;
-                rightOperand = random.nextInt(maxOperandValue - minOperandValue + 1) + minOperandValue;
-                value = leftOperand - rightOperand;
+                do{
+                    leftOperand = random.nextInt(maxOperandValue - minOperandValue + 1) + minOperandValue;
+                    rightOperand = random.nextInt(maxOperandValue - minOperandValue + 1) + minOperandValue;
+                    value = leftOperand - rightOperand;
+                    //判断产生的答案是否在范围内
+                }while (!isContains(values,value));
                 break;
         }
         equation[0] = leftOperand; //左操作数
@@ -137,7 +144,7 @@ public class Demo16 {
     }
 
     /**
-     * 整齐打印题目 19.21.22.23
+     * 整齐打印题目
      * @param equations
      * @param col 列数
      */
@@ -149,13 +156,7 @@ public class Demo16 {
             String equation = equationFormate(equations[i]);
             //打印序号
             if ((i)%col == 0){
-                if ((i+col)>equations.length){
-                    //最后一行特殊处理
-                    System.out.print(i+1 + "~" + equations.length + ":\t");
-                }else {
-                    //正常打印
-                    System.out.print(i+1 + "~" + (col+i) + ":\t");
-                }
+                System.out.print(i+1 + "~" + (col+i) + ":\t");
             }
             //制表符控制题目间隔
             System.out.print(equation + "\t");
@@ -176,4 +177,42 @@ public class Demo16 {
         }
     }
 
+    /**
+     * 向数组填充 3个范围内数值
+     * @param values
+     * @param minOperandValue
+     * @param maxOperandValue
+     */
+    public static void setValues(int[] values,int minOperandValue,int maxOperandValue){
+        Random random = new Random();
+        int i = random.nextInt(1);
+        int value = 0;
+        for (int index = 0; index < values.length; index++) {
+            int leftOperand = random.nextInt(maxOperandValue - minOperandValue + 1) + minOperandValue;
+            int rightOperand = random.nextInt(maxOperandValue - minOperandValue + 1) + minOperandValue;
+            if (i == 0){
+                value = leftOperand + rightOperand;
+            }else if (i == 1){
+                value = leftOperand - rightOperand;
+            }
+            values[index] = value;
+        }
+    }
+
+    /**
+     * 判断数字是否在数组中
+     * @param arr
+     * @param value
+     * @return
+     */
+    public static boolean isContains(int[] arr,int value){
+        boolean result = false;
+        String valueString = String.valueOf(value);
+        for (int i = 0; i < arr.length; i++) {
+            if (String.valueOf(arr[i]).equals(valueString)){
+                result = true;
+            }
+        }
+        return result;
+    }
 }

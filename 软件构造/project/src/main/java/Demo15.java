@@ -23,7 +23,7 @@ public class Demo15 {
 
     /**
      * 总输出
-     * @param addOrSub 判断生成加法还是减法
+     * @param addOrSub 判断生成加法还是减法，0：加法 1：减法
      */
     public static void totlePrint(int addOrSub){
         if (addOrSub == 0){
@@ -38,7 +38,7 @@ public class Demo15 {
     }
 
     /**
-     * 生成题目
+     * 生成加减法习题集
      */
     public static void generateEquations(){
         int m = 0, n = 0, value = 0;

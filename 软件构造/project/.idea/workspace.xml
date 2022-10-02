@@ -5,29 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1380d1a9-43b3-47fe-b2ea-4febe7ec4eb3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/Demo09.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/Demo10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/Demo11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/Demo12.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/Demo13.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/Demo14.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/Demo15.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/project/Equation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demo09.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demo10.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demo11.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demo12.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demo13.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demo14.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demo15.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestDemo15.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/判断重复.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Demo15.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Demo15.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Demo16.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Demo16.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Demo15Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Demo15Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,9 +72,16 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Demo15Test">
+  <component name="RunManager" selected="Application.Demo16">
     <configuration name="Demo16" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Demo16" />
+      <module name="project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Demo17" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Demo17" />
       <module name="project" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -120,9 +108,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Demo15Test" />
-        <item itemvalue="JUnit.Demo15Test.testTotlePrint" />
         <item itemvalue="Application.Demo16" />
+        <item itemvalue="Application.Demo17" />
+        <item itemvalue="JUnit.Demo15Test.testTotlePrint" />
+        <item itemvalue="JUnit.Demo15Test" />
       </list>
     </recent_temporary>
   </component>
@@ -135,6 +124,7 @@
       <option name="presentableId" value="Default" />
       <updated>1664422457960</updated>
       <workItem from="1664422461911" duration="6019000" />
+      <workItem from="1664681887601" duration="7101000" />
     </task>
     <servers />
   </component>
@@ -151,5 +141,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
