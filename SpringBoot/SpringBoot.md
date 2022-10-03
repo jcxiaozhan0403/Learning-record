@@ -1507,7 +1507,7 @@ public class AccoutRealm extends AuthorizingRealm {
     }
 }
 ```
-3. 创建Shiro配置类
+3. 创建Shiro配置类，控制页面的拦截
 ```java
 @Configuration
 public class ShiroConfig {
@@ -1527,10 +1527,10 @@ public class ShiroConfig {
         map.put("/administrator","roles[admin]");
         factoryBean.setFilterChainDefinitionMap(map);
 
-        // 设置登录页
+        // 自定义登录页
         factoryBean.setLoginUrl("/toLogin");
 
-        // 设置未授权页面
+        // 自定义未授权页面
         factoryBean.setUnauthorizedUrl("/unauth");
 
         return factoryBean;
@@ -1600,9 +1600,12 @@ public String login(String username, String password, Model model) {
 ```
 2. 在IOC容器注册
 ```java
-@Bean
-public ShiroDialect shiroDialect(){
-    return new ShiroDialect();
+@Configuration
+public class ShiroConfig {
+    @Bean
+    public ShiroDialect shiroDialect(){
+        return new ShiroDialect();
+    }
 }
 ```
 3. 页面
@@ -1620,9 +1623,11 @@ public ShiroDialect shiroDialect(){
         <span th:text="${session.account.username}+'欢迎回来！'"></span><a href="/logout">退出</a>
     </div>
     <a href="/main">main</a> <br/>
+    <!-- 是否有对应权限 -->
     <div shiro:hasPermission="manage">
         <a href="manage">manage</a> <br/>
     </div>
+    <!-- 是否有对应角色 -->
     <div shiro:hasRole="administrator">
         <a href="/administrator">administrator</a>
     </div>
