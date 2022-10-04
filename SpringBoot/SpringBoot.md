@@ -1634,3 +1634,225 @@ public class ShiroConfig {
 </body>
 </html>
 ```
+
+## Swagger
+### 什么是Swagger
+
+> swagger是一套基于OpenAPI规范构建的开源工具，使用RestApi
+
+- 官网：https://swagger.io/
+- 号称世界上最流行的API框架
+- Restful Api 文档在线自动生成器 => **API 文档 与API 定义同步更新**
+- 直接运行，在线测试API
+- 支持多种语言 （如：Java，PHP等）
+
+### 简单使用
+
+1. 引入依赖
+```xml
+<!-- 法一：使用starter快速导入 -->
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-boot-starter</artifactId>
+    <version>3.0.0</version>
+</dependency>
+```
+```xml
+<!-- 法二：单独导入 -->
+<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+<dependency>
+   <groupId>io.springfox</groupId>
+   <artifactId>springfox-swagger2</artifactId>
+   <version>2.9.2</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+<dependency>
+   <groupId>io.springfox</groupId>
+   <artifactId>springfox-swagger-ui</artifactId>
+   <version>2.9.2</version>
+</dependency>
+```
+
+2. 编写Swagger配置类
+
+`SwaggerConfig.java`
+
+```java
+@Configuration //配置类
+@EnableSwagger2// 开启Swagger2的自动配置
+public class SwaggerConfig {  
+}
+```
+
+3. SpringBoot2.7+需要添加额外配置
+
+```yaml
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+```
+
+4. 启动程序，访问[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
+### 配置Swagger
+
+#### 配置Swagger文档信息
+
+```java
+@Configuration
+@EnableSwagger2 //开启Swagger2的自动配置
+public class SwaggerConfig {
+
+    //1.Swagger实例Bean是Docket，所以通过配置Docket实例来配置Swaggger
+    @Bean
+    public Docket docket() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                //关联ApiInfo
+                .apiInfo(apiInfo());
+    }
+
+    //2.可以通过apiInfo()属性配置文档信息
+    private ApiInfo apiInfo() {
+        Contact contact = new Contact("联系人名字", "http://xxx.xxx.com/联系人访问链接", "联系人邮箱");
+        return new ApiInfo(
+                "Swagger学习", // 标题
+                "学习演示如何配置Swagger", // 描述
+                "v1.0", // 版本
+                "http://terms.service.url/组织链接", // 组织链接
+                contact, // 联系人信息
+                "Apach 2.0 许可", // 许可
+                "许可链接", // 许可连接
+                new ArrayList<>()// 扩展
+        );
+    }
+}
+```
+
+#### 配置扫描接口
+
+```java
+@Configuration
+@EnableSwagger2 //开启Swagger2的自动配置
+public class SwaggerConfig {
+
+    @Bean
+    public Docket docket() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                //通过.select()方法，去配置哪些接口需要被Swagger扫描
+                .select()
+                //RequestHandlerSelectors配置扫描规则，basePackage通过包扫描
+                .apis(RequestHandlerSelectors.basePackage("com.controller"))
+                //配置过滤规则，只扫描以/user开头的接口
+                .paths(PathSelectors.ant("/user/**"))
+                .build();
+    }
+}
+```
+
+- RequestHandlerSelectors.的详细配置
+
+```java
+//扫描所有接口
+any()
+
+//任何接口都不扫描
+none()
+
+//通过方法上的注解扫描，如withMethodAnnotation(GetMapping.class)只扫描get请求
+withMethodAnnotation(final Class<? extends Annotation> annotation)
+
+//通过类上的注解扫描，如withClassAnnotation(Controller.class)只扫描有controller注解的类中的接口
+withClassAnnotation(final Class<? extends Annotation> annotation)
+
+//根据包路径扫描接口
+basePackage(final String basePackage)
+```
+
+- PathSelectors.的详细配置
+
+```java
+//任何请求都扫描
+any()
+
+//任何请求都不扫描
+none()
+
+//通过正则表达式控制
+regex(final String pathRegex)
+
+//通过ant()控制
+ant(final String antPattern)
+```
+
+#### 配置Swagger开关
+
+```java
+@Configuration
+@EnableSwagger2 //开启Swagger2的自动配置
+public class SwaggerConfig {
+
+    @Bean
+    public Docket docket() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                //配置是否启用Swagger，如果是false，在浏览器将无法访问
+                .enable(false);
+    }
+}
+```
+
+通过区分配置文件来动态控制Swagger的开启和关闭
+
+```java
+@Configuration
+@EnableSwagger2 //开启Swagger2的自动配置
+public class SwaggerConfig {
+
+    @Bean
+    public Docket docket(Environment environment) {
+        // 设置要开启swagger的环境
+        Profiles of = Profiles.of("dev","test");
+        // 判断当前是否处于该环境
+        // 通过 enable() 接收此参数判断是否处于指定环境下
+        boolean flag = environment.acceptsProfiles(of);
+
+        return new Docket(DocumentationType.SWAGGER_2)
+                .enable(flag);
+    }
+}
+```
+
+### 分组：配置多个Docket即可
+
+```java
+@Bean
+public Docket docket1(){
+   return new Docket(DocumentationType.SWAGGER_2).groupName("group1");
+}
+@Bean
+public Docket docket2(){
+   return new Docket(DocumentationType.SWAGGER_2).groupName("group2");
+}
+@Bean
+public Docket docket3(){
+   return new Docket(DocumentationType.SWAGGER_2).groupName("group3");
+}
+```
+
+### 常用注解
+```java
+//作用在模块类上
+@Api(tags = "xxx模块说明")
+
+// 作用在接口方法上
+@ApiOperation("xxx接口说明")
+
+// 作用在模型类上：如VO、BO
+@ApiModel("xxxPOJO说明")
+
+// 作用在类方法和属性上，hidden设置为true可以隐藏该属性
+@ApiModelProperty(value = "xxx属性说明",hidden = true)
+
+// 作用在参数、方法和字段上，类似@ApiModelProperty
+@ApiParam("xxx参数说明")
+```

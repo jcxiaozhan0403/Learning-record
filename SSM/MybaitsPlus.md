@@ -705,7 +705,7 @@ public class CodeGenerator {
         gc.setServiceName("%sService"); // service文件名字格式
         gc.setIdType(IdType.AUTO); // 主键生成策略
         gc.setDateType(DateType.ONLY_DATE); // 日期格式
-//        gc.setSwagger2(true); // 是否配置swagger
+        gc.setSwagger2(true); // 是否配置swagger
         ag.setGlobalConfig(gc);
 
         // 2.2 数据源配置
@@ -749,7 +749,7 @@ public class CodeGenerator {
         FastAutoGenerator.create("jdbc:mysql://localhost:3306/mybatis_plus?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8", "root", "lishuang001219")
                 .globalConfig(builder -> {
                     builder.author("John.Cena") // 设置作者
-//                            .enableSwagger() // 开启 swagger 模式，这里开启的是对swagger2的支持
+/                            .enableSwagger() // 开启 swagger 模式，这里开启的是对swagger2的支持
                             .fileOverride() // 覆盖已生成文件
                             .outputDir(".\\src\\main\\java"); // 指定输出到项目路径下
                 })
