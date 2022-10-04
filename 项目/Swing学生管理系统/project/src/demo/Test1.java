@@ -1,12 +1,9 @@
 package demo;
 
-import com.sun.source.tree.NewArrayTree;
-
 import javax.swing.*;
 import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Connection;
 
 public class Test1 extends JFrame{
     JButton jButton;

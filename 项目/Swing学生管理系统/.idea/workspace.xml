@@ -4,7 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2649cff7-9c48-4a4f-beeb-cc840e8b38a7" name="默认的" comment="默认的" />
+    <list default="true" id="2649cff7-9c48-4a4f-beeb-cc840e8b38a7" name="默认的" comment="默认的">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaWeb/project/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaWeb/project/src/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaWeb/test/target/test-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaWeb/test/target/test-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Swing学生管理系统.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Swing学生管理系统.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/dao/AdminDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/dao/AdminDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/dao/StudentDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/dao/StudentDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/demo/BorderLayoutTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/demo/BorderLayoutTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/demo/FlowLayoutTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/demo/FlowLayoutTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/demo/JtableDemo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/demo/JtableDemo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/demo/SpringLayoutTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/demo/SpringLayoutTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/demo/StudentCellRender.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/demo/StudentCellRender.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/demo/StudentTableModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/demo/StudentTableModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/demo/Test1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/demo/Test1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/handler/JDBCUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/handler/JDBCUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/handler/LoginHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/handler/LoginHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/view/AddFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/view/AddFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/view/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/view/LoginView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/view/MainView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/view/MainView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/view/ModifyFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/view/ModifyFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/view/StudentCellRender.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/view/StudentCellRender.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Swing学生管理系统/view/StudentTableModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Swing学生管理系统/view/StudentTableModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/demo/Test1.java" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/demo/Test1.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,11 +50,15 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../JavaWeb/demo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -82,6 +111,7 @@
       <workItem from="1658585016237" duration="730000" />
       <workItem from="1658935493681" duration="148000" />
       <workItem from="1658964775796" duration="35000" />
+      <workItem from="1664855598966" duration="408000" />
     </task>
     <servers />
   </component>
