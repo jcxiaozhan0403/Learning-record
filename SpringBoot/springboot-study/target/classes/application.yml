@@ -7,6 +7,10 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  mail:
+    username: 349636607@qq.com
+    password: cfdxleajjwggbgdj
+    host: smtp.qq.com
 
 mybatis:
   # 指定 mapper.xml 的位置

@@ -1114,7 +1114,7 @@ import javax.sql.DataSource;
 public class DruidConfig {
 
     /*
-       将自定义的 Druid数据源添加到容器中，不再让Spring Boot 自动创建
+       将自定义的 Druid数据源添加到容器中，不再让Spring Boot自动创建
        绑定全局配置文件中的 druid 数据源属性到 com.alibaba.druid.pool.DruidDataSource从而让它们生效
        @ConfigurationProperties(prefix = "spring.datasource")：作用就是将 全局配置文件中
        前缀为 spring.datasource的属性值注入到 com.alibaba.druid.pool.DruidDataSource 的同名参数中
@@ -1856,3 +1856,144 @@ public Docket docket3(){
 // 作用在参数、方法和字段上，类似@ApiModelProperty
 @ApiParam("xxx参数说明")
 ```
+
+## 任务
+### 异步任务
+一些功能在执行的时候想不让服务器阻塞，就要用到异步任务，比如邮件发送，下面模拟一个简单的异步任务
+1. 在启动类开启异步支持
+```java
+@EnableAsync //开启异步
+@SpringBootApplication
+public class SpringbootStudy2Application {
+    public static void main(String[] args) {
+        SpringApplication.run(SpringbootStudy2Application.class, args);
+    }
+}
+```
+2. 业务类
+
+不使用异步：在执行业务时，线程阻塞，网页会空白，等待业务执行，影响用户体验
+
+```java
+@Service
+public class AsyncService {
+    public void test() {
+        try {
+            // 线程睡眠3秒，模拟邮件发送过程
+            Thread.sleep(3000);
+            System.out.println("邮件发送成功");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+使用异步：网页瞬间加载，业务在异步执行，用户无需等待业务的执行
+
+```java
+@Service
+public class AsyncService {
+    @Async //标注这是一个异步处理方法，执行过程就不会阻塞
+    public void test() {
+        try {
+            // 线程睡眠3秒，模拟邮件发送过程
+            Thread.sleep(3000);
+            System.out.println("邮件发送成功");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+3. 控制类
+
+```java
+@RequestMapping("/sync")
+@ResponseBody
+public String sync() {
+    asyncService.test();
+    return "success";
+}
+```
+### 邮件任务
+1. 导入依赖
+```xml
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-mail</artifactId>
+</dependency>
+```
+2. 添加配置
+```yml
+spring:
+  mail:
+    username: 349636607@qq.com
+    password: 16位授权码
+    host: smtp.qq.com
+```
+3. 编写测试类
+```java
+@SpringBootTest
+public class MyTest {
+    @Autowired
+    JavaMailSenderImpl mailSender;
+
+    @Test
+    public void contextLoads() {
+        //邮件设置1：一个简单的邮件
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setSubject("通知-明天来狂神这听课");
+        message.setText("今晚7:30开会");
+
+        message.setTo("349636607@qq.com");
+        message.setFrom("349636607@qq.com");
+        mailSender.send(message);
+    }
+
+    @Test
+    public void contextLoads2() throws MessagingException {
+        //邮件设置2：一个复杂的邮件
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+
+        helper.setSubject("通知-明天来狂神这听课");
+        helper.setText("<b style='color:red'>今天 7:30来开会</b>",true);
+
+        //发送附件
+        helper.addAttachment("1.jpg",new File("D:\\一些文档\\1.jpg"));
+
+        helper.setTo("349636607@qq.com");
+        helper.setFrom("349636607@qq.com");
+
+        mailSender.send(mimeMessage);
+    }
+}
+```
+
+### 定时任务
+1. 在启动类上开启定时任务的支持
+```java
+@EnableScheduling //开启定时任务支持
+@SpringBootApplication
+public class SpringbootTaskApplication {
+   public static void main(String[] args) {
+       SpringApplication.run(SpringbootTaskApplication.class, args);
+  }
+}
+```
+2. 注解填写cron表达式，达到定时执行函数的效果
+```java
+@Service
+public class ScheduledService {
+   
+   //秒 分 时 日 月 周几
+   //0 * * * * MON-FRI
+   //注意cron表达式的用法；
+   @Scheduled(cron = "0 * * * * 0-7")
+   public void hello(){
+       System.out.println("hello.....");
+  }
+}
+```
+cron表达式详解：[http://www.bejson.com/othertools/cron/](http://www.bejson.com/othertools/cron/)
