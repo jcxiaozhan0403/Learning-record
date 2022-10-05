@@ -2260,3 +2260,4 @@ class ConsumerServerApplicationTests {
 
 ### 项目结构
 
+<img src="./分布式项目结构.jpg" width="50%">
