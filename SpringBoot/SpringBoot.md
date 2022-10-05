@@ -1997,3 +1997,266 @@ public class ScheduledService {
 }
 ```
 cron表达式详解：[http://www.bejson.com/othertools/cron/](http://www.bejson.com/othertools/cron/)
+
+## Dubbo和Zookeeper
+
+### 分布式理论
+
+> 分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统。分布式系统是建立在网络之上的软件系统。
+
+分布式系统是由一组通过网络进行通信、为了完成共同的任务而协调工作的计算机节点组成的系统。分布式系统的出现是为了用廉价的、普通的机器完成单个计算机无法完成的计算、存储任务。其目的是**利用更多的机器，处理更多的数据**。
+
+==只有当单个节点的处理能力无法满足日益增长的计算、存储任务的时候，且硬件的提升（加内存、加磁盘、使用更好的CPU）高昂到得不偿失的时候，应用程序也不能进一步优化的时候，我们才需要考虑分布式系统。==因为，分布式系统要解决的问题本身就是和单机系统一样的，而由于分布式系统多节点、通过网络通信的拓扑结构，会引入很多单机系统没有的问题，为了解决这些问题又会引入更多的机制、协议，带来更多的问题。
+
+### Dubbo背景
+
+随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，急需一个治理系统确保架构有条不紊的演进。
+
+<img src="./软件架构发展.jpg" width="90%">
+
+#### 单一应用架构
+
+当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。此时，用于简化增删改查工作量的数据访问框架(ORM)是关键。
+
+**缺点：**
+
+- 性能扩展比较难
+
+- 协同开发问题
+
+- 不利于升级维护
+
+#### 垂直应用架构
+
+当访问量逐渐增大，单一应用增加机器带来的加速度越来越小，提升效率的方法之一是将应用拆成互不相干的几个应用，以提升效率。此时，用于加速前端页面开发的Web框架(MVC)是关键。
+
+通过切分业务来实现各个模块独立部署，降低了维护和部署的难度，团队各司其职更易管理，性能扩展也更方便，更有针对性。
+
+**缺点：**
+
+- 公用模块无法重复利用
+- 开发性的浪费
+
+#### 分布式服务架构
+
+当垂直应用越来越多，应用之间交互不可避免，将核心业务抽取出来，作为独立的服务，逐渐形成稳定的服务中心，使前端应用能更快速的响应多变的市场需求。此时，用于提高业务复用及整合的分布式服务框架(RPC)是关键。
+
+#### 流动计算架构
+
+当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需增加一个调度中心基于访问压力实时管理集群容量，提高集群利用率。此时，用于提高机器利用率的资源调度和治理中心(SOA)是关键。
+
+### 什么是RPC
+
+> RPC【Remote Procedure Call】是指远程过程调用，是一种进程间通信方式，他是一种技术的思想，而不是规范。它允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，而不用程序员显式编码这个远程调用的细节。即程序员无论是调用本地的还是远程的函数，本质上编写的调用代码基本相同。
+
+也就是说两台服务器A、B，一个应用部署在A服务器上，想要调用B服务器上应用提供的函数/方法，由于不在一个内存空间，不能直接调用，需要通过网络来表达调用的语义和传达调用的数据。为什么要用RPC呢？就是无法在一个进程内，甚至一个计算机内通过本地调用的方式完成的需求，比如不同的系统间的通讯，甚至不同的组织间的通讯，由于计算能力需要横向扩展，需要在多台机器组成的集群上部署应用。RPC就是要像调用本地的函数一样去调远程函数
+
+RPC两个核心模块：通讯、序列化。
+
+### Dubbo是什么
+
+> Apache Dubbo 是一款 RPC 服务开发框架，用于解决微服务架构下的服务治理与通信问题，官方提供了 Java、Golang 等多语言 SDK 实现。使用 Dubbo 开发的微服务原生具备相互之间的远程地址发现与通信能力， 利用 Dubbo 提供的丰富服务治理特性，可以实现诸如服务发现、负载均衡、流量调度等服务治理诉求。Dubbo 被设计为高度可扩展，用户可以方便的实现流量拦截、选址的各种定制逻辑。
+
+### Dubbo工作流程
+
+<img src="./Dubbo工作流程.png">
+
+**服务提供者**（Provider）：暴露服务的服务提供方，服务提供者在启动时，向注册中心注册自己提供的服务。
+
+**服务消费者**（Consumer）：调用远程服务的服务消费方，服务消费者在启动时，向注册中心订阅自己所需的服务，服务消费者，从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如果调用失败，再选另一台调用。
+
+**注册中心**（Registry）：注册中心返回服务提供者地址列表给消费者，如果有变更，注册中心将基于长连接推送变更数据给消费者
+
+**监控中心**（Monitor）：服务消费者和提供者，在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到监控中心
+
+**调用关系说明**
+
+服务容器负责启动，加载，运行服务提供者。
+
+服务提供者在启动时，向注册中心注册自己提供的服务。
+
+服务消费者在启动时，向注册中心订阅自己所需的服务。
+
+注册中心返回服务提供者地址列表给消费者，如果有变更，注册中心将基于长连接推送变更数据给消费者。
+
+服务消费者，从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如果调用失败，再选另一台调用。
+
+服务消费者和提供者，在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到监控中心。
+
+### Windows下安装Zookeeper
+
+1. 下载压缩包解压
+
+官方发布地址：[https://zookeeper.apache.org/releases.html](https://zookeeper.apache.org/releases.html)
+
+2. 启动服务端
+
+`ZooKeeper\apache-zookeeper-3.7.1\bin\zkServer.cmd`
+
+如果报错，可能缺少配置文件，在`conf`路径下将`zoo_sample.cfg`复制一份重命名为`zoo.cfg`即可
+
+```properties
+# 修改端口，防止8080端口被占用，Dubbo-Admin的一些依赖要使用8080端口
+admin.serverPort=8001
+```
+
+3. 测试
+
+- 打开服务端`ZooKeeper\apache-zookeeper-3.7.1\bin\zkServer.cmd`
+- 打开客户端`ZooKeeper\apache-zookeeper-3.7.1\bin\zkCli.cmd`
+
+- `ls /` 列出zookeeper根下保存的所有节点
+
+### Windows下安装Dubbo-Admin
+
+dubbo本身并不是一个服务软件。它其实就是一个jar包，能够帮你的java程序连接到zookeeper，并利用zookeeper消费、提供服务。
+
+但是为了让用户更好的管理监控众多的dubbo服务，官方提供了一个可视化的监控程序dubbo-admin，不过这个监控即使不装也不影响使用。
+
+1. 下载项目
+
+地址：[https://github.com/apache/dubbo-admin/tree/master](https://github.com/apache/dubbo-admin/tree/master)
+
+2. 将项目打为jar包，管理员运行cmd
+
+```shell
+mvn clean package -Dmaven.test.skip=true
+```
+
+3. 运行jar包，==首先要开启ZooKeeper的服务==
+
+`Dubbo-Admin\dubbo-admin-server\target\`
+
+```
+java -jar dubbo-admin-server-0.4.0.jar
+```
+
+4. 运行前端
+
+`Dubbo-Admin\dubbo-admin-ui`
+
+```shell
+# 安装依赖
+npm install
+
+# 启动
+npm run dev
+```
+
+5. 访问监控页面
+
+http://localhost:8082/
+
+账号和密码都为root
+
+## 分布式项目测试（Dubbo+Zookeeper+SpringBoot）
+
+1. IDEA新建空白项目，创建两个SpringBoot子模块分别作为生产者和消费者，勾选Web依赖
+2. 两个模块都需要导入相同依赖
+
+```xml
+<!--dubbo启动器-->
+<dependency>
+    <groupId>org.apache.dubbo</groupId>
+    <artifactId>dubbo-spring-boot-starter</artifactId>
+    <version>3.0.5</version>
+</dependency>
+<!--zookeeper及其相关依赖-->
+<dependency>
+    <groupId>org.apache.curator</groupId>
+    <artifactId>curator-recipes</artifactId>
+    <version>5.2.0</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.curator</groupId>
+    <artifactId>curator-x-discovery</artifactId>
+    <version>5.2.0</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.zookeeper</groupId>
+    <artifactId>zookeeper</artifactId>
+    <version>3.6.3</version>
+</dependency>
+```
+
+3. 编写服务提供者（provider-server）模块的代码
+
+```java
+//卖票接口
+public interface TicketService {
+    String getTicket();
+}
+```
+
+```java
+//卖票实现类
+@DubboService //标记这个类需要被扫描到注册中心
+@Service //标记这是一个Spring组件
+public class TicketServiceImpl implements TicketService {
+    @Override
+    public String getTicket() {
+        return "拿到了一张票";
+    }
+}
+```
+
+```properties
+server.port=8081
+# 当前应用名字
+dubbo.application.name=provider-server
+# 注册中心地址
+dubbo.registry.address=zookeeper://127.0.0.1:2181
+# 扫描指定包下服务
+dubbo.scan.base-packages=com.service.impl
+# 避免dubbo默认端口被java占用的情况，默认为20880
+dubbo.protocol.port=20990
+```
+
+4. 编写服务消费者（consumer-server）模块的代码
+
+```java
+@Service
+public class UserServiceImpl {
+    //使用DubboReference拿到注册中心的服务
+    //法一：包的层级目录完全与服务提供者相同，将服务提供者的接口放到当前目录下
+    //法二：在pom文件中插入坐标
+    @DubboReference
+    TicketService ticketService;
+
+    public String bugTicket(){
+        return ticketService.getTicket();
+    }
+}
+```
+
+5. 在消费者模块编写测试类
+
+```java
+@SpringBootTest
+class ConsumerServerApplicationTests {
+    @Autowired
+    UserService userService;
+    
+    @Test
+    void contextLoads() {
+        System.out.println(userService.bugTicket());
+    }
+}
+```
+
+6. 测试
+
+==>启动Zookeeper服务端
+
+==>启动服务提供者（provider-server）模块
+
+==>启动Dubbo-Admin服务端
+
+==>启动Dubbo-Admin前端
+
+==>启动测试类
+
+我们可以在控制台看到打印的结果，也可以通过Dubbo-Admin的监控页面看到注册中心的注册的服务
+
+### 项目结构
+
