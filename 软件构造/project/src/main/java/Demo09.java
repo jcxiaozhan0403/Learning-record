@@ -7,6 +7,7 @@ import java.util.Random;
  */
 
 // 9.按照任务一的设计和输出，完成程序编写，输出加法练习和减法练习各两套
+// 思路：任务一使用非结构化编程，代码冗余度高
 public class Demo09 {
     public static void main(String[] args) {
         int m = 0, n = 0, value = 0;
@@ -52,26 +53,5 @@ public class Demo09 {
             }while(value < 0);
             System.out.println((i+1) + ":\t" + m + o + n + "= ");
         }
-//        Random random = new Random();
-//        int ov = random.nextInt(2); // 0：加号； 1：减号
-//        for (int i = 0; i < 50; i++) {
-//            if(ov == 0) {
-//                o = '+';
-//                do {
-//                    m = random.nextInt(101);
-//                    n = random.nextInt(101);
-//                    value = m + n;
-//                }while(value > 100);
-//            }else {
-//                o = '-';
-//                do {
-//                    m = random.nextInt(101);
-//                    n = random.nextInt(101);
-//                    value = m - n;
-//                }while(value < 0);
-//            }
-//            System.out.println((i+1) + "\t:" + m + o + n + " = " + value);
-//            ov = random.nextInt(2);
-//        }
     }
 }

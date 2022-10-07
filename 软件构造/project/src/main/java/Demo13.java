@@ -7,6 +7,7 @@ import java.util.Random;
  */
 
 // 13.要求算式不能有重复的
+// 思路：写一个方法遍历两个数组的每一项，判断是否重复
 public class Demo13 {
 
     public static void main(String[] args) {

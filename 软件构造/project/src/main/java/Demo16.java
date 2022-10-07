@@ -6,15 +6,17 @@ import java.util.Random;
  * @Description:
  */
 // 16.修改程序，使其可以产生任意整数数值范围、任意个二元运算的习题
+// 思路：修改代码，传入三个参数，参数一控制算式数量，参数二三控制范围
 // 测试一：产生50道[0..200]的加法或减法二元运算
 // 测试二：产生50道[-100..100]的加法或减法二元运算
+// 19.21.22.23通过传入参数来控制每一行打印列数
 public class Demo16 {
     public static void main(String[] args) {
         int[][] equations = generateEquations(10, 0, 200);
-        printExercise(equations,5);
+        printExercise(equations);
         printCalculations(equations);
         equations = generateEquations(50, -100, 100);
-        printExercise(equations,6);
+        printExercise(equations);
         printCalculations(equations);
     }
 
@@ -137,7 +139,7 @@ public class Demo16 {
     }
 
     /**
-     * 整齐打印题目 19.21.22.23
+     * 整齐打印题目
      * @param equations
      * @param col 列数
      */
@@ -159,7 +161,7 @@ public class Demo16 {
             }
             //制表符控制题目间隔
             System.out.print(equation + "\t");
-            //控制换行
+            //控制换行，指定列数的整数倍，进行换行
             if ((i+1)%col == 0){
                 System.out.print("\n");
             }

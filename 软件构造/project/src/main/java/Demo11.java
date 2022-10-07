@@ -7,6 +7,7 @@ import java.util.Random;
  */
 
 // 11.针对2.2.2节的设计1，编写完整的程序，输出一套题
+// 思路：设计1将算式结构化，结构体内有左操作数、右操作数和操作符这三个元素，这里使用类来代替这个结构体
 public class Demo11 {
     static Equation[] equations = new Equation[50];  //存储算式集合的数组
     static int[] results = new int[50];  // 存储计算结果的数组
@@ -82,9 +83,9 @@ public class Demo11 {
 
 // 使用面向对象的思维，将算式提取为一个类
 class Equation {
-    //左算子
+    //左操作数
     public int leftOperand;
-    //右算子
+    //右操作数
     public int rightOperand;
     //操作符
     public char operator;
@@ -98,6 +99,10 @@ class Equation {
         this.operator = operator;
     }
 
+    /**
+     * 重写toString方法来使用正确格式打印算式
+     * @return
+     */
     @Override
     public String toString() {
         return "" + leftOperand + operator + rightOperand + "=";

@@ -7,6 +7,7 @@ import java.util.Random;
  */
 
 // 10.完成代码2.2的编写，并输出一套50道100以内的加减法口算习题
+// 思路：代码2.2，使用结构化编程，将重复的代码片段进行提取封装
 public class Demo10 {
     static String[] equs = new String[50];   //存储算式集合的数组
     static int[] results = new int[50];  // 存储计算结果的数组

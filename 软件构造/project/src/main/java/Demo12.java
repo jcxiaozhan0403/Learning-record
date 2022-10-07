@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -7,6 +6,7 @@ import java.util.Random;
  * @Description:
  */
 // 12.针对2.2.2节的设计2，编写完整的程序，输出一套题
+// 思路：设计2使用一个长度为3的数组来存储一个算式，我们对他进行一个改进，使用长度为4的数组来存储这个算式 [左操作数,右操作数,操作符,结果]
 public class Demo12 {
     public static void main(String[] args) {
         int[][] equations = generateEquations(50, 100, 100);

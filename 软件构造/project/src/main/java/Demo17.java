@@ -10,7 +10,7 @@ import java.util.Random;
 // 逻辑无误，运行时间异常
 public class Demo17 {
     //保存3个数值
-    //18.通过数组长度，来控制数值
+    //18.通过数组长度，来控制数值个数
    public static int[] values = new int[3];
 
     public static void main(String[] args) {
@@ -200,7 +200,7 @@ public class Demo17 {
     }
 
     /**
-     * 判断数字是否在数组中
+     * 判断数字是否在固定数值中
      * @param arr
      * @param value
      * @return

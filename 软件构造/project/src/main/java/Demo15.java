@@ -6,6 +6,7 @@ import java.util.Random;
  * @Description:
  */
 // 15.使用结构化编程完成任务2的程序，分别为加法、减法输出两套练习题，完成测试
+// 思路：将重复代码片段进行提取和封装，将加法算式和减法算式分别封装，使用标志符进行判断
 public class Demo15 {
     static String[] equs = new String[50];   //存储算式集合的数组
     static int[] results = new int[50];  // 存储计算结果的数组

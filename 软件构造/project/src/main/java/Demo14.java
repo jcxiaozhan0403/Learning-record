@@ -7,6 +7,7 @@ import java.util.Random;
  */
 
 // 14.用结构化编程完成任务1的程序，输出两套习题
+// 思路：将重复代码片段进行提取和封装
 public class Demo14 {
     static String[] equs = new String[50];   //存储算式集合的数组
     static int[] results = new int[50];  // 存储计算结果的数组
