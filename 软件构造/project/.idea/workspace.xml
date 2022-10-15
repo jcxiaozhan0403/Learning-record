@@ -6,17 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1380d1a9-43b3-47fe-b2ea-4febe7ec4eb3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Demo09.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Demo09.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Demo10.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Demo10.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Demo11.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Demo11.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Demo12.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Demo12.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Demo13.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Demo13.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Demo14.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Demo14.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Demo15.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Demo15.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Demo16.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Demo16.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Demo17.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Demo17.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Demo15Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Demo15Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../例1.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +70,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Demo16">
+  <component name="RunManager" selected="Application.Demo17">
     <configuration name="Demo16" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Demo16" />
       <module name="project" />
@@ -117,8 +106,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Demo16" />
         <item itemvalue="Application.Demo17" />
+        <item itemvalue="Application.Demo16" />
         <item itemvalue="JUnit.Demo15Test.testTotlePrint" />
         <item itemvalue="JUnit.Demo15Test" />
       </list>
@@ -136,6 +125,8 @@
       <workItem from="1664681887601" duration="7101000" />
       <workItem from="1664774062866" duration="14000" />
       <workItem from="1665136494620" duration="8190000" />
+      <workItem from="1665649798667" duration="6000" />
+      <workItem from="1665835909955" duration="65000" />
     </task>
     <servers />
   </component>
