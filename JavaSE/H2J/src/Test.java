@@ -1,5 +1,6 @@
 public class Test {
     public static void main(String[] args) {
-        System.out.println("Hello World");
+        Student student = new Student();
+        System.out.println(student instanceof People);
     }
 }
