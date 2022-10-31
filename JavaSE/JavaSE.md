@@ -307,8 +307,8 @@ System.out.println(integer3 == integer4);
 ## String类中equals与==的区别
 
 - 源码分析
-==比较的是两个字符串的内存地址值相不相同
-由下面这段equals源码可以分析出equals是先将两个字符串的内存地址拿来进行比较，如果相同则返回true，如果不相同再判断传入字符串是否为String类或其子类的实例，如果不是，则返回false，如果是，则将传入字符串转换为String类型，先比较两个字符串的长度，长度一致再将字符串拆分为两个char数组进行遍历比较，如果相同再返回true
+==比较的是两个字符串的内存地址相不相同
+由下面这段equals源码可以分析出equals是先将两个字符串的内存地址拿来进行比较，如果相同则返回true，如果不相同再判断传入字符串是否为String类的实例（类的实例包含本身的实例，以及所有直接或间接子类的实例），如果不是，则返回false，如果是，则将传入字符串转换为String类型，先比较两个字符串的长度，长度一致再将字符串拆分为两个char数组进行遍历比较，如果完全相同则返回true
 
 > 注：String类中的equals方法是重写的Object类的，Object类中的equals作用跟==相同，只比较内存地址
 
@@ -343,7 +343,7 @@ public boolean equals(Object anObject) {
 ## 数据类型的相关计算
 char可以与数字进行运算，过程是将字母转换为ASCII码再运算
 
-数字与字符串的拼接：String后面的所有数字都会被转换成String类型，然后进行字符串拼接，如果数字是出现在String前面，则会正常运算后拼接
+数字与字符串的拼接：String后面的所有数字都会被转换成String类型，然后进行字符串拼接；如果数字是出现在String前面，则会正常运算后拼接
 
 ## 数据类型转换
 根据位数转换：小到大自动转换，大到小强制转换，short和char相互强制转换
@@ -398,9 +398,9 @@ n >>> m     //无符号右移，右移后的最前两位补0
 <img src="./位运算规则.jpg">
 
 ## JavaDoc
-Java API 文档，可以通过CMD用命令生成或者使用idea生成
+Java API 文档，可以通过命令行生成或者使用idea生成
 
-```
+```shell
 javadoc -encoding UTF-8 -charset UTF-8 demo.java
 ```
 
@@ -547,11 +547,11 @@ foo(new String[]{"arg1", "arg2", "arg3"});
 ```java
 public class StudentTestMethod {
     //methodName({paramList},paramType… paramName)
-    //methodName：表示方法名称
-    //paramList：表示方法的固定参数列表
-    //paramType：表示可变参数的类型
-    //…：是声明可变参数的标识
-    //paramName：表示可变参数名称。
+    //methodName：方法名称
+    //paramList：方法的固定参数列表
+    //paramType：可变参数的类型
+    //…：声明可变参数的标识
+    //paramName：可变参数名称。
     
     //定义输出考试学生的人数及姓名的方法
     public void print(String... names) {
@@ -578,7 +578,7 @@ public class StudentTestMethod {
 - 递归头：什么时候不调用自身方法。如果没有头，将陷入死循环
 - 递归体：什么时候需要调用自身方法
 
-递归尽量在基数较小的情况使用，不然容易把堆空间塞满
+递归尽量在基数较小的情况使用，因为每一次操作都要进行压栈，基数过大容易把栈空间塞满
 ```java
 //算阶乘
 public int f(int n) {
