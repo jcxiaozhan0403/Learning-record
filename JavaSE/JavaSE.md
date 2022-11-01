@@ -719,7 +719,7 @@ int[][] array1 = new int[11][11];
 array1[1][2] = 1;
 array1[2][3] = 2;
 
-// 获取数组有效值的个数
+//获取数组有效值的个数
 int sum = 0;
 for(int i = 0;i < array1.length; i++){
     for(int j = 0;j < array1[i].length; j++){
@@ -884,7 +884,7 @@ public static void printGameDuration(){
 如果在构造方法里写了性能消耗较大，占时较久的代码，比如建立与数据库的连接，那么就会在启动的时候感觉稍微有些卡顿
 
 ```java
-// 饿汉式单例
+//饿汉式单例
 public class Test {
     private Test() {
         
@@ -906,21 +906,21 @@ public class Test {
 看业务需求，如果业务上允许有比较充分的启动和初始化时间，就使用饿汉式，否则就使用懒汉式
 
 ```java
-// DCL懒汉式单例
+//DCL懒汉式单例
 public class Test {
 
     private Test() {
 
     }
 
-    // volatile关键字 1.保证变量的内存可见性 2.禁止指令重排序
+    //volatile关键字 1.保证变量的内存可见性 2.禁止指令重排序
     private volatile static Test test = null;
 
-    // 双重检测锁模式
+    //双重检测锁模式
     public static Test getInstance() {
-        // 第一次判断，实例为空，就有获取锁的资格
+        //第一次判断，实例为空，就有获取锁的资格
         if (test == null) {
-            // 锁住类，保证同一时间只能有一条线程进行操作
+            //锁住类，保证同一时间只能有一条线程进行操作
             synchronized (Test.class) {
                 if (test == null) {
                    test = new Test();
@@ -975,8 +975,8 @@ enum Season {
 
 ```java
 ADHero ad = new ADHero();
-// 第一个 ADHero 是引用类型
-// 第二个 ADHero 是对象类型
+//第一个 ADHero 是引用类型
+//第二个 ADHero 是对象类型
 //通常情况下，引用类型和对象类型是一致的
 ```
 当引用类型和对象类型不同时，就要用到转换
@@ -996,7 +996,7 @@ ad = (ADHero)h;
 ```java
 ADHero ad = new ADHero();
 
-// AD英雄类转为AD接口，是把ADHero类当做AD来使用，然而ADHero中必有AD接口中的方法，所以语义逻辑可行，自动转换
+//AD英雄类转为AD接口，是把ADHero类当做AD来使用，然而ADHero中必有AD接口中的方法，所以语义逻辑可行，自动转换
 AD adi = ad;
 ```
 
@@ -1055,117 +1055,6 @@ System.out.println(h1 instanceof Hero);
 - 抽象类的子类中，必须重写抽象方法
 - 抽象类中可以没有抽象方法，但是抽象类不能被直接实例化
 - 抽象类用extends关键词继承，类是单继承的
-
-## 内部类
-成员内部类：成员内部类可以直接拿到外部类的私有属性
-```java
-public class Outer{
-    private int id = 10;
-
-    public void out(){
-        System.out.println("这是外部方法");
-    }
-
-    public class Inner {
-        public void in(){
-            System.out.println("这是内部方法");
-        }
-
-        public void getID(){
-            System.out.println(id);
-        }
-    }
-}
-```
-实例化成员内部类
-```java
-public class Test {
-    public static void main(String[] args) {
-        Outer outer = new Outer();
-        Outer.Inner inner = outer.new Inner();
-        inner.getID();
-    }
-}
-```
-局部内部类：定义在外部类的方法里面的类，作用范围和创建对象范围仅限于当前方法，不能添加任何修饰符
-局部内部类访问外部类当前方法中的局部变量时，因无法保障变量的生命周期与自身相同，变量必须修饰为final，这是JDK1.7的规定，JDK1.8以后，这个final会自动添加，不用我们考虑
-
-```java
-public class Outer{
-    public void method(){
-        class Inner{
-            public  void in(){
-                
-            }
-        }
-    }
-}
-```
-非静态内部类不需要在外部类存在一个实例时才可调用
-
-静态内部类可以直接调用，因为没有一个外部类的实例，所以在静态内部类里面不可以直接访问外部类的属性和方法，若想访问，需要创建外部类的对象来调用
-
-匿名类就是在实例化类的同时写出方法，不使用引用保存实例
-```java
-public class Test {
-    public static void main(String[] args) {
-        new Outer().method();
-    }
-}
-```
-匿名内部类：匿名内部类也就是没有名字的内部类，正因为没有名字，所以匿名内部类只能使用一次，它通常用来简化代码编写，但使用匿名内部类还有个前提条件：必须继承一个父类或实现一个接口
-在接口上使用匿名内部类
-```java
-interface Person {
-    public void eat();
-}
- 
-public class Demo {
-    public static void main(String[] args) {
-        Person p = new Person() {
-            public void eat() {
-                System.out.println("eat something");
-            }
-        };
-        p.eat();
-    }
-}
-```
-最常用的情况就是在多线程的实现上，因为要实现多线程必须继承Thread类或是继承Runnable接口
-Thread类的匿名内部类实现
-```java
-public class Demo {
-    public static void main(String[] args) {
-        Thread t = new Thread() {
-            public void run() {
-                for (int i = 1; i <= 5; i++) {
-                    System.out.print(i + " ");
-                }
-            }
-        };
-        t.start();
-    }
-}
-```
-Runnable接口的匿名内部类实现
-```java
-public class Demo {
-    public static void main(String[] args) {
-        Runnable r = new Runnable() {
-            public void run() {
-                for (int i = 1; i <= 5; i++) {
-                    System.out.print(i + " ");
-                }
-            }
-        };
-        Thread t = new Thread(r);
-        t.start();
-    }
-}
-```
-
-声明在主方法中的类叫做本地类
-当外部类与内部类的属性重名时，优先访问内部类属性
 
 ## 默认方法
 默认方法就是一个方法要在多个类中重复使用，写在接口中，避免重复
@@ -1333,7 +1222,10 @@ public class Test {
 
         //创建连接函数
         //useSSL=true&userUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
-        //useSSL安全连接 userUnicode是否支持中文编码 characterEncoding设置字符集编码 serverTimezone设置时区
+        //useSSL 安全连接
+        //userUnicode 是否支持中文编码
+        //characterEncoding 设置字符集编码
+        //serverTimezone 设置时区
         String url = "jdbc:mysql://localhost:3306/student?useSSL=false&userUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8"; //Mysql
         //String url = "jdbc:sqlserver://localhost:1433;databaseName=soft1901"; //SqlServer
         String user = "root";
@@ -1341,11 +1233,11 @@ public class Test {
         conn = DriverManager.getConnection(url,user,password);
 
         //数据库对象关于事务的操作
-        //conn.setAutoCommit(false); 关闭提交，会自动开启事务
-        //conn.commit();
-        //conn.rollback();
+        //conn.setAutoCommit(false); 关闭数据库自动提交，开启事务
+        //conn.commit(); 提交事务
+        //conn.rollback(); 事务回滚，一般写于catch代码块中
 
-        //创建Statement对象用于执行sql
+        //通过连接创建Statement对象，用于执行sql
         Statement statement = conn.createStatement();
         
         //SQL语句
@@ -1353,9 +1245,9 @@ public class Test {
         
         //执行SQL，返回结果集
         ResultSet resultSet = statement.executeQuery(sql);
-        // statement.execute(sql)  可以执行所有的sql语句，由于效率问题，一般不使用
-        // statement.executeQuery(sql)  执行查询语句，返回一个结果集
-        // statement.executeUpdate(sql) 执行更新、插入、删除语句，返回一个int代表受影响行数
+        //statement.execute(sql)  可以执行所有的sql语句，由于效率问题，一般不使用
+        //statement.executeQuery(sql)  执行查询语句，返回一个结果集
+        //statement.executeUpdate(sql) 执行更新、插入、删除语句，返回一个int代表受影响行数
 
         //操作结果集
         while (resultSet.next()) {
@@ -1384,7 +1276,7 @@ import java.util.Properties;
 /*
  * 封装一个工具类，能够减少重复代码
  *
- * 可以通过一个配置文件的形式，导入
+ * 可以通过一个配置文件的形式，导入jdbc连接所需参数
  *
  * */
 public class JDBCUtil {
@@ -1392,8 +1284,8 @@ public class JDBCUtil {
     private static String pwd;
     private static  String user;
     static {
-        // 静态变量代码块中赋值。
-        // 1. 读取，配置配置文件
+        //静态变量代码块中赋值。
+        //读取配置文件，并赋值
         try {
             Properties properties = new Properties();
             properties.load(JDBCUtils.class.getClassLoader().getResourceAsStream("jdbc.properties"));
@@ -1406,7 +1298,7 @@ public class JDBCUtil {
 
     }
 
-    // 获取连接
+    //获取连接
     public static Connection getConnection() throws Exception{
         return DriverManager.getConnection(url,user,pwd);
     }
@@ -1415,14 +1307,16 @@ public class JDBCUtil {
     public static void close(Connection connection, Statement statement){
         if(statement != null){
             try {
-                statement.close(); // 关闭资源
+                //关闭statement执行对象
+                statement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         if(connection != null){
             try {
-                connection.close(); /// 关闭conn 资源
+                //关闭数据库连接对象
+                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -1431,19 +1325,22 @@ public class JDBCUtil {
     public static void close(Connection connection, Statement statement, ResultSet resultSet) throws SQLException {
         if(statement != null){
             try {
-                statement.close(); // 关闭资源
+                //关闭statement执行对象
+                statement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         if(connection != null){
             try {
-                connection.close(); /// 关闭conn 资源
+                //关闭数据库连接对象
+                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         if(resultSet != null){
+            //关闭结果集对象
             resultSet.close();
         }
     }
@@ -1454,7 +1351,7 @@ public class JDBCUtil {
 
 PreparedStatement是Statement的子类，我们一般使用PreparedStatement来防止sql注入
 
-> 原理：PreparedStatement将传递进去的参数当做字符串，假如字符串中存在转义字符，会被忽略
+> 原理：PreparedStatement将传递进去的参数解析为字符串，如果字符串中存在转义字符，会被忽略
 
 ```java
 //编写sql语句时，使用问号作为占位符
@@ -1529,7 +1426,7 @@ removeAbandonedTimeout=1
 ```
 3. 创建工具类
 
-`DBUtils.java`
+`DBUtil.java`
 
 ```java
 package utils;
@@ -1544,18 +1441,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-public class DBUtils {
+public class DBUtil {
     private static DataSource dataSource;
 
     static {
-        // 静态变量代码块中赋值。
-        // 1. 读取，配置配置文件
+        //静态变量代码块中赋值。
+        //读取配置文件，并赋值
         try {
             Properties properties = new Properties();
             properties.load(DBUtils.class.getClassLoader().getResourceAsStream("dbcp.properties"));
             //使用工厂，创建数据源
             dataSource = BasicDataSourceFactory.createDataSource(properties);
-
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -1564,23 +1460,25 @@ public class DBUtils {
 
     }
 
-    // 获取连接
+    //获取连接
     public static Connection getConnection() throws Exception{
         return dataSource.getConnection();
     }
 
-    //封装关闭资源的方法
+    //关闭资源
     public static void close(Connection connection, Statement statement){
         if(statement != null){
             try {
-                statement.close(); // 关闭资源
+                //关闭statement执行对象
+                statement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         if(connection != null){
             try {
-                connection.close(); /// 关闭conn 资源
+                //关闭数据库连接对象
+                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -1589,19 +1487,22 @@ public class DBUtils {
     public static void close(Connection connection, Statement statement, ResultSet resultSet) throws SQLException {
         if(statement != null){
             try {
-                statement.close(); // 关闭资源
+                //关闭statement执行对象
+                statement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         if(connection != null){
             try {
-                connection.close(); /// 关闭conn 资源
+                //关闭数据库连接对象
+                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         if(resultSet != null){
+            //关闭结果集对象
             resultSet.close();
         }
     }
@@ -1626,8 +1527,6 @@ public class MyTest {
             System.out.println(resultSet.getInt("age"));
             System.out.println(resultSet.getString("num"));
         }
-        
-        
     }
 }
 ```
@@ -1635,14 +1534,14 @@ public class MyTest {
 # 常用类
 
 ## 内部类
-- 概念：在一个类的内部再定义一个完整的类，当外部类与内部类的属性重名时，优先访问内部类属性
-- 分类：成员内部类、静态内部类、局部内部类、匿名内部类
+> 在一个类的内部再定义一个完整的类，当外部类与内部类的属性同名时，优先访问内部类属性
+
+分类：成员内部类、静态内部类、局部内部类、匿名内部类
 
 ### 成员内部类
 - 内部类在编译之后也会产生独立的字节码文件
 - 成员内部类在类的内部定义，与外部类的变量和方法同级别的类
 - 成员内部类可以直接拿到外部类的私有属性
-- 如果存在同名属性，优先访问成员内部类的属性
 - 成员内部类里不能定义静态成员变量，但是可以定义静态常量(final)，这个静态常量在不实例化外部类的情况下可以调用
 
 ```java
@@ -1678,7 +1577,7 @@ public class Outer{
 ```java
 public class Test {
     public static void main(String[] args) {
-        // 在没有实例化外部类的情况下可调用内部类的静态常量
+        //在没有实例化外部类的情况下可调用内部类的静态常量
         String xxx = Outer.Inner.XXX;
         System.out.println(xxx);
 
@@ -1814,10 +1713,10 @@ public class Demo {
 ```
 
 ## Object
-Object类是所有类的超类，所有类默认继承Object类
+Object类是所有类的超类，所有类都直接或间接继承Object类
 
 ### getClass() 
-返回引用中存储的实际对象类型
+用于获取对象的运行时对象的类，返回类的全限定名
 ```java
 Student stu = new Student();
 Class class = stu.getClass();
@@ -1833,7 +1732,7 @@ int hash = stu.hashCode();
 ```
 
 ### toString() 
-返回该对象的字符串表示，因为默认打印的是类的内存地址，所以通常我们都会重写这个方法，达到输出字符串的目的
+返回该对象的字符串表示形式，因为默认打印的是类的内存地址，所以通常在使用时我们都会重写这个方法，达到输出字符串的目的
 ```java
 public class Student {
     private String name;
@@ -1854,7 +1753,7 @@ String stuInfo = stu.toString();
 ```
 
 ### equals()
-比较两个对象地址是否相同，这个方法在String中被重写了，重写后的方法先对比内存地址，如不相同则对比字面值
+比较两个对象的内存地址是否相同，这个方法在String中被重写了，重写后的方法先对比内存地址，如不相同则继续对比字面值
 ```java
 Student stu1 = new Student();
 Student stu2 = new Student();
@@ -1866,7 +1765,7 @@ boolean result = stu1.equals(stu2);
 - 垃圾对象：没有有效引用指向此对象
 - 垃圾回收：由GC销毁垃圾对象，释放数据存储空间
 - 自动回收机制：JVM的内存耗尽，一次性回收所有垃圾对象
-- 手动回收机制：使用System.gc();通知JVM执行垃圾回收
+- 手动回收机制：使用System.gc()通知JVM执行垃圾回收
 
 ## String
 
@@ -1876,10 +1775,10 @@ boolean result = stu1.equals(stu2);
 ### 创建字符串的两种方式及区别
 
 ```java
-// 第一种创建方式，只在常量池中创建一个对象，栈内引用直接指向方法区中的常量池中的对象
+//第一种：只在常量池中创建一个对象，栈内引用直接指向方法区中的常量池中的对象
 String str1 = "你好";
 
-// 第二种创建，在堆内新建对象，对象指向方法区中的常量池中的值栈内引用指向堆内对象
+//第二种：在堆内新建对象，对象指向方法区中的常量池中的值栈内引用指向堆内对象
 String str2 = new String("Hello World");
 ```
 
