@@ -12,7 +12,7 @@
       <el-form-item label="头像">
         <el-upload
           class="avatar-uploader"
-          action="https://upload-z0.qiniup.com/"
+          action="http://upload-z2.qiniup.com"
           :data="imgData"
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
@@ -48,7 +48,7 @@ import {addUser} from '@/api/user'
         imgData: {
           name: '',
           key: '',
-          token: "3kocW5kfDuNBJshMGSrqAPy_D83zHk3x0PU3-XKY:uhZVy4HiCiH9ZdbYgcJ8DQO8TW8=:eyJzY29wZSI6InVzZXItcG9ydHJhaXQiLCJkZWFkbGluZSI6MTY2NjY2NDMzOX0="
+          token: "3kocW5kfDuNBJshMGSrqAPy_D83zHk3x0PU3-XKY:5HYecH6851lzbdmTqRb4usx1nfI=:eyJzY29wZSI6InVzZXItcG9ydHJhaXQiLCJkZWFkbGluZSI6MTY3Mjc1MTk4OX0="
         }
       }
     },
@@ -79,7 +79,7 @@ import {addUser} from '@/api/user'
       },
         handleAvatarSuccess(res, file) {
         // this.imageUrl = URL.createObjectURL(file.raw);
-        this.imageUrl = "http://r0zy8iurz.hd-bkt.clouddn.com/" + res.key;
+        this.imageUrl = "http://rlc8uwdta.hn-bkt.clouddn.com/" + res.key;
         this.form.avatar = this.imageUrl;
       },
       beforeAvatarUpload(file) {

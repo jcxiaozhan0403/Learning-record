@@ -162,6 +162,7 @@ export default {
               this.girl++;
             }
           }
+          this.myEcharts();
         }
       )
     },
@@ -189,6 +190,7 @@ export default {
             var obj = {value: this.course2[i],name: i}
             this.course3.push(obj);
           }
+          this.myEcharts();
         }
       )
     },
