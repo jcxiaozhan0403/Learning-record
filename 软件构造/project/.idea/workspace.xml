@@ -4,7 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1380d1a9-43b3-47fe-b2ea-4febe7ec4eb3" name="Changes" comment="" />
+    <list default="true" id="1380d1a9-43b3-47fe-b2ea-4febe7ec4eb3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../软件质量保证与测试/实验/2206831522_李爽_实验八.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../软件质量保证与测试/实验/2206831522_李爽_实验八.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/user/add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/user/add.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager/src/main/resources/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/dataSources/6745aebf-c5c0-456c-9468-09854a5cee64.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/dataSources/6745aebf-c5c0-456c-9468-09854a5cee64.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__javax_servlet_jstl_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__javax_servlet_jstl_1_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_38.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_38.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_7_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_7_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_7_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_7_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_7_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_mybatis_mybatis_3_5_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_mybatis_mybatis_3_5_5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_webjars_bootstrap_4_6_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_webjars_bootstrap_4_6_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_webjars_bower_jquery_3_5_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_webjars_bower_jquery_3_5_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_webjars_font_awesome_4_7_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_webjars_font_awesome_4_7_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_webjars_popper_js_2_5_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/志愿者服务网站/project/.idea/libraries/Maven__org_webjars_popper_js_2_5_4.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,6 +66,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -52,7 +74,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../一些文档/软件构造测试互评/小组2/software_construction" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -127,6 +149,7 @@
       <workItem from="1665835909955" duration="65000" />
       <workItem from="1666003363161" duration="692000" />
       <workItem from="1666268861777" duration="85000" />
+      <workItem from="1669120130630" duration="4598000" />
     </task>
     <servers />
   </component>
@@ -144,5 +167,8 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

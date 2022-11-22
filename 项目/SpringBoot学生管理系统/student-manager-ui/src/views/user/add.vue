@@ -11,7 +11,7 @@
     </el-form-item>
       <el-form-item label="头像">
         <el-upload
-          class="avatar-uploader"
+          class="avatar-uploader" 
           action="http://upload-z2.qiniup.com"
           :data="imgData"
           :show-file-list="false"
