@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1380d1a9-43b3-47fe-b2ea-4febe7ec4eb3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/test2/BinaryOperation_3_2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BinaryOperation_3_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test2/BinaryOperation_3_1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BinaryOperation_3_2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验/实验二/Snipaste_2022-11-22_22-27-50.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验/实验二/Snipaste_2022-11-22_22-28-13.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/clazz/add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/clazz/add.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/clazz/list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/clazz/list.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/student/add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/student/add.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/student/list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/student/list.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/teacher/add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/teacher/add.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/teacher/list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/teacher/list.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/user/add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/user/add.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/user/update.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/user/update.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/user/updatePassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/user/updatePassword.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager/src/main/resources/static/static/js/app.9fb3dd2e.js" beforeDir="false" />
-    </list>
+    <list default="true" id="1380d1a9-43b3-47fe-b2ea-4febe7ec4eb3" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -180,7 +162,7 @@
       <workItem from="1669120130630" duration="4598000" />
       <workItem from="1669169592034" duration="21000" />
       <workItem from="1669192839577" duration="2392000" />
-      <workItem from="1669350104836" duration="8311000" />
+      <workItem from="1669350104836" duration="8379000" />
     </task>
     <servers />
   </component>
