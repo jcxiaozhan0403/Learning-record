@@ -1,13 +1,13 @@
 <template>
   <el-form ref="form" :model="form" label-width="100px" style="width:30%;margin-top:20px" >
     <el-form-item label="旧密码">
-      <el-input v-model="oldP" type="password"></el-input>
+      <el-input v-model="oldP" type="password" :maxlength="20" placeholder="最大长度20位"></el-input>
     </el-form-item>
     <el-form-item label="新密码">
-      <el-input v-model="newP" type="password"></el-input>
+      <el-input v-model="newP" type="password" :maxlength="20" placeholder="最大长度20位"></el-input>
     </el-form-item>
     <el-form-item label="新密码" >
-      <el-input v-model="newP1" type="password"></el-input>
+      <el-input v-model="newP1" type="password" :maxlength="20" placeholder="最大长度20位"></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="onSubmit">提交</el-button>

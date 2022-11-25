@@ -1,10 +1,10 @@
 <template>
   <el-form ref="form" :model="form" label-width="80px" style="width:50%;margin-top:20px" >
     <el-form-item label="姓名">
-      <el-input v-model="form.name"></el-input>
+      <el-input v-model="form.name" oninput="value=value.replace(/[^\u4e00-\u9fa5]/g, '')" :maxlength="6" placeholder="最大长度6个中文字符"></el-input>
     </el-form-item>
     <el-form-item label="年龄">
-      <el-input v-model="form.age"></el-input>
+      <el-input v-model="form.age" oninput="value=value.replace(/^\.+|[^\d.]/g,'')" placeholder="请输入数字" :maxlength="2"></el-input>
     </el-form-item>
     <el-form-item label="性别">
       <el-radio-group v-model="form.sex">
@@ -13,10 +13,10 @@
       </el-radio-group>
     </el-form-item>
     <el-form-item label="工号">
-      <el-input v-model="form.num"></el-input>
+      <el-input v-model="form.num" oninput="value=value.replace(/^\.+|[^\d.]/g,'')" placeholder="请输入8位数字" :maxlength="8"></el-input>
     </el-form-item>
     <el-form-item label="科目">
-      <el-input v-model="form.course"></el-input>
+      <el-input v-model="form.course" :maxlength="15" placeholder="最大15位字符串"></el-input>
     </el-form-item>
 
     <el-form-item>

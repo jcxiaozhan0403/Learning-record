@@ -5,7 +5,7 @@
         <el-input v-model="form.username" :disabled="true"/>
       </el-form-item>
       <el-form-item label="姓名">
-        <el-input v-model="form.name"/>
+        <el-input v-model="form.name" oninput="value=value.replace(/[^\u4e00-\u9fa5]/g, '')" :maxlength="6" placeholder="最大长度6个中文字符"/>
       </el-form-item>
       <el-form-item label="头像">
         <el-upload

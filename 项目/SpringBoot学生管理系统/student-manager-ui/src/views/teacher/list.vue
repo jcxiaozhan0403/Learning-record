@@ -88,13 +88,13 @@
         <el-input v-model="form.index" autocomplete="off" v-show="false"></el-input>
         <el-input v-model="form.id" autocomplete="off" v-show="false"></el-input>
         <el-form-item label="工号" :label-width="formLabelWidth">
-          <el-input v-model="form.num" autocomplete="off"></el-input>
+          <el-input v-model="form.num" autocomplete="off" oninput="value=value.replace(/^\.+|[^\d.]/g,'')" placeholder="请输入8位数字" :maxlength="8"></el-input>
         </el-form-item>
         <el-form-item label="姓名" :label-width="formLabelWidth">
-          <el-input v-model="form.name" autocomplete="off"></el-input>
+          <el-input v-model="form.name" autocomplete="off" oninput="value=value.replace(/[^\u4e00-\u9fa5]/g, '')" :maxlength="6" placeholder="最大长度6个中文字符"></el-input>
         </el-form-item>
         <el-form-item label="年龄" :label-width="formLabelWidth">
-          <el-input v-model="form.age" autocomplete="off"></el-input>
+          <el-input v-model="form.age" autocomplete="off" oninput="value=value.replace(/^\.+|[^\d.]/g,'')" placeholder="请输入数字" :maxlength="2"></el-input>
         </el-form-item>
         <el-form-item label="性别" :label-width="formLabelWidth">
           <el-radio-group v-model="formsex">
@@ -104,7 +104,7 @@
         </el-form-item>
         </el-form-item>
         <el-form-item label="科目" :label-width="formLabelWidth">
-          <el-input v-model="form.course" autocomplete="off"></el-input>
+          <el-input v-model="form.course" autocomplete="off" :maxlength="15" placeholder="最大15位字符串"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">

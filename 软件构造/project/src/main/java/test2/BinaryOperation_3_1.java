@@ -1,3 +1,5 @@
+package test2;
+
 import java.util.Random;
 
 /**
@@ -17,26 +19,39 @@ public class BinaryOperation_3_1 {
     //结果
     private int value = 0;
 
-    //不是构造器
-    private void construct(int left,int rigth, char op){
+    /**
+     * 生成一个算式
+     * @param left 左算子
+     * @param right 右算子
+     * @param op 操作符
+     */
+    private void construct(int left,int right, char op){
         left_operand = left;
-        right_operand = rigth;
+        right_operand = right;
         operator = op;
         if (op == '+'){
-            value = left + rigth;
+            value = left + right;
         }else {
-            value = left - rigth;
+            value = left - right;
         }
     }
 
-    //生成加法算式
+    /**
+     * 生成加法算式
+     * @return
+     */
     public BinaryOperation_3_1 generateAdditionOperation(){
         Random random = new Random();
         int left,right,result;
+
+        //生成100以内的随机数作为左算子
         left = random.nextInt(UPPER+1);
+
         do {
+            //生成100以内的随机数作为右算子
             right = random.nextInt(UPPER+1);
             result = left + right;
+            //结果大于100，重新生成
         }while (result > UPPER);
 
         BinaryOperation_3_1 bop = new BinaryOperation_3_1();
@@ -44,14 +59,21 @@ public class BinaryOperation_3_1 {
         return bop;
     }
 
-    //生成减法算式
+    /**
+     * 生成减法算式
+     * @return
+     */
     public BinaryOperation_3_1 generateSubstractOperation(){
         Random random = new Random();
         int left,right,result;
+
+        //生成100以内的随机数作为右算子
         left = random.nextInt(UPPER+1);
         do {
+            //生成100以内的随机数作为右算子
             right = random.nextInt(UPPER+1);
             result = left - right;
+            //结果小于0，重新生成
         }while (result < LOWER);
 
         BinaryOperation_3_1 bop = new BinaryOperation_3_1();
@@ -59,24 +81,53 @@ public class BinaryOperation_3_1 {
         return bop;
     }
 
-    //生成减法算式
+
+    /**
+     * 生成随机加减二元运算算式
+     * @return
+     */
     public BinaryOperation_3_1 generateBinaryOperation(){
-//        Random random = new Random();
-//        int left,right,result;
-//        left = random.nextInt(UPPER+1);
-//        do {
-//            right = random.nextInt(UPPER+1);
-//            result = left - right;
-//        }while (result < LOWER);
-//
-//        BinaryOperation_3_1 bop = new BinaryOperation_3_1();
-//        bop.construct(left,right,'-');
-        return null;
+        Random random = new Random();
+        int left,right,result,op;
+
+        //随机生成操作符，0：+ 1：-
+        op = random.nextInt(2);
+
+
+        if (op == 0){
+            //操作符为0.生成加法
+            //生成100以内的随机数作为左算子
+            left = random.nextInt(UPPER+1);
+
+            do {
+                //生成100以内的随机数作为右算子
+                right = random.nextInt(UPPER+1);
+                result = left + right;
+                //结果大于100，重新生成
+            }while (result > UPPER);
+
+            BinaryOperation_3_1 bop = new BinaryOperation_3_1();
+            bop.construct(left,right,'+');
+            return bop;
+        }else {
+            //操作符为0.生成加法
+            //生成100以内的随机数作为右算子
+            left = random.nextInt(UPPER+1);
+            do {
+                //生成100以内的随机数作为右算子
+                right = random.nextInt(UPPER+1);
+                result = left - right;
+                //结果小于0，重新生成
+            }while (result < LOWER);
+
+            BinaryOperation_3_1 bop = new BinaryOperation_3_1();
+            bop.construct(left,right,'-');
+            return bop;
+        }
     }
 
     //获取左算子
     public int getLeftOperand(){
-
         return this.left_operand;
     }
 

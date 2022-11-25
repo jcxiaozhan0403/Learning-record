@@ -1,13 +1,13 @@
 <template>
   <el-form ref="form" :model="form" label-width="80px" style="width:50%;margin-top:20px" >
     <el-form-item label="用户名">
-      <el-input v-model="form.username"></el-input>
+      <el-input v-model="form.username" oninput="value=value.replace(/[^\u4e00-\u9fa5]/g, '')" :maxlength="8" placeholder="最大长度8个中文字符"></el-input>
     </el-form-item>
     <el-form-item label="密码">
-      <el-input v-model="form.password"></el-input>
+      <el-input v-model="form.password" :maxlength="20" placeholder="最大长度20位"></el-input>
     </el-form-item>
     <el-form-item label="姓名">
-      <el-input v-model="form.name"></el-input>
+      <el-input v-model="form.name" oninput="value=value.replace(/[^\u4e00-\u9fa5]/g, '')" :maxlength="6" placeholder="最大长度6个中文字符"></el-input>
     </el-form-item>
       <el-form-item label="头像">
         <el-upload
