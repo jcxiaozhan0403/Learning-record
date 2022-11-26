@@ -63,7 +63,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -163,6 +163,7 @@
       <workItem from="1669169592034" duration="21000" />
       <workItem from="1669192839577" duration="2392000" />
       <workItem from="1669350104836" duration="8379000" />
+      <workItem from="1669437111152" duration="98000" />
     </task>
     <servers />
   </component>
