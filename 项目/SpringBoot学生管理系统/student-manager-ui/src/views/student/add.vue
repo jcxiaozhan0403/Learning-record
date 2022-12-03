@@ -1,7 +1,7 @@
 <template>
   <el-form ref="form" :model="form" label-width="80px" style="width:50%;margin-top:20px" >
     <el-form-item label="姓名">
-      <el-input v-model="form.name" oninput="value=value.replace(/[^\u4e00-\u9fa5]/g, '')" :maxlength="6" placeholder="最大长度6个中文字符"></el-input>
+      <el-input v-model="form.name" oninput="value=value.replace(/[^\u4e00-\u9fa5]/g, '')" :maxlength="6" placeholder="最大长度6个中文字符" @blur="form.name = $event.target.value"></el-input>
     </el-form-item>
     <el-form-item label="年龄">
       <el-input v-model="form.age" oninput="value=value.replace(/^\.+|[^\d.]/g,'')" placeholder="请输入数字" :maxlength="2"></el-input>

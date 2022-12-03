@@ -90,4 +90,33 @@ public class Exercise {
         return operationList.get(current++);
     }
 
+    /**
+     * 获取算式操作符
+     * @return
+     */
+    public char getOperator() {
+        return operationList.get(current++).getOperator();
+    }
+
+    /**
+     * 获取算式数量
+     * @return
+     */
+    public int getSize(){
+        return operationList.size();
+    }
+
+    /**
+     * 游标初始化
+     */
+    public void currentInit(){
+        this.current = 0;
+    }
+
+    /**
+     * 清空算式
+     */
+    public void clean(){
+        operationList.clear();
+    }
 }

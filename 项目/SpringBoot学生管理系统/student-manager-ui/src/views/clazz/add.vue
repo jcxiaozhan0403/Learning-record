@@ -1,16 +1,16 @@
 <template>
   <el-form ref="form" :model="form" label-width="100px" style="width:30%;margin-top:20px" >
     <el-form-item label="年级">
-      <el-input v-model="grade" oninput="value=value.replace(/[^\u4e00-\u9fa5]/g, '')" :maxlength="6" placeholder="最大长度6个中文字符"></el-input>
+      <el-input v-model="grade" oninput="value=value.replace(/[^\u4e00-\u9fa5]/g, '')" :maxlength="6" placeholder="最大长度6个中文字符" @blur="grade = $event.target.value"></el-input>
     </el-form-item>
     <el-form-item label="班级">
       <el-input v-model="clazz" :maxlength="6" placeholder="最大长度6个字符"></el-input>
     </el-form-item>
     <el-form-item label="班导师">
-      <el-input v-model="headTeacher" oninput="value=value.replace(/[^\u4e00-\u9fa5]/g, '')" :maxlength="6" placeholder="最大长度6个中文字符"></el-input>
+      <el-input v-model="headTeacher" oninput="value=value.replace(/[^\u4e00-\u9fa5]/g, '')" :maxlength="6" placeholder="最大长度6个中文字符" @blur="headTeacher = $event.target.value"></el-input>
     </el-form-item>
     <el-form-item label="限定总人数">
-      <el-input v-model="totalStudent" oninput="value=value.replace(/^\.+|[^\d.]/g,'')" placeholder="请输入数字" :maxlength="3"></el-input>
+      <el-input v-model="totalStudent" onkeyup="this.value=this.value.replace(/^\.+|[^\d.]/g,'')" placeholder="请输入数字" :maxlength="3"></el-input>
     </el-form-item>
 
     <el-form-item>
@@ -36,6 +36,8 @@ import {addClazz} from '@/api/clazz'
         var clazz = this.clazz;
         var headTeacher = this.headTeacher;
         var totalStudent = this.totalStudent;
+
+        console.log(id + "\\" + age + "\\" + sex + "\\" + num + "\\" + name + "\\" + grade + "\\" + clazz + "\\" + address);
         if(null === grade || "" === grade
            || null === clazz || "" === clazz
            || null === headTeacher || "" === headTeacher

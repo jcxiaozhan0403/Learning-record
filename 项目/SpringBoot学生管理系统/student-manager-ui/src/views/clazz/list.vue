@@ -87,13 +87,13 @@
       <el-form :model="form">
         <el-input v-model="form.id" autocomplete="off" v-show="false"></el-input>
         <el-form-item label="年级" :label-width="formLabelWidth">
-          <el-input v-model="form.grade" autocomplete="off" oninput="value=value.replace(/[^\u4e00-\u9fa5]/g, '')" :maxlength="6" placeholder="最大长度6个中文字符"></el-input>
+          <el-input v-model="form.grade" autocomplete="off" oninput="value=value.replace(/[^\u4e00-\u9fa5]/g, '')" :maxlength="6" placeholder="最大长度6个中文字符" @blur="form.grade = $event.target.value"></el-input>
         </el-form-item>
         <el-form-item label="班级" :label-width="formLabelWidth">
           <el-input v-model="form.clazz" autocomplete="off" :maxlength="6" placeholder="最大长度6个字符"></el-input>
         </el-form-item>
         <el-form-item label="班导师" :label-width="formLabelWidth">
-          <el-input v-model="form.headTeacher" autocomplete="off" oninput="value=value.replace(/[^\u4e00-\u9fa5]/g, '')" :maxlength="6" placeholder="最大长度6个中文字符"></el-input>
+          <el-input v-model="form.headTeacher" autocomplete="off" oninput="value=value.replace(/[^\u4e00-\u9fa5]/g, '')" :maxlength="6" placeholder="最大长度6个中文字符" @blur="form.headTeacher = $event.target.value"></el-input>
         </el-form-item>
         <el-form-item label="限定人数" :label-width="formLabelWidth">
           <el-input v-model="form.totalStudent" autocomplete="off" oninput="value=value.replace(/^\.+|[^\d.]/g,'')" placeholder="请输入数字" :maxlength="3"></el-input>

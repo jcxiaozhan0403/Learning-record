@@ -41,6 +41,22 @@ public class ExerciseSheet {
         formattedDisplay(ex, COLUMN_NUM);
     }
 
+    /**
+     * 将算式转换成标准逗号分隔字符串，便于存储
+     * @param exercise：习题类
+     * @return
+     */
+    public String toString(Exercise exercise){
+        String str = "";
+        while (exercise.hasNext()){
+            str += exercise.next() + ",";
+        }
+
+        //遍历完成，游标初始化
+        exercise.currentInit();
+        return str;
+    }
+
     public static void main(String[] args) {
         ExerciseSheet sheet = new ExerciseSheet();
         Exercise exerciseAdd = new Exercise();

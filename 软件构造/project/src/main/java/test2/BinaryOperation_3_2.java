@@ -58,7 +58,7 @@ abstract class BinaryOperation_3_2 {
     }
 
     //获取操作符
-    public int getOperator(){
+    public char getOperator(){
         return this.operator;
     }
 
