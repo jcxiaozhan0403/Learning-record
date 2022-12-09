@@ -37,7 +37,6 @@ import {addClazz} from '@/api/clazz'
         var headTeacher = this.headTeacher;
         var totalStudent = this.totalStudent;
 
-        console.log(id + "\\" + age + "\\" + sex + "\\" + num + "\\" + name + "\\" + grade + "\\" + clazz + "\\" + address);
         if(null === grade || "" === grade
            || null === clazz || "" === clazz
            || null === headTeacher || "" === headTeacher

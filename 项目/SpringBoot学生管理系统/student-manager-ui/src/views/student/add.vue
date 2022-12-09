@@ -27,6 +27,12 @@
         </el-select>
       </el-form-item>
     </el-collapse-transition>
+    <!-- <el-form-item label="年级">
+      <el-input v-model="form.grade" placeholder="最大长度6个中文字符"></el-input>
+    </el-form-item>
+     <el-form-item label="班级">
+      <el-input v-model="form.clazz" placeholder="最大长度6个中文字符"></el-input>
+    </el-form-item> -->
     <el-form-item label="家庭住址">
       <el-input v-model="form.address" :maxlength="30" placeholder="最大30位字符串"></el-input>
     </el-form-item>
