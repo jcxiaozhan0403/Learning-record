@@ -6,59 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1380d1a9-43b3-47fe-b2ea-4febe7ec4eb3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test2/BinaryOperation_3_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test2/BinaryOperation_3_2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test2/Exercise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test2/Exercise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test2/ExerciseSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test2/ExerciseSheet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/test2/BinaryOperation_3_2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test2/BinaryOperation_3_2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/test2/Exercise.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test2/Exercise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/test2/ExerciseSheet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test2/ExerciseSheet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/AOcdJ-1669625248706-软件构造实验报告模板.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/PrintNumber.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/lib/junit-3.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/out/production/PrintNumber/com/cn/AdditionOperation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/out/production/PrintNumber/com/cn/BinaryOperation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/out/production/PrintNumber/com/cn/Exercise.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/out/production/PrintNumber/com/cn/ExerciseSheet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/out/production/PrintNumber/com/cn/SubstractOperation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/out/production/PrintNumber/com/cn/file/ExerciseFileDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/out/production/PrintNumber/com/cn/pojo/Answer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/out/production/PrintNumber/com/cn/pojo/Check.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/out/production/PrintNumber/com/cn/pojo/Equation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/out/production/PrintNumber/com/cn/pojo/Parents$FileFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/out/production/PrintNumber/com/cn/pojo/Parents.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/src/com/cn/AdditionOperation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/src/com/cn/BinaryOperation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/src/com/cn/Exercise.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/src/com/cn/ExerciseSheet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/src/com/cn/SubstractOperation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/src/com/cn/file/ExerciseFileDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/src/com/cn/pojo/Answer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/src/com/cn/pojo/Check.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/src/com/cn/pojo/Equation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/src/com/cn/pojo/Parents.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/test/sc/junit/BinaryOperationAllTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/test/sc/junit/BinaryOperationGroupTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/PrintNumber/test/sc/junit/BinaryOperationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/answers_add_50_3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/answers_mix_70_3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/answers_sub_60_3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/exercise_add_50_1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/exercise_add_50_3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/exercise_add_70_2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/exercise_mix_70_3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/exercise_sub_50_1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/exercise_sub_60_2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../实验三构造任务/实验三 构造实践.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../软件质量保证与测试/自动化测试课程/实验/实验八/实验八.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../软件质量保证与测试/自动化测试课程/实验/测试用例.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/clazz/add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager-ui/src/views/clazz/add.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +65,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../项目/SpringBoot学生管理系统/student-manager" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -138,7 +85,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BinaryOperationBase">
+  <component name="RunManager" selected="Application.IVRProgram">
     <configuration name="BinaryOperationBase" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="test3.BinaryOperationBase" />
       <module name="project" />
@@ -152,12 +99,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExerciseFiles" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test3.ExerciseFiles" />
+    <configuration name="IVRProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test4.IVRProgram" />
       <module name="project" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test3.*" />
+          <option name="PATTERN" value="test4.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -165,52 +112,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExerciseSheet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test2.ExerciseSheet" />
+    <configuration name="IvrExercise" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test4.IvrExercise" />
       <module name="project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test2.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Judgement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test3.Judgement" />
+    <configuration name="MathExerciseGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MathExerciseGenerator" />
       <module name="project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test3.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test2.test" />
+    <configuration name="MathQuiz" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MathQuiz" />
       <module name="project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test2.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.IVRProgram" />
+        <item itemvalue="Application.MathQuiz" />
+        <item itemvalue="Application.IvrExercise" />
+        <item itemvalue="Application.MathExerciseGenerator" />
         <item itemvalue="Application.BinaryOperationBase" />
-        <item itemvalue="Application.Judgement" />
-        <item itemvalue="Application.ExerciseFiles" />
-        <item itemvalue="Application.ExerciseSheet" />
-        <item itemvalue="Application.test" />
       </list>
     </recent_temporary>
   </component>
@@ -240,6 +169,8 @@
       <workItem from="1669994143952" duration="3010000" />
       <workItem from="1670032015814" duration="13000000" />
       <workItem from="1670052617220" duration="16000" />
+      <workItem from="1670597035583" duration="1594000" />
+      <workItem from="1670645859084" duration="12138000" />
     </task>
     <servers />
   </component>
