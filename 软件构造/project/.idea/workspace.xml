@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1380d1a9-43b3-47fe-b2ea-4febe7ec4eb3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../JavaSE/H2J/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaSE/H2J/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,13 +86,13 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.IVRProgram">
-    <configuration name="BinaryOperationBase" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test3.BinaryOperationBase" />
+  <component name="RunManager" selected="Application.IVRProgram (1)">
+    <configuration name="IVRProgram (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test5.IVRProgram" />
       <module name="project" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test3.*" />
+          <option name="PATTERN" value="test5.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -135,11 +136,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.IVRProgram (1)" />
         <item itemvalue="Application.IVRProgram" />
         <item itemvalue="Application.MathQuiz" />
         <item itemvalue="Application.IvrExercise" />
         <item itemvalue="Application.MathExerciseGenerator" />
-        <item itemvalue="Application.BinaryOperationBase" />
       </list>
     </recent_temporary>
   </component>
@@ -171,6 +172,8 @@
       <workItem from="1670052617220" duration="16000" />
       <workItem from="1670597035583" duration="1594000" />
       <workItem from="1670645859084" duration="12138000" />
+      <workItem from="1671692097419" duration="688000" />
+      <workItem from="1671693151490" duration="3104000" />
     </task>
     <servers />
   </component>
