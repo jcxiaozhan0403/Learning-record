@@ -88,3 +88,141 @@ NoSQL： not only sql
 1. 高并发
 2. 高可扩：随时水平拆分，机器不够了，可以扩展机器来解决
 3. 高性能：保证用户体验和性能
+
+## NoSQL四大类
+
+### K-V键值对
+
+- 新浪：Redis
+- 美团：Redis + Tair
+- 阿里，百度：Redis + Memacache
+
+### 文档数据库
+
+- MongoDB（一般必须要掌握）
+  - MongoDB是一个基于分布式文件存储的数据库，C++编写，主要用来处理大量的文档
+  - MongoDB是一个介于关系型数据库和非关系型数据库中间的产品！MongoDB是非关系型数据库中功能最丰富，最像关系型数据库的
+- ConthDB
+
+### 列存储数据库
+
+- HBase
+- 分布式文件系统
+
+### 图关系数据库
+
+- 不是存图形的，放的是关系
+- Neo4j，InfoGrid
+
+### 区别
+
+![NoSQL四大类](D:\Study\Learning-record\Redis\NoSQL四大类.jpg)
+
+## Redis概述
+
+1. 官网：https://redis.io/
+2. 中文网 ：http://www.redis.cn/
+
+### Redis是什么
+
+> Redis（Remote Dictionary Server )，即远程字典服务，是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。
+
+免费和开源！是当下最热门的NoSQL技术
+
+区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。
+
+### Redis能干嘛
+
+1. 内存存储，持久化，内存中是断电即失，所以说持久化很重要，（rdb，aof）
+2. 效率高，可以用于高速缓存
+3. 发布订阅系统
+4. 地图信息分析
+5. 计时器，计数器（浏览量）
+
+### 特性
+
+1. 多样的数据类型
+2. 持久化
+3. 集群
+4. 事务
+
+## Redis安装
+
+==官方推荐Redis在Linux环境下搭建，Windows版本已经很久没有维护了==
+
+### Windows下安装
+
+1. 下载windows版压缩包
+
+https://github.com/microsoftarchive/redis/releases
+
+2. 解压即可
+3. 运行服务端`redis-server.exe`，运行客户端`redis-cli.exe`
+4. 客户端测试连通性`ping`
+
+### Linux下安装
+
+1. 下载压缩包
+
+最新稳定版：https://download.redis.io/redis-stable.tar.gz
+
+2. 解压压缩包
+
+```
+tar -zxvf redis-stable.tar.gz
+```
+
+3. 进入解压出的文件夹，可以看到配置文件
+
+![redis-linux文件目录](D:\Study\Learning-record\Redis\redis-linux文件目录.jpg)
+
+4. 基本环境安装
+
+```
+yum install gcc-c++
+make
+make install
+```
+
+5. Linux的默认安装路径为`/usr/local/bin`，我们可以此路径下找到redis的启动程序
+6. 将redis的配置文件复制到启动目录下，便于修改
+
+```
+cd /usr/local/bin
+
+mkdir conf
+
+cp /home/john/redis/redis-stable/redis.conf conf
+```
+
+7. 修改配置文件，使redis变为后台启动
+
+![redis后台启动](D:\Study\Learning-record\Redis\redis后台启动.jpg)
+
+7. 通过指定配置文件启动redis
+
+- 启动服务端
+
+```
+redis-server conf/redis.conf
+```
+
+- 启动客户端
+
+```
+redis-cli -p 6379
+```
+
+![linux启动redis](D:\Study\Learning-record\Redis\linux启动redis.jpg)
+
+8. 关闭redis
+
+```
+关闭服务
+shutdown
+
+退出
+exit
+```
+
+![linux关闭redis](D:\Study\Learning-record\Redis\linux关闭redis.jpg)
