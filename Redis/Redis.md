@@ -266,3 +266,118 @@ redis是C语言编写的，官方提供的数据为10w+ QPS，说明性能方面
 redis将所有数据放在内存中，所以使用单线程操作效率就是最高的，因为多线程涉及到CPU调度，CPU调度存在上下文切换，上下文切换会带来额外耗时。
 
 对于内存系统来说，如果没有上下文切换，效率就是最高的。
+
+## 五大数据类型
+
+### Redis-Key
+
+官方命令查询网址：http://www.redis.cn/commands.html
+
+```bash
+#set值
+set key value
+
+#查看当前db的所有key
+keys *
+
+#得到key的value
+get key
+
+#是否存在key，存在返回1，不存在返回0
+exists key
+
+#移动键到另外一个数据库，共有16个数据库，默认为0
+move key db
+
+#设置过期时间，单位是秒
+expire key 秒数
+
+#查看还有多少时间过期
+ttl key
+
+#查看key的具体类型
+type key
+```
+
+### String
+
+- 字符串简单操作、计数器
+
+```bash
+#向key所对应的value追加一个字符串，如果当前key不存在，就相当于set
+append key "字符串"
+
+#获取字符串长度
+strlen key
+
+#加一
+incr key
+
+#减一
+decr key
+
+#增加指定长度
+incrby value 长度
+
+#减少指定长度
+decrby value 长度
+```
+
+- 字符串范围
+
+```bash
+#指定截取字符串显示[strat,end]
+getrange key start end
+#当end值为-1时，表示截取到字符串结束为止
+getrange key 0 -1
+
+#新的字符串从指定位置开始进行字符串替换操作
+setrange key offset string
+```
+
+- 键值对时效
+
+```bash
+#设置一个键值对，在指定时间后过期，单位：秒
+# setex(set with expire) 
+setex key 10 value
+
+#查看键值对剩余有效时间，-1表示永久有效
+ttl key
+
+#保证键值对唯一创建，只有在键不存在时可以创建，若键已存在，则创建失败
+# setnx(set if not exist) 
+setnx key value
+```
+
+
+
+```bash
+#同时设置多个值
+mset k1 v1 k2 v2 ...
+
+#同时获取多个值
+mget k1 k2 ...
+
+#msetnx是一个原子性的操作，要么都成功，要么都失败
+msetnx k1 v1 k2 v2 ...
+
+#对象
+#设置一个user:1对象，值为json字符串来保存一个对象
+set user:1 {name:zhangsan,age:3}
+
+#批量设置对象属性
+#这里的key是一个巧妙的设计，user:{id}:{field}，如此设计在redis中是完全可以的
+mset user:1:name zhangsan user:1:age 20
+
+#获取并更新
+#如果不存在值则返回nil，如果存在值怎返回现在值，然后赋新值
+getset key value
+```
+
+String类似的使用场景：value除了是我们的字符串还可以是数字
+
+- 计数器
+- 统计多单位的数量 uid
+- 粉丝数
+- 对象缓存存储
