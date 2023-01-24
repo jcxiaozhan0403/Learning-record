@@ -350,8 +350,6 @@ ttl key
 setnx key value
 ```
 
-
-
 ```bash
 #同时设置多个值
 mset k1 v1 k2 v2 ...
@@ -381,3 +379,108 @@ String类似的使用场景：value除了是我们的字符串还可以是数字
 - 统计多单位的数量 uid
 - 粉丝数
 - 对象缓存存储
+
+### List
+
+所有的list命令都是以`l`来开头的，不区分大小写命令
+
+```bash
+# 插入元素到列表
+lpush list one
+
+# 获取所有元素
+lrange list 0 -1
+
+# 获得指定集合内指定区域的元素，[0,1]
+lrange list 0 1
+
+# 从集合尾部插入元素
+rpush list four
+
+# 移除列表的第一个元素
+lpop key
+
+# 移除列表的最后一个元素
+rpop key
+
+# 获取索引位置的值
+lindex key 0
+
+# 获取列表长度
+llen list
+
+# 移除指定的值
+# 删除count个value，从前往后删除，精确匹配
+lrme key count value
+
+# list截断
+# 截取list的start到stop之间的所有元素，左右都闭合，这个list就已经被改变了，只剩下截取的元素
+ltrim key start stop
+
+# 移除列表的最后一个元素并添加到目的列表的第一个
+rpoplpush source destination
+
+# 设置list的index下标位置的值为element，只有存在这个index下标才可以使用，否则会报错
+lset list index element
+
+# 在pivot之前或之后插入值
+linsert list before|after pivot element
+```
+
+- list实际上一个链表，before Node after，左右都可以插入
+- 如果key不存在，创建新的链表
+- 如果存在，新增内容
+- 如果移除了所有值，空链表，不存在
+- 在两边改动效率最高，中间元素效率会低一点
+
+消息排队，消息队列（Lpush Rpop），栈空间（Lpush Lpop）
+
+### Set
+
+set中的值是不能重复的
+
+```bash
+# 向set中添加元素
+sadd myset value
+
+# 查看set里面的所有值
+smembers myset
+
+# 获取set的元素个数
+scard myset
+
+# 判断value值是否在set中
+sismember myset value
+
+# 移除value元素
+srem myset value
+```
+
+```bash
+# 随机抽出指定个数元素
+srandmember myset count
+
+# 随机删除一些set集合中的元素
+spop myset count
+
+# 一个集合中的指定元素移动到另一个集合中
+smove source destination value
+```
+
+```bash
+# 数字集合类：
+# 差集
+sdiff key1 key2
+
+# 交集
+# 共同好友就可以这样实现
+sinter key1 key2
+
+# 并集
+sunion key1 key2 
+```
+
+共同关注，共同爱好，二度好友
+
+### Hash
+
