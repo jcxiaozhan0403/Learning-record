@@ -484,3 +484,78 @@ sunion key1 key2
 
 ### Hash
 
+```bash
+# 存入一个键值对
+hset myhash filed value
+
+# 存入多个键值对
+hmset myhash f1 v1 f2 v2 f3 v3
+
+# 获取一个指定键的值
+hget myhash field
+
+# 获取多个指定键的值
+hmget myhash f1 f2 f3
+
+# 获取所有的键值对
+hgetall myhash
+
+# 删除指定键值对
+hdel myhash filed
+
+# 获取hash的内容长度
+hlen myhash
+
+# 判断hash中的某个filed是否存在
+hexists key field
+
+# 获取hash的所有键（key）
+hkeys key
+
+# 获取hash的所有值
+hvals key
+
+# 自增count
+hincrby key filed count
+
+# 自减
+hdecrby key field count
+```
+
+hash存储变更的数据user name age，尤其是用户信息之类的，经常变动的信息，hash更适用于对象的存储，String更适合字符串的存储。
+
+### Zset
+
+```bash
+# 添加值，score代表优先级，可以一次添加多个
+zadd key score value [score2 value2]
+
+# 获取start-end的值，0 -1代表获取所有值
+zrange key start end
+
+# 排序如何实现
+# 对集合通过score排序， 默认升序，不显示score
+zrangebyscore key startscore endscore
+
+# 降序排列所有值
+zrevrange salary 0 -1
+
+# 显示score
+zrangebyscore key -inf inf withscores
+
+# 移除元素
+zrem key member [member]
+
+# 获取集合中值的个数
+zcard key
+
+# 获取集合中指定范围的值的个数
+zcount key start end
+```
+
+案例思路：set 排序 存储班级成绩表，工资表排序
+
+普通消息：1.重要消息 2.带权重进行判断
+
+排行榜应用实现，取top n测试
+
