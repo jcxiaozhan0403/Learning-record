@@ -101,7 +101,7 @@
       <recent name="multithreading" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Demo05">
+  <component name="RunManager" selected="Application.Demo01">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -109,6 +109,13 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Demo01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Demo01" />
+      <module name="H2J" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -122,13 +129,6 @@
     </configuration>
     <configuration name="Demo07" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Demo07" />
-      <module name="H2J" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Parent" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Parent" />
       <module name="H2J" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -157,11 +157,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Demo01" />
         <item itemvalue="Application.Demo05" />
         <item itemvalue="Application.Demo07" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.Test" />
-        <item itemvalue="Application.Parent" />
       </list>
     </recent_temporary>
   </component>
@@ -336,6 +336,7 @@
       <workItem from="1673668353279" duration="611000" />
       <workItem from="1674053015032" duration="923000" />
       <workItem from="1675316069927" duration="569000" />
+      <workItem from="1675735515960" duration="3332000" />
     </task>
     <servers />
   </component>
