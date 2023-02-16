@@ -101,7 +101,7 @@
       <recent name="multithreading" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Demo01">
+  <component name="RunManager" selected="Application.SS2">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -134,15 +134,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test" />
+    <configuration name="SS2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SS2" />
       <module name="H2J" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test02" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test02" />
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test" />
       <module name="H2J" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -157,10 +157,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SS2" />
         <item itemvalue="Application.Demo01" />
         <item itemvalue="Application.Demo05" />
         <item itemvalue="Application.Demo07" />
-        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
@@ -337,6 +337,7 @@
       <workItem from="1674053015032" duration="923000" />
       <workItem from="1675316069927" duration="569000" />
       <workItem from="1675735515960" duration="3332000" />
+      <workItem from="1676552340323" duration="791000" />
     </task>
     <servers />
   </component>
