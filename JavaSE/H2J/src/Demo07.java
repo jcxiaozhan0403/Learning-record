@@ -6,51 +6,24 @@ import java.util.Random;
  * @Description:
  */
 public class Demo07 {
+    char[] levelTable = {'差', '中', '良', '优'};
+    int[] scoreCeilTable = {60, 80, 90, 100};
+
     public static void main(String[] args) {
-//        String password = getRandomPassword(3);
-//        System.out.printf("密码是: %s%n", password);
-//        // 穷举匹配密码
-//        matchPassword(password);
-        test();
+        char level = new Demo07().getLevel(70);
+        System.out.println(level);
 
     }
 
-    private static void matchPassword(String password) {
-        // 所有的可能性000-999
-        for (int i = 0; i < 1000; i++) {
-            String possiblePassword = String.format("%03d", i);
-            System.out.println(possiblePassword);
-            if (password.equals(possiblePassword)) {
-                System.out.println("匹配到了密码,密码是:" + possiblePassword);
-                break;
+    public char getLevel(int score){
+        int len = scoreCeilTable.length;
+        for (int i = 0; i < len; i++) {
+            int scoreCeil = scoreCeilTable[i];
+            if (score <= scoreCeil){
+                return levelTable[i];
             }
         }
 
-    }
-
-    private static String getRandomPassword(int len) {
-
-        String pool = "";
-        for (int i = '0'; i <= '9' ; i++) {
-            pool += ((char) i);
-        }
-        System.out.println(pool);
-        // 生成长度为3的随机密码
-        char[] chars = new char[len];
-        // 填充字符数组
-        Random random = new Random();
-        for (int i = 0; i < chars.length; i++) {
-            int index = random.nextInt(pool.length());
-            chars[i] = pool.charAt(index);
-        }
-        String password = new String(chars);
-        return password;
-    }
-
-    private static void test(){
-        Random random = new Random();
-        for (int i = 0; i < 10; i++) {
-            System.out.println(random.nextInt(10));
-        }
+        return levelTable[len - 1];
     }
 }

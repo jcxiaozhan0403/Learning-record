@@ -24,6 +24,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/H2J/Demo07.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/H2J/Demo07.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/H2J/SS2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/H2J/SS2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Demo07.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Demo07.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +93,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.28245363" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="profiler.jvm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -101,7 +104,7 @@
       <recent name="multithreading" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.SS2">
+  <component name="RunManager" selected="Application.Demo">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -109,6 +112,13 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Demo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Demo" />
+      <module name="H2J" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -148,20 +158,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test" />
-      <module name="H2J" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Demo" />
+        <item itemvalue="Application.Demo07" />
         <item itemvalue="Application.SS2" />
         <item itemvalue="Application.Demo01" />
         <item itemvalue="Application.Demo05" />
-        <item itemvalue="Application.Demo07" />
-        <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
   </component>
@@ -338,6 +341,11 @@
       <workItem from="1675316069927" duration="569000" />
       <workItem from="1675735515960" duration="3332000" />
       <workItem from="1676552340323" duration="791000" />
+      <workItem from="1677590330534" duration="1528000" />
+      <workItem from="1677640245564" duration="1543000" />
+      <workItem from="1677646531386" duration="831000" />
+      <workItem from="1677734629102" duration="1413000" />
+      <workItem from="1677822963709" duration="1844000" />
     </task>
     <servers />
   </component>
