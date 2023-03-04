@@ -1212,6 +1212,8 @@ try {
 - write(写入)：作用于主内存，它把store传送值放到主内存中的变量中。
 - unlock(解锁)：作用于主内存，它将一个处于锁定状态的变量释放出来，释放后的变量才能够被其他线程锁定
 
+![JMM流程](D:\Study\Learning-record\JavaSE\JMM流程.jpg)
+
 ### 缓存一致性协议
 
 流程：
@@ -1224,13 +1226,47 @@ try {
 同步代码块能保证可见性的原因：在读取变量时，隐式调用lock指令，并且清空本地工作区，只能从主存中读取内存，在修改后隐式执行了unlock指令，将变量实时刷新到主存当中
 ```
 
+### volatile关键字
 
+并发编程三大特性：可见性、原子性、有序性
 
-volatile的实现，基于总线上的==缓存一致性协议==
+volatile基于总线上的==缓存一致性协议==
 
 1. 保证可见性
 2. 不保证原子性
 3. 禁止指令重排
+
+分析源码可知，volatile底层主要通过加上汇编前缀指令lock
+
+lock指令的作用：
+
+1. 会将当前处理器缓存行的数据==立刻==写回到系统内存
+2. 数据失效
+3. 提供内存屏障，防止指令重排
+4. 在执行`store`之前会先`lock`锁住主内存,`write`完成之后，会`unlock`
+
+### 指令重排
+
+> 在不影响单线程程序执行结果的前提下，计算机为了最大限度地发挥机器性能，会对机器指令重排序优化，在多线程中是存在问题的。
+
+![指令重排](D:\Study\Learning-record\JavaSE\指令重排.jpg)
+
+指令重排遵循以下两个原则
+
+#### as-if-serial原则
+
+不管怎么重排序，(单线程)程序执行的结果不能被改变
+
+#### happens-befor原则
+
+1. 程序次序规则：在一个线程中，按照代码的顺序，前面的操作Happens-Before于后面的任意操作。
+2. volatile变量规则：对一个volatile变量的写操作，Happens-Before于后续对这个变量的读操作。
+3. 传递规则：如果A Happens-Before B，并且B Happens-Before C，则A Happens-Before C。
+4. 锁定规则：对一个锁的解锁操作 Happens-Before于后续对这个锁的加锁操作。
+5. 线程启动规则：如果线程A调用线程B的start()方法来启动线程B，则start()操作Happens-Before于线程B中的任意操作。
+6. 线程终结规则：线程A等待线程B完成（在线程A中调用线程B的join()方法实现），当线程B完成后（线程A调用线程B的join()方法返回），则线程A能够访问到线程B对共享变量的操作。
+7. 线程中断规则：对线程interrupt()方法的调用Happens-Before于被中断线程的代码检测到中断事件的发生。
+8. 对象终结原则：一个对象的初始化完成Happens-Before于它的finalize()方法的开始。
 
 ## JDBC
 
@@ -3685,12 +3721,14 @@ thread.setPriority(xxx);
 // 线程优先级的实现原理，类似于买彩票，买一张中奖概率小，那就买100张，其实这里设置优先级就是增加提供给调度器的线程数量，数量越大，就越容易被调度
 ```
 
-## Lamda表达式
+## Lambda表达式
+### 概念&使用
+
 函数式接口：只包含一个方法的接口就是函数式接口，也叫功能性接口
 
-Lamda简化了匿名内部类，方法引用简化了lamda
+Lambda本质上是一个匿名函数，使用它来实现接口中的方法，简化代码
 
-基本语法：`接口 对象 = (参数表) -> {代码实现};`
+基本语法：`接口 对象 = (参数类型 参数名称) -> {代码实现};`
 
 ```java
 // 定义一个函数式接口
@@ -3743,6 +3781,98 @@ public class Test {
     }
 }
 ```
+
+当一个局部变量被lambda表达式使用后，会被默认修饰为一个final值
+
+```java
+public class Person {
+    interface MyInterface{
+        void test();
+    }
+
+    public static void main(String[] args) {
+        int x = 0;
+
+        //erro
+        MyInterface myInterface = () -> System.out.println("x=" + x);
+        
+        x = 5;
+    }
+}
+```
+
+
+
+
+
+### 函数引用
+
+当我们需要的业务流程比较复杂时，可以将业务单独封装为一个函数，使用Lambad表达式来调用这个函数
+
+```java
+public class Demo {
+    private static interface Calculate {
+        int calculate(int x,int y);
+    }
+
+    public static void main(String[] args) {
+        //普通的函数引用
+        //Calculate calculate = (x,y) -> calculate(x,y);
+        //进阶语法,调用类的静态方法 类::方法名
+        Calculate calculate = Demo::calculate;
+
+        System.out.println(calculate.calculate(10,10));
+    }
+
+    private static int calculate(int x,int y){
+        if(x > y){
+            return x - y;
+        }else if(x <y){
+            return y -x;
+        }
+        return x + y;
+    }
+}
+```
+
+```java
+public class Person {
+    private String name;
+    private int age;
+
+    public String getName() {
+        return "xxxxx";
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    @FunctionalInterface
+    interface MyInterface{
+        String get(Person person);
+    }
+
+    public static void main(String[] args) {
+        //参数为一个引用类型
+        MyInterface person2 = (x) -> x.getName();
+        //如果业务流程是调用这个引用类型的内部方法，那么就可以简写
+        MyInterface person = Person::getName;
+        System.out.println(person);
+    }
+}
+```
+
+### 前提
+
+1. 接口中有且仅有一个抽象方法
+2. 使用Lambda必须具有上下文推断。也就是方法的参数或局部变量类型必须为Lambda对应的接口类型，才能使用Lambda作为该接口的实例。
+
+### 化简原则
+
+1. 小括号内参数的类型可以省略：
+2. 如果小括号内有且仅有一个参，则小括号可以省略：
+3. 如果大括号内有且仅有一个语句，则无论是否有返回值，都可以省略大括号、return关键字及语句分号。
 
 ## 线程状态
 
