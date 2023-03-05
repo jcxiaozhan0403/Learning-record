@@ -23,10 +23,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
-      <change afterPath="$PROJECT_DIR$/src/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Demo01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Demo07.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/People.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SS1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SS2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../同步阻塞.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../同步非阻塞模型.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +112,7 @@
       <recent name="multithreading" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Person">
+  <component name="RunManager" selected="Application.Test">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -118,13 +126,6 @@
     </configuration>
     <configuration name="Demo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Demo" />
-      <module name="H2J" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Demo01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Demo01" />
       <module name="H2J" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -151,13 +152,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <module name="H2J" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Person" />
         <item itemvalue="Application.Demo" />
         <item itemvalue="Application.Demo07" />
         <item itemvalue="Application.SS2" />
-        <item itemvalue="Application.Demo01" />
       </list>
     </recent_temporary>
   </component>
@@ -340,6 +348,7 @@
       <workItem from="1677734629102" duration="1413000" />
       <workItem from="1677822963709" duration="1844000" />
       <workItem from="1677924104841" duration="5432000" />
+      <workItem from="1678018558290" duration="7028000" />
     </task>
     <servers />
   </component>

@@ -3281,25 +3281,7 @@ public static void main(String[] args) throws IOException {
 
 ## BIO、NIO、AIO
 
-Java 中的 BIO、NIO和 AIO 理解为是 Java 语言对操作系统的各种 IO 模型的封装。程序员在使用这些 API 的时候，不需要关心操作系统层面的知识，也不需要根据不同操作系统编写不同的代码。只需要使用Java的API就可以了。
-
-> **BIO**：同步阻塞 IO 模型中，应用程序发起 read 调用后，会一直阻塞，等待数据加载，直到内核把数据拷贝到用户空间。
-
-在客户端连接数量不高的情况下，是没问题的。但是，当面对十万甚至百万级连接的时候，传统的 BIO 模型是无能为力的。因此，我们需要一种更高效的 I/O 处理模型来应对更高的并发量。
-
-![BIO](D:\Study\Learning-record\JavaSE\同步阻塞.png)
-
->  **NIO (Non-blocking/New I/O)**：
-
-Java 中的 NIO 于 Java 1.4 中引入，对应 `java.nio` 包，提供了 `Channel` , `Selector`，`Buffer` 等抽象。NIO 中的 N 可以理解为 Non-blocking，不单纯是 New。它是支持面向缓冲的，基于通道的 I/O 操作方法。 对于高负载、高并发的（网络）应用，应使用 NIO 。
-
-Java 中的 NIO 可以看作是 **I/O 多路复用模型**。也有很多人认为，Java 中的 NIO 属于同步非阻塞 IO 模型。
-
-跟着我的思路往下看看，相信你会得到答案！
-
-我们先来看看 **同步非阻塞 IO 模型**。
-
-![同步阻塞模型](D:\Study\Learning-record\JavaSE\同步非阻塞模型.png)
+https://blog.csdn.net/m0_38109046/article/details/89449305
 
 ## File类
 
@@ -3840,10 +3822,6 @@ public class Person {
 }
 ```
 
-
-
-
-
 ### 函数引用
 
 当我们需要的业务流程比较复杂时，可以将业务单独封装为一个函数，使用Lambad表达式来调用这个函数
@@ -3912,6 +3890,155 @@ public class Person {
 1. 小括号内参数的类型可以省略：
 2. 如果小括号内有且仅有一个参，则小括号可以省略：
 3. 如果大括号内有且仅有一个语句，则无论是否有返回值，都可以省略大括号、return关键字及语句分号。
+
+## Stream流
+
+>  实体类准备
+
+```JAVA
+public class Person {
+    private String name;
+    private int age;
+
+    public Person() {
+    }
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}
+```
+
+> 集合操作：与查询、或查询
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        //构建集合
+        List<Person> people = Arrays.asList(
+            new Person("张三", 22,1000),
+            new Person("李四", 23,2000),
+            new Person("王五", 24,3000),
+            new Person("老六", 24,4000),
+            new Person("狗七", 24,5000)
+        );
+
+        //过滤条件
+        Predicate<Person> predicate1 = (x) -> x.getAge() > 22;
+        Predicate<Person> predicate2 = (x) -> x.getSalary() > 3000;
+
+        //数据源
+        List<Person> collect1 = people.stream()
+                //数据收集
+                //并且，与查询，子查询
+                .filter(predicate1)
+                .filter(predicate2)
+                //数据结果
+                .collect(Collectors.toList());
+
+        List<Person> collect2 = people.stream()
+                //并且，与查询
+                .filter(predicate1.and(predicate2))
+                .collect(Collectors.toList());
+
+        List<Person> collect3 = people.stream()
+                //或者或者;或查询;子查询
+                .filter(predicate1.or(predicate2))
+                .collect(Collectors.toList());
+
+        System.out.println("collect1：" + collect1);
+        System.out.println("collect2：" + collect2);
+        System.out.println("collect3：" + collect3);
+    }
+}
+```
+
+> 集合遍历
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList("Hello", "World", "Java","你好世界！");
+
+
+        list.stream()
+                .filter(str -> str.length() >=5)
+                //遍历集合
+                .forEach(str -> System.out.println(str));
+
+        System.out.println("==============");
+
+        list.stream()
+                .filter(str -> str.length() >=5)
+                //限制数量
+                .limit(2)
+                //遍历集合
+                .forEach(str -> System.out.println(str));
+    }
+}
+```
+
+> Integer集合相关操作
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(51,451,62,36,84);
+
+        List<Integer> collect1 = list.stream()
+                //倒序排列
+                .sorted()
+                .collect(Collectors.toList());
+        System.out.println("正序排列：" + collect1);
+
+        List<Integer> collect2 = list.stream()
+                //倒序排列
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.toList());
+        System.out.println("倒序排列：" + collect2);
+
+        int max = list.stream()
+                //获取最大值
+                .max(Integer::compareTo)
+                .get();
+        System.out.println("最大值：" + max);
+
+        int min = list.stream()
+                //获取最大值
+                .min(Integer::compareTo)
+                .get();
+        System.out.println("最小值：" + min);
+
+        long count = list.stream().count();
+        System.out.println("元素数量：" + count);
+    }
+}
+```
 
 ## 线程状态
 
