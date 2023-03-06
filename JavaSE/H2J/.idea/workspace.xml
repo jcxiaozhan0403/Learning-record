@@ -24,17 +24,11 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demo01.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demo07.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/People.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SS1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SS2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JMM内存模型.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JMM流程.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../JavaSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaSE.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../同步阻塞.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../同步非阻塞模型.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../指令重排.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -349,6 +343,7 @@
       <workItem from="1677822963709" duration="1844000" />
       <workItem from="1677924104841" duration="5432000" />
       <workItem from="1678018558290" duration="7028000" />
+      <workItem from="1678104359326" duration="3199000" />
     </task>
     <servers />
   </component>
