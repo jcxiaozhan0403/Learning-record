@@ -22,7 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的" />
+    <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,7 +101,7 @@
       <recent name="multithreading" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.Demo">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -148,9 +150,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Demo" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.Person" />
-        <item itemvalue="Application.Demo" />
         <item itemvalue="Application.Demo07" />
         <item itemvalue="Application.SS2" />
       </list>
@@ -337,6 +339,7 @@
       <workItem from="1677924104841" duration="5432000" />
       <workItem from="1678018558290" duration="7028000" />
       <workItem from="1678104359326" duration="3731000" />
+      <workItem from="1678262191086" duration="6335000" />
     </task>
     <servers />
   </component>
