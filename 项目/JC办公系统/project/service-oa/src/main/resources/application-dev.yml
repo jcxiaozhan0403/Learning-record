@@ -1,0 +1,19 @@
+server:
+  port: 8800
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 查看日志
+  global-config:
+    # 逻辑删除， 1删除，0未删除
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+spring:
+  datasource:
+    # mp默认数据源
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jc-oa?serverTimezone=GMT%2B8&useSSL=false&characterEncoding=utf-8
+    username: root
+    password: lishuang001219
+
