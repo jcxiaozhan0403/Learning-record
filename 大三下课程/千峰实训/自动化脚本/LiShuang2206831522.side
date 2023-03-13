@@ -1,0 +1,507 @@
+{
+  "id": "5efe8914-45ae-4dbe-9184-1d90e9caef6a",
+  "version": "2.0",
+  "name": "LiShuang2206831522",
+  "url": "http://122.9.143.225",
+  "tests": [{
+    "id": "0271a81b-4132-4a38-a9a9-27bd9572c208",
+    "name": "01Login",
+    "commands": [{
+      "id": "c6ce7d5e-fafa-46f5-a6b8-45192e5abe11",
+      "comment": "",
+      "command": "open",
+      "target": "/home/login/index.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1db86899-c18a-48a0-ad99-42ef6c07ffaf",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1259x1080",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bff27533-08eb-4ca2-a786-18ae898b08f7",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=.layui-form-item:nth-child(1) > .layui-input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//form[@id='gougu-login']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "06517d3e-1006-4619-872f-5dd27a5d7ad6",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=.layui-form-item:nth-child(1) > .layui-input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//form[@id='gougu-login']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "lishuang"
+    }, {
+      "id": "67a09eca-cc37-4995-9fdb-889cee385044",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.layui-form-item:nth-child(2) > .layui-input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//form[@id='gougu-login']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "aeee1ff1-bbb7-4a21-9e4f-ce9543225a1e",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.layui-form-item:nth-child(2) > .layui-input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//form[@id='gougu-login']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "123456"
+    }, {
+      "id": "bf68ebdc-9e09-4b30-adab-f3bd9d8b72e8",
+      "comment": "",
+      "command": "click",
+      "target": "name=captcha",
+      "targets": [
+        ["name=captcha", "name"],
+        ["css=.layui-input-inline > .layui-input", "css:finder"],
+        ["xpath=//input[@name='captcha']", "xpath:attributes"],
+        ["xpath=//form[@id='gougu-login']/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "05e4066e-fdde-4ab5-be09-409f87a0694d",
+      "comment": "",
+      "command": "type",
+      "target": "name=captcha",
+      "targets": [
+        ["name=captcha", "name"],
+        ["css=.layui-input-inline > .layui-input", "css:finder"],
+        ["xpath=//input[@name='captcha']", "xpath:attributes"],
+        ["xpath=//form[@id='gougu-login']/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "26"
+    }, {
+      "id": "7dfa7efa-7d8f-405f-be2d-ea2a1162cfd8",
+      "comment": "",
+      "command": "click",
+      "target": "id=login-submit",
+      "targets": [
+        ["id=login-submit", "id"],
+        ["css=#login-submit", "css:finder"],
+        ["xpath=//button[@id='login-submit']", "xpath:attributes"],
+        ["xpath=//form[@id='gougu-login']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'登入系统')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "90d5ede9-54fd-45da-82e5-8ee84d4fe4e2",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "id=login-submit",
+      "targets": [
+        ["id=login-submit", "id"],
+        ["css=#login-submit", "css:finder"],
+        ["xpath=//button[@id='login-submit']", "xpath:attributes"],
+        ["xpath=//form[@id='gougu-login']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'登入系统')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "705cbb81-2551-400c-88d1-525aa2d4af39",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "id=login-submit",
+      "targets": [
+        ["id=login-submit", "id"],
+        ["css=#login-submit", "css:finder"],
+        ["xpath=//button[@id='login-submit']", "xpath:attributes"],
+        ["xpath=//form[@id='gougu-login']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'登入系统')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "a8c58bc6-70a7-4dd0-a70a-3594b5673fa7",
+    "name": "02GetList",
+    "commands": [{
+      "id": "676f0665-037d-4b0d-89c9-dff4c02cc006",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b8b109f7-5ea8-449a-b978-dc33d039d03a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1259x1080",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "390aa7fa-96f7-48c4-92d3-3e6ba83d640c",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=人力资源",
+      "targets": [
+        ["linkText=人力资源", "linkText"],
+        ["css=.layui-nav-item:nth-child(3) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'人力资源')]", "xpath:link"],
+        ["xpath=//ul[@id='menuList']/li[3]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, 'javascript:;')])[19]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'人力资源')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c931c2f7-2d79-4e89-b61e-cfc0c50466aa",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=部门架构",
+      "targets": [
+        ["linkText=部门架构", "linkText"],
+        ["css=.layui-nav-itemed dd:nth-child(1) > .side-menu-item", "css:finder"],
+        ["xpath=//a[contains(text(),'部门架构')]", "xpath:link"],
+        ["xpath=//ul[@id='menuList']/li[3]/dl/dd/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, 'javascript:;')])[20]", "xpath:href"],
+        ["xpath=//li[3]/dl/dd/a", "xpath:position"],
+        ["xpath=//a[contains(.,'部门架构')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e59e8b77-046a-4834-82f6-8d5d89cca59a",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "linkText=部门架构",
+      "targets": [
+        ["linkText=部门架构", "linkText"],
+        ["css=.layui-nav-itemed dd:nth-child(1) > .side-menu-item", "css:finder"],
+        ["xpath=//a[contains(text(),'部门架构')]", "xpath:link"],
+        ["xpath=//ul[@id='menuList']/li[3]/dl/dd/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, 'javascript:;')])[20]", "xpath:href"],
+        ["xpath=//li[3]/dl/dd/a", "xpath:position"],
+        ["xpath=//a[contains(.,'部门架构')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e868aea5-8097-42b3-bf31-0ee8d0b0158d",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "linkText=部门架构",
+      "targets": [
+        ["linkText=部门架构", "linkText"],
+        ["css=.layui-this > .side-menu-item", "css:finder"],
+        ["xpath=//a[contains(text(),'部门架构')]", "xpath:link"],
+        ["xpath=//ul[@id='menuList']/li[3]/dl/dd/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, 'javascript:;')])[20]", "xpath:href"],
+        ["xpath=//li[3]/dl/dd/a", "xpath:position"],
+        ["xpath=//a[contains(.,'部门架构')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "f55b3156-7772-4ebc-8ade-603af279263b",
+    "name": "03AddDept",
+    "commands": [{
+      "id": "a2daa1e1-367e-48e3-86fb-25958b11e086",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7bed0d86-f2df-4530-a491-646902524f8b",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1259x1080",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "96245744-5d28-4b22-aba8-d5bd2f252a79",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=人力资源",
+      "targets": [
+        ["linkText=人力资源", "linkText"],
+        ["css=.layui-nav-item:nth-child(3) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'人力资源')]", "xpath:link"],
+        ["xpath=//ul[@id='menuList']/li[3]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, 'javascript:;')])[19]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'人力资源')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ef6dabd3-eaeb-4e32-8242-de9db723462b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=部门架构",
+      "targets": [
+        ["linkText=部门架构", "linkText"],
+        ["css=.layui-nav-itemed dd:nth-child(1) > .side-menu-item", "css:finder"],
+        ["xpath=//a[contains(text(),'部门架构')]", "xpath:link"],
+        ["xpath=//ul[@id='menuList']/li[3]/dl/dd/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, 'javascript:;')])[20]", "xpath:href"],
+        ["xpath=//li[3]/dl/dd/a", "xpath:position"],
+        ["xpath=//a[contains(.,'部门架构')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "61fe0bda-d899-4837-b32f-b4ea3d26ce29",
+      "comment": "",
+      "command": "selectFrame",
+      "target": "index=1",
+      "targets": [
+        ["index=1"]
+      ],
+      "value": ""
+    }, {
+      "id": "bf13c76d-480f-4fcb-9b09-cc885cf440ae",
+      "comment": "",
+      "command": "click",
+      "target": "css=.layui-btn-sm",
+      "targets": [
+        ["css=.layui-btn-sm", "css:finder"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'+ 添加部门')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c2d38fd6-d605-4fcf-9a19-b8b567df2839",
+      "comment": "",
+      "command": "selectFrame",
+      "target": "index=0",
+      "targets": [
+        ["index=0"]
+      ],
+      "value": ""
+    }, {
+      "id": "a3d83f56-7df8-451a-acf8-4b63980d6d9e",
+      "comment": "",
+      "command": "click",
+      "target": "name=title",
+      "targets": [
+        ["name=title", "name"],
+        ["css=tr:nth-child(1) > td > .layui-input", "css:finder"],
+        ["xpath=//input[@name='title']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a682676f-5567-4729-b905-bb24a3831ddb",
+      "comment": "",
+      "command": "type",
+      "target": "name=title",
+      "targets": [
+        ["name=title", "name"],
+        ["css=tr:nth-child(1) > td > .layui-input", "css:finder"],
+        ["xpath=//input[@name='title']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "测试"
+    }, {
+      "id": "94b99a32-b2cb-4988-899a-aa5e3de18506",
+      "comment": "",
+      "command": "click",
+      "target": "css=.layui-btn-normal",
+      "targets": [
+        ["css=.layui-btn-normal", "css:finder"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'立即提交')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "16b8c4cb-d114-4891-979f-302a301c12cf",
+    "name": "04DelDept",
+    "commands": [{
+      "id": "b92806c0-1d88-4b70-a098-58062ea3b78b",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "48d6ce61-751f-490c-bae9-ab98db10bd8d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1259x1080",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "491779f1-2d37-41f5-bd0d-d42c45cc4062",
+      "comment": "",
+      "command": "selectFrame",
+      "target": "index=1",
+      "targets": [
+        ["index=1"]
+      ],
+      "value": ""
+    }, {
+      "id": "bff45d6c-96cf-490f-9632-0a2cdc277848",
+      "comment": "",
+      "command": "click",
+      "target": "css=.layui-table-hover .layui-btn-danger",
+      "targets": [
+        ["css=.layui-table-hover .layui-btn-danger", "css:finder"],
+        ["xpath=//tr[22]/td[7]/div/p/span/button[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "56c81b21-33a8-4f3a-97d5-a3f5aabe7851",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=确定",
+      "targets": [
+        ["linkText=确定", "linkText"],
+        ["css=.layui-layer-btn0", "css:finder"],
+        ["xpath=//a[contains(text(),'确定')]", "xpath:link"],
+        ["xpath=//div[@id='layui-layer2']/div[3]/a", "xpath:idRelative"],
+        ["xpath=//div[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'确定')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "63dda84e-ebcd-43e4-9852-898e00d1eb18",
+    "name": "05RePsd",
+    "commands": [{
+      "id": "e2f43399-0a4f-4e21-87ee-6d8c04c4593c",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "38e8ee8f-a9f4-42dd-862c-c08b6fa852ed",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1259x1080",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "959157a5-bff3-4ff7-873d-226cc7ebc33f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=人力资源",
+      "targets": [
+        ["linkText=人力资源", "linkText"],
+        ["css=.layui-nav-item:nth-child(3) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'人力资源')]", "xpath:link"],
+        ["xpath=//ul[@id='menuList']/li[3]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, 'javascript:;')])[19]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'人力资源')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ca90042e-b818-4e36-bbce-e3ca2aeed20e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=企业员工",
+      "targets": [
+        ["linkText=企业员工", "linkText"],
+        ["css=.layui-nav-itemed dd:nth-child(3) > .side-menu-item", "css:finder"],
+        ["xpath=//a[contains(text(),'企业员工')]", "xpath:link"],
+        ["xpath=//ul[@id='menuList']/li[3]/dl/dd[3]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, 'javascript:;')])[22]", "xpath:href"],
+        ["xpath=//li[3]/dl/dd[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'企业员工')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f91387ce-acb4-475c-9ed8-6f0082b1200d",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "linkText=企业员工",
+      "targets": [
+        ["linkText=企业员工", "linkText"],
+        ["css=.layui-nav-itemed dd:nth-child(3) > .side-menu-item", "css:finder"],
+        ["xpath=//a[contains(text(),'企业员工')]", "xpath:link"],
+        ["xpath=//ul[@id='menuList']/li[3]/dl/dd[3]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, 'javascript:;')])[22]", "xpath:href"],
+        ["xpath=//li[3]/dl/dd[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'企业员工')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b9f452ca-037e-4380-8a13-5a3484a258af",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "linkText=企业员工",
+      "targets": [
+        ["linkText=企业员工", "linkText"],
+        ["css=.layui-this:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'企业员工')]", "xpath:link"],
+        ["xpath=//ul[@id='menuList']/li[3]/dl/dd[3]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, 'javascript:;')])[22]", "xpath:href"],
+        ["xpath=//li[3]/dl/dd[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'企业员工')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f3bca3cc-1e56-4659-b622-e9fd714a974b",
+      "comment": "",
+      "command": "selectFrame",
+      "target": "index=2",
+      "targets": [
+        ["index=2"]
+      ],
+      "value": ""
+    }, {
+      "id": "6790da65-bfdb-49f2-99ee-650140abc237",
+      "comment": "",
+      "command": "click",
+      "target": "css=.layui-table-hover > td:nth-child(1) .layui-btn-danger",
+      "targets": [
+        ["css=.layui-table-hover > td:nth-child(1) .layui-btn-danger", "css:finder"],
+        ["xpath=//div[4]/div[2]/table/tbody/tr/td/div/div/span[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "01f07aec-73d5-4bb8-8ceb-e37f621bcf5a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=确定",
+      "targets": [
+        ["linkText=确定", "linkText"],
+        ["css=.layui-layer-btn0", "css:finder"],
+        ["xpath=//a[contains(text(),'确定')]", "xpath:link"],
+        ["xpath=//div[@id='layui-layer1']/div[3]/a", "xpath:idRelative"],
+        ["xpath=//div[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'确定')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "16fd0f90-082f-46ed-ac8d-d7a02ca6ae67",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["0271a81b-4132-4a38-a9a9-27bd9572c208"]
+  }],
+  "urls": ["http://122.9.143.225/"],
+  "plugins": []
+}
