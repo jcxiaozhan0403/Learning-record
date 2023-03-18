@@ -4762,7 +4762,6 @@ public class ProxyInvocationHandler implements InvocationHandler {
     }
  
     //生成代理类，重点是第二个参数，获取要代理的抽象角色！之前都是一个角色，现在可以代理一类角色
-
     public Object getProxy(){
         return Proxy.newProxyInstance(this.getClass().getClassLoader(),
                 target.getClass().getInterfaces(),this);

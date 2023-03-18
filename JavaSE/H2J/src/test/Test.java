@@ -5,7 +5,7 @@ package test;
  * @date 2023/3/17 18:03
  * @Description:
  */
-public class Test {
+public class Test implements InvocationHandler{
     public static void main(String[] args) {
         // 叫服务员
         Waiter waiter = new Waiter();
@@ -20,5 +20,7 @@ public class Test {
                 .builderD(null)
                 .getProduct();
         System.out.println(product2);
+
+
     }
 }

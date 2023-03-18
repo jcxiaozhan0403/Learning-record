@@ -24,13 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/BaoMa.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/BaoMaFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/BenChi.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/BenChiFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/Car.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/CarFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../设计模式/设计模式.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../设计模式/设计模式.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +92,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.28245363" />
-    <property name="settings.editor.selected.configurable" value="profiler.jvm" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -358,6 +352,7 @@
       <workItem from="1678687214112" duration="14000" />
       <workItem from="1678800105494" duration="3431000" />
       <workItem from="1679047343251" duration="1332000" />
+      <workItem from="1679103255407" duration="680000" />
     </task>
     <servers />
   </component>
