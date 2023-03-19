@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description:
  */
 @SpringBootApplication
-public class App {
+public class App80 {
     public static void main(String[] args) {
-        SpringApplication.run(App.class,args);
+        SpringApplication.run(App80.class,args);
     }
 }

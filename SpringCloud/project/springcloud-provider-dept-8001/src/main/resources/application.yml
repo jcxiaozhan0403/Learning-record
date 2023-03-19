@@ -6,6 +6,8 @@ mybatis-plus:
     cache-enabled: true
 
 spring:
+  application:
+    name: server8001
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
@@ -13,3 +15,26 @@ spring:
     username: root
     password: lishuang001219
 
+#Eureka的配置
+eureka:
+  client:
+    service-url:
+      #注册中心地址
+      defaultZone: http://localhost:7001/eureka/
+  instance:
+    hostname: localhost
+    instance-id: springcloud-provider-dept-8001   #修改erueka上的默认描述信息
+
+# info配置
+info:
+  app.name: springcloud-provider-dept-8001
+  company.name: www.jc.com
+  build.artifactId: @project.artifactId@
+  build.version: @project.version@
+
+# 暴露端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

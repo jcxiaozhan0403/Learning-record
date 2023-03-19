@@ -5,12 +5,13 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.7.9</version>
+    <version>2.6.7</version>
   </parent>
   <modules>
     <module>springcloud-api</module>
     <module>springcloud-provider-dept-8001</module>
     <module>springcloud-customer-dept-80</module>
+    <module>springcloud-eureka-7001</module>
   </modules>
 
   <groupId>com.example</groupId>
@@ -30,13 +31,11 @@
     <junit.version>4.12</junit.version>
     <lombok.version>1.16.18</lombok.version>
     <log4j.version>1.2.17</log4j.version>
-    <cloud.varsion>2021.0.1</cloud.varsion>
+    <cloud.varsion>2021.0.6</cloud.varsion>
     <mp.version>3.4.1</mp.version>
     <druid.version>1.2.16</druid.version>
     <mysql.version>5.1.47</mysql.version>
-    <test.version>2.7.9</test.version>
-    <web.version>2.7.9</web.version>
-    <tools.version>2.7.9</tools.version>
+    <springboot.version>2.6.7</springboot.version>
   </properties>
 
   <dependencyManagement>
@@ -44,24 +43,20 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
-        <version>${web.version}</version>
+        <version>${springboot.version}</version>
       </dependency>
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-devtools</artifactId>
+        <version>${springboot.version}</version>
         <scope>runtime</scope>
         <optional>true</optional>
       </dependency>
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-test</artifactId>
-        <version>${test.version}</version>
+        <version>${springboot.version}</version>
         <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-devtools</artifactId>
-        <version>${tools.version}</version>
       </dependency>
       <!--springcloud-->
       <dependency>
