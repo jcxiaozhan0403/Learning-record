@@ -411,9 +411,7 @@ public class CustomerController {
 }
 ```
 
-## Eureka服务注册与发现
-
-### CAP原则
+## CAP理论
 
 CAP原则又称CAP定理，指的是在一个分布式系统中
 
@@ -423,7 +421,35 @@ CAP原则又称CAP定理，指的是在一个分布式系统中
 
 三者不可兼得
 
-==Eureka遵循AP原则，Zookeeper遵循CP原则==
+一个分布式系统不可能同时很好的满足一致性，可用性和分区容错性这三个需求
+
+根据CAP原理，将NoSQL数据库分成了满足CA原则，满足CP原则和满足AP原则三大类：
+
+- CA：单点集群，满足一致性，可用性的系统，通常可扩展性较差
+- CP：满足一致性，分区容错性的系统，通常性能不是特别高
+- AP：满足可用性，分区容错性的系统，通常可能对一致性要求低一些
+
+![CAP理论图](D:\Study\Learning-record\SpringCloud\CAP理论图.jpg)
+
+### Eureka与Zookerper
+
+由于**分区容错性P**在分布式系统中是必须要保证的，因此我们只能在A和C之间进行权衡。==Eureka遵循AP原则，Zookeeper遵循CP原则==
+
+> Zookeeper保证的是CP
+
+当向注册中心查询服务列表时，我们可以容忍注册中心返回的是几分钟以前的注册信息，但不能接受服务直接down掉不可用。也就是说，**服务注册功能对可用性的要求要高于一致性**。但是zk会出现这样一种情况，当master节点因为网络故障与其他节点失去联系时，剩余节点会重新进行leader选举。问题在于，选举leader的时间太长，30~120s，且选举期间整个zk集群都是不可用的，这就导致在选举期间注册服务**瘫痪**。在云部署的环境下，因为网络问题使得zk集群失去master节点是较大概率会发生的事件，虽然服务最终能够恢复，但是漫长的选举时间导致的注册长期不可用是不能容忍的。
+
+> Eureka保证的是AP
+
+Eureka看明白了这一点，因此在设计时就优先保证可用性。**Eureka各个节点都是平等的**，几个节点挂掉不会影响正常节点的工作，剩余的节点依然可以提供注册和查询服务。而Eureka的客户端在向某个Eureka注册时，如果发现连接失败，则会自动切换至其他节点，只要有一台Eureka还在，就能保住注册服务的可用性，只不过查到的信息可能不是最新的，除此之外，Eureka还有一种自我保护机制，如果在15分钟内超过85%的节点都没有正常的心跳，那么Eureka就认为客户端与注册中心出现了网络故障，此时会出现以下几种情况：
+
+- Eureka不再从注册列表中移除因为长时间没收到心跳而应该过期的服务
+- Eureka仍然能够接受新服务的注册和查询请求，但是不会被同步到其他节点上（即保证当前节点依然可用）
+- 当网络稳定时，当前实例新的注册信息会被同步到其他节点中
+
+**因此，Eureka可以很好的应对因网络故障导致部分节点失去联系的情况，而不会像zookeeper那样使整个注册服务瘫痪**
+
+## Eureka服务注册与发现
 
 ### Eureka是什么
 
@@ -618,3 +644,192 @@ management:
 - 再次访问status描述页，可以看到我们填写的服务信息
 
 ![Eureka服务信息](D:\Study\Learning-record\SpringCloud\Eureka服务信息.png)
+
+### Discovery服务发现
+
+status描述页能够简单地描述服务信息，但是描述的信息比较有限
+
+对于注册进eureka里面的微服务，可以通过服务发现来获得该服务的信息
+
+在团队开发中比较常见
+
+- 添加一个方法，返回服务信息
+
+```java
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+
+@Autowired
+DiscoveryClient client;
+
+@GetMapping("/discovery")
+public Object discovery(){
+    //获得微服务列表清单
+    List<String> list = client.getServices();
+    System.out.println("client.getServices()==>"+list);
+    //得到一个具体的微服务！
+    List<ServiceInstance> serviceInstanceList =
+        client.getInstances("springcloud-provider-dept");
+    for (ServiceInstance serviceInstance : serviceInstanceList) {
+        System.out.println(
+            serviceInstance.getServiceId()+"\t"+
+            serviceInstance.getHost()+"\t"+
+            serviceInstance.getPort()+"\t"+
+            serviceInstance.getUri()
+        );
+    }
+    return this.client;
+}
+```
+
+- 在启动类添加`@EnableDiscoveryClient`注解，开启服务发现
+- 访问测试 http://localhost:8001/dept/discovery
+
+### Eureka集群
+
+> 添加windows域名映射
+
+路径：`C:\Windows\System32\drivers\etc\host`
+
+```
+127.0.0.1       eureka7001.com
+127.0.0.1       eureka7002.com
+127.0.0.1       eureka7003.com
+```
+
+- 新建子模块`springcloud-eureka-7002`、`springcloud-eureka-7003`，pom文件与`springcloud-eureka-7001`一致，作为两个新的注册中心
+
+> 在配置文件中做集群关联，每一个注册中心都要与另外的注册中心进行关联，以`springcloud-eureka-7001`的配置文件为例，7002和7003的配置文件也相似
+
+- 7001
+
+```yml
+server:
+  port: 7001
+
+#Eureka配置
+eureka:
+  instance:
+    hostname: eureka7001.com  #Eureka服务端的实例名称
+  client:
+    register-with-eureka: false  #表示是否向eureka注册中心注册自己，此模块就是作为注册中心的，所以不注册
+    fetch-registry: false  #如果为false，则表示自己为注册中心，等别人过来连就好了
+    service-url:  #监控页面
+      #单机
+      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      #多个地址使用逗号分隔
+      defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+      # 设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个defaultZone地址
+      # http://localhost:7001/eureka/
+```
+
+> 服务提供者的配置文件里，需要罗列所有的注册中心地址
+
+- 8001
+
+```yml
+#Eureka的配置
+eureka:
+  client:
+    service-url:
+      #注册中心地址
+      #只需要填写一个注册中心的地址即可，当然如果是为了保险，可以填上多个注册中心地址，使用逗号进行分隔
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    hostname: localhost
+    instance-id: springcloud-provider-dept-8001   #修改erueka上的默认描述信息
+```
+
+访问：http://eureka7001.com:7001/，可以看到我们部署的Eureka集群
+
+![Eureka集群](D:\Study\Learning-record\SpringCloud\Eureka集群.png)
+
+## Ribbon负载均衡
+
+### Ribbon是什么
+
+Spring Cloud Ribbon是基于Netflix Ribbon实现的一套**客户端负载均衡**的工具。
+
+简单的说，Ribbon是Netflix发布的开源项目，主要功能是提供客户端的软件**负载均衡算法**，将NetFlix的中间层服务连接在一起。Ribbon的客户端组件提供一系列完整的配置项如：连接超时、重试等等。简单的说，就是在配置文件中列出LoadBalancer（简称LB：负载均衡）后面所有的机器，Ribbon会自动的帮助你基于某种规则（如简单轮询，随机连接等等）去连接这些机器。我们也很容易使用Ribbon实现自定义的负载均衡算法！
+
+### Ribbon能干嘛？
+
+LB，即负载均衡（Load Balance），在微服务或分布式集群中经常用的一种应用。
+
+负载均衡简单的说就是**将用户的请求平摊的分配到多个服务上**，从而达到系统的HA（**高可用**）。常见的负载均衡软件有 Nginx，Lvs 等等
+
+Dubbo、SpringCloud中均给我们提供了负载均衡，SpringCloud的负载均衡算法可以自定义负载均衡简单分类：
+
+- 集中式LB
+  - 即在服务的消费方和提供方之间使用独立的LB设施
+  - 如之前学习的Nginx，由该设施负责把访问请求通过某种策略转发至服务的提供方！
+- 进程式LB
+  - 将LB逻辑集成到消费方，消费方从服务注册中心获知有哪些地址可用，然后自己再从这些地址中选出一个合适的服务器。
+  - **Ribbon就属于进程内LB**，它只是一个类库，集成于消费方进程，消费方通过它来获取到服务提供方的地址！
+
+Ribbon的github地址 ： https://github.com/NetFlix/ribbon
+
+### Ribbon实现负载均衡
+
+- 创建`springcloud-consumer-dept-ribbon-80`子模块，内容复制`springcloud-consumer-dept-80`子模块的
+
+- pom.xml
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.example</groupId>
+        <artifactId>springcloud-api</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <!--eureka-client默认集成Ribbon-->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    </dependency>
+</dependencies>
+```
+
+- 配置文件
+
+```yml
+server:
+  port: 80
+
+#Eureka的配置
+eureka:
+  client:
+    register-with-eureka: false  #不向eureka注册自己
+    service-url:
+      #注册中心地址
+      defaultZone: http://eureka7003.com:7003/eureka/,http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+```
+
+- 使用`@LoadBalanced`注解开启负载均衡
+
+```java
+@Configuration
+public class ApplicationConfig {
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate(){
+        return new RestTemplate();
+    }
+}
+```
+
+- 对url地址前缀进行改写，使用服务名称来进行访问
+
+```java
+//提供服务的地址
+//private static final String REST_URL_PREFIX="http://localhost:8001";
+//使用服务名称来进行访问
+private static final String REST_URL_PREFIX="http://server8001";
+```
+
+- 在启动类使用`@EnableEurekaClient`来开启Eureka
+
+- 测试：http://localhost/consumer/dept/list
