@@ -291,6 +291,8 @@ server:
 mybatis-plus:
   configuration:
     cache-enabled: true
+    log-impl: org.apache.ibatis.logging.log4j.Log4jImpl
+    map-underscore-to-camel-case: false
 
 spring:
   datasource:
@@ -768,9 +770,9 @@ Dubbo、SpringCloud中均给我们提供了负载均衡，SpringCloud的负载�
 
 Ribbon的github地址 ： https://github.com/NetFlix/ribbon
 
-### Ribbon实现负载均衡
+### Ribbon简单使用
 
-- 创建`springcloud-consumer-dept-ribbon-80`子模块，内容复制`springcloud-consumer-dept-80`子模块的
+- 参考`springcloud-customer-dept-80`子模块创建`springcloud-customer-dept-ribbon-80`子模块
 
 - pom.xml
 
@@ -833,3 +835,246 @@ private static final String REST_URL_PREFIX="http://server8001";
 - 在启动类使用`@EnableEurekaClient`来开启Eureka
 
 - 测试：http://localhost/consumer/dept/list
+
+### 负载均衡的实现
+
+![Ribbon负载均衡](D:\Study\Learning-record\SpringCloud\Ribbon负载均衡.jpg)
+
+- 添加子模块`springcloud-provider-dept-8002`和`springcloud-provider-dept-8003`，模拟服务提供者
+
+
+- 导入依赖：我们这里测试不连接数据库，所以仅用以下依赖即可
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+    </dependency>
+    <!--eureka,注册到服务中心-->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    </dependency>
+</dependencies>
+```
+
+- 添加Eureka配置
+
+```yml
+#三个服务提供者对外暴露的应用名需要一致，因为Ribbon是根据应用名来查找调用服务的
+spring:
+  application:
+    name: server-provide
+
+#Eureka的配置
+eureka:
+  client:
+    service-url:
+      #注册中心地址
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    hostname: localhost
+    instance-id: springcloud-provider-dept-8001   #修改erueka上的默认描述信息
+```
+
+- 为三个提供者创建相同路径的Controller，提供服务，返回字符串，用于区分服务器
+
+```java
+@RestController
+public class RibbonController {
+    @RequestMapping("/ribbon/test")
+    public String ribbonTest(){
+        return "8001为你提供服务";
+    }
+}
+```
+
+- 修改`springcloud-customer-dept-ribbon-80`模块的Controller，修改访问地址为服务名，添加访问接口
+
+```java
+@RestController
+public class CustomerController {
+    //提供服务的地址
+    //private static final String REST_URL_PREFIX="http://localhost:8001";
+    private static final String REST_URL_PREFIX="http://server-provide";
+
+    @RequestMapping("/get/provide")
+    public String getProvider(){
+        return restTemplate.getForObject(REST_URL_PREFIX + "/ribbon/test",String.class);
+    }
+}
+```
+
+- 添加主启动类，使用`@EnableEurekaClient`注解开启Eureka
+- 测试
+  1. 启动注册中心集群
+  2. 启动三个微服务
+  3. 启动客户端
+  4. 访问：http://localhost/get/provide，==使用Ribbon之后，不用再关心端口号==
+
+总结：通过访问同样的地址，我们得到了3个服务器返回的不同的字符串，而且是有规律的`8001-8002-8003-8001...`，这正是Ribbon负载均衡的默认访问机制，**轮询**，轮流访问每一台服务器。
+
+### 修改负载均衡的机制
+
+> Ribbon的负载均衡算法
+
+- **RoundRobinRule**：轮询
+- **RandomRule**：随机访问
+- **AvailabilityFilterRule**：会先过滤掉由于多次访问故障而处于断路器跳闸的服务，还有并发的连接数量超过阈值的服务，然后对剩余的服务列表按照轮询策略进行访问
+- **WeightedResponseTimeRule**：根据平均响应时间计算所有服务的权重，响应时间越快服务权重越大，被选中的概率越高，刚启动时如果统计信息不足，则使用RoundRobinRule策略，等待统计信息足够，会切换到WeightedResponseTimeRule
+- **RetryRule**：先按照RoundRobinRule的策略获取服务，如果获取服务失败，则在指定时间内会进行重试，获取可用的服务
+- **BestAvailableRule**：会先过滤掉由于多次访问故障而处于断路器跳闸状态的服务，然后选择一个并发量最小的服务
+- **ZoneAvoidanceRule**：默认规则，复合判断server所在区域的性能和server的可用性选择服务器
+
+> 修改它的机制
+
+只需要注册一个Bean来指定它的算法即可
+
+==最新版SpringCloud将它弃用，改用spring-cloud-starter-loadbalancer，可以平滑过渡==
+
+```java
+@Configuration
+public class RuleConfig {
+    @Bean
+    public IRule rule(){
+        //改为随机访问
+        return new RandomRule();
+    }
+}
+```
+
+## Feign负载均衡
+
+### Feign是什么
+
+feign是声明式的web service客户端，它让微服务之间的调用变得更简单了，类似controller调用service。
+
+Spring Cloud集成了Ribbon和Eureka，可在使用Feign时提供负载均衡的http客户端。
+
+**只需要创建一个接口，然后添加注解即可！**
+
+feign ，主要是社区，大家都习惯面向接口编程。这个是很多开发人员的规范。调用微服务访问两种方法
+
+- 微服务名字 【ribbon】
+- 接口和注解 【feign 】
+
+利用Ribbon维护了springcloud-Dept的服务列表信息，并且通过**轮询实现了客户端的负载均衡**，而与Ribbon不同的是，通过Feign**只需要定义服务绑定接口且以声明式的方法**，优雅而且简单的实现了服务调用。
+
+### Feign能干什么
+
+Feign旨在使编写Java Http客户端变得更容易
+
+前面在使用Ribbon + RestTemplate时，利用RestTemplate对Http请求的封装处理，形成了一套模板化的调用方法。但是在实际开发中，由于对服务依赖的调用可能不止一处，往往一个接口会被多处调用，所以通常都会针对每个微服务自行封装一些客户端类来包装这些依赖服务的调用。所以，Feign在此基础上做了进一步封装，由他来帮助我们定义和实现依赖服务接口的定义
+
+在Feign的实现下，我们**只需要创建一个接口并使用注解的方式来配置它**（类似于以前Dao接口上标注Mapper注解，现在是一个微服务接口上面标注一个Feign注解即可。）即可完成对服务提供方的接口绑定，简化了使用Spring Cloud Ribbon时，自动封装服务调用客户端的开发量。
+
+### Feign简单使用
+
+- 参考`springcloud-customer-dept-ribbon-80`子模块创建`springcloud-customer-dept-feign-80`子模块
+
+- 导入依赖
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.example</groupId>
+        <artifactId>springcloud-api</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <!--eureka-client默认集成Ribbon-->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    </dependency>
+        <!--Feign相关-->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-feign</artifactId>
+      <version>1.4.7.RELEASE</version>
+    </dependency>
+</dependencies>
+```
+
+- 配置文件
+
+```yml
+server:
+  port: 80
+
+#Eureka的配置
+eureka:
+  client:
+    register-with-eureka: false  #不向eureka注册自己
+    service-url:
+      #注册中心地址
+      defaultZone: http://eureka7003.com:7003/eureka/,http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+```
+
+- 创建服务层接口，用于绑定服务
+
+```java
+//value:指定微服务的名字,这样就可以使Feign客户端直接找到对应的微服务
+@FeignClient(value = "SERVER-PROVIDE")
+public interface DeptClineService {
+    //填写服务提供的地址
+    @GetMapping("/ribbon/test")
+    String getProvider();
+}
+```
+
+- Controller
+
+```java
+@RestController
+public class CustomerController {
+  
+    @Autowired
+    DeptClineService service;
+
+    @RequestMapping("/get/provide")
+    public String getProvider(){
+        return service.getProvider();
+    }
+}
+```
+
+- 编写主启动类
+
+```java
+@SpringBootApplication
+@EnableEurekaClient
+//扫描服务接口的包
+@EnableFeignClients(basePackages = {"com.jc.service"})
+public class App80FE {
+    public static void main(String[] args) {
+        SpringApplication.run(App80FE.class,args);
+    }
+}
+```
+
+总结：通过Feign直接找到服务接口，由于在进行服务调用的时候融合了Ribbon技术，所以也支持负载均衡作用！
+Feign其实不是做负载均衡的,负载均衡是Ribbon的功能，Feign只是集成了Ribbon而已，但是负载均衡的功能还是Feign内置的Ribbon再做,而不是Feign。
+
+==Feign的作用的替代RestTemplate，性能比较低，但是可以使代码可读性很强。==
+
+## Feign和Ribbon的区别
+
+> Ribbon
+
+Ribbon是一个基于HTTP和TCP客户端的负载均衡器它可以在客户端配置 RibbonServerList（服务端列表），然后轮询请求以实现均衡负载它在联合 Eureka使用时RibbonServerList会被DiscoveryEnabledNIWSServerList重写，扩展成从Eureka注册中心获取服务端列表同时它也会用NIWSDiscoveryPing来取代IPing，它将职责委托给Eureka来确定服务端是否已经启动。 使用HttpClient或RestTemplate模拟http请求，步骤相当繁琐。
+
+> Feign
+
+在Ribbon的基础上进行了一次改进，是一个使用起来更加方便的 HTTP 客户端。采用接口的方式， 只需要创建一个接口，面向接口；然后在上面添加注解即可 ，将需要调用的其他服务的方法定义成抽象方法即可， 不需要自己构建http请求。然后就像是调用自身工程的方法调用，而感觉不到是调用远程方法，使得编写 客户端变得非常容易。
+
+## Hystrix断路器-服务熔断
+

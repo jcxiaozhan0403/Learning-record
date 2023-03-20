@@ -1,0 +1,14 @@
+2023-03-20 09:39:14  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-20 09:47:14  [ restartedMain:479537 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-20 09:48:16  [ http-nio-8001-exec-2:541255 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept
+2023-03-20 09:48:16  [ http-nio-8001-exec-2:541264 ] - [ DEBUG ]  ==> Parameters: 
+2023-03-20 09:48:16  [ http-nio-8001-exec-2:541272 ] - [ DEBUG ]  <==      Total: 5
+2023-03-20 16:41:27  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-20 16:41:27  [ restartedMain:60 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-20 16:41:28  [ restartedMain:1210 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-20 17:22:15  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-20 17:22:15  [ restartedMain:208 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-20 17:22:18  [ restartedMain:3046 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-20 18:00:22  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-20 18:00:23  [ restartedMain:158 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-20 18:00:25  [ restartedMain:2868 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".

@@ -23,15 +23,15 @@ public class CustomerController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @RequestMapping("/consumer/dept/get/{id}")
+    @RequestMapping("/customer/dept/get/{id}")
     public Dept queryById(@PathVariable("id") Long id){
         return restTemplate.getForObject(REST_URL_PREFIX+"/dept/get/"+id,Dept.class);
     }
-    @RequestMapping("/consumer/dept/list")
+    @RequestMapping("/customer/dept/list")
     public List<Dept> queryAll(){
         return restTemplate.getForObject(REST_URL_PREFIX+"/dept/list",List.class);
     }
-    @RequestMapping("/consumer/dept/add")
+    @RequestMapping("/customer/dept/add")
     public boolean addDept(Dept dept){
         return restTemplate.postForObject(REST_URL_PREFIX+"/dept/add",dept,Boolean.class);
     }

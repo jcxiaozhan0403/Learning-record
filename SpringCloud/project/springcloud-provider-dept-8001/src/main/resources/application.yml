@@ -4,10 +4,12 @@ server:
 mybatis-plus:
   configuration:
     cache-enabled: true
+    log-impl: org.apache.ibatis.logging.log4j.Log4jImpl
+    map-underscore-to-camel-case: false
 
 spring:
   application:
-    name: server8001
+    name: server-provide
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver

@@ -1,0 +1,17 @@
+server:
+  port: 8002
+
+#三个服务提供者对外暴露的应用名需要一致，因为Ribbon是根据应用名来查找调用服务的
+spring:
+  application:
+    name: server-provide
+
+#Eureka的配置
+eureka:
+  client:
+    service-url:
+      #注册中心地址
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    hostname: localhost
+    instance-id: springcloud-provider-dept-8002   #修改erueka上的默认描述信息

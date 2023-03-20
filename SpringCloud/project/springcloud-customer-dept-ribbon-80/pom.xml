@@ -9,7 +9,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>springcloud-consumer-dept-ribbon-80</artifactId>
+  <artifactId>springcloud-customer-dept-ribbon-80</artifactId>
 
   <properties>
     <maven.compiler.source>8</maven.compiler.source>
