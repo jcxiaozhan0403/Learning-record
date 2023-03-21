@@ -1,5 +1,6 @@
 package com.jc.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.jc.pojo.Dept;
 import com.jc.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,9 @@ public class DeptController {
     }
     @GetMapping("/get/{id}")
     public Dept queryById(@PathVariable("id") Long id){
-        return service.getById(id);
+        QueryWrapper<Dept> wrapper = new QueryWrapper<>();
+        wrapper.eq("deptno",id);
+        return service.getOne(wrapper);
     }
     @GetMapping("/list")
     public List<Dept> queryAll(){

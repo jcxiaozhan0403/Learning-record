@@ -12,3 +12,718 @@
 2023-03-20 18:00:22  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
 2023-03-20 18:00:23  [ restartedMain:158 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
 2023-03-20 18:00:25  [ restartedMain:2868 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 09:57:11  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 09:57:11  [ restartedMain:71 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 09:57:12  [ restartedMain:1172 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 09:58:48  [ hystrix-DeptController-1:96848 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 09:58:48  [ hystrix-DeptController-1:96853 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@38f620b4] was not registered for synchronization because synchronization is not active
+2023-03-21 09:58:48  [ hystrix-DeptController-1:97129 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@5f7da970] will not be managed by Spring
+2023-03-21 09:58:48  [ hystrix-DeptController-1:97134 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE null=?
+2023-03-21 09:58:48  [ hystrix-DeptController-1:97146 ] - [ DEBUG ]  ==> Parameters: 1(Long)
+2023-03-21 09:58:48  [ hystrix-DeptController-1:97192 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 09:58:48  [ hystrix-DeptController-1:97193 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@38f620b4]
+2023-03-21 09:59:20  [ hystrix-DeptController-2:128960 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 09:59:20  [ hystrix-DeptController-2:128960 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@17ad88f4] was not registered for synchronization because synchronization is not active
+2023-03-21 09:59:20  [ hystrix-DeptController-2:128960 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@5f7da970] will not be managed by Spring
+2023-03-21 09:59:20  [ hystrix-DeptController-2:128961 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE null=?
+2023-03-21 09:59:20  [ hystrix-DeptController-2:128962 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 09:59:20  [ hystrix-DeptController-2:128962 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 09:59:20  [ hystrix-DeptController-2:128963 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@17ad88f4]
+2023-03-21 09:59:23  [ hystrix-DeptController-3:132624 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 09:59:23  [ hystrix-DeptController-3:132624 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@416d4e7a] was not registered for synchronization because synchronization is not active
+2023-03-21 09:59:23  [ hystrix-DeptController-3:132624 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@5f7da970] will not be managed by Spring
+2023-03-21 09:59:23  [ hystrix-DeptController-3:132625 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE null=?
+2023-03-21 09:59:23  [ hystrix-DeptController-3:132625 ] - [ DEBUG ]  ==> Parameters: 3(Long)
+2023-03-21 09:59:23  [ hystrix-DeptController-3:132628 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 09:59:23  [ hystrix-DeptController-3:132628 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@416d4e7a]
+2023-03-21 10:02:51  [ hystrix-DeptController-4:340584 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 10:02:51  [ hystrix-DeptController-4:340584 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@793a09ef] was not registered for synchronization because synchronization is not active
+2023-03-21 10:02:51  [ hystrix-DeptController-4:340590 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@5f7da970] will not be managed by Spring
+2023-03-21 10:02:51  [ hystrix-DeptController-4:340591 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE null=?
+2023-03-21 10:02:51  [ hystrix-DeptController-4:340591 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 10:02:51  [ hystrix-DeptController-4:340592 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 10:02:51  [ hystrix-DeptController-4:340592 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@793a09ef]
+2023-03-21 10:03:59  [ hystrix-DeptController-5:408104 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 10:03:59  [ hystrix-DeptController-5:408105 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@203d8153] was not registered for synchronization because synchronization is not active
+2023-03-21 10:03:59  [ hystrix-DeptController-5:408107 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@5f7da970] will not be managed by Spring
+2023-03-21 10:03:59  [ hystrix-DeptController-5:408107 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE null=?
+2023-03-21 10:03:59  [ hystrix-DeptController-5:408108 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 10:03:59  [ hystrix-DeptController-5:408109 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 10:03:59  [ hystrix-DeptController-5:408109 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@203d8153]
+2023-03-21 10:25:33  [ restartedMain:1701729 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 10:25:33  [ restartedMain:1701766 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 10:25:33  [ restartedMain:1702423 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 10:41:30  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 10:41:30  [ restartedMain:83 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 10:41:31  [ restartedMain:1275 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 10:47:23  [ hystrix-DeptController-1:352847 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 10:47:23  [ hystrix-DeptController-1:352853 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2462ce2c] was not registered for synchronization because synchronization is not active
+2023-03-21 10:47:23  [ hystrix-DeptController-1:353071 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@3a24c5e3] will not be managed by Spring
+2023-03-21 10:47:23  [ hystrix-DeptController-1:353076 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 10:47:23  [ hystrix-DeptController-1:353090 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 10:47:23  [ hystrix-DeptController-1:353101 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 10:47:23  [ hystrix-DeptController-1:353103 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2462ce2c]
+2023-03-21 10:47:27  [ hystrix-DeptController-2:356443 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 10:47:27  [ hystrix-DeptController-2:356443 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@76f216b7] was not registered for synchronization because synchronization is not active
+2023-03-21 10:47:27  [ hystrix-DeptController-2:356445 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@3a24c5e3] will not be managed by Spring
+2023-03-21 10:47:27  [ hystrix-DeptController-2:356445 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 10:47:27  [ hystrix-DeptController-2:356446 ] - [ DEBUG ]  ==> Parameters: 1(Long)
+2023-03-21 10:47:27  [ hystrix-DeptController-2:356446 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 10:47:27  [ hystrix-DeptController-2:356448 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@76f216b7]
+2023-03-21 10:47:34  [ hystrix-DeptController-3:363853 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 10:47:34  [ hystrix-DeptController-3:363854 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@563fb2b0] was not registered for synchronization because synchronization is not active
+2023-03-21 10:47:34  [ hystrix-DeptController-3:363855 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@3a24c5e3] will not be managed by Spring
+2023-03-21 10:47:34  [ hystrix-DeptController-3:363855 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 10:47:34  [ hystrix-DeptController-3:363856 ] - [ DEBUG ]  ==> Parameters: 1(Long)
+2023-03-21 10:47:34  [ hystrix-DeptController-3:363857 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 10:47:34  [ hystrix-DeptController-3:363857 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@563fb2b0]
+2023-03-21 11:12:55  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 11:12:55  [ restartedMain:100 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 11:12:56  [ restartedMain:1480 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 12:03:53  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 12:03:53  [ restartedMain:174 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 12:03:54  [ restartedMain:1453 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 12:08:12  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 12:08:12  [ restartedMain:63 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 12:08:13  [ restartedMain:1125 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 12:21:33  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 12:21:33  [ restartedMain:172 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 12:21:34  [ restartedMain:1234 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 12:32:34  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 12:32:34  [ restartedMain:78 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 12:32:36  [ restartedMain:1234 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 12:34:24  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 12:34:24  [ restartedMain:78 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 12:34:25  [ restartedMain:1250 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 12:37:41  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 12:37:41  [ restartedMain:62 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 12:37:42  [ restartedMain:1313 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 12:43:05  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 12:43:05  [ restartedMain:72 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 12:43:06  [ restartedMain:1234 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 12:45:14  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 12:45:14  [ restartedMain:157 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 12:45:16  [ restartedMain:1458 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 13:10:34  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 13:10:35  [ restartedMain:78 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 13:10:36  [ restartedMain:1234 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 13:21:15  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 13:21:16  [ restartedMain:78 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 13:21:17  [ restartedMain:1453 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 18:03:04  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 18:03:05  [ restartedMain:70 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 18:03:06  [ restartedMain:1289 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 18:10:42  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 18:10:42  [ restartedMain:61 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 18:10:43  [ restartedMain:1282 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 18:13:07  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 18:13:07  [ restartedMain:69 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 18:13:08  [ restartedMain:1260 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 18:15:10  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 18:15:10  [ restartedMain:60 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 18:15:11  [ restartedMain:1269 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 18:31:09  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 18:31:10  [ restartedMain:89 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 18:31:11  [ restartedMain:1515 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 18:37:01  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 18:37:01  [ restartedMain:72 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 18:37:03  [ restartedMain:1393 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 18:45:49  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 18:45:49  [ restartedMain:102 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 18:45:51  [ restartedMain:1632 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 19:01:03  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 19:01:04  [ restartedMain:82 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 19:01:05  [ restartedMain:1668 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 19:08:54  [ hystrix-DeptController-1:470973 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:08:54  [ hystrix-DeptController-1:470982 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@455a7485] was not registered for synchronization because synchronization is not active
+2023-03-21 19:08:54  [ hystrix-DeptController-1:471051 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:08:54  [ hystrix-DeptController-1:471056 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:08:55  [ hystrix-DeptController-1:471075 ] - [ DEBUG ]  ==> Parameters: 3(Long)
+2023-03-21 19:08:55  [ hystrix-DeptController-1:471134 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:08:55  [ hystrix-DeptController-1:471135 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@455a7485]
+2023-03-21 19:09:00  [ hystrix-DeptController-2:476642 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:09:00  [ hystrix-DeptController-2:476642 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2fa511df] was not registered for synchronization because synchronization is not active
+2023-03-21 19:09:00  [ hystrix-DeptController-2:476643 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:09:00  [ hystrix-DeptController-2:476644 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:09:00  [ hystrix-DeptController-2:476644 ] - [ DEBUG ]  ==> Parameters: 1(Long)
+2023-03-21 19:09:00  [ hystrix-DeptController-2:476647 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 19:09:00  [ hystrix-DeptController-2:476647 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2fa511df]
+2023-03-21 19:09:06  [ hystrix-DeptController-3:482072 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:09:06  [ hystrix-DeptController-3:482072 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2c162ad4] was not registered for synchronization because synchronization is not active
+2023-03-21 19:09:06  [ hystrix-DeptController-3:482073 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:09:06  [ hystrix-DeptController-3:482073 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:09:06  [ hystrix-DeptController-3:482074 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:09:06  [ hystrix-DeptController-3:482074 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:09:06  [ hystrix-DeptController-3:482075 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2c162ad4]
+2023-03-21 19:11:35  [ hystrix-DeptController-4:631605 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:35  [ hystrix-DeptController-4:631608 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1df8412c] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:35  [ hystrix-DeptController-4:631616 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:35  [ hystrix-DeptController-4:631617 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:35  [ hystrix-DeptController-4:631617 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:35  [ hystrix-DeptController-4:631620 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:35  [ hystrix-DeptController-4:631620 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1df8412c]
+2023-03-21 19:11:37  [ hystrix-DeptController-5:633257 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:37  [ hystrix-DeptController-5:633258 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@9a024e2] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:37  [ hystrix-DeptController-5:633259 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:37  [ hystrix-DeptController-5:633259 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:37  [ hystrix-DeptController-5:633260 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:37  [ hystrix-DeptController-5:633260 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:37  [ hystrix-DeptController-5:633261 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@9a024e2]
+2023-03-21 19:11:37  [ hystrix-DeptController-6:633817 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:37  [ hystrix-DeptController-6:633817 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@233eeb8c] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:37  [ hystrix-DeptController-6:633819 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:37  [ hystrix-DeptController-6:633819 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:37  [ hystrix-DeptController-6:633819 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:37  [ hystrix-DeptController-6:633820 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:37  [ hystrix-DeptController-6:633821 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@233eeb8c]
+2023-03-21 19:11:38  [ hystrix-DeptController-7:634393 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:38  [ hystrix-DeptController-7:634393 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@587ab36e] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:38  [ hystrix-DeptController-7:634395 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:38  [ hystrix-DeptController-7:634396 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:38  [ hystrix-DeptController-7:634398 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:38  [ hystrix-DeptController-7:634399 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:38  [ hystrix-DeptController-7:634400 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@587ab36e]
+2023-03-21 19:11:38  [ hystrix-DeptController-8:634917 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:38  [ hystrix-DeptController-8:634917 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2c37d6f4] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:38  [ hystrix-DeptController-8:634919 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:38  [ hystrix-DeptController-8:634919 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:38  [ hystrix-DeptController-8:634920 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:38  [ hystrix-DeptController-8:634920 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:38  [ hystrix-DeptController-8:634921 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2c37d6f4]
+2023-03-21 19:11:39  [ hystrix-DeptController-9:635559 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:39  [ hystrix-DeptController-9:635559 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@668a0f75] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:39  [ hystrix-DeptController-9:635561 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:39  [ hystrix-DeptController-9:635562 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:39  [ hystrix-DeptController-9:635562 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:39  [ hystrix-DeptController-9:635564 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:39  [ hystrix-DeptController-9:635564 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@668a0f75]
+2023-03-21 19:11:40  [ hystrix-DeptController-10:636143 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:40  [ hystrix-DeptController-10:636143 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@668c3980] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:40  [ hystrix-DeptController-10:636144 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:40  [ hystrix-DeptController-10:636144 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:40  [ hystrix-DeptController-10:636145 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:40  [ hystrix-DeptController-10:636147 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:40  [ hystrix-DeptController-10:636147 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@668c3980]
+2023-03-21 19:11:40  [ hystrix-DeptController-10:636692 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:40  [ hystrix-DeptController-10:636692 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2976c11a] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:40  [ hystrix-DeptController-10:636695 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:40  [ hystrix-DeptController-10:636695 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:40  [ hystrix-DeptController-10:636696 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:40  [ hystrix-DeptController-10:636697 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:40  [ hystrix-DeptController-10:636697 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2976c11a]
+2023-03-21 19:11:41  [ hystrix-DeptController-10:637244 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:41  [ hystrix-DeptController-10:637244 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@189569a9] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:41  [ hystrix-DeptController-10:637246 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:41  [ hystrix-DeptController-10:637246 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:41  [ hystrix-DeptController-10:637247 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:41  [ hystrix-DeptController-10:637247 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:41  [ hystrix-DeptController-10:637248 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@189569a9]
+2023-03-21 19:11:41  [ hystrix-DeptController-10:637775 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:41  [ hystrix-DeptController-10:637775 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@49593e55] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:41  [ hystrix-DeptController-10:637776 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:41  [ hystrix-DeptController-10:637777 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:41  [ hystrix-DeptController-10:637778 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:41  [ hystrix-DeptController-10:637783 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:41  [ hystrix-DeptController-10:637784 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@49593e55]
+2023-03-21 19:11:42  [ hystrix-DeptController-10:638359 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:42  [ hystrix-DeptController-10:638359 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@594c5bfa] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:42  [ hystrix-DeptController-10:638360 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:42  [ hystrix-DeptController-10:638362 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:42  [ hystrix-DeptController-10:638362 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:42  [ hystrix-DeptController-10:638362 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:42  [ hystrix-DeptController-10:638363 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@594c5bfa]
+2023-03-21 19:11:42  [ hystrix-DeptController-10:638950 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:42  [ hystrix-DeptController-10:638951 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4d1703bd] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:42  [ hystrix-DeptController-10:638954 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:42  [ hystrix-DeptController-10:638955 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:42  [ hystrix-DeptController-10:638956 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:42  [ hystrix-DeptController-10:638956 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:42  [ hystrix-DeptController-10:638957 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4d1703bd]
+2023-03-21 19:11:43  [ hystrix-DeptController-10:639477 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:43  [ hystrix-DeptController-10:639477 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@21365004] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:43  [ hystrix-DeptController-10:639481 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:43  [ hystrix-DeptController-10:639482 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:43  [ hystrix-DeptController-10:639483 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:43  [ hystrix-DeptController-10:639488 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:43  [ hystrix-DeptController-10:639489 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@21365004]
+2023-03-21 19:11:43  [ hystrix-DeptController-10:640048 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:43  [ hystrix-DeptController-10:640048 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@30c08940] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:43  [ hystrix-DeptController-10:640051 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:43  [ hystrix-DeptController-10:640051 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:43  [ hystrix-DeptController-10:640051 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:43  [ hystrix-DeptController-10:640054 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:43  [ hystrix-DeptController-10:640054 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@30c08940]
+2023-03-21 19:11:44  [ hystrix-DeptController-10:640628 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:44  [ hystrix-DeptController-10:640629 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5ea7ee19] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:44  [ hystrix-DeptController-10:640630 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:44  [ hystrix-DeptController-10:640630 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:44  [ hystrix-DeptController-10:640630 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:44  [ hystrix-DeptController-10:640631 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:44  [ hystrix-DeptController-10:640632 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5ea7ee19]
+2023-03-21 19:11:45  [ hystrix-DeptController-10:641204 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:45  [ hystrix-DeptController-10:641205 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@27ab2caf] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:45  [ hystrix-DeptController-10:641206 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:45  [ hystrix-DeptController-10:641206 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:45  [ hystrix-DeptController-10:641206 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:45  [ hystrix-DeptController-10:641207 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:45  [ hystrix-DeptController-10:641208 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@27ab2caf]
+2023-03-21 19:11:45  [ hystrix-DeptController-10:641788 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:45  [ hystrix-DeptController-10:641788 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3155ba37] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:45  [ hystrix-DeptController-10:641790 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:45  [ hystrix-DeptController-10:641790 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:45  [ hystrix-DeptController-10:641791 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:45  [ hystrix-DeptController-10:641793 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:45  [ hystrix-DeptController-10:641793 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3155ba37]
+2023-03-21 19:11:46  [ hystrix-DeptController-10:642331 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:46  [ hystrix-DeptController-10:642331 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10c3999a] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:46  [ hystrix-DeptController-10:642333 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:46  [ hystrix-DeptController-10:642333 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:46  [ hystrix-DeptController-10:642334 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:46  [ hystrix-DeptController-10:642335 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:46  [ hystrix-DeptController-10:642335 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10c3999a]
+2023-03-21 19:11:46  [ hystrix-DeptController-10:642970 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:46  [ hystrix-DeptController-10:642970 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@467a1c8e] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:46  [ hystrix-DeptController-10:642972 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:46  [ hystrix-DeptController-10:642973 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:46  [ hystrix-DeptController-10:642973 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:46  [ hystrix-DeptController-10:642975 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:46  [ hystrix-DeptController-10:642975 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@467a1c8e]
+2023-03-21 19:11:47  [ hystrix-DeptController-10:643532 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:47  [ hystrix-DeptController-10:643532 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3c89345a] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:47  [ hystrix-DeptController-10:643534 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:47  [ hystrix-DeptController-10:643535 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:47  [ hystrix-DeptController-10:643536 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:47  [ hystrix-DeptController-10:643537 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:47  [ hystrix-DeptController-10:643538 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3c89345a]
+2023-03-21 19:11:48  [ hystrix-DeptController-10:644079 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:48  [ hystrix-DeptController-10:644079 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64a20b32] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:48  [ hystrix-DeptController-10:644081 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:48  [ hystrix-DeptController-10:644081 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:48  [ hystrix-DeptController-10:644081 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:48  [ hystrix-DeptController-10:644082 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:48  [ hystrix-DeptController-10:644082 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64a20b32]
+2023-03-21 19:11:48  [ hystrix-DeptController-10:644664 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:48  [ hystrix-DeptController-10:644664 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7231d2d9] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:48  [ hystrix-DeptController-10:644667 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:48  [ hystrix-DeptController-10:644668 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:48  [ hystrix-DeptController-10:644669 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:48  [ hystrix-DeptController-10:644670 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:48  [ hystrix-DeptController-10:644670 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7231d2d9]
+2023-03-21 19:11:49  [ hystrix-DeptController-10:645250 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:49  [ hystrix-DeptController-10:645251 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@238dff9c] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:49  [ hystrix-DeptController-10:645252 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:49  [ hystrix-DeptController-10:645253 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:49  [ hystrix-DeptController-10:645253 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:49  [ hystrix-DeptController-10:645254 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:49  [ hystrix-DeptController-10:645254 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@238dff9c]
+2023-03-21 19:11:49  [ hystrix-DeptController-10:645788 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:49  [ hystrix-DeptController-10:645788 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@20aa03f7] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:49  [ hystrix-DeptController-10:645789 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:49  [ hystrix-DeptController-10:645789 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:49  [ hystrix-DeptController-10:645789 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:49  [ hystrix-DeptController-10:645790 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:49  [ hystrix-DeptController-10:645790 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@20aa03f7]
+2023-03-21 19:11:50  [ hystrix-DeptController-10:646393 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:50  [ hystrix-DeptController-10:646394 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2ff874f1] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:50  [ hystrix-DeptController-10:646395 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:50  [ hystrix-DeptController-10:646395 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:50  [ hystrix-DeptController-10:646395 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:50  [ hystrix-DeptController-10:646397 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:50  [ hystrix-DeptController-10:646398 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2ff874f1]
+2023-03-21 19:11:50  [ hystrix-DeptController-10:647003 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:50  [ hystrix-DeptController-10:647003 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@e30d9c3] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:50  [ hystrix-DeptController-10:647004 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:50  [ hystrix-DeptController-10:647004 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:50  [ hystrix-DeptController-10:647005 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:50  [ hystrix-DeptController-10:647005 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:50  [ hystrix-DeptController-10:647005 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@e30d9c3]
+2023-03-21 19:11:51  [ hystrix-DeptController-10:647566 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:51  [ hystrix-DeptController-10:647567 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@29bd4065] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:51  [ hystrix-DeptController-10:647568 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:51  [ hystrix-DeptController-10:647568 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:51  [ hystrix-DeptController-10:647568 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:51  [ hystrix-DeptController-10:647569 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:51  [ hystrix-DeptController-10:647569 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@29bd4065]
+2023-03-21 19:11:52  [ hystrix-DeptController-10:648121 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:52  [ hystrix-DeptController-10:648121 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@712c02fa] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:52  [ hystrix-DeptController-10:648122 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:52  [ hystrix-DeptController-10:648122 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:52  [ hystrix-DeptController-10:648122 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:52  [ hystrix-DeptController-10:648123 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:52  [ hystrix-DeptController-10:648124 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@712c02fa]
+2023-03-21 19:11:52  [ hystrix-DeptController-10:648666 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:52  [ hystrix-DeptController-10:648666 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33a141] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:52  [ hystrix-DeptController-10:648669 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:52  [ hystrix-DeptController-10:648669 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:52  [ hystrix-DeptController-10:648669 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:52  [ hystrix-DeptController-10:648670 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:52  [ hystrix-DeptController-10:648670 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33a141]
+2023-03-21 19:11:53  [ hystrix-DeptController-10:649179 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:53  [ hystrix-DeptController-10:649179 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@39fd3b9c] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:53  [ hystrix-DeptController-10:649180 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:53  [ hystrix-DeptController-10:649180 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:53  [ hystrix-DeptController-10:649180 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:53  [ hystrix-DeptController-10:649181 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:53  [ hystrix-DeptController-10:649182 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@39fd3b9c]
+2023-03-21 19:11:53  [ hystrix-DeptController-10:649633 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:53  [ hystrix-DeptController-10:649633 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@14decd86] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:53  [ hystrix-DeptController-10:649635 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:53  [ hystrix-DeptController-10:649635 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:53  [ hystrix-DeptController-10:649635 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:53  [ hystrix-DeptController-10:649636 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:53  [ hystrix-DeptController-10:649637 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@14decd86]
+2023-03-21 19:11:54  [ hystrix-DeptController-10:650305 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:54  [ hystrix-DeptController-10:650305 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@52d3e817] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:54  [ hystrix-DeptController-10:650307 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:54  [ hystrix-DeptController-10:650308 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:54  [ hystrix-DeptController-10:650308 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:54  [ hystrix-DeptController-10:650309 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:54  [ hystrix-DeptController-10:650309 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@52d3e817]
+2023-03-21 19:11:54  [ hystrix-DeptController-10:650867 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:54  [ hystrix-DeptController-10:650868 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6bc0f081] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:54  [ hystrix-DeptController-10:650869 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:54  [ hystrix-DeptController-10:650869 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:54  [ hystrix-DeptController-10:650870 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:54  [ hystrix-DeptController-10:650871 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:54  [ hystrix-DeptController-10:650872 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6bc0f081]
+2023-03-21 19:11:55  [ hystrix-DeptController-10:651388 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:55  [ hystrix-DeptController-10:651388 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@34be3134] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:55  [ hystrix-DeptController-10:651391 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:55  [ hystrix-DeptController-10:651391 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:55  [ hystrix-DeptController-10:651391 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:55  [ hystrix-DeptController-10:651392 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:55  [ hystrix-DeptController-10:651393 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@34be3134]
+2023-03-21 19:11:55  [ hystrix-DeptController-10:651903 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:55  [ hystrix-DeptController-10:651904 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@547c8476] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:55  [ hystrix-DeptController-10:651907 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:55  [ hystrix-DeptController-10:651907 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:55  [ hystrix-DeptController-10:651907 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:55  [ hystrix-DeptController-10:651907 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:55  [ hystrix-DeptController-10:651907 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@547c8476]
+2023-03-21 19:11:56  [ hystrix-DeptController-10:652399 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:56  [ hystrix-DeptController-10:652399 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6ffa2247] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:56  [ hystrix-DeptController-10:652400 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:56  [ hystrix-DeptController-10:652401 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:56  [ hystrix-DeptController-10:652401 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:56  [ hystrix-DeptController-10:652401 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:56  [ hystrix-DeptController-10:652402 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6ffa2247]
+2023-03-21 19:11:56  [ hystrix-DeptController-10:652944 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:56  [ hystrix-DeptController-10:652944 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46a061a1] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:56  [ hystrix-DeptController-10:652946 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:56  [ hystrix-DeptController-10:652946 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:56  [ hystrix-DeptController-10:652947 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:56  [ hystrix-DeptController-10:652947 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:56  [ hystrix-DeptController-10:652948 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46a061a1]
+2023-03-21 19:11:57  [ hystrix-DeptController-10:653486 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:57  [ hystrix-DeptController-10:653486 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@169d829b] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:57  [ hystrix-DeptController-10:653487 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:57  [ hystrix-DeptController-10:653488 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:57  [ hystrix-DeptController-10:653488 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:57  [ hystrix-DeptController-10:653489 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:57  [ hystrix-DeptController-10:653489 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@169d829b]
+2023-03-21 19:11:57  [ hystrix-DeptController-10:654025 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:57  [ hystrix-DeptController-10:654026 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5d15fdf1] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:57  [ hystrix-DeptController-10:654027 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:57  [ hystrix-DeptController-10:654027 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:57  [ hystrix-DeptController-10:654027 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:57  [ hystrix-DeptController-10:654028 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:57  [ hystrix-DeptController-10:654028 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5d15fdf1]
+2023-03-21 19:11:58  [ hystrix-DeptController-10:654575 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:58  [ hystrix-DeptController-10:654576 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54704890] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:58  [ hystrix-DeptController-10:654578 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:58  [ hystrix-DeptController-10:654578 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:58  [ hystrix-DeptController-10:654579 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:58  [ hystrix-DeptController-10:654579 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:58  [ hystrix-DeptController-10:654580 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54704890]
+2023-03-21 19:11:59  [ hystrix-DeptController-10:655093 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:59  [ hystrix-DeptController-10:655093 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@57a5ff03] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:59  [ hystrix-DeptController-10:655095 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:59  [ hystrix-DeptController-10:655095 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:59  [ hystrix-DeptController-10:655095 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:59  [ hystrix-DeptController-10:655097 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:59  [ hystrix-DeptController-10:655097 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@57a5ff03]
+2023-03-21 19:11:59  [ hystrix-DeptController-10:655616 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:11:59  [ hystrix-DeptController-10:655616 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33826414] was not registered for synchronization because synchronization is not active
+2023-03-21 19:11:59  [ hystrix-DeptController-10:655617 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:11:59  [ hystrix-DeptController-10:655617 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:11:59  [ hystrix-DeptController-10:655617 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:11:59  [ hystrix-DeptController-10:655618 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:11:59  [ hystrix-DeptController-10:655619 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33826414]
+2023-03-21 19:12:31  [ hystrix-DeptController-10:688039 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:31  [ hystrix-DeptController-10:688040 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5653fee] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:31  [ hystrix-DeptController-10:688042 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:31  [ hystrix-DeptController-10:688042 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:31  [ hystrix-DeptController-10:688042 ] - [ DEBUG ]  ==> Parameters: 1(Long)
+2023-03-21 19:12:31  [ hystrix-DeptController-10:688043 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 19:12:31  [ hystrix-DeptController-10:688043 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5653fee]
+2023-03-21 19:12:36  [ hystrix-DeptController-10:692542 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:36  [ hystrix-DeptController-10:692543 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44c106fe] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:36  [ hystrix-DeptController-10:692544 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:36  [ hystrix-DeptController-10:692544 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:36  [ hystrix-DeptController-10:692544 ] - [ DEBUG ]  ==> Parameters: 1(Long)
+2023-03-21 19:12:36  [ hystrix-DeptController-10:692544 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 19:12:36  [ hystrix-DeptController-10:692545 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44c106fe]
+2023-03-21 19:12:37  [ hystrix-DeptController-10:693950 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:37  [ hystrix-DeptController-10:693951 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@111b53ca] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:37  [ hystrix-DeptController-10:693953 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:37  [ hystrix-DeptController-10:693953 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:37  [ hystrix-DeptController-10:693953 ] - [ DEBUG ]  ==> Parameters: 1(Long)
+2023-03-21 19:12:37  [ hystrix-DeptController-10:693954 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 19:12:37  [ hystrix-DeptController-10:693955 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@111b53ca]
+2023-03-21 19:12:38  [ hystrix-DeptController-10:694431 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:38  [ hystrix-DeptController-10:694432 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2278a6c3] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:38  [ hystrix-DeptController-10:694433 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:38  [ hystrix-DeptController-10:694433 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:38  [ hystrix-DeptController-10:694433 ] - [ DEBUG ]  ==> Parameters: 1(Long)
+2023-03-21 19:12:38  [ hystrix-DeptController-10:694434 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 19:12:38  [ hystrix-DeptController-10:694434 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2278a6c3]
+2023-03-21 19:12:38  [ hystrix-DeptController-10:694961 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:38  [ hystrix-DeptController-10:694962 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3844780b] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:38  [ hystrix-DeptController-10:694966 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:38  [ hystrix-DeptController-10:694966 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:38  [ hystrix-DeptController-10:694967 ] - [ DEBUG ]  ==> Parameters: 1(Long)
+2023-03-21 19:12:38  [ hystrix-DeptController-10:694967 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 19:12:38  [ hystrix-DeptController-10:694967 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3844780b]
+2023-03-21 19:12:39  [ hystrix-DeptController-10:695509 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:39  [ hystrix-DeptController-10:695510 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@248caeba] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:39  [ hystrix-DeptController-10:695511 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:39  [ hystrix-DeptController-10:695511 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:39  [ hystrix-DeptController-10:695511 ] - [ DEBUG ]  ==> Parameters: 1(Long)
+2023-03-21 19:12:39  [ hystrix-DeptController-10:695511 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 19:12:39  [ hystrix-DeptController-10:695512 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@248caeba]
+2023-03-21 19:12:39  [ hystrix-DeptController-10:695990 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:39  [ hystrix-DeptController-10:695990 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1bb8e95f] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:39  [ hystrix-DeptController-10:695991 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:39  [ hystrix-DeptController-10:695992 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:39  [ hystrix-DeptController-10:695993 ] - [ DEBUG ]  ==> Parameters: 1(Long)
+2023-03-21 19:12:39  [ hystrix-DeptController-10:695994 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 19:12:39  [ hystrix-DeptController-10:695994 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1bb8e95f]
+2023-03-21 19:12:40  [ hystrix-DeptController-10:696476 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:40  [ hystrix-DeptController-10:696477 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33f93d59] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:40  [ hystrix-DeptController-10:696478 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:40  [ hystrix-DeptController-10:696478 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:40  [ hystrix-DeptController-10:696478 ] - [ DEBUG ]  ==> Parameters: 1(Long)
+2023-03-21 19:12:40  [ hystrix-DeptController-10:696479 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 19:12:40  [ hystrix-DeptController-10:696480 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33f93d59]
+2023-03-21 19:12:44  [ hystrix-DeptController-10:700574 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:44  [ hystrix-DeptController-10:700574 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5521d8f4] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:44  [ hystrix-DeptController-10:700575 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:44  [ hystrix-DeptController-10:700575 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:44  [ hystrix-DeptController-10:700576 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:44  [ hystrix-DeptController-10:700577 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:44  [ hystrix-DeptController-10:700577 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5521d8f4]
+2023-03-21 19:12:46  [ hystrix-DeptController-10:702580 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:46  [ hystrix-DeptController-10:702580 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5050ca62] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:46  [ hystrix-DeptController-10:702581 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:46  [ hystrix-DeptController-10:702582 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:46  [ hystrix-DeptController-10:702582 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:46  [ hystrix-DeptController-10:702583 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:46  [ hystrix-DeptController-10:702583 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5050ca62]
+2023-03-21 19:12:46  [ hystrix-DeptController-10:702848 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:46  [ hystrix-DeptController-10:702848 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7b46e312] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:46  [ hystrix-DeptController-10:702850 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:46  [ hystrix-DeptController-10:702850 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:46  [ hystrix-DeptController-10:702850 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:46  [ hystrix-DeptController-10:702851 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:46  [ hystrix-DeptController-10:702851 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7b46e312]
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703094 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703094 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4e85b2a0] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703096 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703096 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703096 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703098 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703098 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4e85b2a0]
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703287 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703288 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@79db46d8] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703289 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703289 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703289 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703290 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703290 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@79db46d8]
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703701 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703701 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1a31f51] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703703 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703704 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703704 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703705 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703705 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1a31f51]
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703894 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703894 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5cb237a9] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703896 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703897 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703897 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703899 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:47  [ hystrix-DeptController-10:703899 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5cb237a9]
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704074 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704074 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@224dc478] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704076 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704076 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704077 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704078 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704078 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@224dc478]
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704260 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704260 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@72f6d08a] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704261 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704262 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704262 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704263 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704263 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@72f6d08a]
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704803 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704804 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6d64a62a] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704805 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704805 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704805 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704805 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:48  [ hystrix-DeptController-10:704806 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6d64a62a]
+2023-03-21 19:12:49  [ hystrix-DeptController-10:705500 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:49  [ hystrix-DeptController-10:705500 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3341b9af] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:49  [ hystrix-DeptController-10:705502 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:49  [ hystrix-DeptController-10:705502 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:49  [ hystrix-DeptController-10:705503 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:49  [ hystrix-DeptController-10:705504 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:49  [ hystrix-DeptController-10:705504 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3341b9af]
+2023-03-21 19:12:49  [ hystrix-DeptController-10:705933 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:49  [ hystrix-DeptController-10:705933 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6ccea5c7] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:49  [ hystrix-DeptController-10:705934 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:49  [ hystrix-DeptController-10:705934 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:49  [ hystrix-DeptController-10:705934 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:49  [ hystrix-DeptController-10:705935 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:49  [ hystrix-DeptController-10:705935 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6ccea5c7]
+2023-03-21 19:12:50  [ hystrix-DeptController-10:706365 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:50  [ hystrix-DeptController-10:706365 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f6c31dd] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:50  [ hystrix-DeptController-10:706365 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:50  [ hystrix-DeptController-10:706365 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:50  [ hystrix-DeptController-10:706367 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:50  [ hystrix-DeptController-10:706367 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:50  [ hystrix-DeptController-10:706367 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f6c31dd]
+2023-03-21 19:12:50  [ hystrix-DeptController-10:706739 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:50  [ hystrix-DeptController-10:706739 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3a6e1613] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:50  [ hystrix-DeptController-10:706740 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:50  [ hystrix-DeptController-10:706740 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:50  [ hystrix-DeptController-10:706741 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:50  [ hystrix-DeptController-10:706741 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:50  [ hystrix-DeptController-10:706741 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3a6e1613]
+2023-03-21 19:12:51  [ hystrix-DeptController-10:707169 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:51  [ hystrix-DeptController-10:707169 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@163a15fe] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:51  [ hystrix-DeptController-10:707171 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:51  [ hystrix-DeptController-10:707171 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:51  [ hystrix-DeptController-10:707171 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:51  [ hystrix-DeptController-10:707172 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:51  [ hystrix-DeptController-10:707172 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@163a15fe]
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708175 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708176 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44d80fe1] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708177 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708177 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708177 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708178 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708178 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44d80fe1]
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708498 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708499 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5beb1e6b] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708499 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708500 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708500 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708500 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708500 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5beb1e6b]
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708694 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708694 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@331dfc54] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708696 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708696 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708697 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708698 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708698 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@331dfc54]
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708901 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708901 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6e0ebaba] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708902 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708902 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708902 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708904 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:52  [ hystrix-DeptController-10:708905 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6e0ebaba]
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709108 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709108 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@77049fa0] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709109 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709110 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709110 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709111 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709112 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@77049fa0]
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709295 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709295 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e5a2bd7] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709295 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709295 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709295 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709296 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709296 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e5a2bd7]
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709429 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709429 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6f0b7f32] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709430 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709430 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709430 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709431 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:53  [ hystrix-DeptController-10:709432 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6f0b7f32]
+2023-03-21 19:12:54  [ hystrix-DeptController-10:710742 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:54  [ hystrix-DeptController-10:710742 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@71ee375d] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:54  [ hystrix-DeptController-10:710743 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:54  [ hystrix-DeptController-10:710743 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:54  [ hystrix-DeptController-10:710743 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:54  [ hystrix-DeptController-10:710745 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:54  [ hystrix-DeptController-10:710745 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@71ee375d]
+2023-03-21 19:12:55  [ hystrix-DeptController-10:711379 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:55  [ hystrix-DeptController-10:711379 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@71c92f53] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:55  [ hystrix-DeptController-10:711380 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:55  [ hystrix-DeptController-10:711380 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:55  [ hystrix-DeptController-10:711381 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:55  [ hystrix-DeptController-10:711382 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:55  [ hystrix-DeptController-10:711383 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@71c92f53]
+2023-03-21 19:12:55  [ hystrix-DeptController-10:711999 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:55  [ hystrix-DeptController-10:711999 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@52255214] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:55  [ hystrix-DeptController-10:712000 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:55  [ hystrix-DeptController-10:712000 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:55  [ hystrix-DeptController-10:712001 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:55  [ hystrix-DeptController-10:712002 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:55  [ hystrix-DeptController-10:712003 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@52255214]
+2023-03-21 19:12:56  [ hystrix-DeptController-10:712671 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:56  [ hystrix-DeptController-10:712671 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@56cc4d91] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:56  [ hystrix-DeptController-10:712672 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:56  [ hystrix-DeptController-10:712672 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:56  [ hystrix-DeptController-10:712672 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:56  [ hystrix-DeptController-10:712673 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:56  [ hystrix-DeptController-10:712673 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@56cc4d91]
+2023-03-21 19:12:57  [ hystrix-DeptController-10:713229 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:57  [ hystrix-DeptController-10:713230 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7232ed3a] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:57  [ hystrix-DeptController-10:713232 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:57  [ hystrix-DeptController-10:713232 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:57  [ hystrix-DeptController-10:713232 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:57  [ hystrix-DeptController-10:713233 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:57  [ hystrix-DeptController-10:713233 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7232ed3a]
+2023-03-21 19:12:57  [ hystrix-DeptController-10:713695 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:12:57  [ hystrix-DeptController-10:713695 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1210cce9] was not registered for synchronization because synchronization is not active
+2023-03-21 19:12:57  [ hystrix-DeptController-10:713697 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@62022397] will not be managed by Spring
+2023-03-21 19:12:57  [ hystrix-DeptController-10:713697 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:12:57  [ hystrix-DeptController-10:713698 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:12:57  [ hystrix-DeptController-10:713699 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:12:57  [ hystrix-DeptController-10:713699 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1210cce9]
+2023-03-21 19:15:06  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 19:15:06  [ restartedMain:71 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 19:15:07  [ restartedMain:1394 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 19:15:53  [ hystrix-DeptController-1:46838 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:15:53  [ hystrix-DeptController-1:46844 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3726f2b6] was not registered for synchronization because synchronization is not active
+2023-03-21 19:15:53  [ hystrix-DeptController-1:46891 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@7f01451e] will not be managed by Spring
+2023-03-21 19:15:53  [ hystrix-DeptController-1:46896 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:15:53  [ hystrix-DeptController-1:46910 ] - [ DEBUG ]  ==> Parameters: 1(Long)
+2023-03-21 19:15:53  [ hystrix-DeptController-1:46923 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 19:15:53  [ hystrix-DeptController-1:46923 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3726f2b6]
+2023-03-21 19:15:57  [ hystrix-DeptController-2:51758 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 19:15:57  [ hystrix-DeptController-2:51758 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5ecfe228] was not registered for synchronization because synchronization is not active
+2023-03-21 19:15:57  [ hystrix-DeptController-2:51760 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@7f01451e] will not be managed by Spring
+2023-03-21 19:15:57  [ hystrix-DeptController-2:51761 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 19:15:57  [ hystrix-DeptController-2:51763 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 19:15:57  [ hystrix-DeptController-2:51765 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 19:15:57  [ hystrix-DeptController-2:51766 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5ecfe228]
+2023-03-21 19:48:02  [ restartedMain:1 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 19:48:02  [ restartedMain:69 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 19:48:04  [ restartedMain:1462 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 22:01:50  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 22:01:50  [ restartedMain:78 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 22:01:51  [ restartedMain:1156 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 22:11:56  [ restartedMain:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 22:11:56  [ restartedMain:78 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 22:11:58  [ restartedMain:1895 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".

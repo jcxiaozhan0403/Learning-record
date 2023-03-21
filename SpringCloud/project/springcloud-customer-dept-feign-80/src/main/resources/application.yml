@@ -8,3 +8,11 @@ eureka:
     service-url:
       #注册中心地址
       defaultZone: http://eureka7003.com:7003/eureka/,http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+
+feign:
+  circuitbreaker:
+    enabled: true
+
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "*"

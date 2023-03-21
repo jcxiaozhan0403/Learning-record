@@ -28,3 +28,33 @@
 2023-03-20 09:47:22  [ main:10070 ] - [ DEBUG ]  ==> Parameters: 
 2023-03-20 09:47:22  [ main:10083 ] - [ DEBUG ]  <==      Total: 5
 2023-03-20 09:47:22  [ main:10085 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@389c624]
+2023-03-21 10:26:36  [ main:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 10:26:36  [ main:110 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 10:26:37  [ main:1319 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 10:26:45  [ main:9518 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 10:26:45  [ main:9525 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33b29c99] was not registered for synchronization because synchronization is not active
+2023-03-21 10:26:46  [ main:9921 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@769e025c] will not be managed by Spring
+2023-03-21 10:26:46  [ main:9925 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept
+2023-03-21 10:26:46  [ main:9941 ] - [ DEBUG ]  ==> Parameters: 
+2023-03-21 10:26:46  [ main:9957 ] - [ DEBUG ]  <==      Total: 5
+2023-03-21 10:26:46  [ main:9958 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@33b29c99]
+2023-03-21 10:28:22  [ main:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 10:28:22  [ main:111 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 10:28:23  [ main:1243 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 10:28:32  [ main:9513 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 10:28:32  [ main:9522 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54c9320c] was not registered for synchronization because synchronization is not active
+2023-03-21 10:28:32  [ main:9851 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@5b7bd551] will not be managed by Spring
+2023-03-21 10:28:32  [ main:9858 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE null=?
+2023-03-21 10:28:32  [ main:9879 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 10:28:32  [ main:9891 ] - [ DEBUG ]  <==      Total: 0
+2023-03-21 10:28:32  [ main:9893 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@54c9320c]
+2023-03-21 10:33:04  [ main:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2023-03-21 10:33:04  [ main:120 ] - [ DEBUG ]  Property 'mapperLocations' was not specified.
+2023-03-21 10:33:06  [ main:1352 ] - [ WARN ]  Can not find table primary key in Class: "com.jc.pojo.Dept".
+2023-03-21 10:33:14  [ main:9901 ] - [ DEBUG ]  Creating a new SqlSession
+2023-03-21 10:33:14  [ main:9908 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@614220b8] was not registered for synchronization because synchronization is not active
+2023-03-21 10:33:14  [ main:10189 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@2f6b60ee] will not be managed by Spring
+2023-03-21 10:33:14  [ main:10194 ] - [ DEBUG ]  ==>  Preparing: SELECT deptno,dname,db_source FROM dept WHERE (deptno = ?)
+2023-03-21 10:33:15  [ main:10215 ] - [ DEBUG ]  ==> Parameters: 2(Long)
+2023-03-21 10:33:15  [ main:10232 ] - [ DEBUG ]  <==      Total: 1
+2023-03-21 10:33:15  [ main:10233 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@614220b8]

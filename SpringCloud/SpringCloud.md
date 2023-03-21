@@ -1078,3 +1078,405 @@ Ribbon是一个基于HTTP和TCP客户端的负载均衡器它可以在客户端�
 
 ## Hystrix断路器-服务熔断
 
+### 服务雪崩
+
+如下图，分布式的多个服务在部署时，存在调用关系。如果此时有大量请求传入，服务O承受不住，导致宕机无法提供服务，那么就会连锁引起服务J、服务D、服务A的阻塞现象，所有的请求都会堆积，这种现象就是**服务雪崩**。
+
+而**服务熔断**和**服务降级**就是解决**服务雪崩**的手段之一。
+
+![服务雪崩](D:\Study\Learning-record\SpringCloud\服务雪崩.jpg)
+
+### 服务熔断
+
+>  熔断机制是对应雪崩效应的一种微服务链路保护机制。
+
+当扇出链路的某个微服务不可用或者响应时间太长时，**会进行服务的降级，进而熔断该节点微服务的调用**，快速返回 错误的响应信息。**当检测到该节点微服务调用响应正常后恢复调用链路**。在SpringCloud框架里熔断机制通过Hystrix实现。Hystrix会监控微服务间调用的状况，当失败的调用到一定阈值，缺省是**5秒内20次**调用失败就会启动熔断机制。
+
+服务熔断可以解决的问题：
+
+- 当所依赖的对象不稳定时，能够起到快速失败的目的；
+- 快速失败后，能够根据一定的算法动态试探所依赖对象是否恢复。
+
+#### 简单实现
+
+- 参考`springcloud-provider-dept-8001`子模块创建`springcloud-provider-dept-hystrix-8001`子模块
+- 添加依赖
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.example</groupId>
+        <artifactId>springcloud-api</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+    </dependency>
+    <!--mysql-->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+    <!--druid数据库连接池-->
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+    </dependency>
+    <!--mybatis-plus-->
+    <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <!--eureka,注册到服务中心-->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    </dependency>
+    <!--Hystrix-->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        <version>2.2.10.RELEASE</version>
+    </dependency>
+</dependencies>
+```
+
+- 配置文件
+
+```yml
+#Eureka的配置
+eureka:
+  client:
+    service-url:
+      #注册中心地址
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    hostname: localhost
+    instance-id: springcloud-provide-dept-hystric-8001   #修改erueka上的默认描述信息
+    prefer-ip-address: true  #改为true默认显示的是ip地址，而不是Localhost
+```
+
+![prefer-ip-address true](D:\Study\Learning-record\SpringCloud\prefer-ip-address true.png)
+
+- 编写Controller
+
+```java
+@RestController
+@RequestMapping("/dept")
+public class DeptController {
+    @Autowired
+    private DeptService service;
+    /**
+     * 根据id查询部门信息
+     * HystrixCommand：一旦调用该方法发生异常后，就执行hystrixGet方法中的代码
+     * @Param:id
+     */
+    @HystrixCommand(fallbackMethod = "hystrixGet")
+    @GetMapping("/get/{id}")//根据id查询
+    public Dept queryById(@PathVariable("id") Long id){
+        QueryWrapper<Dept> wrapper = new QueryWrapper<>();
+        wrapper.eq("deptno",id);
+        Dept dept = service.getOne(wrapper);
+        if(dept==null){
+            throw new RuntimeException("该id："+id+"没有对应的的信息");
+        }
+        return dept;
+    }
+    /**
+     * 根据id查询备选方案（熔断）
+     * @Param:id
+     * @return
+     * */
+    public Dept hystrixGet(@PathVariable("id") Long id){
+        return new Dept().setDeptno(id).setDname("这个id=>"+id+",没有对应的信息,null---@Hystrix~").setDb_source("在Mysql中没有这个数据库");
+    }
+}
+```
+
+- 主启动类通过`@EnableHystrix`注解开启服务熔断
+
+```java
+@SpringBootApplication
+@MapperScan("com.jc.mapper")
+@EnableEurekaClient
+//开启熔断
+@EnableHystrix
+public class App8001HY {
+    public static void main(String[] args) {
+        SpringApplication.run(App8001HY.class,args);
+    }
+}
+```
+
+- 测试
+  1. 启动注册中心集群
+  2. 启动`springcloud-provider-dept-hystrix-8001`微服务
+  3. 访问：http://localhost:8001/dept/get/1，我们发现，如果调用发生异常，会执行`hystrixGet`函数，服务不会中断
+
+### 服务降级
+
+> 整体资源快不够了，忍痛先将某些服务关闭，等度过难关，再开启回来
+
+服务降级是指当服务器压力剧增的情况下，根据实际业务情况及流量，对一些服务和页面有策略的不处理，或换种简单的方式处理，从而释放服务器资源以保证核心业务正常运作或高效运作。说白了，就是**尽可能的把系统资源让给优先级高的服务**。
+
+资源有限，而请求是无限的。如果在并发高峰期，不做服务降级处理，一方面肯定会影响整体服务的性能，严重的话可能会导致宕机某些重要的服务不可用。所以，**一般在高峰期，为了保证核心功能服务的可用性，都要对某些服务降级处理**。比如当双11活动时，把交易无关的服务统统降级，如查看蚂蚁深林，查看历史订单等等。
+
+服务降级主要用于什么场景呢？当整个微服务架构整体的负载超出了预设的上限阈值或即将到来的流量预计将会超过预设的阈值时，为了保证重要或基本的服务能正常运行，可以将一些 不重要或不紧急的服务或任务进行服务的延迟使用或暂停使用。
+
+降级的方式可以根据业务来，可以延迟服务，比如延迟给用户增加积分，只是放到一个缓存中，等服务平稳之后再执行 ；或者在粒度范围内关闭服务，比如关闭相关文章的推荐。
+
+#### 服务降级需要考虑的问题
+
+- 哪些服务是核心服务，哪些服务是非核心服务
+- 哪些服务可以支持降级，那些服务不能支持降级，降级策略是什么？
+- 除服务降级之外是否存在更复杂的业务放通场景，策略是什么？
+
+#### 自动降级分类
+
+1. 超时降级：主要配置好超时时间和超时重试次数和机制，并使用异步机制探测回复情况
+
+2. 失败次数降级：主要是一些不稳定的api，当失败调用次数达到一定阀值自动降级，同样要使用异步机制探测回复情况
+
+3. 故障降级：比如要调用的远程服务挂掉了（网络故障、DNS故障、http服务返回错误的状态码、rpc服务抛出异常），则可以直接降级。降级后的处理方案有：默认值（比如库存服务挂了，返回默认现货）、兜底数据（比如广告挂了，返回提前准备好的一些静态页面）、缓存（之前暂存的一些缓存数据）
+
+4. 限流降级：秒杀或者抢购一些限购商品时，此时可能会因为访问量太大而导致系统崩溃，此时会使用限流来进行限制访问量，当达到限流阀值，后续请求会被降级；降级后的处理方案可以是：排队页面（将用户导流到排队页面等一会重试）、无货（直接告知用户没货了）、错误页（如活动太火爆了，稍后重试）。
+
+#### 简单实现
+
+- 修改`springcloud-customer-dept-feign-80`模块，根据已经有的DeptClineService接口新建一个实现了FallbackFactory接口的类DeptClientServiceFallbackFactory
+
+```java
+@Component
+public class DeptClientServiceFallbackFactory implements FallbackFactory<DeptClineService> {
+    @Override
+    public DeptClineService create(Throwable cause) {
+        return new DeptClineService() {
+            @Override
+            public String getProvider() {
+                return "该服务已被关闭";
+            }
+        };
+    }
+}
+```
+
+- 给DeptClineService接口添加注解，指定降级后批量处理类
+
+```java
+@FeignClient(value = "SERVER-PROVIDE",fallbackFactory = DeptClientServiceFallbackFactory.class)
+public interface DeptClineService {
+    //填写服务提供的地址
+    @GetMapping("/ribbon/test")
+    String getProvider();
+}
+```
+
+- 配置文件开启降级
+
+```yml
+feign:
+  circuitbreaker:
+    enabled: true
+```
+
+- 主启动类，使用`@EnableHystrix`开启熔断
+- 测试
+  - 访问：http://localhost/get/provide，看到正常的返回结果
+  - 关闭服务端，再次访问，则返回预处理信息
+
+###  小结
+
+**服务熔断=>服务端**：一般是某个服务故障或者异常引起，类似现实世界中的 “保险丝” ， 当某个异常条件被触发，直接熔断整个服务，而不是一直等到此服务超时！
+**服务降级=>客户端**：所谓降级，一般是从整体负荷考虑，就是当某个服务熔断之后，服务器将不再被调用，此时客户端可以自己准备一个本地的fallback回调，返回一个缺省值。这样做，虽然服务水平下降，但好歹可用，比直接挂掉要强。
+
+> 触发原因不太一样
+
+服务熔断一般是某个服务（下游服务）故障引起，而服务降级一般是从整体负荷考虑；管理目标的层次不太一样，熔断其实是一个框架级的处理，每个微服务都需要（无层级之分），而降级一般需要对业务有层级之分（比如降级一般是从最外围服务开始）
+
+> 实现方式不太一样
+
+服务降级具有代码侵入性(由控制器完成/或自动降级)，熔断一般称为自我熔断。
+
+> 熔断，降级，限流
+
+- 熔断：依赖的下游服务器故障触发熔断，避免引发本地系统崩溃，系统自动执行和恢复
+- 降级：服务分优先级，牺牲非核心业务，保证核心服务稳定，从整体符合考虑
+- 限流：限制并发的请求访问量，超过阈值则拒绝
+
+### 服务监控
+
+除了隔离依赖服务的调用以外，Hystrix还提供了准实时的调用监控（Hystrix Dashboard），Hystrix会持续地**记录所有通过Hystrix发起的请求的执行信息**，并以统计报表和图形的形式展示给用户，包括每秒执行多少请求，多少成功，多少失败等等。
+
+Netflix通过hystrix-metrics-event-stream项目实现了对以上指标的监控SpringCloud也提供了HystrixDashboard的整合，对监控内容转化成可视化界面！
+
+#### 简单使用
+
+- 给客户端添加依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+    <version>2.2.10.RELEASE</version>
+</dependency>
+```
+
+- 给服务端添加依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+
+- 客户端主启动类，使用`@EnableHystrixDashboard`注解开启监控功能
+
+- 将下面这个Bean注入到每一个服务端的Spring容器里
+
+```java
+//增加一个Servlet
+@Bean
+public ServletRegistrationBean hystrixMetricsStreamServlet() {
+    ServletRegistrationBean registration = new ServletRegistrationBean(new HystrixMetricsStreamServlet());
+    //访问该页面就是监控页面
+    registration.addUrlMappings("/actuator/hystrix.stream");
+    return registration;
+}
+```
+
+- 服务端配置
+
+```yml
+#暴露全部的监控信息
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+```
+
+- 客户端配置
+
+```yml
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "*"
+```
+
+- 看到如下页面，配置成功
+
+![HystrixDashboard](D:\Study\Learning-record\SpringCloud\HystrixDashboard.png)
+
+- 填写需要监控的地址：http://localhost:8001/actuator/hystrix.stream
+
+- 流量统计图
+
+![Hystrix监控统计图](D:\Study\Learning-record\SpringCloud\Hystrix监控统计图.png)
+
+## Zuul路由网关
+
+### Zuul是什么
+
+Zuul包含了**对请求的路由和过滤**两个最主要的功能：
+
+其中**路由功能负责将外部请求转发到具体的微服务实例上，是实现外部访问统一入口的基础，而过滤器功能则负责对请求的处理过程进行干预，是实现请求校验，服务聚合等功能的基础**。Zuul和Eureka进行整合，将Zuul自身注册为Eureka服务治理下的应用，同时从Eureka中获得其他微服务的消息，也即以后的访问微服务都是通过Zuul跳转后获得。
+
+**注意**：Zuul服务最终还是会注册进Eureka
+
+**提供**：代理 + 路由 + 过滤 三大功能！
+
+### 简单使用
+
+- 新建子模块
+- 导入依赖
+
+```xml
+<dependencies>
+    <!--Hystrix-->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        <version>2.2.10.RELEASE</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+        <version>2.2.10.RELEASE</version>
+    </dependency>
+    <!--实体类和web-->
+    <dependency>
+        <groupId>com.example</groupId>
+        <artifactId>springcloud-api</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+    </dependency>
+    <!--集成Ribbon-->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+        <version>2.2.10.RELEASE</version>
+    </dependency>
+</dependencies>
+```
+
+- 配置文件
+
+```yml
+server:
+  port: 9527
+
+#spring相关配置
+spring:
+  application:
+    name: springcloud-zuul
+
+#erueka配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+```
+
+- 添加域名映射
+
+```
+127.0.0.1       www.jc.com
+```
+
+- 主启动类使用`@EnableZuulProxy`开启Zuul
+- 测试
+  1. 启动注册中心
+  2. 启动服务模块`springcloud-provider-dept-hystrix-8001`
+  3. 启动zuul模块
+
+==高版本已不支持Zuul，现在API网关使用gateway==

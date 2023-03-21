@@ -20,4 +20,9 @@ class DeptControllerTest {
     void queryAll() {
         System.out.println(deptController.queryAll());
     }
+
+    @Test
+    void queryById() {
+        System.out.println(deptController.queryById(2l));
+    }
 }

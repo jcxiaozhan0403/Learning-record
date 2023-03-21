@@ -1,0 +1,43 @@
+server:
+  port: 8001
+
+mybatis-plus:
+  configuration:
+    cache-enabled: true
+    log-impl: org.apache.ibatis.logging.log4j.Log4jImpl
+    map-underscore-to-camel-case: false
+
+spring:
+  application:
+    name: server-provide
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springcloud-test?useSSL=false&userUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: lishuang001219
+
+#Eureka的配置
+eureka:
+  client:
+    service-url:
+      #注册中心地址
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    hostname: localhost
+    instance-id: springcloud-provide-dept-hystric-8001   #修改erueka上的默认描述信息
+    prefer-ip-address: true  #改为true默认显示的是ip地址，而不是Localhost
+
+# info配置
+info:
+  app.name: springcloud-provider-dept-8001
+  company.name: www.jc.com
+  build.artifactId: @project.artifactId@
+  build.version: @project.version@
+
+# 暴露端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
