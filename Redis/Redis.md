@@ -1,6 +1,6 @@
 ## 数据库操作架构的发展史
 
-> 1. 单机MySQL的年代
+> 单机MySQL的年代
 
 <img src="./架构1.jpg">
 
@@ -12,7 +12,7 @@
 - 数据的索引，机器内存不够用
 - 读写混合，较大的访问量服务器承受不了
 
-> 2. 缓存 + MySQL + 垂直拆分(读写分离)
+> 缓存 + MySQL + 垂直拆分(读写分离)
 
 网站对数据库的操作，80%都是读，我们可以使用缓存来存放查询的数据，减少与数据库的交互，提高效率
 
@@ -20,7 +20,7 @@
 
 <img src="./架构2.jpg">
 
-> 3. 分库分别 + 水平拆分 + MySQL集群
+> 分库分别 + 水平拆分 + MySQL集群
 
 技术发展，不断优化，分库分表提高了写的效率
 
@@ -241,7 +241,7 @@ select 3
 dbsize
 
 #查看当前数据库所有的key
-key *
+keys *
 
 #清空当前数据库
 flushdb
@@ -276,6 +276,9 @@ redis将所有数据放在内存中，所以使用单线程操作效率就是最
 ```bash
 #set值
 set key value
+
+#删除数据
+del key
 
 #查看当前db的所有key
 keys *
@@ -326,7 +329,7 @@ decrby value 长度
 - 字符串范围
 
 ```bash
-#指定截取字符串显示[strat,end]
+#截取指定字符串显示[strat,end]
 getrange key start end
 #当end值为-1时，表示截取到字符串结束为止
 getrange key 0 -1
@@ -373,7 +376,9 @@ mset user:1:name zhangsan user:1:age 20
 getset key value
 ```
 
-String类似的使用场景：value除了是我们的字符串还可以是数字
+> 使用场景
+
+value除了是我们的字符串还可以是数字
 
 - 计数器
 - 统计多单位的数量 uid
@@ -414,7 +419,7 @@ llen list
 lrme key count value
 
 # list截断
-# 截取list的start到stop之间的所有元素，左右都闭合，这个list就已经被改变了，只剩下截取的元素
+# 截取list的start到stop之间的所有元素，[start,stop]，这个list就已经被改变了，只剩下截取的元素
 ltrim key start stop
 
 # 移除列表的最后一个元素并添加到目的列表的第一个
@@ -479,6 +484,8 @@ sinter key1 key2
 # 并集
 sunion key1 key2 
 ```
+
+> 使用场景
 
 共同关注，共同爱好，二度好友
 
@@ -558,4 +565,218 @@ zcount key start end
 普通消息：1.重要消息 2.带权重进行判断
 
 排行榜应用实现，取top n测试
+
+## Geospatial 地理空间
+
+Redis 的 GEO 特性在 **3.2** 版本中推出， 这个功能可以将用户给定的地理位置信息储存起来。
+
+通常用以实现诸如附近位置、摇一摇这类依赖于地理位置信息的功能。
+
+==geo 的数据类型为 zset==
+
+### 添加
+
+将给定的空间元素（纬度、经度、名字）添加到指定的键里面。
+
+- 这些数据会以有序集的形式被储存在键里面，从而使得 `georadius` 和 `georadiusbymember` 这样的命令可以在之后通过位置查询取得这些元素。
+- `geoadd` 命令以标准的x，y格式接受参数，所以用户必须先输入经度，然后再输入纬度。
+- `geoadd` 能够记录的坐标是有限的：非常接近两极的区域无法被索引。
+- 有效的经度介于 -180 ~ 180 度之间，有效的纬度介于 -85.05112878 ~ 85.05112878 度之间。当输入超出范围的经度或者纬度，`geoadd` 将返回一个错误。
+
+```bash
+# 向集合china:city添加北京的经纬度信息
+geoadd china:city 116.23 40.22 beijing
+
+# 向集合china:city添加多个经纬度信息
+geoadd china:city 121.48 31.40 上海 113.88 22.55 深圳 120.21 120.21 30.20 杭州 106.54 29.40 重庆 108.93 34.23 西安 114.02 30.58 武汉
+```
+
+### 取值
+
+> 经纬度
+
+```bash
+# 获取单个值
+geopos china:city beijing
+
+# 获取多个值
+geopos china:city beijing shanghai
+```
+
+> 两个坐标之间的距离
+
+返回两个给定位置之间的距离，如果两个位置之间的其中一个不存在，那么命令返回空值。
+
+指定单位的参数 unit 必须是以下单位的其中一个：
+
+- **m** 表示单位为米
+- **km** 表示单位为千米
+- **mi** 表示单位为英里
+- **ft** 表示单位为英尺
+
+如果用户没有显式地指定单位参数，那么 `geodist` 默认使用**米**作为单位。
+
+```bash
+geodist china:city beijing shanghai
+
+geodist china:city beijing shanghai m
+
+geodist china:city beijing shanghai km
+
+geodist china:city beijing shanghai mi
+
+geodist china:city beijing shanghai ft
+```
+
+> 范围内元素
+
+以给定的经纬度为中心，找出指定半径范围内的元素。
+
+```bash
+# 找出100 30坐标半径1000km范围内的元素，返回其名称
+georadius china:city 100 30 1000 km
+
+# 找出100 30坐标半径1000km范围内的元素，返回其名称、距离
+georadius china:city 100 30 1000 km withdist
+
+# 找出100 30坐标半径1000km范围内的元素，返回其名称、经纬度信息
+georadius china:city 100 30 1000 km withcoord
+
+# 找出100 30坐标半径1000km范围内的元素，返回其名称、距离、经纬度信息，并且通过count指定查询的元素个数
+georadius china:city 100 30 1000 km withcoord withdist count 1
+```
+
+```bash
+# 找出北京 1000 km 内的城市，返回名称
+georadiusbymember china:city beijing 1000 km
+```
+
+> 经纬度字符串(基本不使用)
+
+```bash
+# 返回一个由经纬度哈希计算的出的字符串
+geohash china:city beijing
+```
+
+### 删除
+
+GEO 没有提供删除成员的命令，但是因为 GEO 的底层实现是 zset，所以可以借用 `zrem` 命令实现对地理位置信息的删除。
+
+```bash
+# 查看全部的元素
+zrange china:city 0 -1
+
+# 移除元素
+zrem china:city shanghai
+
+# 查看全部的元素
+zrange china:city 0 -1
+```
+
+## HyperLogLog 基数
+
+Redis 在 **2.8.9** 版本添加了 HyperLogLog 结构，用来做基数统计的算法
+
+其优点是，在输入元素的数量或者体积非常非常大时，计算基数所需的空间总是固定的，并且是很小的。
+
+每个 HyperLogLog 键只需要花费 **12 KB** 内存，就可以计算接近 **2 ^ 64** 个不同元素的基数。
+
+HyperLogLog 是一种算法，它提供了不精确的去重计数方案。
+
+比如数据集 {1, 3, 5, 7, 5, 7, 8}， 那么这个数据集的基数集为 {1, 3, 5 ,7, 8}，基数（不重复元素）为 5。
+
+> 使用场景
+
+比如统计网页的浏览用户数量，一天内同一个用户多次访问只算一次。
+
+传统的解决方案是使用 Set 来保存用户 id，然后统计 Set 中的元素数量。
+
+这种方案只能承载少量用户，一旦用户数量大起来就需要消耗大量的空间。
+
+而且目的是统计用户数量而不是保存用户，这是个吃力不讨好的方案。
+
+使用 HyperLogLog 最多需要 12k 就可以统计大量的用户数。
+
+尽管它大概有 **0.81%** 的错误率，但对于统计用户数量这种不需要很精确的数据是可以忽略不计的。
+
+> 添加
+
+```bash
+pfadd mykey a b c d e f g h i j
+
+pfadd mykey2 a b b c
+```
+
+> 统计基数集
+
+```bash
+pfcount mykey
+
+pfcount mykey2
+```
+
+> 合并并统计基数集
+
+```bash
+pfmerge mykey3 mykey mykey2
+
+pfcount mykey3
+```
+
+## Bitmap 位图
+
+Redis 从 **2.2** 版本增加了 Bitmap（位图）
+
+当需要统计用户一年的某些信息，如活跃或不活跃，登录或不登录，打卡或没打卡。
+
+如果使用普通的 key / value存储，则要记录 365 条记录，如果用户量很大，需要的空间也会很大。
+
+Redis 提供了 Bitmap 位图这种数据结构，Bitmap 就是通过操作二进制位来进行记录，即为 0 和 1。
+
+如果要记录 365 天的打卡情况，使用 Bitmap 表示的形式大概如下：0101000111000111……
+
+这样 365 天相当于 365 bit，又 1 字节 = 8 bit , 所以相当于使用 46 个字节即可。
+
+BitMap 就是通过一个 bit 位来表示某个元素对应的值或者状态，其中的 key 就是对应元素本身。
+
+实际上底层也是通过对字符串的操作来实现的。
+
+==简单来说就是一种数据的存储只涉及到两个值的情况下，我们可以考虑使用位图==
+
+> 使用 bitmap 来记录一周的打卡记录（1 为打卡，0 为没打卡）
+
+```bash
+setbit sign 0 1
+
+setbit sign 1 0
+
+setbit sign 2 0
+
+setbit sign 3 1
+
+setbit sign 4 1
+
+setbit sign 5 0
+
+setbit sign 6 0
+```
+
+> 取值
+
+```bash
+# 查看周四是否打卡
+getbit sign 3
+
+# 查看周六是否打卡
+getbit sign 5
+```
+
+> 统计：统计 key 上位为 1 的个数
+
+```bash
+# 统计这周打卡的记录
+bitcount sign
+```
+
+## 事务
 
