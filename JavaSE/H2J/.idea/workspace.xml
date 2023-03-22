@@ -23,12 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/Kitchen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/Product.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/Waiter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/ListNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Redis/Redis.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Redis/Redis.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoot/SpringBoot.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../SpringBoot/SpringBoot.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -358,6 +356,7 @@
       <workItem from="1679103255407" duration="680000" />
       <workItem from="1679113310206" duration="26000" />
       <workItem from="1679483252327" duration="2619000" />
+      <workItem from="1679492215084" duration="754000" />
     </task>
     <servers />
   </component>

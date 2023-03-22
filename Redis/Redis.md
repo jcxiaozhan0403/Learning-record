@@ -780,3 +780,460 @@ bitcount sign
 
 ## 事务
 
+Redis 事务的本质是一组命令的集合
+
+事务支持一次执行多个命令，一个事务中所有命令都会被序列化。
+
+Redis事务的执行类似于队列：先进先出，先添加的命令先执行
+
+所以说：Redis 事务就是**一次性**、**顺序性**、**排他性**的执行一个队列中的一系列命令。
+
+- 一次性：一次执行多条命令
+- 顺序性：多条命令的执行顺序不会发生变化
+- 排他性：在事务执行过程，会按照顺序串行化执行队列中的命令，其他客户端提交的命令请求不会插入到事务执行命令序列中
+
+> Redis 事务没有隔离级别的概念
+
+批量操作在发送 `EXEC` 命令前被放入队列缓存，并不会被实际执行。
+
+> Redis 事务不保证原子性
+
+Redis中，单条命令是原子性执行的，但事务不保证原子性，且没有回滚。
+
+事务中任意命令执行失败，其余的命令仍会被执行。
+
+> Redis事务的三个阶段
+
+1. 开始事务
+2. 命令入队
+3. 执行事务
+
+### 乐观锁和悲观锁
+
+> 悲观锁
+
+悲观锁（Pessimistic Lock），顾名思义，就是很悲观。
+
+每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁。
+
+这样别人想拿到这个数据就会 block 直到它拿到锁。
+
+传统的关系型数据库里面就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在操作之前先上锁。
+
+> 乐观锁
+
+乐观锁（Optimistic Lock），顾名思义，就是很乐观。
+
+每次去拿数据的时候都认为别人不会修改，所以不会上锁。
+
+但是在更新的时候会判断一下再此期间别人有没有去更新这个数据，可以使用版本号等机制。
+
+乐观锁适用于多读的应用类型，这样可以提高吞吐量。
+
+乐观锁策略：提交版本必须大于记录当前版本才能执行更新。
+
+### 事务监听
+
+监视一或多个 key，如果在事务执行之前，被监视的 key 被其他命令改动，则事务不会被执行（类似乐观锁）。
+
+```bash
+# 进行监听
+watch key1 key2 ...
+
+# 取消监听
+unwatch
+```
+
+事务操作
+
+```bash
+# 标记一个事务块的开始，形成队列（queued）。
+multi
+
+# 执行
+exec
+
+# 取消事务
+discard
+```
+
+- 一旦执行 `exec` 开启事务后，无论事务是否执行成功， `watch` 对变量的监听都将被取消。
+- 当事务执行失败后，需重新执行 `watch` 命令对变量进行监听，并开启新的事务进行操作。
+- `watch` 指令类似于乐观锁，在事务提交时，如果 `watch` 监控的多个 key 中任何 key 的值已经被其他客户端更改。则使用 `exec` 执行事务时，事务队列将不会被执行，同时返回 **(nil)** 应答以通知调用者事务执行失败。
+
+### 事务操作Demo
+
+> 正常执行
+
+开启事务后，会出现 **TX** 标志，此时所有的操作不会马上有结果，而是形成队列（QUEUED），待执行事务后，会将所有命令按顺序执行。
+
+```bash
+# 开启事务
+multi
+
+# 命令入队
+set k1 v1
+
+# 命令入队
+set k2 v2
+
+# 命令入队
+get k2
+
+# 命令入队
+set k3 v3
+
+# 执行事务
+exec
+
+# set命令执行成功
+get k1
+
+# set命令执行成功
+get k2
+```
+
+> 放弃事务
+
+```bash
+# 开启事务
+multi
+
+# 命令入队
+set k1 v1
+
+# 命令入队
+set k2 v2
+
+# 命令入队
+set k3 33
+
+# 取消事务
+discard
+
+# set命令未执行
+get k3
+```
+
+> 事务中存在命令性错误
+
+若在事务队列中存在命令性错误（类似于java编译性错误），则执行 `exec` 命令时，所有命令都不会执行。
+
+```bash
+# 开启事务
+multi
+
+# 命令入队
+set k1 11
+
+# 错误命令，报错
+getset k2
+
+(error) ERR wrong number of arguments for 'getset' command
+
+# 命令入队
+set k2 22
+
+# 执行事务，报错
+exec
+
+(error) EXECABORT Transaction discarded because of previous errors.
+
+# set命令未执行
+get k1
+
+# set命令未执行
+get k2
+```
+
+> 事务中存在语法性错误
+
+若在事务队列中存在语法性错误（类似于 Java 的的运行时异常），则执行 `exec` 命令时，其他正确命令会被执行，错误命令抛出异常。
+
+```bash
+# 开启事务
+multi
+
+# 命令入队
+set k4 v4
+
+# 命令入队（对“v4”进行 +1 ，会报语法错误）
+incr k4
+
+# 命令入队
+set k5 v5
+
+# 执行事务
+# 执行错误的命令会报错，其余命令正常执行
+exec
+
+1) OK
+2) (error) ERR value is not an integer or out of range # 
+3) OK
+
+# set命令执行成功
+get k4
+
+# set命令执行成功
+get k5
+```
+
+## Jedis
+
+Jedis 是 Redis 官方推荐的 Java 连接开发工具。
+
+Jedis 客户端同时支持**单机模式**、**分片模式**、**集群模式**的访问模式：
+
+- 通过构建 **Jedis** 类对象实现**单机模式**下的数据访问。
+- 通过构建 **ShardedJedis** 类对象实现**分片模式**的数据访问。
+- 通过构建 **JedisCluster** 类对象实现**集群模式**下的数据访问。
+
+Jedis 客户端支持单命令和 Pipeline 方式访问 Redis 集群，通过 Pipeline 的方式能够提高集群访问的效率。
+
+### 简单使用
+
+- 创建Maven工程，导入依赖
+
+```xml
+<dependency>
+    <groupId>redis.clients</groupId>
+    <artifactId>jedis</artifactId>
+    <version>4.3.1</version>
+</dependency>
+```
+
+- 编码测试
+
+```java
+Jedis jedis = new Jedis("localhost", 6379);
+System.out.println(jedis.ping());
+```
+
+### 常用API
+
+> 连接
+
+```java
+//验证密码
+jedis.auth("");
+
+//连接
+jedis.connect();
+
+//断开连接
+jedis.disconnect();
+```
+
+> 操作Key
+
+```java
+Jedis jedis = new Jedis("47.100.222.85", 6379);
+System.out.println("清空数据：" + jedis.flushDB());
+System.out.println("判断某个键是否存在：" + jedis.exists("username"));
+System.out.println("新增<'username','kuangshen'>的键值对：" + jedis.set("username", "kuangshen"));
+System.out.println("新增<'password','password'>的键值对：" + jedis.set("password", "password"));
+System.out.print("系统中所有的键如下：");
+Set<String> keys = jedis.keys("*");
+System.out.println(keys);
+System.out.println("删除键password:" + jedis.del("password"));
+System.out.println("判断键password是否存在：" + jedis.exists("password"));
+System.out.println("查看键username所存储的值的类型：" + jedis.type("username"));
+System.out.println("随机返回key空间的一个：" + jedis.randomKey());
+System.out.println("重命名key：" + jedis.rename("username", "name"));
+System.out.println("取出改后的name：" + jedis.get("name"));
+System.out.println("按索引查询：" + jedis.select(0));
+System.out.println("删除当前选择数据库中的所有key：" + jedis.flushDB());
+System.out.println("返回当前数据库中key的数目：" + jedis.dbSize());
+System.out.println("删除所有数据库中的所有key：" + jedis.flushAll());
+```
+
+> 操作String
+
+```java
+Jedis jedis = new Jedis("47.100.222.85", 6379);
+jedis.flushDB();
+System.out.println("===========增加数据===========");
+System.out.println(jedis.set("key1", "value1"));
+System.out.println(jedis.set("key2", "value2"));
+System.out.println(jedis.set("key3", "value3"));
+System.out.println("删除键key2:" + jedis.del("key2"));
+System.out.println("获取键key2:" + jedis.get("key2"));
+System.out.println("修改key1:" + jedis.set("key1", "value1Changed"));
+System.out.println("获取key1的值：" + jedis.get("key1"));
+System.out.println("在key3后面加入值：" + jedis.append("key3", "End"));
+System.out.println("key3的值：" + jedis.get("key3"));
+System.out.println("增加多个键值对：" + jedis.mset("key01", "value01", "key02", "value02", "key03", "value03"));
+System.out.println("获取多个键值对：" + jedis.mget("key01", "key02", "key03"));
+System.out.println("获取多个键值对：" + jedis.mget("key01", "key02", "key03", "key04"));
+System.out.println("删除多个键值对：" + jedis.del("key01", "key02"));
+System.out.println("获取多个键值对：" + jedis.mget("key01", "key02", "key03"));
+jedis.flushDB();
+System.out.println("===========新增键值对防止覆盖原先值==============");
+System.out.println(jedis.setnx("key1", "value1"));
+System.out.println(jedis.setnx("key2", "value2"));
+System.out.println(jedis.setnx("key2", "value2-new"));
+System.out.println(jedis.get("key1"));
+System.out.println(jedis.get("key2"));
+System.out.println("===========新增键值对并设置有效时间=============");
+System.out.println(jedis.setex("key3", 2, "value3"));
+System.out.println(jedis.get("key3"));
+try {
+    TimeUnit.SECONDS.sleep(3);
+} catch (InterruptedException e) {
+    e.printStackTrace();
+}
+System.out.println(jedis.get("key3"));
+System.out.println("===========获取原值，更新为新值==========");
+System.out.println(jedis.getSet("key2", "key2GetSet"));
+System.out.println(jedis.get("key2"));
+System.out.println("获得key2的值的字串：" + jedis.getrange("key2", 2, 4));
+```
+
+> List
+
+```java
+Jedis jedis = new Jedis("127.0.0.1", 6379);
+jedis.flushDB();
+System.out.println("===========添加一个list===========");
+jedis.lpush("collections", "ArrayList", "Vector", "Stack", "HashMap", "WeakHashMap", "LinkedHashMap");
+jedis.lpush("collections", "HashSet");
+jedis.lpush("collections", "TreeSet");
+jedis.lpush("collections", "TreeMap");
+System.out.println("collections的内容：" + jedis.lrange("collections", 0, -1));//-1代表倒数第一个元素，-2代表倒数第二个元素,end为-1表示查询全部
+System.out.println("collections区间0-3的元素：" + jedis.lrange("collections", 0, 3));
+System.out.println("===============================");
+// 删除列表指定的值 ，第二个参数为删除的个数（有重复时），后add进去的值先被删，类似于出栈
+System.out.println("删除指定元素个数：" + jedis.lrem("collections", 2, "HashMap"));
+System.out.println("collections的内容：" + jedis.lrange("collections", 0, -1));
+System.out.println("删除下表0-3区间之外的元素：" + jedis.ltrim("collections", 0, 3));
+System.out.println("collections的内容：" + jedis.lrange("collections", 0, -1));
+System.out.println("collections列表出栈（左端）：" + jedis.lpop("collections"));
+System.out.println("collections的内容：" + jedis.lrange("collections", 0, -1));
+System.out.println("collections添加元素，从列表右端，与lpush相对应：" + jedis.rpush("collections", "EnumMap"));
+System.out.println("collections的内容：" + jedis.lrange("collections", 0, -1));
+System.out.println("collections列表出栈（右端）：" + jedis.rpop("collections"));
+System.out.println("collections的内容：" + jedis.lrange("collections", 0, -1));
+System.out.println("修改collections指定下标1的内容：" + jedis.lset("collections", 1, "LinkedArrayList"));
+System.out.println("collections的内容：" + jedis.lrange("collections", 0, -1));
+System.out.println("===============================");
+System.out.println("collections的长度：" + jedis.llen("collections"));
+System.out.println("获取collections下标为2的元素：" + jedis.lindex("collections", 2));
+System.out.println("===============================");
+jedis.lpush("sortedList", "3", "6", "2", "0", "7", "4");
+System.out.println("sortedList排序前：" + jedis.lrange("sortedList", 0, -1));
+System.out.println(jedis.sort("sortedList"));
+System.out.println("sortedList排序后：" + jedis.lrange("sortedList", 0, -1));
+```
+
+> 操作Set
+
+```java
+Jedis jedis = new Jedis("127.0.0.1", 6379);
+jedis.flushDB();
+System.out.println("============向集合中添加元素（不重复）============");
+System.out.println(jedis.sadd("eleSet", "e1", "e2", "e4", "e3", "e0", "e8", "e7", "e5"));
+System.out.println(jedis.sadd("eleSet", "e6"));
+System.out.println(jedis.sadd("eleSet", "e6"));
+System.out.println("eleSet的所有元素为：" + jedis.smembers("eleSet"));
+System.out.println("删除一个元素e0：" + jedis.srem("eleSet", "e0"));
+System.out.println("eleSet的所有元素为：" + jedis.smembers("eleSet"));
+System.out.println("删除两个元素e7和e6：" + jedis.srem("eleSet", "e7", "e6"));
+System.out.println("eleSet的所有元素为：" + jedis.smembers("eleSet"));
+System.out.println("随机的移除集合中的一个元素：" + jedis.spop("eleSet"));
+System.out.println("随机的移除集合中的一个元素：" + jedis.spop("eleSet"));
+System.out.println("eleSet的所有元素为：" + jedis.smembers("eleSet"));
+System.out.println("eleSet中包含元素的个数：" + jedis.scard("eleSet"));
+System.out.println("e3是否在eleSet中：" + jedis.sismember("eleSet", "e3"));
+System.out.println("e1是否在eleSet中：" + jedis.sismember("eleSet", "e1"));
+System.out.println("e1是否在eleSet中：" + jedis.sismember("eleSet", "e5"));
+System.out.println("=================================");
+System.out.println(jedis.sadd("eleSet1", "e1", "e2", "e4", "e3", "e0", "e8", "e7", "e5"));
+System.out.println(jedis.sadd("eleSet2", "e1", "e2", "e4", "e3", "e0", "e8"));
+//移到集合元素
+System.out.println("将eleSet1中删除e1并存入eleSet3中：" + jedis.smove("eleSet1", "eleSet3", "e1"));
+System.out.println("将eleSet1中删除e2并存入eleSet3中：" + jedis.smove("eleSet1", "eleSet3", "e2"));
+System.out.println("eleSet1中的元素：" + jedis.smembers("eleSet1"));
+System.out.println("eleSet3中的元素：" + jedis.smembers("eleSet3"));
+System.out.println("============集合运算=================");
+System.out.println("eleSet1中的元素：" + jedis.smembers("eleSet1"));
+System.out.println("eleSet2中的元素：" + jedis.smembers("eleSet2"));
+System.out.println("eleSet1和eleSet2的交集:" + jedis.sinter("eleSet1", "eleSet2"));
+System.out.println("eleSet1和eleSet2的并集:" + jedis.sunion("eleSet1", "eleSet2"));
+//eleSet1中有，eleSet2中没有
+System.out.println("eleSet1和eleSet2的差集:" + jedis.sdiff("eleSet1", "eleSet2"));
+//求交集并将交集保存到dstkey的集合
+jedis.sinterstore("eleSet4", "eleSet1", "eleSet2");
+System.out.println("eleSet4中的元素：" + jedis.smembers("eleSet4"));
+```
+
+> 操作Hash
+
+```java
+Jedis jedis = new Jedis("127.0.0.1", 6379);
+jedis.flushDB();
+Map<String, String> map = new HashMap<>();
+map.put("key1", "value1");
+map.put("key2", "value2");
+map.put("key3", "value3");
+map.put("key4", "value4");
+// 添加名称为 hash（key）的 hash 元素
+jedis.hmset("hash", map);
+// 向名称为 hash 的 hash 中添加 key 为 key5，value 为 value5 元素
+jedis.hset("hash", "key5", "value5");
+// return Map<String,String>
+System.out.println("散列hash的所有键值对为：" + jedis.hgetAll(" hash"));
+// return Set<String>
+System.out.println("散列hash的所有键为：" + jedis.hkeys("hash"));
+// return List<String>
+System.out.println("散列hash的所有值为：" + jedis.hvals("hash"));
+System.out.println("将key6保存的值加上一个整数，如果key6不存在则添加key6：" + jedis.hincrBy(" hash", " key6", 6));
+System.out.println("散列hash的所有键值对为：" + jedis.hgetAll("hash"));
+System.out.println("将key6保存的值加上一个整数，如果key6不存在则添加key6：" + jedis.hincrBy(" hash", " key6", 3));
+System.out.println("散列hash的所有键值对为：" + jedis.hgetAll("hash"));
+System.out.println("删除一个或者多个键值对：" + jedis.hdel("hash", "key2"));
+System.out.println("散列hash的所有键值对为：" + jedis.hgetAll("hash"));
+System.out.println("散列hash中键值对的个数：" + jedis.hlen("hash"));
+System.out.println("判断hash中是否存在key2：" + jedis.hexists(" hash", " key2"));
+System.out.println("判断hash中是否存在key3：" + jedis.hexists(" hash", " key3"));
+System.out.println("获取hash中的值：" + jedis.hmget("hash", "key3"));
+System.out.println("获取hash中的值：" + jedis.hmget(" hash", " key3", " key4"));
+```
+
+> 事务
+
+```java
+//创建客户端连接服务端，redis服务端需要被开启
+Jedis jedis = new Jedis("127.0.0.1", 6379);
+
+//清空数据库，为后面测试做准备
+jedis.flushDB();
+
+//构建JSON字符串
+JSONObject jsonObject = new JSONObject();
+jsonObject.put("hello", "world");
+jsonObject.put("name", "java");
+
+//开启事务
+Transaction multi = jedis.multi();
+String result = jsonObject.toJSONString();
+try {
+    //向redis存入一条数据
+    multi.set("json", result);
+    //再存入一条数据
+    multi.set("json2", result);
+    //这里引发了异常，用0作为被除数
+    int i = 100 / 0;
+    //如果没有引发异常，执行事务
+    multi.exec();
+} catch (Exception e) {
+    e.printStackTrace();
+    //如果出现异常，取消事务
+    multi.discard();
+} finally {
+    System.out.println(jedis.get("json"));
+    System.out.println(jedis.get("json2"));
+    //最终关闭客户端
+    jedis.close();
+}
+```
+

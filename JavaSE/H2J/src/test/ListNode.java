@@ -1,10 +1,14 @@
-package test;
+package com.cn.linkedlist;
 
 /**
- * @author John.Cena
- * @date 2023/3/22 19:09
- * @Description:
+ * @Author WangHuaiyu
+ * Created by 529044029@qq.com
+ * Date on 2023/3/22  9:15
+ * @Version 1.0
+ * @Param $
+ * @return $
  */
+
 //LeetCode很多链表题目中用到的节点类
 public class ListNode {
     public int val;
@@ -41,13 +45,12 @@ public class ListNode {
     }
 
 
-    public ListNode findLast() {
-        if (head == null) {
+    private ListNode findLast() {
+        ListNode p = this;
+        if (p == null) {
             return null;
         }
-
-        ListNode p;
-        p = head; //数据初始化
+        //p = head; //数据初始化
         while (p.next != null) {
             p = p.next;
         }
@@ -55,25 +58,19 @@ public class ListNode {
     }
 
     public ListNode of(int[] value) {
-        int length = value.length;
-        head = new ListNode(-1, null);
-        ListNode temp = head;  //中间临时节点
-        ListNode endNode = null;
-
-        ListNode s;
-
-
-        for (int i = 0; i < length-1; i++) {
-            endNode = new ListNode(value[i+1]);
-            s = new ListNode(value[i],endNode);
-            System.out.println(s+" "+s.next);
-            temp.next = s;
-            temp = temp.next;
+        ListNode head = new ListNode();
+        head.next = null;
+        ListNode tmp = null;
+        ListNode cur = head;
+        //构造单链表
+        for (int i = 0; i < value.length; i++) {
+            tmp = new ListNode();
+            tmp.val = value[i];
+            tmp.next = null;
+            cur.next = tmp;
+            cur = tmp;
+            //System.out.println(cur);
         }
-        temp.next = null;
-        return temp;
-
-
 
 
         /*Node h = this.head.next; // 获取到哨兵节点的下个节点(除哨兵节点外的第一个节点)
@@ -82,6 +79,7 @@ public class ListNode {
          * 哨兵-> 0   哨兵-> 新-> 0
          *//*
         this.head.next = new Node(v, h);*/
+        return head.next;
     }
 
     public ListNode addFirst(int value) {
@@ -92,31 +90,18 @@ public class ListNode {
     }
 
     /*向后添加*/
-    public ListNode addLast(int[] value) {
-        ListNode last = findLast();
+    /*public ListNode addLast(int[] value) {
+        //ListNode last = findLast();
+        ListNode listNode;
         for (int elements : value) {
             if (last == null) {
-                addFirst(elements);
+                listNode = addFirst(elements);
+                return listNode;
             }
             last.next = new ListNode(elements, null);
         }
         return last.next;
+    }*/
 
-    }
 
-    public ListNode toLinked(int [] arr){
-        //进入创建一个tem节点
-        ListNode tmp = new ListNode(-1);
-
-        //循环
-        for (int i = 0; i < arr.length; i++) {
-            ListNode old = new ListNode(arr[i]);
-
-        }
-
-        //返回
-
-        return null;
-    }
 }
-

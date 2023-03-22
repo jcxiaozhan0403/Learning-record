@@ -992,7 +992,7 @@ https://docs.spring.io/spring-boot/docs/2.2.5.RELEASE/reference/htmlsingle/#usin
 </dependency>
 ```
 
-2. 配置数据库连接参数、
+2. 配置数据库连接参数
 
 ```yaml
 spring:
