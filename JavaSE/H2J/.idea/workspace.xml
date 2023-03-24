@@ -23,10 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b5af56c-ac91-40ac-916e-af36449716f2" name="默认的" comment="默认的">
-      <change beforePath="$PROJECT_DIR$/src/test/ListNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Redis/Redis.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Redis/Redis.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SpringBoot/SpringBoot.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../SpringBoot/SpringBoot.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大三下课程/软件测试分析/~$06831522_李爽_实验一.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../大三下课程/软件测试分析/~$测试分析实验指导书1.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -357,6 +356,7 @@
       <workItem from="1679113310206" duration="26000" />
       <workItem from="1679483252327" duration="2619000" />
       <workItem from="1679492215084" duration="754000" />
+      <workItem from="1679619048468" duration="114000" />
     </task>
     <servers />
   </component>
