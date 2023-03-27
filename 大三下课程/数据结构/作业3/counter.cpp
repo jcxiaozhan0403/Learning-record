@@ -3,23 +3,23 @@
 #include <string.h>
 
 using namespace std;
-const int StackSize = 10;           //10æ˜¯ç¤ºä¾‹æ€§çš„æ•°æ®ï¼Œæ ¹æ®å®é™…é—®é¢˜å…·ä½“å®šä¹‰
-template<typename DataType>         //å®šä¹‰æ¨¡æ¿ç±»SeqStack
+const int StackSize = 10;           //10ÊÇÊ¾ÀıĞÔµÄÊı¾İ£¬¸ù¾İÊµ¼ÊÎÊÌâ¾ßÌå¶¨Òå
+template<typename DataType>         //¶¨ÒåÄ£°åÀàSeqStack
 class SeqStack {
 public:
-    SeqStack();                 //æ„é€ å‡½æ•°ï¼Œåˆå§‹åŒ–ä¸€ä¸ªç©ºæ ˆ
-    ~SeqStack();                //ææ„å‡½æ•°
-    void Push(DataType x);      //å…¥æ ˆæ“ä½œï¼Œå°†å…ƒç´ xå…¥æ ˆ
-    DataType Pop();             //å‡ºæ ˆæ“ä½œï¼Œå°†æ ˆé¡¶å…ƒç´ å¼¹å‡º
-    DataType GetTop();          //å–æ ˆé¡¶å…ƒç´ ï¼ˆå¹¶ä¸åˆ é™¤ï¼‰
-    int Empty();                //åˆ¤æ–­æ ˆæ˜¯å¦ä¸ºç©º
+    SeqStack();                 //¹¹Ôìº¯Êı£¬³õÊ¼»¯Ò»¸ö¿ÕÕ»
+    ~SeqStack();                //Îö¹¹º¯Êı
+    void Push(DataType x);      //ÈëÕ»²Ù×÷£¬½«ÔªËØxÈëÕ»
+    DataType Pop();             //³öÕ»²Ù×÷£¬½«Õ»¶¥ÔªËØµ¯³ö
+    DataType GetTop();          //È¡Õ»¶¥ÔªËØ£¨²¢²»É¾³ı£©
+    int Empty();                //ÅĞ¶ÏÕ»ÊÇ·ñÎª¿Õ
     int Precedence(char ch);
     int Operate(int x, char ch, int y);
 
 
 private:
-    DataType data[StackSize];    //å­˜æ”¾æ ˆå…ƒç´ çš„æ•°ç»„
-    int top;                    //æ¸¸æ ‡ï¼Œæ ˆé¡¶æŒ‡é’ˆï¼Œä¸ºæ ˆé¡¶å…ƒç´ åœ¨æ•°ç»„ä¸­çš„ä¸‹æ ‡
+    DataType data[StackSize];    //´æ·ÅÕ»ÔªËØµÄÊı×é
+    int top;                    //ÓÎ±ê£¬Õ»¶¥Ö¸Õë£¬ÎªÕ»¶¥ÔªËØÔÚÊı×éÖĞµÄÏÂ±ê
 };
 
 template<typename DataType>
@@ -32,24 +32,24 @@ SeqStack<DataType>::~SeqStack() {
 
 }
 
-//å…¥æ ˆæ“ä½œï¼Œå°†å…ƒç´ xå…¥æ ˆ
+//ÈëÕ»²Ù×÷£¬½«ÔªËØxÈëÕ»
 template<typename DataType>
 void SeqStack<DataType>::Push(DataType x) {
-    if (top == StackSize - 1) throw "ä¸Šæº¢";
+    if (top == StackSize - 1) throw "ÉÏÒç";
     top++;
     data[top] = x;
 }
 
-//å‡ºæ ˆæ“ä½œï¼Œå°†æ ˆé¡¶å…ƒç´ å¼¹å‡º
+//³öÕ»²Ù×÷£¬½«Õ»¶¥ÔªËØµ¯³ö
 template<typename DataType>
 DataType SeqStack<DataType>::Pop() {
     DataType datapop;
-    if (top == -1) throw "ä¸‹æº¢";
+    if (top == -1) throw "ÏÂÒç";
     datapop = data[top--];
     return datapop;
 }
 
-//å–æ ˆé¡¶å…ƒç´ ï¼ˆå¹¶ä¸åˆ é™¤ï¼‰
+//È¡Õ»¶¥ÔªËØ£¨²¢²»É¾³ı£©
 template<typename DataType>
 DataType SeqStack<DataType>::GetTop() {
     if (top != -1)
@@ -64,7 +64,7 @@ int SeqStack<DataType>::Empty() {
         return 0;
 }
 
-//åˆ¤æ–­ä¼˜å…ˆçº§
+//ÅĞ¶ÏÓÅÏÈ¼¶
 template<typename DataType>
 int SeqStack<DataType>::Precedence(char ch) {
     int z = 0;
@@ -96,7 +96,7 @@ int SeqStack<DataType>::Precedence(char ch) {
     return z;
 }
 
-//è¿›è¡Œç›¸åŠ 
+//½øĞĞÏà¼Ó
 template<typename DataType>
 int SeqStack<DataType>::Operate(int x, char ch, int y) {
     int z = 0;
@@ -123,44 +123,36 @@ int SeqStack<DataType>::Operate(int x, char ch, int y) {
 
 
 int main() {
-    SeqStack<int> OPTR{}, OPND{};   //å®šä¹‰é¡ºåºæ ˆå˜é‡S  //OPTRå­˜å‚¨è¿ç®—ç¬¦ï¼ŒOPNDå­˜å‚¨æ“ä½œæ•°å’Œè¿ç®—ç»“æœ
+    SeqStack<int> OPTR{}, OPND{};   //¶¨ÒåË³ĞòÕ»±äÁ¿S  //OPTR´æ´¢ÔËËã·û£¬OPND´æ´¢²Ù×÷ÊıºÍÔËËã½á¹û
     char w;
     int x, y, z;
     char op[9];
-    strcpy_s(op,"+-*/()=#");   //opä¸ºè¿ç®—ç¬¦é›†åˆ
+    strcpy(op,"+-*/()=#");   //opÎªÔËËã·û¼¯ºÏ
     //init(OPTR);
     OPTR.Push('#');
 
     //init(OPND);
 
-    //æ ˆåˆå§‹åŒ–ï¼Œå¹¶åœ¨è¿ç®—ç¬¦æ ˆçš„æ ˆåº•å‹å…¥è¡¨è¾¾å¼å·¦è¾¹è™šè®¾çš„å­—ç¬¦â€œ#â€
-    w = getchar();                 //ä»ç»ˆç«¯è¯»å…¥ä¸€ä¸ªå­—ç¬¦
+    //Õ»³õÊ¼»¯£¬²¢ÔÚÔËËã·ûÕ»µÄÕ»µ×Ñ¹Èë±í´ïÊ½×ó±ßĞéÉèµÄ×Ö·û¡°#¡±
+    w = getchar();                 //´ÓÖÕ¶Ë¶ÁÈëÒ»¸ö×Ö·û
 
     while (!((w == '#') && (OPTR.GetTop() == '#'))) {
         if (!strchr(op, w)) {
             OPND.Push(atoi(&w));
-            w = getchar();        //æ“ä½œæ•°è¿›æ“ä½œæ•°æ ˆ
-        } else if (OPTR.Precedence(w) > OPTR.Precedence(OPTR.GetTop())) {   //æ¯”è¾ƒä¼˜å…ˆæ•°
+            w = getchar();        //²Ù×÷Êı½ø²Ù×÷ÊıÕ»
+        } else if (OPTR.Precedence(w) > OPTR.Precedence(OPTR.GetTop())) {   //±È½ÏÓÅÏÈÊı
             OPTR.Push(w);
             w = getchar();
         } else {
             char theta;
-            theta = OPTR.Pop();  //å¼¹å‡ºæ ˆé¡¶è¿ç®—ç¬¦
+            theta = OPTR.Pop();  //µ¯³öÕ»¶¥ÔËËã·û
             y = OPND.Pop();
-            x = OPND.Pop();   //è¿ç»­å¼¹å‡ºä¸¤ä¸ªæ“ä½œæ•°
-            z = OPND.Operate(x, theta, y);    //è¿›è¡Œè¿ç®—xÎ¸y
+            x = OPND.Pop();   //Á¬Ğøµ¯³öÁ½¸ö²Ù×÷Êı
+            z = OPND.Operate(x, theta, y);    //½øĞĞÔËËãx¦Èy
 
-            OPND.Push(z);     //å°†è¿ç®—ç»“æœå‹å…¥æ“ä½œæ•°æ ˆ
+            OPND.Push(z);     //½«ÔËËã½á¹ûÑ¹Èë²Ù×÷ÊıÕ»
         }
     }
     cout << z << endl;
-    return (OPND.GetTop());  //ä»æ“ä½œæ•°æ ˆé¡¶å–å‡ºè¡¨è¾¾å¼è¿ç®—ç»“æœè¿”å›
+    return (OPND.GetTop());  //´Ó²Ù×÷ÊıÕ»¶¥È¡³ö±í´ïÊ½ÔËËã½á¹û·µ»Ø
 }
-
-
-
-
-
-
-
-
