@@ -42,13 +42,14 @@ public class Demo02 {
     }
 
 
-    //删除
-    public void deleElement(int index){
+    //通过索引删除
+    public void removeByIndex(int index){
         //
-    }
-    
 
-    //删除
+    }
+
+
+    //通过元素删除
     public void deleElement(){
         //
     }
