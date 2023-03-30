@@ -475,3 +475,362 @@ MVVM模式和MVC模式一样，主要目的是分离视图(View)和模型(Model)
 </html>
 ```
 
+## 计算属性
+
+计算属性的重点突出在`属性`两个字上(属性是名词)，首先它是个`属性`其次这个属性有`计算`的能力(计算是动词)，这里的计算就是个函数;简单点说，它就是一个能够将计算结果缓存起来的属性(将行为转化成了静态的属性)，仅此而已;可以想象为**缓存**！
+
+因为它是一个`属性`，所以我们通过模板语法访问它时，不需要加`()`
+
+通过分析可以得知计算属性的值除了第一次是调用函数以外，之后再使用时，都是直接通过缓存值进行返回的，只有在它内部的返回值有所改变时，才会刷新缓存，发起重新调用。
+
+当methods和computed存在同名方法，methods的优先级更高
+
+```html
+<div id='app'>
+    {{getMsg()}}
+    {{getMsg1}}
+</div>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data() {
+            return {
+
+            }
+        },
+        methods: {
+            getMsg(){
+                return "Hello Vue！";
+            }
+        },
+        computed: {
+            getMsg1(){
+                return "Hello Vue！";
+            }
+        }
+    })
+</script>
+```
+
+## 插槽
+
+Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web Components 规范草案](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)，将 `<slot>` 元素作为承载分发内容的出口。
+
+```html
+<div id='app'>
+    <todo>
+        <todo-title slot="todo-title" :title="title"></todo-title>
+        <todo-items slot="todo-items" v-for="item in todoItems" :item="item"></todo-items>
+    </todo>
+</div>
+<script>
+    //slot 插槽 这个组件要定义在前面不然出不来数据
+    Vue.component("todo", {
+        template: '<div>\
+<slot name="todo-title"></slot>\
+<ul>\
+<slot name="todo-items"></slot>\
+    </ul>\
+<div>'
+    });
+
+    Vue.component("todo-title", {
+        //属性
+        props: ['title'],
+        template: '<div>{{title}}</div>'
+    });
+
+    Vue.component("todo-items", {
+        props: ['item'],
+        template: '<li>{{item}}</li>'
+    });
+
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            //标题
+            title: "图书馆系列图书",
+            //列表
+            todoItems: ['三国演义', '红楼梦', '西游记', '水浒传']
+        }
+    });
+</script>
+```
+
+## 自定义事件&内容分发
+
+Vue提供了自定义事件函数，来用于组件中调用实例方法
+
+```html
+<div id="app">
+    <todo>
+        <todo-title slot="todo-title" v-bind:name="title"></todo-title>
+        <todo-items slot="todo-items" v-for="(item,index) in todoItems" :item="item"
+                    :index="index" @remove="removeItems(index)"></todo-items>
+    </todo>
+</div>
+<script>
+    //slot 插槽 这个组件要定义在前面不然出不来数据
+    Vue.component("todo", {
+        template: '<div>\
+<slot name="todo-title"></slot>\
+<ul>\
+<slot name="todo-items"></slot>\
+    </ul>\
+<div>'
+    });
+
+    Vue.component("todo-title", {
+        //属性
+        props: ['name'],
+        template: '<div>{{name}}</div>'
+    });
+
+    Vue.component("todo-items", {
+        props: ['item','index'],
+        template: '<li>{{index}}---{{item}} <button @click="remove">删除</button></li>',
+        methods: {
+            remove: function (index) {
+                // this.$emit 自定义事件分发
+                //$emit(自定义事件名，参数)
+                this.$emit('remove',index)
+            }
+        }
+    });
+
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            //标题
+            title: "图书馆系列图书",
+            //列表
+            todoItems: ['三国演义', '红楼梦', '西游记', '水浒传']
+        },
+        methods: {
+            removeItems: function (index) {
+                console.log("删除了"+this.todoItems[index]+"OK");
+                this.todoItems.splice(index,1);
+            }
+        }
+    });
+</script>
+```
+
+## Vue-Cli
+
+ vue-cli 官方提供的一个脚手架,用于快速生成一个 vue 的项目模板;
+
+ 预先定义好的目录结构及基础代码，就好比咱们在创建 Maven 项目时可以选择创建一个骨架项目，这个骨架项目就是脚手架,我们的开发更加的快速;
+
+> 主要功能
+
+- 统一的目录结构
+- 本地调试
+- 热部署
+- 单元测试
+- 集成打包上线
+
+> 构建项目
+
+- 初始化项目
+
+```shell
+vue init webpack myvue
+```
+
+- 下载依赖
+
+```shell
+npm install
+```
+
+- 启动项目
+
+```shell
+npm run dev
+```
+
+## WebPack
+
+WebPack 是一款**模块加载器兼打包工具**，它能把各种资源，如 JS、JSX、ES6、SASS、LESS、图片等**都作为模块来处理和使用。**
+
+> 安装
+
+```shell
+npm install webpack -g
+npm install webpack-cli -g
+```
+
+> 测试
+
+- 在`modules`文件夹下创建`hello.js`文件
+
+```javascript
+//暴露一个方法
+exports.sayHi = function () {
+    document.write("<h1>狂神说ES6</h1>>")
+}
+```
+
+- 在`modules`文件夹下创建`main.js`文件，此文件是默认入口
+
+```javascript
+var hello = require("./hello");
+hello.sayHi()
+```
+
+- 在根目录创建webpack配置文件`webpack.config.js`
+
+```javascript
+module.exports = {
+    entry: './modules/main.js',
+    output: {
+        filename: './js/bundle.js'
+    }
+}
+```
+
+- 在根路径运行打包命令
+
+```shell\
+webpack
+```
+
+- 可以查看到生成好的打包文件`.\js\bundle.js`
+
+## Vue-Router
+
+ Vue Router是Vue.js官方的**路由管理器**（路径跳转）。它和Vue.js的核心深度集成，让构建单页面应用变得易如反掌。
+
+- 安装
+
+```shell
+npm install vue-router@3.1.3 --save-dev
+```
+
+- 创建子页面
+
+`Page1.vue`
+
+```vue
+<template>
+  <h1>子页面1</h1>
+</template>
+
+<script>
+    export default {
+        name: "Page1"
+    }
+</script>
+
+<style scoped>
+
+</style>
+```
+
+`Page2.vue`
+
+```vue
+<template>
+  <h1>子页面2</h1>
+</template>
+
+<script>
+    export default {
+        name: "Page2"
+    }
+</script>
+
+<style scoped>
+
+</style>
+```
+
+- 创建vue-router配置文件`src\router\index.js`
+
+```javascript
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Page1 from "../components/Page1";
+import Page2 from "../components/Page2";
+
+//安装路由
+Vue.use(VueRouter);
+
+//配置导出路由
+export default new VueRouter({
+  routes: [
+    {
+      //路由路径
+      path: '/page1',
+      name: 'page1',
+      //跳转的组件
+      component: Page1
+    },
+    {
+        //路由路径
+        path: '/page2',
+        name: 'page2',
+        //跳转的组件
+        component: Page2
+    }
+  ]
+})
+```
+
+- 修改`main.js`
+
+```javascript
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from 'vue'
+import App from './App'
+import router from './router' //自动扫描里面的路由配置
+
+Vue.config.productionTip = false
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  components: { App },
+  router,
+  template: '<App/>'
+})
+```
+
+- 修改`App.vue`
+
+```vue
+<template>
+  <div id="app">
+    <h1>Vue-Router</h1>
+
+    <router-link to="/page1">子页1</router-link>
+    <router-link to="/page2">子页2</router-link>
+    <router-view></router-view>
+
+  </div>
+</template>
+
+<script>
+
+export default {
+  name: 'App',
+  components: {
+  }
+}
+</script>
+
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
+```
+
+- 启动测试
