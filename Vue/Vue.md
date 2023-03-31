@@ -93,6 +93,14 @@ MVVM模式和MVC模式一样，主要目的是分离视图(View)和模型(Model)
 </html>
 ```
 
+## Vue生命周期
+
+<img src="D:\Study\Learning-record\Vue\Vue生命周期.jpg" alt="Vue生命周期" style="zoom:40%;" />
+
+## Vue目录结构
+
+![Vue-Cli目录结构](D:\Study\Learning-record\Vue\Vue-Cli目录结构.jpg)
+
 ## Vue基础语法
 
 > v-bind 或 :
@@ -133,6 +141,19 @@ MVVM模式和MVC模式一样，主要目的是分离视图(View)和模型(Model)
 </script>
 ```
 
+> v-show
+
+布尔值判断，如果为true就显示为false就隐藏，本质是为元素加上一个display:none的css属性
+
+```html
+<!-- 法一：直接使用布尔值 -->
+<img src="路径" v-show="true">
+<!-- 法二：使用data中存放的布尔值 -->
+<img src="路径" v-show="isShow">
+<!-- 法三：通过判断得到布尔值 -->
+<img src="路径" v-show="age>=18">
+```
+
 > v-for
 
 ```html
@@ -169,6 +190,8 @@ MVVM模式和MVC模式一样，主要目的是分离视图(View)和模型(Model)
 <div id='app'>
     <button v-on:click="showMsg()">点击</button>
     <button @click="showMsg()">点击</button>
+    <!--触发带参函数需要先传入一个$event对象-->
+    <button @click="showMsg($event,b,a)">点击</button>
 </div>
 <script>
     const app = new Vue({
@@ -475,6 +498,32 @@ MVVM模式和MVC模式一样，主要目的是分离视图(View)和模型(Model)
 </html>
 ```
 
+> 并发请求
+
+```javascript
+axios.add([axios.get(""),axios.post("",{})]).then(){
+  axios.spread(function(res1,res2){
+
+  })
+}
+```
+
+### Vue-Cli中引入Axios
+
+- 下载axios
+
+```shell
+npm install axios --save-dev
+```
+
+- 在`main.js`中引入axios
+
+```shell
+import axios from 'axios'
+
+Vue.prototype.$http=axios
+```
+
 ## 计算属性
 
 计算属性的重点突出在`属性`两个字上(属性是名词)，首先它是个`属性`其次这个属性有`计算`的能力(计算是动词)，这里的计算就是个函数;简单点说，它就是一个能够将计算结果缓存起来的属性(将行为转化成了静态的属性)，仅此而已;可以想象为**缓存**！
@@ -616,6 +665,35 @@ Vue提供了自定义事件函数，来用于组件中调用实例方法
 </script>
 ```
 
+## 事件修饰符
+
+- 常用
+  stop：阻止冒泡
+  prevent：阻止默认行为
+  self：只监听自己触发的事件，不关心事件冒泡带来的事件
+  once：只执行一次特定事件
+
+- 不常用
+  capture：使用事件的捕获模式
+  passive：事件的默认行为立即执行，无需等待事件回调执行完毕
+
+事件修饰符可以连续使用
+
+```vue
+<!-- 例如同时阻止事件默认行为和冒泡行为 -->
+<a type="button" value="单击" @click.stop.prevent="dolt">点我弹窗</a>
+```
+
+
+
+## NPM命令
+
+- `npm install moduleName`：安装模块到项目目录下
+
+- `npm install -g moduleName`：-g 的意思是将模块安装到全局，具体安装到磁盘的哪个位置，要看 npm config prefix的位置
+- `npm install moduleName -save`：–save的意思是将模块安装到项目目录下，并在package文件的dependencies节点写入依赖，-S为该命令的缩写
+- `npm install moduleName -save-dev`：–save-dev的意思是将模块安装到项目目录下，并在package文件的devDependencies节点写入依赖，-D为该命令的缩写
+
 ## Vue-Cli
 
  vue-cli 官方提供的一个脚手架,用于快速生成一个 vue 的项目模板;
@@ -629,6 +707,19 @@ Vue提供了自定义事件函数，来用于组件中调用实例方法
 - 热部署
 - 单元测试
 - 集成打包上线
+
+> 安装
+
+```shell
+卸载
+cnpm uninstall --global vue-cli
+
+2.x版本
+cnpm install --global vue-cli
+
+3.x版本
+cnpm install --global @vue/cli
+```
 
 > 构建项目
 
@@ -834,3 +925,424 @@ export default {
 ```
 
 - 启动测试
+
+### 路由嵌套
+
+- 安装并配置ElementUI，`mian.js`
+
+```javascript
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from 'vue'
+import App from './App'
+import router from './router' //自动扫描里面的路由配置
+import ElementUI from "element-ui"
+//导入element css
+import 'element-ui/lib/theme-chalk/index.css'
+
+Vue.config.productionTip = false
+
+Vue.use(router);
+Vue.use(ElementUI);
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  components: { App },
+  router,
+  render: h => h(App),//ElementUI规定这样使用
+})
+```
+
+- 创建`Login.vue`
+
+```vue
+<template>
+  <div>
+    <el-form ref="loginForm" :model="form" :rules="rules" label-width="80px" class="login-box">
+      <h3 class="login-title">欢迎登录</h3>
+      <el-form-item label="账号" prop="username">
+        <el-input type="text" placeholder="请输入账号" v-model="form.username"/>
+      </el-form-item>
+      <el-form-item label="密码" prop="password">
+        <el-input type="password" placeholder="请输入密码" v-model="form.password"/>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" v-on:click="onSubmit('loginForm')">登录</el-button>
+      </el-form-item>
+    </el-form>
+
+    <el-dialog
+      title="温馨提示"
+      :visible.sync="dialogVisible"
+      width="30%"
+      :before-close="handleClose">
+      <span>请输入账号和密码</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: "Login",
+    data() {
+      return {
+        form: {
+          username: '',
+          password: ''
+        },
+
+        // 表单验证，需要在 el-form-item 元素中增加 prop 属性
+        rules: {
+          username: [
+            {required: true, message: '账号不可为空', trigger: 'blur'}
+          ],
+          password: [
+            {required: true, message: '密码不可为空', trigger: 'blur'}
+          ]
+        },
+
+        // 对话框显示和隐藏
+        dialogVisible: false
+      }
+    },
+    methods: {
+      onSubmit(formName) {
+        // 为表单绑定验证功能
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            // 使用 vue-router 路由到指定页面，该方式称之为编程式导航
+            this.$router.push("/main");
+          } else {
+            this.dialogVisible = true;
+            return false;
+          }
+        });
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+  .login-box {
+    border: 1px solid #DCDFE6;
+    width: 350px;
+    margin: 180px auto;
+    padding: 35px 35px 15px 35px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    box-shadow: 0 0 25px #909399;
+  }
+
+  .login-title {
+    text-align: center;
+    margin: 0 auto 40px auto;
+    color: #303133;
+  }
+</style>
+```
+
+- 创建`Main.vue`
+
+```vue
+<template>
+  <div>
+    <el-container>
+      <el-aside width="200px">
+        <el-menu :default-openeds="['1']">
+          <el-submenu index="1">
+            <template slot="title"><i class="el-icon-caret-right"></i>用户管理</template>
+            <el-menu-item-group>
+              <el-menu-item index="1-1">
+                <!--插入的地方-->
+                <router-link to="/user/profile">个人信息</router-link>
+              </el-menu-item>
+              <el-menu-item index="1-2">
+                <!--插入的地方-->
+                <router-link to="/user/list">用户列表</router-link>
+              </el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-submenu index="2">
+            <template slot="title"><i class="el-icon-caret-right"></i>内容管理</template>
+            <el-menu-item-group>
+              <el-menu-item index="2-1">分类管理</el-menu-item>
+              <el-menu-item index="2-2">内容列表</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+        </el-menu>
+      </el-aside>
+
+      <el-container>
+        <el-header style="text-align: right; font-size: 12px">
+          <el-dropdown>
+            <i class="el-icon-setting" style="margin-right: 15px"></i>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>个人信息</el-dropdown-item>
+              <el-dropdown-item>退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </el-header>
+        <el-main>
+          <!--在这里展示视图-->
+          <router-view />
+        </el-main>
+      </el-container>
+    </el-container>
+  </div>
+</template>
+<script>
+  export default {
+    name: "Main"
+  }
+</script>
+<style scoped>
+  .el-header {
+    background-color: #B3C0D1;
+    color: #333;
+    line-height: 60px;
+  }
+  .el-aside {
+    color: #333;
+  }
+</style>
+```
+
+- 创建两个子页
+
+`List.vue`
+
+```vue
+<template>
+  <h1>用户列表</h1>
+</template>
+<script>
+  export default {
+    name: "UserList"
+  }
+</script>
+<style scoped>
+</style>
+```
+
+`Profile.vue`
+
+```vue
+<template>
+  <h1>个人信息</h1>
+</template>
+<script>
+  export default {
+    name: "UserProfile"
+  }
+</script>
+<style scoped>
+</style>
+```
+
+- 编写路由配置文件
+
+```javascript
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Main from "../components/Main";
+import Login from "../components/Login";
+import Profile from "../components/user/Profile";
+import List from "../components/user/List";
+
+//安装路由
+Vue.use(VueRouter);
+
+//配置导出路由
+export default new VueRouter({
+  routes: [
+    {
+      path: '/main',
+      component: Main,
+      //路由嵌套
+      children: [
+        {path: '/user/profile',component: Profile},
+        {path: '/user/list',component: List}
+      ]
+    },
+    {
+      path: '/login',
+      component: Login
+    }
+  ]
+})
+```
+
+- 测试
+
+### 参数传递
+
+- 修改`<router-link>`标签中的`to`属性为对象值
+
+```vue
+<router-link v-bind:to="{name: 'Profile', params: {id: 1}}">个人信息</router-link>
+```
+
+- 修改路由配置，添加`props：true`属性
+
+```javascript
+{
+  path: '/user/profile/:id',
+  name: 'Profile',
+  component: Profile,
+  props:true
+}
+```
+
+- 在要展示的组件Profile.vue中接收参数
+
+```vue
+<template>
+  <div>
+    个人信息
+    {{ id }}
+  </div>
+</template>
+<script>
+    export default {
+      props: ['id'],
+      name: "UserProfile"
+    }
+</script>
+<style scoped>
+</style>
+```
+
+### 组件重定向
+
+直接通过路由就可完成重定向
+
+```javascript
+{
+  path: '/main',
+  name: 'Main',
+  component: Main
+},
+{
+  path: '/goHome',
+  redirect: '/main'
+}
+```
+
+### 路由模式
+
+- hash：路径带 # 符号，如 http://localhost/#/login
+- history：路径不带 # 符号，如 http://localhost/login
+
+修改路由配置，代码如下：
+
+```javascript
+export default new Router({
+  mode: 'history',
+  routes: [
+  ]
+});
+```
+
+### 404页面
+
+- 创建`NotFound.vue`
+
+```vue
+<template>
+    <div>
+      <h1>404,你的页面走丢了</h1>
+    </div>
+</template>
+<script>
+    export default {
+        name: "NotFound"
+    }
+</script>
+<style scoped>
+</style>
+```
+
+- 添加路由配置
+
+```javascript
+import NotFound from '../views/NotFound'
+{
+   path: '*',
+   component: NotFound
+}
+```
+
+### 路由守卫（钩子函数）
+
+`beforeRouteEnter`：在进入路由前执行
+`beforeRouteLeave`：在离开路由前执行
+
+```javascript
+export default {
+    name: "Profile",
+    beforeRouteEnter: (to, from, next) => {
+        console.log("准备进入个人信息页");
+        next();
+    },
+    beforeRouteLeave: (to, from, next) => {
+        console.log("准备离开个人信息页");
+        next();
+    }
+}
+```
+
+> 参数
+
+- to：路由将要跳转的路径信息
+- from：路径跳转前的路径信息
+- next：路由的控制参数
+- next() 跳入下一个页面
+- next(’/path’) 改变路由的跳转方向，使其跳到另一个路由
+- next(false) 返回原来的页面
+- next((vm)=>{}) 仅在 beforeRouteEnter 中可用，vm 是组件实例
+
+==可以在beforeRouteEnter函数里使用Axios，页面加载前异步请求数据==
+
+## ElementUI
+
+官网：https://element.eleme.cn/
+
+> 使用
+
+- 安装
+
+```shell
+npm i element-ui -S
+# 安装 SASS 加载器
+cnpm install sass-loader@7.3.1 --save-dev
+```
+
+- 配置
+
+```javascript
+import Vue from 'vue';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+import App from './App.vue';
+
+Vue.use(ElementUI);
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+});
+```
+
+## Vue与Springboot项目的整合
+
+打包会得到一个dist文件夹，将dist文件内的东西(一个文件夹+一个index.html文件)复制到Springboot项目下的resources/static中，完成整合
+
+```shell
+npm run build
+```
+
