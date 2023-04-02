@@ -12,8 +12,8 @@
             </el-row>
                 <el-row style="display:flex">
                 <el-button type="success" icon="el-icon-plus" size="mini" @click="add">添加</el-button>
-                <el-button type="primary" icon="el-icon-search" size="mini" :loading="loading" @click="fetchData()">搜索</el-button>
-                <el-button type="danger" icon="el-icon-delete" size="mini" :loading="loading" @click="batchRemove()">删除</el-button>
+                <el-button type="primary" icon="el-icon-search" size="mini" @click="fetchData()">搜索</el-button>
+                <el-button type="danger" icon="el-icon-delete" size="mini"  @click="batchRemove()">删除</el-button>
                 <el-button icon="el-icon-refresh" size="mini" @click="resetData">重置</el-button>
             </el-row>
         </el-form>
@@ -22,7 +22,6 @@
     <!-- 表格 -->
     <!-- :data="list" 使用list渲染表格 -->
     <el-table
-      v-loading="listLoading"
       :data="list"
       stripe
       border
@@ -108,8 +107,7 @@ export default {
             // 调用api
             api.getPageList(this.page, this.limit, this.searchObj).then(response => {
               this.list = response.data.records;
-              this.total = response.data.total;
-              console.log(response.data);
+              this.total = response.data.records.length;
             })
         },
         // 重置表单
@@ -173,7 +171,6 @@ export default {
 
         // 当多选选项发生变化的时候调用
         handleSelectionChange(selection) {
-            console.log(selection)
             this.multipleSelection = selection
         },
         // 批量删除

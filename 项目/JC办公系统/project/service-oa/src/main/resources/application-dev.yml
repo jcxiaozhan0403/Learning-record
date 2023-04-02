@@ -11,7 +11,7 @@ mybatis-plus:
 spring:
   datasource:
     # mp默认数据源
-    type: com.zaxxer.hikari.HikariDataSource
+    # type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/jc-oa?serverTimezone=GMT%2B8&useSSL=false&characterEncoding=utf-8
     username: root
@@ -20,4 +20,3 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-
