@@ -52,16 +52,8 @@
       <artifactId>spring-boot-autoconfigure</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.jc</groupId>
-      <artifactId>model</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>com.baomidou</groupId>
-      <artifactId>mybatis-plus-core</artifactId>
-      <version>3.5.2</version>
-      <scope>compile</scope>
+      <artifactId>mybatis-plus-boot-starter</artifactId>
     </dependency>
     <!--  基于swagger的接口测试组件  -->
     <dependency>

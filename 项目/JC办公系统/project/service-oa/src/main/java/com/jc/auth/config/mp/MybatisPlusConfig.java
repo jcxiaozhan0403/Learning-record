@@ -1,4 +1,4 @@
-package com.jc.common.config.mp;
+package com.jc.auth.config.mp;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;

@@ -1,9 +1,7 @@
 package com.jc.auth.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.jc.auth.mapper.SysRoleMapper;
 import com.jc.auth.service.SysRoleService;
 import com.jc.common.result.Result;
 import com.jc.model.system.SysRole;
@@ -30,9 +28,6 @@ public class SysRoleController {
     @Autowired
     private SysRoleService sysRoleService;
 
-    @Autowired
-    private SysRoleMapper sysRoleMapper;
-
 //     使用集合封装返回值
 //    @GetMapping("findAll")
 //    public List<SysRole> findAll() {
@@ -55,12 +50,8 @@ public class SysRoleController {
     public Result pageQueryRole(@PathVariable Long page,
                                 @PathVariable Long limit,
                                 SysRoleQueryVo sysRoleQueryVo) {
-        System.out.println("=============================================");
-        //调用service的方法实现
-        //1 创建Page对象，传递分页相关参数
-        //page 当前页  limit 每页显示记录数
-        Page<SysRole> pageParam = Page.of(page,limit);
-        pageParam.setSearchCount(false);
+
+        Page<SysRole> sysRolePage = new Page<>(page,limit);
 
         //2 封装条件，判断条件是否为空，不为空进行封装
         LambdaQueryWrapper<SysRole> wrapper = new LambdaQueryWrapper<>();
@@ -71,15 +62,10 @@ public class SysRoleController {
             wrapper.like(SysRole::getRoleName,roleName);
         }
 
-        System.out.println(pageParam.getCurrent());
-        System.out.println(pageParam.getSize());
-        System.out.println(wrapper);
-        pageParam.getRecords().forEach(System.out::println);
-        //3 调用方法实现
-        IPage<SysRole> pageModel = sysRoleMapper.selectPage(pageParam,wrapper);
-        System.out.println(pageModel.getTotal());
+        Page<SysRole> list = sysRoleService.page(sysRolePage,wrapper);
 
-        return Result.ok(pageModel);
+        //3 调用方法实现
+        return Result.ok(list);
     }
 
     @ApiOperation(value = "根据id获取角色")
