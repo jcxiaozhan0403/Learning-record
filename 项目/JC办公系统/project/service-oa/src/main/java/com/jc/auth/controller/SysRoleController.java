@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jc.auth.service.SysRoleService;
 import com.jc.common.result.Result;
 import com.jc.model.system.SysRole;
+import com.jc.vo.system.AssginRoleVo;
 import com.jc.vo.system.SysRoleQueryVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author John.Cena
@@ -100,6 +102,20 @@ public class SysRoleController {
     @DeleteMapping("batchRemove")
     public Result batchRemove(@RequestBody List<Long> idList) {
         sysRoleService.removeByIds(idList);
+        return Result.ok();
+    }
+
+    @ApiOperation(value = "根据用户获取角色数据")
+    @GetMapping("/toAssign/{userId}")
+    public Result toAssign(@PathVariable Long userId) {
+        Map<String, Object> roleMap = sysRoleService.findRoleByUserId(userId);
+        return Result.ok(roleMap);
+    }
+
+    @ApiOperation(value = "根据用户分配角色")
+    @PostMapping("/doAssign")
+    public Result doAssign(@RequestBody AssginRoleVo assginRoleVo) {
+        sysRoleService.doAssign(assginRoleVo);
         return Result.ok();
     }
 }

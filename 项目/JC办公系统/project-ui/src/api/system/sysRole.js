@@ -56,4 +56,20 @@ export default {
           data: idList
         })
     },
+    //根据ID获取角色列表
+    getRoles(userId) {
+        return request({
+          url: `${api_name}/toAssign/${userId}`,
+          method: 'get'
+        })
+    },
+      
+    //根据ID分配角色
+    assignRoles(assginRoleVo) {
+        return request({
+            url: `${api_name}/doAssign`,
+            method: 'post',
+            data: assginRoleVo
+        })
+    }
 }

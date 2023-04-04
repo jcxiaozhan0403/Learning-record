@@ -25,6 +25,8 @@
       :data="list"
       stripe
       border
+      :header-cell-style="{'text-align':'center'}"
+      :cell-style="{'text-align':'center'}"
       style="width: 100%;margin-top: 10px;"
       @selection-change="handleSelectionChange">
 
@@ -53,12 +55,14 @@
 
     <!-- 分页组件 -->
     <el-pagination
-        :current-page="page"
-        :total="total"
-        :page-size="limit"
-        style="padding: 30px 0; text-align: center;"
-        layout="total, prev, pager, next, jumper"
-        @current-change="fetchData"
+      :current-page="page"
+      :total="total"
+      :page-size="limit"
+      :page-sizes="[5, 10, 20, 30, 40, 50, 100]"
+      style="padding: 30px 0; text-align: center;"
+      layout="sizes, prev, pager, next, jumper, ->, total, slot"
+      @current-change="fetchData"
+      @size-change="changeSize"
     />
 
     <!-- 添加/修改 弹出层 -->
