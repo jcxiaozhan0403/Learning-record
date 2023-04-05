@@ -140,7 +140,8 @@ export default {
             this.dialogVisible = true
         },
         saveOrUpdate() {
-            this.saveBtnDisabled = true // 防止表单重复提交
+            // 防止表单重复提交
+            this.saveBtnDisabled = true;
             if (!this.sysRole.id) {
                 this.saveData()
             } else {

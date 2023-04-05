@@ -56,8 +56,6 @@ export const constantRoutes = [
     }
   ]
 },
-
-
 {
   path: '/system',
   component: Layout,

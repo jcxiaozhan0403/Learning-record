@@ -11,6 +11,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 拥有一些实体类的基础字段属性
+ */
 @Data
 public class BaseEntity implements Serializable {
 

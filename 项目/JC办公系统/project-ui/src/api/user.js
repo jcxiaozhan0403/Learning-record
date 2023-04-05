@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 
+//登录
 export function login(data) {
   return request({
     url: '/admin/system/index/login',
@@ -8,6 +9,7 @@ export function login(data) {
   })
 }
 
+//获取用户信息
 export function getInfo(token) {
   return request({
     url: '/admin/system/index/info',
@@ -16,14 +18,10 @@ export function getInfo(token) {
   })
 }
 
+//退出
 export function logout() {
   return request({
     url: '/admin/system/index/logout',
     method: 'post'
   })
-}
-
-{
-  
-
 }

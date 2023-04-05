@@ -28,8 +28,8 @@ public class Knife4jConfig {
     public Docket adminApiConfig(){
         List<Parameter> pars = new ArrayList<>();
         ParameterBuilder tokenPar = new ParameterBuilder();
-        tokenPar.name("token")
-                .description("用户token")
+        tokenPar.name("JC-OA接口测试")
+                .description("使用Knife4进行接口测试")
                 .defaultValue("")
                 .modelRef(new ModelRef("string"))
                 .parameterType("header")
@@ -43,7 +43,7 @@ public class Knife4jConfig {
                 .apiInfo(adminApiInfo())
                 .select()
                 //只显示admin路径下的页面
-                .apis(RequestHandlerSelectors.basePackage("com.atguigu"))
+                .apis(RequestHandlerSelectors.basePackage("com.jc"))
                 .paths(PathSelectors.regex("/admin/.*"))
                 .build()
                 .globalOperationParameters(pars);
@@ -52,10 +52,10 @@ public class Knife4jConfig {
 
     private ApiInfo adminApiInfo(){
         return new ApiInfoBuilder()
-                .title("后台管理系统-API文档")
-                .description("本文档描述了后台管理系统微服务接口定义")
+                .title("JC-OA接口测试")
+                .description("使用Knife4进行接口测试")
                 .version("1.0")
-                .contact(new Contact("jc", "http://jc.com", "349636607@qq.com"))
+                .contact(new Contact("jc", "https://jcxiaozhan.gitee.io", "349636607@qq.com"))
                 .build();
     }
 }

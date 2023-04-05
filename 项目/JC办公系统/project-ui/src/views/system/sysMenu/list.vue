@@ -206,7 +206,6 @@ export default {
   methods: {
     // 调用api层获取数据库中的数据
     fetchData() {
-      console.log('加载列表')
       api.findNodes().then(response => {
         this.sysMenuList = response.data
         console.log(this.sysMenuList)

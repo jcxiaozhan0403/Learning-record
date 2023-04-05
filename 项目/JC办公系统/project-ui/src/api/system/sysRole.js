@@ -1,12 +1,12 @@
+import request from '@/utils/request'
+
 /*
     角色管理相关的API请求函数
 */
-import request from '@/utils/request'
-
 const api_name = '/admin/system/sysRole'
 
 export default {
-    //获取角色分页列表(带搜索)
+    //条件查询(带分页)
     getPageList(page, limit, searchObj) {
         return request({
             url: `${api_name}/${page}/${limit}`,
@@ -15,7 +15,7 @@ export default {
         })
     },
 
-    //根据ID删除角色
+    //删除角色
     removeById(id) {
         return request({
             url: `${api_name}/remove/${id}`,
@@ -23,7 +23,7 @@ export default {
         })
     },
 
-    //添加角色
+    //新增角色
     save(role) {
         return request({
             url: `${api_name}/save`,
@@ -32,7 +32,7 @@ export default {
         })
     },
 
-    //根据ID获取角色信息
+    //根据id获取角色
     getById(id) {
         return request({
             url: `${api_name}/get/${id}`,
@@ -40,7 +40,7 @@ export default {
         })
     },
 
-    //更新角色信息
+    //修改角色
     updateById(role) {
         return request({
             url: `${api_name}/update`,
@@ -48,7 +48,8 @@ export default {
             data: role
         })
     },
-    //根据ID批量删除
+
+    //根据id批量删除角色
     batchRemove(idList) {
         return request({
           url: `${api_name}/batchRemove`,
@@ -56,7 +57,8 @@ export default {
           data: idList
         })
     },
-    //根据ID获取角色列表
+
+    //根据用户id获取角色集
     getRoles(userId) {
         return request({
           url: `${api_name}/toAssign/${userId}`,
@@ -64,7 +66,7 @@ export default {
         })
     },
       
-    //根据ID分配角色
+    //给用户分配角色
     assignRoles(assginRoleVo) {
         return request({
             url: `${api_name}/doAssign`,
