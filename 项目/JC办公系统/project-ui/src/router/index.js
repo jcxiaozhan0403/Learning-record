@@ -52,7 +52,7 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: '首页', icon: 'dashboard' }
     }
   ]
 },
@@ -68,6 +68,14 @@ export const constantRoutes = [
   alwaysShow: true,
   children: [
     {
+      path: 'sysRole',
+      component: () => import('@/views/system/sysRole/list'),
+      meta: {
+        title: '角色管理',
+        icon: 'el-icon-s-help'
+      },
+    },
+    {
       name: 'sysUser',
       path: 'sysUser',
       component: () => import('@/views/system/sysUser/list'),
@@ -77,12 +85,22 @@ export const constantRoutes = [
       },
     },
     {
-      path: 'sysRole',
-      component: () => import('@/views/system/sysRole/list'),
+      name: 'sysMenu',
+      path: 'sysMenu',
+      component: () => import('@/views/system/sysMenu/list'),
       meta: {
-        title: '角色管理',
-        icon: 'el-icon-s-help'
+        title: '菜单管理',
+        icon: 'el-icon-s-unfold'
       },
+    },
+    {
+      path: 'assignAuth',
+      component: () => import('@/views/system/sysRole/assignAuth'),
+      meta: {
+        activeMenu: '/system/sysRole',
+        title: '角色授权'
+      },
+      hidden: true,
     }
   ]
 },

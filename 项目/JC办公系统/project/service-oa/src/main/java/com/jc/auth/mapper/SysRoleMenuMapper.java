@@ -1,17 +1,17 @@
 package com.jc.auth.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.jc.model.system.SysUser;
+import com.jc.model.system.SysRoleMenu;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 /**
  * @author John.Cena
- * @date 2023/4/4 17:36
+ * @date 2023/4/5 13:54
  * @Description:
  */
 @Mapper
 @Repository
-public interface SysUserMapper extends BaseMapper<SysUser> {
+public interface SysRoleMenuMapper extends BaseMapper<SysRoleMenu> {
 
 }
