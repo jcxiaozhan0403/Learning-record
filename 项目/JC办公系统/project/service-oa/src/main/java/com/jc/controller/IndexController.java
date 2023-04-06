@@ -1,11 +1,16 @@
 package com.jc.controller;
 
+import com.jc.common.handler.CustomException;
+import com.jc.common.jwt.JwtHelper;
 import com.jc.common.result.Result;
+import com.jc.common.utils.MD5;
+import com.jc.model.system.SysUser;
+import com.jc.service.SysUserService;
+import com.jc.vo.system.LoginVo;
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,15 +26,30 @@ import java.util.Map;
 @RequestMapping("/admin/system/index")
 public class IndexController {
 
+    @Autowired
+    SysUserService sysUserService;
+
 
     /**
      * 登录
      * @return
      */
+    @ApiOperation(value = "登录")
     @PostMapping("login")
-    public Result login() {
+    public Result login(@RequestBody LoginVo loginVo) {
+        SysUser sysUser = sysUserService.getByUsername(loginVo.getUsername());
+        if(null == sysUser) {
+            throw new CustomException(201,"用户不存在");
+        }
+        if(!MD5.encrypt(loginVo.getPassword()).equals(loginVo.getPassword())) {
+            throw new CustomException(201,"密码错误");
+        }
+        if(sysUser.getStatus().intValue() == 0) {
+            throw new CustomException(201,"用户被禁用");
+        }
+
         Map<String, Object> map = new HashMap<>();
-        map.put("token","admin");
+        map.put("token", JwtHelper.createToken(sysUser.getId(), sysUser.getUsername()));
         return Result.ok(map);
     }
     /**
