@@ -37,11 +37,12 @@ public class IndexController {
     @ApiOperation(value = "登录")
     @PostMapping("login")
     public Result login(@RequestBody LoginVo loginVo) {
+        //用户名是唯一的，可以根据用户名查询用户信息
         SysUser sysUser = sysUserService.getByUsername(loginVo.getUsername());
         if(null == sysUser) {
             throw new CustomException(201,"用户不存在");
         }
-        if(!MD5.encrypt(loginVo.getPassword()).equals(loginVo.getPassword())) {
+        if(!MD5.encrypt(loginVo.getPassword()).equals(sysUser.getPassword())) {
             throw new CustomException(201,"密码错误");
         }
         if(sysUser.getStatus().intValue() == 0) {

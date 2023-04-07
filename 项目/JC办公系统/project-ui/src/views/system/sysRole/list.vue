@@ -107,6 +107,11 @@ export default {
     },
     // 定义方法
     methods: {
+        // 当页码发生改变的时候
+        changeSize(size) {
+            this.limit = size
+            this.fetchData(1)
+        },
         fetchData(current=1) {
             this.page = current;
             // 调用api
