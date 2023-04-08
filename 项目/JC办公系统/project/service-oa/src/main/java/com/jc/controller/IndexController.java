@@ -5,6 +5,7 @@ import com.jc.common.jwt.JwtHelper;
 import com.jc.common.result.Result;
 import com.jc.common.utils.MD5;
 import com.jc.model.system.SysUser;
+import com.jc.service.SysMenuService;
 import com.jc.service.SysUserService;
 import com.jc.vo.system.LoginVo;
 import io.swagger.annotations.Api;
@@ -12,6 +13,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +31,8 @@ public class IndexController {
     @Autowired
     SysUserService sysUserService;
 
+    @Autowired
+    SysMenuService sysMenuService;
 
     /**
      * 登录
@@ -58,11 +62,14 @@ public class IndexController {
      * @return
      */
     @GetMapping("info")
-    public Result info() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("roles","[admin]");
-        map.put("name","admin");
-        map.put("avatar","https://oss.aliyuncs.com/aliyun_id_photo_bucket/default_handsome.jpg");
+    public Result info(HttpServletRequest request) {
+        //1.从请求头获取token
+        String token = request.getHeader("token");
+        //2.从token获取用户username和id
+        Long userId = JwtHelper.getUserId(token);
+        String username = JwtHelper.getUsername(token);
+        //3.查询用户信息
+        Map<String, Object> map = sysUserService.getUserInfo(userId, username);
         return Result.ok(map);
     }
     /**
@@ -73,5 +80,4 @@ public class IndexController {
     public Result logout(){
         return Result.ok();
     }
-
 }

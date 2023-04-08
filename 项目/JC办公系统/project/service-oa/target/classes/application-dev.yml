@@ -1,8 +1,10 @@
 server:
   port: 8800
 mybatis-plus:
+  mapper-locations: classpath:com/jc/mapper/xml/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 查看日志
+    map-underscore-to-camel-case: true
   global-config:
     # 逻辑删除， 1删除，0未删除
     db-config:

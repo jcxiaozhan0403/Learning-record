@@ -24,7 +24,7 @@
           </el-col>
         </el-row>
         <el-row style="display:flex">
-          <el-button type="success" icon="el-icon-plus" size="mini" @click="add">添 加</el-button>
+          <el-button type="success" icon="el-icon-plus" size="mini" @click="add" :disabled="$hasBP('bnt.sysUser.add')  === false">添 加</el-button>
           <el-button type="primary" icon="el-icon-search" size="mini" @click="fetchData()">搜索</el-button>
           <el-button icon="el-icon-refresh" size="mini" @click="resetData">重置</el-button>
         </el-row>
@@ -71,8 +71,8 @@
 
       <el-table-column label="操作" width="220" align="center" fixed="right">
         <template slot-scope="scope">
-          <el-button type="primary" icon="el-icon-edit" size="mini" @click="edit(scope.row.id)" title="修改"/>
-          <el-button type="danger" icon="el-icon-delete" size="mini" @click="removeDataById(scope.row.id)" title="删除" />
+          <el-button type="primary" icon="el-icon-edit" size="mini" @click="edit(scope.row.id)" :disabled="$hasBP('bnt.sysUser.update')  === false" title="修改"/>
+          <el-button type="danger" icon="el-icon-delete" size="mini" @click="removeDataById(scope.row.id)" :disabled="$hasBP('bnt.sysUser.remove')  === false" title="删除" />
           <el-button type="warning" icon="el-icon-baseball" size="mini" @click="showAssignRole(scope.row)" title="分配角色"/>
         </template>
       </el-table-column>

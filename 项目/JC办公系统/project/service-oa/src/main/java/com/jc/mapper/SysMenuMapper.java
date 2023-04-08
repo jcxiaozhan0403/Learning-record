@@ -5,6 +5,8 @@ import com.jc.model.system.SysMenu;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author John.Cena
  * @date 2023/4/5 11:23
@@ -14,4 +16,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
+    List<SysMenu> findListByUserId(Long userId);
 }

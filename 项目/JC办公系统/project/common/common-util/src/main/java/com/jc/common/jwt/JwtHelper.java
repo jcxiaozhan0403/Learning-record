@@ -1,6 +1,7 @@
 package com.jc.common.jwt;
 
 import io.jsonwebtoken.*;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 
@@ -28,8 +29,7 @@ public class JwtHelper {
 
     public static Long getUserId(String token) {
         try {
-            //StringUtils.isEmpty(token) 判断token是否为空
-            if (token == null || token == ""){
+            if (StringUtils.isEmpty(token)){
                 return null;
             }
 
@@ -45,7 +45,7 @@ public class JwtHelper {
 
     public static String getUsername(String token) {
         try {
-            if (token == null || token == ""){
+            if (StringUtils.isEmpty(token)){
                 return null;
             }
 
@@ -57,11 +57,10 @@ public class JwtHelper {
             return null;
         }
     }
-
-    public static void main(String[] args) {
-        String token = JwtHelper.createToken(1L, "admin");
-        System.out.println(token);
-        System.out.println(JwtHelper.getUserId(token));
-        System.out.println(JwtHelper.getUsername(token));
-    }
+//    public static void main(String[] args) {
+//        String token = JwtHelper.createToken(1L, "admin");
+//        System.out.println(token);
+//        System.out.println(JwtHelper.getUserId(token));
+//        System.out.println(JwtHelper.getUsername(token));
+//    }
 }

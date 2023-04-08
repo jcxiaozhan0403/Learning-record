@@ -11,7 +11,7 @@
                 </el-col>
             </el-row>
                 <el-row style="display:flex">
-                <el-button type="success" icon="el-icon-plus" size="mini" @click="add">添加</el-button>
+                <el-button type="success" icon="el-icon-plus" size="mini" @click="add" :disabled="$hasBP('bnt.sysRole.add')  === false">添加</el-button>
                 <el-button type="primary" icon="el-icon-search" size="mini" @click="fetchData()">搜索</el-button>
                 <el-button type="danger" icon="el-icon-delete" size="mini"  @click="batchRemove()">删除</el-button>
                 <el-button icon="el-icon-refresh" size="mini" @click="resetData">重置</el-button>

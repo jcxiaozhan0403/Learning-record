@@ -18,6 +18,7 @@
         <module>common</module>
         <module>model</module>
         <module>service-oa</module>
+      <module>spring-security</module>
     </modules>
 
     <properties>

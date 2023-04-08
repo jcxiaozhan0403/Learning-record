@@ -10,6 +10,8 @@ import com.jc.service.SysRoleService;
 import com.jc.vo.system.AssginRoleVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,8 +54,17 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         return roleMap;
     }
 
+    @Transactional
     @Override
     public void doAssign(AssginRoleVo assginRoleVo) {
+        sysUserRoleMapper.delete(new LambdaQueryWrapper<SysUserRole>().eq(SysUserRole::getUserId, assginRoleVo.getUserId()));
 
+        for(Long roleId : assginRoleVo.getRoleIdList()) {
+            if(StringUtils.isEmpty(roleId)) continue;
+            SysUserRole userRole = new SysUserRole();
+            userRole.setUserId(assginRoleVo.getUserId());
+            userRole.setRoleId(roleId);
+            sysUserRoleMapper.insert(userRole);
+        }
     }
 }
