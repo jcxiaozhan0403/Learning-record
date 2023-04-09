@@ -10,6 +10,7 @@ import com.jc.vo.system.SysRoleQueryVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +45,7 @@ public class SysRoleController {
      * @param sysRoleQueryVo 条件对象
      * @return
      */
+    @PreAuthorize("hasAuthority('bnt.sysRole.list')")
     @ApiOperation("条件查询(带分页)")
     @GetMapping("{page}/{limit}")
     public Result pageQueryRole(@PathVariable Long page,
@@ -88,6 +90,7 @@ public class SysRoleController {
         return Result.ok();
     }
 
+    @PreAuthorize("hasAuthority('bnt.sysRole.remove')")
     @ApiOperation(value = "删除角色")
     @DeleteMapping("remove/{id}")
     public Result remove(@PathVariable Long id) {
