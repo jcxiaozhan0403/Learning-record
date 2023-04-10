@@ -10,6 +10,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * 用户表
+ */
 @Data
 @ApiModel(description = "用户")
 @TableName("sys_user")

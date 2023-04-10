@@ -114,6 +114,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         if (userId.longValue() == 1) {
             sysMenuList = this.list(new LambdaQueryWrapper<SysMenu>().eq(SysMenu::getStatus, 1).orderByAsc(SysMenu::getSortValue));
         } else {
+            //查询一般用户的菜单集
             sysMenuList = sysMenuMapper.findListByUserId(userId);
         }
         //构建树形数据
@@ -186,7 +187,13 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         } else {
             sysMenuList = sysMenuMapper.findListByUserId(userId);
         }
-        List<String> permsList = sysMenuList.stream().filter(item -> item.getType() == 2).map(item -> item.getPerms()).collect(Collectors.toList());
+        List<String> permsList = sysMenuList
+                                        .stream()
+                                        //过滤出按钮权限
+                                        .filter(item -> item.getType() == 2)
+                                        //map的作用类似于for，找出每一个item.getPerms，形成集合
+                                        .map(item -> item.getPerms())
+                                        .collect(Collectors.toList());
         return permsList;
     }
 

@@ -7,7 +7,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-
+/**
+ * 角色表
+ */
 @Data
 @ApiModel(description = "角色")
 @TableName("sys_role")

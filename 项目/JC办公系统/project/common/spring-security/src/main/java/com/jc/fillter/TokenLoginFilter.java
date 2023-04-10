@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 登录过滤器，继承UsernamePasswordAuthenticationFilter，对用户名密码进行登录校验
+ * 第二层：登录过滤器，继承UsernamePasswordAuthenticationFilter，对用户名密码进行登录校验
  * @author John.Cena
  * @date 2023/4/8 22:46
  * @Description:
@@ -50,8 +50,7 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
      * @throws AuthenticationException
      */
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
-            throws AuthenticationException {
+    public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException {
         try {
             LoginVo loginVo = new ObjectMapper().readValue(req.getInputStream(), LoginVo.class);
 
@@ -60,7 +59,6 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     /**
@@ -73,11 +71,12 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
      * @throws ServletException
      */
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
-                                            Authentication auth) throws IOException, ServletException {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication auth) throws IOException, ServletException {
+        //将Authentication类转为用户模型
         CustomUser customUser = (CustomUser) auth.getPrincipal();
+        //获取用户模型中的信息，存放到token中
         String token = JwtHelper.createToken(customUser.getSysUser().getId(), customUser.getSysUser().getUsername());
-        //保存权限数据
+        //将用户的权限集字符串存放到redis中
         redisTemplate.opsForValue().set(customUser.getUsername(), JSON.toJSONString(customUser.getAuthorities()));
 
         Map<String, Object> map = new HashMap<>();
@@ -94,9 +93,7 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
      * @throws ServletException
      */
     @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
-                                              AuthenticationException e) throws IOException, ServletException {
-
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
         if(e.getCause() instanceof RuntimeException) {
             ResponseUtil.out(response, Result.build(null, 204, e.getMessage()));
         } else {

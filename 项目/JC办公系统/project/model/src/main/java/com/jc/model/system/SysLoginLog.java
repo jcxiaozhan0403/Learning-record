@@ -8,6 +8,9 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import java.util.Date;
 
+/**
+ * 登录日志表
+ */
 @Data
 @ApiModel(description = "SysLoginLog")
 @TableName("sys_login_log")

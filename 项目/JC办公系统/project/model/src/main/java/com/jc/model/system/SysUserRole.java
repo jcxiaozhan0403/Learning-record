@@ -7,6 +7,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+/**
+ * 用户角色表
+ */
 @Data
 @ApiModel(description = "用户角色")
 @TableName("sys_user_role")

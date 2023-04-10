@@ -5,7 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 /**
- * 覆盖spring-security的密码校验组件
+ * 对spring-security的密码校验组件进行覆盖，自定义密码校验规则
  * @author John.Cena
  * @date 2023/4/8 22:34
  * @Description:

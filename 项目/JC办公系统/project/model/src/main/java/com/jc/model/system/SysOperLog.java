@@ -8,6 +8,9 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import java.util.Date;
 
+/**
+ * 操作日志表
+ */
 @Data
 @ApiModel(description = "SysOperLog")
 @TableName("sys_oper_log")

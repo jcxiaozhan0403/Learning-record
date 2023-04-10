@@ -9,6 +9,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * 部门表
+ */
 @Data
 @ApiModel(description = "部门")
 @TableName("sys_dept")
