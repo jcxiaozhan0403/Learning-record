@@ -1,4 +1,4 @@
-package com.jc;
+package com;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
  */
 @SpringBootApplication
 @EnableSwagger2WebMvc
-@MapperScan("com.jc.mapper")
+@MapperScan("com.*.mapper")
 public class ServiceAuthApplication {
     public static void main(String[] args) {
         SpringApplication.run(ServiceAuthApplication.class, args);

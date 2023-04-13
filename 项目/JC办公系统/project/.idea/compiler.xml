@@ -20,7 +20,7 @@
       <module name="common" options="" />
       <module name="common-util" options="-parameters" />
       <module name="model" options="-parameters" />
-      <module name="project" options="" />
+      <module name="project" options="-parameters" />
       <module name="service-oa" options="-parameters" />
       <module name="service-util" options="-parameters" />
       <module name="spring-security" options="-parameters" />
