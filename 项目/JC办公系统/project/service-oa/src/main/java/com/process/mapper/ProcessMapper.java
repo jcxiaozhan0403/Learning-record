@@ -7,6 +7,7 @@ import com.jc.vo.process.ProcessQueryVo;
 import com.jc.vo.process.ProcessVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import com.jc.model.process.Process;
 
 /**
  * @author John.Cena

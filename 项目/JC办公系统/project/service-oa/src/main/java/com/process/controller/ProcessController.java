@@ -3,6 +3,7 @@ package com.process.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jc.common.result.Result;
+import com.jc.vo.process.ProcessFormVo;
 import com.jc.vo.process.ProcessQueryVo;
 import com.jc.vo.process.ProcessVo;
 import com.process.service.ProcessService;
@@ -11,10 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author John.Cena
@@ -46,5 +44,4 @@ public class ProcessController {
         IPage<ProcessVo> pageModel = processService.selectPage(pageParam, processQueryVo);
         return Result.ok(pageModel);
     }
-
 }

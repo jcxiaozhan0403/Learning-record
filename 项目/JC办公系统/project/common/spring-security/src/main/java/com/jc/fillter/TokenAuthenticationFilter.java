@@ -5,6 +5,7 @@ import com.jc.common.jwt.JwtHelper;
 import com.jc.common.result.Result;
 import com.jc.common.result.ResultCodeEnum;
 import com.jc.common.utils.ResponseUtil;
+import com.jc.custom.LoginUserInfoHelper;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -69,6 +70,9 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             logger.info("username:"+username);
             //从token中拿到username，判断是否为空
             if (!StringUtils.isEmpty(username)) {
+                //通过ThreadLocal记录当前登录人信息
+                LoginUserInfoHelper.setUserId(JwtHelper.getUserId(token));
+                LoginUserInfoHelper.setUsername(username);
                 //从redis中拿到当前用户的权限集字符串
                 String authoritiesString = (String) redisTemplate.opsForValue().get(username);
                 List<Map> mapList = JSON.parseArray(authoritiesString, Map.class);

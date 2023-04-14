@@ -57,10 +57,10 @@ public class JwtHelper {
             return null;
         }
     }
-//    public static void main(String[] args) {
-//        String token = JwtHelper.createToken(1L, "admin");
-//        System.out.println(token);
-//        System.out.println(JwtHelper.getUserId(token));
-//        System.out.println(JwtHelper.getUsername(token));
-//    }
+    public static void main(String[] args) {
+        String token = JwtHelper.createToken(2L, "WangJingLi");
+        System.out.println(token);
+        System.out.println(JwtHelper.getUserId(token));
+        System.out.println(JwtHelper.getUsername(token));
+    }
 }

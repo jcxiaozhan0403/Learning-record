@@ -73,7 +73,7 @@ public class ProcessTest {
     @Test
     public void findPendingTaskList() {
         //任务负责人
-        String assignee = "zhangsan";
+        String assignee = "WangJingLi";
         List<Task> list = taskService.createTaskQuery()
                 .taskAssignee(assignee)//只查询该任务负责人的任务
                 .list();
@@ -91,7 +91,7 @@ public class ProcessTest {
     @Test
     public void completTask(){
         Task task = taskService.createTaskQuery()
-                .taskAssignee("zhangsan")  //要查询的负责人
+                .taskAssignee("WangJingLi")  //要查询的负责人
                 .singleResult();//返回一条
 
         //完成任务,参数：任务id
