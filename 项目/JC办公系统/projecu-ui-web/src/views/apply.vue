@@ -31,6 +31,7 @@ export default {
   },
 
   created() {
+    //获取到传入的模板id，查询模板信息
     let processTemplateId = this.$route.params.processTemplateId;
     this.fetchData(processTemplateId);
   },
@@ -46,6 +47,7 @@ export default {
       });
     },
 
+    //提交表单信息
     onSubmit(formData) {
       console.log(formData)
       let formShowData = {};
@@ -68,8 +70,9 @@ export default {
         "formValues": JSON.stringify(DATA)
       };
       console.log(processFormVo)
+      //调用接口开启流程
       api.startUp(processFormVo).then(response => {
-        //调整到已发起列表
+        //跳转到审批列表
         this.$router.push({ path: "/list/2" });
       });
     }

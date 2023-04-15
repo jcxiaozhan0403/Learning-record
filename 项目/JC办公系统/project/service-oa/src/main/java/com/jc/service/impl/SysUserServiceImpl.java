@@ -2,6 +2,7 @@ package com.jc.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.jc.custom.LoginUserInfoHelper;
 import com.jc.mapper.SysUserMapper;
 import com.jc.model.system.SysRole;
 import com.jc.model.system.SysUser;
@@ -71,6 +72,19 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         map.put("avatar",userInfo.getHeadUrl());
         map.put("routers",routerVoList);
         map.put("buttons",permsList);
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> getCurrentUser() {
+        SysUser sysUser = baseMapper.selectById(LoginUserInfoHelper.getUserId());
+        //SysDept sysDept = sysDeptService.getById(sysUser.getDeptId());
+        //SysPost sysPost = sysPostService.getById(sysUser.getPostId());
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", sysUser.getName());
+        map.put("phone", sysUser.getPhone());
+        //map.put("deptName", sysDept.getName());
+        //map.put("postName", sysPost.getName());
         return map;
     }
 

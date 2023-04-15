@@ -3,6 +3,7 @@
     <van-nav-bar
       title="审批列表"
     />
+    <!-- 通过activeIndex的值来改变列表数据 -->
     <van-tabs v-model="activeIndex" @click="tabSwitch">
       <van-tab
         v-for="(item,key) in tabList"
@@ -70,6 +71,7 @@ export default {
   },
 
   created(){
+    //获取到传入的参数
     this.activeIndex = parseInt(this.$route.params.activeIndex);
     this.onLoad()
   },
@@ -113,6 +115,7 @@ export default {
       this.onLoad();
     },
 
+    //查询代办列表
     findPending() {
       console.log(this.pageNo)
       api.findPending(this.pageNo, this.pageSize).then(response => {

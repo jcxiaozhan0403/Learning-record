@@ -27,12 +27,18 @@ public class ProcessRecordServiceImpl extends ServiceImpl<ProcessRecordMapper, P
 
     @Override
     public void record(Long processId, Integer status, String description) {
+        //获取当前用户信息
         SysUser sysUser = sysUserService.getById(LoginUserInfoHelper.getUserId());
         ProcessRecord processRecord = new ProcessRecord();
+        //设置流程id
         processRecord.setProcessId(processId);
+        //设置流程状态
         processRecord.setStatus(status);
+        //设置流程描述
         processRecord.setDescription(description);
+        //设置用户id
         processRecord.setOperateUserId(sysUser.getId());
+        //设置用户名字
         processRecord.setOperateUser(sysUser.getName());
         processRecordMapper.insert(processRecord);
     }

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "用户管理")
 @RestController
 @RequestMapping("/admin/system/sysUser")
+@CrossOrigin
 public class SysUserController {
 
     @Autowired
@@ -100,5 +101,11 @@ public class SysUserController {
     public Result updateStatus(@PathVariable Long id, @PathVariable Integer status) {
         sysUserService.updateStatus(id, status);
         return Result.ok();
+    }
+
+    @ApiOperation(value = "获取当前用户基本信息")
+    @GetMapping("getCurrentUser")
+    public Result getCurrentUser() {
+        return Result.ok(sysUserService.getCurrentUser());
     }
 }

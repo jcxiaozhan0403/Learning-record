@@ -5,12 +5,14 @@
         title="OA审批"
       />
       <van-collapse v-model="activeNames">
+        <!-- 遍历审批类型 -->
         <van-collapse-item
           v-for="(item,key) in list"
-		  :key="key"
+		      :key="key"
           :title="item.name"
           :name="item.key">
           <van-row>
+            <!-- 遍历审批模板 -->
             <van-col v-for="template in item.processTemplateList" :key="template.id" span="6">
               <div class="item" @click="apply(template.id)">
                 <img :src="template.iconUrl"/>

@@ -28,6 +28,7 @@ export default {
     })
   },
 
+  //获取待处理列表
   findPending(page, limit) {
     return request({
       url: `${api_name}/findPending/`+page+`/`+ limit,

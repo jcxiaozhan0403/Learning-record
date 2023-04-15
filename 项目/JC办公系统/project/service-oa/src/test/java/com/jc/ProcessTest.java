@@ -91,7 +91,7 @@ public class ProcessTest {
     @Test
     public void completTask(){
         Task task = taskService.createTaskQuery()
-                .taskAssignee("WangJingLi")  //要查询的负责人
+                .taskAssignee("ZhangSan")  //要查询的负责人
                 .singleResult();//返回一条
 
         //完成任务,参数：任务id

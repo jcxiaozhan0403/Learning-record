@@ -62,8 +62,9 @@ public class ProcessTemplateServiceImpl extends ServiceImpl<ProcessTemplateMappe
     @Transactional
     @Override
     public void publish(Long id) {
-        //修改模板状态
+        //根据id获取到对应的模板信息
         ProcessTemplate processTemplate = this.getById(id);
+        //修改模板的状态值为1，视为发布状态
         processTemplate.setStatus(1);
         processTemplateMapper.updateById(processTemplate);
 

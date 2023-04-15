@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/admin/process/processType")
 @SuppressWarnings({"unchecked", "rawtypes"})
+@CrossOrigin //开启跨域访问
 public class ProcessTypeController {
 
     @Autowired
