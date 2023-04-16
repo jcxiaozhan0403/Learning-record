@@ -69,6 +69,7 @@ public class SysRoleController {
         return Result.ok(pageModel);
     }
 
+    @PreAuthorize("hasAuthority('bnt.sysRole.list')")
     @ApiOperation(value = "根据id获取角色")
     @GetMapping("get/{id}")
     public Result get(@PathVariable Long id) {
@@ -76,6 +77,7 @@ public class SysRoleController {
         return Result.ok(role);
     }
 
+    @PreAuthorize("hasAuthority('bnt.sysRole.add')")
     @ApiOperation(value = "新增角色")
     @PostMapping("save")
     public Result save(@RequestBody @Validated SysRole role) {
@@ -83,6 +85,7 @@ public class SysRoleController {
         return Result.ok();
     }
 
+    @PreAuthorize("hasAuthority('bnt.sysRole.update')")
     @ApiOperation(value = "修改角色")
     @PutMapping("update")
     public Result updateById(@RequestBody SysRole role) {
@@ -98,6 +101,7 @@ public class SysRoleController {
         return Result.ok();
     }
 
+    @PreAuthorize("hasAuthority('bnt.sysRole.remove')")
     @ApiOperation(value = "根据id批量删除角色")
     @DeleteMapping("batchRemove")
     public Result batchRemove(@RequestBody List<Long> idList) {
@@ -112,6 +116,7 @@ public class SysRoleController {
         return Result.ok(roleMap);
     }
 
+    @PreAuthorize("hasAuthority('bnt.sysUser.assignRole')")
     @ApiOperation(value = "给用户分配角色")
     @PostMapping("/doAssign")
     public Result doAssign(@RequestBody AssginRoleVo assginRoleVo) {

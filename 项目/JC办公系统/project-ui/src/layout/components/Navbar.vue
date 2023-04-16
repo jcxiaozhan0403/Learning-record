@@ -7,6 +7,7 @@
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
+          <span style="padding-right: 10px;font-size: 15px;">{{getTimeState()}}，{{name}}！</span>
           <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
@@ -38,7 +39,8 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'avatar'
+      'avatar',
+      'name'
     ])
   },
   methods: {
@@ -48,6 +50,27 @@ export default {
     async logout() {
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    },
+    getTimeState() {
+      // 获取当前时间
+      let timeNow = new Date();
+      // 获取当前小时
+      let hours = timeNow.getHours();
+      // 设置默认文字
+      let state = ``;
+      // 判断当前时间段
+      if (hours >= 0 && hours <= 10) {
+        state = `早上好`;
+      } else if (hours > 10 && hours <= 11) {
+        state = `上午好`;
+      } else if (hours > 11 && hours <= 13) {
+        state = `中午好`;
+      } else if (hours > 13 && hours <= 18) {
+        state = `下午好`;
+      } else if (hours > 18 && hours <= 24) {
+        state = `晚上好`;
+      }
+      return state;
     }
   }
 }

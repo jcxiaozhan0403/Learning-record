@@ -71,7 +71,6 @@
       保存权限列表
       */
       save() {
-        debugger
         //获取到当前子节点
         //const checkedNodes = this.$refs.tree.getCheckedNodes()
         //获取到当前子节点及父节点

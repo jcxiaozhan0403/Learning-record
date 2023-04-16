@@ -21,6 +21,7 @@ import com.process.mapper.ProcessMapper;
 import com.process.service.ProcessRecordService;
 import com.process.service.ProcessService;
 import com.process.service.ProcessTemplateService;
+import com.wechat.service.MessageService;
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.bpmn.model.EndEvent;
@@ -73,6 +74,8 @@ public class ProcessServiceImpl extends ServiceImpl<ProcessMapper, Process> impl
     private ProcessRecordService processRecordService;
     @Autowired
     private HistoryService historyService;
+    @Autowired
+    private MessageService messageService;
 
 
     @Override
@@ -87,6 +90,7 @@ public class ProcessServiceImpl extends ServiceImpl<ProcessMapper, Process> impl
      */
     @Override
     public void deployByZip(String deployPath) {
+        //从路径中加载压缩包
         // 定义zip输入流
         InputStream inputStream = this
                 .getClass()
@@ -152,7 +156,8 @@ public class ProcessServiceImpl extends ServiceImpl<ProcessMapper, Process> impl
                 SysUser user = sysUserService.getByUsername(task.getAssignee());
                 assigneeList.add(user.getName());
 
-                //TODO 推送消息给下一个审批人，后续完善
+                //推送消息给下一个审批人
+                messageService.pushPendingMessage(process.getId(), sysUser.getId(), task.getId());
             }
             process.setDescription("等待" + StringUtils.join(assigneeList.toArray(), ",") + "审批");
         }
@@ -265,7 +270,8 @@ public class ProcessServiceImpl extends ServiceImpl<ProcessMapper, Process> impl
                 SysUser sysUser = sysUserService.getByUsername(task.getAssignee());
                 assigneeList.add(sysUser.getName());
 
-                //TODO 推送消息给下一个审批人
+                //推送消息给下一个审批人
+                messageService.pushPendingMessage(process.getId(), sysUser.getId(), task.getId());
             }
             process.setDescription("等待" + StringUtils.join(assigneeList.toArray(), ",") + "审批");
             process.setStatus(1);
@@ -279,6 +285,7 @@ public class ProcessServiceImpl extends ServiceImpl<ProcessMapper, Process> impl
             }
         }
         //推送消息给申请人
+        messageService.pushProcessedMessage(process.getId(), process.getUserId(), approvalVo.getStatus());
         this.updateById(process);
     }
 

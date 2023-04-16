@@ -3,9 +3,9 @@
 
     <!-- 工具条 -->
     <div class="tools-div">
-      <el-button type="success" icon="el-icon-plus" class="btn-add" size="mini" @click="add">添 加</el-button>
-      <el-button type="primary" icon="el-icon-refresh" class="btn-add" size="mini" @click="syncMenu" >同步菜单</el-button>
-      <el-button type="danger" icon="el-icon-delete" class="btn-add" size="mini" @click="removeMenu">删除菜单</el-button>
+      <el-button type="success" icon="el-icon-plus" class="btn-add" size="mini" @click="add" :disabled="$hasBP('bnt.menu.add')  === false">添 加</el-button>
+      <el-button type="primary" icon="el-icon-refresh" class="btn-add" size="mini" @click="syncMenu" :disabled="$hasBP('bnt.menu.syncMenu')  === false">同步菜单</el-button>
+      <el-button type="danger" icon="el-icon-delete" class="btn-add" size="mini" @click="removeMenu" :disabled="$hasBP('bnt.menu.removeMenu')  === false">删除菜单</el-button>
     </div>
 
     <el-table
@@ -25,10 +25,10 @@
       <el-table-column label="菜单URL" prop="url" ></el-table-column>
       <el-table-column label="菜单KEY" prop="meunKey"  width="130"></el-table-column>
       <el-table-column label="排序号" prop="sort"  width="70"></el-table-column>
-      <el-table-column label="操作" width="170" align="center">
+      <el-table-column label="操作" width="160" align="center">
         <template slot-scope="scope">
-          <el-button v-if="scope.row.parentId > 0" type="text" size="mini" @click="edit(scope.row.id)">修改</el-button>
-          <el-button v-if="scope.row.parentId > 0" type="text" size="mini" @click="removeDataById(scope.row.id)">删除</el-button>
+          <el-button v-if="scope.row.parentId > 0" type="primary" icon="el-icon-edit" size="mini" @click="edit(scope.row.id)" :disabled="$hasBP('bnt.menu.update')  === false"></el-button>
+          <el-button v-if="scope.row.parentId > 0" type="danger" icon="el-icon-delete" size="mini" @click="removeDataById(scope.row.id)" :disabled="$hasBP('bnt.menu.remove')  === false"></el-button>
         </template>
       </el-table-column>
     </el-table>

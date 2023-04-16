@@ -63,7 +63,7 @@
         <template slot-scope="scope">
           <el-switch
             v-model="scope.row.status === 1"
-            @change="switchStatus(scope.row)">
+            @change="switchStatus(scope.row)" :disabled="$hasBP('bnt.sysUser.update')  === false">
           </el-switch>
         </template>
       </el-table-column>
@@ -73,7 +73,7 @@
         <template slot-scope="scope">
           <el-button type="primary" icon="el-icon-edit" size="mini" @click="edit(scope.row.id)" :disabled="$hasBP('bnt.sysUser.update')  === false" title="修改"/>
           <el-button type="danger" icon="el-icon-delete" size="mini" @click="removeDataById(scope.row.id)" :disabled="$hasBP('bnt.sysUser.remove')  === false" title="删除" />
-          <el-button type="warning" icon="el-icon-baseball" size="mini" @click="showAssignRole(scope.row)" title="分配角色"/>
+          <el-button type="warning" icon="el-icon-baseball" size="mini" @click="showAssignRole(scope.row)" :disabled="$hasBP('bnt.sysUser.assignRole')  === false" title="分配角色"/>
         </template>
       </el-table-column>
     </el-table>

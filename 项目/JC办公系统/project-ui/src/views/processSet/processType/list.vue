@@ -11,6 +11,8 @@
       stripe
       border
       style="width: 100%;margin-top: 10px;"
+      :header-cell-style="{'text-align':'center'}"
+      :cell-style="{'text-align':'center'}"
     >
       <el-table-column
         type="selection"

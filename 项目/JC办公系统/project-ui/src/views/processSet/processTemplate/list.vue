@@ -10,6 +10,8 @@
       :data="list"
       stripe
       border
+      :header-cell-style="{'text-align':'center'}"
+      :cell-style="{'text-align':'center'}"
       style="width: 100%;margin-top: 10px;"
     >
       <el-table-column
