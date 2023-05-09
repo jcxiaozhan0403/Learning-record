@@ -3,61 +3,65 @@ package 线性结构;
 import java.util.Scanner;
 
 /**
+ * 数组实现环形队列
  * @author John.Cena
  * @date 2023/5/3 22:19
  * @Description:
  */
 public class CircleArrayQueueDemo {
     public static void main(String[] args) {
-        // 创建一个环形队列
-        CircleArray queue = new CircleArray(4); //说明设置 4, 其队列的有效数据最大是 3
-        char key = ' '; // 接收用户输入
-        Scanner scanner = new Scanner(System.in);//
+        CircleArray circleArray = new CircleArray(4);
+        //接收用户输入
+        String key = "";
+        Scanner scanner = new Scanner(System.in);
         boolean loop = true;
-        // 输出一个菜单
-        while (loop) {
-            System.out.println("s：显示队列");
-            System.out.println("e：退出程序");
-            System.out.println("a：添加元素到队列");
-            System.out.println("g：从队列取出数据");
-            System.out.println("h：查看队头元素");
-            key = scanner.next().charAt(0);// 接收一个字符
-            switch (key) {
-                case 's':
+
+        while (loop){
+            System.out.println("show：显示队列");
+            System.out.println("exit：退出程序");
+            System.out.println("add：添加元素到队列");
+            System.out.println("get：从队列取出数据");
+            System.out.println("head：查看队头元素");
+            //接收一个字符
+            key = scanner.nextLine();
+            switch (key){
+                case "show":
                     try{
-                        queue.showQueue();
+                        circleArray.showQueue();
                     }catch (Exception e){
                         System.out.println(e.getMessage());
                     }
                     break;
-                case 'a':
+                case "exit":
+                    loop = false;
+                    scanner.close();
+                    break;
+                case "add":
                     try{
                         System.out.print("请输入一个数字：");
                         int i = scanner.nextInt();
-                        queue.addQueue(i);
+                        scanner.nextLine(); //读取空字符并清除它
+                        circleArray.addQueue(i);
                     }catch (Exception e){
                         System.out.println(e.getMessage());
                     }
                     break;
-                case 'g': // 取出数据
+                case "get":
                     try{
-                        System.out.println(queue.getQueue());
+                        System.out.println(circleArray.getQueue());
                     }catch (Exception e){
                         System.out.println(e.getMessage());
                     }
                     break;
-                case 'h': // 查看队列头的数据
+                case "head":
                     try{
-                        System.out.println("队头元素：" + queue.headQueue());
+                        System.out.println("队头元素：" + circleArray.headQueue());
                     }catch (Exception e){
                         System.out.println(e.getMessage());
                     }
-                    break;
-                case 'e': // 退出
-                    scanner.close();
-                        loop = false;
                     break;
                 default:
+                    System.out.println("请输入正确指令！");
                     break;
             }
         }
@@ -65,15 +69,24 @@ public class CircleArrayQueueDemo {
     }
 }
 class CircleArray {
-    private int maxSize; // 表示数组的最大容量
-    //front 变量的含义做一个调整： front 就指向队列的第一个元素, 也就是说 arr[front] 就是队列的第一个元素
-    //front 的初始值 = 0
-    private int front;
-    //rear 变量的含义做一个调整：rear 指向队列的最后一个元素的后一个位置. 因为希望空出一个空间做为约定. //rear 的初始值 = 0
-    private int rear; // 队列尾
-    private int[] arr; // 该数据用于存放数据, 模拟队列
+    //数组最大容量
+    private int maxSize;
 
+    //头指针，存储索引
+    //头指针指向队头元素的位置
+    //front 的初始值 = 0
+    private int front = 0;
+
+    //尾指针，存储索引
+    //尾指针指向队尾元素的下一个位置，因为希望空出一个空间做为约定
+    //rear 的初始值 = 0
+    private int rear = 0;
+    //数组容器
+    private int[] arr;
+
+    //构造方法
     public CircleArray(int arrMaxSize) {
+        //构建容器
         maxSize = arrMaxSize;
         arr = new int[maxSize];
     }

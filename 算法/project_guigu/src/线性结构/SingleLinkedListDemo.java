@@ -3,6 +3,7 @@ package 线性结构;
 import java.util.Stack;
 
 /**
+ * 单链表
  * @author John.Cena
  * @date 2023/5/5 9:55
  * @Description:
@@ -128,49 +129,58 @@ public class SingleLinkedListDemo {
     }
 }
 
-//定义 SingleLinkedList 管理我们的英雄
+//单链表
 class SingleLinkedList {
     //先初始化一个头节点, 头节点不要动, 不存放具体的数据
     private HeroNode head = new HeroNode(0, "", "");
-    //添加节点到单向链表
-    //思路，当不考虑编号顺序时
+
+    //不考虑节点顺序，添加节点到单向链表
     //1. 找到当前链表的最后节点
     //2. 将最后这个节点的 next 指向 新的节点
     public void add(HeroNode heroNode) {
         //因为 head 节点不能动，因此我们需要一个辅助遍历 temp
         HeroNode temp = head;
+
         //遍历链表，找到最后
         while(true) {
             //找到链表的最后
-            if(temp.next == null) {//
+            if(temp.next == null) {
                 break;
             }
             //如果没有找到最后, 将将 temp 后移
             temp = temp.next;
         }
+
         //当退出 while 循环时，temp 就指向了链表的最后
         //将最后这个节点的 next 指向 新的节点
         temp.next = heroNode;
     }
-    //第二种方式：在添加英雄时，根据排名将英雄插入到指定位置
-    //(如果有这个排名，则添加失败，并给出提示)
+
+    //在添加英雄时，根据排名将英雄插入到指定位置
     public void addByOrder(HeroNode heroNode) {
         //因为头节点不能动，因此我们仍然通过一个辅助指针(变量)来帮助找到添加的位置
         //因为单链表，因为我们找的 temp 是位于 添加位置的前一个节点，否则插入不了
         HeroNode temp = head;
-        boolean flag = false; // flag 标志添加的编号是否存在，默认为 false
+
+        // flag 标志添加的编号是否存在，默认为 false
+        boolean flag = false;
+
         while(true) {
-            if(temp.next == null) {//说明 temp 已经在链表的最后
+            //说明 temp 已经在链表的最后
+            if(temp.next == null) {
                 break; //
             }
-            if(temp.next.no > heroNode.no) { //位置找到，就在 temp 的后面插入
+            //位置找到，就在 temp 的后面插入
+            if(temp.next.no > heroNode.no) {
                 break;
-            } else if (temp.next.no == heroNode.no) {//说明希望添加的 heroNode 的编号已然存在
-                flag = true; //说明编号存在
+            } else if (temp.next.no == heroNode.no) {
+                //说明希望添加的 heroNode 的编号已然存在
+                flag = true;
                 break;
             }
             temp = temp.next; //后移，遍历当前链表
         }
+
         //判断 flag 的值
         if(flag) { //不能添加，说明编号存在
             System.out.printf("准备插入的英雄的编号 %d 已经存在了, 不能加入\n", heroNode.no);
@@ -180,7 +190,7 @@ class SingleLinkedList {
             temp.next = heroNode;
         }
     }
-    //修改节点的信息, 根据 no 编号来修改，即 no 编号不能改. //说明
+    //修改节点的信息, 根据 no 编号来修改，即 no 编号不能改.
     //1. 根据 newHeroNode 的 no 来修改即可
     public void update(HeroNode newHeroNode) {
         //判断是否空
@@ -191,7 +201,8 @@ class SingleLinkedList {
         //找到需要修改的节点, 根据 no 编号
         //定义一个辅助变量
         HeroNode temp = head.next;
-        boolean flag = false; //表示是否找到该节点
+        //表示是否找到该节点
+        boolean flag = false;
         while(true) {
             if (temp == null) {
                 break; //已经遍历完链表
@@ -217,9 +228,12 @@ class SingleLinkedList {
     //2. 说明我们在比较时，是 temp.next.no 和 需要删除的节点的 no 比较
     public void del(int no) {
         HeroNode temp = head;
-        boolean flag = false; // 标志是否找到待删除节点的
+        // 标志是否找到待删除节点的
+        boolean flag = false;
+
         while(true) {
-            if(temp.next == null) { //已经到链表的最后
+            //已经到链表的最后
+            if(temp.next == null) {
                 break;
             }
             if(temp.next.no == no) {
@@ -227,11 +241,12 @@ class SingleLinkedList {
                 flag = true;
                 break;
             }
-            temp = temp.next; //temp 后移，遍历
+            //temp 后移，遍历
+            temp = temp.next;
         }
         //判断 flag
-        if(flag) { //找到
-            //可以删除
+        if(flag) {
+
             temp.next = temp.next.next;
         }else {
             System.out.printf("要删除的 %d 节点不存在\n", no);
@@ -261,11 +276,14 @@ class SingleLinkedList {
 
 //定义 HeroNode ， 每个 HeroNode 对象就是一个节点
 class HeroNode {
+    //数据域
     public int no;
     public String name;
     public String nickname;
-    //指向下一个节点
+
+    //指针域：指向下一个节点
     public HeroNode next;
+
     //构造器
     public HeroNode(int no, String name, String nickname) {
         this.no = no;

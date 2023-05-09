@@ -64,6 +64,7 @@ class DoubleLinkedList {
             temp = temp.next;
         }
     }
+
     // 添加一个节点到双向链表的最后.
     public void add(HeroNode2 heroNode) {
     // 因为 head 节点不能动，因此我们需要一个辅助遍历 temp
@@ -82,6 +83,7 @@ class DoubleLinkedList {
         temp.next = heroNode;
         heroNode.pre = temp;
     }
+
     // 修改一个节点的内容, 可以看到双向链表的节点内容修改和单向链表一样
     // 只是 节点类型改成 HeroNode2
     public void update(HeroNode2 newHeroNode) {
@@ -93,7 +95,9 @@ class DoubleLinkedList {
         // 找到需要修改的节点, 根据 no 编号
         // 定义一个辅助变量
         HeroNode2 temp = head.next;
-        boolean flag = false; // 表示是否找到该节点
+        // 表示是否找到该节点
+        boolean flag = false;
+
         while (true) {
             if (temp == null) {
                 break; // 已经遍历完链表
@@ -113,6 +117,7 @@ class DoubleLinkedList {
             System.out.printf("没有找到 编号 %d 的节点，不能修改\n", newHeroNode.no);
         }
     }
+
     // 从双向链表中删除一个节点
     // 1 对于双向链表，我们可以直接找到要删除的这个节点
     // 2 找到后，自我删除即可
@@ -122,26 +127,26 @@ class DoubleLinkedList {
             System.out.println("链表为空，无法删除");
             return;
         }
-        HeroNode2 temp = head.next; // 辅助变量(指针)
-        boolean flag = false; // 标志是否找到待删除节点的
+        // 辅助变量(指针)
+        HeroNode2 temp = head.next;
+        // 标志是否找到待删除节点的
+        boolean flag = false;
         while (true) {
-            if (temp == null) { // 已经到链表的最后
+            // 已经到链表的最后
+            if (temp == null) {
                 break;
             }
             if (temp.no == no) {
-                // 找到的待删除节点的前一个节点 temp
+                // 找到的待删除节点
                 flag = true;
                 break;
             }
             temp = temp.next; // temp 后移，遍历
         }
         // 判断 flag
-        if (flag) { // 找到
-            // 可以删除
-            // temp.next = temp.next.next;[单向链表]
+        if (flag) {
             temp.pre.next = temp.next;
-            // 这里我们的代码有问题?
-            // 如果是最后一个节点，就不需要执行下面这句话，否则出现空指针
+            //特殊情况：当删除元素为最后一个元素时，temp.next为null
             if (temp.next != null) {
                 temp.next.pre = temp.pre;
             }
@@ -150,13 +155,16 @@ class DoubleLinkedList {
         }
     }
 }
-// 定义 HeroNode2 ， 每个 HeroNode 对象就是一个节点
+
+//定义节点
 class HeroNode2 {
     public int no;
     public String name;
     public String nickname;
-    public HeroNode2 next; // 指向下一个节点, 默认为 null
-    public HeroNode2 pre; // 指向前一个节点, 默认为 null
+    // 指向下一个节点, 默认为 null
+    public HeroNode2 next;
+    // 指向前一个节点, 默认为 null
+    public HeroNode2 pre;
     // 构造器
     public HeroNode2(int no, String name, String nickname) {
         this.no = no;
