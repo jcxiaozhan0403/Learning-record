@@ -3,7 +3,7 @@ package 线性结构;
 /**
  * @author John.Cena
  * @date 2023/5/7 15:24
- * @Description:
+ * @Description: 双向链表
  */
 public class DoubleLinkedListDemo {
     public static void main(String[] args) {

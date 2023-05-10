@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * @author John.Cena
  * @date 2023/5/9 10:38
- * @Description:
+ * @Description: 数组实现栈
  */
 public class ArrayStackDemo {
     public static void main(String[] args) {

@@ -7,10 +7,9 @@ import java.util.Stack;
 import java.util.regex.Pattern;
 
 /**
- * 逆波兰式完整版
  * @author John.Cena
  * @date 2023/5/9 20:08
- * @Description:
+ * @Description: 逆波兰式完整版
  */
 public class ReversePolishMultiCalc {
 

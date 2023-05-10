@@ -3,10 +3,9 @@ package 线性结构;
 import java.util.Scanner;
 
 /**
- * 数组实现环形队列
  * @author John.Cena
  * @date 2023/5/3 22:19
- * @Description:
+ * @Description: 数组实现环形队列
  */
 public class CircleArrayQueueDemo {
     public static void main(String[] args) {

@@ -3,10 +3,9 @@ package 线性结构;
 import java.util.Stack;
 
 /**
- * 单链表
  * @author John.Cena
  * @date 2023/5/5 9:55
- * @Description:
+ * @Description: 单链表
  */
 public class SingleLinkedListDemo {
     public static void main(String[] args) {

@@ -1,10 +1,9 @@
 package 线性结构;
 
 /**
- * 计算器
  * @author John.Cena
  * @date 2023/5/9 18:44
- * @Description:
+ * @Description: 计算器
  */
 public class Calculator {
     public static void main(String[] args) {

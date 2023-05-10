@@ -5,10 +5,9 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * 逆波兰表达式
  * @author John.Cena
  * @date 2023/5/9 19:36
- * @Description:
+ * @Description: 逆波兰表达式
  */
 public class PolandNotation {
     public static void main(String[] args) {
@@ -50,8 +49,6 @@ public class PolandNotation {
 
 		*/
     }
-
-
 
     //即 ArrayList [1,+,(,(,2,+,3,),*,4,),-,5]  =》 ArrayList [1,2,3,+,4,*,+,5,–]
     //方法：将得到的中缀表达式对应的List => 后缀表达式对应的List
@@ -176,7 +173,6 @@ public class PolandNotation {
         //最后留在stack中的数据是运算结果
         return Integer.parseInt(stack.pop());
     }
-
 }
 
 //编写一个类 Operation 可以返回一个运算符 对应的优先级
