@@ -67,12 +67,14 @@ public class MiGong {
      * @return 如果找到通路，就返回true, 否则返回false
      */
     public static boolean setWay(int[][] map, int i, int j) {
-        if(map[6][5] == 2) { // 通路已经找到ok
+        // 到达终点
+        if(map[6][5] == 2) {
             return true;
         } else {
             if(map[i][j] == 0) { //如果当前这个点还没有走过
                 //按照策略 下->右->上->左  走
-                map[i][j] = 2; // 假定该点是可以走通.
+                //假定该点是可以走通.
+                map[i][j] = 2;
                 if(setWay(map, i+1, j)) {//向下走
                     return true;
                 } else if (setWay(map, i, j+1)) { //向右走

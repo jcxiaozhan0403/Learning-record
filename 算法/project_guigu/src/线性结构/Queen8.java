@@ -10,7 +10,9 @@ public class Queen8 {
     int max = 8;
     //定义数组array, 保存皇后放置位置的结果,比如 arr = {0 , 4, 7, 5, 2, 6, 1, 3}
     int[] array = new int[max];
+    //统计正确解个数
     static int count = 0;
+    //统计判断次数(排列组合次数)
     static int judgeCount = 0;
     public static void main(String[] args) {
         //测试一把 ， 8皇后是否正确
@@ -21,10 +23,10 @@ public class Queen8 {
 
     }
 
-    //编写一个方法，放置第n个皇后
+    //放置第n个皇后
     //特别注意： check 是 每一次递归时，进入到check中都有  for(int i = 0; i < max; i++)，因此会有回溯
     private void check(int n) {
-        if(n == max) {  //n = 8 , 其实8个皇后就既然放好
+        if(n == max) {  //n = 8 , 表示已经放置了8个皇后了
             print();
             return;
         }
@@ -42,9 +44,8 @@ public class Queen8 {
         }
     }
 
-    //查看当我们放置第n个皇后, 就去检测该皇后是否和前面已经摆放的皇后冲突
     /**
-     *
+     * 查看当我们放置第n个皇后, 就去检测该皇后是否和前面已经摆放的皇后冲突
      * @param n 表示第n个皇后
      * @return
      */
