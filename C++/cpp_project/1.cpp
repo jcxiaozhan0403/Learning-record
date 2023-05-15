@@ -5,6 +5,7 @@ const int MaxSize = 100; //100只是示例性的数据，根据实际问题具体定义
 template <class DataType> //定义模板类SeqList
 class SeqList
 {
+//统一声明函数 
 public:
     SeqList( );  //无参构造函数，建立空的顺序表
     SeqList(DataType a[ ], int n); //有参构造函数，建立长度为n的顺序表
@@ -15,12 +16,13 @@ public:
     int Locate(DataType x ); //按值查找，查找值为x的元素序号
     void Insert(int i, DataType x);//插入操作，在第i个位置插入值为x的元素
     DataType Delete(int i); //删除操作，删除第i个元素
-   void PrintList( ); //遍历操作，按序号依次输出各元素
+   	void PrintList( ); //遍历操作，按序号依次输出各元素
 private:
     DataType data[MaxSize]; //存放数据元素的数组
     int length; //线性表的长度
 };
 
+//定义函数 
 template<class DataType>
 SeqList<DataType> :: ~SeqList()
 {
@@ -119,7 +121,7 @@ int main() {
     for(int i=0; i<n; i++) {
         cin >> data[i];
     }
-    
+    //实例化一个模板类 
     SeqList<int> L(data, n);
     
     cout << "当前线性表的数据为：";
