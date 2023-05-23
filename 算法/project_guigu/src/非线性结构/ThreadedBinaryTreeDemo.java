@@ -85,7 +85,6 @@ class ThreadedBinaryTree {
             }
             //替换这个遍历的结点
             node = node.getRight();
-
         }
     }
 
@@ -208,8 +207,6 @@ class HeroNode2 {
     //2. 如果rightType == 0 表示指向是右子树, 如果 1表示指向后继结点
     private int leftType;
     private int rightType;
-
-
 
     public int getLeftType() {
         return leftType;
