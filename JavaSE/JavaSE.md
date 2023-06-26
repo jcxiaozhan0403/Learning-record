@@ -3969,7 +3969,7 @@ public class Test {
 
 ## 线程状态
 
-<img src="https://img.jcxiaozhan.top/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%80.jpg">
+<img src="https://img.jcxiaozhan.top/20211003/1.jpg">
 
 线程中断后，进入死亡状态，就不可再次启动了
 
@@ -4241,7 +4241,7 @@ Lock与Synchonized的区别：
 
 ## 死锁
 
-<img src="https://img.jcxiaozhan.top/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BA%8C.jpg">
+<img src="https://img.jcxiaozhan.top/20211003/2.jpg">
 
 简单死锁现象
 ```java
@@ -4356,7 +4356,7 @@ class Gun {
 
 ## 线程通信——生成者与消费者关系问题
 
-<img src="https://img.jcxiaozhan.top/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%89.jpg">
+<img src="https://img.jcxiaozhan.top/20211003/3.jpg">
 
 ### 管程法
 利用一个缓冲区来解决问题
