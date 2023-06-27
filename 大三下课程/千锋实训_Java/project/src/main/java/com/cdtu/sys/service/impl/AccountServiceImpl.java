@@ -7,28 +7,38 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * @author John.Cena
- * @date 2023/6/26 18:23
- * @Description:
+ * @Author:千锋强哥
+ * @organization: 千锋教研院
+ * @Version: 1.0
  */
 @Service
-@Transactional  //事务控制
+@Transactional
 public class AccountServiceImpl implements IAccountService {
 
+    /**
+     * 注入的AccountMapper接口的子类代理对象
+     */
     @Autowired
-    private AccountMapper mapper;
+    private AccountMapper accountMapper;
 
+    /**
+     * 转账的测试方法
+     * @param inName
+     * @param outName
+     * @param money
+     * @return
+     */
     @Override
     public int updateTransfer(String inName, String outName, double money) {
-        try{
-            //调用转入
-            mapper.transferIn(inName,money);
-            //调用转出
-            mapper.transferOut(outName,money);
-            return 0;
-        }catch (Exception e){
-            System.out.println(e);
+
+        try {
+            accountMapper.transferIn(inName,money);
+            accountMapper.transferOut(outName,money);
             return 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
         }
+
     }
 }

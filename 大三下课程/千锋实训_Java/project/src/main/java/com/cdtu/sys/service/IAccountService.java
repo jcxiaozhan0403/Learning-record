@@ -1,12 +1,14 @@
 package com.cdtu.sys.service;
 
 /**
- * @author John.Cena
- * @date 2023/6/26 18:23
- * @Description:
+ * @Author:千锋强哥
+ * @organization: 千锋教研院
+ * @Version: 1.0
  */
 public interface IAccountService {
 
-    //转账
-    public int updateTransfer(String inName, String outName , double money);
+    /**
+     * 创建一个转账方法  update*开头的方法
+     */
+    public int  updateTransfer(String inName ,String outName ,double money);
 }
