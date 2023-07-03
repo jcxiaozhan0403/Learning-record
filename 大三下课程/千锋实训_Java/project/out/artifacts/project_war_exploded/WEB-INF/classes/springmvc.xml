@@ -22,4 +22,14 @@
         前端控制器会拦截资源，但是不拦截静态的资源，只拦截action请求到前端控制器去处理. 配置该选项是放行静态资源
 -->
     <mvc:default-servlet-handler />
+
+    <!--配置springMVC的上传组件-->
+    <!--配置文件上传-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--设置文件名的编码-->
+        <property name="defaultEncoding" value="utf-8"/>
+        <!--配置上传文件的支持-->
+        <property name="maxUploadSize" value="20971520"/>
+    </bean>
 </beans>

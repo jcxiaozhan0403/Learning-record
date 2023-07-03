@@ -76,14 +76,14 @@
 					</a>
 					<dl class="layui-nav-child">
 						<dd>
-							<a data-url="../bus/toCustomerManager.action">
+							<a data-url="../customer/toCustomerManager.action">
 								<i class="layui-icon" data-icon="">
 									<cite>客户管理</cite>
 								</i>
 							</a>
 						</dd>
 						<dd>
-							<a data-url="../bus/toCarManager.action">
+							<a data-url="../car/toCarManager.action">
 								<i class="layui-icon" data-icon="">
 									<cite>车辆管理</cite>
 								</i>

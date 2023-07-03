@@ -309,6 +309,7 @@
                     param +="&ids="+item.identity;
                 }
             })
+            //param = ids=111&ids=222&ids=333
             //是否确认删除
             layer.confirm("真的要删除这些数据?",function (index) {
                 //发送ajax请求
@@ -319,7 +320,6 @@
                 })
             })
         }
-
     })
 </script>
 </body>

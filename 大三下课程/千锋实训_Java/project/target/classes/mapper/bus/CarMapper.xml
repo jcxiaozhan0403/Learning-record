@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdtu.bus.mapper.CarMapper">
+
+    <resultMap id="CarResultBase" type="com.cdtu.bus.domain.Car">
+        <id column="carnumber" jdbcType="VARCHAR" property="carnumber"></id>
+        <result column="color" jdbcType="VARCHAR" property="color" />
+        <result column="price" jdbcType="DOUBLE" property="price" />
+        <result column="rentprice" jdbcType="DOUBLE" property="rentprice" />
+        <result column="deposit" jdbcType="DOUBLE" property="deposit" />
+        <result column="isrenting" jdbcType="INTEGER" property="isrenting" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="carimg" jdbcType="VARCHAR" property="carimg" />
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    </resultMap>
+
+    <sql id="car_cloum_list" >
+        carnumber,cartype,color,price,rentprice,deposit,isrenting,description,carimg,createtime
+    </sql>
+
+  <!--用户登录查询-->
+    <select id="queryAllCar" resultMap="CarResultBase">
+        select <include refid="car_cloum_list"/> from bus_car
+        <where>
+            <if test="carnumber !=null and carnumber !='' ">
+                and carnumber like concat("%",#{carnumber},"%")
+            </if>
+            <if test="cartype !=null and cartype !='' ">
+                and cartype like concat("%",#{cartype},"%")
+            </if>
+            <if test="color !=null and color !='' ">
+                and color like concat("%",#{color},"%")
+            </if>
+            <if test="description !=null and description !='' ">
+                and description like concat("%",#{description},"%")
+            </if>
+            <if test="isrenting !=null ">
+                and isrenting = #{isrenting}
+            </if>
+        </where>
+          order by createtime   desc
+
+    </select>
+
+    <!--添加车辆信息-->
+   <insert id="addCar">
+
+        insert into bus_car
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="carnumber !=null">
+                carnumber,
+            </if>
+            <if test="cartype !=null">
+                cartype,
+            </if>
+            <if test="color !=null">
+                color,
+            </if>
+            <if test="price !=null">
+                price,
+            </if>
+            <if test="rentprice !=null">
+                rentprice,
+            </if>
+            <if test="deposit !=null">
+                deposit,
+            </if>
+            <if test="isrenting !=null">
+                isrenting,
+            </if>
+            <if test="description !=null">
+                description,
+            </if>
+            <if test="carimg !=null">
+                carimg,
+            </if>
+            <if test="createtime !=null">
+                createtime,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="carnumber !=null">
+                #{carnumber},
+            </if>
+            <if test="cartype !=null">
+                #{cartype},
+            </if>
+            <if test="color !=null">
+                #{color},
+            </if>
+            <if test="price !=null">
+                #{price},
+            </if>
+            <if test="rentprice !=null">
+                #{rentprice},
+            </if>
+            <if test="deposit !=null">
+                #{deposit},
+            </if>
+            <if test="isrenting !=null">
+                #{isrenting},
+            </if>
+            <if test="description !=null">
+                #{description},
+            </if>
+            <if test="carimg !=null">
+                #{carimg},
+            </if>
+            <if test="createtime !=null">
+                #{createtime},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from bus_car
+        where carnumber = #{carnumber,jdbcType=VARCHAR}
+    </delete>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String"
+            resultMap="CarResultBase">
+        select
+        <include refid="car_cloum_list" />
+        from bus_car
+        where carnumber = #{carnumber,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.cdtu.bus.domain.Car">
+        update bus_car
+        <set>
+            <if test="cartype != null">
+                cartype = #{cartype,jdbcType=VARCHAR},
+            </if>
+            <if test="color != null">
+                color = #{color,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=DOUBLE},
+            </if>
+            <if test="rentprice != null">
+                rentprice = #{rentprice,jdbcType=DOUBLE},
+            </if>
+            <if test="deposit != null">
+                deposit = #{deposit,jdbcType=DOUBLE},
+            </if>
+            <if test="isrenting != null">
+                isrenting = #{isrenting,jdbcType=INTEGER},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="carimg != null">
+                carimg = #{carimg,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where carnumber = #{carnumber,jdbcType=VARCHAR}
+    </update>
+
+    <!--根据身份证删除客户信息-->
+ <!--   <delete id="deleteCustomerById">
+        delete from bus_customer where identity = #{identity}
+    </delete>-->
+
+
+    <!--更新客户信息-->
+  <!--  <update id="updateCustomer">
+        update bus_customer
+        <set>
+            <if test="custname !=null">
+                custname = #{custname},
+            </if>
+
+            <if test="address !=null">
+                address = #{address},
+            </if>
+            <if test="phone !=null">
+                phone= #{phone},
+            </if>
+            <if test="career !=null">
+                career= #{career},
+            </if>
+            <if test="sex !=null">
+                sex= #{sex},
+            </if>
+        </set>
+            where identity = #{identity}
+    </update>
+-->
+</mapper>

@@ -219,7 +219,7 @@
                 {field:'color',title:'车辆颜色',align:'center',with:'90'},
                 {field:'price',title:'车辆价格',align:'center',with:'90'},
                 {field:'rentprice',title:'出租价格',align:'center',with:'90'},
-                {field:'deposit',title:'出租押金',align:'center',with:'90',templet: function (d) {
+                {field:'isrenting',title:'是否出租',align:'center',with:'90',templet: function (d) {
                     return d.isrenting == '1'? '<font color=blue>已出租</font>' : '<font color=red>未出租</font>'
                     }},
                 {field:'description',title:'车辆描述',align:'center',with:'150'},
@@ -255,25 +255,29 @@
         //编写行工具栏监听
         table.on('tool(carTable)',function (obj) {
             //获取当前行数数据
-           var data =  obj.data;
-           console.log(data)
-           if(obj.event == 'viewImage'){
-               showCarImage(data);
-           }else if(obj.event == 'del'){
-               layer.confirm("是否确认删除【"+data.carnumber+"】这个车辆？",function (index) {
+            var data =  obj.data;
+            console.log(data)
+            console.log("=========================")
+            console.log($)
+            console.log("=========================")
+            if(obj.event == 'viewImage'){
+                showCarImage(data);
+            }else if(obj.event == 'del'){
+                layer.confirm("是否确认删除【"+data.carnumber+"】这个车辆？",function (index) {
                     //发送ajax删除
-                   $.get("${pageContext.request.contextPath}/car/deleteCar.action",{"carnumber":data.carnumber},function (result) {
+                    $.get("${pageContext.request.contextPath}/car/deleteCar.action",{"carnumber":data.carnumber},function (result) {
+                        console.log($)
+                        console.log("=========================")
+                        console.log(result)
                         layer.msg(result.msg);
                         //刷新表格数据
-                       tableIns.reload();
-                   })
-               })
-           }else if(obj.event == 'edit'){
-               openUpdateCar(data);
-           }
+                        tableIns.reload();
+                    })
+                })
+            }
         })
-        
-        
+
+
 
 
         //查看大图的方法
@@ -376,14 +380,15 @@
                 $('#carimgDiv').css("background","#fff");
             }
         })
-        
-        
+
+
         //批量删除
         function deleteBatch() {
             //得到选中的数据行
            var checkStatus =  table.checkStatus('carTable');
            var data = checkStatus.data;
            var param = "";
+           // param="ids=43321&ids=12341&ids=123412"
            $.each(data,function (i,item) {
                 if(i == 0){
                     param += "ids="+item.carnumber;
