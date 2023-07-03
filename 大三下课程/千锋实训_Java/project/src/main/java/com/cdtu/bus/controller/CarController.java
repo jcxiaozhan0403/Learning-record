@@ -76,15 +76,10 @@ public class CarController {
      */
     @RequestMapping("deleteCar")
     public ResultObj deleteCar(String carnumber){
-        System.out.println("===================进入add函数======================");
         try {
-            System.out.println("===================进入try======================");
-            System.out.println(carnumber);
             carService.deleteCar(carnumber);
-            System.out.println("删除执行完毕");
             return ResultObj.DELETE_SUCCESS;
         } catch (Exception e) {
-            System.out.println("===================进入catch======================");
             e.printStackTrace();
             return ResultObj.DELETE_ERROR;
         }

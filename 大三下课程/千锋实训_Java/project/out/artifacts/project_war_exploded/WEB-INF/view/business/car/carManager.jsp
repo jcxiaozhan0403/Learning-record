@@ -256,18 +256,12 @@
         table.on('tool(carTable)',function (obj) {
             //获取当前行数数据
             var data =  obj.data;
-            console.log(data)
-            console.log("=========================")
-            console.log($)
-            console.log("=========================")
             if(obj.event == 'viewImage'){
                 showCarImage(data);
             }else if(obj.event == 'del'){
                 layer.confirm("是否确认删除【"+data.carnumber+"】这个车辆？",function (index) {
                     //发送ajax删除
                     $.get("${pageContext.request.contextPath}/car/deleteCar.action",{"carnumber":data.carnumber},function (result) {
-                        console.log($)
-                        console.log("=========================")
                         console.log(result)
                         layer.msg(result.msg);
                         //刷新表格数据
