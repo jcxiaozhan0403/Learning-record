@@ -2,7 +2,7 @@
   <div>
     <div>账号切换</div>
     <button @click="admin()" type="default" size="mini">Admin</button>
-    <button @click="wangjingli()" type="default" size="mini">王经理</button>
+    <button @click="lisi()" type="default" size="mini">李四</button>
     <button @click="zhangsan()" type="default" size="mini">张三人事</button>
     <div>当前token：{{ token }}</div>
   </div>
@@ -25,21 +25,21 @@ export default {
   methods: {
     admin() {
       window.localStorage.setItem('token', '');
-      let token = 'eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAKtWKi5NUrJScgwN8dANDXYNUtJRSq0oULIyNLMwsjSxMDG10FEqLU4t8kwBikGYeYm5qSAtKbmZeUq1ADq5KplCAAAA.OQ6eITFWfjCtXmA2Ljb6coCu3Za_Yk_ECNMzY34kMmm-TrwfPMU6lbQxrS7NkzKkHDzwbgd6Xk7sloLMImFP2A'
+      let token = 'eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAKtWKi5NUrJScgwN8dANDXYNUtJRSq0oULIyNLOwNDQ2NjS11FEqLU4t8kwBikGYeYm5qSAtKbmZeUq1AIRCcuVCAAAA.Yx30MFCe5biGlq4JpNVZN2f2Zn1jRnyZjro7VmMn7B7XHYZzJYaU1fwvjB-IyI8CI0V3gMYM6fbueVye1PxNOA'
       window.localStorage.setItem('token', token);
       this.token = window.localStorage.getItem('token')
     },
 
-    wangjingli() {
+    lisi() {
       window.localStorage.setItem('token', '');
-      let token = 'eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAKtWKi5NUrJScgwN8dANDXYNUtJRSq0oULIyNLMwsjSxMDMx0VEqLU4t8kxRsjKCMPMSc1OBWsIT89K9MvPSfTKVagHFFo2zRwAAAA.AKvaV1FVs5KnR5yGRQcFNtXbSxBPo0WvQtH-kJkeWnWhHqmWcOmoz4ORRzj0yAm5IEo-PTIYIMYp-imf9SJUTQ'
+      let token = 'OiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAKtWKi5NUrJScgwN8dANDXYNUtJRSq0oULIyNLOwMDM3MrS00FEqLU4t8kxRsjKBMPMSc1OBWnwygzOVagFVzd-cQQAAAA.O7HFhZ2h4q1ZtRzxWoK9HEqqtVxPRynHQ4gmb1mq1NWt4T39l5iCHffNe32tKAIt6kSTNi1JxZKYFIM6d6ecOg'
       window.localStorage.setItem('token', token);
       this.token = window.localStorage.getItem('token')
     },
 
     zhangsan() {
       window.localStorage.setItem('token', '');
-      let token = 'eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAKtWKi5NUrJScgwN8dANDXYNUtJRSq0oULIyNLMwsjSxMDUx01EqLU4t8kxRsjKHMPMSc1OBWqIyEvPSgxPzlGoBl1BhAkUAAAA.ZD5AvYsooadKtJ1eLhLQ55wkRGvkJmwo1g5iWso61x198d9Psx3mtXtS8PXIRPJzFYwtylOdmZMG01o47zS-TA'
+      let token = 'eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAKtWKi5NUrJScgwN8dANDXYNUtJRSq0oULIyNLOwNDQ2tTA20FEqLU4t8kxRsjKHMPMSc1OBWqIyEvPSgxPzlGoBI4HWR0UAAAA.8YvvNSexpWp9HUob9DDeaRdO-QfwMj5nS1HYB8dcAEmEE953vb7AmJAJVZtQ9WV86a_LT0QjdmoJa93nSHrJ-Q'
       window.localStorage.setItem('token', token);
       this.token = window.localStorage.getItem('token')
     },

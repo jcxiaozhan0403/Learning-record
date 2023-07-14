@@ -4,7 +4,7 @@
 <html class="loginHtml">
 <head>
 	<meta charset="utf-8">
-	<title>锋迷汽车管理</title>
+	<title>锋迷汽车管理系统</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -17,13 +17,13 @@
 </head>
 <body class="loginBody">
 <br><br>
-<h1 align="center"  style="color:LightSteelBlue ; font-size: 50px">锋迷汽车管理</h1>
+<h1 align="center"  style="color:LightSteelBlue ; font-size: 50px">锋迷汽车管理系统</h1>
 	<br><br>
 	<form class="layui-form" id="loginFrm" method="post" action="${pageContext.request.contextPath}/login/login.action">
 		<div class="login_face"><img src="${pageContext.request.contextPath}/resources/images/face.jpg" class="userAvatar"></div>
 		<div class="layui-form-item input-item">
 			<label for="loginname">用户名</label>
-			<input type="text" placeholder="请输入用户名" autocomplete="off" name="loginname" id="loginname" class="layui-input" lay-verify="required" value="lisi">
+			<input type="text" placeholder="请输入用户名" autocomplete="off" name="loginname" id="loginname" class="layui-input" lay-verify="required" value="qianfeng">
 		</div>
 		<div class="layui-form-item input-item">
 			<label for="pwd">密码</label>
@@ -47,22 +47,19 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/layui/layui.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cache.js"></script>
 	<script type="text/javascript">
-		//1.使用layui的内置模块
-		layui.use(['form','layer','jquery'],function () {
-			//2.初始化模块
+		layui.use(['layer','form','jquery'],function (){
 			var form = layui.form,
-			layer = parent.layer,
-			$ = layui.jquery;
+				layer = parent.layer === undefined ? layui.layer : top.layer,
+				$ = layui.jquery;
 
-			//3.登录按钮
-			form.on("submit(login)",function (data) {
-				//3.1 登录中的状态
-				$(this).text("登录中..").attr("disabled","disabled").addClass("layui-disabled");
-				setTimeout(function () {
-					//3.2表单提交
+			//登录按钮提交表单
+			form.on("submit(login)",function (data){
+				$(this).text("登录中...").attr("disabled","disabled").addClass("layui-disabled");
+				//设置提交
+				setTimeout(function (){
 					$("#loginFrm").submit();
-				},1000)
-				//3.3 阻止默认提交方式
+				},1000);
+				//阻止默认的提交方式
 				return false;
 			})
 
@@ -82,6 +79,7 @@
 					$(this).parent().removeClass("layui-input-active");
 				}
 			})
+
 		})
 
 	</script>

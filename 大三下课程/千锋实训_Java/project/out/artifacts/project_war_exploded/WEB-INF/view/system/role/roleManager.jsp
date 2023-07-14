@@ -140,15 +140,15 @@
             page: true, //启动分页
             cols: [[
                 {type: 'checkbox', fixed: 'left'},
-                {field: 'roleid', title: '角色id', align: 'center', width: '120'},
-                {field: 'rolename', title: '角色名称', align: 'center', width: '240'},
-                {field: 'roledesc', title: '角色描述', align: 'center', width: '260'},
+                {field: 'roleid', title: 'ID', align: 'center'},
+                {field: 'rolename', title: '角色名称', align: 'center'},
+                {field: 'roledesc', title: '角色备注', align: 'center'},
                 {
-                    field: 'available', title: '是否可用', align: 'center', width: '220', templet: function (d) {
-                        return d.available == '1' ? '<font color="blue">可用</font>' : '<font color="red">不可用</font>'
+                    field: 'available', title: '是否可用', align: 'center', templet: function (d) {
+                        return d.available == '1' ? '<font color=blue>可用</font>' : '<font color=red>不可用</font>'
                     }
                 },
-                {fixed: 'right', title: '操作', toolbar: '#roleBar', align: 'center', width: '250'}
+                {fixed: 'right', title: '操作', toolbar: '#roleBar', align: 'center'}
             ]]
         });
 
@@ -163,7 +163,7 @@
         })
 
         //监听头部工具栏
-        table.on("toolbar(roleTable)",function (obj) {
+        table.on("toolbar(roleTable)", function (obj) {
             switch (obj.event) {
                 case 'add':
                     openAddRole();
@@ -174,28 +174,53 @@
             }
         })
 
-        var mainIndex ;
         var url;
+        var mainIndex;
+
         //打开添加页面
-        function openAddRole(){
+        function openAddRole() {
             mainIndex = layer.open({
                 type: 1,
-                title: '添加角色',
+                title: "添加角色",
                 content: $("#saveOrUpdateDiv"),
-                area: ['600px','300px'],
+                area: ['600px', '350px'],
                 success: function (index) {
                     //清空表单数据
                     $("#dataFrm")[0].reset();
                     url = "${pageContext.request.contextPath}/role/addRole.action"
+
                 }
             })
         }
 
+        //批量删除角色
+        function deleteBatch() {
+            //得到我们选中的行
+            var checkStatus = table.checkStatus('roleTable');
+            var data = checkStatus.data;
+            var params = "";
+            $.each(data, function (i, item) {
+                if (i == 0) {
+                    params += "ids=" + item.roleid;
+                } else {
+                    params += "&ids=" + item.roleid;
+                }
+            });
+            layer.confirm("您真的确认删除这些角色吗?", function (index) {
+                $.get("${pageContext.request.contextPath}/role/deleteBatchRole.action", params, function (res) {
+                    layer.msg(res.msg);
+                    //刷新表格
+                    tableIns.reload();
+                })
+            })
+
+        }
+
         //保存
-        form.on("submit(doSubmit)",function (obj) {
-            //序列化表格数据
+        form.on("submit(doSubmit)", function (obj) {
+            //序列化表单数据
             var param = $("#dataFrm").serialize();
-            $.get(url,param,function (obj) {
+            $.get(url, param, function (obj) {
                 layer.msg(obj.msg);
                 //关闭弹出层
                 layer.close(mainIndex);
@@ -204,105 +229,110 @@
             })
         })
 
+        //初始化添加和修改页面的下拉树
+        /*                var menuTree = dtree.render({
+                                elem: "#menuTree",
+                                dataStyle: "layuiStyle", //使用layui风格展示数据
+                                response:{message:"msg",statusCode:0}, //修改response中返回数据的定义
+                                dataFormat: "list", //配置data的风格为list
+                                url: "
+        ${pageContext.request.contextPath}/menu/loadMenuManagerLeftTreeJson.action?spread=1",
+                        icon:"2",
+                        accordion:true
+                })*/
+
+        //点击下拉可以加载树
+        /* $("#pid_div").on("click",function() {
+                 $(this).toggleClass("layui-form-selected");
+                 $("#menuSelectDiv").toggleClass("layui-show layui-anim layui-anim-upbit");
+         })
+
+         dtree.on("node(menuTree)",function(obj) {
+                 $("#pid_str").val(obj.param.context);
+                 $("#pid").val(obj.param.nodeId);
+                 $("#pid_div").toggleClass("layui-form-selected");
+                 $("#menuSelectDiv").toggleClass("layui-show layui-anim layui-anim-upbit");
+         })*/
+
         //监听行工具栏
-        table.on('tool(roleTable)',function (obj) {
+        table.on("tool(roleTable)", function (obj) {
             //获取当前行数据
             var data = obj.data;
             var layEvent = obj.event;
-            if(layEvent == 'edit'){
-                openUpdateRole(data);
-            }else if(layEvent == 'del'){
-                layer.confirm("真的确认删除["+data.rolename+"]这个角色吗?",function (index) {
-                    $.get("${pageContext.request.contextPath}/role/deleteRole.action",{roleid:data.roleid},function (result) {
-                        layer.msg(result.msg);
-                        //刷新数据表格
+            if (layEvent == 'del') {
+                layer.confirm("您真的确定删除[" + data.rolename + "]这个角色吗?", function (index) {
+                    $.get("${pageContext.request.contextPath}/role/deleteRole.action", {roleid: data.roleid}, function (res) {
+                        layer.msg(res.msg);
+                        //刷新表格
                         tableIns.reload();
                     })
                 })
-            }else if(layEvent == 'selectRoleMenu'){
+            } else if (layEvent == 'edit') {
+                openUpdateRole(data);
+            } else if (layEvent == 'selectRoleMenu') { //分配权限
                 openselectRoleMenu(data);
             }
         })
 
-
-        //打开修改页面
-        function openUpdateRole(data){
+        function openUpdateRole(data) {
             mainIndex = layer.open({
                 type: 1,
-                title: '修改角色',
+                title: "修改角色",
                 content: $("#saveOrUpdateDiv"),
-                area: ['600px','300px'],
+                area: ['600px', '350px'],
                 success: function (index) {
-                    //回显数据
-                    form.val("dataFrm",data);
+                    form.val("dataFrm", data);//回显
+                    $("menuSelectDiv").removeClass("layui-show");
                     url = "${pageContext.request.contextPath}/role/updateRole.action"
                 }
             })
         }
 
-        //批量删除
-        function deleteBatch(){
-            //得到选中的数据
-            var checkStatus = table.checkStatus("roleTable");
-            var data = checkStatus.data;
-            var param = "";
-            //循环拼接id
-            $.each(data,function (i,item) {
-                if(i==0){
-                    param +="ids="+item.roleid;
-                }else{
-                    param +="&ids="+item.roleid;
-                }
-            });
-            layer.confirm("真的要删除这些角色吗?",function (index) {
-                //发送ajax请求
-                $.get("${pageContext.request.contextPath}/role/deleteBatchRole.action",param,function (result) {
-                    layer.msg(result.msg);
-                    //刷新数据表格
-                    tableIns.reload();
-                })
-            })
-        }
-
-        //打开分配菜单弹出层
+        //打开分配菜单的弹出层
         function openselectRoleMenu(data) {
             var menuTree;
             mainIndex = layer.open({
-                type:1,
-                title:'分配【'+data.rolename+"】的角色",
-                content:$("#selectRoleMenu"),
-                area:['400px','500px'],
-                btnAlign:'c',
-                btn:['<div class="layui-icon layui-icon-release">确认分配</div>','<div class="layui-icon layui-icon-close">取消分配</div>'],
-                yes:function(index,obj){
-                    //拼接参数:  roleid 和多个mid
+                type: 1,
+                tilte: '分配[' + data.rolename + "]的角色",
+                content: $("#selectRoleMenu"),
+                area: ['400px', '500px'],
+                //添加按钮设定按钮的位置
+                btnAlign: 'c',
+                btn: ['<div class="layui-icon layui-icon-release">确认分配</div>', '<div class="layui-icon layui-icon-close">取消分配</div>'],
+                yes: function (index, layero) {
                     var nodes = dtree.getCheckbarNodesParam("menuTree");
                     var roleid = data.roleid;
-                    var param = "roleid="+roleid;
-                    $.each(nodes,function (i,item) {
-                        param +="&ids="+item.nodeId;
+                    //拼接参数
+                    var params = "roleid=" + roleid;
+                    //循环拼接菜单的id
+                    $.each(nodes, function (i, item) {
+                        params += "&ids=" + item.nodeId;
                     })
-                    //发送ajajx请求
-                    $.get("${pageContext.request.contextPath}/role/saveRoleMenu.action",param,function (result) {
-                        layer.msg(result.msg);
+                    //保存角色和菜单的关系
+                    $.get("${pageContext.request.contextPath}/role/saveRoleMenu.action", params, function (obj) {
+                        layer.msg(obj.msg);
+                        //关闭弹出层
                         layer.close(mainIndex);
-                    });
+                    })
                 },
-                success:function (index) {
+                success: function (index) {
                     //初始化树
                     menuTree = dtree.render({
                         elem: "#menuTree",
-                        dataStyle: 'layuiStyle',
-                        response:{message:'msg',statusCode:0},
-                        dataFormat:"list",
-                        checkbar:true, //复选框
-                        checkbarData:"choose",
-                        url:"${pageContext.request.contextPath}/role/initRoleMenuTreeJson.action?roleid="+data.roleid
-                    });
+                        dataStyle: "layuiStyle", //使用layui风格的数据格式
+                        response: {message: "msg", statusCode: 0},
+                        dataFormat: "list",
+                        checkbar: true,
+                        checkbarData: "choose",
+                        url: "${pageContext.request.contextPath}/role/initRoleMenuTreeJson.action?roleid=" + data.roleid
+                    })
                 }
             })
         }
+
     })
+
+
 </script>
 </body>
 </html>

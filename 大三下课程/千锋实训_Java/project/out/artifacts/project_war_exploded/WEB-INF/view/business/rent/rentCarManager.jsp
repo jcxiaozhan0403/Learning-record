@@ -131,132 +131,133 @@
 </div>
 
 <script src="${pageContext.request.contextPath}/resources/layui/layui.js"></script>
-<script src="${pageContext.request.contextPath}/resources/layui/layui.all.js"></script>
 <script type="text/javascript">
-    var tableIns;
-    layui.use(['jquery', 'layer', 'form', 'table', 'laydate'], function () {
-        var $ = layui.jquery,
-            layer = layui.layer,
-            form = layui.form,
-            table = layui.table,
-            laydate = layui.laydate;
+    layui.use(['jquery','layer','form','table','laydate'],function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+        var table = layui.table;
+        var laydate = layui.laydate;
 
-        //设置日期的插件
+        //渲染日期表格
         laydate.render({
-            elem:'#begindate',
-            type:'datetime'
+            elem: '#begindate',
+            type: 'datetime'
         })
 
         laydate.render({
-            elem:'#returndate',
-            type:'datetime'
+            elem: '#returndate',
+            type: 'datetime'
         })
 
-        //模糊查询
-        $("#doSearch").click(function () {
-            //获取用户输入的身份证号码
-            var param = $("#searchFrm").serialize();
-            $.get("${pageContext.request.contextPath}/rent/checkCustomerExist.action",param,function (obj) {
-                if(obj.code == 0 ){ //客户存在
-                    //初始化数据
-                    initCarData(); //初始化未出租的汽车数据
-                    //展示数据,隐藏的表格数据显现出来
+        //初始化数据表格
+        var tableIns;
+        function initCarData(){
+            tableIns = table.render({
+                elem: '#carTable' , //渲染的表格对象
+                url: '${pageContext.request.contextPath}/car/loadAllCar.action', //请求数据接口的地址
+                title:'车辆的数据表',
+                height: 'full-150',
+                page: true , //开启分页
+                cols: [[
+                    {field: 'carnumber',title:'车牌号',align:'center',width:'95'},
+                    {field: 'cartype',title:'车辆类型',align:'center',width:'90'},
+                    {field: 'color',title:'车辆颜色',align:'center',width:'90'},
+                    {field: 'price',title:'车辆价格',align:'center',width:'90'},
+                    {field: 'rentprice',title:'出租价格',align:'center',width:'90'},
+                    {field: 'deposit',title:'出租押金',align:'center',width:'90'},
+                    {field: 'isrenting',title:'是否出租',align:'center',width:'90' ,templet: function (d){
+                            return d.isrenting == '1' ? '<font color=blue>已出租</font>' : '<font color=red>未出租</font>'
+                        }},
+                    {field: 'description',title:'车辆描述',align:'center',width:'150'},
+                    {field: 'carimg',title:'缩略图',align:'center',width:'90',templet: function (d){
+                            return "<img width=40 height=40 src=${pageContext.request.contextPath}/file/downloadShowFile.action?path="+d.carimg+">"
+                        }},
+                    {field: 'createtime',title:'录入时间',align:'center',width:'160'},
+                    {fixed:'right',title:'操作',toolbar:'#carBar',align:'center',width:'180'}
+                ]]
+            })
+        }
+
+        //根据身份证号码进行查询
+        $("#doSearch").click(function (){
+            //获取表单的数据
+            var params = $("#searchFrm").serialize();
+            //发送请求检查客户是否存在
+            $.post("${pageContext.request.contextPath}/rent/checkCustomerExit.action",params,function (obj){
+                if(obj.code >= 0){  //客户存在，code的值为0
                     $("#content").show();
-                }else {
-                    layer.msg("客户的身份证号码不存在,请更正后查询");
+                    initCarData(); //初始化表格
+                }else{
+                    layer.msg("客户身份证不存在，请更正后再查询");
+                    //隐藏数据表格
                     $("#content").hide();
                 }
             })
         })
 
-        //初始化未出租的车辆
-        function initCarData() {
-            tableIns = table.render({
-                elem : "#carTable",
-                url: "${pageContext.request.contextPath}/car/loadAllCar.action?isrenting=0", //数据接口
-                title: "车辆数据表",
-                height: "full-150",
-                page: true , //启动分页
-                cols:[[  //列表数据
-                    {field:'carnumber',title:'车牌号',align:'center',with:'90'},
-                    {field:'cartype',title:'车辆类型',align:'center',with:'70'},
-                    {field:'color',title:'车辆颜色',align:'center',with:'70'},
-                    {field:'price',title:'车辆价格',align:'center',with:'70'},
-                    {field:'rentprice',title:'出租价格',align:'center',with:'70'},
-                    {field:'deposit',title:'出租押金',align:'center',with:'90'},
-                    {field:'isrenting',title:'出租状态',align:'center',with:'90',templet: function (d) {
-                            return d.isrenting == '1'? '<font color=blue>已出租</font>' : '<font color=red>未出租</font>'
-                        }},
-                    {field:'description',title:'车辆描述',align:'center',with:'150'},
-                    {field:'carimg',title:'缩略图',align:'center',with:'80',templet:function (d) {
-                            return "<img width=40 height=40 src=${pageContext.request.contextPath}/file/downloadShowFile.action?path="+d.carimg+"/>"
-                        }},
-                    {field:'createtime',title:'录入时间',align:'center',with:'170'},
-                    {fixd:'right',title:'操作',toolbar:'#carBar' ,align:'center',with:'220'}
-                ]]
-            })
-        }
-
-
-
-        //编写行工具栏监听
-        table.on('tool(carTable)',function (obj) {
-            //获取当前行数数据
-            var data =  obj.data;
-            console.log(data)
-            if(obj.event == 'viewImage'){
+        //监听行工具栏
+        table.on('tool(carTable)',function (obj){
+            //获取当前的行数据
+            var data = obj.data;
+            //获取事件
+            var layEvent = obj.event;
+            if(layEvent == 'viewImage'){
                 showCarImage(data);
-            }else if (obj.event == 'rentCar'){
+            }else if(layEvent == 'rentCar'){
                 openRentCar(data);
             }
         })
 
-        //查看大图的方法
-        function showCarImage(data){
-            layer.open({
-                type:1,
-                title:"["+data.carnumber+"]的车辆图片",
-                content: $("#viewCarImageDiv"),
-                area: ['1100px','550px'],
-                success:function (index) {
-                    //找到图片,设置src属性
-                    $("#view_carimg").attr("src","${pageContext.request.contextPath}/file/downloadShowFile.action?path="+data.carimg);
-                }
-            })
-        }
-        
-        //打开出租汽车的弹出层
         var mainIndex;
-        function openRentCar(data) {
-            mainIndex = layer.open({
-                type : 1,
-                title: '添加汽车出租',
+        //打开出租车辆的页面
+        function openRentCar(data){
+            mainIndex =  layer.open({
+                type: 1 ,
+                title: "添加汽车出租",
                 content: $("#saveOrUpdateDiv"),
-                area: ['690px','380px'],
-                success: function (index) {
-                    //清空表单数据
+                area: ['700px' , '380px'],
+                success: function (index){
+                   //清空数据表单
                     $("#dataFrm")[0].reset();
+                    //获取参数(前台行数据)
                     var price = data.rentprice;
                     var identity = $("#identity").val();
                     var carnumber = data.carnumber;
+                    //后台获取的数据
                     $.get("${pageContext.request.contextPath}/rent/initRentFrom.action",{
                         identity:identity,
                         price:price,
                         carnumber:carnumber
-                    },function (obj) {
-                        //赋值
+                    },function (obj){
+                        //给form表单设置值
                         form.val("dataFrm",obj);
                     })
                 }
             })
         }
 
-        //添加
-        form.on("submit(doSubmit)",function (obj) {
-            //序列化表单数据
-            var param = $("#dataFrm").serialize();
-            //发送保存的ajax请求
-            $.post("${pageContext.request.contextPath}/rent/saveRent.action",param,function (obj) {
+
+
+        //查看大图的方法
+        function showCarImage(data){
+            layer.open({
+                type: 1 ,
+                title: "["+data.carnumber+"]的车辆图片",
+                content: $("#viewCarImageDiv"),
+                area: ['1100px' , '550px'],
+                success: function (index){
+                    //通过改变img 的src属性让图片展示
+                    $("#view_carimg").attr("src","${pageContext.request.contextPath}/file/downloadShowFile.action?path="+data.carimg);
+                }
+            })
+        }
+
+        //提交表单
+        form.on("submit(doSubmit)",function (obj){
+            //获取表单的数据
+            var params = $("#dataFrm").serialize();
+            $.post("${pageContext.request.contextPath}/rent/saveRent.action",params,function (obj){
                 layer.msg(obj.msg);
                 //关闭弹出层
                 layer.close(mainIndex);
@@ -265,7 +266,6 @@
         })
 
     })
-
 </script>
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.jc.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.jc.common.utils.MD5;
 import com.jc.service.SysUserService;
 import com.jc.common.result.Result;
 import com.jc.model.system.SysUser;
@@ -82,6 +83,7 @@ public class SysUserController {
     @ApiOperation(value = "新增用户")
     @PostMapping("save")
     public Result save(@RequestBody SysUser user) {
+        user.setPassword(MD5.encrypt(user.getPassword()));
         sysUserService.save(user);
         return Result.ok();
     }

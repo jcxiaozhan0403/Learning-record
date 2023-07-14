@@ -31,27 +31,32 @@
     <script type="text/javascript">
         var menuTree;
         layui.extend({
-        dtree: '${pageContext.request.contextPath}/resources/layui_ext/dist/dtree'
-        }).use(['jquery','layer','form','dtree'],function() {
-            var $ = layui.query;
-            var layer = layui.layer;
-            var form = layui.form;
-            var dtree = layui.dtree;
-            menuTree =  dtree.render({
-                elem: "#menuTree",
-                url: "${pageContext.request.contextPath}/menu/loadMenuManagerLeftTreeJson.action?spread=1",
-                dataFormat: "list",  //配置data的风格为list
-                dataStyle:"layuiStyle",
-                response:{message:"msg",statusCode:0}
-        });
+            dtree: '${pageContext.request.contextPath}/resources/layui_ext/dist/dtree'
+        }).use(['jquery','layer','form','dtree'],
+            function (){
+                var $ = layui.jquery;
+                var layer = layui.layer;
+                var form = layui.form;
+                var dtree = layui.dtree;
 
-        // 点击节点名称获取选中节点值
-        dtree.on("node('menuTree')" ,function(obj){
-            //点击数,刷新右侧的表格数据
-            var id = obj.param.nodeId;
-            window.parent.right.reloadTable(id);
-        });
-        })
+
+                 menuTree =  dtree.render({
+                    elem: "#menuTree",
+                     dataStyle: "layuiStyle", //使用layui风格的数据格式
+                     response: {message:"msg",statusCode: 0},
+                     url: "${pageContext.request.contextPath}/menu/loadMenuManagerLeftTreeJson.action?spread=1",
+                     dataFormat: "list",  //配置data的风格为list
+                    //checkbar:true //开启复选框
+                });
+
+                 //监听数的节点点击事件
+                dtree.on("node('menuTree')",function (obj){
+                    //刷新右侧的表格
+                    var id = obj.param.nodeId;
+                    //刷新操作
+                    window.parent.right.reloadTable(id);
+                })
+            })
     </script>
     </body>
     </html>

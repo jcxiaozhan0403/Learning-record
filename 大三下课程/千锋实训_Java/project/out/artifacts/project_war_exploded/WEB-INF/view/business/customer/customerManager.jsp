@@ -159,168 +159,171 @@
 
 <script src="${pageContext.request.contextPath}/resources/layui/layui.js"></script>
 <script type="text/javascript">
-    //1.定义渲染的数据表格
     var tableIns;
-    //2.定义和初始化模块
-    layui.use(['jquery','layer','form','table'],function () {
+    layui.use(['jquery','layer','form','table'],function (){
         var $ = layui.jquery;
         var layer = layui.layer;
         var form = layui.form;
         var table = layui.table;
 
-        //3.渲染数据表格
+        //渲染数据表格
         tableIns = table.render({
-            elem: '#customerTable' , //渲染的目标对象
-            url: '${pageContext.request.contextPath}/customer/loadAllCustomer.action', //数据接口地址
-            title:'客户数据表', //标题
-            height: 'full-210',
-            cellMinWidth : 100 , //设置列最小默认宽度
-            toolbar: '#customerToolBar' , //表格的头部工具栏
-            page: true , //启动分页
-            cols: [[
-                {type:'checkbox',fixed: 'left'},
-                {field:'identity',title:'身份证',align:'center',width:'200'},
-                {field:'custname',title:'客户姓名',align:'center',width:'125'},
-                {field:'address',title:'客户地址',align:'center',width:'125'},
-                {field:'career',title:'客户职业',align:'center',width:'150'},
-                {field:'phone',title:'手机号码',align:'center',width:'150'},
-                {field:'sex',title:'性别',align:'center',width:'200',templet:function (d) {
-                    return d.sex == '1' ? '<font color=blue>男</font>' : '<font color=red>女</font>'
+            elem: "#customerTable" , //渲染的目标表格
+            url: "${pageContext.request.contextPath}/customer/loadAllCustomer.action", //数据接口url
+            titile: "客户数据表" , //数据的标题
+            toolbar: "#customerToolBar" , //表格工具条
+            height: "full-210",
+            cellMinWidth: 100 , //设置列的最小默认宽度
+            page: true , //开启分页
+            cols: [[ //表头设置
+                {type: 'checkbox' , fixed: 'left'},
+
+               /* identity   431341134191311311
+                custname   李四
+                sex   0
+                address  西安
+                phone  13451313113
+                career  CEO
+                createtime  2022-10-07 14:52:24*/
+
+                {field: "identity" ,title:"身份证号码", align:"center" ,width: "200"},
+                {field: "custname" ,title:"客户姓名", align:"center" ,width: "125"},
+                {field: "address" ,title:"客户地址", align:"center" ,width: "125"},
+                {field: "career" ,title:"客户职业", align:"center" ,width: "150"},
+                {field: "phone" ,title:"客户电话", align:"center" ,width: "150"},
+                {field: "sex" ,title:"性别", align:"center" ,width: "120" ,templet: function (d){
+                    return d.sex == '1' ? '<font color=blue>男</font>' : '<font color="red">女</font>'
                     }},
-                {field:'createtime',title:'录入时间',align:'center',width:'200'},
-                {fixed:'right',title:'操作',toolbar:'#customerBar',align:'center',width:'150'}
+                {field: "createtime" ,title:"录入时间", align:"center" ,width: "200"},
+                {fixed: "right", title:"操作", toolbar:"#customerBar",align: "center",width: "150"},
             ]],
-            done:function (data , curr ,count) {
-                //如果不是第一页,当前返回数据为0,我们就让返回上一页
-                if(data.data.length == 0 && curr != 1){
+            done: function (data,curr,count){
+                //不是第一页时,如果当前返回的数据是0,那么就返回上一页
+                if(data.data.length ==0 && curr !=1){
                     tableIns.reload({
                         page:{
-                            curr:curr-1
+                            curr: curr-1
                         }
                     })
                 }
             }
-        });
-
-        //模糊查询
-        $("#doSearch").click(function () {
-            //获取搜索框中的参数
-           var param =  $("#searchFrm").serialize();
-           tableIns.reload({
-               url: "${pageContext.request.contextPath}/customer/loadAllCustomer.action?"+param,
-               page: {curr: 1}
-           })
         })
 
-        //监听头部工具栏，触发事件
-        table.on('toolbar(customerTable)', function(obj){
-            switch(obj.event){
-                case 'add':
-                    //打开一个弹出层
+        //按条件模糊查询
+        //找到查询的按钮,添加一个单击事件
+        $("#doSearch").click(function (){
+            //获取查询表单的的参数
+            var params = $("#searchFrm").serialize();
+            tableIns.reload({
+                url:"${pageContext.request.contextPath}/customer/loadAllCustomer.action?"+params,
+                page:{curr: 1}
+            })
+        })
+
+        //监听头部工具栏事件
+        table.on("toolbar(customerTable)",function (obj){
+            switch (obj.event){
+                case 'add' :
                     openAddCustomer();
                     break;
-                case 'deleteBatch':
+                case 'deleteBatch' :
                     deleteBatch();
                     break;
-            };
-        });
+            }
+        })
 
-        //打开弹出层
-        var url; //定义url一会保存的时候使用
-        var mainIndex; //弹出层对象
+        //打开添加页面
+        var url;
+        var mainIndex;
         function openAddCustomer(){
-            mainIndex = layer.open({
-                type : 1,
-                title: '添加客户',
+            mainIndex =  layer.open({
+                type: 1,
+                title: "添加客户",
                 content: $("#saveOrUpdateDiv"),
-                area: ['700px','320px'],
-                success:function (index) {
+                area: ["700px","320px"],
+                success: function (index){
                     //清空表单数据
                     $("#dataFrm")[0].reset();
-                    url = "${pageContext.request.contextPath}/customer/addCustomer.action";
+                    url="${pageContext.request.contextPath}/customer/addCustomer.action";
                 }
             })
         }
 
-        //保存数据
-        form.on("submit(doSubmit)",function (obj) {
-            //序列化表单数据
-            var param = $("#dataFrm").serialize();
-            //发送ajax请求
-            $.post(url,param,function (obj) {
+
+        //提交保存客户数据
+        form.on("submit(doSubmit)",function (obj){
+            //获取序列化参数
+            var params = $("#dataFrm").serialize();
+            //发送请求请求后台接口
+            $.post(url,params,function (obj){
                 layer.msg(obj.msg);
                 //关闭弹出层
                 layer.close(mainIndex);
-                //刷新数据表格
+                //刷新表格
                 tableIns.reload();
             })
         })
 
-        //监听行工具栏
-        table.on('tool(customerTable)',function (obj) {
-            //console.log(obj)
+        //监听行工具栏事件
+        table.on("tool(customerTable)",function (obj){
             //获取当前行的数据
             var data = obj.data;
-            //获取当前触发的事件
-            var layEvent =  obj.event;
-            if(layEvent == 'del'){
-                layer.confirm('您确认要删除['+data.custname+'这个客户吗',function (index) {
-                    //如果用户点击确认执行该函数
-                    $.get("${pageContext.request.contextPath}/customer/deleteCustomer.action",{identity: data.identity},function (result) {
-                        layer.msg(result.msg);
-                        //刷新数据表格
+            if(obj.event == 'del'){
+                layer.confirm("您确认删除["+data.custname+"]这个用户信息吗?",function (index){
+                    //如果用户点击确认删除
+                    $.get("${pageContext.request.contextPath}/customer/deleteCustomer.action",{identity: data.identity},function (res){
+                        layer.msg(res.msg);
+                        //刷新表格数据
                         tableIns.reload();
                     })
                 })
-            } else if (layEvent == 'edit'){
-                //调用方法打开一个编辑窗口
+            }else if (obj.event == 'edit'){
+                //编写一个方法, 打开一个窗口,回显客户数据
                 openUpdateCustomer(data);
             }
         })
 
-        //打开编辑窗口
         function openUpdateCustomer(data){
             mainIndex = layer.open({
-                type : 1,
-                title: '修改客户',
+                type: 1,
+                title: "修改客户信息",
                 content: $("#saveOrUpdateDiv"),
-                area: ['700px','320px'],
-                success:function (index) {
-                    //要把数据回显到表单中
-                    form.val('dataFrm',data);
-                    //设置url值
+                area: ["700px","320px"],
+                success: function (index){
+                    //打开窗口的时候,数据要放到form表单中, 做回显
+                    form.val("dataFrm",data);
+                    //设置url
                     url = "${pageContext.request.contextPath}/customer/updateCustomer.action";
                 }
             })
         }
 
 
-        //批量删除的方法
+        //批量删除客户信息
         function deleteBatch(){
-            //获取选中行的数据
+            //得到选中的行信息
            var checkStatus =  table.checkStatus("customerTable");
-           var data = checkStatus.data;  //data就是一行数据
-           //循环拼接参数
-            var param = "";
-            $.each(data,function (i,item) {
+           var data = checkStatus.data; //拿到行数据
+           //定义要发送给后台的参数  ids=123123&231231
+           var params = "";
+            $.each(data ,function (i , item){
                 if(i == 0){
-                    param += "ids="+item.identity;
+                    params += "ids="+item.identity;
                 }else{
-                    param +="&ids="+item.identity;
+                    params += "&ids="+item.identity;
                 }
-            })
-            //param = ids=111&ids=222&ids=333
-            //是否确认删除
-            layer.confirm("真的要删除这些数据?",function (index) {
-                //发送ajax请求
-                $.get("${pageContext.request.contextPath}/customer/batchDeleteCustomer.action",param,function (res) {
+            });
+            layer.confirm("您确认要删除这些客户吗?",function (index){
+                //发送异步请求删除
+                $.get("${pageContext.request.contextPath}/customer/deleteBatchCustomer.action",params,function (res){
                     layer.msg(res.msg);
-                    //刷新表格数据
+                    //刷新表格
                     tableIns.reload();
                 })
             })
         }
     })
+
 </script>
 </body>
 </html>

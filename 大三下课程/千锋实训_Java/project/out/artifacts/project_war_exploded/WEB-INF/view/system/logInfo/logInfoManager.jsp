@@ -78,77 +78,76 @@
 
 <script src="${pageContext.request.contextPath}/resources/layui/layui.js"></script>
 <script type="text/javascript">
-
-    //1.声明数据表格对象
-    var tableIns;
-    //2.初始化layui的模块
     layui.use(['jquery','layer','form','table','laydate'],function () {
-        var $ = layui.jquery,
-            layer = layui.layer,
-            form = layui.form,
-            table = layui.table,
-            laydate = layui.laydate;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+        var table = layui.table;
+        var laydate = layui.laydate;
 
+        //查询条件的日期组件
         laydate.render({
-            elem:'#startTime',
-            type:'datetime'
+            elem: '#startTime',
+            type: 'datetime'
         })
 
         laydate.render({
-            elem:'#endTime',
-            type:'datetime'
+            elem: '#endTime',
+            type: 'datetime'
         })
 
-        //3.渲染数据表格
+
+        //初始化数据表格
+        var tableIns;
         tableIns = table.render({
-            elem : "#logInfoTable",
-            url: "${pageContext.request.contextPath}/logInfo/loadAllLogInfo.action", //数据接口
-            title: "日志信息表",
-            toolbar: "#logInfoToolBar" ,
-            height: "full-190",
-            cellMinWidth: 100 ,
-            page: true , //启动分页
-            cols:[[  //列表数据
-                {type:'checkbox',fixed:"left"},
-                {field:'id',title:'ID',align:'center',with:'120'},
-                {field:'loginname',title:'登录名称',align:'center',with:'260'},
-                {field:'loginip',title:'登录ip',align:'center',with:'105'},
-                {field:'logintime',title:'登录时间',align:'center',with:'180'},
-                {fixd:'right',title:'操作',toolbar:'#logInfoBar' ,align:'center',with:'130'}
+            elem: '#logInfoTable' , //渲染的表格对象
+            url: '${pageContext.request.contextPath}/logInfo/loadAllLogInfo.action', //请求数据接口的地址
+            title:'日志管理',
+            toolbar: '#logInfoToolBar',
+            height: 'full-190',
+            page: true , //开启分页
+            cellMinWidth: 100,
+            cols: [[
+                {type: 'checkbox',fixed:'left'},
+                {field: 'id',title:'ID',align:'center'},
+                {field: 'loginname',title:'登录名称',align:'center'},
+                {field: 'loginip',title:'登录IP',align:'center'},
+                {field: 'logintime',title:'登录时间',align:'center'},
+                {fixed:'right',title:'操作',toolbar:'#logInfoBar',align:'center'}
             ]],
-            done:function (data , curr ,count) {
-                //如果不是第一页,当前返回数据为0,我们就让返回上一页
-                if(data.data.length == 0 && curr != 1){
+            done: function (data,curr,count){
+                //如果不是第一页，返回的值为0，返回到上一页
+                if(data.data.length == 0 && crr != 1){
                     tableIns.reload({
-                        page:{
-                            curr:curr-1
+                        page: {
+                            curr : curr - 1
                         }
                     })
                 }
             }
         })
 
-
         //模糊查询
-        $("#doSearch").click(function () {
-            //获取搜索框中的参数
-            var param =  $("#searchFrm").serialize();
+        $("#doSearch").click(function (){
+            //获取表单的数据
+            var params = $("#searchFrm").serialize();
             tableIns.reload({
-                url: "${pageContext.request.contextPath}/logInfo/loadAllLogInfo.action?"+param,
+                url: "${pageContext.request.contextPath}/logInfo/loadAllLogInfo.action?"+params,
                 page: {curr: 1}
             })
         })
 
-
         //监听行工具栏
-        table.on('tool(logInfoTable)',function (obj) {
-            //获取当前行数据
+        table.on('tool(logInfoTable)',function (obj){
+            //获取当前的行数据
             var data = obj.data;
+            //获取事件
             var layEvent = obj.event;
             if(layEvent == 'del'){
-                layer.confirm("真的确认删除["+data.loginname+"]这个日志信息吗?",function (index) {
-                    $.get("${pageContext.request.contextPath}/logInfo/deleteLogInfo.action",{id:data.id},function (result) {
-                        layer.msg(result.msg);
+                layer.confirm("您是否确认删除"+data.loginname+"这个日志信息吗",function (index){
+                    //发送ajax请求
+                    $.get("${pageContext.request.contextPath}/logInfo/deleteLogInfo.action",{id: data.id },function (res){
+                        layer.msg(res.msg);
                         //刷新数据表格
                         tableIns.reload();
                     })
@@ -156,39 +155,36 @@
             }
         })
 
-        //监听头工具栏
-        table.on("toolbar(logInfoTable)",function (obj) {
-            switch (obj.event) {
-                case 'deleteBatch':
-                    deleteBatch();
-                    break;
+
+
+        //监听头部工具栏事件
+        table.on("toolbar(logInfoTable)",function (obj){
+            var layEvent = obj.event;
+            if(layEvent == 'deleteBatch'){
+                //得到选中的行信息
+                var checkStatus =  table.checkStatus("logInfoTable");
+                var data = checkStatus.data; //拿到行数据
+                //定义要发送给后台的参数  ids=123123&231231
+                var params = "";
+                $.each(data ,function (i , item){
+                    if(i == 0){
+                        params += "ids="+item.id;
+                    }else{
+                        params += "&ids="+item.id;
+                    }
+                });
+                layer.confirm("您确认要删除这些日志信息吗?",function (index){
+                    //发送异步请求删除
+                    $.get("${pageContext.request.contextPath}/logInfo/deleteBatchLogInfo.action",params,function (res){
+                        layer.msg(res.msg);
+                        //刷新表格
+                        tableIns.reload();
+                    })
+                })
             }
         })
-
-        //批量删除
-        function deleteBatch() {
-            //得到选中的数据
-            var checkStatus = table.checkStatus("logInfoTable");
-            var data = checkStatus.data;
-            var param = "";
-            //循环拼接id
-            $.each(data,function (i,item) {
-                if(i==0){
-                    param +="ids="+item.id;
-                }else{
-                    param +="&ids="+item.id;
-                }
-            });
-            layer.confirm("真的要删除这些日志吗?",function (index) {
-                //发送ajax请求
-                $.get("${pageContext.request.contextPath}/logInfo/deleteBatchLogInfo.action",param,function (result) {
-                    layer.msg(result.msg);
-                    //刷新数据表格
-                    tableIns.reload();
-                })
-            })
-        }
     })
+
 </script>
 </body>
 </html>

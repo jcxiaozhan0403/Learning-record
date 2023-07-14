@@ -32,7 +32,7 @@ export default {
 
   created() {
     // 处理微信授权登录
-    this.wechatLogin();
+    // this.wechatLogin();
   },
 
   methods: {

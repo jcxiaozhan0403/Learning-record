@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdtu.sys.mapper.LogInfoMapper">
+
+    <!--定义返回类型resultMap-->
+    <resultMap id="BaseResultMap" type="com.cdtu.sys.domain.LogInfo">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="loginname" jdbcType="VARCHAR" property="loginname"/>
+        <result column="loginip" jdbcType="VARCHAR" property="loginip"/>
+        <result column="logintime" jdbcType="TIMESTAMP" property="logintime"/>
+    </resultMap>
+
+    <!--定义sql片段-->
+    <sql id="Base_Colum_list">
+        id, loginname ,loginip, logintime
+    </sql>
+
+    <!--分页查询日志-->
+    <select id="queryAllLogInfo" resultMap="BaseResultMap">
+        select <include refid="Base_Colum_list"/>  from sys_log_login
+        <where>
+            <if test="loginname != null and loginname !=''">
+                and loginname like concat("%",#{loginname},"%")
+            </if>
+            <if test="loginip != null and loginip !=''">
+                and loginip like concat("%",#{loginip},"%")
+            </if>
+
+            <if test="startTime != null">
+                and logintime >= #{startTime}
+            </if>
+            <if test="endTime != null ">
+                and logintime <![CDATA[<=]]> #{endTime}
+            </if>
+        </where>
+        order by logintime desc
+    </select>
+
+
+    <!--删除用户-->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from sys_log_login where id = #{id ,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertLogInfo" parameterType="com.cdtu.sys.domain.LogInfo">
+        INSERT INTO sys_log_login (loginname, loginip, logintime)
+        VALUES (#{loginname}, #{loginip}, #{logintime})
+    </insert>
+
+</mapper>

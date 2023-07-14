@@ -2,13 +2,20 @@ package com.cdtu.sys.mapper;
 
 import com.cdtu.sys.domain.User;
 import com.cdtu.sys.domain.UserVo;
+import org.apache.ibatis.annotations.Param;
 
-/**
- * @Author:千锋强哥
- * @organization: 千锋教研院
- * @Version: 1.0
- */
+import java.util.List;
+
 public interface UserMapper {
+    User login(UserVo userVo);
 
-    User findUserByNameAndPwd(UserVo userVo);
+    List<User> queryAllUser(UserVo userVo);
+
+    void insertSelective(UserVo userVo);
+
+    void updateByPrimaryKeySelective(UserVo userVo);
+
+    void deleteByPrimaryKey(Integer userid);
+
+    void insertUserRole(@Param("uid") Integer userid, @Param("rid") Integer rid);
 }

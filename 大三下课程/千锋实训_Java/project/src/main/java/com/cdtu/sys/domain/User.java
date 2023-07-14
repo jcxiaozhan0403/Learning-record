@@ -1,19 +1,20 @@
 package com.cdtu.sys.domain;
 
-/**
- * @Author:千锋强哥
- * @organization: 千锋教研院
- * @Version: 1.0
- *
- */
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
-    //用户id
+    //用户的id
     private Integer userid;
     //登录名称
     private String loginname;
     //身份证号码
     private String identity;
-    //真实姓名
+    //真是姓名
     private String realname;
     //性别
     private Integer sex;
@@ -29,23 +30,6 @@ public class User {
     private Integer type;
     //是否可用
     private Integer available;
-
-    public User() {
-    }
-
-    public User(Integer userid, String loginname, String identity, String realname, Integer sex, String address, String phone, String pwd, String position, Integer type, Integer available) {
-        this.userid = userid;
-        this.loginname = loginname;
-        this.identity = identity;
-        this.realname = realname;
-        this.sex = sex;
-        this.address = address;
-        this.phone = phone;
-        this.pwd = pwd;
-        this.position = position;
-        this.type = type;
-        this.available = available;
-    }
 
     public Integer getUserid() {
         return userid;

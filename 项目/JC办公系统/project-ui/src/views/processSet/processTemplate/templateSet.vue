@@ -14,6 +14,7 @@
         }}
       </el-button>
       <el-button type="primary" size="small" @click="back()">返回</el-button>
+      <el-button v-if="stepIndex === 3" type="primary" size="small" @click="openNewWindow">进行流程设计</el-button>
     </div>
 
     <!-- 第一步 -->
@@ -52,9 +53,9 @@
       <el-upload
         class="upload-demo"
         drag
-        action="/dev-api/admin/process/processTemplate/uploadProcessDefinition"
+        action="/admin/process/processTemplate/uploadProcessDefinition"
         :headers="uploadHeaders"
-        multiple="false"
+        :multiple="false"
         :before-upload="beforeUpload"
         :on-success="onUploadSuccess"
         :file-list="fileList"
@@ -216,6 +217,10 @@ export default {
 
     back() {
       this.$router.push('/processSet/processTemplate')
+    },
+    openNewWindow() {
+      let url = "http://localhost:8080/activiti-explorer";
+      window.open(url);
     }
   }
 }

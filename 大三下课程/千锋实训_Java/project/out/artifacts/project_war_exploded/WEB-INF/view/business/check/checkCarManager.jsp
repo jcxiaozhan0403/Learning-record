@@ -159,91 +159,92 @@
         </div>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/resources/layui/layui.js"></script>
 
+
+<script src="${pageContext.request.contextPath}/resources/layui/layui.js"></script>
 <script type="text/javascript">
-    layui.use(['jquery','layer','form','table','laydate'],function () {
+
+    layui.use(['jquery','layer','form','table','laydate'],function (){
         var $ = layui.jquery;
         var layer = layui.layer;
-        var form= layui.form;
+        var form = layui.form;
         var table = layui.table;
         var laydate = layui.laydate;
 
-        laydate.render({
-            elem:'#checkdate',
-            type:'datetime'
-        })
+        //根据出租单号进行查询
+        $("#doSearch").click(function (){
+            //获取用户输入的出租单号
+            var rentid = $("#search_rentid").val();
 
-        //根据出租单进行查询
-        $("#doSearch").click(function () {
-            var rentid = $("#search_rentid").val();  //获取出租单号
-            $.post("${pageContext.request.contextPath}/check/checkRentExist.action",{rentid:rentid},function (obj) {
-                if(obj == ""){
-                    layer.msg("您输入的出租单号不存在,请更正后再查询!");
+            //发送请求判断出租单是否存在
+            $.post("${pageContext.request.contextPath}/check/checkRentExist.action",{rentid: rentid},function (obj){
+                if(obj == ""){ //出租单不存在,返回值为null
+                    layer.msg("您输入的出租号不存在, 请更正后在次查询");
                     //隐藏数据表格
                     $("#content").hide();
-                }else {
-                    if(obj.rentflag == 1){
-                        layer.msg("您输入的出租单号车辆已经归还,无需再入库");
-                        //隐藏数据表格
+                }else {//检查单不为空,存在
+                    if(obj.rentflag ==1){
+                        layer.msg("您输入的出租号相关车辆已经归还,无需入库");
                         $("#content").hide();
-                    }else {
-                        //初始化数据表单
+                    }else{
+                        //初始化数据表格和卡片面板
                         initCheckFormData(rentid);
                         $("#content").show();
                     }
                 }
             })
         })
-        
-        //初始化加载数据表单
-        function initCheckFormData(rentid) {
-            $.post("${pageContext.request.contextPath}/check/initCheckFormData.action",{rentid:rentid}, function (obj) {
-                //检查单数据
+
+
+        //加载表单数据和卡片面板数据
+        function initCheckFormData(rentid){
+            //发送初始化的post请求,得到一个map数据,在前台展示
+            $.post("${pageContext.request.contextPath}/check/initCheckFormData.action",{rentid:rentid},function (obj){
+                //设置检查单信息
                 var check = obj.check;
                 form.val("checkFrm",check);
 
-                //客户数据
+                //设置客户信息
                 var customer = obj.customer;
                 $("#customer_identity").html("身份证号码:"+customer.identity);
                 $("#customer_custname").html("客户姓名:"+customer.custname);
-                $("#customer_sex").html("客户性别:"+customer.sex);
+                $("#customer_sex").html("客户性别:"+(customer.sex==1?'男':'女'));
                 $("#customer_address").html("客户地址:"+customer.address);
                 $("#customer_phone").html("客户电话:"+customer.phone);
-                $("#customer_career").html("客户职位:"+customer.career);
+                $("#customer_career").html("客户的职位:"+customer.career);
 
-                //出租单信息
+                //设置出租单
                 var rent = obj.rent;
                 $("#rent_rentid").html("出租单号:"+rent.rentid);
-                $("#rent_price").html("出租价格:"+rent.price);
                 $("#rent_begindate").html("起租时间:"+rent.begindate);
                 $("#rent_returndate").html("还车时间:"+rent.returndate);
                 $("#rent_opername").html("操作员:"+rent.opername);
 
-                //车辆数据
+
+                //车辆信息
                 var car = obj.car;
-                $("#car_carnumber").html("车牌号:"+car.carnumber);
+                $("#car_carnumber").html("车牌号码:"+car.carnumber);
                 $("#car_cartype").html("车辆类型:"+car.cartype);
                 $("#car_color").html("车辆颜色:"+car.color);
-                $("#car_price").html("购买价格:"+car.price);
+                $("#car_price").html("车辆价格:"+car.price);
                 $("#car_rentprice").html("出租价格:"+car.rentprice);
                 $("#car_deposit").html("出租押金:"+car.deposit);
-                $("#car_description").html("车辆描述:"+car.description);
-                $("#car_carimg").attr("src","${pageContext.request.contextPath}/file/downloadShowFile.action?path="+car.carimg)
+                $("#car_description").html("车辆描述位:"+car.description);
+                $("#car_carimg").attr("src","${pageContext.request.contextPath}/file/downloadShowFile.action?path="+car.carimg);
             })
         }
 
-        //保存
-        form.on("submit(doSubmit)",function () {
-            var param = $("#checkFrm").serialize();
-            $.post("${pageContext.request.contextPath}/check/saveCheck.action",param,function (obj) {
+        //提交表单保存检查单
+        form.on('submit(doSubmit)',function (){
+            var params = $("#checkFrm").serialize();
+            $.post("${pageContext.request.contextPath}/check/saveCheck.action",params,function (obj){
                 layer.msg(obj.msg);
                 $("#content").hide();
             })
             return false;
         })
-    })
 
+    })
 </script>
 </body>
 </html>

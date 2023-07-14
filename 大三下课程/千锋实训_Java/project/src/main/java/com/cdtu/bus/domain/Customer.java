@@ -4,39 +4,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-/**
- * @Author:千锋强哥
- * @organization: 千锋教研院
- * @Version: 1.0
- */
 public class Customer {
     private String identity;
-
     private String custname;
-
     private Integer sex;
-
     private String address;
-
     private String phone;
-
     private String career;
-
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createtime;
-
-    public Customer() {
-    }
-
-    public Customer(String identity, String custname, Integer sex, String address, String phone, String career, Date createtime) {
-        this.identity = identity;
-        this.custname = custname;
-        this.sex = sex;
-        this.address = address;
-        this.phone = phone;
-        this.career = career;
-        this.createtime = createtime;
-    }
 
     public String getIdentity() {
         return identity;

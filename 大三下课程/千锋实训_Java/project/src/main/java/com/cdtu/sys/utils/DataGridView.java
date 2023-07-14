@@ -1,29 +1,29 @@
 package com.cdtu.sys.utils;
+
 /**
- * 数据表格工具类
- * @Author:千锋强哥
- * @organization: 千锋教研院
- * @Version: 1.0
+ * 在layui中我们表格展示数据,需要用到该对象
  */
 public class DataGridView {
-    /**
-     * 封装layui数据表格的数据对象
-     */
-    private Integer code=0;
-    private String msg="";
+    private Integer code = 0;
+    private String msg = "";
     private Long count;
-    private Object data; //表格展示的数据
+    private Object data;
 
     public DataGridView() {
     }
 
     public DataGridView(Object data) {
-        super();
         this.data = data;
     }
 
     public DataGridView(Long count, Object data) {
-        super();
+        this.count = count;
+        this.data = data;
+    }
+
+    public DataGridView(Integer code, String msg, Long count, Object data) {
+        this.code = code;
+        this.msg = msg;
         this.count = count;
         this.data = data;
     }

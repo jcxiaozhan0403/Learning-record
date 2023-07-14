@@ -2,14 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cdtu.sys.mapper.AccountMapper">
 
-    <!--转入得我方法-->
-    <update id="transferIn" >
-        update  account set money = money + #{money} where username = #{name}
+    <!--转入-->
+    <update id="transferIn">
+        update account set money = money + #{money}
+        where username  = #{name}
     </update>
 
-    <!--转出的方法-->
-
-    <update id="transferOut" >
-        update  account set money = money - #{money} where username = #{name}
+    <!--转出-->
+    <update id="transferOut">
+        update account set money = money - #{money}
+        where username  = #{name}
     </update>
 </mapper>

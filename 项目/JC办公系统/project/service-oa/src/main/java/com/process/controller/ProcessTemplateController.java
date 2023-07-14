@@ -62,6 +62,9 @@ public class ProcessTemplateController {
     @ApiOperation(value = "新增")
     @PostMapping("save")
     public Result save(@RequestBody ProcessTemplate processTemplate) {
+        System.out.println("=====================================");
+        System.out.println("进入");
+        System.out.println("=====================================");
         processTemplateService.save(processTemplate);
         return Result.ok();
     }

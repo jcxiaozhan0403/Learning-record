@@ -50,6 +50,11 @@
           <element id="library" level="project" name="Maven: javax.servlet.jsp:jsp-api:2.0" />
           <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
           <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
+          <element id="library" level="project" name="Maven: com.beust:jcommander:1.72" />
+          <element id="library" level="project" name="Maven: com.github.jai-imageio:jai-imageio-core:1.4.0" />
+          <element id="library" level="project" name="Maven: com.google.zxing:core:3.4.0" />
+          <element id="library" level="project" name="Maven: com.google.zxing:javase:3.4.0" />
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.26" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="project/web/Web" />

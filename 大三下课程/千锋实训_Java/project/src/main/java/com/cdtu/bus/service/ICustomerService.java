@@ -1,13 +1,9 @@
 package com.cdtu.bus.service;
 
+import com.cdtu.bus.domain.Customer;
 import com.cdtu.bus.domain.CustomerVo;
 import com.cdtu.sys.utils.DataGridView;
 
-/**
- * @Author:千锋强哥
- * @organization: 千锋教研院
- * @Version: 1.0
- */
 public interface ICustomerService {
     DataGridView selectCustomer(CustomerVo customerVo);
 
@@ -18,4 +14,6 @@ public interface ICustomerService {
     void updateCustomer(CustomerVo customerVo);
 
     void deleteBatchCustomer(String[] ids);
+
+    Customer queryCustomerByIdentity(String identity);
 }

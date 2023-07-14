@@ -4,31 +4,17 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-/**
- * @Author:千锋强哥
- * @organization: 千锋教研院
- * @Version: 1.0
- */
 public class Car {
     private String carnumber; //车牌
-
-    private String cartype;  //车辆类型  轿车  suv
-
-    private String color;
-
-    private Double price;
-
-    private Double rentprice;  //租金
-
-    private Double deposit;   //押金
-
-    private Integer isrenting;  //是否出租
-
-    private String description;
-
-    private String carimg;   //图片路径
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss",timezone = "GTM+8")
+    private String cartype;   //车辆类型
+    private String color;     //车辆颜色
+    private Double price;     //车辆价格
+    private Double rentprice; //租金
+    private Double deposit; //押金
+    private Integer isrenting; //是否出租  0未出租  1 已出租
+    private String description; //描述
+    private String carimg;   //车辆图片
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createtime;
 
     public Car() {

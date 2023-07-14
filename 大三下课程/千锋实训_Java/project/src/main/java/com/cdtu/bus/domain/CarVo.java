@@ -1,24 +1,14 @@
 package com.cdtu.bus.domain;
 
-/**
- * @Author:千锋强哥
- * @organization: 千锋教研院
- * @Version: 1.0
- */
-public class CarVo extends Car{
-    //1.分页参数
-    private Integer page;  //当前页
-    private Integer limit; //每页现实条数
-    private String[] ids; //存储多个车牌号 , 用于批量删除
+public class CarVo extends Car {
+    /**
+     * 分页参数
+     */
+    private Integer page;
+    private Integer limit;
 
-    public CarVo() {
-    }
-
-    public CarVo(Integer page, Integer limit, String[] ids) {
-        this.page = page;
-        this.limit = limit;
-        this.ids = ids;
-    }
+    //介绍多个车辆id
+    private String[] ids;
 
     public Integer getPage() {
         return page;

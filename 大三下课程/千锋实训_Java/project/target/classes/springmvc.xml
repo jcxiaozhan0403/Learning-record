@@ -9,6 +9,7 @@
 <!--    ① controller类上有@Contoller注解， 要创建对象，扫描-->
     <context:component-scan base-package="com.cdtu.sys.controller" ></context:component-scan>
     <context:component-scan base-package="com.cdtu.bus.controller" ></context:component-scan>
+    <context:component-scan base-package="com.cdtu.stat.controller" ></context:component-scan>
 
 <!--    ②配置处理器适配器和映射器-->
     <mvc:annotation-driven />

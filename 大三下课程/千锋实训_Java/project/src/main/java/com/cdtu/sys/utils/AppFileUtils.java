@@ -14,12 +14,6 @@ import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.Properties;
 
-/**
- * 上传工具类
- * @Author:千锋强哥
- * @organization: 千锋教研院
- * @Version: 1.0
- */
 public class AppFileUtils {
 
 	/**

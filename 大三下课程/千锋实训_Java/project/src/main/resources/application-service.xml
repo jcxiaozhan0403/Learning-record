@@ -13,6 +13,7 @@
     <!--    ①包的扫描 ，目的创建对象  ，扫描service实现类中的 @Service注解的类，对象的创建-->
     <context:component-scan base-package="com.cdtu.sys.service.impl"></context:component-scan>
     <context:component-scan base-package="com.cdtu.bus.service.impl"></context:component-scan>
+    <context:component-scan base-package="com.cdtu.stat.service.impl"></context:component-scan>
 
     <!--    ②配置事务管理器-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -30,6 +31,8 @@
             <tx:method name="reset*" propagation="REQUIRED" />
             <tx:method name="get*" read-only="true" />
             <tx:method name="load*" read-only="true" />
+            <tx:method name="insertLoginLog" read-only="false" />
+            <tx:method name="insertLogInfo" read-only="false" />
             <tx:method name="*" read-only="true" />
         </tx:attributes>
     </tx:advice>

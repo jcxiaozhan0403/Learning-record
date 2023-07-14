@@ -1,30 +1,89 @@
 package com.cdtu.sys.utils;
 
-/**
- * @Author:千锋强哥
- * @organization: 千锋教研院
- * @Version: 1.0
- *
- * 统一的返回对象，方便前台统一处理
- */
-public class ResultObj {
-    private int code;  //状态码  ： 成功  失败
-    private String msg; //消息：  成功后的提示消息   失败后的提示性消息
+import lombok.Data;
 
-    public ResultObj(int code, String msg) {
+/**
+ * 统一的返回对象
+ */
+@Data
+public class ResultObj {
+
+    private Integer code;
+    private String msg;
+
+    public ResultObj(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
-    public ResultObj(int code) {
+    public ResultObj(Integer code) {
         this.code = code;
     }
 
-    public int getCode() {
+    /**
+     * 添加成功
+     */
+    public static final  ResultObj ADD_SUCCESS = new ResultObj(SysConstant.CODE_SUCCESS,SysConstant.ADD_SUCCESS);
+
+    /**
+     * 添加失败
+     */
+    public static final  ResultObj ADD_ERROR = new ResultObj(SysConstant.CODE_ERROR,SysConstant.ADD_ERROR);
+
+    /**
+     * 修改成功
+     */
+    public static final  ResultObj UPDATE_SUCCESS = new ResultObj(SysConstant.CODE_SUCCESS,SysConstant.UPDATE_SUCCESS);
+
+    /**
+     * 修改失败
+     */
+    public static final  ResultObj UPDATE_ERROR = new ResultObj(SysConstant.CODE_ERROR,SysConstant.UPDATE_ERROR);
+
+
+    /**
+     * 删除成功
+     */
+    public static final  ResultObj DELETE_SUCCESS = new ResultObj(SysConstant.CODE_SUCCESS,SysConstant.DELETE_SUCCESS);
+
+    /**
+     * 删除失败
+     */
+    public static final  ResultObj DELETE_ERROR = new ResultObj(SysConstant.CODE_ERROR,SysConstant.DELETE_ERROR);
+
+    /**
+     * 重置成功
+     */
+    public static final  ResultObj RESET_SUCCESS = new ResultObj(SysConstant.CODE_SUCCESS,SysConstant.RESET_SUCCESS);
+
+    /**
+     * 重置失败
+     */
+    public static final  ResultObj RESET_ERROR = new ResultObj(SysConstant.CODE_ERROR,SysConstant.RESET_ERROR);
+
+
+    /**
+     * 分配成功
+     */
+    public static final  ResultObj DISPATCH_SUCCESS = new ResultObj(SysConstant.CODE_SUCCESS,SysConstant.DISPATCH_SUCCESS);
+
+    /**
+     * 分配失败
+     */
+    public static final  ResultObj DISPATCH_ERROR = new ResultObj(SysConstant.CODE_ERROR,SysConstant.DISPATCH_ERROR);
+
+    /**
+     * 只有状态码的成功对象
+     */
+    public static final  ResultObj STATUS_TRUE = new ResultObj(SysConstant.CODE_SUCCESS);
+
+    public static final  ResultObj STATUS_FALSE = new ResultObj(SysConstant.CODE_ERROR);
+
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 
@@ -35,22 +94,4 @@ public class ResultObj {
     public void setMsg(String msg) {
         this.msg = msg;
     }
-
-    //通过构造方法直接构造一个成功的添加对象和失败的对象
-    public static ResultObj  ADD_SUCCESS = new ResultObj(SysConstant.CODE_SUCCESS,SysConstant.ADD_SUCCESS);
-    public static ResultObj   ADD_ERROR = new ResultObj(SysConstant.CODE_ERROR,SysConstant.ADD_ERROR);
-
-    public static ResultObj   UPDADTE_SUCCESS = new ResultObj(SysConstant.CODE_SUCCESS,SysConstant.UPDATE_SUCCESS);
-    public static ResultObj  UPDATE_ERROR = new ResultObj(SysConstant.CODE_ERROR,SysConstant.UPDATE_ERROR);
-
-
-    public static ResultObj DELETE_SUCCESS = new ResultObj(SysConstant.CODE_SUCCESS,SysConstant.DELETE_SUCCESS);
-    public static ResultObj DELETE_ERROR = new ResultObj(SysConstant.CODE_ERROR,SysConstant.DELETE_ERROR);
-
-    public static ResultObj  RESET_SUCCESS = new ResultObj(SysConstant.CODE_SUCCESS,SysConstant.RESET_SUCCESS);
-    public static ResultObj  RESET_ERROR = new ResultObj(SysConstant.CODE_ERROR,SysConstant.RESET_ERROR);
-
-
-    public static ResultObj  DISPATCH_SUCCESS = new ResultObj(SysConstant.CODE_SUCCESS,SysConstant.DISPATCH_SUCCESS);
-    public static ResultObj  DISPATCH_ERROR = new ResultObj(SysConstant.CODE_ERROR,SysConstant.DISPATCH_ERROR);
 }

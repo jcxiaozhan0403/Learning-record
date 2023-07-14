@@ -50,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .cors().and()
             .authorizeRequests()
             //指定某些接口不需要通过验证即可访问。登陆接口肯定是不需要认证的
-            //.antMatchers("/admin/system/index/login").permitAll()
+            .antMatchers("/static/**").permitAll()
             //这里意思是其它所有接口需要认证才能访问
             .anyRequest().authenticated()
             .and()
@@ -80,6 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/admin/modeler/**","/diagram-viewer/**","/editor-app/**","/*.html",
                 "/admin/processImage/**",
                 "/admin/wechat/authorize","/admin/wechat/userInfo","/admin/wechat/bindPhone",
-                "/favicon.ico","/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**", "/doc.html");
+                "/favicon.ico","/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**", "/doc.html",
+                "/static/**");
     }
 }

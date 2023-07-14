@@ -174,17 +174,14 @@
 
 <script src="${pageContext.request.contextPath}/resources/layui/layui.js"></script>
 <script type="text/javascript">
-    //1.定义渲染的数据表格
-    var tableIns;
-    //2.定义和初始化模块
     layui.use(['jquery','layer','form','table','laydate'],function () {
         var $ = layui.jquery;
         var layer = layui.layer;
         var form = layui.form;
-        var table = layui.table
+        var table = layui.table;
         var laydate = layui.laydate;
 
-        //查询条件
+        //渲染日期表格
         laydate.render({
             elem: '#startTime',
             type: 'datetime'
@@ -195,8 +192,7 @@
             type: 'datetime'
         })
 
-
-        //编辑修改弹出层的时候
+        //修改页面的日期组件
         laydate.render({
             elem: '#begindate',
             type: 'datetime'
@@ -207,105 +203,100 @@
             type: 'datetime'
         })
 
-        //3.渲染数据表格
+        //初始化数据表格
+        var tableIns;
         tableIns = table.render({
-            elem: '#rentTable' , //渲染的目标对象
-            url: '${pageContext.request.contextPath}/rent/loadAllRent.action', //数据接口地址
-            title:'出租单数据表', //标题
+            elem: '#rentTable' , //渲染的表格对象
+            url: '${pageContext.request.contextPath}/rent/loadAllRent.action', //请求数据接口的地址
+            title:'出租单数据表',
+            toolbar: '#rentToolBar',
             height: 'full-210',
-            cellMinWidth : 100 , //设置列最小默认宽度
-            toolbar: '#rentToolBar' , //表格的头部工具栏
-            page: true , //启动分页
+            page: true , //开启分页
+            cellMinWidth: 100,
             cols: [[
-                {field:'rentid',title:'出租单号',align:'center',width:'260'},
-                {field:'identity',title:'身份证号码',align:'center',width:'180'},
-                {field:'carnumber',title:'车牌号',align:'center',width:'105'},
-                {field:'price',title:'出租价格',align:'center',width:'90'},
-                {field:'rentflag',title:'归还状态',align:'center',width:'100',templet:function (d) {
-                        return  d.rentflag == '1' ? '<font color=blue>已归还</font>' : '<font color=red>未归还</font>'
+                {field: 'rentid',title:'出租单号',align:'center',width:'260'},
+                {field: 'identity',title:'身份证',align:'center',width:'180'},
+                {field: 'carnumber',title:'车牌号',align:'center',width:'105'},
+                {field: 'price',title:'出租价格',align:'center',width:'90'},
+                {field: 'rentflag',title:'归还状态',align:'center',width:'100',templet: function (d){
+                        return d.rentflag == '1' ? '<font color=blue>已归还</font>' : '<font color=red>未归还</font>'
                     }},
-                {field:'begindate',title:'起租时间',align:'center',width:'170'},
-                {field:'returndate',title:'还车时间',align:'center',width:'170'},
-                {field:'opername',title:'操作员',align:'center',width:'120'},
-                {field:'createtime',title:'录入时间',align:'center',width:'100'},
-                {fixed:'right',title:'操作',toolbar:'#rentBar',align:'center',width:'200'}
+                {field: 'begindate',title:'起租时间',align:'center',width:'170'},
+                {field: 'returndate',title:'还车时间',align:'center',width:'170'},
+                {field: 'opername',title:'操作员',align:'center',width:'120'},
+                {field: 'createtime',title:'录入时间',align:'center',width:'160'},
+                {fixed:'right',title:'操作',toolbar:'#rentBar',align:'center',width:'180'}
             ]],
-            done:function (data , curr ,count) {
-                //如果不是第一页,当前返回数据为0,我们就让返回上一页
-                if(data.data.length == 0 && curr != 1){
+            done: function (data,curr,count){
+                //如果不是第一页，返回的值为0，返回到上一页
+                if(data.data.length == 0 && crr != 1){
                     tableIns.reload({
-                        page:{
-                            curr:curr-1
+                        page: {
+                            curr : curr - 1
                         }
                     })
                 }
             }
-        });
+        })
 
         //模糊查询
-        $("#doSearch").click(function () {
-            //获取搜索框中的参数
-            var param =  $("#searchFrm").serialize();
+        $("#doSearch").click(function (){
+            //获取表单的数据
+            var params = $("#searchFrm").serialize();
             tableIns.reload({
-                url: "${pageContext.request.contextPath}/rent/loadAllRent.action?"+param,
+                url: "${pageContext.request.contextPath}/rent/loadAllRent.action?"+params,
                 page: {curr: 1}
             })
         })
 
         //监听行工具栏
-        table.on('tool(rentTable)',function (obj) {
-            //获取当前行的数据
+        table.on('tool(rentTable)',function (obj){
+            //获取当前的行数据
             var data = obj.data;
-            //获取当前触发的事件
-            var layEvent =  obj.event;
-            if(layEvent == 'del'){
-                layer.confirm('您确认要删除['+data.rentid+'这个出租单吗',function (index) {
-                    //如果用户点击确认执行该函数
-                    $.get("${pageContext.request.contextPath}/rent/deleteRent.action",
-                        {rentid: data.rentid},function (result) {
-                        layer.msg(result.msg);
+            //获取事件
+            var layEvent = obj.event;
+            if(layEvent == 'edit'){
+                openUpdateRent(data);
+            }else if(layEvent == 'del'){
+                layer.confirm("您是否确认删除"+data.rentid+"这个出租单吗？",function (index){
+                    //发送ajax请求
+                    $.get("${pageContext.request.contextPath}/rent/deleteRent.action",{rentid: data.rentid , carnumber: data.carnumber},function (res){
+                        layer.msg(res.msg);
                         //刷新数据表格
                         tableIns.reload();
                     })
                 })
-            } else if (layEvent == 'edit'){
-                //调用方法打开一个编辑窗口
-                openUpdateRent(data);
-            } else if (layEvent == 'exportRent'){ //导出出租单
-                window.location.href = "${pageContext.request.contextPath}/stat/exportRent.action?rentid="+data.rentid;
-
+            }else if(layEvent =='exportRent'){
+                //导出出租单
+                window.location.href="${pageContext.request.contextPath}/stat/exportRent.action?rentid="+data.rentid;
             }
         })
 
-
-        var url;
         var mainIndex;
-
-        function openUpdateRent(data) {
-            mainIndex = layer.open({
-                type : 1,
-                title: '修改出租单',
+        var url;
+        //打开出租单修改页面
+        function openUpdateRent(data){
+            mainIndex =  layer.open({
+                type: 1 ,
+                title: "修改出租单",
                 content: $("#saveOrUpdateDiv"),
-                area: ['700px','420px'],
-                success:function (index) {
-                    //要把数据回显到表单中
-                    form.val('dataFrm',data);
-                    //设置url值
-                    url = "${pageContext.request.contextPath}/rent/updateRent.action";
+                area: ['750px' , '420px'],
+                success: function (index){
+                    form.val("dataFrm",data);
+                    url = "${pageContext.request.contextPath}/rent/updateRent.action"
                 }
             })
         }
 
-        //保存数据
-        form.on("submit(doSubmit)",function (obj) {
-            //序列化表单数据
-            var param = $("#dataFrm").serialize();
-            //发送ajax请求
-            $.get(url,param,function (obj) {
+        //提交表单
+        form.on("submit(doSubmit)",function (obj){
+            //获取表单的数据
+            var params = $("#dataFrm").serialize();
+            $.post(url,params,function (obj){
                 layer.msg(obj.msg);
                 //关闭弹出层
                 layer.close(mainIndex);
-                //刷新数据表格
+                //刷新表格数据
                 tableIns.reload();
             })
         })

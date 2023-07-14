@@ -37,6 +37,6 @@
 
     <!--    ④配置mapper扫描-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.cdtu.bus.mapper,com.cdtu.sys.mapper"/>
+        <property name="basePackage" value="com.cdtu.bus.mapper,com.cdtu.sys.mapper,com.cdtu.stat.mapper"/>
     </bean>
 </beans>

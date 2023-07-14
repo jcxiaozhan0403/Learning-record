@@ -40,6 +40,18 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         logger.info("uri:"+request.getRequestURI());
+
+//        // 如果是访问index页面或静态资源文件，直接放行
+//        if ("/index.html".equals(request.getRequestURI())) {
+//            chain.doFilter(request, response);
+//            return;
+//        }
+//        // 如果是静态资源文件，直接放行
+//        if (request.getRequestURI().contains("/css/")) {
+//            chain.doFilter(request, response);
+//            return;
+//        }
+
         //如果是登录接口，直接放行
         if("/admin/system/index/login".equals(request.getRequestURI())) {
             chain.doFilter(request, response);

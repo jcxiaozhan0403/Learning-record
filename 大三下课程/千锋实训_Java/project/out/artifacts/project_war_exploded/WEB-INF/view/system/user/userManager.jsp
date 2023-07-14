@@ -80,7 +80,8 @@
                     id="doSearch" style="margin-top: 4px">查询
             </button>
             <button type="reset"
-                    class="layui-btn layui-btn-warm layui-icon layui-icon-refresh layui-btn-radius layui-btn-sm" style="margin-top: 4px">重置
+                    class="layui-btn layui-btn-warm layui-icon layui-icon-refresh layui-btn-radius layui-btn-sm"
+                    style="margin-top: 4px">重置
             </button>
         </div>
     </div>
@@ -91,7 +92,9 @@
 <table class="layui-hide" id="userTable" lay-filter="userTable"></table>
 <div id="userToolBar" style="display: none;">
     <button type="button" class="layui-btn layui-btn-sm layui-btn-radius" lay-event="add">增加</button>
-    <button type="button" class="layui-btn layui-btn-danger layui-btn-sm layui-btn-radius" lay-event="deleteBatch">批量删除</button>
+    <button type="button" class="layui-btn layui-btn-danger layui-btn-sm layui-btn-radius" lay-event="deleteBatch">
+        批量删除
+    </button>
 </div>
 <div id="userBar" style="display: none;">
     <a class="layui-btn layui-btn-xs layui-btn-radius" lay-event="edit">编辑</a>
@@ -108,13 +111,15 @@
                 <label class="layui-form-label">用户姓名:</label>
                 <div class="layui-input-inline">
                     <input type="hidden" name="userid">
-                    <input type="text" name="realname" lay-verify="required" placeholder="请输入用户姓名" autocomplete="off" class="layui-input">
+                    <input type="text" name="realname" lay-verify="required" placeholder="请输入用户姓名" autocomplete="off"
+                           class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">登陆名称:</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="loginname" lay-verify="required" placeholder="请输入登陆名称" autocomplete="off" class="layui-input">
+                    <input type="text" name="loginname" lay-verify="required" placeholder="请输入登陆名称" autocomplete="off"
+                           class="layui-input">
                 </div>
             </div>
         </div>
@@ -136,7 +141,8 @@
             <div class="layui-inline">
                 <label class="layui-form-label">用户电话:</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="phone" lay-verify="required|phone" placeholder="请输入用户电话" autocomplete="off" class="layui-input">
+                    <input type="text" name="phone" lay-verify="required|phone" placeholder="请输入用户电话" autocomplete="off"
+                           class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
@@ -184,64 +190,58 @@
 
 <script src="${pageContext.request.contextPath}/resources/layui/layui.js"></script>
 <script type="text/javascript">
-    //1.定义渲染的数据表格
     var tableIns;
-    //2.定义和初始化模块
-    layui.use(['jquery','layer','form','table'],function () {
+    layui.extend({
+        dtree: '${pageContext.request.contextPath}/resources/layui_ext/dist/dtree'
+    }).use(['jquery', 'layer', 'form', 'dtree', 'table'], function () {
         var $ = layui.jquery;
         var layer = layui.layer;
         var form = layui.form;
+        var dtree = layui.dtree;
         var table = layui.table;
-
-        //3.渲染数据表格
+        //渲染表格
         tableIns = table.render({
-            elem: '#userTable' , //渲染的目标对象
+            elem: '#userTable', //渲染的目标对象
             url: '${pageContext.request.contextPath}/user/loadAllUser.action', //数据接口地址
-            title:'用户数据表', //标题
+            title: '角色列表数据', //标题
             height: 'full-210',
-            cellMinWidth : 100 , //设置列最小默认宽度
-            toolbar: '#userToolBar' , //表格的头部工具栏
-            page: true , //启动分页
+            cellMinWidth: 100, //设置列最小默认宽度
+            toolbar: '#userToolBar', //表格的头部工具栏
+            page: true, //启动分页
             cols: [[
-                {type:'checkbox',fixed: 'left'},
-                {field:'userid',title:'用户ID',align:'center',width:'55'},
-                {field:'realname',title:'用户姓名',align:'center',width:'110'},
-                {field:'loginname',title:'登录名称',align:'center',width:'110'},
-                {field:'identity',title:'身份证',align:'center',width:'200'},
-                {field:'phone',title:'手机号码',align:'center',width:'140'},
-                {field:'address',title:'用户地址',align:'center',width:'130'},
-                {field:'sex',title:'性别',align:'center',width:'90',templet:function (d) {
+                {type: 'checkbox', fixed: 'left'},
+                {field: 'userid', title: 'ID', align: 'center', width: '55'},
+                {field: 'realname', title: '用户姓名', align: 'center', width: '110'},
+                {field: 'loginname', title: '登录名称', align: 'center', width: '110'},
+                {field: 'identity', title: '身份证', align: 'center', width: '200'},
+                {field: 'phone', title: '手机号码', align: 'center', width: '140'},
+                {field: 'address', title: '用户地址', align: 'center', width: '130'},
+                {
+                    field: 'sex', title: '用户性别', align: 'center', width: '90', templet: function (d) {
                         return d.sex == '1' ? '<font color=blue>男</font>' : '<font color=red>女</font>'
-                    }},
-                {field:'available',title:'是否可用',align:'center',width:'90',templet:function (d) {
+                    }
+                },
+                {
+                    field: 'available', title: '是否可用', align: 'center', width: '90', templet: function (d) {
                         return d.available == '1' ? '<font color=blue>可用</font>' : '<font color=red>不可用</font>'
-                    }},
-                {fixed:'right',title:'操作',toolbar:'#userBar',align:'center',width:'300'}
-            ]],
-            done:function (data , curr ,count) {
-                //如果不是第一页,当前返回数据为0,我们就让返回上一页
-                if(data.data.length == 0 && curr != 1){
-                    tableIns.reload({
-                        page:{
-                            curr:curr-1
-                        }
-                    })
-                }
-            }
+                    }
+                },
+                {fixed: 'right', title: '操作', toolbar: '#userBar', align: 'center', width: '300'}
+            ]]
         });
 
         //模糊查询
         $("#doSearch").click(function () {
             //获取搜索框中的参数
-            var param =  $("#searchFrm").serialize();
+            var param = $("#searchFrm").serialize();
             tableIns.reload({
-                url: "${pageContext.request.contextPath}/user/loadAllUser.action?"+param,
+                url: "${pageContext.request.contextPath}/user/loadAllUser.action?" + param,
                 page: {curr: 1}
             })
         })
 
-        //监听头工具栏
-        table.on("toolbar(userTable)",function (obj) {
+        //监听头部工具栏
+        table.on("toolbar(userTable)", function (obj) {
             switch (obj.event) {
                 case 'add':
                     openAddUser();
@@ -252,96 +252,107 @@
             }
         })
 
+
         var url;
         var mainIndex;
-        //添加用户
+
+        //打开添加页面
         function openAddUser() {
             mainIndex = layer.open({
-                type:1,
-                title:'添加用户',
-                content:$("#saveOrUpdateDiv"),
-                area:['700px','380px'],
-                success:function (index) {
+                type: 1,
+                title: "添加用户",
+                content: $("#saveOrUpdateDiv"),
+                area: ['700px', '380px'],
+                success: function (index) {
                     //清空表单数据
                     $("#dataFrm")[0].reset();
                     url = "${pageContext.request.contextPath}/user/addUser.action"
+
                 }
             })
         }
 
-        //监听行工具栏
-        table.on('tool(userTable)',function (obj) {
-            //获取当前行数据
-            var data = obj.data;
-            var layEvent = obj.event;
-            if(layEvent == 'edit'){
-                openUpdateUser(data);
-            }else if(layEvent == 'del'){
-              layer.confirm("真的确认删除["+data.realname+"]这个用户吗?",function (index) {
-                    $.get("${pageContext.request.contextPath}/user/deleteUser.action",{userid:data.userid},function (result) {
-                        layer.msg(result.msg);
-                        //刷新数据表格
-                        tableIns.reload();
-                    })
-                })
-            }else if(layEvent == 'resetUserPwd'){
-                layer.confirm("真的确认重置["+data.realname+"]这个用户的密码吗?",function (index) {
-                    $.post("${pageContext.request.contextPath}/user/resetUserPwd.action",{userid:data.userid},function (result) {
-                        layer.msg(result.msg);
-                    })
-                })
-            }else if(layEvent == 'selectUserRole'){
-                openselectUserRole(data);
-            }
-        })
-
-
-        //打开修改窗口
-        function openUpdateUser(data){
-            mainIndex = layer.open({
-                type:1,
-                title:'修改用户',
-                content:$("#saveOrUpdateDiv"),
-                area:['700px','380px'],
-                success:function (index) {
-                    form.val("dataFrm",data);
-                    url = "${pageContext.request.contextPath}/user/updateUser.action"
-                }
-            })
-        }
-
-        //保存用户信息
-        form.on("submit(doSubmit)",function (obj) {
+        //保存
+        form.on("submit(doSubmit)", function (obj) {
             //序列化表单数据
             var param = $("#dataFrm").serialize();
-            $.post(url,param,function (result) {
-                layer.msg(result.msg);
+            $.post(url, param, function (obj) {
+                layer.msg(obj.msg);
                 //关闭弹出层
                 layer.close(mainIndex);
                 //刷新数据表格
                 tableIns.reload();
-            });
+            })
         })
-        
-        //批量删除
+
+
+        //监听行工具栏
+        table.on('tool(userTable)', function (obj) {
+            //获取当前行数据
+            var data = obj.data;
+            //获取事件
+            var layEvent = obj.event;
+            if (layEvent == 'del') {
+                layer.confirm("您确认删除[" + data.realname + "]这个用户吗?", function (index) {
+                    //向服务发送一个删除的请求
+                    $.get("${pageContext.request.contextPath}/user/deleteUser.action", {userid: data.userid},
+                        function (res) {
+                            layer.msg(res.msg);
+                            //刷新数据表格
+                            tableIns.reload();
+                        })
+                })
+
+            } else if (layEvent == 'edit') {
+                openUpdateUser(data);
+            } else if (layEvent == 'selectUserRole') {
+                //分配角色
+                openselectUserRole(data);
+            } else if (layEvent == 'resetUserPwd') {
+                //重置密码
+                layer.confirm("您是否确认重置[" + data.realname + "]这个用户的密码?", function (index) {
+                    $.post("${pageContext.request.contextPath}/user/resetUserPwd.action", {userid: data.userid}, function (res) {
+                        layer.msg(res.msg)
+                    })
+                });
+            }
+
+        })
+
+        //修改
+        function openUpdateUser(data) {
+            mainIndex = layer.open({
+                type: 1,
+                title: "修改用户",
+                content: $("#saveOrUpdateDiv"),
+                area: ['700px', '380px'],
+                success: function (index) {
+                    //回显数据
+                    form.val("dataFrm", data);
+                    url = "${pageContext.request.contextPath}/user/updateUser.action"
+
+                }
+            })
+        }
+
+
+        //批量删除角色
         function deleteBatch() {
-            //得到选中的数据
-            var checkStatus = table.checkStatus("userTable");
+            //得到我们选中的行
+            var checkStatus = table.checkStatus('userTable');
             var data = checkStatus.data;
-            var param = "";
-            //循环拼接id
-            $.each(data,function (i,item) {
-                if(i==0){
-                    param +="ids="+item.userid;
-                }else{
-                    param +="&ids="+item.userid;
+            var params = "";
+            $.each(data, function (i, item) {
+                if (i == 0) {
+                    params += "ids=" + item.userid;
+                } else {
+                    params += "&ids=" + item.userid;
                 }
             });
-            layer.confirm("真的要删除这些用户吗?",function (index) {
-                //发送ajax请求
-                $.get("${pageContext.request.contextPath}/user/deleteBatchUser.action",param,function (result) {
-                    layer.msg(result.msg);
-                    //刷新数据表格
+            layer.confirm("您真的确认删除这些用户吗?", function (index) {
+                $.get("${pageContext.request.contextPath}/user/deleteBatchUser.action", params, function (res) {
+                    layer.msg(res.msg);
+                    //刷新表格
                     tableIns.reload();
                 })
             })
@@ -351,43 +362,46 @@
         function openselectUserRole(data){
             mainIndex = layer.open({
                 type:1,
-                title:'给['+data.realname+']分配角色',
-                content:$("#selectUserRole"),
+                title: '给['+data.realname+"]分配角色",
+                content: $("#selectUserRole"),
                 area:['700px','390px'],
                 btnAlign: 'c',
-                btn:['<div class="layui-icon layui-icon-release">确认分配</div>','<div class="layui-icon layui-icon-close">取消分配</div>'],
-                yes:function(index,obj){
-                    //获取选中的行数据
+                btn:['<div class="layui-icon layui-release">确认分配</div>','<div class="layui-icon layui-close">取消分配</div>'],
+                yes: function (index, layero){
+                    //得到选中的数据行
                     var checkStatus = table.checkStatus("roleTable");
-                    var roleData  = checkStatus.data;
-                    var param = "userid="+data.userid;
-                    $.each(roleData,function (i,item) {
-                        param +="&ids="+item.roleid;
+                    var roleData = checkStatus.data;
+                    var params = "userid="+data.userid;
+                    $.each(roleData ,function (i,item){
+                        params +="&ids="+item.roleid;
                     })
-                    //发送ajax请求保存关系
-                    $.get("${pageContext.request.contextPath}/user/saveUserRole.action",param,function (result) {
-                        layer.msg(result.msg);
+                    //保存操作
+                    $.post("${pageContext.request.contextPath}/user/saveUserRole.action",params,function (obj){
+                        layer.msg(obj.msg);
                         //关闭弹出层
                         layer.close(mainIndex);
                     })
                 },
-                success:function (index) {
-                    //渲染数据表格
+
+                success: function (index){
+                    //渲染表格
                     var roleTableIns = table.render({
-                        elem:"#roleTable",
-                        url:"${pageContext.request.contextPath}/user/initUserRole.action?userid="+data.userid,
-                        title:'角色列表',
+                        elem: '#roleTable',
+                        url: '${pageContext.request.contextPath}/user/initUserRole.action?userid='+data.userid,
+                        title: '角色列表',
                         cellMinWidth: 100,
-                        cols:[[ //列表数据
-                            {type:'checkbox',fixed:'left'},
-                            {field:'roleid',title:'ID',align:'center'},
-                            {field:'rolename',title:'角色名称',align:'center'},
-                            {field:'roledesc',title:'角色备注',align:'center'},
+                        cols: [[
+                            {type: 'checkbox',fixed:'left'},
+                            {field: 'roleid',title:'ID',align:'center'},
+                            {field: 'rolename',title:'角色名称',align:'center'},
+                            {field: 'roledesc',title:'角色描述',align:'center'},
                         ]]
                     })
                 }
             })
         }
+
+
     })
 </script>
 </body>

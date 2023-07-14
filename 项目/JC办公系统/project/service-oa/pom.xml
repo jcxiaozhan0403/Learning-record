@@ -105,6 +105,7 @@
           <include>**/*.yml</include>
           <include>**/*.xml</include>
           <include>**/*.png</include>
+          <include>**/*</include>
         </includes>
         <filtering>false</filtering>
       </resource>

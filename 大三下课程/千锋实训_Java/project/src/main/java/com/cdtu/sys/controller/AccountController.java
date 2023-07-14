@@ -1,39 +1,32 @@
 package com.cdtu.sys.controller;
 
 import com.cdtu.sys.service.IAccountService;
-import com.cdtu.sys.service.impl.AccountServiceImpl;
 import com.cdtu.sys.utils.ResultObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @Author:千锋强哥
- * @organization: 千锋教研院
- * @Version: 1.0
- *
- * localhost:8080/rental_B/account/transfer.action?inName=rose&outName=tom&money=10
+ * 转账的控制器
  */
 @Controller
-@RequestMapping("account")
+@RequestMapping("/account")
 public class AccountController {
 
     @Autowired
-    private IAccountService accountService;
+    private IAccountService service;
 
-    /**
-     * 返回统一的ResultObj对象 ，参数3个  inName outName money
-     */
     @RequestMapping("transfer")
     @ResponseBody
-    public ResultObj transfer(String inName , String outName , double money){
-
-        int flag = accountService.updateTransfer(inName, outName, money);
-        if(flag > 0){
-            return ResultObj.UPDADTE_SUCCESS;
-        }else{
-            return ResultObj.UPDATE_ERROR;
+    @Transactional
+    public ResultObj accountTransfer(String inName , String outName , double money){
+        int status = service.updateTransfer(inName, outName, money);  //status == 1 转账成功 , status==0 转账失败
+        if(status > 0 ){ //转账成功
+            return ResultObj.STATUS_TRUE;
+        }else {
+            return ResultObj.STATUS_FALSE;
         }
     }
 }
