@@ -56,5 +56,13 @@ export default {
           url: `${api_name}/updateStatus/${id}/${status}`,
           method: 'get'
         })
+    },
+
+    //重置密码
+    resetPwd(id){
+        return request({
+            url: `${api_name}/resetPwd/${id}`,
+            method: 'put'
+        })
     }
 }

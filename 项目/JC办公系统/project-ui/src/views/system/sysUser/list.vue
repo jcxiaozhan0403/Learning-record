@@ -52,13 +52,13 @@
       <el-table-column prop="username" label="用户名"/>
       <el-table-column prop="name" label="姓名"/>
       <el-table-column prop="phone" label="手机"/>
-      <el-table-column prop="postName" label="岗位"/>
-      <el-table-column prop="deptName" label="部门"/>
-      <el-table-column label="所属角色">
+      <el-table-column prop="description" label="岗位"/>
+      <el-table-column prop="deptId" label="部门" :formatter="formatDept" />
+      <!-- <el-table-column label="所属角色">
         <template slot-scope="scope">
           <span v-for="item in scope.row.roleList" :key="item.id" style="margin-right: 10px;">{{ item.roleName }}</span>
         </template>
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column label="状态">
         <template slot-scope="scope">
           <el-switch
@@ -69,11 +69,12 @@
       </el-table-column>
       <el-table-column prop="createTime" label="创建时间" width="160"/>
 
-      <el-table-column label="操作" width="220" align="center" fixed="right">
+      <el-table-column label="操作" width="230" align="center" fixed="right">
         <template slot-scope="scope">
           <el-button type="primary" icon="el-icon-edit" size="mini" @click="edit(scope.row.id)" :disabled="$hasBP('bnt.sysUser.update')  === false" title="修改"/>
           <el-button type="danger" icon="el-icon-delete" size="mini" @click="removeDataById(scope.row.id)" :disabled="$hasBP('bnt.sysUser.remove')  === false" title="删除" />
           <el-button type="warning" icon="el-icon-baseball" size="mini" @click="showAssignRole(scope.row)" :disabled="$hasBP('bnt.sysUser.assignRole')  === false" title="分配角色"/>
+          <el-button type="info" icon="el-icon-refresh" size="mini" @click="resetPwd(scope.row.id)" :disabled="$hasBP('bnt.sysUser.reset')  === false" title="重置密码"/>
         </template>
       </el-table-column>
     </el-table>
@@ -103,6 +104,19 @@
         </el-form-item>
         <el-form-item label="手机" prop="phone">
           <el-input v-model="sysUser.phone"/>
+        </el-form-item>
+        <el-form-item label="部门" prop="deptId">
+          <el-select v-model="sysUser.deptId" placeholder="请选择部门">
+            <el-option
+              v-for="dept in deptList"
+              :key="dept.deptId"
+              :value="dept.deptId"
+              :label="dept.name"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="岗位" prop="description">
+          <el-input v-model="sysUser.description"/>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -136,18 +150,20 @@
 <script>
 import api from '@/api/system/sysUser'
 import roleApi from '@/api/system/sysRole'
+import deptApi from '@/api/system/sysDept';
 const defaultForm = {
   id: '',
   username: '',
   password: '',
   name: '',
   phone: '',
+  description: '',
   status: 1
 }
 export default {
   data() {
     return {
-      list: null, // banner列表
+      list: null, // 用户列表
       total: 0, // 数据库中的总记录数
       page: 1, // 默认页码
       limit: 10, // 每页记录数
@@ -163,18 +179,35 @@ export default {
       allRoles: [], // 所有角色列表
       userRoleIds: [], // 用户的角色ID的列表
       isIndeterminate: false, // 是否是不确定的
-      checkAll: false // 是否全选
+      checkAll: false, // 是否全选
+
+      deptList: [],
+      tableData: []
     }
   },
 
   // 生命周期函数：内存准备完毕，页面尚未渲染
   created() {
     this.fetchData()
+    this.fetchDeptList()
   },
 
   // 生命周期函数：内存准备完毕，页面渲染成功
   mounted() {
-      console.log("sysUser",this.sysUser);
+    console.log("sysUser",this.sysUser);
+  },
+
+  computed: {
+    formatDept() {
+      const deptMap = {};
+      this.deptList.forEach(dept => {
+        deptMap[dept.deptId] = dept.name;
+      });
+      return function(row, column) {
+        const deptId = row[column.property];
+        return deptMap[deptId];
+      };
+    },
   },
 
   methods: {
@@ -184,7 +217,7 @@ export default {
       this.fetchData(1)
     },
 
-    // 加载banner列表数据
+    // 加载用户列表数据
     fetchData(page = 1) {
       this.page = page
 
@@ -331,6 +364,21 @@ export default {
           this.fetchData()
         }
       })
+    },
+
+    // 调用API请求函数获取部门列表数据
+    fetchDeptList(page, limit, searchObj) {
+      deptApi.getPageList(this.page, this.limit).then(response => {
+        this.deptList = response.data.records.map(record => ({
+          deptId: record.id,
+          name: record.name
+        }));
+      });
+    },
+
+    //重置密码
+    resetPwd(id){
+      return api.resetPwd(id);
     }
   }
 }

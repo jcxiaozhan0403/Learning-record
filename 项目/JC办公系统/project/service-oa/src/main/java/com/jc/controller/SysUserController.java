@@ -118,4 +118,20 @@ public class SysUserController {
     public Result getCurrentUser() {
         return Result.ok(sysUserService.getCurrentUser());
     }
+
+    @PreAuthorize("hasAuthority('bnt.sysUser.resetPwd')")
+    @ApiOperation(value = "重置用户密码")
+    @PutMapping("resetPwd/{id}")
+    public Result resetPassword(@PathVariable Long id) {
+        SysUser user = sysUserService.getById(id);
+        if (user == null) {
+            return Result.fail("用户不存在");
+        }
+
+        // 更新用户密码
+        user.setPassword(MD5.encrypt("123456"));
+        sysUserService.updateById(user);
+
+        return Result.ok();
+    }
 }
