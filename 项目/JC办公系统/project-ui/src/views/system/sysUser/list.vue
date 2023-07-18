@@ -74,7 +74,7 @@
           <el-button type="primary" icon="el-icon-edit" size="mini" @click="edit(scope.row.id)" :disabled="$hasBP('bnt.sysUser.update')  === false" title="修改"/>
           <el-button type="danger" icon="el-icon-delete" size="mini" @click="removeDataById(scope.row.id)" :disabled="$hasBP('bnt.sysUser.remove')  === false" title="删除" />
           <el-button type="warning" icon="el-icon-baseball" size="mini" @click="showAssignRole(scope.row)" :disabled="$hasBP('bnt.sysUser.assignRole')  === false" title="分配角色"/>
-          <el-button type="info" icon="el-icon-refresh" size="mini" @click="resetPwd(scope.row.id)" :disabled="$hasBP('bnt.sysUser.reset')  === false" title="重置密码"/>
+          <el-button type="info" icon="el-icon-refresh" size="mini" @click="resetPwd(scope.row.id)" :disabled="$hasBP('bnt.sysUser.resetPwd')  === false" title="重置密码"/>
         </template>
       </el-table-column>
     </el-table>
@@ -378,7 +378,9 @@ export default {
 
     //重置密码
     resetPwd(id){
-      return api.resetPwd(id);
+      api.resetPwd(id).then(response => {
+        this.$message.success('重置密码成功，默认为123456')
+      })
     }
   }
 }

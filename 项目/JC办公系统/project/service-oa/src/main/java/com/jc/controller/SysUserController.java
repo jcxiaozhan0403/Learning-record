@@ -121,9 +121,10 @@ public class SysUserController {
 
     @PreAuthorize("hasAuthority('bnt.sysUser.resetPwd')")
     @ApiOperation(value = "重置用户密码")
-    @PutMapping("resetPwd/{id}")
+    @GetMapping("resetPwd/{id}")
     public Result resetPassword(@PathVariable Long id) {
         SysUser user = sysUserService.getById(id);
+
         if (user == null) {
             return Result.fail("用户不存在");
         }

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a76aa7d4-91d7-4163-8d37-251ddd301cb7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project-ui/src/api/system/sysUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project-ui/src/api/system/sysUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project-ui/src/views/system/sysUser/list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project-ui/src/views/system/sysUser/list.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/common-util/target/classes/com/jc/common/jwt/JwtHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/common-util/target/classes/com/jc/common/jwt/JwtHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/common-util/target/classes/com/jc/common/result/Result.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/common-util/target/classes/com/jc/common/result/Result.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/common-util/target/classes/com/jc/common/result/ResultCodeEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/common-util/target/classes/com/jc/common/result/ResultCodeEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/common-util/target/classes/com/jc/common/utils/ResponseUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/common-util/target/classes/com/jc/common/utils/ResponseUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/common-util/target/common-util-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/common-util/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/common-util/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/common-util/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/common-util/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/service-util/target/classes/com/jc/common/config/mp/MybatisPlusConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/service-util/target/classes/com/jc/common/config/mp/MybatisPlusConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/service-util/target/classes/com/jc/common/handler/CustomException.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/service-util/target/classes/com/jc/common/handler/CustomException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/service-util/target/classes/com/jc/common/handler/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/service-util/target/classes/com/jc/common/handler/GlobalExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/service-util/target/classes/com/jc/common/utils/MD5.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/service-util/target/classes/com/jc/common/utils/MD5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/service-util/target/classes/com/jc/wechat/config/WechatAccountConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/service-util/target/classes/com/jc/wechat/config/WechatAccountConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/service-util/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/service-util/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/service-util/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/service-util/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/service-util/target/service-util-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/spring-security/src/main/java/com/jc/fillter/TokenLoginFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/spring-security/src/main/java/com/jc/fillter/TokenLoginFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/spring-security/target/classes/com/jc/custom/CustomMd5PasswordEncoder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/spring-security/target/classes/com/jc/custom/CustomMd5PasswordEncoder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/spring-security/target/classes/com/jc/custom/CustomUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/spring-security/target/classes/com/jc/custom/CustomUser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/spring-security/target/classes/com/jc/custom/LoginUserInfoHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/spring-security/target/classes/com/jc/custom/LoginUserInfoHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/spring-security/target/classes/com/jc/fillter/TokenLoginFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/spring-security/target/classes/com/jc/fillter/TokenLoginFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/spring-security/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/spring-security/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/spring-security/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/spring-security/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/common/spring-security/target/spring-security-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/base/BaseEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/base/BaseEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/process/Process.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/process/Process.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/process/ProcessRecord.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/process/ProcessRecord.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/process/ProcessTemplate.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/process/ProcessTemplate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/process/ProcessType.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/process/ProcessType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysDept.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysDept.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysLoginLog.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysLoginLog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysOperLog.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysOperLog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysPost.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysPost.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysRole.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysRole.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysRoleMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysRoleMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysUser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysUserRole.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/system/SysUserRole.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/wechat/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/model/wechat/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/process/ApprovalVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/process/ApprovalVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/process/ProcessFormVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/process/ProcessFormVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/process/ProcessQueryVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/process/ProcessQueryVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/process/ProcessVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/process/ProcessVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/AssginRoleVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/AssginRoleVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/AssignMenuVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/AssignMenuVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/LoginVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/LoginVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/MetaVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/MetaVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/RouterVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/RouterVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/SysLoginLogQueryVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/SysLoginLogQueryVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/SysOperLogQueryVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/SysOperLogQueryVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/SysPostQueryVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/SysPostQueryVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/SysRoleQueryVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/SysRoleQueryVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/SysUserQueryVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/system/SysUserQueryVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/wechat/BindPhoneVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/wechat/BindPhoneVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/wechat/MenuVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/classes/com/jc/vo/wechat/MenuVo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/model/target/model-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/src/main/java/com/jc/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/src/main/java/com/jc/controller/IndexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/src/main/java/com/jc/controller/SysUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/src/main/java/com/jc/controller/SysUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/src/main/resources/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/src/main/resources/static/static/js/app.0346d8c4.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/src/main/resources/static/static/js/chunk-2398eabb.95a20ddc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/ServiceAuthApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/ServiceAuthApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/bean/MyTaskListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/bean/MyTaskListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/bean/UserBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/bean/UserBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/controller/IndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/controller/IndexController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/controller/SysMenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/controller/SysMenuController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/controller/SysRoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/controller/SysRoleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/controller/SysUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/controller/SysUserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/helper/MenuHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/helper/MenuHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/mapper/SysMenuMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/mapper/SysMenuMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/service/SysMenuService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/service/SysMenuService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/service/SysRoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/service/SysRoleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/service/SysUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/service/SysUserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/service/impl/SysMenuServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/service/impl/SysMenuServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/service/impl/SysRoleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/service/impl/SysRoleServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/service/impl/SysUserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/service/impl/SysUserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/service/impl/UserDetailsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/jc/service/impl/UserDetailsServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/controller/ProcessController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/controller/ProcessController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/controller/ProcessTemplateController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/controller/ProcessTemplateController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/controller/ProcessTypeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/controller/ProcessTypeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/controller/api/ProcessApiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/controller/api/ProcessApiController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/mapper/ProcessMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/mapper/ProcessMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/service/ProcessRecordService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/service/ProcessRecordService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/service/ProcessService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/service/ProcessService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/service/ProcessTemplateService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/service/ProcessTemplateService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/service/impl/ProcessRecordServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/service/impl/ProcessRecordServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/service/impl/ProcessServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/service/impl/ProcessServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/service/impl/ProcessTemplateServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/process/service/impl/ProcessTemplateServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/wechat/controller/MenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/wechat/controller/MenuController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/wechat/controller/WechatController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/wechat/controller/WechatController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/wechat/service/MessageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/wechat/service/MessageService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/wechat/service/xml/MenuServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/wechat/service/xml/MenuServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/wechat/service/xml/MessageServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/com/wechat/service/xml/MessageServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/static/static/js/app.0346d8c4.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/classes/static/static/js/chunk-2398eabb.95a20ddc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/service-oa.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../项目/JC办公系统/project/service-oa/target/service-oa.jar.original" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\environment\Maven\apache-maven-3.8.3\maven-repo" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../../environment/Maven/apache-maven-3.8.3" />
+        <option name="userSettingsFile" value="D:\environment\Maven\apache-maven-3.8.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="1.8" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="1.8" />
+  </component>
+  <component name="ProjectId" id="2SjdyS9g5D4lqGPzkZ4VwANhz48" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.23401165" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.controller" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.ApplicationContext">
+    <configuration name="ApplicationContext" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ApplicationContext" />
+      <module name="project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApplicationContext" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ApplicationContext" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ApplicationContext" />
+        <item itemvalue="Spring Boot.ApplicationContext" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a76aa7d4-91d7-4163-8d37-251ddd301cb7" name="Changes" comment="" />
+      <created>1689664179755</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689664179755</updated>
+      <workItem from="1689664182180" duration="5793000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

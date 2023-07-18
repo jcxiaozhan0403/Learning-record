@@ -62,7 +62,7 @@ export default {
     resetPwd(id){
         return request({
             url: `${api_name}/resetPwd/${id}`,
-            method: 'put'
+            method: 'get'
         })
     }
 }

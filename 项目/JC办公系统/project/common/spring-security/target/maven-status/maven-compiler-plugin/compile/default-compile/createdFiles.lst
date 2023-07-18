@@ -1,6 +1,0 @@
-com\jc\custom\CustomMd5PasswordEncoder.class
-com\jc\fillter\TokenAuthenticationFilter.class
-com\jc\fillter\TokenLoginFilter.class
-com\jc\custom\CustomUser.class
-com\jc\custom\LoginUserInfoHelper.class
-com\jc\config\WebSecurityConfig.class
