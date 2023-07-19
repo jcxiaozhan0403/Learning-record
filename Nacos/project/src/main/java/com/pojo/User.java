@@ -8,15 +8,15 @@ import org.springframework.stereotype.Component;
  * @date 2023/7/18 16:38
  * @Description:
  */
-@Component
-public class User {
-    @Value("${name}")
-    private String name;
-
-    @Value("${age}")
-    private int age;
-
-    public void test(){
-        System.out.println(this.name + " " + this.age);
-    }
-}
+//@Component
+//public class User {
+//    @Value("${name}")
+//    private String name;
+//
+//    @Value("${age}")
+//    private int age;
+//
+//    public void test(){
+//        System.out.println(this.name + " " + this.age);
+//    }
+//}

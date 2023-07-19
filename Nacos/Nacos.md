@@ -136,5 +136,37 @@ public class ApplicationContext {
 </dependency>
 ```
 
+> 开启配置
 
+- 方式一：注解开启
+
+```java
+@NacosProperties(serverAddr = "127.0.0.1:8848"))
+@NacosPropertySource(dataId = "test",autoRefreshed = true)
+```
+
+- 方式二：配置文件开启
+
+```properties
+nacos.config.server-addr=127.0.0.1:8848
+nacos.config.data-id=test
+nacos.config.auto-refresh=true
+nacos.config.bootstrap.enable=true
+```
+
+> 测试
+
+```java
+@RestController
+public class HelloController {
+    @NacosValue(value = "${name}",autoRefreshed = true)
+    private String name;
+
+
+    @RequestMapping("/test")
+    public String test(){
+        return name;
+    }
+}
+```
 

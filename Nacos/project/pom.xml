@@ -33,16 +33,16 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>com.alibaba.boot</groupId>-->
-<!--      <artifactId>nacos-config-spring-boot-starter</artifactId>-->
-<!--      <version>0.2.2</version>-->
-<!--   </dependency>-->
     <dependency>
-      <groupId>com.alibaba.nacos</groupId>
-      <artifactId>nacos-spring-context</artifactId>
-      <version>1.1.1</version>
-    </dependency>
+      <groupId>com.alibaba.boot</groupId>
+      <artifactId>nacos-config-spring-boot-starter</artifactId>
+      <version>0.2.12</version>
+   </dependency>
+<!--    <dependency>-->
+<!--      <groupId>com.alibaba.nacos</groupId>-->
+<!--      <artifactId>nacos-spring-context</artifactId>-->
+<!--      <version>1.1.1</version>-->
+<!--    </dependency>-->
   </dependencies>
 
   <build>
