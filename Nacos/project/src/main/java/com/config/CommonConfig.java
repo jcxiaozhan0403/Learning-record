@@ -1,24 +1,28 @@
-package com.controller;
+package com.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 
 /**
  * @author John.Cena
- * @date 2023/7/19 14:42
+ * @date 2023/7/20 10:58
  * @Description:
  */
-@RestController
+@Component
 @RefreshScope
-public class HelloController {
+public class CommonConfig {
     @Value("${name}")
     private String name;
 
+    @Value("${age}")
+    private int nage;
 
-    @RequestMapping("/test")
-    public String test(){
+    public String getName() {
         return name;
+    }
+
+    public int getNage() {
+        return nage;
     }
 }

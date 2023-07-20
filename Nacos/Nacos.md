@@ -152,6 +152,7 @@ nacos.config.server-addr=127.0.0.1:8848
 nacos.config.data-id=test
 nacos.config.auto-refresh=true
 nacos.config.bootstrap.enable=true
+spring.main.allow-bean-definition-overriding=true
 ```
 
 > 测试
@@ -169,4 +170,74 @@ public class HelloController {
     }
 }
 ```
+
+### SpringCloud
+
+> 引入依赖
+
+```xml
+<!--2021.0.5.0 对应 springboot 2.6.7 -->
+<dependency>
+    <groupId>com.alibaba.cloud</groupId>
+    <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+    <version>2021.0.5.0</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-bootstrap</artifactId>
+    <version>3.0.3</version>
+</dependency>
+```
+
+> 配置文件
+
+- bootstrap.properties
+
+```properties
+spring.application.name=test
+spring.cloud.nacos.server-addr=127.0.0.1:8848
+```
+
+> 测试
+
+```java
+@RestController
+@RefreshScope //注解开启自动刷新
+public class HelloController {
+    @Value("${name}")
+    private String name;
+
+
+    @RequestMapping("/test")
+    public String test(){
+        return name;
+    }
+}
+```
+
+> 实际开发中的通用解决思路
+
+将配置项单独提取出来，写入一个统一配置类进行管理，提供get方法来获取这些值
+
+```java
+@Component
+@RefreshScope
+public class CommonConfig {
+    @Value("${name}")
+    private String name;
+
+    @Value("${age}")
+    private int nage;
+
+    public String getName() {
+        return name;
+    }
+
+    public int getNage() {
+        return nage;
+    }
+}
+```
+
+## 服务管理
 

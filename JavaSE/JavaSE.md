@@ -5283,3 +5283,286 @@ class Student {
     int length();
 }
 ```
+
+## POI
+
+### POI和eazyExcel
+
+Apache POI 是用Java编写的免费开源的跨平台的 Java API，Apache POI提供API给Java对Microsoft Office格式档案读和写的功能。POI为“**Poor Obfuscation Implementation**”的首字母缩写，意为“简洁版的模糊实现”。
+
+03版和07版的区别：
+
+2003版本的（.xls）HSSFWorkbook 和2007版本的（.xlsx）XSSFWorkbook
+
+xls最大只是65536行、256列，xlsx可以有1048576行、16384列
+
+![POI和easyExcel](D:\Study\Learning-record\JavaSE\POI和easyExcel.png)
+
+### POI常用包
+
+- HSSF － 提供读写Microsoft Excel XLS格式档案的功能。
+- XSSF － 提供读写Microsoft Excel OOXML XLSX格式档案的功能。
+- HWPF － 提供读写Microsoft Word DOC格式档案的功能。
+- HSLF － 提供读写Microsoft PowerPoint格式档案的功能。
+- HDGF － 提供读Microsoft Visio格式档案的功能。
+- HPBF － 提供读Microsoft Publisher格式档案的功能。
+- HSMF － 提供读Microsoft Outlook格式档案的功能。
+
+### 导入依赖
+
+```xml
+<dependencies>
+    <!--xls-->
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>3.9</version>
+    </dependency>
+    <!--xlsx-->
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>3.9</version>
+    </dependency>
+    <!--test-->
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+    </dependency>
+</dependencies>
+```
+
+### POI-Excle写
+
+> 03版：HSSF
+
+```java
+public class DemoTest {
+    static  String PATH = "D:\\一些文档";
+    @Test
+    public void writeExcel03() throws Exception {
+        //1.创建workbook
+        Workbook workbook=new HSSFWorkbook();
+        //2.根据workbook创建sheet
+        Sheet sheet = workbook.createSheet("会员列表");
+        //3.根据sheet创建row
+        Row row1 = sheet.createRow(0);
+        //4.根据row创建cell
+        Cell cell1 = row1.createCell(0);
+        //5.向cell里面设置值
+        cell1.setCellValue("按键");
+        //6.通过输出流写到文件里去
+        FileOutputStream fos= new FileOutputStream(PATH+"/test03.xls");
+        //通过流写入文件
+        workbook.write(fos);
+        //关闭流
+        fos.close();
+    }
+}
+```
+
+> 07版：XSSF
+
+```java
+public class DemoTest {
+    static  String PATH = "D:\\一些文档";
+    @Test
+    public void writeExcel03() throws Exception {
+        //1.创建workbook
+        Workbook workbook=new XSSFWorkbook();
+        //2.根据workbook创建sheet
+        Sheet sheet = workbook.createSheet("会员列表");
+        //3.根据sheet创建row
+        Row row1 = sheet.createRow(0);
+        //4.根据row创建cell
+        Cell cell1 = row1.createCell(0);
+        //5.向cell里面设置值
+        cell1.setCellValue("按键");
+        //6.通过输出流写到文件里去
+        FileOutputStream fos= new FileOutputStream(PATH+"/test03.xls");
+        //通过流写入文件
+        workbook.write(fos);
+        //关闭流
+        fos.close();
+    }
+}
+```
+
+> 快速写
+
+优点：可以写非常大的数据量，如 100万 条甚至更多，写数据速度快，占用更少的内存
+
+**注意：**
+
+过程中可能产生临时文件，需要清理临时文件
+
+默认由 100 条记录被保存在内存中，如果超过这数量，则最前面的数据被写入临时文件
+
+如果想自定义内存中数据的数量，可以使用 new SXSSFWorkbook(amount)
+
+```java
+@Test
+public void write07BigDataS() throws IOException {
+    long begin = System.currentTimeMillis();
+ 
+    //创建簿
+    Workbook workbook = new SXSSFWorkbook();
+    //创建表
+    Sheet sheet = workbook.createSheet();
+    //写数据
+    for (int rowNum = 0; rowNum < 100000; rowNum++) {
+        Row row = sheet.createRow(rowNum);
+        for (int cellNum = 0; cellNum < 10; cellNum++) {
+            Cell cell = row.createCell(cellNum);
+            cell.setCellValue(cellNum);
+        }
+    }
+    System.out.println("over");
+    FileOutputStream fileOutputStream = new FileOutputStream(PATH + "TestWrite07BigDataS.xlsx");
+    workbook.write(fileOutputStream);
+    fileOutputStream.close();
+    //清除临时文件，在后续版本中，不会生成临时文件，所以此方法废除
+    ((SXSSFWorkbook) workbook).dispose();
+ 
+    long end = System.currentTimeMillis();
+    System.out.println((double) (end-begin)/1000);
+}
+```
+
+### POI-Excle读
+
+> 03版
+
+```java
+@Test
+public void testRead03() throws IOException {
+    //获取文件流
+    FileInputStream fileInputStream = new FileInputStream(PATH + "POIPOI03测试.xls");
+ 
+    //1、获取工作簿
+    Workbook workbook = new HSSFWorkbook(fileInputStream);
+    //2、得到表
+    Sheet sheet = workbook.getSheetAt(0);
+    //3、得到行
+    Row row = sheet.getRow(0);
+    //4、得到列
+    Cell cell = row.getCell(0);
+ 
+    //读取值时一定要注意类型
+    System.out.println(cell.getStringCellValue());
+ 
+    fileInputStream.close();
+}
+```
+
+> 07版
+
+```java
+@Test
+public void testRead07() throws IOException {
+    //获取文件流
+    FileInputStream fileInputStream = new FileInputStream(PATH + "POIPOI07测试.xlsx");
+ 
+    //1、获取工作簿
+    Workbook workbook = new XSSFWorkbook(fileInputStream);
+    //2、得到表
+    Sheet sheet = workbook.getSheetAt(0);
+    //3、得到行
+    Row row = sheet.getRow(0);
+    //4、得到列
+    Cell cell = row.getCell(0);
+ 
+    //读取值时一定要注意类型
+    System.out.println(cell.getStringCellValue());
+ 
+    fileInputStream.close();
+}
+```
+
+> 读取不同的数据类型
+
+```java
+@Test
+public void testCellType() throws Exception {
+    //获取文件
+    FileInputStream fileInputStream = new FileInputStream(PATH + "会员消费商品明细表.xls");
+ 
+    //获取工作薄
+    Workbook workbook = new HSSFWorkbook(fileInputStream);
+    //得到表
+    Sheet sheet = workbook.getSheetAt(0);
+ 
+    //获取标题内容
+    Row rowTitle = sheet.getRow(0);
+    if (rowTitle != null){
+        //获取一行中有多少个单元格
+        int cellCount = rowTitle.getPhysicalNumberOfCells();
+        for (int cellNum = 0; cellNum < cellCount; cellNum++) {
+            //获取单元
+            Cell cell = rowTitle.getCell(cellNum);
+            if (cell != null){
+                //获取类型
+                int cellType = cell.getCellType();
+                String cellValue = cell.getStringCellValue();
+                System.out.print(cellValue + " | ");
+            }
+        }
+        System.out.println();
+    }
+ 
+    //获取表中的内容
+    int rowCount = sheet.getPhysicalNumberOfRows();
+    for (int rowNum = 1; rowNum < rowCount; rowNum++) {
+        Row rowData = sheet.getRow(rowNum);
+        if (rowData != null){
+            //读取列
+            int cellCout = rowTitle.getPhysicalNumberOfCells();
+            for (int cellNum = 0; cellNum < cellCout; cellNum++) {
+                System.out.print("【" + (rowNum+1) + "-" + (cellNum+1) + "】");
+ 
+                Cell cell = rowData.getCell(cellNum);
+                //匹配列的数据类型
+                if (cell != null){
+                    int cellType = cell.getCellType();
+                    String cellValue = "";
+ 
+                    switch (cellType){
+                        case HSSFCell.CELL_TYPE_STRING://字符串
+                            System.out.print("【STRING】");
+                            cellValue = cell.getStringCellValue();
+                            break;
+                        case HSSFCell.CELL_TYPE_BOOLEAN://布尔值
+                            System.out.print("【BOOLEAN】");
+                            cellValue = String.valueOf(cell.getBooleanCellValue());
+                            break;
+                        case HSSFCell.CELL_TYPE_NUMERIC://数字类型
+                            System.out.print("【NUMERIC】");
+ 
+                            if (HSSFDateUtil.isCellDateFormatted(cell)){//日期
+                                System.out.print("【日期】");
+                                Date date = cell.getDateCellValue();
+                                cellValue = new DateTime().toString("yyyy-MM-dd");
+                            }else{
+                                // 不是日期格式，则防止当数字过长时以科学计数法显示
+                                System.out.print("【转换成字符串】");
+                                cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+                                cellValue = cell.toString();
+                            }
+                            break;
+                        case HSSFCell.CELL_TYPE_BLANK://空
+                            System.out.print("【BLANK】");
+                            break;
+                        case Cell.CELL_TYPE_ERROR:
+                            System.out.print("【数据类型错误】");
+                            break;
+                    }
+                    System.out.println(cellValue);
+                }
+            }
+        }
+    }
+    fileInputStream.close();
+}
+```
+
