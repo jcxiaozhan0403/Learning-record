@@ -1,0 +1,7 @@
+com\jc\common\utils\MD5.class
+com\jc\common\handler\CustomException.class
+com\jc\common\config\knife4j\Knife4jConfig.class
+com\jc\wechat\config\WeChatMpConfig.class
+com\jc\common\config\mp\MybatisPlusConfig.class
+com\jc\common\handler\GlobalExceptionHandler.class
+com\jc\wechat\config\WechatAccountConfig.class
