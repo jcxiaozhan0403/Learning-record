@@ -328,3 +328,165 @@ naming.selectInstances("app1", true)
 naming.selectOneHealthyInstance("app1")
 ```
 
+通常，作为服务消费者，还需要监听服务实例化的变化，我们可以使⽤如下api来监听变化
+
+```java
+NamingService naming = NamingFactory.createNamingService("localhost:8848");
+naming.subscribe("app1", event -> {
+    if (event instanceof NamingEvent) {
+        System.out.println(((NamingEvent) event).getServiceName());
+        System.out.println(((NamingEvent) event).getInstances());
+    }
+});
+```
+
+### SpringCloud服务注册与发现
+
+> 导入依赖
+
+```xml
+<!--2021.0.5.0 对应 springboot 2.6.7 -->
+<dependency>
+    <groupId>com.alibaba.cloud</groupId>
+    <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+    <version>2021.0.5.0</version>
+</dependency>
+```
+
+> 服务提供者
+
+```properties
+server.port=8070
+spring.application.name=service-provider
+spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848
+```
+
+```java
+@SpringBootApplication
+@EnableDiscoveryClient
+public class UserApplication {
+    public static void main(String[] args) throws IOException {
+    	SpringApplication.run(UserApplication.class, args);
+    }
+}
+```
+
+> 服务消费者
+
+```properties
+server.port=8080
+spring.application.name=service-consumer
+spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848
+```
+
+```java
+@SpringBootApplication
+@EnableDiscoveryClient
+public class ConsumerApplication {
+    
+    //注入一个restTemplate用于服务调用
+    @LoadBalanced
+    @Bean
+    public RestTemplate restTemplate() {
+    	return new RestTemplate();
+    }
+
+    public static void main(String[] args) {
+    	SpringApplication.run(ConsumerApplication.class, args);
+    }
+}
+```
+
+```java
+@RestController
+public class ConsumerController {
+     @Autowired
+     private RestTemplate restTemplate;
+     @GetMapping(value = "/test")
+     public String echo() {
+         return restTemplate.getForObject("http://service-provider/test", String.class);
+     }
+}
+```
+
+## 高级配置
+
+### 临时实例与持久实例
+
+默认情况下，注册给nacos的实例都是临时实例，临时实例表示会通过客户端与服务端之间的⼼跳来保活，默认情况下，客户端会每隔5s发送⼀次心跳。
+
+在服务端测，如果超过`15s`没有收到客户端的⼼跳，那么就会`把实例标记为不健康状态`
+
+在服务端测，如果超过`30s`没有收到客户端的⼼跳，那么就会`删除实例`
+
+默认情况下，生成的实例为临时实例，我们可以通过以下配置来配置为**持久实例**
+
+```properties
+spring.cloud.nacos.discovery.ephemeral=false
+```
+
+对于持久实例，就算服务实例下线了，那么也不会被删除，我们依然可以在nacos中查看到一些它的相关信息
+
+### 保护阈值
+
+在使用过程中，我们可以设置一个0-1的一个比例，表示如果服务的所有实例中，健康实例的比重低于这个比重就会触发保护，一旦触发保护，在服务消费端侧就会把所有实例拉取下来，不管是否健康，这样 就起到了保护的作用，因为正常来说消费端只会拿到健康实例，但是如果健康实例占总实例比例比较小了，那么就会导致所有流量都会压到健康实例上，这样仅剩的几个健康实例也会被压垮，所以只要触发 了保护，消费端就会拉取到所有实例，这样部分消费端仍然会访问到不健康的实例从而请求失败，但是也有⼀部分请求能访问到健康实例，达到保护的作用。
+
+保护阈值的设置范围为`0-1`，表示比例，比如设置为0.4，就表示如果仅剩余40%的实例存活，就开启保护
+
+###  权重
+
+权重就是增加实例被访问到的概率，默认情况下，权重不会生效，我们需要重新负载均衡策略，使用Nacos提供的策略来覆盖掉默认策略即可
+
+```java
+@Bean
+public IRule ribbonRule() {
+	return new NacosRule();
+}
+```
+
+### 就近访问
+
+消费者在访问服务提供者的时候指定集群，可以完成就近访问，如果消费端没有配置cluster-name，那么则会使⽤所有集群
+
+```properties
+spring.cloud.nacos.discovery.cluster-name=bj
+```
+
+## 集群
+
+在部署集群的时候，每一个nacos文件夹就代表了一个集群节点，我们需要修改`conf/cluster.conf`文件，配置所有节点的地址和端口
+
+```conf
+192.168.65.46:8848
+192.168.65.46:8858
+192.168.65.46:8868
+```
+
+分别修改每个节点的配置文件，配置正确的端口号
+
+```properties
+server.port=8848
+```
+
+```properties
+server.port=8858
+```
+
+```properties
+server.port=8868
+```
+
+服务同时向三个节点进行注册
+
+这里官方推荐使用Nginx反向代理，配置统一地址，参考：https://www.bilibili.com/video/BV1q3411Z79z?p=23&vd_source=d6cbedbb3e249eafa593fdc79241d0c5
+
+```properties
+spring.cloud.nacos.discovery.server-addr=192.168.65.46:8848, 192.168.65.46:8858, 192.168.65.46:8858
+```
+
+启动
+
+```cmd
+startup.cmd -p embedded
+```
+

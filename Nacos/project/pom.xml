@@ -48,6 +48,12 @@
       <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
       <version>2021.0.5.0</version>
     </dependency>
+    <!--2021.0.5.0 对应 springboot 2.6.7 -->
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+      <version>2021.0.5.0</version>
+    </dependency>
     <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bootstrap -->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
