@@ -25,7 +25,7 @@ export default {
   methods: {
     admin() {
       window.localStorage.setItem('token', '');
-      let token = 'eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAKtWKi5NUrJScgwN8dANDXYNUtJRSq0oULIyNLOwNDQ2NjS11FEqLU4t8kwBikGYeYm5qSAtKbmZeUq1AIRCcuVCAAAA.Yx30MFCe5biGlq4JpNVZN2f2Zn1jRnyZjro7VmMn7B7XHYZzJYaU1fwvjB-IyI8CI0V3gMYM6fbueVye1PxNOA'
+      let token = 'eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAKtWKi5NUrJScgwN8dANDXYNUtJRSq0oULIyNLM0NDEwNDI21VEqLU4t8kwBikGYeYm5qSAtKbmZeUq1ADofo5tCAAAA.mEl7hl0KmywujTDbCo_WK3F3CNObQmyozUzxgoenQFtKKegSOUS3aGszkjA84CrfZ7xS_j9u_pVc3yznAw8eQg'
       window.localStorage.setItem('token', token);
       this.token = window.localStorage.getItem('token')
     },
@@ -39,7 +39,7 @@ export default {
 
     zhangsan() {
       window.localStorage.setItem('token', '');
-      let token = 'eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAKtWKi5NUrJScgwN8dANDXYNUtJRSq0oULIyNLOwNDQ2tTA20FEqLU4t8kxRsjKHMPMSc1OBWqIyEvPSgxPzlGoBI4HWR0UAAAA.8YvvNSexpWp9HUob9DDeaRdO-QfwMj5nS1HYB8dcAEmEE953vb7AmJAJVZtQ9WV86a_LT0QjdmoJa93nSHrJ-Q'
+      let token = 'eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAKtWKi5NUrJScgwN8dANDXYNUtJRSq0oULIyNLM0NDEwNLQ01VEqLU4t8kxRsjKHMPMSc1OBWqIyEvPSgxPzlGoBp0kbpkUAAAA.mcTfppqTivUpohM_nuAvPAMg_tR6BS_CrzFkmi06p6OB1UiVHGt15X97-WLlxq0TW132eS9hC3ax1CCHgGtv7A'
       window.localStorage.setItem('token', token);
       this.token = window.localStorage.getItem('token')
     },
