@@ -32,7 +32,7 @@ export default {
 
   created() {
     // 处理微信授权登录
-    // this.wechatLogin();
+    this.wechatLogin();
   },
 
   methods: {
@@ -57,7 +57,7 @@ export default {
         token = window.localStorage.getItem('token') || '';
         if (token == '') {
           let url = window.location.href.replace('#', 'jc_oa')
-          window.location = 'http://ggkt2.vipgz1.91tunnel.com/admin/wechat/authorize?returnUrl=' + url
+          window.location = 'http://oa.jcxiaozhan.top:8200/admin/wechat/authorize?returnUrl=' + url
         }
       }
     },
@@ -70,7 +70,7 @@ export default {
       userInfoApi.bindPhone(this.bindPhoneVo).then(response => {
         window.localStorage.setItem('token', response.data);
         this.dialogVisible = false
-        window.location = 'http://ggkt1.vipgz1.91tunnel.com'
+        window.location = 'http://oa.jcxiaozhan.top:9090'
       })
     },
 

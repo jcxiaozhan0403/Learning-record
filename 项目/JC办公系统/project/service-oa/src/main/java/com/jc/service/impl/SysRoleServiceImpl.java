@@ -60,7 +60,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         sysUserRoleMapper.delete(new LambdaQueryWrapper<SysUserRole>().eq(SysUserRole::getUserId, assginRoleVo.getUserId()));
 
         for(Long roleId : assginRoleVo.getRoleIdList()) {
-            if(StringUtils.isEmpty(roleId)) continue;
+            if(StringUtils.isEmpty(roleId)){
+                continue;
+            }
             SysUserRole userRole = new SysUserRole();
             userRole.setUserId(assginRoleVo.getUserId());
             userRole.setRoleId(roleId);

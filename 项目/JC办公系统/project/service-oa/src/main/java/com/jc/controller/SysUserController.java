@@ -47,13 +47,17 @@ public class SysUserController {
         //2.封装条件，判断条件是否为空，不为空使用wrapper进行查询条件的编写
         LambdaQueryWrapper<SysUser> wrapper = new LambdaQueryWrapper<>();
         //获取条件值
-        String username = sysUserQueryVo.getKeyword();
+        String keyWord = sysUserQueryVo.getKeyword();
         String createTimeBegin = sysUserQueryVo.getCreateTimeBegin();
         String createTimeEnd = sysUserQueryVo.getCreateTimeEnd();
 
-        if(!StringUtils.isEmpty(username)) {
-            //like 模糊查询
-            wrapper.like(SysUser::getUsername,username);
+        if(!StringUtils.isEmpty(keyWord)) {
+            wrapper
+                    .like(SysUser::getUsername,keyWord)
+                    .or()
+                    .like(SysUser::getName,keyWord)
+                    .or()
+                    .like(SysUser::getPhone,keyWord);
         }
 
         if(!StringUtils.isEmpty(createTimeBegin)) {

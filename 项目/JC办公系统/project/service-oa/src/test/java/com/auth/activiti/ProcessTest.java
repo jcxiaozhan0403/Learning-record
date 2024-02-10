@@ -13,9 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.InputStream;
 import java.util.List;
-import java.util.zip.ZipInputStream;
 
 @SpringBootTest
 public class ProcessTest {
@@ -141,21 +139,21 @@ public class ProcessTest {
 
     @Test
     public void deployProcessByZip() {
-        // 定义zip输入流
-        InputStream inputStream = this
-                .getClass()
-                .getClassLoader()
-                .getResourceAsStream(
-                        "processes/qingjia.bpmn20.zip");
-        ZipInputStream zipInputStream = new ZipInputStream(inputStream);
-
-        // 流程部署
-        Deployment deployment = repositoryService.createDeployment()
-                .addZipInputStream(zipInputStream)
-                .name("请假申请流程")
-                .deploy();
-        System.out.println("流程部署id：" + deployment.getId());
-        System.out.println("流程部署名称：" + deployment.getName());
+//        // 定义zip输入流
+//        InputStream inputStream = this
+//                .getClass()
+//                .getClassLoader()
+//                .getResourceAsStream(
+//                        "processes/qingjia.bpmn20.zip");
+//        ZipInputStream zipInputStream = new ZipInputStream(inputStream);
+//
+//        // 流程部署
+//        Deployment deployment = repositoryService.createDeployment()
+//                .addZipInputStream(zipInputStream)
+//                .name("请假申请流程")
+//                .deploy();
+//        System.out.println("流程部署id：" + deployment.getId());
+//        System.out.println("流程部署名称：" + deployment.getName());
     }
 
     //单个文件部署

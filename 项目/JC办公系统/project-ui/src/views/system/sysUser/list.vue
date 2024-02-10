@@ -5,8 +5,8 @@
       <el-form label-width="70px" size="small">
         <el-row>
           <el-col :span="8">
-            <el-form-item label="用户名">
-              <el-input style="width: 95%" v-model="searchObj.keyword" placeholder="请输入用户名"></el-input>
+            <el-form-item label="关键字">
+              <el-input style="width: 95%" v-model="searchObj.keyword" placeholder="用户名/姓名/手机号"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">

@@ -1479,4 +1479,4 @@ eureka:
   2. 启动服务模块`springcloud-provider-dept-hystrix-8001`
   3. 启动zuul模块
 
-==高版本已不支持Zuul，现在API网关使用gateway==
+==高版本已不支持Zuul，现在API网关使用gateway==getForObject

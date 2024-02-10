@@ -58,7 +58,7 @@ public class MessageServiceImpl implements MessageService {
         WxMpTemplateMessage templateMessage = WxMpTemplateMessage.builder()
                 .toUser(openid)//要推送的用户openid
                 .templateId("S9ese5HD-VV-snKZ3qI3BfFD-5h6171UX4ZTmPda4Wk")//模板id
-                .url("http://ggkt1.vipgz1.91tunnel.com/#/show/"+processId+"/"+taskId)//点击模板消息要访问的网址
+                .url("http:/oa.jcxiaozhan.top:9090/#/show/"+processId+"/"+taskId)//点击模板消息要访问的网址
                 .build();
         JSONObject jsonObject = JSON.parseObject(process.getFormValues());
         JSONObject formShowData = jsonObject.getJSONObject("formShowData");
@@ -88,7 +88,7 @@ public class MessageServiceImpl implements MessageService {
         WxMpTemplateMessage templateMessage = WxMpTemplateMessage.builder()
                 .toUser(openid)//要推送的用户openid
                 .templateId("uqRFweG47_MmEuI40HWtqnh8M5zYZVLnmwzSjH_lRvQ")//模板id
-                .url("http://ggkt1.vipgz1.91tunnel.com/#/show/"+processId+"/0")//点击模板消息要访问的网址
+                .url("http://oa.jcxiaozhan.top:9090/#/show/"+processId+"/0")//点击模板消息要访问的网址
                 .build();
         JSONObject jsonObject = JSON.parseObject(process.getFormValues());
         JSONObject formShowData = jsonObject.getJSONObject("formShowData");
