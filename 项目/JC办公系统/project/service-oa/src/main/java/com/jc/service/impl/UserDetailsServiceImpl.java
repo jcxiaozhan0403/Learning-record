@@ -38,12 +38,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if(sysUser.getStatus().intValue() == 0) {
             throw new RuntimeException("账号已停用");
         }
-        //查询用户权限信息，存入CustomUser对象中
+        //查询用户权限信息
         List<String> userPermsList = sysMenuService.findUserPermsList(sysUser.getId());
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         for (String perm : userPermsList) {
             authorities.add(new SimpleGrantedAuthority(perm.trim()));
         }
+
+        //将查询到的对象，封装到spring security的上下文中
         return new CustomUser(sysUser,authorities);
     }
 }

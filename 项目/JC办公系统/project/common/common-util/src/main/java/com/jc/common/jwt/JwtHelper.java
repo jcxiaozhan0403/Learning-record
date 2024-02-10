@@ -6,6 +6,7 @@ import org.springframework.util.StringUtils;
 import java.util.Date;
 
 /**
+ * JWT工具类
  * @author John.Cena
  * @date 2023/4/6 13:59
  * @Description:
@@ -18,10 +19,14 @@ public class JwtHelper {
     public static String createToken(Long userId, String username) {
         String token = Jwts.builder()
                 .setSubject("AUTH-USER")
+                //过期时间
                 .setExpiration(new Date(System.currentTimeMillis() + tokenExpiration))
+                //有效载荷
                 .claim("userId", userId)
                 .claim("username", username)
+                //签名信息
                 .signWith(SignatureAlgorithm.HS512, tokenSignKey)
+                //压缩格式
                 .compressWith(CompressionCodecs.GZIP)
                 .compact();
         return token;

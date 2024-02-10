@@ -52,8 +52,10 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
     @Override
     public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException {
         try {
+            //以流的形式从请求中获取到登录对象
             LoginVo loginVo = new ObjectMapper().readValue(req.getInputStream(), LoginVo.class);
 
+            //封装认证对象
             Authentication authenticationToken = new UsernamePasswordAuthenticationToken(loginVo.getUsername(), loginVo.getPassword());
             return this.getAuthenticationManager().authenticate(authenticationToken);
         } catch (IOException e) {
@@ -81,6 +83,7 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
 
         Map<String, Object> map = new HashMap<>();
         map.put("token", token);
+        //将登录成功的信息返回给前端
         ResponseUtil.out(response, Result.ok(map));
     }
 
