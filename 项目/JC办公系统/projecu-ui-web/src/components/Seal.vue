@@ -22,11 +22,11 @@ export default {
     },
     subTitle: {
       type: String,
-      default: '硅谷审批'
+      default: 'JC审批'
     },
     desc: {
       type: String,
-      default: 'guigui.com'
+      default: 'jc.com'
     }
   }
 }

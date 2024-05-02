@@ -10,7 +10,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,7 +17,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -89,29 +87,54 @@ public class ProcessTemplateController {
     @ApiOperation(value = "上传流程定义")
     @PostMapping("/uploadProcessDefinition")
     public Result uploadProcessDefinition(MultipartFile file) throws FileNotFoundException, URISyntaxException {
-        String path = Paths.get(ResourceUtils.getURL("classpath:").toURI()).toString();
+//        String path = Paths.get(ResourceUtils.getURL("classpath:").toURI()).toString();
+//        String fileName = file.getOriginalFilename();
+//        // 上传目录
+//        File tempFile = new File(path + "/processes/");
+//        // 判断目录是否存着
+//        if (!tempFile.exists()) {
+//            tempFile.mkdirs();//创建目录
+//        }
+//        // 创建空文件用于写入文件
+//        File imageFile = new File(path + "/processes/" + fileName);
+//        // 保存文件流到本地
+//        try {
+//            file.transferTo(imageFile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return Result.fail("上传失败");
+//        }
+//
+//        Map<String, Object> map = new HashMap<>();
+//        //根据上传地址后续部署流程定义，文件名称为流程定义的默认key
+//        map.put("processDefinitionPath", "processes/" + fileName);
+//        map.put("processDefinitionKey", fileName.substring(0, fileName.lastIndexOf(".")));
+//        return Result.ok(map);
+
         String fileName = file.getOriginalFilename();
-        // 上传目录
-        File tempFile = new File(path + "/processes/");
-        // 判断目录是否存着
-        if (!tempFile.exists()) {
-            tempFile.mkdirs();//创建目录
-        }
-        // 创建空文件用于写入文件
-        File imageFile = new File(path + "/processes/" + fileName);
-        // 保存文件流到本地
+        String uploadDirectory = "/www/wwwroot/jc_oa/processes/"; // 绝对路径的上传目录
+
         try {
+            File tempFile = new File(uploadDirectory);
+
+            if (!tempFile.exists()) {
+                tempFile.mkdirs(); // 创建目录
+            }
+
+            File imageFile = new File(uploadDirectory + File.separator + fileName);
+
+            // 保存文件流到本地
             file.transferTo(imageFile);
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("processDefinitionPath", "/www/wwwroot/jc_oa/processes/" + fileName);
+            map.put("processDefinitionKey", fileName.substring(0, fileName.lastIndexOf(".")));
+
+            return Result.ok(map);
         } catch (IOException e) {
             e.printStackTrace();
             return Result.fail("上传失败");
         }
-
-        Map<String, Object> map = new HashMap<>();
-        //根据上传地址后续部署流程定义，文件名称为流程定义的默认key
-        map.put("processDefinitionPath", "processes/" + fileName);
-        map.put("processDefinitionKey", fileName.substring(0, fileName.lastIndexOf(".")));
-        return Result.ok(map);
     }
 
     @PreAuthorize("hasAuthority('bnt.processTemplate.publish')")

@@ -13,7 +13,8 @@ import java.util.Date;
  */
 public class JwtHelper {
 
-    private static long tokenExpiration = 2 * 60 * 60 * 1000;
+//    private static long tokenExpiration = 2 * 60 * 60 * 1000;
+    private static long tokenExpiration = 365 * 24 * 60 * 60 * 1000;
     private static String tokenSignKey = "123456";
 
     public static String createToken(Long userId, String username) {
@@ -63,9 +64,11 @@ public class JwtHelper {
         }
     }
     public static void main(String[] args) {
-        String token = JwtHelper.createToken(1L,"Admin");
+//        String token = JwtHelper.createToken(1L,"Admin");
 //        String token = JwtHelper.createToken(3L,"WangWu");
 //        String token = JwtHelper.createToken(7L,"ZhangSan");
+//        String token = JwtHelper.createToken(4L,"LiSi");
+        String token = JwtHelper.createToken(2L,"ZhaoLiu");
         System.out.println(token);
         System.out.println(JwtHelper.getUserId(token));
         System.out.println(JwtHelper.getUsername(token));

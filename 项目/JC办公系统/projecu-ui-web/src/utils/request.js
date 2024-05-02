@@ -2,14 +2,14 @@ import axios from "axios";
 
 // 创建axios实例
 const service = axios.create({
-  // baseURL: "http://ggkt2.vipgz1.91tunnel.com", // api 的 base_url
   baseURL: "http://localhost:8200", // api 的 base_url
+  // baseURL: "http://java.jcxiaozhan.top:8200", // api 的 base_url
   timeout: 30000 // 请求超时时间
 });
 
 // http request 拦截器
 service.interceptors.request.use(config => {
-    let token = window.localStorage.getItem("token") || "eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAKtWKi5NUrJScgwN8dANDXYNUtJRSq0oULIyNLOwMDMzMrew1FEqLU4t8kxRsjKHMPMSc1OBWqIyEvPSvTLz0n0ylWoBzMyBJ0gAAAA.PHipOf13zjfP7ZuXeEAb3E_zxWRfLOXrIxQfo9jTOF0dsyWucsWAiqgxAULuoYGrwhE80waiE05p-L5rPdxtWQ";
+    let token = window.localStorage.getItem("token") || "";
     if (token != "") {
       config.headers["token"] = token;
     }
@@ -24,8 +24,8 @@ service.interceptors.response.use(response => {
       // debugger
       // 替换# 后台获取不到#后面的参数
       let url = window.location.href.replace('#', 'jc_oa')
-      // window.location = 'http://ggkt2.vipgz1.91tunnel.com/admin/wechat/authorize?returnUrl=' + url
       window.location = 'http://localhost:8200/admin/wechat/authorize?returnUrl=' + url
+      // window.location = 'http://java.jcxiaozhan.top:8200/admin/wechat/authorize?returnUrl=' + url
     } else {
       if (response.data.code == 200) {
         return response.data;

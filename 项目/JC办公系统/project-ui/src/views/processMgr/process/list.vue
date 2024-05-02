@@ -76,11 +76,11 @@
       </el-table-column>
       <el-table-column prop="createTime" label="创建时间" width="160"/>
 
-      <el-table-column label="操作" width="120" align="center">
+      <!-- <el-table-column label="操作" width="120" align="center">
         <template slot-scope="scope">
           <el-button type="text" size="mini" @click="show(scope.row.id)">查看</el-button>
         </template>
-      </el-table-column>
+      </el-table-column> -->
     </el-table>
 
     <!-- 分页组件 -->

@@ -116,7 +116,7 @@ public class SysUserController {
         return Result.ok();
     }
 
-    @PreAuthorize("hasAuthority('bnt.sysUser.list')")
+//    @PreAuthorize("hasAuthority('bnt.sysUser.list')")
     @ApiOperation(value = "获取当前用户基本信息")
     @GetMapping("getCurrentUser")
     public Result getCurrentUser() {

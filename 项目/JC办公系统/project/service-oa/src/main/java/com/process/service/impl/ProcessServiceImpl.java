@@ -41,6 +41,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -90,17 +93,35 @@ public class ProcessServiceImpl extends ServiceImpl<ProcessMapper, Process> impl
      */
     @Override
     public void deployByZip(String deployPath) {
-        //从路径中加载压缩包
-        // 定义zip输入流
-        InputStream inputStream = this
-                .getClass()
-                .getClassLoader()
-                .getResourceAsStream(deployPath);
-        ZipInputStream zipInputStream = new ZipInputStream(inputStream);
-        // 流程部署
-        Deployment deployment = repositoryService.createDeployment()
-                .addZipInputStream(zipInputStream)
-                .deploy();
+//        //从路径中加载压缩包
+//        // 定义zip输入流
+//        InputStream inputStream = this
+//                .getClass()
+//                .getClassLoader()
+//                .getResourceAsStream(deployPath);
+//        ZipInputStream zipInputStream = new ZipInputStream(inputStream);
+//        // 流程部署
+//        Deployment deployment = repositoryService.createDeployment()
+//                .addZipInputStream(zipInputStream)
+//                .deploy();
+
+        //服务器寻找文件
+        try {
+            // 定义zip输入流
+            InputStream inputStream = new FileInputStream(new File(deployPath));
+            ZipInputStream zipInputStream = new ZipInputStream(inputStream);
+
+            // 流程部署
+            Deployment deployment = repositoryService.createDeployment()
+                    .addZipInputStream(zipInputStream)
+                    .deploy();
+
+            // 关闭输入流
+            zipInputStream.close();
+        } catch (Exception e) {
+            // 处理异常
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -68,7 +68,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
             one.put("name", oneMenuVo.getName());
             if(CollectionUtils.isEmpty(oneMenuVo.getChildren())) {
                 one.put("type", oneMenuVo.getType());
-                one.put("url", "http://ggkt1.vipgz1.91tunnel.com/#"+oneMenuVo.getUrl());
+//                one.put("url", "http://oa.jcxiaozhan.top:9090/#"+oneMenuVo.getUrl());
+                one.put("url", "http://vue.jcxiaozhan.top:9090/#"+oneMenuVo.getUrl());
             } else {
                 JSONArray subButton = new JSONArray();
                 for(MenuVo twoMenuVo : oneMenuVo.getChildren()) {
@@ -77,7 +78,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
                     if(twoMenuVo.getType().equals("view")) {
                         view.put("name", twoMenuVo.getName());
                         //H5页面地址
-                        view.put("url", "http://ggkt1.vipgz1.91tunnel.com#"+twoMenuVo.getUrl());
+//                        view.put("url", "http://oa.jcxiaozhan.top:9090#"+twoMenuVo.getUrl());
+                        view.put("url", "http://vue.jcxiaozhan.top:9090#"+twoMenuVo.getUrl());
                     } else {
                         view.put("name", twoMenuVo.getName());
                         view.put("key", twoMenuVo.getMeunKey());

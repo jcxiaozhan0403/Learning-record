@@ -1,2 +1,12 @@
-com\process\ProcessTest.class
+com\auth\activiti\ProcessTest.class
+com\auth\activiti\ProcessTestDemo1.class
+com\auth\activiti\MyTaskListener.class
+com\auth\TestMpDemo2.class
+com\auth\activiti\ProcessTestDemo3.class
+com\code\CodeGet.class
 com\jc\controller\IndexControllerTest.class
+com\auth\activiti\ProcessTestDemo2.class
+com\process\ProcessTest.class
+com\auth\activiti\UserBean.class
+com\auth\TestMpDemo1.class
+com\auth\activiti\ProcessTestGateway.class

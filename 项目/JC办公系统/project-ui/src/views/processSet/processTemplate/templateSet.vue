@@ -219,7 +219,7 @@ export default {
       this.$router.push('/processSet/processTemplate')
     },
     openNewWindow() {
-      let url = "http://localhost:8080/activiti-explorer";
+      let url = "http://java.jcxiaozhan.top:8080/activiti-explorer";
       window.open(url);
     }
   }
