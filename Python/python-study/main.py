@@ -1,28 +1,21 @@
-from typing import List, Any
+# python使用关键字来表示与或非的
 
+# 定义布尔变量  
+is_student = True
+is_adult = True
+is_teacher = False
 
-class MyData:
-    def __init__(self, value: int) -> None:
-        """初始化函数，接受一个整数类型的value作为参数"""
-        self.value: int = value  # 变量类型注解  
+# 使用 and 运算符  
+print("is_student and is_adult:", is_student and is_adult)  # 当两个条件都为真时，结果为真  
 
-    def process_data(self, data: List[float]) -> List[Any]:
-        """处理数据的函数，接受一个浮点数列表，返回一个包含任意类型元素的列表"""
-        result: List[Any] = []  # 变量类型注解  
-        for item in data:
-            if item > 0:
-                result.append(item ** 2)  # 平方  
-            else:
-                result.append(str(item))  # 转为字符串  
-        return result  # 函数返回值类型注解  
+# 使用 or 运算符  
+print("is_student or is_teacher:", is_student or is_teacher)  # 当至少一个条件为真时，结果为真  
 
+# 使用 not 运算符  
+print("not is_teacher:", not is_teacher)  # 反转条件的真假值  
 
-# 使用示例
-my_data = MyData(42)  # 创建MyData对象，传入整数类型的value  
-data_list = [1.2, -3.4, 5.6]  # 创建一个浮点数列表  
-
-# 调用process_data方法，并传入浮点数列表  
-processed_data = my_data.process_data(data_list)
-
-# 输出处理后的数据  
-print(processed_data)  # 输出可能类似于 [1.44, '-3.4', 31.36]
+# 复杂的逻辑表达式示例  
+print("is_student and (not is_teacher) or is_adult:", is_student and (not is_teacher) or is_adult)
+# 解释：如果is_student为真，并且is_teacher为假（即not is_teacher为真），则结果为真。  
+# 如果is_student和is_teacher都为假（即not is_teacher也为假），则由于or运算符，is_adult会被检查，  
+# 因为is_adult为真，所以整个表达式的结果为真。

@@ -30,6 +30,32 @@ str(1111.22)
 
 ![运算符](D:\Study\Learning-record\Python\运算符.png)
 
+- 逻辑运算符
+
+```python
+# python使用关键字来表示与或非的
+
+# 定义布尔变量  
+is_student = True  
+is_adult = True  
+is_teacher = False  
+  
+# 使用 and 运算符  
+print("is_student and is_adult:", is_student and is_adult)  # 当两个条件都为真时，结果为真  
+  
+# 使用 or 运算符  
+print("is_student or is_teacher:", is_student or is_teacher)  # 当至少一个条件为真时，结果为真  
+  
+# 使用 not 运算符  
+print("not is_teacher:", not is_teacher)  # 反转条件的真假值  
+  
+# 复杂的逻辑表达式示例  
+print("is_student and (not is_teacher) or is_adult:", is_student and (not is_teacher) or is_adult)  
+# 解释：如果is_student为真，并且is_teacher为假（即not is_teacher为真），则结果为真。  
+# 如果is_student和is_teacher都为假（即not is_teacher也为假），则由于or运算符，is_adult会被检查，  
+# 因为is_adult为真，所以整个表达式的结果为真。
+```
+
 ### 字符串的多种定义方式
 
 ```python
@@ -203,8 +229,6 @@ demo_function(arg1='value1', arg2='value2', extra_key1='extra_value1', extra_key
 demo_function('value1', 'value2', 'extra1', 'extra2', optional_arg='custom_default', extra_key1='extra_value1')
 ```
 
-
-
 ### 空值
 
 Python中使用`None`表示空值，类似于Java的null，可用于返回值或者判断
@@ -239,6 +263,18 @@ print_count()
 increment()
 print_count()
 ```
+
+## 关于编码
+
+- ascii：是最开始由美国制定的一套编码规则，编排了128个文字符号（包括英文、数字和符号），只需要7个0和1就可以表示了。`01111111 => 1 byte => 8 bit`
+- ANSI：一套标准， 是为了扩充不同国家的文字字符所制定的，需要不同的国家根据这个标准来制定自己的编码。每个字符 `00000000 01111111 => 2 byte => 65536 bit`
+- GB2312是根据ANSI标准制定的第一套国标编码，GBK是扩充版
+- Unicode：万国码，由国际标准化组织制定，==只是一套标准==，由于它规定用`4 byte`表示一个字符，过于占用内存，故无法使用
+- UTF-8：根据Unicode标准制定的可变长度的编码，规则入下，最短的字节长度8 bit
+  1. 英文: 8 bit, 1byte
+  2. 欧洲文字: 16 bit, 2 byte
+  3. 中文: 24 bit, 3 byte
+- 程序员平时遇见的所有的数据最终单位都是字节byte
 
 ### 数据容器
 
@@ -820,8 +856,6 @@ User-Agent:请求载体的身份标识（系统、浏览器之类的标识信息
 Referer:防盗链（请求从哪个页面进行发送的）
 cookie:用户令牌
 ```
-
-
 
 ## 三方库
 
