@@ -1,4 +1,5 @@
 **/target/
 **/node_modules
+**/apks
 Git提交.bat
 Git状态.bat

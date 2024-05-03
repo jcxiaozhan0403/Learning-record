@@ -18,20 +18,14 @@
 import poplib
 import string
 from email.parser import Parser
-
-import requests
 import json
 import uuid
 import hashlib
 import time
 import random
-import re
-import imaplib
-import email
 from email.header import decode_header
-import re
 import yaml
-
+from colorama import init, Fore, Style
 
 # ==============验证码加密函数=============
 from bs4 import BeautifulSoup
@@ -629,7 +623,7 @@ def get_hash(str):
 
 
 # 获取captcha_sign
-def get_sign(orgin_str):
+def get_sign(orgin_str, version):
     # salts = [{'alg': 'md5', 'salt': 'Z1GUH9FPdd2uR48'},
     #          {'alg': 'md5', 'salt': 'W4At8CN00YeICfrhKye'},
     #          {'alg': 'md5', 'salt': 'WbsJsexMTIj+qjuVNkTZUJxqUkdf'},
@@ -664,92 +658,99 @@ def get_sign(orgin_str):
                    {"alg": "md5", "salt": "jrLINFDF1j850mvltFrYTFrCd+M1wDP6CWHCKC8"}, {"alg": "md5", "salt": "jcWxpA"},
                    {"alg": "md5", "salt": "XGTbi9Egkq2IW6D0CE81vu+VbaZS3mI3gPlvy"}, {"alg": "md5", "salt": "ro"},
                    {"alg": "md5", "salt": "plHF"}]},
-        # {"version": "1.39.0",
-        #  "value": [{"alg": "md5", "salt": "e1d0IwHdz+CJLzskoFto8SSKobPWMwcz"}, {"alg": "md5", "salt": "wUU7Rz/wpuHy"},
-        #            {"alg": "md5", "salt": "dye78dKP7wgEFMebN/Z11VVPAAtueAVR3TcMFZPCO0F9mBQqbk/qpHy9Yqr0no"},
-        #            {"alg": "md5", "salt": "Cpx1E/O+bo+vTguIiLosm3zR9Y1N"},
-        #            {"alg": "md5", "salt": "uqyFMWT5R6TxXji2DhHxlNYY3"},
-        #            {"alg": "md5", "salt": "7afNTr/GwzoNJCLXJVm+nEMBa2w8PiwBfm"},
-        #            {"alg": "md5", "salt": "glbIrXW34T5ceIBUhsAOzT1R0XSHnTwv1mqtg1r"}, {"alg": "md5", "salt": "l"},
-        #            {"alg": "md5", "salt": "51sgGDapT73pQMI664"}]},
-        # {"version": "1.40.0",
-        #  "value": [{"alg": "md5", "salt": "MNn/o2kDbAdap6iyA62c31+odfAXm"},
-        #             {"alg": "md5", "salt": "GU2DNPxJQz8Zd/HZhKe+Vpr3nydASi"},
-        #             {"alg": "md5", "salt": "Mr"},
-        #             {"alg": "md5", "salt": "9yuMfCUj3370cqowx0iLT4WI"},
-        #             {"alg": "md5", "salt": "sEtFM"},
-        #             {"alg": "md5", "salt": "57O4iXpaXLGJ5CuIXlKWm"},
-        #             {"alg": "md5", "salt": "jIPlqvJR/1fNI3v4IvFcRv2IlzSuUc"},
-        #             {"alg": "md5", "salt": "p0u2aV"},
-        #             {"alg": "md5", "salt": "AnHbAEWs+4ggDbg37bbpULXK2NFyFHSE"},
-        #             {"alg": "md5", "salt": "X3v/UHqblw2VHjeCJHamvXyB"},
-        #             {"alg": "md5", "salt": "Lxe9yYKLa7JBTw3AKivrzs+CqdGO39K"},
-        #             {"alg": "md5", "salt": "lkz8Q4viV1+U"}, {"alg": "md5", "salt": "VH2I"}]},
-        # {"version": "1.40.1",
-        #  "value": [{"alg": "md5", "salt": "/+CkcDXbE1nma"},
-        #             {"alg": "md5", "salt": "AenjaF3Why5nRJNdaCqtWfX/tmRofc4N2M"},
-        #             {"alg": "md5", "salt": "N"},
-        #             {"alg": "md5", "salt": "9Mj9ryxBkc8Y9x6yYAxoyqVjpIgnETN/cdXG0n+ep2E9g+of+X7"},
-        #             {"alg": "md5", "salt": "S3szFWh7ziO7zSfmR8HKB+4HdjaTmgo91Ut+6ngvZQNquR"},
-        #             {"alg": "md5",
-        #              "salt": "AZ+GiFSnM3BolbBJH3yUy2OxmGeh1swnB2yz4P8kC9aQHiUWRXSok07u4"},
-        #             {"alg": "md5", "salt": ""},
-        #             {"alg": "md5", "salt": "iTP0hdaZLa6Pl9ChHDVedunfoMSnb32XHOEirAuj9AdZs/iTYk"}]},
-        # {"version": "1.40.2",
-        #  "value": [{"alg": "md5", "salt": "UmrmnIWHIM21FeXRG0znfomWR7wSN8q9TmZI/"}, {"alg": "md5", "salt": "/AZYp"},
-        #            {"alg": "md5", "salt": "sQMU74"}, {"alg": "md5", "salt": "EcVGhmFRGDDdUimM8BAu8muZs9wxeht5L+Hxnti3"},
-        #            {"alg": "md5", "salt": "8N1"}, {"alg": "md5", "salt": "nHKvehDlck0Rw"},
-        #            {"alg": "md5", "salt": "bARBSOK9ZLseRzNcSTdkpu8d+4u1"}, {"alg": "md5", "salt": "yYUYosxQWCS"},
-        #            {"alg": "md5", "salt": "H8xkd+u"}, {"alg": "md5", "salt": "u7Hwt"},
-        #            {"alg": "md5", "salt": "YgEvMyvwV2hw3RyQJnOcNU4pniiE28Q7S"},
-        #            {"alg": "md5", "salt": "3NcwBuLYpgwFXdZQj"},
-        #            {"alg": "md5", "salt": "X9HLp8LGXjku14J1k1+I1nGK4NBZjQqhkqdV48tg2fbmo"}]},
-        # {"version": "1.40.3",
-        #  "value": [{"alg": "md5", "salt": "6Wwu"}, {"alg": "md5", "salt": "caGf/9xk9qDEO3eBxEHig0"},
-        #            {"alg": "md5", "salt": "qO6FubP/pkJGl+y"}, {"alg": "md5", "salt": "dRsJ0sF9C"},
-        #            {"alg": "md5", "salt": "82GQv"}, {"alg": "md5", "salt": "fMIWctW09a0P4kwplXYj6"},
-        #            {"alg": "md5", "salt": "LEMFx070vHZH"}, {"alg": "md5", "salt": "PapQk45XYRM82f4fokIk2+biLoVgPEsC"},
-        #            {"alg": "md5", "salt": "6C9x50NIS4Bqli"}, {"alg": "md5", "salt": "0zsq4lAkHpmTNsR1jLtnArVhnCNuwz"},
-        #            {"alg": "md5", "salt": "4kN5ZRsNWKXndR9GgSdZ"},
-        #            {"alg": "md5", "salt": "PoxkARWhSmZ+CiJoeV7HSh/SVMX"}, {"alg": "md5", "salt": "pVU"},
-        #            {"alg": "md5", "salt": "N8N"}, {"alg": "md5", "salt": "CoVmbhLWt8uqjvYrW0xFnBLSPkOuX4d2"}]},
-        # {"version": "1.41.0",
-        #  "value": [{"alg": "md5", "salt": "Wcpe+bWhLidcpKx+NbicS9tmSq8RbVTFk6Arf"},
-        #             {"alg": "md5", "salt": "/WcDjchZab"}, {"alg": "md5", "salt": "YWRJGUPI/lD"},
-        #             {"alg": "md5", "salt": "R"},
-        #             {"alg": "md5", "salt": "9Kba0Nkh7vz5CGWxgFCyqJ/BdjnJIx8KU5r/WTR6Ae"},
-        #             {"alg": "md5", "salt": "tmUQGnovPWmNvB0UAQbDZnJMg57jGzUv7"},
-        #             {"alg": "md5", "salt": "sPsOQdEqCp19PUDMYfg1//"},
-        #             {"alg": "md5", "salt": "mvhuvTJROSortMaGzK5rZi209sBTZq+WitI"},
-        #             {"alg": "md5", "salt": "Qox5BNaQfdishhmAKGr"},
-        #             {"alg": "md5", "salt": "R2JW9N8bRUEizf+pkWg/o9iJKG34bdpSjEe"},
-        #             {"alg": "md5", "salt": "FvDT"}]},
-        # {"version": "1.42.6",
-        #  "value": [{"alg": "md5", "salt": "frupTFdxwcJ5mcL3R8"}, {"alg": "md5", "salt": "jB496fSFfbWLhWyqV"},
-        #            {"alg": "md5", "salt": "xYLtzn8LT5h3KbAalCjc/Wf"},
-        #            {"alg": "md5", "salt": "PSHSbm1SlxbvkwNk4mZrJhBZ1vsHCtEdm3tsRiy1IPUnqi1FNB5a2F"},
-        #            {"alg": "md5", "salt": "SX/WvPCRzgkLIp99gDnLaCs0jGn2+urx7vz/"},
-        #            {"alg": "md5", "salt": "OGdm+dgLk5EpK4O1nDB+Z4l"},
-        #            {"alg": "md5", "salt": "nwtOQpz2xFLIE3EmrDwMKe/Vlw2ubhRcnS2R23bwx9wMh+C3Sg"},
-        #            {"alg": "md5", "salt": "FI/9X9jbnTLa61RHprndT0GkVs18Chd"}]},
-        # {"version": "1.43.4",
-        #  "value": [{"alg": "md5", "salt": "Zx+7tFIUgelyWJNaayncroBYipNqZfFJKT"}, {"alg": "md5", "salt": "rdhgox"},
-        #            {"alg": "md5", "salt": "tbnC7VF5YS0zXQiRPh2RZKBcXah"}, {"alg": "md5", "salt": "qQA7KT0wyL"},
-        #            {"alg": "md5", "salt": "NZl7p4NvU2oeFSjrDXJThrA/UnqwMKKK6HX34TB"}, {"alg": "md5", "salt": "VKt69a"},
-        #            {"alg": "md5", "salt": "YbwfCJ9tZV3Jf+"}, {"alg": "md5", "salt": "OpYK"},
-        #            {"alg": "md5", "salt": "arBOLuxsz2x"}, {"alg": "md5", "salt": "3F0PF5isIDeuuzz0FLvSANMU8tXzaQD"},
-        #            {"alg": "md5", "salt": "gXIj1ukvnm4SmBy0ICvr7DBObLO83R0154/"},
-        #            {"alg": "md5", "salt": "i6HQBEn8Ukbjw+HGnaZUjRGvD1kOsIQ"}]}
+        {"version": "1.39.0",
+         "value": [{"alg": "md5", "salt": "e1d0IwHdz+CJLzskoFto8SSKobPWMwcz"}, {"alg": "md5", "salt": "wUU7Rz/wpuHy"},
+                   {"alg": "md5", "salt": "dye78dKP7wgEFMebN/Z11VVPAAtueAVR3TcMFZPCO0F9mBQqbk/qpHy9Yqr0no"},
+                   {"alg": "md5", "salt": "Cpx1E/O+bo+vTguIiLosm3zR9Y1N"},
+                   {"alg": "md5", "salt": "uqyFMWT5R6TxXji2DhHxlNYY3"},
+                   {"alg": "md5", "salt": "7afNTr/GwzoNJCLXJVm+nEMBa2w8PiwBfm"},
+                   {"alg": "md5", "salt": "glbIrXW34T5ceIBUhsAOzT1R0XSHnTwv1mqtg1r"}, {"alg": "md5", "salt": "l"},
+                   {"alg": "md5", "salt": "51sgGDapT73pQMI664"}]},
+        {"version": "1.40.0",
+         "value": [{"alg": "md5", "salt": "MNn/o2kDbAdap6iyA62c31+odfAXm"},
+                    {"alg": "md5", "salt": "GU2DNPxJQz8Zd/HZhKe+Vpr3nydASi"},
+                    {"alg": "md5", "salt": "Mr"},
+                    {"alg": "md5", "salt": "9yuMfCUj3370cqowx0iLT4WI"},
+                    {"alg": "md5", "salt": "sEtFM"},
+                    {"alg": "md5", "salt": "57O4iXpaXLGJ5CuIXlKWm"},
+                    {"alg": "md5", "salt": "jIPlqvJR/1fNI3v4IvFcRv2IlzSuUc"},
+                    {"alg": "md5", "salt": "p0u2aV"},
+                    {"alg": "md5", "salt": "AnHbAEWs+4ggDbg37bbpULXK2NFyFHSE"},
+                    {"alg": "md5", "salt": "X3v/UHqblw2VHjeCJHamvXyB"},
+                    {"alg": "md5", "salt": "Lxe9yYKLa7JBTw3AKivrzs+CqdGO39K"},
+                    {"alg": "md5", "salt": "lkz8Q4viV1+U"}, {"alg": "md5", "salt": "VH2I"}]},
+        {"version": "1.40.1",
+         "value": [{"alg": "md5", "salt": "/+CkcDXbE1nma"},
+                    {"alg": "md5", "salt": "AenjaF3Why5nRJNdaCqtWfX/tmRofc4N2M"},
+                    {"alg": "md5", "salt": "N"},
+                    {"alg": "md5", "salt": "9Mj9ryxBkc8Y9x6yYAxoyqVjpIgnETN/cdXG0n+ep2E9g+of+X7"},
+                    {"alg": "md5", "salt": "S3szFWh7ziO7zSfmR8HKB+4HdjaTmgo91Ut+6ngvZQNquR"},
+                    {"alg": "md5",
+                     "salt": "AZ+GiFSnM3BolbBJH3yUy2OxmGeh1swnB2yz4P8kC9aQHiUWRXSok07u4"},
+                    {"alg": "md5", "salt": ""},
+                    {"alg": "md5", "salt": "iTP0hdaZLa6Pl9ChHDVedunfoMSnb32XHOEirAuj9AdZs/iTYk"}]},
+        {"version": "1.40.2",
+         "value": [{"alg": "md5", "salt": "UmrmnIWHIM21FeXRG0znfomWR7wSN8q9TmZI/"}, {"alg": "md5", "salt": "/AZYp"},
+                   {"alg": "md5", "salt": "sQMU74"}, {"alg": "md5", "salt": "EcVGhmFRGDDdUimM8BAu8muZs9wxeht5L+Hxnti3"},
+                   {"alg": "md5", "salt": "8N1"}, {"alg": "md5", "salt": "nHKvehDlck0Rw"},
+                   {"alg": "md5", "salt": "bARBSOK9ZLseRzNcSTdkpu8d+4u1"}, {"alg": "md5", "salt": "yYUYosxQWCS"},
+                   {"alg": "md5", "salt": "H8xkd+u"}, {"alg": "md5", "salt": "u7Hwt"},
+                   {"alg": "md5", "salt": "YgEvMyvwV2hw3RyQJnOcNU4pniiE28Q7S"},
+                   {"alg": "md5", "salt": "3NcwBuLYpgwFXdZQj"},
+                   {"alg": "md5", "salt": "X9HLp8LGXjku14J1k1+I1nGK4NBZjQqhkqdV48tg2fbmo"}]},
+        {"version": "1.40.3",
+         "value": [{"alg": "md5", "salt": "6Wwu"}, {"alg": "md5", "salt": "caGf/9xk9qDEO3eBxEHig0"},
+                   {"alg": "md5", "salt": "qO6FubP/pkJGl+y"}, {"alg": "md5", "salt": "dRsJ0sF9C"},
+                   {"alg": "md5", "salt": "82GQv"}, {"alg": "md5", "salt": "fMIWctW09a0P4kwplXYj6"},
+                   {"alg": "md5", "salt": "LEMFx070vHZH"}, {"alg": "md5", "salt": "PapQk45XYRM82f4fokIk2+biLoVgPEsC"},
+                   {"alg": "md5", "salt": "6C9x50NIS4Bqli"}, {"alg": "md5", "salt": "0zsq4lAkHpmTNsR1jLtnArVhnCNuwz"},
+                   {"alg": "md5", "salt": "4kN5ZRsNWKXndR9GgSdZ"},
+                   {"alg": "md5", "salt": "PoxkARWhSmZ+CiJoeV7HSh/SVMX"}, {"alg": "md5", "salt": "pVU"},
+                   {"alg": "md5", "salt": "N8N"}, {"alg": "md5", "salt": "CoVmbhLWt8uqjvYrW0xFnBLSPkOuX4d2"}]},
+        {"version": "1.41.0",
+         "value": [{"alg": "md5", "salt": "Wcpe+bWhLidcpKx+NbicS9tmSq8RbVTFk6Arf"},
+                    {"alg": "md5", "salt": "/WcDjchZab"}, {"alg": "md5", "salt": "YWRJGUPI/lD"},
+                    {"alg": "md5", "salt": "R"},
+                    {"alg": "md5", "salt": "9Kba0Nkh7vz5CGWxgFCyqJ/BdjnJIx8KU5r/WTR6Ae"},
+                    {"alg": "md5", "salt": "tmUQGnovPWmNvB0UAQbDZnJMg57jGzUv7"},
+                    {"alg": "md5", "salt": "sPsOQdEqCp19PUDMYfg1//"},
+                    {"alg": "md5", "salt": "mvhuvTJROSortMaGzK5rZi209sBTZq+WitI"},
+                    {"alg": "md5", "salt": "Qox5BNaQfdishhmAKGr"},
+                    {"alg": "md5", "salt": "R2JW9N8bRUEizf+pkWg/o9iJKG34bdpSjEe"},
+                    {"alg": "md5", "salt": "FvDT"}]},
+        {"version": "1.42.6",
+         "value": [{"alg": "md5", "salt": "frupTFdxwcJ5mcL3R8"}, {"alg": "md5", "salt": "jB496fSFfbWLhWyqV"},
+                   {"alg": "md5", "salt": "xYLtzn8LT5h3KbAalCjc/Wf"},
+                   {"alg": "md5", "salt": "PSHSbm1SlxbvkwNk4mZrJhBZ1vsHCtEdm3tsRiy1IPUnqi1FNB5a2F"},
+                   {"alg": "md5", "salt": "SX/WvPCRzgkLIp99gDnLaCs0jGn2+urx7vz/"},
+                   {"alg": "md5", "salt": "OGdm+dgLk5EpK4O1nDB+Z4l"},
+                   {"alg": "md5", "salt": "nwtOQpz2xFLIE3EmrDwMKe/Vlw2ubhRcnS2R23bwx9wMh+C3Sg"},
+                   {"alg": "md5", "salt": "FI/9X9jbnTLa61RHprndT0GkVs18Chd"}]},
+        {"version": "1.43.4",
+         "value": [{"alg": "md5", "salt": "Zx+7tFIUgelyWJNaayncroBYipNqZfFJKT"}, {"alg": "md5", "salt": "rdhgox"},
+                   {"alg": "md5", "salt": "tbnC7VF5YS0zXQiRPh2RZKBcXah"}, {"alg": "md5", "salt": "qQA7KT0wyL"},
+                   {"alg": "md5", "salt": "NZl7p4NvU2oeFSjrDXJThrA/UnqwMKKK6HX34TB"}, {"alg": "md5", "salt": "VKt69a"},
+                   {"alg": "md5", "salt": "YbwfCJ9tZV3Jf+"}, {"alg": "md5", "salt": "OpYK"},
+                   {"alg": "md5", "salt": "arBOLuxsz2x"}, {"alg": "md5", "salt": "3F0PF5isIDeuuzz0FLvSANMU8tXzaQD"},
+                   {"alg": "md5", "salt": "gXIj1ukvnm4SmBy0ICvr7DBObLO83R0154/"},
+                   {"alg": "md5", "salt": "i6HQBEn8Ukbjw+HGnaZUjRGvD1kOsIQ"}]}
     ]
 
-    random_element = random.choice(salts)
-    # print("Salts：" + str(salts))
-    for salt in random_element["value"]:
+    salt_value = []
+
+    for salt in salts:
+        if salt["version"] == version:
+            salt_value = salt["value"]
+            break
+
+    for salt in salt_value:
         if len(salt) > 0:
            temp = orgin_str + salt["salt"]
         orgin_str = get_hash(temp)
+
+
     print("Sign：", orgin_str)
-    return random_element["version"],orgin_str
+    return orgin_str
 
 
 def get_ua_key(device_id):
@@ -1270,16 +1271,22 @@ def part11(user_id, phoneModel, phoneBuilder, invite_code, captcha_token, device
 # 程序运行主函数
 def start():
     # 配置项初始化
-    invite_code = "当前验证码为空！"
+    # 参数值
+    invite_code = "验证码信息为空！"
     email = '邮箱信息为空！'
     verification_code = '邮箱验证码为空！'
-    version = '1.38.0'
 
+    # 运行模式
     invite_code_mode = 1
     email_mode = 1
     verification_code_mode = 1
 
-    #读取配置文件
+    # 版本
+    version_list = ['1.38.0', '1.38.1', '1.39.0', '1.40.0', '1.40.1', '1.40.2', '1.40.3', '1.41.0', '1.42.6', '1.43.4']
+    version = random.choice(version_list)
+    print(f"本次运行所使用的版本为：{version}")
+
+    # 读取配置文件
     try:
         with open('config.yaml', 'r', encoding='utf-8') as file:
             config = yaml.safe_load(file)
@@ -1291,7 +1298,7 @@ def start():
         input("配置文件读取异常，按任意键退出程序！")
         exit(0)
 
-    #邀请码
+    # 邀请码
     if invite_code_mode == 2:
         print(f"本次邀请码为：{invite_code}")
     else:
@@ -1315,8 +1322,7 @@ def start():
     # 获取签证信息
     # org_str = client_id + "1.38.0" + "com.pikcloud.pikpak" + device_id + timestamp
     org_str = client_id + version + "com.pikcloud.pikpak" + device_id + timestamp
-    version,captcha_sign = get_sign(org_str)
-    print(f"===本次运行所使用的版本为：{version}")
+    captcha_sign = get_sign(org_str, version)
     print(f"captcha_sign：{captcha_sign}")
 
     # 设备信息
@@ -1362,7 +1368,7 @@ def start():
     timestamp = str(int(time.time()) * 1000)
     # org_str = client_id + "1.38.0" + "com.pikcloud.pikpak" + device_id + timestamp
     org_str = client_id + version + "com.pikcloud.pikpak" + device_id + timestamp
-    captcha_sign = get_sign(org_str)
+    captcha_sign = get_sign(org_str,version)
     User_Agent = get_User_Agent(client_id, device_id, ua_key, timestamp, phoneModel, phoneBuilder, version)
 
     action8_1 = part8_1(client_id, action2["captcha_token"], device_id, captcha_sign, email, timestamp, User_Agent, version)
@@ -1394,10 +1400,10 @@ def start():
 
 
 if __name__ == '__main__':
-    # print('注意事项：')
-    # print('1、邀请源码仅供小伙伴们交流学习，严禁用于牟取任何不正当利益。')
-    # print('2、代码底层架构较老，可以对程序进行二改升级。')
-    # print('3、二改的代码外部分享时必须标注原架构开发者【B站-纸鸢花的花语】。')
-    # print('4、以上事项违反或无视者均无权使用或二改邀请源码。')
-    print("PikPak邀请程序===架构开发者：【B站-纸鸢花的花语】===作者：John.Cena")
+    print("==============================================")
+    print("              PikPak 自动邀请程序")
+    print("              ================")
+    print("               作者：John.Cena")
+    print("            架构开发者：【B站-纸鸢花的花语】")
+    print("==============================================")
     start()
