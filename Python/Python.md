@@ -229,6 +229,176 @@ demo_function(arg1='value1', arg2='value2', extra_key1='extra_value1', extra_key
 demo_function('value1', 'value2', 'extra1', 'extra2', optional_arg='custom_default', extra_key1='extra_value1')
 ```
 
+#### 常用内置函数
+
+```python
+print("hello world")
+
+
+s = "123"
+i = int(s)
+b = bool(s)
+f = float(s)
+
+
+# bin, oct, hex
+a = 18  # 十进制
+print(bin(a))  # 0b10010
+print(oct(a))  # 0o22
+print(hex(a))  # 0x12
+
+a = 0b10010
+print(int(a))  # 二进制转化成十进制
+
+
+# 次幂
+a = 10
+b = 3
+# a的b次方
+print(pow(a, b))
+print(a ** b)
+
+
+# 最大、最小、求和
+lst = [12,456,32,18,64,57]
+print(max(lst))
+print(min(lst))
+print(sum(lst))
+
+
+s = {1,2,3,}
+lst = list("呵呵哒")
+print(lst)
+
+
+# 相当于[1:4:2]
+s = slice(1, 4, 2)
+print("呵呵呵呵呵呵呵呵呵"[s])
+
+
+a = 18
+# b: 二进制, o: 八进制, x: 十六进制
+print(format(a, "08b"))
+
+
+# python的内存中使用的是unicode
+a = "中"
+# 获取"中"字在unicode中码位
+print(ord(a))
+# 给出编码位置. 展示出文字
+print(chr(20013))
+# 遍历打印本机内存中所有字符
+for i in range(65536):
+    print(chr(i)+" ", end="")
+
+
+# 当成and来看  t and t and t
+print(all([1, "123", '豆沙包']))
+# 当成or来看
+print(any([0, "", '']))
+lst = ["张无忌", "张翠山", "张三丰", "张大大"]
+
+for index, item in enumerate(lst):
+    print(index, item)
+
+for i in range(len(lst)):
+    print(i, lst[i])
+
+
+s = "呵呵哒"
+# 获取哈希值
+print(hash(s))
+# 获取内存地址
+print(id(s))
+
+
+s = "呵呵哒"
+print(help(s))
+# 当前这个数据能执行哪些操作
+print(dir(s))
+```
+
+#### 函数的嵌套
+
+```python
+# 把一个函数当成一个变量进行返回的
+def func():
+    def inner():
+        print(123)
+    print(inner)
+    return inner
+
+b1 = func()
+print(b1)
+b1()
+
+# 把函数作为参数进行传递(代理模式)
+def func(an):
+    an()
+
+def target():
+    print("我是target")
+
+func(target)  # 实参可以是函数
+```
+
+#### 两个关键字
+
+```python
+"""
+global : 在局部. 引入全局变量
+nonlocal: 在局部, 引入外层的局部变量
+"""
+# a = 10
+#
+# def func():
+#     # print(a)
+#     # 此时我就想在函数内部修改全局的变量a
+#     global a  # 把外面的全局变量引入到局部
+#     a = 20  # 创建一个局部变量. 并没有去改变全局变量中的a
+# func()
+# print(a)
+
+def func():
+    a = 10
+    def func2():
+        nonlocal a  # 向外找一层. 看看有没有该变量. 如果有就引入, 如果没有, 继续向外一层, 直到全局(不包括)
+        a = 20
+    func2()
+    print(a)
+
+func()
+```
+
+#### 闭包
+
+本质, 内层函数对外层函数的局部变量的使用. 此时内层函数被称为闭包函数
+
+1. 可以让一个变量常驻与内存
+2. 可以避免全局变量被修改
+
+```python
+def func():
+    a = 10
+    def inner():
+        nonlocal a
+        a += 1
+        return a
+    return inner
+
+
+ret = func()
+a = 20
+# inner => ret => 什么时候执行
+r1 = ret()
+print(r1)
+
+# 1000000
+
+r2 = ret()
+print(r2)
+```
+
 ### 空值
 
 Python中使用`None`表示空值，类似于Java的null，可用于返回值或者判断
@@ -264,7 +434,7 @@ increment()
 print_count()
 ```
 
-## 关于编码
+### 关于编码
 
 - ascii：是最开始由美国制定的一套编码规则，编排了128个文字符号（包括英文、数字和符号），只需要7个0和1就可以表示了。`01111111 => 1 byte => 8 bit`
 - ANSI：一套标准， 是为了扩充不同国家的文字字符所制定的，需要不同的国家根据这个标准来制定自己的编码。每个字符 `00000000 01111111 => 2 byte => 65536 bit`
