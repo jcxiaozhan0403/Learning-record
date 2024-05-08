@@ -25,7 +25,7 @@ import time
 import random
 from email.header import decode_header
 import yaml
-from colorama import init, Fore, Style
+import re
 
 # ==============验证码加密函数=============
 from bs4 import BeautifulSoup
@@ -769,8 +769,19 @@ def get_email():
 
 def get_email_auto():
     # 自动生成
-    prefix = ''.join(random.choices(string.ascii_letters + string.digits, k=10))  # 生成长度为10的随机字符串
-    email = f"{prefix}@jcxiaozhan.top"
+
+    # cloudflare对接QQ
+    # prefix = ''.join(random.choices(string.ascii_letters + string.digits, k=10))  # 生成长度为10的随机字符串
+    # email = f"{prefix}@jcxiaozhan.top"
+    # return email
+
+    # https://tempmail.plus/
+    domain_list = ['mailto.plus', 'fexpost.com', 'fexbox.org', 'mailbox.in.ua', 'rover.info', 'chitthi.in', 'fextemp.com', 'any.pink', 'merepost.com']
+    domain = random.choice(domain_list)
+    # 随机新邮箱
+    # prefix = ''.join(random.choices(string.ascii_letters + string.digits, k=6))  # 生成长度为10的随机字符串
+    prefix = ''.join(random.choices(string.ascii_lowercase, k=6))
+    email = f"{prefix}@{domain}"
     return email
 
 # 解析邮件内容
@@ -804,60 +815,82 @@ def get_verification_code():
     # 手动输入验证码
     return input("请输入接收到的验证码：")
 
-def get_verification_code_auto():
-    try:
-        # 自动化读取QQ邮箱验证码
-        # 添加第一次读取的5秒延时
-        time.sleep(5)
+def get_verification_code_auto(email):
+    import requests
 
-        email = '349636607@qq.com'
-        password = 'xdnyupqzbfxebjce'  # 这个密码不是邮箱登录密码，是pop3服务密码
-        pop3_server = 'pop.qq.com'
+    # try:
+    #     # 自动化读取QQ邮箱验证码
+    #     # 添加第一次读取的5秒延时
+    #     time.sleep(5)
+    #
+    #     email = '349636607@qq.com'
+    #     password = 'xdnyupqzbfxebjce'  # 这个密码不是邮箱登录密码，是pop3服务密码
+    #     pop3_server = 'pop.qq.com'
+    #
+    #     # 连接到POP3服务器:
+    #     server = poplib.POP3_SSL(pop3_server, 995)
+    #     # # 可以打开或关闭调试信息:
+    #     # server.set_debuglevel(1)
+    #     # # 可选:打印POP3服务器的欢迎文字:
+    #     # print(server.getwelcome().decode('utf-8'))
+    #     # 身份认证:
+    #     server.user(email)
+    #     server.pass_(password)
+    #     # stat()返回邮件数量和占用空间:
+    #     # print('Messages: %s. Size: %s' % server.stat())
+    #     # list()返回所有邮件的编号:
+    #     resp, mails, octets = server.list()
+    #     # 可以查看返回的列表类似[b'1 82923', b'2 2184', ...]
+    #     # print(mails)
+    #     # 获取最新一封邮件, 注意索引号从1开始:
+    #     index = len(mails)
+    #     print('未读邮件的数量', index)
+    #
+    #     # 使用循环每5秒重新读取，直到获取到h2_content为止
+    #     while True:
+    #         resp, lines, octets = server.retr(index)  # 修改此处
+    #         # lines存储了邮件的原始文本的每一行,
+    #         # 可以获得整个邮件的原始文本:
+    #         msg_content = b'\r\n'.join(lines).decode('utf-8')
+    #         # 稍后解析出邮件:
+    #         msg = Parser().parsestr(msg_content)
+    #         content = msg.get_payload(decode=True)
+    #         h2_content = extract_h2_content(content)
+    #
+    #         if h2_content:
+    #             break  # 如果获取到h2_content，跳出循环
+    #
+    #         # 如果未获取到h2_content，等待5秒后重新读取
+    #         time.sleep(5)
+    #
+    #     # 可以根据邮件索引号直接从服务器删除邮件:
+    #     server.dele(index)  # 修改此处
+    #     # 关闭连接:
+    #     server.quit()
+    #     return str(h2_content)
+    # except Exception:
+    #     input("QQ邮件读取失败，按任意键退出程序！")
+    #     exit(1)
 
-        # 连接到POP3服务器:
-        server = poplib.POP3_SSL(pop3_server, 995)
-        # # 可以打开或关闭调试信息:
-        # server.set_debuglevel(1)
-        # # 可选:打印POP3服务器的欢迎文字:
-        # print(server.getwelcome().decode('utf-8'))
-        # 身份认证:
-        server.user(email)
-        server.pass_(password)
-        # stat()返回邮件数量和占用空间:
-        # print('Messages: %s. Size: %s' % server.stat())
-        # list()返回所有邮件的编号:
-        resp, mails, octets = server.list()
-        # 可以查看返回的列表类似[b'1 82923', b'2 2184', ...]
-        # print(mails)
-        # 获取最新一封邮件, 注意索引号从1开始:
-        index = len(mails)
-        print('未读邮件的数量', index)
-
-        # 使用循环每5秒重新读取，直到获取到h2_content为止
-        while True:
-            resp, lines, octets = server.retr(index)  # 修改此处
-            # lines存储了邮件的原始文本的每一行,
-            # 可以获得整个邮件的原始文本:
-            msg_content = b'\r\n'.join(lines).decode('utf-8')
-            # 稍后解析出邮件:
-            msg = Parser().parsestr(msg_content)
-            content = msg.get_payload(decode=True)
-            h2_content = extract_h2_content(content)
-
-            if h2_content:
-                break  # 如果获取到h2_content，跳出循环
-
-            # 如果未获取到h2_content，等待5秒后重新读取
-            time.sleep(5)
-
-        # 可以根据邮件索引号直接从服务器删除邮件:
-        server.dele(index)  # 修改此处
-        # 关闭连接:
-        server.quit()
-        return str(h2_content)
-    except Exception:
-        input("QQ邮件读取失败，按任意键退出程序！")
-        exit(0)
+    # https://tempmail.plus/
+    retries = 1
+    while retries < 20:
+        print(f"邮件读取次数：{retries}")
+        response = requests.get(f'https://tempmail.plus/api/mails?email={email}&first_id=0&epin=')
+        data = response.json()
+        if data.get("mail_list"):
+            mail_id = data["mail_list"][0]["mail_id"]
+            if mail_id != '':
+                # 获取邮件id，再次请求
+                mail_page = requests.get(f'https://tempmail.plus/api/mails/{mail_id}?email={email}&epin=')
+                line_str = mail_page.json().get("text")
+                return re.search(r'\n(\d+)\n', line_str).group(1)
+            else:
+                continue
+        time.sleep(1)
+        retries += 1
+    input("Tempmail网站邮件读取失败，按任意键退出程序！")
+    exit(1)
 
 # ============全部网络请求============
 
@@ -1296,7 +1329,7 @@ def start():
             verification_code_mode = config['verificationCode']['mode']
     except Exception:
         input("配置文件读取异常，按任意键退出程序！")
-        exit(0)
+        exit(1)
 
     # 邀请码
     if invite_code_mode == 2:
@@ -1356,7 +1389,7 @@ def start():
 
     # 获取验证码
     if verification_code_mode == 2:
-        verification_code = get_verification_code_auto()
+        verification_code = get_verification_code_auto(email)
         print(f"注册验证码：{verification_code}")
     else:
         verification_code = get_verification_code()
