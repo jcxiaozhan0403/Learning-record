@@ -7,7 +7,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 /**
  * @author John.Cena
- * @date 2023/3/9 19:36
  * @Description:
  */
 @SpringBootApplication

@@ -6,7 +6,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 /**
  * @author John.Cena
- * @date 2023/7/17 9:28
  * @Description: 登录页重定向
  */
 @Controller

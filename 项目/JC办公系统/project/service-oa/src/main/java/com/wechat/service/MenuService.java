@@ -8,7 +8,6 @@ import java.util.List;
 
 /**
  * @author John.Cena
- * @date 2023/4/15 16:14
  * @Description:
  */
 public interface MenuService extends IService<Menu> {

@@ -7,7 +7,6 @@ import java.util.Map;
 
 /**
  * @author John.Cena
- * @date 2023/4/4 17:36
  * @Description:
  */
 public interface SysUserService extends IService<SysUser> {

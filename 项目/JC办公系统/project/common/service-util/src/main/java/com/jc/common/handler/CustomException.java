@@ -4,7 +4,6 @@ import com.jc.common.result.ResultCodeEnum;
 
 /**
  * @author John.Cena
- * @date 2023/4/5 12:27
  * @Description:
  */
 public class CustomException extends RuntimeException{

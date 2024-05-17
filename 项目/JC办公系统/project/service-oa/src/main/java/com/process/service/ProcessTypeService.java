@@ -7,7 +7,6 @@ import java.util.List;
 
 /**
  * @author John.Cena
- * @date 2023/4/13 11:06
  * @Description:
  */
 public interface ProcessTypeService extends IService<ProcessType> {

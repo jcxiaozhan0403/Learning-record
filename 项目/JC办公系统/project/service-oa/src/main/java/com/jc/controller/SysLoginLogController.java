@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author John.Cena
- * @date 2023/7/18 10:12
  * @Description: 登录日志
  */
 @RequestMapping("/admin/system/log")

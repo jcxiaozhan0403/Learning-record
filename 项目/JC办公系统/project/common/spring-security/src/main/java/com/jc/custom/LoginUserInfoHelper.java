@@ -3,7 +3,6 @@ package com.jc.custom;
 /**
  * 获取当前用户信息帮助类
  * @author John.Cena
- * @date 2023/4/14 17:51
  * @Description:
  */
 public class LoginUserInfoHelper {

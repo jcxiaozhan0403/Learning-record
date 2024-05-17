@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * @author John.Cena
- * @date 2023/4/5 11:24
  * @Description:
  */
 public interface SysMenuService extends IService<SysMenu> {

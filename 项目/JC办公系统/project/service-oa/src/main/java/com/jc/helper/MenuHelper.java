@@ -8,7 +8,6 @@ import java.util.List;
 /**
  * 帮助类，用于生成菜单的树状结构
  * @author John.Cena
- * @date 2023/4/5 12:33
  * @Description:
  */
 public class MenuHelper {

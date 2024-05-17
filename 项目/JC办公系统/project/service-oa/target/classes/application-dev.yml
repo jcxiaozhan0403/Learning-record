@@ -16,10 +16,10 @@ spring:
     # type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/jc-oa?serverTimezone=GMT%2B8&useSSL=false&characterEncoding=utf-8
-#    username: root
-#    password: lishuang001219
-    username: jc-oa
-    password: jc-oa
+    username: root
+    password: lishuang001219
+#    username: jc-oa
+#    password: jc-oa
     # 配置json数据返回的日期格式
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -55,5 +55,5 @@ wechat:
   mpAppId: wxd0fb31b2c553f163
   mpAppSecret: ce44fa4e0e5eb696e10291879000898a
   # 授权回调获取用户信息接口地址
-#  userInfoUrl: http://oa.jcxiaozhan.top:8200/admin/wechat/userInfo
-  userInfoUrl: http://java.jcxiaozhan.top:8200/admin/wechat/userInfo
+  userInfoUrl: http://localhost:8200/admin/wechat/userInfo
+#  userInfoUrl: http://java.jcxiaozhan.top:8200/admin/wechat/userInfo

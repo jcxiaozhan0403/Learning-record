@@ -2,7 +2,6 @@ package com.wechat.service;
 
 /**
  * @author John.Cena
- * @date 2023/4/16 8:48
  * @Description:
  */
 public interface MessageService {

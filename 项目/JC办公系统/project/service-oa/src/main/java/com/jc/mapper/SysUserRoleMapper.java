@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 /**
  * @author John.Cena
- * @date 2023/4/4 21:36
  * @Description:
  */
 @Mapper

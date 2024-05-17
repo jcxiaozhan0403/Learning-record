@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * @author John.Cena
- * @date 2023/4/13 11:07
  * @Description:
  */
 @Api(value = "审批类型", tags = "审批类型")

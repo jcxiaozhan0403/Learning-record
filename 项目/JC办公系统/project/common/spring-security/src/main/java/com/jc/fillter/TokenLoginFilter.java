@@ -27,7 +27,6 @@ import java.util.Map;
 /**
  * 第二层：登录过滤器，继承UsernamePasswordAuthenticationFilter，对用户名密码进行登录校验
  * @author John.Cena
- * @date 2023/4/8 22:46
  * @Description:
  */
 public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {

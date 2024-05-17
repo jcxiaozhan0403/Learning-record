@@ -5,7 +5,6 @@ import org.activiti.engine.delegate.TaskListener;
 
 /**
  * @author John.Cena
- * @date 2023/4/12 17:13
  * @Description:
  */
 public class MyTaskListener implements TaskListener {

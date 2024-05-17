@@ -1,6 +1,5 @@
 package com.jc.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jc.common.result.Result;
 import com.jc.model.system.SysDept;
@@ -8,14 +7,12 @@ import com.jc.service.SysDeptService;
 import com.jc.vo.system.SysDeptQueryVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * @author John.Cena
- * @date 2023/7/17 11:14
  * @Description: 部门管理
  */
 @Api(tags = "部门管理")

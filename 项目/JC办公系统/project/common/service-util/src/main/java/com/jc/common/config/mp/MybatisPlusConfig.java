@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author John.Cena
- * @date 2023/4/4 10:45
  * @Description:
  */
 @Configuration

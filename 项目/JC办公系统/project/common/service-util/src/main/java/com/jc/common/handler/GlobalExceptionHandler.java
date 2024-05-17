@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * 全局异常处理类
  * @author John.Cena
- * @date 2023/3/13 20:49
  * @Description:
  */
 //AOP的方式进行异常信息监听

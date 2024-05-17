@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @author John.Cena
- * @date 2023/7/18 11:02
  * @Description:
  */
 @Mapper

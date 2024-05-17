@@ -17,7 +17,6 @@ import java.util.List;
 /**
  * 覆盖spring-security的默认组件，自定义查找用户信息
  * @author John.Cena
- * @date 2023/4/8 22:40
  * @Description:
  */
 @Component

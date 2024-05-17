@@ -7,7 +7,6 @@ import com.jc.vo.system.SysDeptQueryVo;
 
 /**
  * @author John.Cena
- * @date 2023/7/17 14:35
  * @Description:
  */
 public interface SysDeptService extends IService<SysDept> {

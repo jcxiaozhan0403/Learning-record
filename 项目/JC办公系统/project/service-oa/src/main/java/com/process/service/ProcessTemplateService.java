@@ -7,7 +7,6 @@ import com.jc.model.process.ProcessTemplate;
 
 /**
  * @author John.Cena
- * @date 2023/4/13 11:33
  * @Description:
  */
 public interface ProcessTemplateService extends IService<ProcessTemplate> {

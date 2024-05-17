@@ -97,6 +97,30 @@ def get_from_xiaoxi():
         print("网站：https://banyunxiaoxi.icu/ 解析失败")
         return ''
 
+
+# 网站5：https://github.com/Cry1ngMan/1
+def get_from_github2():
+    # try:
+        global url
+        url = "https://github.com/Cry1ngMan/1"
+        response = requests.get(url)
+        html_tree = html.fromstring(response.content)
+        elements = html_tree.xpath('//*[@id="repo-content-pjax-container"]/div/div/div[2]/div[1]/react-partial/div/div/div[3]/div[2]/div/div[2]/article/div/pre/code')
+
+        text = ''
+        if elements != '':
+            for element in elements:
+                response = requests.get(element.text.strip())
+                html_tree = html.fromstring(response.content)
+                text = '\n' + html_tree.text
+
+        print(text)
+
+        # return elements[0].text
+    # except Exception:
+    #     print("网站：https://github.com/Cry1ngMan/1 解析失败")
+    #     return ''
+
 # 写入文件
 def wirte_to_file(list):
     # 获取当前日期，并格式化为字符串，用于文件名
@@ -129,3 +153,4 @@ if __name__ == '__main__':
     messges()
     wirte_to_file(list)
     print(f"总耗时：{time_total:.2f}秒")
+    # get_from_github2()
