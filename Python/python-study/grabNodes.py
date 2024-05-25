@@ -57,10 +57,10 @@ def get_from_github():
         url = "https://github.com/Pawdroid/Free-servers"
         response = requests.get(url)
         html_tree = html.fromstring(response.content)
-        elements = html_tree.xpath('//*[@id="repo-content-pjax-container"]/div/div/div[2]/div[1]/react-partial/div/div/div[3]/div[2]/div/div[2]/article/div[4]/pre/code')
+        elements = html_tree.xpath('//*[@id="repo-content-pjax-container"]/div/div/div[2]/div[1]/react-partial/div/div/div[3]/div[2]/div/div[2]/article/div/pre/code')
         return elements[0].text
     except Exception:
-        print("网站：https://freeclash.org/ 解析失败")
+        print("网站：https://github.com/Pawdroid/Free-servers 解析失败")
         return ''
 
 # 网站3：https://proxypool.link/vmess/sub
@@ -98,28 +98,37 @@ def get_from_xiaoxi():
         return ''
 
 
-# 网站5：https://github.com/Cry1ngMan/1
-def get_from_github2():
-    # try:
+# 网站5：https://nodefree.org/
+def get_from_nodefree():
+    try:
         global url
-        url = "https://github.com/Cry1ngMan/1"
+        url = "https://nodefree.org/"
         response = requests.get(url)
+
+        # 使用lxml的html模块来解析HTML内容
         html_tree = html.fromstring(response.content)
-        elements = html_tree.xpath('//*[@id="repo-content-pjax-container"]/div/div/div[2]/div[1]/react-partial/div/div/div[3]/div[2]/div/div[2]/article/div/pre/code')
+        # 使用XPath查询元素
+        # 注意：XPath表达式可能需要根据实际的网页结构进行调整
+        elements = html_tree.xpath('//*[@id="wrap"]/div/main/section/div/ul/li[1]/div[2]/h2/a')
+        today_link = elements[0].get('href')
 
-        text = ''
-        if elements != '':
-            for element in elements:
-                response = requests.get(element.text.strip())
-                html_tree = html.fromstring(response.content)
-                text = '\n' + html_tree.text
+        if today_link != '':
+            response = requests.get(today_link)
+            # 使用lxml的html模块来解析HTML内容
+            html_tree = html.fromstring(response.content)
+            elements = html_tree.xpath('//*[@id="post-2067"]/div[1]/div[2]/div[1]/div/div/p[1]')
+            v2ray_url = elements[0].text
 
-        print(text)
+        if v2ray_url != '':
+            response = requests.get(v2ray_url)
+            # 使用lxml的html模块来解析HTML内容
+            html_tree = html.fromstring(response.content)
 
-        # return elements[0].text
-    # except Exception:
-    #     print("网站：https://github.com/Cry1ngMan/1 解析失败")
-    #     return ''
+            return html_tree.text
+    except Exception:
+        print("网站：https://nodefree.org/ 解析失败")
+        return ''
+
 
 # 写入文件
 def wirte_to_file(list):
@@ -151,6 +160,7 @@ if __name__ == '__main__':
     messges()
     list.append(get_from_xiaoxi())
     messges()
+    list.append(base64.b64decode(get_from_nodefree().encode('utf-8')).decode('utf-8'))
+    messges()
     wirte_to_file(list)
     print(f"总耗时：{time_total:.2f}秒")
-    # get_from_github2()
