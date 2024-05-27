@@ -2447,7 +2447,53 @@ myGenericMethod.show(200);// integer类型
 myGenericMethod.show(3.14);// double类型
 ```
 
+## Option类（JDK8引入）
+
+```java
+import java.util.Optional;  
+  
+public class OptionalDemo {  
+  
+    public static void main(String[] args) {  
+        // 创建一个空的Optional  
+        Optional<String> emptyOptional = Optional.empty();  
+          
+        // 创建一个包含值的Optional  
+        Optional<String> optionalWithValue = Optional.of("Hello, Optional!");  
+          
+        // 如果Optional有值，则打印它  
+        optionalWithValue.ifPresent(System.out::println);  
+          
+        // 使用orElse如果Optional为空则提供一个默认值  
+        String valueOrDefault = emptyOptional.orElse("Default Value");  
+        System.out.println(valueOrDefault);  
+          
+        // 使用orElseGet如果Optional为空则通过Supplier提供一个默认值  
+        String valueOrGenerated = emptyOptional.orElseGet(() -> "Generated Value");  
+        System.out.println(valueOrGenerated);  
+          
+        // 使用orElseThrow如果Optional为空则抛出一个异常  
+        try {  
+            emptyOptional.orElseThrow(IllegalStateException::new);  
+        } catch (IllegalStateException e) {  
+            System.out.println("Caught an exception: " + e.getMessage());  
+        }  
+          
+        // 使用map对Optional的值进行转换  
+        Optional<Integer> optionalInt = optionalWithValue.map(String::length);  
+        System.out.println(optionalInt.orElse(0));  
+          
+        // 使用flatMap对Optional的值进行链式转换  
+        // 这里仅作为示例，因为String::toUpperCase不返回Optional，所以我们需要先map到一个Optional  
+        Optional<Optional<String>> optionalOfOptional = optionalWithValue.map(s -> Optional.of(s.toUpperCase()));  
+        Optional<String> flattenedOptional = optionalOfOptional.flatMap(Optional::identity);  
+        System.out.println(flattenedOptional.orElse("No flattened value"));  
+    }  
+}
+```
+
 # 集合
+
 概念：对象的容器，定义了对多个对象进行操作的常用方法，可实现数组的功能
 
 所有集合类都位于`java.util`包下，Java的集合类主要由两个接口派生而出，Collection和Map，Collection和Map是Java集合框架的根接口，这两个接口又包含了一些子接口或实现类。
@@ -4286,6 +4332,8 @@ public class Test {
     }
 }
 ```
+
+
 
 ## 线程状态
 
