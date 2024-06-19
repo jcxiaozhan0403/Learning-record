@@ -1852,42 +1852,44 @@ async def crontab_task(**kwargs):
     # tasks = [asyncio.create_task(signBeanAct(**account_list[i])) for i in range(len(account_list))]
     # tasks = []
     # 京豆任务
-    tasks = [asyncio.create_task(signBeanAct(**{"pt_pin": k, "pt_key": cache[k]})) for k in cache.iterkeys() if
-             k.startswith("jd_")]
-    # 南航任务
-    tasks += [asyncio.create_task(csairSign(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("csai_")]
-    # 川航任务
-    tasks += [asyncio.create_task(sichuanairSign(**{"token": cache[k]})) for k in cache.iterkeys() if
-              k.startswith("sichuanair_")]
-    # 携程任务
-    tasks += [asyncio.create_task(ctripSign(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("ctrip_")]
-    # 微信龙舟任务
-    tasks += [asyncio.create_task(dragon_boat_2023(**{"token": cache[k]})) for k in cache.iterkeys() if
-              k.startswith("dragon_boat_2023_")]
-    # 美团优惠券
-    tasks += [asyncio.create_task(meituan(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("meituan_")]
-    # 统一星球
-    tasks += [asyncio.create_task(weimob(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("weimob_")]
-    # 10086
-    tasks += [asyncio.create_task(m10086(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("10086_")]
-    # 10010
-    tasks += [asyncio.create_task(m10010(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("10010_")]
-    # 东鹏特饮
-    tasks += [asyncio.create_task(youzan_dp(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("dp_")]
-    # 云闪付
-    tasks += [asyncio.create_task(m95516(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("95516_")]
-    # 卡亨星球
-    tasks += [asyncio.create_task(kraf(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("kraf_")]
-    # 鸿星尔克
-    tasks += [asyncio.create_task(demogic_erke(**{"token": cache[k]})) for k in cache.iterkeys() if
-              k.startswith("erke_")]
-    # 迪卡侬
-    tasks += [asyncio.create_task(decathlon(**{"token": cache[k]})) for k in cache.iterkeys() if
-              k.startswith("decathlon")]
-    # 萤石
-    tasks += [asyncio.create_task(ys(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("ys")]
-    # 掘金
-    tasks += [asyncio.create_task(juejin(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("juejin")]
+    # tasks = [asyncio.create_task(signBeanAct(**{"pt_pin": k, "pt_key": cache[k]})) for k in cache.iterkeys() if
+    #          k.startswith("jd_")]
+
+    tasks = [asyncio.create_task(meituan(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("meituan_")]
+    # # 南航任务
+    # tasks += [asyncio.create_task(csairSign(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("csai_")]
+    # # 川航任务
+    # tasks += [asyncio.create_task(sichuanairSign(**{"token": cache[k]})) for k in cache.iterkeys() if
+    #           k.startswith("sichuanair_")]
+    # # 携程任务
+    # tasks += [asyncio.create_task(ctripSign(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("ctrip_")]
+    # # 微信龙舟任务
+    # tasks += [asyncio.create_task(dragon_boat_2023(**{"token": cache[k]})) for k in cache.iterkeys() if
+    #           k.startswith("dragon_boat_2023_")]
+    # # 美团优惠券
+    # tasks += [asyncio.create_task(meituan(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("meituan_")]
+    # # 统一星球
+    # tasks += [asyncio.create_task(weimob(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("weimob_")]
+    # # 10086
+    # tasks += [asyncio.create_task(m10086(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("10086_")]
+    # # 10010
+    # tasks += [asyncio.create_task(m10010(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("10010_")]
+    # # 东鹏特饮
+    # tasks += [asyncio.create_task(youzan_dp(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("dp_")]
+    # # 云闪付
+    # tasks += [asyncio.create_task(m95516(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("95516_")]
+    # # 卡亨星球
+    # tasks += [asyncio.create_task(kraf(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("kraf_")]
+    # # 鸿星尔克
+    # tasks += [asyncio.create_task(demogic_erke(**{"token": cache[k]})) for k in cache.iterkeys() if
+    #           k.startswith("erke_")]
+    # # 迪卡侬
+    # tasks += [asyncio.create_task(decathlon(**{"token": cache[k]})) for k in cache.iterkeys() if
+    #           k.startswith("decathlon")]
+    # # 萤石
+    # tasks += [asyncio.create_task(ys(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("ys")]
+    # # 掘金
+    # tasks += [asyncio.create_task(juejin(**{"token": cache[k]})) for k in cache.iterkeys() if k.startswith("juejin")]
 
     result_list = await asyncio.gather(*tasks)
     # logger.info(result_list)
