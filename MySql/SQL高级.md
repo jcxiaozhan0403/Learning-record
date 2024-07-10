@@ -116,6 +116,14 @@ FROM enter_warehouse_info as w_i
      LEFT JOIN warehouse_type w_t ON w_t.id = w_i.warehouse_type_id
 WHERE w_t.warehouse_type = '线边库' AND w_i.deleted = '0'
 GROUP BY w_i.material_code
+# 字符串转数值类型::NUMERIC
+SELECT
+	material_check_status,
+	SUM ( material_weight :: NUMERIC ) 
+FROM
+	enter_warehouse_info 
+GROUP BY
+	material_check_status
 ```
 
 ## 日期转字符串
