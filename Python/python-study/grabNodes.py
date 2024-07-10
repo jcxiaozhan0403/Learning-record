@@ -2,6 +2,7 @@ import requests,base64,json,time
 from threading import Thread
 from lxml import html
 from datetime import datetime
+import re
 
 # 全局变量
 # url
@@ -81,14 +82,20 @@ def get_from_xiaoxi():
     try:
         global url
         url = "https://banyunxiaoxi.icu/"
-        response = requests.get(url)
+
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
+
+        response = requests.get(url,headers = headers)
         # 使用lxml的html模块来解析HTML内容
         html_tree = html.fromstring(response.content)
-        elements = html_tree.xpath('/html/body/div[2]/div/div/div[1]/div[2]/div[3]/span[3]/a')
+        # # elements = html_tree.xpath('/html/body/div[2]/div/div/div[1]/div[2]/div[3]/span[3]/a')
+        elements = html_tree.xpath('/html/body/div[2]/div/div/div[1]/div/div[2]/div[1]/h3/a')
         today_link = elements[0].get('href')
 
         if today_link != '':
-            response = requests.get(today_link)
+            response = requests.get(today_link,headers = headers)
             # 使用lxml的html模块来解析HTML内容
             html_tree = html.fromstring(response.content)
             elements = html_tree.xpath('//*[@id="lightgallery"]/blockquote/p')
@@ -103,24 +110,30 @@ def get_from_nodefree():
     try:
         global url
         url = "https://nodefree.org/"
-        response = requests.get(url)
+
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
+
+        response = requests.get(url,headers = headers)
 
         # 使用lxml的html模块来解析HTML内容
         html_tree = html.fromstring(response.content)
         # 使用XPath查询元素
         # 注意：XPath表达式可能需要根据实际的网页结构进行调整
-        elements = html_tree.xpath('//*[@id="wrap"]/div/main/section/div/ul/li[1]/div[2]/h2/a')
+        elements = html_tree.xpath('//*[@id="wrap"]/div/main/section/div/ul/li/div[2]/h2/a')
         today_link = elements[0].get('href')
 
         if today_link != '':
-            response = requests.get(today_link)
+            today_num = re.search(r'/([^/]*)\.html$', today_link).group(1)
+            response = requests.get(today_link, headers = headers)
             # 使用lxml的html模块来解析HTML内容
             html_tree = html.fromstring(response.content)
-            elements = html_tree.xpath('//*[@id="post-2067"]/div[1]/div[2]/div[1]/div/div/p[1]')
+            elements = html_tree.xpath(f'//*[@id="post-{today_num}"]/div[1]/div[2]/div[1]/div/div/p[1]')
             v2ray_url = elements[0].text
 
         if v2ray_url != '':
-            response = requests.get(v2ray_url)
+            response = requests.get(v2ray_url, headers = headers)
             # 使用lxml的html模块来解析HTML内容
             html_tree = html.fromstring(response.content)
 
@@ -161,6 +174,7 @@ if __name__ == '__main__':
     list.append(get_from_xiaoxi())
     messges()
     list.append(base64.b64decode(get_from_nodefree().encode('utf-8')).decode('utf-8'))
+    list.append(get_from_nodefree())
     messges()
     wirte_to_file(list)
     print(f"总耗时：{time_total:.2f}秒")
