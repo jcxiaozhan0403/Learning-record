@@ -2447,7 +2447,29 @@ myGenericMethod.show(200);// integer类型
 myGenericMethod.show(3.14);// double类型
 ```
 
-## Option类（JDK8引入）
+## Optional类（JDK8引入）
+
+### 常用
+
+```java
+public class Demo {
+    public static void main(String args[]){
+        BigDecimal a = new BigDecimal("8888.88888");
+        BigDecimal b = null;
+		
+        //使用Optional.ofNullable的对需要验证的对象进行包裹
+        //orElse的意思是，从Optional中获取到对象，如果对象不为null，就正常返回，如果对象为null，返回预设
+        BigDecimal a2 = Optional.ofNullable(a).orElse(new BigDecimal("0.00"));
+        BigDecimal b2 = Optional.ofNullable(b).orElse(new BigDecimal("0.00"));
+
+
+        System.out.println("a2 = " + a2);
+        System.out.println("b2 = " + b2);
+    }
+}
+```
+
+### 完整类方法
 
 ```java
 import java.util.Optional;  

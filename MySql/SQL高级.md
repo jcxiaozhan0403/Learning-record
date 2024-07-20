@@ -75,15 +75,36 @@ COALESCE(SUM(p_r.scrap_num + p_r.release_num + p_r.qualified_num), 0) consumptio
 from production_rewind p_r
 ```
 
-## 窗口函数（没玩懂）
+## 窗口函数
 
 ```sql
-SELECT ROW_NUMBER
-					 ( ) OVER ( PARTITION BY production_order_number_child ORDER BY vornr DESC ) row_id, *
-FROM
-		production_instruct
-WHERE
-		deleted	= '0'
+# 窗口函数就是给每一行生成一个行号
+# PARTITION BY 关键字是用来窗口分区的，根据某一字段，将窗口划分为多个区域，然后分开生成行号
+SELECT id,material_code,rank() over (PARTITION BY material_code ORDER BY entry_time) as serial_number
+FROM "enter_warehouse_info"
+WHERE warehouse_type_name = '模具库' AND deleted = 0 AND status = '2'
+```
+
+多个窗口函数
+
+```sql
+# 分区赋予行号
+row_number() over(partition by … order by …)
+
+# 统计分区总数
+count(*) over(partition by … order by …)
+
+# 生成排名序号：相等的值排名相同，但若有相等的值，则序号从1到n不连续。如果有两个人都排在第3名，则没有第4名。
+rank() over(partition by … order by …)
+
+# 生成排名序号：相等的值排名相同，但序号从1到n连续。如果有两个人都排在第一名，则排在第2名（假设仅有1个第二名）的人是第3个人。
+dense_rank() over(partition by … order by …)
+
+# 其余窗口函数
+max() over(partition by … order by …)
+min() over(partition by … order by …)
+sum() over(partition by … order by …)
+avg() over(partition by … order by …)
 ```
 
 ## string_agg()
