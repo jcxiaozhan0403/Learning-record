@@ -165,8 +165,8 @@ def messges():
     start_time = time.time()
 
 if __name__ == '__main__':
-    list.append(base64.b64decode(get_from_freeclash().encode('utf-8')).decode('utf-8'))
-    messges()
+    # list.append(base64.b64decode(get_from_freeclash().encode('utf-8')).decode('utf-8'))
+    # messges()
     list.append(get_from_github())
     messges()
     list.append(base64.b64decode(get_from_proxypool().encode('utf-8')).decode('utf-8'))
